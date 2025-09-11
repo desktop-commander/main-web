@@ -1,0 +1,50 @@
+{
+  "name": "prompt-library",
+  "sourceRoot": "src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "../docs/prompt-library"
+      },
+      "configurations": {
+        "development": {
+          "extractCss": true,
+          "optimization": true,
+          "sourceMap": true
+        },
+        "production": {
+          "extractCss": true,
+          "optimization": true,
+          "sourceMap": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "prompt-library:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "prompt-library:build:development"
+        },
+        "production": {
+          "buildTarget": "prompt-library:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.js", "src/**/*.jsx"]
+      }
+    }
+  },
+  "tags": ["scope:prompt-library", "type:app"]
+}
