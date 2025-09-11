@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Dark theme - Desktop Commander brand */
+    --background: 222 24% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 20% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 20% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Primary Blue accent - brighter for better visibility */
+    --primary: 218 100% 72%;
+    --primary-foreground: 222 24% 8%;
+
+    --secondary: 222 16% 18%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 222 16% 16%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 218 100% 72%;
+    --accent-foreground: 222 24% 8%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 16% 20%;
+    --input: 222 16% 16%;
+    --ring: 218 100% 72%;
+
+    --radius: 0.75rem;
+
+    /* Custom Desktop Commander tokens */
+    --dc-blue: 218 100% 72%;
+    --dc-blue-glow: 218 100% 82%;
+    --dc-dark: 222 24% 8%;
+    --dc-card: 222 20% 12%;
+    --dc-surface: 222 16% 18%;
+    --dc-border: 222 16% 20%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--dc-blue)), hsl(var(--dc-blue-glow)));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--dc-card)), hsl(var(--dc-surface)));
+    
+    /* Shadows */
+    --shadow-elegant: 0 10px 30px -10px hsl(var(--dc-blue) / 0.2);
+    --shadow-glow: 0 0 40px hsl(var(--dc-blue) / 0.3);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Same as root since we're dark by default */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .gradient-subtle {
+    background: var(--gradient-subtle);
+  }
+  
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+}

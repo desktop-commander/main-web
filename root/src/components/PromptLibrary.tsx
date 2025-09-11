@@ -1,0 +1,204 @@
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ArrowRight, Search, FileText, Server, FolderOpen, Zap, Database, GitCompare, Trash2, BookOpen, Code2, Cloud, Image, BarChart3 } from "lucide-react";
+
+const promptCategories = [
+  {
+    title: "Explore codebase",
+    icon: Search,
+    prompts: [
+      {
+        icon: Code2,
+        title: "Explain Codebase or Repository",
+        description: "Understand and analyze your codebase structure"
+      },
+      {
+        icon: GitCompare,
+        title: "Compare Config Files to Baseline",
+        description: "Compare configuration files against standards"
+      },
+      {
+        icon: Trash2,
+        title: "Clean Up Unused Code",
+        description: "Remove dead code and optimize your project"
+      }
+    ]
+  },
+  {
+    title: "Write documentation",
+    icon: BookOpen,
+    prompts: [
+      {
+        icon: FileText,
+        title: "Create Project Documentation",
+        description: "Generate comprehensive project documentation"
+      },
+      {
+        icon: Database,
+        title: "Create Database Schema Diagram",
+        description: "Visualize your database structure and relationships"
+      },
+      {
+        icon: Server,
+        title: "Document Ansible Configuration",
+        description: "Create clear documentation for your Ansible setup"
+      }
+    ]
+  },
+  {
+    title: "Deploy",
+    icon: Cloud,
+    prompts: [
+      {
+        icon: Cloud,
+        title: "Set Up Cloud Infrastructure",
+        description: "Deploy scalable cloud infrastructure from scratch"
+      },
+      {
+        icon: Server,
+        title: "Set Up WordPress Environment",
+        description: "Configure complete WordPress development environment"
+      },
+      {
+        icon: Code2,
+        title: "Build and Deploy Landing Page",
+        description: "Create and deploy a professional landing page"
+      }
+    ]
+  },
+  {
+    title: "Automate tasks",
+    icon: Zap,
+    prompts: [
+      {
+        icon: FolderOpen,
+        title: "Organise my Downloads folder",
+        description: "Sort messy downloads into organized folders"
+      },
+      {
+        icon: FileText,
+        title: "Extract Data from PDFs",
+        description: "Pull structured data from PDF documents"
+      },
+      {
+        icon: Image,
+        title: "Convert HEIC to PNG",
+        description: "Batch convert image formats efficiently"
+      }
+    ]
+  },
+  {
+    title: "Optimize workflow",
+    icon: BarChart3,
+    prompts: [
+      {
+        icon: BookOpen,
+        title: "Create Knowledge Base Folder",
+        description: "Organize information into searchable knowledge base"
+      },
+      {
+        icon: Database,
+        title: "Consolidate Data Files into One",
+        description: "Merge multiple data sources into unified format"
+      },
+      {
+        icon: BarChart3,
+        title: "Automate Competitor Research",
+        description: "Set up automated competitive analysis workflows"
+      }
+    ]
+  }
+];
+
+const PromptLibrary = () => {
+  return (
+    <section className="py-12 bg-background">
+      <div className="container mx-auto max-w-7xl px-6">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h2 className="text-4xl font-bold text-foreground mb-4">
+            Explore Prompt Library
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            60+ prompts organized by workflow - from codebase exploration to task automation
+          </p>
+        </div>
+
+        {/* Tabs Interface */}
+        <div className="max-w-4xl mx-auto mb-8">
+          <Tabs defaultValue="explore-codebase" className="w-full">
+            <TabsList className="grid w-full grid-cols-5 mb-8">
+              {promptCategories.map((category, index) => {
+                const CategoryIcon = category.icon;
+                const value = category.title.toLowerCase().replace(/\s+/g, '-');
+                return (
+                  <TabsTrigger 
+                    key={index} 
+                    value={value}
+                    className="flex items-center gap-2 text-xs sm:text-sm"
+                  >
+                    <CategoryIcon className="h-4 w-4" />
+                    <span className="hidden sm:inline">{category.title}</span>
+                  </TabsTrigger>
+                );
+              })}
+            </TabsList>
+            
+            {promptCategories.map((category, index) => {
+              const value = category.title.toLowerCase().replace(/\s+/g, '-');
+              return (
+                <TabsContent key={index} value={value} className="space-y-4">
+                  {category.prompts.map((prompt, promptIndex) => {
+                    const PromptIcon = prompt.icon;
+                    return (
+                      <a
+                        key={promptIndex}
+                        href="https://library.desktopcommander.app/?i=17"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-4 p-4 rounded-lg border border-border hover:border-primary/40 hover:bg-accent/50 transition-all duration-200 group"
+                      >
+                        <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                          <PromptIcon className="h-5 w-5 text-primary" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                            {prompt.title}
+                          </h4>
+                          <p className="text-sm text-muted-foreground mt-1">
+                            {prompt.description}
+                          </p>
+                        </div>
+                        <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                      </a>
+                    );
+                  })}
+                </TabsContent>
+              );
+            })}
+          </Tabs>
+        </div>
+
+        {/* CTA */}
+        <div className="text-center">
+          <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+            <a 
+              href="https://library.desktopcommander.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2"
+            >
+              Browse All Prompts
+              <ArrowRight className="h-4 w-4" />
+            </a>
+          </Button>
+          <p className="text-sm text-muted-foreground mt-4">
+            60+ workflows across development, automation, and optimization
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default PromptLibrary;
