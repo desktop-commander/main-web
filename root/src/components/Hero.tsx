@@ -82,16 +82,6 @@ const Hero = () => {
                   className="h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300"
                 />
                 <img 
-                  src="/lovable-uploads/b4ed8368-5f42-4175-b3ef-6f2e6f3f6a16.png" 
-                  alt="Claude logo" 
-                  className="h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                />
-                <img 
-                  src="/lovable-uploads/526398c8-40f8-45a1-96ba-31739b3166bd.png" 
-                  alt="Client logo" 
-                  className="h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                />
-                <img 
                   src="/lovable-uploads/874eb1ee-538a-453b-9904-db31d0c1486a.png" 
                   alt="Client logo" 
                   className="h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300"

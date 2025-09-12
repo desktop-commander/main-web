@@ -18,7 +18,9 @@ Changes made via Lovable will be committed automatically to this repo.
 
 If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Requirements:
+* Node.js version >= v18.0.0 - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+* Claude Desktop
 
 Follow these steps:
 
