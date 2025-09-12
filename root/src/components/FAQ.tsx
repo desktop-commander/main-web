@@ -4,45 +4,46 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { ExternalLink } from "lucide-react";
 
 const FAQ = () => {
   const faqs = [
     {
       question: "What is Desktop Commander?",
-      answer: "Desktop Commander is a powerful CLI tool that brings AI-powered automation to your desktop. It allows you to execute complex tasks, manage files, and interact with your system using natural language commands."
+      answer: "Desktop Commander is an MCP (Model Context Protocol) tool that allows Claude Desktop or other MCP clients to access and control your computer's file system and terminal. It enables LLMs to explore, read, and write files, execute commands, and manage processes - expanding their capabilities beyond just conversation to become a comprehensive assistant that can work with your entire operating system."
     },
     {
-      question: "How do I get started?",
-      answer: "Getting started is simple! Install Desktop Commander using npm, configure your AI provider (OpenAI, Anthropic, or local models), and start running commands. Check out our installation guide for detailed steps."
+      question: "How does it differ from coding tools like Cursor or Windsurf?",
+      answer: "Unlike tools like Cursor or Windsurf which are primarily designed as coding IDEs, Desktop Commander works with Claude to provide a more flexible, solution-centric approach. It's not confined to a coding box - it can handle coding tasks but also excels at exploring codebases, drawing diagrams, running automation processes, and working with multiple projects simultaneously."
     },
     {
-      question: "Is Desktop Commander free to use?",
-      answer: "Yes! Desktop Commander is completely free and open-source. You only pay for the AI provider costs (like OpenAI or Anthropic API usage) based on your actual usage."
+      question: "What is an MCP?",
+      answer: "MCP stands for Model Context Protocol. It's a framework that allows AI language models like Claude to interact with external tools and services. MCPs give Claude the ability to perform actions in the real world - in this case, to read and write files, execute terminal commands, and manage processes on your computer."
     },
     {
-      question: "What are the system requirements?",
-      answer: "Desktop Commander works on Windows, macOS, and Linux. You need Node.js 16+ installed and an API key from your preferred AI provider (OpenAI, Anthropic, or you can use local models)."
+      question: "How much does it cost to use Desktop Commander?",
+      answer: "Desktop Commander itself is free and open-source. However, to use it, you need a Claude Pro subscription, which costs $20/month. There are no additional charges beyond this subscription fee."
     },
     {
-      question: "How secure is Desktop Commander?",
-      answer: "Security is our top priority. All API keys are stored locally, commands are executed in controlled environments, and we provide detailed logging for transparency. You have full control over what commands are executed."
+      question: "Which operating systems does it support?",
+      answer: "Desktop Commander works with Windows, macOS, and Linux, with ongoing improvements for better cross-platform support."
     },
     {
-      question: "Can I contribute to the project?",
-      answer: "Absolutely! Desktop Commander is open-source and we welcome contributions. You can contribute code, documentation, report bugs, or suggest features on our GitHub repository."
+      question: "How does Desktop Commander collect feedback and usage data?",
+      answer: "It has three systems: local usage analytics (always active, stays on your machine), anonymous telemetry (can be disabled), and optional feedback system (user controlled)."
     },
     {
-      question: "How does it compare to other AI tools?",
-      answer: "Unlike web-based AI tools, Desktop Commander runs locally and can directly interact with your system. It's designed specifically for developers and power users who need AI assistance with their desktop workflows."
+      question: "Is it safe to give Claude access to my file system?",
+      answer: "Claude operates within safety boundaries - it typically only works with files you direct it to, can only perform actions your user account has permission for, and no data is sent to external servers beyond Claude conversations."
     },
     {
-      question: "What's on the roadmap?",
-      answer: "We're constantly improving Desktop Commander with new features like enhanced plugin system, better multi-modal support, team collaboration features, and integration with more AI providers. Check our GitHub for the latest updates."
+      question: "I'm having trouble installing or using the tool. Where can I get help?",
+      answer: "Join our Discord server for community support, check the GitHub issues for known problems, or review our comprehensive FAQ for troubleshooting tips. If you encounter a new issue, please consider opening a GitHub issue with details about your problem."
     }
   ];
 
   return (
-    <section className="py-20 bg-muted/30">
+    <section id="faq" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -70,6 +71,25 @@ const FAQ = () => {
               </AccordionItem>
             ))}
           </Accordion>
+          
+          {/* Link to comprehensive FAQ */}
+          <div className="mt-12 text-center">
+            <div className="bg-background border rounded-lg p-6">
+              <h3 className="text-lg font-semibold mb-2">Need More Details?</h3>
+              <p className="text-muted-foreground mb-4">
+                View our comprehensive FAQ document on GitHub for more detailed answers and troubleshooting guides.
+              </p>
+              <a 
+                href="https://github.com/wonderwhy-er/DesktopCommanderMCP/blob/main/FAQ.md"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
+              >
+                Complete FAQ on GitHub
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

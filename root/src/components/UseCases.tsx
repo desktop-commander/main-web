@@ -37,7 +37,7 @@ const UseCases = () => {
   ];
 
   return (
-    <section className="py-24 bg-dc-surface/30">
+    <section id="use-cases" className="py-24 bg-dc-surface/30">
       <div className="container mx-auto max-w-7xl px-6">
         {/* Header */}
         <div className="text-center mb-16">

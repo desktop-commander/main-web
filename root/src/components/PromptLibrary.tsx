@@ -112,7 +112,7 @@ const promptCategories = [
 
 const PromptLibrary = () => {
   return (
-    <section className="py-12 bg-background">
+    <section id="prompts" className="py-12 bg-background">
       <div className="container mx-auto max-w-7xl px-6">
         {/* Header */}
         <div className="text-center mb-8">
