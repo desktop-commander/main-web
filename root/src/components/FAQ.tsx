@@ -5,8 +5,33 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { ExternalLink } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 
 const FAQ = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   const faqs = [
     {
       question: "What is Desktop Commander?",
@@ -43,9 +68,11 @@ const FAQ = () => {
   ];
 
   return (
-    <section id="faq" className="py-20 bg-muted/30">
+    <section ref={sectionRef} id="faq" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Frequently Asked Questions
           </h2>
@@ -54,15 +81,24 @@ const FAQ = () => {
           </p>
         </div>
         
-        <div className="max-w-3xl mx-auto">
+        <div className={`max-w-3xl mx-auto transition-all duration-1000 delay-300 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
               <AccordionItem 
                 key={index} 
                 value={`item-${index}`}
-                className="bg-background border rounded-lg px-6 py-2"
+                className={`bg-background border rounded-lg px-6 py-2 transition-all duration-700 hover:shadow-lg hover:scale-[1.01] transform ${
+                  isVisible 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-4'
+                }`}
+                style={{
+                  transitionDelay: isVisible ? `${500 + index * 100}ms` : '0ms'
+                }}
               >
-                <AccordionTrigger className="text-left hover:no-underline">
+                <AccordionTrigger className="text-left hover:no-underline transition-colors duration-300 hover:text-primary">
                   <span className="font-semibold">{faq.question}</span>
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed">
@@ -73,8 +109,10 @@ const FAQ = () => {
           </Accordion>
           
           {/* Link to comprehensive FAQ */}
-          <div className="mt-12 text-center">
-            <div className="bg-background border rounded-lg p-6">
+          <div className={`mt-12 text-center transition-all duration-1000 delay-1200 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
+            <div className="bg-background border rounded-lg p-6 transition-all duration-300 hover:shadow-lg hover:scale-[1.02] transform">
               <h3 className="text-lg font-semibold mb-2">Need More Details?</h3>
               <p className="text-muted-foreground mb-4">
                 View our comprehensive FAQ document on GitHub for more detailed answers and troubleshooting guides.
@@ -83,10 +121,10 @@ const FAQ = () => {
                 href="https://github.com/wonderwhy-er/DesktopCommanderMCP/blob/main/FAQ.md"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
+                className="inline-flex items-center gap-2 text-primary hover:underline font-medium transition-all duration-300 hover:scale-105 group"
               >
                 Complete FAQ on GitHub
-                <ExternalLink className="h-4 w-4" />
+                <ExternalLink className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { ExternalLink } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -57,10 +58,35 @@ const blogPosts = [
 ];
 
 const Blog = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
   return (
-    <section id="blog" className="py-20 bg-white">
+    <section ref={sectionRef} id="blog" className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Blog
           </h2>
@@ -69,7 +95,9 @@ const Blog = () => {
           </p>
         </div>
         
-        <div className="max-w-6xl mx-auto">
+        <div className={`max-w-6xl mx-auto transition-all duration-1000 delay-300 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           <Carousel
             opts={{
               align: "start",
@@ -78,9 +106,19 @@ const Blog = () => {
             className="w-full"
           >
             <CarouselContent className="-ml-3 md:-ml-4">
-              {blogPosts.map((post) => (
-                <CarouselItem key={post.id} className="pl-3 md:pl-4 sm:basis-full md:basis-1/2 lg:basis-1/3">
-                  <Card className="group cursor-pointer hover:shadow-lg transition-all duration-300 bg-white border border-gray-200 h-full">
+              {blogPosts.map((post, index) => (
+                <CarouselItem 
+                  key={post.id} 
+                  className={`pl-3 md:pl-4 sm:basis-full md:basis-1/2 lg:basis-1/3 transition-all duration-700 ${
+                    isVisible 
+                      ? 'opacity-100 translate-y-0' 
+                      : 'opacity-0 translate-y-8'
+                  }`}
+                  style={{
+                    transitionDelay: isVisible ? `${500 + index * 150}ms` : '0ms'
+                  }}
+                >
+                  <Card className="group cursor-pointer hover:shadow-xl transition-all duration-300 bg-white border border-gray-200 h-full hover:scale-[1.02] transform">
                     <a 
                       href={post.youtubeUrl} 
                       target="_blank" 
@@ -91,13 +129,13 @@ const Blog = () => {
                         <img
                           src={post.thumbnail}
                           alt={post.title}
-                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                          className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                         />
-                        <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-1 rounded">
+                        <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-1 rounded transition-all duration-300 group-hover:bg-black/90">
                           {post.duration}
                         </div>
                         {post.id === 2 && (
-                          <div className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold flex items-center gap-1">
+                          <div className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold flex items-center gap-1 transition-all duration-300 group-hover:scale-110">
                             🔥 Hot
                           </div>
                         )}
@@ -106,17 +144,17 @@ const Blog = () => {
                       
                       <CardContent className="p-5 flex flex-col h-[calc(100%-12rem)]">
                         <div className="flex items-start justify-between mb-2">
-                          <h3 className="text-base font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-200 leading-tight line-clamp-2">
+                          <h3 className="text-base font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 leading-tight line-clamp-2">
                             {post.title}
                           </h3>
-                          <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-blue-600 transition-colors duration-200 flex-shrink-0 mt-1 ml-2" />
+                          <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-blue-600 transition-all duration-300 flex-shrink-0 mt-1 ml-2 group-hover:scale-110" />
                         </div>
                         
-                        <p className="text-xs text-gray-500 mb-3">
+                        <p className="text-xs text-gray-500 mb-3 transition-colors duration-300 group-hover:text-gray-600">
                           {post.date}
                         </p>
                         
-                        <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 flex-1">
+                        <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 flex-1 transition-colors duration-300 group-hover:text-gray-700">
                           {post.description}
                         </p>
                       </CardContent>
@@ -125,8 +163,8 @@ const Blog = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="hidden md:flex" />
-            <CarouselNext className="hidden md:flex" />
+            <CarouselPrevious className="hidden md:flex transition-all duration-300 hover:scale-110" />
+            <CarouselNext className="hidden md:flex transition-all duration-300 hover:scale-110" />
           </Carousel>
         </div>
       </div>

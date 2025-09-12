@@ -1,8 +1,32 @@
 import { Star, Download, Github, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState, useEffect, useRef } from "react";
 import TestimonialsStrip from "./TestimonialsStrip";
 
 const TrustedBy = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Intersection Observer for scroll-triggered animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '-50px'
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const stats = [
     {
@@ -97,23 +121,35 @@ const TrustedBy = () => {
 
 
   return (
-    <section className="py-24 bg-white">
+    <section ref={sectionRef} className="py-24 bg-white">
       <div className="container mx-auto max-w-7xl px-6">
-        {/* Header */}
-        <div className="text-center mb-16">
+        {/* Header - Fade in */}
+        <div className={`text-center mb-16 transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
             Trusted by the AI community
           </h2>
         </div>
 
-        {/* Trust Stats - Horizontal Flow */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mb-12">
+        {/* Trust Stats - Staggered horizontal animation */}
+        <div className={`flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mb-12 transition-all duration-1000 delay-300 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           {stats.map((stat, index) => {
             const IconComponent = stat.icon;
             return (
-              <div key={index} className="flex items-center gap-4 group">
-                <div className="flex items-center justify-center w-12 h-12 bg-dc-blue/10 rounded-xl group-hover:bg-dc-blue/20 transition-all duration-300">
-                  <IconComponent className="h-6 w-6 text-dc-blue" />
+              <div 
+                key={index} 
+                className={`flex items-center gap-4 group transition-all duration-700 ${
+                  isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+                }`}
+                style={{
+                  transitionDelay: isVisible ? `${500 + index * 200}ms` : '0ms'
+                }}
+              >
+                <div className="flex items-center justify-center w-12 h-12 bg-dc-blue/10 rounded-xl group-hover:bg-dc-blue/20 group-hover:scale-110 transition-all duration-300">
+                  <IconComponent className="h-6 w-6 text-dc-blue transition-transform duration-300 group-hover:rotate-12" />
                 </div>
                 <div>
                   <div className="text-3xl font-bold text-slate-900">
@@ -131,24 +167,28 @@ const TrustedBy = () => {
           })}
         </div>
 
-        {/* Testimonials - Two-row Marquee */}
-        <div className="mb-12">
+        {/* Testimonials - Fade in after stats */}
+        <div className={`mb-12 transition-all duration-1000 delay-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           <TestimonialsStrip testimonials={testimonials} />
         </div>
 
-        {/* CTA Section */}
-        <div className="text-center">
+        {/* CTA Section - Final fade in */}
+        <div className={`text-center transition-all duration-1000 delay-1200 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           <p className="text-xl text-slate-600 mb-8">
             Try it out for yourself or browse our prompt library!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button variant="hero" size="lg" asChild>
+            <Button variant="hero" size="lg" className="transition-all duration-300 hover:scale-105 active:scale-95" asChild>
               <a href="#installation">
                 <Terminal className="h-5 w-5" />
                 Install Desktop Commander
               </a>
             </Button>
-            <Button variant="outline" size="lg" asChild>
+            <Button variant="outline" size="lg" className="transition-all duration-300 hover:scale-105 active:scale-95" asChild>
               <a href="https://library.desktopcommander.app/" target="_blank" rel="noopener noreferrer">
                 Browse Prompt Library
               </a>

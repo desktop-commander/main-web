@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowRight, Search, FileText, Server, FolderOpen, Zap, Database, GitCompare, Trash2, BookOpen, Code2, Cloud, Image, BarChart3 } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 
 const promptCategories = [
   {
@@ -126,11 +127,37 @@ const promptCategories = [
 ];
 
 const PromptLibrary = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [activeTab, setActiveTab] = useState("explore-codebase");
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
   return (
-    <section id="prompts" className="py-12 bg-background">
+    <section ref={sectionRef} id="prompts" className="py-12 bg-background">
       <div className="container mx-auto max-w-7xl px-6">
-        {/* Header */}
-        <div className="text-center mb-8">
+        {/* Header - Animated entrance */}
+        <div className={`text-center mb-8 transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           <h2 className="text-4xl font-bold text-foreground mb-4">
             Explore Prompt Library
           </h2>
@@ -139,9 +166,11 @@ const PromptLibrary = () => {
           </p>
         </div>
 
-        {/* Tabs Interface */}
-        <div className="max-w-4xl mx-auto mb-8">
-          <Tabs defaultValue="explore-codebase" className="w-full">
+        {/* Tabs Interface - Animated entrance */}
+        <div className={`max-w-4xl mx-auto mb-8 transition-all duration-1000 delay-300 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
+          <Tabs defaultValue="explore-codebase" className="w-full" onValueChange={setActiveTab}>
             <TabsList className="grid w-full grid-cols-5 mb-8">
               {promptCategories.map((category, index) => {
                 const CategoryIcon = category.icon;
@@ -150,9 +179,9 @@ const PromptLibrary = () => {
                   <TabsTrigger 
                     key={index} 
                     value={value}
-                    className="flex items-center gap-2 text-xs sm:text-sm"
+                    className="flex items-center gap-2 text-xs sm:text-sm transition-all duration-300 hover:scale-105 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
                   >
-                    <CategoryIcon className="h-4 w-4" />
+                    <CategoryIcon className="h-4 w-4 transition-transform duration-300 group-hover:rotate-12" />
                     <span className="hidden sm:inline">{category.title}</span>
                   </TabsTrigger>
                 );
@@ -161,6 +190,7 @@ const PromptLibrary = () => {
             
             {promptCategories.map((category, index) => {
               const value = category.title.toLowerCase().replace(/\s+/g, '-');
+              const isActiveTabContent = activeTab === value;
               return (
                 <TabsContent key={index} value={value} className="space-y-4">
                   {category.prompts.map((prompt, promptIndex) => {
@@ -171,20 +201,27 @@ const PromptLibrary = () => {
                         href={prompt.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-4 p-4 rounded-lg border border-border hover:border-primary/40 hover:bg-accent/50 transition-all duration-200 group"
+                        className={`flex items-center gap-4 p-4 rounded-lg border border-border hover:border-primary/40 hover:bg-accent/50 transition-all duration-300 group hover:scale-[1.02] hover:shadow-lg transform ${
+                          isVisible && isActiveTabContent
+                            ? `opacity-100 translate-y-0 delay-${600 + promptIndex * 100}`
+                            : 'opacity-0 translate-y-4'
+                        }`}
+                        style={{
+                          transitionDelay: isVisible && isActiveTabContent ? `${600 + promptIndex * 100}ms` : '0ms'
+                        }}
                       >
-                        <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                          <PromptIcon className="h-5 w-5 text-primary" />
+                        <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                          <PromptIcon className="h-5 w-5 text-primary transition-transform duration-300 group-hover:rotate-12" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                          <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
                             {prompt.title}
                           </h4>
-                          <p className="text-sm text-muted-foreground mt-1">
+                          <p className="text-sm text-muted-foreground mt-1 transition-colors duration-300 group-hover:text-foreground">
                             {prompt.description}
                           </p>
                         </div>
-                        <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                        <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-all duration-300 group-hover:translate-x-2" />
                       </a>
                     );
                   })}
@@ -194,9 +231,11 @@ const PromptLibrary = () => {
           </Tabs>
         </div>
 
-        {/* CTA */}
-        <div className="text-center">
-          <Button asChild variant="hero" size="lg">
+        {/* CTA - Enhanced animations */}
+        <div className={`text-center transition-all duration-1000 delay-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
+          <Button asChild variant="hero" size="lg" className="transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20 transform active:scale-95">
             <a 
               href="https://library.desktopcommander.app/" 
               target="_blank" 
@@ -204,10 +243,10 @@ const PromptLibrary = () => {
               className="inline-flex items-center gap-2"
             >
               Browse All Prompts
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
           </Button>
-          <p className="text-sm text-muted-foreground mt-4">
+          <p className="text-sm text-muted-foreground mt-4 transition-colors duration-300 hover:text-foreground">
             60+ workflows across development, automation, and optimization
           </p>
         </div>

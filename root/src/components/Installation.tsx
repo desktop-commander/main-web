@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Check, Download, Copy, ChevronDown, ChevronRight } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { useState, useEffect, useRef } from "react";
 
 const requirements = [
   "Node.js version >= v18.0.0",
@@ -457,10 +458,37 @@ npm run setup`)}
 ];
 
 const Installation = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Intersection Observer for scroll-triggered animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '-50px'
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="installation" className="py-12 bg-dc-surface/30 scroll-mt-24">
+    <section ref={sectionRef} id="installation" className="py-12 bg-dc-surface/30 scroll-mt-24">
       <div className="container mx-auto max-w-7xl px-6">
-        <div className="text-center mb-10">
+        {/* Header - Fade in */}
+        <div className={`text-center mb-10 transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           <h2 className="text-4xl font-bold text-foreground mb-3">
             Installation
           </h2>
@@ -469,8 +497,10 @@ const Installation = () => {
           </p>
         </div>
 
-        {/* Requirements */}
-        <div className="mb-8">
+        {/* Requirements - Staggered animation */}
+        <div className={`mb-8 transition-all duration-1000 delay-300 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           <div className="max-w-4xl mx-auto">
             <div className="px-4">
               <h3 className="text-base font-medium text-muted-foreground mb-3 text-left">
@@ -489,13 +519,25 @@ const Installation = () => {
         </div>
 
         {/* Installation Options */}
-        <div>
+        <div className={`transition-all duration-1000 delay-500 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           <h3 className="text-2xl font-semibold text-foreground mb-6 text-center">
             Installation Options
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto">
             {installationOptions.map((option, index) => (
-              <Card key={index} className={`p-6 bg-dc-card border-2 border-primary/30 hover:border-primary/50 transition-colors relative ${!option.available ? 'opacity-60' : ''}`}>
+              <Card 
+                key={index} 
+                className={`p-6 bg-dc-card border-2 border-primary/30 hover:border-primary/50 transition-all duration-500 hover:scale-105 hover:shadow-lg relative ${!option.available ? 'opacity-60' : ''} ${
+                  isVisible 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-8'
+                }`}
+                style={{
+                  transitionDelay: isVisible ? `${700 + index * 200}ms` : '0ms'
+                }}
+              >
                 <div className="text-center mb-4">
                   <h4 className="text-xl font-semibold text-foreground mb-2">
                     {option.method}
@@ -537,7 +579,7 @@ const Installation = () => {
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="absolute top-3 right-2 h-6 w-6 p-0 hover:bg-muted"
+                      className="absolute top-3 right-2 h-6 w-6 p-0 hover:bg-muted transition-all duration-300 hover:scale-110"
                       onClick={() => navigator.clipboard.writeText(option.command)}
                     >
                       <Copy className="h-3 w-3" />
@@ -549,12 +591,14 @@ const Installation = () => {
           </div>
         </div>
 
-        {/* Getting Started Callout */}
-        <div className="mt-10">
-          <Card className="p-4 bg-primary/5 border-primary/20 max-w-4xl mx-auto">
+        {/* Getting Started Callout - Delayed animation */}
+        <div className={`mt-10 transition-all duration-1000 delay-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
+          <Card className="p-4 bg-primary/5 border-primary/20 max-w-4xl mx-auto hover:bg-primary/10 transition-all duration-300 hover:scale-105">
             <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-6 h-6 bg-primary/10 rounded-lg flex items-center justify-center">
-                <ArrowRight className="h-3 w-3 text-primary" />
+              <div className="flex-shrink-0 w-6 h-6 bg-primary/10 rounded-lg flex items-center justify-center transition-colors duration-300 group-hover:bg-primary/20">
+                <ArrowRight className="h-3 w-3 text-primary transition-transform duration-300 group-hover:translate-x-1" />
               </div>
               <div>
                 <h3 className="text-base font-semibold text-foreground mb-2">
