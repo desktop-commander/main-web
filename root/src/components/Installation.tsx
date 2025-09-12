@@ -458,7 +458,7 @@ npm run setup`)}
 
 const Installation = () => {
   return (
-    <section id="installation" className="py-12 bg-dc-surface/30">
+    <section id="installation" className="py-12 bg-dc-surface/30 scroll-mt-24">
       <div className="container mx-auto max-w-7xl px-6">
         <div className="text-center mb-10">
           <h2 className="text-4xl font-bold text-foreground mb-3">

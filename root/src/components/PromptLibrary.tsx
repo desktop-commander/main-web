@@ -196,7 +196,7 @@ const PromptLibrary = () => {
 
         {/* CTA */}
         <div className="text-center">
-          <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+          <Button asChild variant="hero" size="lg">
             <a 
               href="https://library.desktopcommander.app/" 
               target="_blank" 
