@@ -14,7 +14,7 @@ const blogPosts = [
     title: "Why I Went From REST APIs to MCPs to CLIs and ended up with Self-Improving AI",
     description: "Exploring the evolution from traditional REST APIs to MCPs and CLIs, and how this journey led to building self-improving AI systems.",
     thumbnail: "/lovable-uploads/7a730910-107b-4522-8ec0-e6162de4b964.png",
-    youtubeUrl: "https://youtube.com/watch?v=example1", // Replace with actual URL
+    youtubeUrl: "https://www.youtube.com/@EduardsRuzga", // Update with specific video URL when available
     duration: "23:20",
     date: "December 15, 2024"
   },
@@ -23,7 +23,7 @@ const blogPosts = [
     title: "Claude with MCPs Replaced Cursor & Windsurf — How Did That Happen?",
     description: "Discover how Claude with MCP integration became a powerful alternative to popular development tools like Cursor and Windsurf.",
     thumbnail: "/lovable-uploads/a308c575-ec23-4441-a47b-4972493a21fc.png",
-    youtubeUrl: "https://youtube.com/watch?v=example2", // Replace with actual URL
+    youtubeUrl: "https://www.youtube.com/@EduardsRuzga", // Update with specific video URL when available
     duration: "44:44",
     date: "December 10, 2024"
   },
@@ -32,7 +32,7 @@ const blogPosts = [
     title: "Vibe Coding With Desktop Commander: Code Documentation + Obsidian + GitHub",
     description: "Live coding session showcasing Desktop Commander's integration with Obsidian and GitHub for enhanced development workflows.",
     thumbnail: "/lovable-uploads/475851c6-f486-41b0-ad13-794aa399dfb7.png",
-    youtubeUrl: "https://youtube.com/watch?v=example3", // Replace with actual URL
+    youtubeUrl: "https://www.youtube.com/@EduardsRuzga", // Update with specific video URL when available
     duration: "1:00:13",
     date: "December 5, 2024"
   },

@@ -139,18 +139,18 @@ const TrustedBy = () => {
         {/* CTA Section */}
         <div className="text-center">
           <p className="text-xl text-slate-600 mb-8">
-            Try it out for yourself or join our community!
+            Try it out for yourself or browse our prompt library!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button variant="hero" size="lg" asChild>
-              <a href="#getting-started">
+              <a href="#installation">
                 <Terminal className="h-5 w-5" />
                 Install Desktop Commander
               </a>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <a href="https://discord.com/channels/1119885301872070706/1280461670979993613" target="_blank" rel="noopener noreferrer">
-                Join our Discord
+              <a href="https://library.desktopcommander.app/" target="_blank" rel="noopener noreferrer">
+                Browse Prompt Library
               </a>
             </Button>
           </div>

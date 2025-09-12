@@ -23,14 +23,18 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 lg:justify-start justify-center items-center mb-16">
-              <Button variant="hero" size="lg" className="flex items-center gap-2">
-                <Terminal className="h-5 w-5" />
-                Install
-                <ArrowRight className="h-4 w-4" />
+              <Button variant="hero" size="lg" className="flex items-center gap-2" asChild>
+                <a href="#installation">
+                  <Terminal className="h-5 w-5" />
+                  Install
+                  <ArrowRight className="h-4 w-4" />
+                </a>
               </Button>
-              <Button variant="outline" size="lg" className="flex items-center gap-2">
-                <MessageCircle className="h-5 w-5" />
-                Join Discord
+              <Button variant="outline" size="lg" className="flex items-center gap-2" asChild>
+                <a href="https://discord.gg/kQ27sNnZr7" target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="h-5 w-5" />
+                  Join Discord
+                </a>
               </Button>
             </div>
 

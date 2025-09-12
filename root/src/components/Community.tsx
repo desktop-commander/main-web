@@ -26,7 +26,7 @@ const Community = () => {
               </p>
               <Button 
                 className="bg-gray-900 hover:bg-gray-800 text-white px-6 py-2 w-full"
-                onClick={() => window.open('https://github.com/example', '_blank')}
+                onClick={() => window.open('https://github.com/wonderwhy-er/DesktopCommanderMCP', '_blank')}
               >
                 GITHUB REPO
               </Button>
@@ -42,7 +42,7 @@ const Community = () => {
               </p>
               <Button 
                 className="bg-gray-900 hover:bg-gray-800 text-white px-6 py-2 w-full"
-                onClick={() => window.open('https://discord.gg/example', '_blank')}
+                onClick={() => window.open('https://discord.gg/kQ27sNnZr7', '_blank')}
               >
                 JOIN DISCORD
               </Button>
@@ -52,13 +52,13 @@ const Community = () => {
               <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center mx-auto mb-6 shadow-sm">
                 <Youtube className="w-8 h-8 text-gray-900" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Video Tutorial</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">YouTube Channel</h3>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                Watch tutorial and demo videos on YouTube.
+                Follow us on YouTube and vibe code with us.
               </p>
               <Button 
                 className="bg-gray-900 hover:bg-gray-800 text-white px-6 py-2 w-full"
-                onClick={() => window.open('https://youtube.com/@example', '_blank')}
+                onClick={() => window.open('https://www.youtube.com/@EduardsRuzga', '_blank')}
               >
                 WATCH NOW
               </Button>

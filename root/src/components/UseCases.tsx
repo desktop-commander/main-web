@@ -81,13 +81,15 @@ const UseCases = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button variant="hero" size="lg" asChild>
-              <a href="#getting-started">
+              <a href="#installation">
                 <Terminal className="h-5 w-5" />
                 Start Building
               </a>
             </Button>
             <a 
-              href="#prompts" 
+              href="https://library.desktopcommander.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 border border-dc-border text-foreground rounded-lg font-medium hover:bg-dc-surface/50 transition-colors"
             >
               Browse 60+ Prompts to use with DC

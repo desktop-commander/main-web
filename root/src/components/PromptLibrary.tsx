@@ -10,17 +10,20 @@ const promptCategories = [
       {
         icon: Code2,
         title: "Explain Codebase or Repository",
-        description: "Understand and analyze your codebase structure"
+        description: "Understand and analyze your codebase structure",
+        url: "https://library.desktopcommander.app/?i=59"
       },
       {
         icon: GitCompare,
         title: "Compare Config Files to Baseline",
-        description: "Compare configuration files against standards"
+        description: "Compare configuration files against standards",
+        url: "https://library.desktopcommander.app/?i=34"
       },
       {
         icon: Trash2,
         title: "Clean Up Unused Code",
-        description: "Remove dead code and optimize your project"
+        description: "Remove dead code and optimize your project",
+        url: "https://library.desktopcommander.app/?i=5"
       }
     ]
   },
@@ -31,17 +34,20 @@ const promptCategories = [
       {
         icon: FileText,
         title: "Create Project Documentation",
-        description: "Generate comprehensive project documentation"
+        description: "Generate comprehensive project documentation",
+        url: "https://library.desktopcommander.app/?i=60"
       },
       {
         icon: Database,
         title: "Create Database Schema Diagram",
-        description: "Visualize your database structure and relationships"
+        description: "Visualize your database structure and relationships",
+        url: "https://library.desktopcommander.app/?i=67"
       },
       {
         icon: Server,
         title: "Document Ansible Configuration",
-        description: "Create clear documentation for your Ansible setup"
+        description: "Create clear documentation for your Ansible setup",
+        url: "https://library.desktopcommander.app/?i=70"
       }
     ]
   },
@@ -52,17 +58,20 @@ const promptCategories = [
       {
         icon: Cloud,
         title: "Set Up Cloud Infrastructure",
-        description: "Deploy scalable cloud infrastructure from scratch"
+        description: "Deploy scalable cloud infrastructure from scratch",
+        url: "https://library.desktopcommander.app/?i=53"
       },
       {
         icon: Server,
         title: "Set Up WordPress Environment",
-        description: "Configure complete WordPress development environment"
+        description: "Configure complete WordPress development environment",
+        url: "https://library.desktopcommander.app/?i=55"
       },
       {
         icon: Code2,
         title: "Build and Deploy Landing Page",
-        description: "Create and deploy a professional landing page"
+        description: "Create and deploy a professional landing page",
+        url: "https://library.desktopcommander.app/?i=82"
       }
     ]
   },
@@ -73,17 +82,20 @@ const promptCategories = [
       {
         icon: FolderOpen,
         title: "Organise my Downloads folder",
-        description: "Sort messy downloads into organized folders"
+        description: "Sort messy downloads into organized folders",
+        url: "https://library.desktopcommander.app/?i=8"
       },
       {
         icon: FileText,
         title: "Extract Data from PDFs",
-        description: "Pull structured data from PDF documents"
+        description: "Pull structured data from PDF documents",
+        url: "https://library.desktopcommander.app/?i=43"
       },
       {
         icon: Image,
         title: "Convert HEIC to PNG",
-        description: "Batch convert image formats efficiently"
+        description: "Batch convert image formats efficiently",
+        url: "https://library.desktopcommander.app/?i=38"
       }
     ]
   },
@@ -94,17 +106,20 @@ const promptCategories = [
       {
         icon: BookOpen,
         title: "Create Knowledge Base Folder",
-        description: "Organize information into searchable knowledge base"
+        description: "Organize information into searchable knowledge base",
+        url: "https://library.desktopcommander.app/?i=17"
       },
       {
         icon: Database,
         title: "Consolidate Data Files into One",
-        description: "Merge multiple data sources into unified format"
+        description: "Merge multiple data sources into unified format",
+        url: "https://library.desktopcommander.app/?i=46"
       },
       {
         icon: BarChart3,
         title: "Automate Competitor Research",
-        description: "Set up automated competitive analysis workflows"
+        description: "Set up automated competitive analysis workflows",
+        url: "https://library.desktopcommander.app/?i=11"
       }
     ]
   }
@@ -153,7 +168,7 @@ const PromptLibrary = () => {
                     return (
                       <a
                         key={promptIndex}
-                        href="https://library.desktopcommander.app/?i=17"
+                        href={prompt.url}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-4 p-4 rounded-lg border border-border hover:border-primary/40 hover:bg-accent/50 transition-all duration-200 group"
