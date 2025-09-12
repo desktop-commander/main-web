@@ -19,6 +19,33 @@ const TestimonialsStrip = ({ testimonials }: TestimonialsStripProps) => {
   const TestimonialCard = ({ testimonial, index }: { testimonial: Testimonial; index: number }) => {
     const rotation = index % 4 === 0 ? 'rotate-2' : index % 4 === 1 ? '-rotate-2' : index % 4 === 2 ? 'rotate-4' : '-rotate-4';
     
+    // Generate consistent subtle avatar color based on author name
+    const generateAvatarColor = (author: string) => {
+      let hash = 0;
+      for (let i = 0; i < author.length; i++) {
+        hash = ((hash << 5) - hash + author.charCodeAt(i)) & 0xffffffff;
+      }
+      hash = Math.abs(hash);
+      
+      // Subtle, muted colors that fit the design
+      const colors = [
+        'bg-slate-600',    // Muted slate
+        'bg-stone-600',    // Muted stone
+        'bg-amber-600',    // Muted amber
+        'bg-emerald-600',  // Muted emerald
+        'bg-teal-600',     // Muted teal
+        'bg-sky-600',      // Muted sky
+        'bg-indigo-600',   // Muted indigo
+        'bg-purple-600',   // Muted purple
+        'bg-pink-600',     // Muted pink
+        'bg-rose-600',     // Muted rose
+        'bg-orange-600',   // Muted orange
+        'bg-cyan-600',     // Muted cyan
+      ];
+      
+      return colors[hash % colors.length];
+    };
+    
     // Generate consistent random date for each testimonial based on author name
     const generateRandomDate = (author: string) => {
       // Use author name to seed random generation for consistency with better distribution
@@ -65,7 +92,7 @@ const TestimonialsStrip = ({ testimonials }: TestimonialsStripProps) => {
       <div className={`flex-shrink-0 w-96 ${rotation} hover:rotate-0 transition-transform duration-300`}>
         <div className="bg-gray-800 rounded-lg p-4 shadow-lg h-60 flex flex-col">
           <div className="flex items-center gap-3 mb-3 flex-shrink-0">
-            <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
+            <div className={`w-10 h-10 ${generateAvatarColor(testimonial.author)} rounded-full flex items-center justify-center`}>
               <span className="text-white text-sm font-bold">
                 {testimonial.author.split(' ').map(n => n[0]).join('').slice(0, 2)}
               </span>
