@@ -27,136 +27,70 @@ const TrustedBy = () => {
 
   const testimonials = [
     {
-      quote: "Desktop Commander eliminated hours of CLI debugging. Game-changing for our team's velocity.",
-      author: "Sarah Chen",
-      role: "Senior DevOps Engineer",
-      company: "TechFlow"
+      quote: "It is a great tool, thank you, I like using it, as it gives claude an ability to do surgical edits, making it more like a human developer.",
+      author: "naranbaz",
+      role: "Developer",
+      company: "Community"
     },
     {
-      quote: "As a founder without deep technical background, DC lets me build and deploy our MVP independently.",
-      author: "Marcus Rodriguez",
-      role: "Founder & CEO",
-      company: "StartupLab"
+      quote: "Life saver! I was paying for both Claude + Cursor which felt duplicated. This solves that perfectly. With MCP + web search, it writes code with the latest updates. So good when Cursor doesn't work or fast requests run out.",
+      author: "play365alltime",
+      role: "Developer",
+      company: "Community"
     },
     {
-      quote: "I onboard new developers 3x faster now. They can explore our codebase conversationally.",
-      author: "Jennifer Park",
-      role: "Engineering Manager",
-      company: "DataCore"
+      quote: "I had 76 errors in 23 files in my Svelte 5 project. Used desktop-commander, sequentialthinking, and tree-sitter to fix them all. Never resolved type errors this quickly with AI before!",
+      author: "dependablecalls",
+      role: "Developer",
+      company: "Community"
     },
     {
-      quote: "Setting up test environments used to take days. Now I describe what I need and DC handles it.",
-      author: "Alex Thompson",
-      role: "QA Lead",
-      company: "CloudTech"
+      quote: "I'm the one who is grateful for this, which is the best MCP that exists!",
+      author: "Dhiego Pagotto",
+      role: "Developer",
+      company: "Community"
     },
     {
-      quote: "Deployment is now as simple as having a conversation. Our release cycle went from weeks to hours.",
-      author: "David Kim",
-      role: "Lead Developer",
-      company: "InnovateLab"
+      quote: "Just joined I absolutely love this thing",
+      author: "Uloi",
+      role: "Developer",
+      company: "Community"
     },
     {
-      quote: "Finally, infrastructure management that doesn't require a PhD in DevOps. Absolutely revolutionary.",
-      author: "Maria Santos",
-      role: "CTO",
-      company: "GrowthTech"
+      quote: "happy command coding everyone - god I love this tool",
+      author: "Geoff F",
+      role: "Developer",
+      company: "Community"
     },
     {
-      quote: "DC transformed how we handle client deployments. What used to take consultants days now takes minutes.",
-      author: "James Wilson",
-      role: "Technical Consultant",
-      company: "DevConsult Pro"
+      quote: "Wow, I've been building something similar. This makes my project so much easier to build now. I'm truly grateful. Thank you!",
+      author: "Creedo",
+      role: "Developer",
+      company: "Community"
     },
     {
-      quote: "Our QA team can now set up complex testing scenarios without waiting for engineering support.",
-      author: "Lisa Chang",
-      role: "QA Manager",
-      company: "TestFlow"
+      quote: "btw @DC Dmitry , thanks for such great MCP 🙂 I'm loving it 🙂",
+      author: "Damian Pastorini",
+      role: "Developer",
+      company: "COLY"
     },
     {
-      quote: "From prototype to production in record time. DC is like having a senior developer on speed dial.",
-      author: "Robert Taylor",
-      role: "Founder",
-      company: "QuickStart"
+      quote: "Switched from Windsurf to Claude MCP and love it! No more token limits or cascade issues. Can code as much as I want without worrying about costs. This is much more than just code editing!",
+      author: "jesseburstrom5920",
+      role: "Developer",
+      company: "Community"
     },
     {
-      quote: "Debugging across our entire stack through conversation saved us countless hours of investigation.",
-      author: "Amy Foster",
-      role: "Support Lead",
-      company: "SupportTech"
+      quote: "Been using this MCP daily for a couple of months now and onboarded a bunch of buddies onto it as well, a go to in my arsenal, great work!!",
+      author: "Bjorn Melin",
+      role: "Developer",
+      company: "Community"
     },
     {
-      quote: "No more CLI documentation diving. I can deploy complex applications just by describing what I need.",
-      author: "Chris Anderson",
-      role: "Full Stack Developer",
-      company: "WebSolutions"
-    },
-    {
-      quote: "Our team productivity increased 10x. New developers are contributing on day one instead of week three.",
-      author: "Nina Patel",
-      role: "Engineering Director",
-      company: "ScaleUp"
-    },
-    {
-      quote: "Managing multiple client environments used to be a nightmare. Now it's conversational and intuitive.",
-      author: "Tom Rodriguez",
-      role: "DevOps Consultant",
-      company: "CloudExperts"
-    },
-    {
-      quote: "DC bridges the gap between technical and non-technical team members perfectly.",
-      author: "Sarah Johnson",
-      role: "Product Manager",
-      company: "ProductFlow"
-    },
-    {
-      quote: "Automated our entire deployment pipeline through simple conversations. Incredible time savings.",
-      author: "Mike Chen",
-      role: "Site Reliability Engineer",
-      company: "ReliableTech"
-    },
-    {
-      quote: "Research data processing that used to take weeks now happens in hours through natural language.",
-      author: "Dr. Emma Wright",
-      role: "Research Director",
-      company: "DataScience Labs"
-    },
-    {
-      quote: "Our startup went from idea to deployed MVP in days, not months. DC made the impossible possible.",
-      author: "Jake Martinez",
-      role: "Co-founder",
-      company: "RapidBuild"
-    },
-    {
-      quote: "Client demos are now live deployments instead of static presentations. Game changer for sales.",
-      author: "Rachel Green",
-      role: "Solutions Architect",
-      company: "EnterpriseFlow"
-    },
-    {
-      quote: "Complex infrastructure becomes simple conversations. Our junior developers deploy like seniors.",
-      author: "Kevin Liu",
-      role: "Platform Engineer",
-      company: "CloudFirst"
-    },
-    {
-      quote: "UX prototyping with real backend functionality in minutes. Design-dev cycle shortened dramatically.",
-      author: "Sophie Martin",
-      role: "Senior UX Designer",
-      company: "DesignFlow"
-    },
-    {
-      quote: "Troubleshooting production issues through conversation beats digging through logs any day.",
-      author: "Carlos Vega",
-      role: "DevOps Lead",
-      company: "ProductionOps"
-    },
-    {
-      quote: "Our consulting business scaled 5x because we can handle any tech stack conversationally.",
-      author: "Anna Thompson",
-      role: "Technical Director",
-      company: "TechConsult"
+      quote: "Played with DesktopCommander today, replaced FileServer and continued my project. The diff-based editing is awesome - could continue longer in the same chat before hitting limits. Great!",
+      author: "eszpee",
+      role: "Developer",
+      company: "Community"
     }
   ];
 
