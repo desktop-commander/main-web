@@ -6,8 +6,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Terminal, ChevronDown, ExternalLink } from "lucide-react";
-
-const dcLogo = "/lovable-uploads/b2768463-fe98-491d-b457-bc0c76a04d60.png";
+import dcLogo from "@/assets/dc-logo.png";
 
 const Navigation = () => {
   return (

@@ -3,8 +3,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { MessageCircle, ArrowRight, Download, Terminal, Star, TrendingUp } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import dcPreview from "@/assets/dc-demo-preview.png";
-
-const dcLogo = "/lovable-uploads/219b65f9-744a-4c23-9134-1a277e1f448a.png";
+import dcLogo from "@/assets/dc-logo-dark.png";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -150,27 +149,27 @@ const Hero = () => {
               <p className="text-sm text-muted-foreground mb-4 lg:text-left text-center">Connect to your toolkit</p>
               <div className="flex items-center lg:justify-start justify-center gap-6 opacity-60">
                 <img 
-                  src="/lovable-uploads/ed3b3a05-2313-48cb-9eb3-3edb097375a8.png" 
+                  src="./lovable-uploads/ed3b3a05-2313-48cb-9eb3-3edb097375a8.png" 
                   alt="Client logo" 
                   className="h-8 w-8 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
                 />
                 <img 
-                  src="/lovable-uploads/c6b2cb6a-d36a-457f-ae75-b9371e1807a1.png" 
+                  src="./lovable-uploads/c6b2cb6a-d36a-457f-ae75-b9371e1807a1.png" 
                   alt="Cursor logo" 
                   className="h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
                 />
                 <img 
-                  src="/lovable-uploads/874eb1ee-538a-453b-9904-db31d0c1486a.png" 
+                  src="./lovable-uploads/874eb1ee-538a-453b-9904-db31d0c1486a.png" 
                   alt="Client logo" 
                   className="h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
                 />
                 <img 
-                  src="/lovable-uploads/beed7f22-eaaa-437f-bd66-85bb78f29e3c.png" 
+                  src="./lovable-uploads/beed7f22-eaaa-437f-bd66-85bb78f29e3c.png" 
                   alt="Client logo" 
                   className="h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
                 />
                 <img 
-                  src="/lovable-uploads/468db3ab-a24e-416f-ac24-b2a1da66e78d.png" 
+                  src="./lovable-uploads/468db3ab-a24e-416f-ac24-b2a1da66e78d.png" 
                   alt="Client logo" 
                   className="h-12 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
                 />
