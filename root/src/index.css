@@ -86,13 +86,62 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+    /* Prevent horizontal scroll */
+    overflow-x: hidden;
+    /* Consistent scrollbar space - this prevents the layout shift! */
+    scrollbar-gutter: stable;
+    /* Always show scrollbar space to prevent layout shifts */
+    overflow-y: scroll;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    /* Prevent horizontal scroll */
+    overflow-x: hidden;
+    /* Ensure minimum height */
+    min-height: 100vh;
+    /* Prevent layout shift from scrollbar */
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
 
-  html {
-    scroll-behavior: smooth;
+  /* Prevent wide elements from causing horizontal scroll */
+  * {
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+
+  /* Fix for dropdowns and modals that might cause scrollbar issues */
+  [data-radix-popper-content-wrapper] {
+    /* Ensure popper content doesn't cause scrollbar jump */
+    z-index: 50;
+  }
+
+  /* Prevent dropdown from causing layout shift */
+  [data-radix-dropdown-menu-content] {
+    /* Constrain dropdown content width */
+    max-width: calc(100vw - 2rem);
+  }
+
+  /* Ensure all containers respect viewport */
+  .container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Force all potentially wide elements to stay within bounds */
+  img, video, iframe, embed, object {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Grid and flex containers should not overflow */
+  .grid, .flex {
+    min-width: 0;
   }
 }
 

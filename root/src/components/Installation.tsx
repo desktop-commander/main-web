@@ -1,13 +1,19 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check, Download, Copy, ChevronDown, ChevronRight } from "lucide-react";
+import { ArrowRight, Check, Download, Copy, ChevronDown, ChevronRight, ExternalLink } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useState, useEffect, useRef } from "react";
 
 const requirements = [
-  "Node.js version >= v18.0.0",
-  "Claude Desktop"
+  {
+    text: "Node.js version >= v18.0.0",
+    downloadUrl: "https://nodejs.org/en/download"
+  },
+  {
+    text: "Claude Desktop",
+    downloadUrl: "https://claude.ai/download"
+  }
 ];
 
 const installationOptions = [
@@ -510,7 +516,14 @@ const Installation = () => {
                 {requirements.map((requirement, index) => (
                   <div key={index} className="flex items-center gap-3">
                     <Check className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">{requirement}</span>
+                    <a
+                      href={requirement.downloadUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-muted-foreground hover:text-primary hover:underline transition-colors duration-200"
+                    >
+                      {requirement.text}
+                    </a>
                   </div>
                 ))}
               </div>

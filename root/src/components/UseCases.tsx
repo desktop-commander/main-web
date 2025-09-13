@@ -82,7 +82,7 @@ const UseCases = () => {
             return (
               <Card 
                 key={index} 
-                className={`group bg-background/50 border-dc-border hover:border-dc-blue/30 hover:bg-dc-blue/5 transition-all duration-500 hover:shadow-lg hover:shadow-dc-blue/10 hover:scale-105 cursor-pointer ${
+                className={`group bg-background/50 border-dc-border hover:border-dc-blue/20 hover:bg-dc-blue/3 transition-all duration-300 hover:shadow-md hover:shadow-dc-blue/5 ${
                   isVisible 
                     ? 'opacity-100 translate-y-0' 
                     : 'opacity-0 translate-y-8'
@@ -93,7 +93,7 @@ const UseCases = () => {
               >
                 <CardContent className="p-8">
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="flex items-center justify-center w-12 h-12 bg-dc-surface border border-dc-border rounded-xl group-hover:border-dc-blue/40 group-hover:bg-dc-blue/10 group-hover:scale-110 transition-all duration-300">
+                    <div className="flex items-center justify-center w-12 h-12 bg-dc-surface border border-dc-border rounded-xl group-hover:border-dc-blue/30 group-hover:bg-dc-blue/5 transition-all duration-300">
                       <IconComponent className="h-6 w-6 text-foreground group-hover:text-dc-blue transition-colors duration-300" />
                     </div>
                     <h3 className="text-xl font-semibold text-foreground">

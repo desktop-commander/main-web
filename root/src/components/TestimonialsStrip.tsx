@@ -117,7 +117,7 @@ const TestimonialsStrip = ({ testimonials }: TestimonialsStripProps) => {
   };
 
   return (
-    <div className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden">
+    <div className="relative overflow-hidden">
       {/* First Row - Moving Right */}
       <div className="flex mb-2 pt-8">
         <div className="flex gap-6 animate-marquee-right">
