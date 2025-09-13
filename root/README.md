@@ -160,3 +160,4 @@ This project is part of the Desktop Commander ecosystem. See the main [Desktop C
 ---
 
 Built with ❤️ by the Desktop Commander community
+# Test deployment trigger
