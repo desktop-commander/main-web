@@ -26,6 +26,9 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./root
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -35,6 +38,7 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
+          cache-dependency-path: './root/package-lock.json'
       
       - name: Install dependencies
         run: npm ci
@@ -48,8 +52,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload dist folder
-          path: './dist'
+          # Upload dist folder from root directory
+          path: './root/dist'
       
       - name: Deploy to GitHub Pages
         id: deployment
