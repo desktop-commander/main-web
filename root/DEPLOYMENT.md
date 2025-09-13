@@ -59,10 +59,18 @@ const App = () => (
 ```
 
 ### **3. GitHub Workflow (.github/workflows/deploy.yml)**
-The workflow is correctly configured and should NOT be modified. It:
-- ✅ Builds with `npm run build` (uses production environment)
+The workflow is correctly configured and should NOT be modified unless needed. It:
+- ✅ Builds with `npm run build` (uses production environment)  
 - ✅ Deploys to GitHub Pages automatically on main branch pushes
 - ✅ Uses proper NODE_ENV=production for correct base path
+- ✅ **CRITICAL**: Sets `working-directory: ./root` because project is in subdirectory
+- ✅ **CRITICAL**: Uses `cache-dependency-path: './root/package-lock.json'`
+- ✅ **CRITICAL**: Uploads artifact from `'./root/dist'` path
+
+**Common Workflow Issues:**
+- ❌ Missing `working-directory: ./root` → npm commands fail
+- ❌ Wrong `cache-dependency-path` → dependency installation fails  
+- ❌ Incorrect artifact `path` → empty or wrong files deployed
 
 ## 🔄 **STANDARD WORKFLOW**
 
@@ -92,10 +100,12 @@ git push origin main
 3. ✅ Restart dev server: `npm run dev`
 
 ### **If GitHub Pages Not Updating:**
-1. ✅ Verify GitHub Actions workflow ran successfully
-2. ✅ Check GitHub repository Settings > Pages is set to "GitHub Actions"
-3. ✅ Confirm production build uses correct base path
-4. ✅ Wait 2-3 minutes for CDN cache to clear
+1. ✅ Verify GitHub Actions workflow ran successfully at https://github.com/desktop-commander/main-web/actions
+2. ✅ Check workflow uses `working-directory: ./root` (project is in subdirectory)
+3. ✅ Confirm GitHub repository Settings > Pages is set to "GitHub Actions"
+4. ✅ Verify production build uses correct base path
+5. ✅ Wait 2-3 minutes for CDN cache to clear
+6. ✅ Check artifact upload path is `./root/dist` not just `./dist`
 
 ### **If Assets Not Loading:**
 1. ✅ Verify all asset paths use `getAssetPath()` helper function
