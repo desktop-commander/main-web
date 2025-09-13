@@ -4,8 +4,7 @@ The official website for Desktop Commander - an MCP (Model Context Protocol) too
 
 ## 🌐 Live Website
 
-**Production**: [https://desktopcommander.app](https://desktopcommander.app)  
-**Development**: Built with Lovable at [lovable.dev](https://lovable.dev/projects/678bb6b0-8506-4f5c-a550-c052ec1c6efd)
+**Production**: [https://desktopcommander.app](https://desktopcommander.app)
 
 ## 🚀 Features
 
@@ -22,10 +21,6 @@ The official website for Desktop Commander - an MCP (Model Context Protocol) too
 ## 🛠️ Development
 
 ### Quick Start
-
-**Using Lovable (Recommended)**
-
-Visit the [Lovable Project](https://lovable.dev/projects/678bb6b0-8506-4f5c-a550-c052ec1c6efd) and start prompting for changes. All modifications are automatically committed to this repository.
 
 **Local Development**
 
@@ -93,9 +88,9 @@ src/
 
 ## 🚀 Deployment
 
-### Automated Deployment
+### Deployment
 
-Changes pushed to the `main` branch are automatically deployed via Lovable's hosting platform.
+Changes pushed to the `main` branch can be deployed to your hosting provider of choice.
 
 ### Manual Deployment
 

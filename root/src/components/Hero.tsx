@@ -116,12 +116,12 @@ const Hero = () => {
                   className="h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
                 />
                 <img 
-                  src={getAssetPath("lovable-uploads/ed3b3a05-2313-48cb-9eb3-3edb097375a8.png")} 
+                  src={getAssetPath("claude-desktop-logo.png")} 
                   alt="Claude Desktop logo" 
                   className="h-8 w-8 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
                 />
                 <img 
-                  src={getAssetPath("lovable-uploads/c6b2cb6a-d36a-457f-ae75-b9371e1807a1.png")} 
+                  src={getAssetPath("cursor-logo.png")} 
                   alt="Cursor IDE logo" 
                   className="h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
                 />
@@ -131,17 +131,17 @@ const Hero = () => {
                   className="h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
                 />
                 <img 
-                  src={getAssetPath("lovable-uploads/874eb1ee-538a-453b-9904-db31d0c1486a.png")} 
+                  src={getAssetPath("client-logo-1.png")} 
                   alt="Client logo" 
                   className="h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
                 />
                 <img 
-                  src={getAssetPath("lovable-uploads/beed7f22-eaaa-437f-bd66-85bb78f29e3c.png")} 
+                  src={getAssetPath("client-logo-2.png")} 
                   alt="Client logo" 
                   className="h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
                 />
                 <img 
-                  src={getAssetPath("lovable-uploads/468db3ab-a24e-416f-ac24-b2a1da66e78d.png")} 
+                  src={getAssetPath("client-logo-3.png")} 
                   alt="Client logo" 
                   className="h-12 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
                 />
