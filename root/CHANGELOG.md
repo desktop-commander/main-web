@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2025-09-13
+
+### Added
+- 🎨 Single row testimonial layout for cleaner, more focused design
+- ⚡ Faster testimonial animations (50s vs 80s) for better engagement
+- 📐 Proper rotation padding to prevent card border clipping
+- 🖥️ One-viewport layout optimization for entire testimonials section
+
+### Changed
+- 🗑️ Removed heart emoji reactions from testimonial cards for cleaner aesthetic
+- 📏 Consolidated two-row testimonials into single flowing row
+- 🌊 Testimonials now scroll truly edge-to-edge across full viewport width
+- 📱 Optimized card dimensions (320px width, 224px height) for better text fit
+- ⬆️ Moved CTA section below testimonials for improved content flow
+- 📊 Reduced vertical spacing throughout section for compact, viewport-friendly layout
+
+### Fixed
+- 🔧 Fixed testimonials disappearing into container borders instead of screen edges
+- 🎭 Prevented rotated card borders from being clipped with proper padding
+- 📱 Eliminated horizontal scrolling issues with optimized spacing
+- 🎯 Improved testimonial text readability with larger card dimensions
+
+### Technical Improvements
+- 🏗️ Moved testimonials outside constrained container for true full-width effect
+- 📐 Reduced section padding from 96px to 64px (py-24 → py-16)
+- 🔄 Optimized animation performance with 37.5% speed increase
+- 🎨 Enhanced spacing hierarchy for better visual balance
+
 ## [1.1.0] - 2025-09-12
 
 ### Added
