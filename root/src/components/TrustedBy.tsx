@@ -121,10 +121,10 @@ const TrustedBy = () => {
 
 
   return (
-    <section ref={sectionRef} className="py-24 bg-white">
+    <section ref={sectionRef} className="py-16 bg-white">
       <div className="container mx-auto max-w-7xl px-6">
         {/* Header - Fade in */}
-        <div className={`text-center mb-16 transition-all duration-1000 ${
+        <div className={`text-center mb-12 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
@@ -133,7 +133,7 @@ const TrustedBy = () => {
         </div>
 
         {/* Trust Stats - Staggered horizontal animation */}
-        <div className={`flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mb-12 transition-all duration-1000 delay-300 ${
+        <div className={`flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mb-8 transition-all duration-1000 delay-300 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           {stats.map((stat, index) => {
@@ -166,19 +166,21 @@ const TrustedBy = () => {
             );
           })}
         </div>
+      </div>
 
-        {/* Testimonials - Fade in after stats */}
-        <div className={`mb-12 transition-all duration-1000 delay-1000 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
-          <TestimonialsStrip testimonials={testimonials} />
-        </div>
+      {/* Testimonials - Outside container for full-width */}
+      <div className={`mb-6 transition-all duration-1000 delay-1000 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}>
+        <TestimonialsStrip testimonials={testimonials} />
+      </div>
 
+      <div className="container mx-auto max-w-7xl px-6">
         {/* CTA Section - Final fade in */}
         <div className={`text-center transition-all duration-1000 delay-1200 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <p className="text-xl text-slate-600 mb-8">
+          <p className="text-xl text-slate-600 mb-6">
             Try it out for yourself or browse our prompt library!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -195,7 +197,6 @@ const TrustedBy = () => {
             </Button>
           </div>
         </div>
-
       </div>
     </section>
   );
