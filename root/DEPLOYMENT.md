@@ -82,14 +82,23 @@ npm run dev
 # ✅ All assets load from /
 ```
 
-### **Production Deployment**
+### **Production Deployment (RECOMMENDED)**
+```bash
+npm run deploy
+# ✅ Builds with production config
+# ✅ Deploys directly to GitHub Pages via gh-pages package
+# ✅ Faster and more reliable than GitHub Actions
+# ✅ Shows "Published" confirmation when successful
+```
+
+### **Alternative: GitHub Actions Deployment**
 ```bash
 git add .
-git commit -m "your changes"
+git commit -m "your changes"  
 git push origin main
-# ✅ GitHub Actions automatically builds
-# ✅ Uses basename="/main-web" 
-# ✅ Deploys to https://desktop-commander.github.io/main-web/
+# 🔄 GitHub Actions builds and deploys automatically
+# ⚠️ Sometimes has issues with workflow configuration
+# 💡 Use npm run deploy if GitHub Actions fails
 ```
 
 ## 🛠️ **DEBUGGING CHECKLIST**
