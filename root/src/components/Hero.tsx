@@ -76,7 +76,7 @@ const Hero = () => {
             </p>
 
             {/* CTA Buttons - Enhanced hover animations */}
-            <div className={`flex flex-col sm:flex-row gap-4 lg:justify-start justify-center items-center mb-16 transition-all duration-1200 delay-1000 ${
+            <div className={`flex flex-col sm:flex-row gap-4 lg:justify-start justify-center items-center mb-12 transition-all duration-1200 delay-1000 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
               <Button 
@@ -104,8 +104,52 @@ const Hero = () => {
               </Button>
             </div>
 
-            {/* Trust Badges - Interactive animations with counters */}
-            <div className={`flex flex-wrap lg:justify-start justify-center gap-3 transition-all duration-1200 delay-1500 ${
+            {/* Works with section - Moved up and given more prominence */}
+            <div className={`mb-8 pt-8 border-t border-dc-border/50 transition-all duration-1200 delay-1500 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>
+              <p className="text-sm text-muted-foreground mb-4 lg:text-left text-center">Connect to your toolkit</p>
+              <div className="flex items-center lg:justify-start justify-center gap-6 opacity-60">
+                <img 
+                  src={getAssetPath("star-logo.png")} 
+                  alt="Star logo" 
+                  className="h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
+                />
+                <img 
+                  src={getAssetPath("lovable-uploads/ed3b3a05-2313-48cb-9eb3-3edb097375a8.png")} 
+                  alt="Claude Desktop logo" 
+                  className="h-8 w-8 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
+                />
+                <img 
+                  src={getAssetPath("lovable-uploads/c6b2cb6a-d36a-457f-ae75-b9371e1807a1.png")} 
+                  alt="Cursor IDE logo" 
+                  className="h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
+                />
+                <img 
+                  src={getAssetPath("vscode-new-logo.png")} 
+                  alt="VS Code logo" 
+                  className="h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
+                />
+                <img 
+                  src={getAssetPath("lovable-uploads/874eb1ee-538a-453b-9904-db31d0c1486a.png")} 
+                  alt="Client logo" 
+                  className="h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
+                />
+                <img 
+                  src={getAssetPath("lovable-uploads/beed7f22-eaaa-437f-bd66-85bb78f29e3c.png")} 
+                  alt="Client logo" 
+                  className="h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
+                />
+                <img 
+                  src={getAssetPath("lovable-uploads/468db3ab-a24e-416f-ac24-b2a1da66e78d.png")} 
+                  alt="Client logo" 
+                  className="h-12 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
+                />
+              </div>
+            </div>
+
+            {/* Trust Badges - Moved after integration logos for better hierarchy */}
+            <div className={`flex flex-wrap lg:justify-start justify-center gap-3 transition-all duration-1200 delay-2000 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
               <div className="flex items-center gap-2 px-3 py-2 bg-dc-surface border border-dc-border rounded-lg text-xs w-48 transition-all duration-300 hover:scale-105 hover:bg-dc-surface/80 hover:border-dc-accent/30 hover:shadow-md cursor-pointer group">
@@ -140,40 +184,6 @@ const Hero = () => {
                   <div className="text-muted-foreground text-xs uppercase tracking-wide transition-colors duration-300 group-hover:text-foreground">SMITHERY.COM</div>
                   <div className="font-semibold text-foreground text-xs">No.1 (Aug 2025)</div>
                 </div>
-              </div>
-            </div>
-
-            {/* Works with section - Slower staggered fade-in */}
-            <div className={`mt-12 pt-8 border-t border-dc-border/50 transition-all duration-1200 delay-2000 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}>
-              <p className="text-sm text-muted-foreground mb-4 lg:text-left text-center">Connect to your toolkit</p>
-              <div className="flex items-center lg:justify-start justify-center gap-6 opacity-60">
-                <img 
-                  src={getAssetPath("lovable-uploads/ed3b3a05-2313-48cb-9eb3-3edb097375a8.png")} 
-                  alt="Client logo" 
-                  className="h-8 w-8 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
-                />
-                <img 
-                  src={getAssetPath("lovable-uploads/c6b2cb6a-d36a-457f-ae75-b9371e1807a1.png")} 
-                  alt="Cursor logo" 
-                  className="h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
-                />
-                <img 
-                  src={getAssetPath("lovable-uploads/874eb1ee-538a-453b-9904-db31d0c1486a.png")} 
-                  alt="Client logo" 
-                  className="h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
-                />
-                <img 
-                  src={getAssetPath("lovable-uploads/beed7f22-eaaa-437f-bd66-85bb78f29e3c.png")} 
-                  alt="Client logo" 
-                  className="h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
-                />
-                <img 
-                  src={getAssetPath("lovable-uploads/468db3ab-a24e-416f-ac24-b2a1da66e78d.png")} 
-                  alt="Client logo" 
-                  className="h-12 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
-                />
               </div>
             </div>
           </div>
