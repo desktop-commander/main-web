@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { MessageCircle, ArrowRight, Download, Terminal, Star, TrendingUp } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import dcPreview from "@/assets/dc-demo-preview.png";
+import dcHeroAnimation from "@/assets/dc-hero-animation-full.gif";
 import dcLogo from "@/assets/dc-logo-dark.png";
 import { getAssetPath } from "@/utils/assets";
 
@@ -10,11 +10,21 @@ const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [npmCount, setNpmCount] = useState(0);
   const [githubStars, setGithubStars] = useState(0);
+  const [gifKey, setGifKey] = useState(0);
   const heroRef = useRef<HTMLElement>(null);
 
   // Animation trigger on mount
   useEffect(() => {
     setIsVisible(true);
+  }, []);
+
+  // Restart GIF after full 17 seconds + 1 second buffer to ensure complete playthrough  
+  useEffect(() => {
+    const restartInterval = setInterval(() => {
+      setGifKey(prev => prev + 1);
+    }, 18000); // 18 seconds (17 second animation + 1 second buffer)
+
+    return () => clearInterval(restartInterval);
   }, []);
 
   // Counter animations - slower and more dramatic
@@ -195,8 +205,9 @@ const Hero = () => {
             <div className="relative mx-auto lg:mx-0 w-full max-w-[680px]">
               <AspectRatio ratio={16 / 10} className="rounded-2xl border border-dc-border bg-dc-surface/50 shadow-elegant overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-[1.02]">
                 <img
-                  src={dcPreview}
-                  alt="How Desktop Commander works - AI chat interface with terminal integration"
+                  key={`hero-gif-${gifKey}`}
+                  src={`${dcHeroAnimation}?v=${gifKey}`}
+                  alt="Desktop Commander in action - AI-powered terminal and file management animation"
                   loading="lazy"
                   className="w-full h-full object-cover"
                   sizes="(min-width: 1024px) 40vw, 90vw"
