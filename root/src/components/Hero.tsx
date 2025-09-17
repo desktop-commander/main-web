@@ -22,15 +22,18 @@ const Hero = () => {
   // Preload the video for faster loading
   useEffect(() => {
     const video = document.createElement('video');
+    
+    const videoPath = import.meta.env.PROD ? '/main-web/hero-video.mp4' : '/hero-video.mp4';
+    
     video.oncanplaythrough = () => {
       setVideoLoaded(true);
       console.log('Video preloaded successfully');
     };
-    video.onerror = () => {
+    video.onerror = (e) => {
+      console.error('Video preload failed:', e);
       setVideoError(true);
-      console.log('Video preload failed');
     };
-    video.src = '/hero-video.mp4';
+    video.src = videoPath;
     video.load();
   }, []);
 
@@ -136,7 +139,7 @@ const Hero = () => {
                   {/* Video element - always rendered but hidden until loaded */}
                   <video
                     ref={videoRef}
-                    src="/hero-video.mp4"
+                    src={import.meta.env.PROD ? '/main-web/hero-video.mp4' : '/hero-video.mp4'}
                     className={`w-full h-full object-cover transition-opacity duration-500 ${
                       videoLoaded ? 'opacity-100' : 'opacity-0'
                     }`}
@@ -150,7 +153,7 @@ const Hero = () => {
                       console.log('Video can play');
                     }}
                     onError={(e) => {
-                      console.log('Video error:', e);
+                      console.error('Video error:', e);
                       setVideoError(true);
                     }}
                     onLoadedData={() => {
