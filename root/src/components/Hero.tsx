@@ -11,27 +11,42 @@ const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [npmCount, setNpmCount] = useState(0);
   const [githubStars, setGithubStars] = useState(0);
-  const [videoLoaded, setVideoLoaded] = useState(false);
-  const [videoError, setVideoError] = useState(false);
+  const [mediaLoaded, setMediaLoaded] = useState(false);
+  const [mediaError, setMediaError] = useState(false);
+  const [useVideo, setUseVideo] = useState(true); // Try video first, fallback to GIF
   const heroRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   
   // Analytics hook
   const { trackDownload, trackCommunity } = useAnalytics();
 
-  // Preload the video for faster loading
+  // Try to preload video, fallback to GIF if it fails
   useEffect(() => {
-    const video = document.createElement('video');
-    
     const videoPath = import.meta.env.PROD ? '/main-web/hero-video.mp4' : '/hero-video.mp4';
+    const gifPath = import.meta.env.PROD ? '/main-web/hero.gif' : '/hero.gif';
     
+    // Try video first
+    const video = document.createElement('video');
     video.oncanplaythrough = () => {
-      setVideoLoaded(true);
+      setMediaLoaded(true);
+      setUseVideo(true);
       console.log('Video preloaded successfully');
     };
-    video.onerror = (e) => {
-      console.error('Video preload failed:', e);
-      setVideoError(true);
+    video.onerror = () => {
+      console.log('Video preload failed, trying GIF fallback');
+      
+      // Fallback to GIF
+      const img = new Image();
+      img.onload = () => {
+        setMediaLoaded(true);
+        setUseVideo(false);
+        console.log('GIF fallback loaded successfully');
+      };
+      img.onerror = () => {
+        setMediaError(true);
+        console.log('Both video and GIF failed to load');
+      };
+      img.src = gifPath;
     };
     video.src = videoPath;
     video.load();
@@ -42,19 +57,34 @@ const Hero = () => {
     setIsVisible(true);
   }, []);
 
-  // Video restart logic - restart video when it ends for seamless looping
+  // Media restart logic - different for video vs GIF
   useEffect(() => {
-    const video = videoRef.current;
-    if (video && videoLoaded) {
-      const handleVideoEnd = () => {
-        video.currentTime = 0;
-        video.play().catch(console.error);
-      };
-      
-      video.addEventListener('ended', handleVideoEnd);
-      return () => video.removeEventListener('ended', handleVideoEnd);
+    if (!mediaLoaded) return;
+    
+    if (useVideo) {
+      // Video restart logic
+      const video = videoRef.current;
+      if (video) {
+        const handleVideoEnd = () => {
+          video.currentTime = 0;
+          video.play().catch(console.error);
+        };
+        video.addEventListener('ended', handleVideoEnd);
+        return () => video.removeEventListener('ended', handleVideoEnd);
+      }
+    } else {
+      // GIF restart logic (every 7 seconds)
+      const restartInterval = setInterval(() => {
+        // Force GIF restart by updating src with timestamp
+        const gifElement = document.querySelector('.hero-gif') as HTMLImageElement;
+        if (gifElement) {
+          const gifPath = import.meta.env.PROD ? '/main-web/hero.gif' : '/hero.gif';
+          gifElement.src = `${gifPath}?t=${Date.now()}`;
+        }
+      }, 7000);
+      return () => clearInterval(restartInterval);
     }
-  }, [videoLoaded]);
+  }, [mediaLoaded, useVideo]);
 
   // Counter animations - slower and more dramatic
   useEffect(() => {
@@ -114,7 +144,7 @@ const Hero = () => {
               >
                 <div className="w-full h-full relative bg-gradient-to-r from-dc-surface/50 to-dc-surface/30">
                   {/* Loading state */}
-                  {!videoLoaded && !videoError && (
+                  {!mediaLoaded && !mediaError && (
                     <div className="absolute inset-0 flex items-center justify-center bg-dc-surface/80 z-10">
                       <div className="flex flex-col items-center gap-3">
                         <Loader2 className="h-8 w-8 animate-spin text-dc-accent" />
@@ -124,7 +154,7 @@ const Hero = () => {
                   )}
                   
                   {/* Error state */}
-                  {videoError && (
+                  {mediaError && (
                     <div className="absolute inset-0 flex items-center justify-center bg-dc-surface/80 z-10">
                       <div className="flex flex-col items-center gap-3 text-center">
                         <Terminal className="h-12 w-12 text-dc-accent" />
@@ -136,33 +166,45 @@ const Hero = () => {
                     </div>
                   )}
                   
-                  {/* Video element - always rendered but hidden until loaded */}
-                  <video
-                    ref={videoRef}
-                    src={import.meta.env.PROD ? '/main-web/hero-video.mp4' : '/hero-video.mp4'}
-                    className={`w-full h-full object-cover transition-opacity duration-500 ${
-                      videoLoaded ? 'opacity-100' : 'opacity-0'
-                    }`}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="auto"
-                    onCanPlay={() => {
-                      setVideoLoaded(true);
-                      console.log('Video can play');
-                    }}
-                    onError={(e) => {
-                      console.error('Video error:', e);
-                      setVideoError(true);
-                    }}
-                    onLoadedData={() => {
-                      console.log('Video loaded successfully');
-                    }}
-                    style={{ 
-                      imageRendering: 'auto',
-                    }}
-                  />
+                  {/* Video element - shown when video loads successfully */}
+                  {mediaLoaded && useVideo && (
+                    <video
+                      ref={videoRef}
+                      src={import.meta.env.PROD ? '/main-web/hero-video.mp4' : '/hero-video.mp4'}
+                      className="w-full h-full object-cover transition-opacity duration-500 opacity-100"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="auto"
+                      onCanPlay={() => {
+                        console.log('Video can play');
+                      }}
+                      onError={(e) => {
+                        console.error('Video playback error:', e);
+                      }}
+                      style={{ 
+                        imageRendering: 'auto',
+                      }}
+                    />
+                  )}
+                  
+                  {/* GIF fallback - shown when video fails */}
+                  {mediaLoaded && !useVideo && (
+                    <img
+                      className="hero-gif w-full h-full object-cover transition-opacity duration-500 opacity-100"
+                      src={import.meta.env.PROD ? '/main-web/hero.gif' : '/hero.gif'}
+                      alt="Desktop Commander in action - AI-powered terminal and file management animation"
+                      loading="eager"
+                      onError={(e) => {
+                        console.error('GIF error:', e);
+                        setMediaError(true);
+                      }}
+                      style={{ 
+                        imageRendering: 'auto',
+                      }}
+                    />
+                  )}
                 </div>
               </AspectRatio>
             </div>
