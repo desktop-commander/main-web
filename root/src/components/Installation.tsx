@@ -4,6 +4,7 @@ import { ArrowRight, Check, Download, Copy, ChevronDown, ChevronRight, ExternalL
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useState, useEffect, useRef } from "react";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 const requirements = [
   {
@@ -170,7 +171,15 @@ const moreInstallationOptions = [
                   variant="ghost"
                   size="sm"
                   className="absolute top-2 right-2 h-5 w-5 p-0 hover:bg-muted"
-                  onClick={() => navigator.clipboard.writeText("bash <(curl -fsSL https://raw.githubusercontent.com/wonderwhy-er/DesktopCommanderMCP/refs/heads/main/install-docker.sh)")}
+                  onClick={() => {
+                    navigator.clipboard.writeText("bash <(curl -fsSL https://raw.githubusercontent.com/wonderwhy-er/DesktopCommanderMCP/refs/heads/main/install-docker.sh)");
+                    trackCustomEvent('copy_command_clicked', {
+                      button_text: 'Copy',
+                      button_location: 'docker_install_macos',
+                      installation_method: 'Docker',
+                      command: 'bash <(curl -fsSL https://raw.githubusercontent.com/wonderwhy-er/DesktopCommanderMCP/refs/heads/main/install-docker.sh)'
+                    });
+                  }}
                 >
                   <Copy className="h-3 w-3" />
                 </Button>
@@ -184,7 +193,15 @@ const moreInstallationOptions = [
                   variant="ghost"
                   size="sm"
                   className="absolute top-2 right-2 h-5 w-5 p-0 hover:bg-muted"
-                  onClick={() => navigator.clipboard.writeText("iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/wonderwhy-er/DesktopCommanderMCP/refs/heads/main/install-docker.ps1'))")}
+                  onClick={() => {
+                    navigator.clipboard.writeText("iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/wonderwhy-er/DesktopCommanderMCP/refs/heads/main/install-docker.ps1'))");
+                    trackCustomEvent('copy_command_clicked', {
+                      button_text: 'Copy',
+                      button_location: 'docker_install_windows',
+                      installation_method: 'Docker',
+                      command: 'PowerShell Docker Install'
+                    });
+                  }}
                 >
                   <Copy className="h-3 w-3" />
                 </Button>
@@ -230,7 +247,8 @@ const moreInstallationOptions = [
                   variant="ghost"
                   size="sm"
                   className="absolute top-2 right-2 h-5 w-5 p-0 hover:bg-muted"
-                  onClick={() => navigator.clipboard.writeText(`{
+                  onClick={() => {
+                    navigator.clipboard.writeText(`{
   "mcpServers": {
     "desktop-commander-docker": {
       "command": "docker",
@@ -240,7 +258,14 @@ const moreInstallationOptions = [
       ]
     }
   }
-}`)}
+}`);
+                    trackCustomEvent('copy_command_clicked', {
+                      button_text: 'Copy',
+                      button_location: 'docker_config_basic',
+                      installation_method: 'Docker Manual',
+                      command: 'Docker basic config'
+                    });
+                  }}
                 >
                   <Copy className="h-3 w-3" />
                 </Button>
@@ -269,7 +294,8 @@ const moreInstallationOptions = [
                   variant="ghost"
                   size="sm"
                   className="absolute top-2 right-2 h-5 w-5 p-0 hover:bg-muted"
-                  onClick={() => navigator.clipboard.writeText(`{
+                  onClick={() => {
+                    navigator.clipboard.writeText(`{
   "mcpServers": {
     "desktop-commander-docker": {
       "command": "docker", 
@@ -284,7 +310,14 @@ const moreInstallationOptions = [
       ]
     }
   }
-}`)}
+}`);
+                    trackCustomEvent('copy_command_clicked', {
+                      button_text: 'Copy',
+                      button_location: 'docker_config_advanced',
+                      installation_method: 'Docker Manual',
+                      command: 'Docker advanced config'
+                    });
+                  }}
                 >
                   <Copy className="h-3 w-3" />
                 </Button>
@@ -317,7 +350,15 @@ const moreInstallationOptions = [
                       variant="ghost"
                       size="sm"
                       className="absolute top-1 right-1 h-4 w-4 p-0 hover:bg-muted"
-                      onClick={() => navigator.clipboard.writeText("bash <(curl -fsSL https://raw.githubusercontent.com/wonderwhy-er/DesktopCommanderMCP/refs/heads/main/install-docker.sh) --status")}
+                      onClick={() => {
+                        navigator.clipboard.writeText("bash <(curl -fsSL https://raw.githubusercontent.com/wonderwhy-er/DesktopCommanderMCP/refs/heads/main/install-docker.sh) --status");
+                        trackCustomEvent('copy_command_clicked', {
+                          button_text: 'Copy',
+                          button_location: 'docker_status_macos',
+                          installation_method: 'Docker Management',
+                          command: 'Docker status check'
+                        });
+                      }}
                     >
                       <Copy className="h-2 w-2" />
                     </Button>
@@ -331,7 +372,15 @@ const moreInstallationOptions = [
                       variant="ghost"
                       size="sm"
                       className="absolute top-1 right-1 h-4 w-4 p-0 hover:bg-muted"
-                      onClick={() => navigator.clipboard.writeText("bash <(curl -fsSL https://raw.githubusercontent.com/wonderwhy-er/DesktopCommanderMCP/refs/heads/main/install-docker.sh) --reset")}
+                      onClick={() => {
+                        navigator.clipboard.writeText("bash <(curl -fsSL https://raw.githubusercontent.com/wonderwhy-er/DesktopCommanderMCP/refs/heads/main/install-docker.sh) --reset");
+                        trackCustomEvent('copy_command_clicked', {
+                          button_text: 'Copy',
+                          button_location: 'docker_reset_macos',
+                          installation_method: 'Docker Management',
+                          command: 'Docker reset'
+                        });
+                      }}
                     >
                       <Copy className="h-2 w-2" />
                     </Button>
@@ -350,7 +399,15 @@ const moreInstallationOptions = [
                       variant="ghost"
                       size="sm"
                       className="absolute top-1 right-1 h-4 w-4 p-0 hover:bg-muted"
-                      onClick={() => navigator.clipboard.writeText("$script = (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/wonderwhy-er/DesktopCommanderMCP/refs/heads/main/install-docker.ps1'); & ([ScriptBlock]::Create(\"$script\")) -Status")}
+                      onClick={() => {
+                        navigator.clipboard.writeText("$script = (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/wonderwhy-er/DesktopCommanderMCP/refs/heads/main/install-docker.ps1'); & ([ScriptBlock]::Create(\"$script\")) -Status");
+                        trackCustomEvent('copy_command_clicked', {
+                          button_text: 'Copy',
+                          button_location: 'docker_status_windows',
+                          installation_method: 'Docker Management',
+                          command: 'Docker status check PowerShell'
+                        });
+                      }}
                     >
                       <Copy className="h-2 w-2" />
                     </Button>
@@ -364,7 +421,15 @@ const moreInstallationOptions = [
                       variant="ghost"
                       size="sm"
                       className="absolute top-1 right-1 h-4 w-4 p-0 hover:bg-muted"
-                      onClick={() => navigator.clipboard.writeText("$script = (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/wonderwhy-er/DesktopCommanderMCP/refs/heads/main/install-docker.ps1'); & ([ScriptBlock]::Create(\"$script\")) -Reset")}
+                      onClick={() => {
+                        navigator.clipboard.writeText("$script = (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/wonderwhy-er/DesktopCommanderMCP/refs/heads/main/install-docker.ps1'); & ([ScriptBlock]::Create(\"$script\")) -Reset");
+                        trackCustomEvent('copy_command_clicked', {
+                          button_text: 'Copy',
+                          button_location: 'docker_reset_windows',
+                          installation_method: 'Docker Management',
+                          command: 'Docker reset PowerShell'
+                        });
+                      }}
                     >
                       <Copy className="h-2 w-2" />
                     </Button>
@@ -407,7 +472,8 @@ const moreInstallationOptions = [
             variant="ghost"
             size="sm"
             className="absolute top-2 right-2 h-5 w-5 p-0 hover:bg-muted"
-            onClick={() => navigator.clipboard.writeText(`{
+            onClick={() => {
+              navigator.clipboard.writeText(`{
   "mcpServers": {
     "desktop-commander": {
       "command": "npx",
@@ -417,7 +483,14 @@ const moreInstallationOptions = [
       ]
     }
   }
-}`)}
+}`);
+              trackCustomEvent('copy_command_clicked', {
+                button_text: 'Copy',
+                button_location: 'manual_install',
+                installation_method: 'Manual Install',
+                command: 'Manual config'
+              });
+            }}
           >
             <Copy className="h-3 w-3" />
           </Button>
@@ -446,9 +519,17 @@ npm run setup`}</code>
             variant="ghost"
             size="sm"
             className="absolute top-2 right-2 h-5 w-5 p-0 hover:bg-muted"
-            onClick={() => navigator.clipboard.writeText(`git clone https://github.com/wonderwhy-er/DesktopCommanderMCP
+            onClick={() => {
+              navigator.clipboard.writeText(`git clone https://github.com/wonderwhy-er/DesktopCommanderMCP
 cd DesktopCommanderMCP
-npm run setup`)}
+npm run setup`);
+              trackCustomEvent('copy_command_clicked', {
+                button_text: 'Copy',
+                button_location: 'local_development',
+                installation_method: 'Local Development',
+                command: 'Git clone and setup'
+              });
+            }}
           >
             <Copy className="h-3 w-3" />
           </Button>
@@ -466,6 +547,9 @@ npm run setup`)}
 const Installation = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  
+  // Analytics hook
+  const { trackDownload, trackCTA, trackCustomEvent } = useAnalytics();
 
   // Intersection Observer for scroll-triggered animations
   useEffect(() => {
@@ -490,15 +574,15 @@ const Installation = () => {
 
   return (
     <section ref={sectionRef} id="installation" className="py-12 bg-dc-surface/30 scroll-mt-24">
-      <div className="container mx-auto max-w-7xl px-6">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6">
         {/* Header - Fade in */}
         <div className={`text-center mb-10 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <h2 className="text-4xl font-bold text-foreground mb-3">
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
             Installation
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
             MCP server for LLM clients
           </p>
         </div>
@@ -535,7 +619,7 @@ const Installation = () => {
         <div className={`transition-all duration-1000 delay-500 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <h3 className="text-2xl font-semibold text-foreground mb-6 text-center">
+          <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-6 text-center">
             Installation Options
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto">
@@ -593,7 +677,15 @@ const Installation = () => {
                       variant="ghost"
                       size="sm"
                       className="absolute top-3 right-2 h-6 w-6 p-0 hover:bg-muted transition-all duration-300 hover:scale-110"
-                      onClick={() => navigator.clipboard.writeText(option.command)}
+                      onClick={() => {
+                        navigator.clipboard.writeText(option.command);
+                        trackCustomEvent('copy_command_clicked', {
+                          button_text: 'Copy',
+                          button_location: 'installation_main',
+                          installation_method: option.method,
+                          command: option.command
+                        });
+                      }}
                     >
                       <Copy className="h-3 w-3" />
                     </Button>
@@ -634,7 +726,7 @@ const Installation = () => {
                 <h3 className="text-base font-semibold text-foreground">More installation options</h3>
               </AccordionTrigger>
               <AccordionContent className="px-4 pb-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                   {moreInstallationOptions.map((option, index) => (
                     <Dialog key={index}>
                       <DialogTrigger asChild>
@@ -679,7 +771,15 @@ const Installation = () => {
                       variant="ghost"
                       size="sm"
                       className="absolute top-2 right-2 h-5 w-5 p-0 hover:bg-muted"
-                      onClick={() => navigator.clipboard.writeText("npx @wonderwhy-er/desktop-commander@latest remove")}
+                      onClick={() => {
+                        navigator.clipboard.writeText("npx @wonderwhy-er/desktop-commander@latest remove");
+                        trackCustomEvent('copy_command_clicked', {
+                          button_text: 'Copy',
+                          button_location: 'uninstall',
+                          installation_method: 'Uninstall',
+                          command: 'Remove command'
+                        });
+                      }}
                     >
                       <Copy className="h-3 w-3" />
                     </Button>

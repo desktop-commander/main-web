@@ -1,14 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { Github, Heart, MessageCircle, Play, Package } from "lucide-react";
 import dcLogo from "@/assets/dc-logo-dark.png";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 const Footer = () => {
+  const { trackCustomEvent } = useAnalytics();
+
   return (
     <footer className="border-t border-dc-border bg-dc-surface/50">
-      <div className="container mx-auto max-w-7xl px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand */}
-          <div className="col-span-1 md:col-span-2">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-12 md:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Brand - Full width on mobile, 2 cols on desktop */}
+          <div className="col-span-1 sm:col-span-2">
             <div className="flex items-center gap-3 mb-4">
               <img src={dcLogo} alt="Desktop Commander" className="h-8 w-8" />
               <h3 className="text-xl font-bold text-foreground">Desktop Commander</h3>
@@ -16,7 +19,7 @@ const Footer = () => {
             <p className="text-muted-foreground mb-6 max-w-sm leading-relaxed">
               The powerful MCP to manage files, deploy servers, and automate workflows with ease.
             </p>
-            <div className="flex items-center gap-3 flex-wrap">
+            <div className="flex items-center gap-2 flex-wrap">
               <Button variant="ghost" size="icon" asChild>
                 <a href="https://github.com/wonderwhy-er/DesktopCommanderMCP" target="_blank" rel="noopener noreferrer" title="GitHub">
                   <Github className="h-5 w-5" />
@@ -55,26 +58,62 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className="col-span-1">
             <h4 className="font-semibold text-foreground mb-4">Browse</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#use-cases" className="text-muted-foreground hover:text-primary transition-smooth">
+                <a 
+                  href="#use-cases" 
+                  className="text-muted-foreground hover:text-primary transition-smooth text-sm"
+                  onClick={() => trackCustomEvent('navigation_clicked', {
+                    button_text: 'Use Cases',
+                    button_location: 'footer',
+                    link_type: 'internal',
+                    section: 'use-cases'
+                  })}
+                >
                   Use Cases
                 </a>
               </li>
               <li>
-                <a href="#installation" className="text-muted-foreground hover:text-primary transition-smooth">
+                <a 
+                  href="#installation" 
+                  className="text-muted-foreground hover:text-primary transition-smooth text-sm"
+                  onClick={() => trackCustomEvent('navigation_clicked', {
+                    button_text: 'Installation',
+                    button_location: 'footer',
+                    link_type: 'internal',
+                    section: 'installation'
+                  })}
+                >
                   Installation
                 </a>
               </li>
               <li>
-                <a href="#prompts" className="text-muted-foreground hover:text-primary transition-smooth">
+                <a 
+                  href="#prompts" 
+                  className="text-muted-foreground hover:text-primary transition-smooth text-sm"
+                  onClick={() => trackCustomEvent('navigation_clicked', {
+                    button_text: 'Prompt Library',
+                    button_location: 'footer',
+                    link_type: 'internal',
+                    section: 'prompts'
+                  })}
+                >
                   Prompt Library
                 </a>
               </li>
               <li>
-                <a href="#faq" className="text-muted-foreground hover:text-primary transition-smooth">
+                <a 
+                  href="#faq" 
+                  className="text-muted-foreground hover:text-primary transition-smooth text-sm"
+                  onClick={() => trackCustomEvent('navigation_clicked', {
+                    button_text: 'FAQ',
+                    button_location: 'footer',
+                    link_type: 'internal',
+                    section: 'faq'
+                  })}
+                >
                   FAQ
                 </a>
               </li>
@@ -82,26 +121,65 @@ const Footer = () => {
           </div>
 
           {/* Resources */}
-          <div>
+          <div className="col-span-1">
             <h4 className="font-semibold text-foreground mb-4">Resources</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#blog" className="text-muted-foreground hover:text-primary transition-smooth">
+                <a 
+                  href="#blog" 
+                  className="text-muted-foreground hover:text-primary transition-smooth text-sm"
+                  onClick={() => trackCustomEvent('navigation_clicked', {
+                    button_text: 'Blog',
+                    button_location: 'footer',
+                    link_type: 'internal',
+                    section: 'blog'
+                  })}
+                >
                   Blog
                 </a>
               </li>
               <li>
-                <a href="#community" className="text-muted-foreground hover:text-primary transition-smooth">
+                <a 
+                  href="#community" 
+                  className="text-muted-foreground hover:text-primary transition-smooth text-sm"
+                  onClick={() => trackCustomEvent('navigation_clicked', {
+                    button_text: 'Community',
+                    button_location: 'footer',
+                    link_type: 'internal',
+                    section: 'community'
+                  })}
+                >
                   Community
                 </a>
               </li>
               <li>
-                <a href="https://github.com/wonderwhy-er/DesktopCommanderMCP/issues" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-smooth">
+                <a 
+                  href="https://github.com/wonderwhy-er/DesktopCommanderMCP/issues" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-muted-foreground hover:text-primary transition-smooth text-sm"
+                  onClick={() => trackCustomEvent('external_link_clicked', {
+                    button_text: 'GitHub Issues',
+                    button_location: 'footer',
+                    link_type: 'external',
+                    destination: 'github_issues'
+                  })}
+                >
                   GitHub Issues
                 </a>
               </li>
               <li>
-                <a href="https://github.com/wonderwhy-er/DesktopCommanderMCP" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-smooth">
+                <a 
+                  href="https://github.com/wonderwhy-er/DesktopCommanderMCP" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-muted-foreground hover:text-primary transition-smooth text-sm"
+                  onClick={() => trackCustomEvent('github_clicked', {
+                    button_text: 'Source Code',
+                    button_location: 'footer',
+                    link_type: 'external'
+                  })}
+                >
                   Source Code
                 </a>
               </li>
@@ -109,22 +187,46 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-dc-border mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <div className="flex flex-col sm:flex-row items-center gap-4">
+        <div className="border-t border-dc-border mt-8 md:mt-12 pt-6 md:pt-8 flex flex-col gap-4">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <p className="text-muted-foreground text-sm">
               © 2025 Desktop Commander MCP. Open-source software under MIT license.
             </p>
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
-              <a href="https://legal.desktopcommander.app" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-smooth">
+              <a 
+                href="https://legal.desktopcommander.app" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-primary transition-smooth"
+                onClick={() => trackCustomEvent('external_link_clicked', {
+                  button_text: 'Terms of Use',
+                  button_location: 'footer',
+                  link_type: 'legal',
+                  destination: 'terms'
+                })}
+              >
                 Terms of Use
               </a>
-              <a href="https://legal.desktopcommander.app" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-smooth">
+              <a 
+                href="https://legal.desktopcommander.app" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-primary transition-smooth"
+                onClick={() => trackCustomEvent('external_link_clicked', {
+                  button_text: 'Privacy Policy',
+                  button_location: 'footer',
+                  link_type: 'legal',
+                  destination: 'privacy'
+                })}
+              >
                 Privacy Policy
               </a>
             </div>
           </div>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            Made with Desktop Commander
+          <div className="flex justify-center sm:justify-end">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              Made with Desktop Commander
+            </div>
           </div>
         </div>
       </div>

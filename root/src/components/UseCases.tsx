@@ -27,6 +27,7 @@ const UseCases = () => {
 
     return () => observer.disconnect();
   }, []);
+
   const useCases = [
     {
       icon: Cloud,
@@ -61,22 +62,22 @@ const UseCases = () => {
   ];
 
   return (
-    <section ref={sectionRef} id="use-cases" className="py-24 bg-dc-surface/30">
-      <div className="container mx-auto max-w-7xl px-6">
-        {/* Header - Fade in from below */}
-        <div className={`text-center mb-16 transition-all duration-1000 ${
+    <section ref={sectionRef} id="use-cases" className="py-16 md:py-24 bg-dc-surface/30">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+        {/* Header - Mobile optimized */}
+        <div className={`text-center mb-12 md:mb-16 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
             Transform your workflow today
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
             From simple file operations to complex deployment pipelines, Desktop Commander handles it all through natural conversation
           </p>
         </div>
 
-        {/* Use Cases Grid - Staggered animation */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Use Cases Grid - Mobile responsive */}
+        <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
           {useCases.map((useCase, index) => {
             const IconComponent = useCase.icon;
             return (
@@ -91,17 +92,18 @@ const UseCases = () => {
                   transitionDelay: isVisible ? `${200 + index * 150}ms` : '0ms'
                 }}
               >
-                <CardContent className="p-8">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="flex items-center justify-center w-12 h-12 bg-dc-surface border border-dc-border rounded-xl group-hover:border-dc-blue/30 group-hover:bg-dc-blue/5 transition-all duration-300">
+                <CardContent className="p-6 sm:p-8">
+                  {/* Mobile: Vertical layout, Desktop: Horizontal with icon */}
+                  <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4 mb-4">
+                    <div className="flex items-center justify-center w-12 h-12 bg-dc-surface border border-dc-border rounded-xl group-hover:border-dc-blue/30 group-hover:bg-dc-blue/5 transition-all duration-300 flex-shrink-0 mx-auto sm:mx-0">
                       <IconComponent className="h-6 w-6 text-foreground group-hover:text-dc-blue transition-colors duration-300" />
                     </div>
-                    <h3 className="text-xl font-semibold text-foreground">
+                    <h3 className="text-lg sm:text-xl font-semibold text-foreground text-center sm:text-left leading-tight">
                       {useCase.title}
                     </h3>
                   </div>
                   
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed text-center sm:text-left">
                     {useCase.description}
                   </p>
                 </CardContent>
@@ -110,16 +112,21 @@ const UseCases = () => {
           })}
         </div>
 
-        {/* Bottom CTA - Delayed fade in */}
-        <div className={`text-center mt-16 transition-all duration-1000 delay-1000 ${
+        {/* Bottom CTA - Mobile optimized */}
+        <div className={`text-center mt-12 md:mt-16 transition-all duration-1000 delay-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <p className="text-lg text-muted-foreground mb-6">
+          <p className="text-base sm:text-lg text-muted-foreground mb-6 px-4 sm:px-0">
             Install Desktop Commander and see how it handles these use cases
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button variant="hero" size="lg" className="transition-all duration-300 hover:scale-105 active:scale-95" asChild>
-              <a href="#installation">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 sm:px-0">
+            <Button 
+              variant="hero" 
+              size="lg" 
+              className="w-full sm:w-auto transition-all duration-300 hover:scale-105 active:scale-95" 
+              asChild
+            >
+              <a href="#installation" className="flex items-center justify-center gap-2">
                 <Terminal className="h-5 w-5" />
                 Start Building
               </a>
@@ -128,7 +135,7 @@ const UseCases = () => {
               href="https://library.desktopcommander.app/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 border border-dc-border text-foreground rounded-lg font-medium hover:bg-dc-surface/50 transition-all duration-300 hover:scale-105 active:scale-95"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 border border-dc-border text-foreground rounded-lg font-medium hover:bg-dc-surface/50 transition-all duration-300 hover:scale-105 active:scale-95 text-center"
             >
               Browse 60+ Prompts to use with DC
             </a>

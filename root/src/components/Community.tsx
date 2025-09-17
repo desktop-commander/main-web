@@ -2,10 +2,14 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Users, MessageCircle, Github, Youtube } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 const Community = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  
+  // Analytics hook
+  const { trackCommunity } = useAnalytics();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -58,7 +62,10 @@ const Community = () => {
               </p>
               <Button 
                 className="bg-gray-900 hover:bg-gray-800 text-white px-6 py-2 w-full transition-all duration-300 hover:scale-105 hover:shadow-lg transform active:scale-95"
-                onClick={() => window.open('https://github.com/wonderwhy-er/DesktopCommanderMCP', '_blank')}
+                onClick={() => {
+                  trackCommunity('github', 'community_section', 'GITHUB REPO');
+                  window.open('https://github.com/wonderwhy-er/DesktopCommanderMCP', '_blank');
+                }}
               >
                 GITHUB REPO
               </Button>
@@ -80,7 +87,10 @@ const Community = () => {
               </p>
               <Button 
                 className="bg-gray-900 hover:bg-gray-800 text-white px-6 py-2 w-full transition-all duration-300 hover:scale-105 hover:shadow-lg transform active:scale-95"
-                onClick={() => window.open('https://discord.gg/kQ27sNnZr7', '_blank')}
+                onClick={() => {
+                  trackCommunity('discord', 'community_section', 'JOIN DISCORD');
+                  window.open('https://discord.gg/kQ27sNnZr7', '_blank');
+                }}
               >
                 JOIN DISCORD
               </Button>
@@ -102,7 +112,10 @@ const Community = () => {
               </p>
               <Button 
                 className="bg-gray-900 hover:bg-gray-800 text-white px-6 py-2 w-full transition-all duration-300 hover:scale-105 hover:shadow-lg transform active:scale-95"
-                onClick={() => window.open('https://www.youtube.com/@EduardsRuzga', '_blank')}
+                onClick={() => {
+                  trackCommunity('youtube', 'community_section', 'WATCH NOW');
+                  window.open('https://www.youtube.com/@EduardsRuzga', '_blank');
+                }}
               >
                 WATCH NOW
               </Button>

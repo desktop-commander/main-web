@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowRight, Search, FileText, Server, FolderOpen, Zap, Database, GitCompare, Trash2, BookOpen, Code2, Cloud, Image, BarChart3 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 const promptCategories = [
   {
@@ -130,6 +131,9 @@ const PromptLibrary = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [activeTab, setActiveTab] = useState("explore-codebase");
   const sectionRef = useRef<HTMLElement>(null);
+  
+  // Analytics hook
+  const { trackCustomEvent } = useAnalytics();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -170,7 +174,22 @@ const PromptLibrary = () => {
         <div className={`max-w-4xl mx-auto mb-8 transition-all duration-1000 delay-300 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <Tabs defaultValue="explore-codebase" className="w-full" onValueChange={setActiveTab}>
+          <Tabs defaultValue="explore-codebase" className="w-full" onValueChange={(value) => {
+            setActiveTab(value);
+            // Track category exploration
+            const category = promptCategories.find(cat => 
+              cat.title.toLowerCase().replace(/\s+/g, '-') === value
+            );
+            if (category) {
+              trackCustomEvent('prompt_category_clicked', {
+                button_text: category.title,
+                button_location: 'prompt_library',
+                category_name: category.title,
+                category_tab: value,
+                total_prompts_in_category: category.prompts.length
+              });
+            }
+          }}>
             <TabsList className="grid w-full grid-cols-5 mb-8">
               {promptCategories.map((category, index) => {
                 const CategoryIcon = category.icon;
@@ -201,6 +220,19 @@ const PromptLibrary = () => {
                         href={prompt.url}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => {
+                          // Track individual prompt clicks
+                          trackCustomEvent('prompt_clicked', {
+                            button_text: prompt.title,
+                            button_location: 'prompt_library',
+                            category_name: category.title,
+                            prompt_title: prompt.title,
+                            prompt_description: prompt.description,
+                            prompt_url: prompt.url,
+                            prompt_position: promptIndex + 1,
+                            total_prompts_in_category: category.prompts.length
+                          });
+                        }}
                         className={`flex items-center gap-4 p-4 rounded-lg border border-border hover:border-primary/40 hover:bg-accent/50 transition-all duration-300 group hover:scale-[1.02] hover:shadow-lg transform ${
                           isVisible && isActiveTabContent
                             ? `opacity-100 translate-y-0 delay-${600 + promptIndex * 100}`
@@ -240,6 +272,16 @@ const PromptLibrary = () => {
               href="https://library.desktopcommander.app/" 
               target="_blank" 
               rel="noopener noreferrer"
+              onClick={() => {
+                // Track main library CTA
+                trackCustomEvent('prompt_library_cta_clicked', {
+                  button_text: 'Browse All Prompts',
+                  button_location: 'prompt_library',
+                  link_type: 'external',
+                  destination: 'prompt_library_main',
+                  current_active_tab: activeTab
+                });
+              }}
               className="inline-flex items-center gap-2"
             >
               Browse All Prompts

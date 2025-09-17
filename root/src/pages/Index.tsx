@@ -8,8 +8,12 @@ import Blog from "@/components/Blog";
 import Community from "@/components/Community";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 const Index = () => {
+  // Initialize analytics tracking for this page
+  useAnalytics();
+  
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
