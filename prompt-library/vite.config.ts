@@ -20,7 +20,12 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    outDir: 'docs',
+    outDir: '../docs/library', // Changed to directly target docs/library from main-web root
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html')
+      }
+    }
   },
   base: '/',
 }));

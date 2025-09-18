@@ -16,4 +16,13 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+    build: {
+    outDir: '../docs', // Changed to directly target docs/library from main-web root
+    emptyOutDir: true,             // Added to empty the directory before build
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html')
+      }
+    }
+  },
 }));
