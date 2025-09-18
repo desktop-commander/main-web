@@ -33,7 +33,13 @@ const Navigation = () => {
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-8">
-            <img src={dcLogo} alt="Desktop Commander" className="h-7 sm:h-8 w-auto" />
+            <a 
+              href="/main-web/" 
+              className="hover:opacity-80 transition-opacity"
+              onClick={() => trackNavigation('Logo', '/main-web/')}
+            >
+              <img src={dcLogo} alt="Desktop Commander" className="h-7 sm:h-8 w-auto" />
+            </a>
             
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-6">
@@ -66,6 +72,16 @@ const Navigation = () => {
                   onClick={() => trackNavigation('Community', '#community')}
                 >
                   Community
+                </a>
+              </Button>
+              
+              <Button variant="ghost" size="sm" asChild>
+                <a 
+                  href="/main-web/careers" 
+                  className="text-white hover:text-white/80 font-medium"
+                  onClick={() => trackNavigation('Careers', '/main-web/careers')}
+                >
+                  Careers
                 </a>
               </Button>
               
@@ -170,6 +186,14 @@ const Navigation = () => {
                     onClick={() => handleMobileNavClick('Community', '#community')}
                   >
                     Community
+                  </a>
+                  
+                  <a 
+                    href="/main-web/careers" 
+                    className="flex items-center px-4 py-3 text-foreground hover:bg-dc-surface rounded-lg transition-colors"
+                    onClick={() => handleMobileNavClick('Careers', '/main-web/careers')}
+                  >
+                    Careers
                   </a>
                   
                   <div className="border-t border-dc-border pt-4">

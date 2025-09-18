@@ -5,12 +5,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import Index from "./pages/Index";
+import Careers from "./pages/Careers";
 import NotFound from "./pages/NotFound";
 import { initializePostHog } from "./lib/analytics/posthog";
 
 const queryClient = new QueryClient();
 
-// GitHub Pages needs /main-web/ basename, local dev needs none
+// GitHub Pages HashRouter implementation - Updated
 const basename = import.meta.env.PROD ? '/main-web' : '';
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
         <BrowserRouter basename={basename}>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/careers" element={<Careers />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
