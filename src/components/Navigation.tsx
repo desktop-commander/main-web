@@ -33,7 +33,13 @@ const Navigation = () => {
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-8">
-            <img src={dcLogo} alt="Desktop Commander" className="h-7 sm:h-8 w-auto" />
+            <a 
+              href="/" 
+              className="hover:opacity-80 transition-opacity"
+              onClick={() => trackNavigation('Logo', '/')}
+            >
+              <img src={dcLogo} alt="Desktop Commander" className="h-7 sm:h-8 w-auto" />
+            </a>
             
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-6">
