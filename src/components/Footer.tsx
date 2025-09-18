@@ -119,7 +119,7 @@ const Footer = () => {
               </li>
               <li>
                 <a 
-                  href="#/careers" 
+                  href="/careers" 
                   className="text-muted-foreground hover:text-primary transition-smooth text-sm"
                   onClick={() => trackCustomEvent('navigation_clicked', {
                     button_text: 'Careers',

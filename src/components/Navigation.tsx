@@ -34,9 +34,9 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-8">
             <a 
-              href="#/" 
+              href="/" 
               className="hover:opacity-80 transition-opacity"
-              onClick={() => trackNavigation('Logo', '#/')}
+              onClick={() => trackNavigation('Logo', '/')}
             >
               <img src={dcLogo} alt="Desktop Commander" className="h-7 sm:h-8 w-auto" />
             </a>
@@ -77,9 +77,9 @@ const Navigation = () => {
               
               <Button variant="ghost" size="sm" asChild>
                 <a 
-                  href="#/careers" 
+                  href="/careers" 
                   className="text-white hover:text-white/80 font-medium"
-                  onClick={() => trackNavigation('Careers', '#/careers')}
+                  onClick={() => trackNavigation('Careers', '/careers')}
                 >
                   Careers
                 </a>
@@ -189,9 +189,9 @@ const Navigation = () => {
                   </a>
                   
                   <a 
-                    href="#/careers" 
+                    href="/careers" 
                     className="flex items-center px-4 py-3 text-foreground hover:bg-dc-surface rounded-lg transition-colors"
-                    onClick={() => handleMobileNavClick('Careers', '#/careers')}
+                    onClick={() => handleMobileNavClick('Careers', '/careers')}
                   >
                     Careers
                   </a>
