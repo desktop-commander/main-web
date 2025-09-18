@@ -6,7 +6,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "build": "cd ./root && npm run build && cd ../prompt-library && npm run build"
+    "build": "cd ./root && npm run build && cd ../prompt-library && npm run build",
+    "postbuild": "echo \"desktopcommander.app\" > docs/CNAME"
   },
   "repository": {
     "type": "git",
