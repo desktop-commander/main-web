@@ -11,7 +11,7 @@ import { initializePostHog } from "./lib/analytics/posthog";
 
 const queryClient = new QueryClient();
 
-// GitHub Pages needs /main-web/ basename, local dev needs none
+// GitHub Pages HashRouter implementation - Updated
 const basename = import.meta.env.PROD ? '/main-web' : '';
 
 const App = () => {
