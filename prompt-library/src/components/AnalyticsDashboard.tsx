@@ -86,7 +86,7 @@ export function AnalyticsDashboard() {
                 <div className="space-y-1 max-h-40 overflow-y-auto">
                   {Object.entries(summary.eventCounts)
                     .sort(([, a], [, b]) => (b as number) - (a as number))
-                    .map(([event, count]) => (
+                    .map(([event, count]: [string, number]) => (
                       <div key={event} className="flex justify-between text-xs">
                         <span className="text-muted-foreground">{event}</span>
                         <span className="font-mono">{count}</span>

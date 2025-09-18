@@ -17,7 +17,13 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@nx/vite": "^21.5.2",
+    "@types/node": "^24.5.2",
     "nx": "21.5.1"
   },
-  "nx": {}
+  "nx": {},
+  "workspaces": [
+    "prompt-library",
+    "root"
+  ]
 }

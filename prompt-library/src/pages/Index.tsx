@@ -133,7 +133,7 @@ const Index = () => {
     useCases.forEach(uc => {
       uc.targetRoles.forEach(role => roles.add(role));
     });
-    return ['For all', ...Array.from(roles).sort()];
+    return ['For all', ...(Array.from(roles) as string[]).sort()];
   }, []);
 
   // Filter prompts by selected role and category

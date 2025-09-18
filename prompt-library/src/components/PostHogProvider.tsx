@@ -164,14 +164,14 @@ export function PostHogProvider({ children }: PostHogProviderProps) {
         capture_pageleave: true, // Enable automatic pageleave tracking
         capture_performance: {
           web_vitals_allowed_metrics: ['LCP', 'CLS', 'FCP', 'INP'], // Enable all web vitals metrics
-          web_vitals_max_value: 900000, // 15 minutes in ms (default)
+          __web_vitals_max_value: 900000, // 15 minutes in ms (default)
           web_vitals_delayed_flush_ms: 5000 // 5 second delay (default)
         },
         disable_session_recording: false, // Enable session recordings
         session_recording: {
           maskAllInputs: true, // Mask sensitive inputs for privacy
-          maskAllText: false, // Keep text visible for UX insights
-          recordCanvas: false, // Skip canvas recording for performance
+
+
           recordCrossOriginIframes: false, // Skip external iframes
           collectFonts: false, // Skip font collection for performance
         },

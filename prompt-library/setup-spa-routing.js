@@ -6,10 +6,12 @@ import path from 'path';
  * This copies index.html to 404.html and modifies it for SPA redirect handling
  */
 function setupGitHubPagesSPA() {
-  const buildDir = 'docs';
+  const buildDir = '../docs/library';
   const indexPath = path.join(buildDir, 'index.html');
+  console.log(indexPath)
   const notFoundPath = path.join(buildDir, '404.html');
-
+console.log('Index path:', path.resolve(indexPath));
+console.log('404 path:', path.resolve(notFoundPath));
   if (!fs.existsSync(indexPath)) {
     console.error('❌ index.html not found in build directory');
     process.exit(1);

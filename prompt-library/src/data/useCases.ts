@@ -12,7 +12,7 @@ export interface UseCase {
   title: string;
   description: string;
   prompt: string;
-  sessionType: 'Instant output' | 'Step-by-step flow';
+  sessionType: string; // Changed from union type to generic string
   targetRoles: string[];
   categories: string[];  // Updated to support multiple categories
   taskCategory?: string;  // New field for DevOps task categorization
@@ -20,8 +20,9 @@ export interface UseCase {
   gaClicks: number;  // Primary click tracking metric for popularity sorting
   icon: string;
   author: string;
-  dateAdded: string;
+  dateAdded?: string; // Made optional
   verified?: boolean;
+  difficulty?: string; // Added difficulty as optional string
 }
 
 // Import prompts from JSON file
