@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
     build: {
-    outDir: '../docs', // Changed to directly target docs/library from main-web root
+    outDir: './docs', // Build to docs folder within the repository
     emptyOutDir: true,             // Added to empty the directory before build
     rollupOptions: {
       input: {
