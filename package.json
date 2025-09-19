@@ -26,5 +26,8 @@
   "workspaces": [
     "prompt-library",
     "root"
-  ]
+  ],
+  "dependencies": {
+    "vite": "^7.1.6"
+  }
 }
