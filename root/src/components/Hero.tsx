@@ -24,13 +24,21 @@ const Hero = () => {
   const getAssetPath = (filename: string) => {
     if (import.meta.env.MODE === 'development') return `/${filename}`;
     
-    // In production, check if we're on GitHub Pages subdirectory
-    const { pathname } = window.location;
-    if (pathname.startsWith('/main-web/')) {
+    // In production/preview, check the actual URL path
+    const { pathname, hostname } = window.location;
+    
+    // If we're on a PR preview (path starts with /pr-NUMBER/)
+    if (pathname.match(/^\/pr-\d+\//)) {
+      const prPath = pathname.match(/^\/pr-\d+/)[0];
+      return `${prPath}/${filename}`;
+    }
+    
+    // If we're on GitHub Pages subdirectory (not custom domain)
+    if (hostname.includes('github.io') && pathname.startsWith('/main-web/')) {
       return `/main-web/${filename}`;
     }
     
-    // For custom domain or root deployment
+    // For custom domain or root deployment  
     return `/${filename}`;
   };
 

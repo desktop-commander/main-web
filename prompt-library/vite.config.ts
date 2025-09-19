@@ -28,6 +28,7 @@ export default defineConfig(({ mode }) => ({
       }
     }
   },
-  // Relative base path works with both GitHub Pages subdirectory and custom domain
-  base: mode === 'production' ? './' : '/',
+  // Relative base path works with both GitHub Pages subdirectory and custom domain  
+  // Preview mode uses relative paths for PR previews
+  base: mode === 'production' ? './' : mode === 'preview' ? './' : '/',
 }));
