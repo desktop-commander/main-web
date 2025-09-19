@@ -1,5 +1,4 @@
-name: 📝 Deploy PR to GitHub Pages Preview
-
+name: 📝 Deploy PR Preview
 
 on:
   pull_request:
@@ -19,7 +18,7 @@ jobs:
       - name: 🏗 Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
           cache: 'npm'
 
       - name: 📦 Install dependencies
@@ -39,9 +38,13 @@ jobs:
       - name: 💬 Comment preview URL
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const prNumber = context.issue.number;
+            const prNumber = context.payload.pull_request.number;
             const previewUrl = `https://${context.repo.owner}.github.io/${context.repo.repo}/pr-${prNumber}/`;
+            
+            console.log(`PR Number: ${prNumber}`);
+            console.log(`Preview URL: ${previewUrl}`);
             
             const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
@@ -56,13 +59,14 @@ jobs:
 
             const commentBody = `📝 PR Preview deployed!
 
-            **Preview URL**: ${previewUrl}
-            
-            This preview will be available until the PR is merged or closed.
-            
-            <!-- pr-preview-comment -->`;
+**Preview URL**: ${previewUrl}
+
+This preview will be available until the PR is merged or closed.
+
+<!-- pr-preview-comment -->`;
 
             if (botComment) {
+              console.log('Updating existing comment');
               await github.rest.issues.updateComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -70,6 +74,7 @@ jobs:
                 body: commentBody,
               });
             } else {
+              console.log('Creating new comment');
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
