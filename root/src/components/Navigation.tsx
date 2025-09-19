@@ -34,9 +34,9 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-8">
             <a 
-              href="/main-web/" 
+              href="https://desktopcommander.app" 
               className="hover:opacity-80 transition-opacity"
-              onClick={() => trackNavigation('Logo', '/main-web/')}
+              onClick={() => trackNavigation('Logo', 'https://desktopcommander.app', 'external')}
             >
               <img src={dcLogo} alt="Desktop Commander" className="h-7 sm:h-8 w-auto" />
             </a>
