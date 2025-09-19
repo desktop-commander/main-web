@@ -8,6 +8,7 @@
   "scripts": {
     "build": "cd ./root && npm run build && cd ../prompt-library && npm run build",
     "build:dev": "cd ./root && npx vite build --mode development && cd ../prompt-library && npx vite build --mode development",
+    "build:preview": "npm run build:dev",
     "postbuild": "echo \"desktopcommander.app\" > docs/CNAME",
     "serve": "npx serve docs --listen 3000",
     "serve:docs": "npx serve docs --listen 3000"
