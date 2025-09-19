@@ -20,10 +20,24 @@ const Hero = () => {
   // Analytics hook
   const { trackDownload, trackCommunity } = useAnalytics();
 
+  // Helper function for asset paths
+  const getAssetPath = (filename: string) => {
+    if (import.meta.env.MODE === 'development') return `/${filename}`;
+    
+    // In production, check if we're on GitHub Pages subdirectory
+    const { pathname } = window.location;
+    if (pathname.startsWith('/main-web/')) {
+      return `/main-web/${filename}`;
+    }
+    
+    // For custom domain or root deployment
+    return `/${filename}`;
+  };
+
   // Try to preload video, fallback to GIF if it fails
   useEffect(() => {
-    const videoPath = import.meta.env.PROD ? '/main-web/hero-video.mp4' : '/hero-video.mp4';
-    const gifPath = import.meta.env.PROD ? '/main-web/hero.gif' : '/hero.gif';
+    const videoPath = getAssetPath('hero-video.mp4');
+    const gifPath = getAssetPath('hero.gif');
     
     // Try video first
     const video = document.createElement('video');
@@ -78,7 +92,7 @@ const Hero = () => {
         // Force GIF restart by updating src with timestamp
         const gifElement = document.querySelector('.hero-gif') as HTMLImageElement;
         if (gifElement) {
-          const gifPath = import.meta.env.PROD ? '/main-web/hero.gif' : '/hero.gif';
+          const gifPath = getAssetPath('hero.gif');
           gifElement.src = `${gifPath}?t=${Date.now()}`;
         }
       }, 7000);
@@ -170,7 +184,7 @@ const Hero = () => {
                   {mediaLoaded && useVideo && (
                     <video
                       ref={videoRef}
-                      src={import.meta.env.PROD ? '/main-web/hero-video.mp4' : '/hero-video.mp4'}
+                      src={getAssetPath('hero-video.mp4')}
                       className="w-full h-full object-cover transition-opacity duration-500 opacity-100"
                       autoPlay
                       muted
@@ -193,7 +207,7 @@ const Hero = () => {
                   {mediaLoaded && !useVideo && (
                     <img
                       className="hero-gif w-full h-full object-cover transition-opacity duration-500 opacity-100"
-                      src={import.meta.env.PROD ? '/main-web/hero.gif' : '/hero.gif'}
+                      src={getAssetPath('hero.gif')}
                       alt="Desktop Commander in action - AI-powered terminal and file management animation"
                       loading="eager"
                       onError={(e) => {

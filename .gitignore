@@ -5,3 +5,6 @@ daemon.log
 .nx/workspace-data
 /.idea/vcs.xml
 /.idea/workspace.xml
+/.idea/main-web-fork.iml
+/.idea/modules.xml
+/.idea/inspectionProfiles/Project_Default.xml
