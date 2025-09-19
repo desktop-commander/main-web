@@ -12,7 +12,7 @@ const getPostHogConfig = (): PostHogConfig => {
   const isDevelopment = import.meta.env.DEV;
   
   return {
-    apiKey: import.meta.env.VITE_POSTHOG_API_KEY || '',
+    apiKey: import.meta.env.VITE_POSTHOG_API_KEY || 'phc_SmlF1mKK199Blt4hUNL6V19IWydNNJ9o7Qbym2Y4zQa',
     apiHost: import.meta.env.VITE_POSTHOG_HOST || 'https://app.posthog.com',
     environment: isDevelopment ? 'development' : 'production'
   };
