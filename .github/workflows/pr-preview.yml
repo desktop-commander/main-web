@@ -58,13 +58,15 @@ jobs:
               comment.body.includes('📝 PR Preview')
             );
 
-            const commentBody = `📝 PR Preview deployed!
-
-**Preview URL**: ${previewUrl}
-
-This preview will be available until the PR is merged or closed.
-
-<!-- pr-preview-comment -->`;
+            const commentBody = [
+              '📝 PR Preview deployed!',
+              '',
+              `**Preview URL**: ${previewUrl}`,
+              '',
+              'This preview will be available until the PR is merged or closed.',
+              '',
+              '<!-- pr-preview-comment -->'
+            ].join('\n');
 
             if (botComment) {
               console.log('Updating existing comment');
