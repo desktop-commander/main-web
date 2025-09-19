@@ -28,5 +28,6 @@ export default defineConfig(({ mode }) => ({
       }
     }
   },
-  base: '/',
+  // GitHub Pages needs /main-web/ base path, local dev needs /
+  base: mode === 'production' ? '/main-web/' : '/',
 }));

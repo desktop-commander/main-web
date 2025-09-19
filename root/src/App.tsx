@@ -12,7 +12,7 @@ import { initializePostHog } from "./lib/analytics/posthog";
 const queryClient = new QueryClient();
 
 // GitHub Pages HashRouter implementation - Updated
-const basename = import.meta.env.PROD ? '/main-web' : '';
+const basename = import.meta.env.MODE === 'production' ? '/main-web' : '';
 
 const App = () => {
   // Initialize PostHog when the app starts

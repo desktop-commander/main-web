@@ -159,7 +159,7 @@ const Hero = () => {
                       <div className="flex flex-col items-center gap-3 text-center">
                         <Terminal className="h-12 w-12 text-dc-accent" />
                         <div>
-                          <p className="font-semibold text-foreground">Desktop Commander</p>
+                          <p className="font-semibold text-foreground">Desktop Commander2</p>
                           <p className="text-sm text-muted-foreground">Animation preview</p>
                         </div>
                       </div>

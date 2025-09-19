@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
   },
   // GitHub Pages needs /main-web/ base path, local dev needs /
-  base: process.env.NODE_ENV === 'production' ? '/main-web/' : '/',
+  base: mode === 'production' ? '/main-web/' : '/',
   plugins: [react()],
   resolve: {
     alias: {

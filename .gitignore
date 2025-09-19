@@ -3,3 +3,5 @@ dist
 daemon.log
 .nx/cache
 .nx/workspace-data
+/.idea/vcs.xml
+/.idea/workspace.xml
