@@ -33,29 +33,18 @@
 </script>
     <!-- Note: Preload removed as paths are now dynamic and determined at runtime -->
     
-    <!-- GitHub Pages SPA redirect script -->
+    <!-- GitHub Pages SPA redirect script - TEMPORARILY DISABLED FOR DEBUGGING -->
     <script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      // MIT License
-      // https://github.com/rafgraph/spa-github-pages
-      // DISABLED for PR previews to prevent infinite redirect loops
-      (function(l) {
-        // Don't run any redirect logic for PR previews
-        if (l.pathname.match(/\/pr-\d+/)) {
-          console.log('PR preview detected - skipping SPA redirect');
-          return;
-        }
-        
-        // Only process GitHub Pages 404 redirects for main site
-        if (l.search[1] === '/') {
-          var decoded = l.search.slice(1).split('&').map(function(s) { 
-            return s.replace(/~and~/g, '&')
-          }).join('?');
-          window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + decoded + l.hash
-          );
-        }
-      }(window.location))
+      // COMPLETELY DISABLED FOR DEBUGGING
+      console.log('SPA Redirect Script - DISABLED for debugging');
+      console.log('Current location:', window.location.href);
+      console.log('Pathname:', window.location.pathname);
+      console.log('Search params:', window.location.search);
+      
+      // Don't run any redirect logic at all
+      // (function(l) {
+      //   // ... redirect logic disabled
+      // })(window.location);
     </script>
   </head>
 
