@@ -1,0 +1,86 @@
+name: PR Preview Deployment
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  pull-requests: write
+
+jobs:
+  deploy-preview:
+    if: github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build for PR preview
+        run: |
+          # Build with PR-specific base path
+          npx vite build --base="/main-web/pr-${{ github.event.pull_request.number }}/"
+        env:
+          NODE_ENV: production
+          
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          destination_dir: pr-${{ github.event.pull_request.number }}
+          keep_files: true
+          
+      - name: Comment PR with preview link
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const previewUrl = `https://desktop-commander.github.io/main-web/pr-${prNumber}/`;
+            
+            const comment = `## 🚀 PR Preview Deployed!
+            
+            Your changes are now available at: ${previewUrl}
+            
+            This preview will be updated automatically when you push new commits to this PR.`;
+            
+            github.rest.issues.createComment({
+              issue_number: prNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+  cleanup-preview:
+    if: github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout gh-pages
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          
+      - name: Remove PR preview directory
+        run: |
+          rm -rf pr-${{ github.event.pull_request.number }}
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "cleanup: Remove PR ${{ github.event.pull_request.number }} preview" || exit 0
+          git push

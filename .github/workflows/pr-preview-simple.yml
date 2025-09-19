@@ -1,0 +1,71 @@
+name: PR Preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  pull-requests: write
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build for preview
+        run: |
+          # Create PR-specific build
+          npx vite build --base="/main-web/pr-${{ github.event.pull_request.number }}/"
+        
+      - name: Deploy preview
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          destination_dir: pr-${{ github.event.pull_request.number }}
+          keep_files: true
+          
+      - name: Find Comment
+        uses: peter-evans/find-comment@v3
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: 'PR Preview Deployed'
+          
+      - name: Update comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ## 🚀 PR Preview Deployed!
+            
+            **Preview URL:** https://desktopcommander.app/pr-${{ github.event.pull_request.number }}/
+            
+            ✅ This preview is updated automatically when you push commits to this PR.
+            
+            <details>
+            <summary>Deployment Details</summary>
+            
+            - **Commit:** ${{ github.sha }}
+            - **Branch:** ${{ github.head_ref }}
+            - **Workflow:** [${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            
+            </details>
+          edit-mode: replace
