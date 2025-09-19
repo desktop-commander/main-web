@@ -1,0 +1,28 @@
+name: 🧹 Cleanup PR Preview
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  cleanup-preview:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: 🏗 Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+
+      - name: 🧹 Remove PR preview directory
+        run: |
+          if [ -d "pr-${{ github.event.pull_request.number }}" ]; then
+            rm -rf "pr-${{ github.event.pull_request.number }}"
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git add .
+            git commit -m "🧹 Remove preview for PR #${{ github.event.pull_request.number }}" || exit 0
+            git push
+          fi
