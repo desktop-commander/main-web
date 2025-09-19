@@ -7,17 +7,32 @@ import { useEffect } from "react";
 import Index from "./pages/Index";
 import Careers from "./pages/Careers";
 import NotFound from "./pages/NotFound";
-import { initializePostHog } from "./lib/analytics/posthog";
+import { initializeAnalytics } from "./lib/analytics";
+import { usePageTracking } from "./lib/analytics/hooks";
 
 const queryClient = new QueryClient();
 
 // GitHub Pages HashRouter implementation - Updated
 const basename = import.meta.env.PROD ? '/main-web' : '';
 
+// Component to handle page tracking inside Router context
+const AppContent = () => {
+  usePageTracking();
+  
+  return (
+    <Routes>
+      <Route path="/" element={<Index />} />
+      <Route path="/careers" element={<Careers />} />
+      {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
+};
+
 const App = () => {
-  // Initialize PostHog when the app starts
+  // Initialize all analytics services when the app starts
   useEffect(() => {
-    initializePostHog();
+    initializeAnalytics();
   }, []);
 
   return (
@@ -26,12 +41,7 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter basename={basename}>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/careers" element={<Careers />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <AppContent />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>

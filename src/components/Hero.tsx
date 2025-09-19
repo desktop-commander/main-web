@@ -308,12 +308,12 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Trust Badges - Single row layout */}
-            <div className={`flex flex-row flex-wrap justify-center lg:justify-start gap-2 sm:gap-3 transition-all duration-1200 delay-2000 ${
+            {/* Trust Badges - Mobile optimized single column layout */}
+            <div className={`flex flex-col sm:flex-row sm:flex-wrap lg:justify-start justify-center gap-3 transition-all duration-1200 delay-2000 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
-              <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-3 bg-dc-surface border border-dc-border rounded-lg text-sm flex-1 min-w-0 sm:min-w-[180px] sm:flex-none transition-all duration-300 hover:scale-105 hover:bg-dc-surface/80 hover:border-dc-accent/30 hover:shadow-md cursor-pointer group">
-                <div className="flex items-center justify-center w-5 sm:w-6 h-5 sm:h-6 bg-dc-border rounded-sm transition-colors duration-300 group-hover:bg-dc-accent/20 flex-shrink-0">
+              <div className="flex items-center gap-3 px-4 py-3 bg-dc-surface border border-dc-border rounded-lg text-sm w-full sm:w-auto sm:min-w-[200px] transition-all duration-300 hover:scale-105 hover:bg-dc-surface/80 hover:border-dc-accent/30 hover:shadow-md cursor-pointer group">
+                <div className="flex items-center justify-center w-6 h-6 bg-dc-border rounded-sm transition-colors duration-300 group-hover:bg-dc-accent/20 flex-shrink-0">
                   <Download className="h-3 w-3 text-muted-foreground transition-colors duration-300 group-hover:text-dc-accent" />
                 </div>
                 <div className="text-left flex-1 min-w-0">
@@ -324,8 +324,8 @@ const Hero = () => {
                 </div>
               </div>
               
-              <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-3 bg-dc-surface border border-dc-border rounded-lg text-sm flex-1 min-w-0 sm:min-w-[180px] sm:flex-none transition-all duration-300 hover:scale-105 hover:bg-dc-surface/80 hover:border-dc-accent/30 hover:shadow-md cursor-pointer group">
-                <div className="flex items-center justify-center w-5 sm:w-6 h-5 sm:h-6 bg-dc-border rounded-sm transition-colors duration-300 group-hover:bg-dc-accent/20 flex-shrink-0">
+              <div className="flex items-center gap-3 px-4 py-3 bg-dc-surface border border-dc-border rounded-lg text-sm w-full sm:w-auto sm:min-w-[200px] transition-all duration-300 hover:scale-105 hover:bg-dc-surface/80 hover:border-dc-accent/30 hover:shadow-md cursor-pointer group">
+                <div className="flex items-center justify-center w-6 h-6 bg-dc-border rounded-sm transition-colors duration-300 group-hover:bg-dc-accent/20 flex-shrink-0">
                   <Star className="h-3 w-3 text-muted-foreground transition-colors duration-300 group-hover:text-dc-accent" />
                 </div>
                 <div className="text-left flex-1 min-w-0">
@@ -336,8 +336,8 @@ const Hero = () => {
                 </div>
               </div>
               
-              <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-3 bg-dc-surface border border-dc-border rounded-lg text-sm flex-1 min-w-0 sm:min-w-[180px] sm:flex-none transition-all duration-300 hover:scale-105 hover:bg-dc-surface/80 hover:border-dc-accent/30 hover:shadow-md cursor-pointer group">
-                <div className="flex items-center justify-center w-5 sm:w-6 h-5 sm:h-6 bg-dc-border rounded-sm transition-colors duration-300 group-hover:bg-dc-accent/20 flex-shrink-0">
+              <div className="flex items-center gap-3 px-4 py-3 bg-dc-surface border border-dc-border rounded-lg text-sm w-full sm:w-auto sm:min-w-[200px] transition-all duration-300 hover:scale-105 hover:bg-dc-surface/80 hover:border-dc-accent/30 hover:shadow-md cursor-pointer group">
+                <div className="flex items-center justify-center w-6 h-6 bg-dc-border rounded-sm transition-colors duration-300 group-hover:bg-dc-accent/20 flex-shrink-0">
                   <TrendingUp className="h-3 w-3 text-muted-foreground transition-colors duration-300 group-hover:text-dc-accent" />
                 </div>
                 <div className="text-left flex-1 min-w-0">
