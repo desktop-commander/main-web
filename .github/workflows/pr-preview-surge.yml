@@ -1,11 +1,10 @@
-name: PR Preview
+name: PR Preview with Surge
 
 on:
   pull_request:
     types: [opened, synchronize, reopened]
 
 permissions:
-  contents: write
   pull-requests: write
 
 jobs:
@@ -27,30 +26,17 @@ jobs:
         
       - name: Build for preview
         run: |
-          # Create PR-specific build
-          npx vite build --base="/main-web/pr-${{ github.event.pull_request.number }}/"
+          # Build with relative paths for surge
+          npx vite build --base="./"
         
-      - name: Checkout gh-pages branch
-        uses: actions/checkout@v4
-        with:
-          ref: gh-pages
-          path: gh-pages-repo
-          
-      - name: Setup preview directory
+      - name: Install Surge
+        run: npm install -g surge
+        
+      - name: Deploy to Surge
         run: |
-          # Create or update PR preview directory
-          mkdir -p gh-pages-repo/pr-${{ github.event.pull_request.number }}
-          cp -r docs/* gh-pages-repo/pr-${{ github.event.pull_request.number }}/
-          
-      - name: Commit and push preview
-        run: |
-          cd gh-pages-repo
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add pr-${{ github.event.pull_request.number }}
-          git commit -m "Update PR ${{ github.event.pull_request.number }} preview" || exit 0
-          git push
-          
+          # Deploy to surge with PR-specific domain
+          surge ./docs desktop-commander-pr-${{ github.event.pull_request.number }}.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+        
       - name: Find Comment
         uses: peter-evans/find-comment@v3
         id: fc
@@ -67,7 +53,7 @@ jobs:
           body: |
             ## 🚀 PR Preview Deployed!
             
-            **Preview URL:** https://desktop-commander.github.io/main-web/pr-${{ github.event.pull_request.number }}/
+            **Preview URL:** https://desktop-commander-pr-${{ github.event.pull_request.number }}.surge.sh/
             
             ✅ This preview is updated automatically when you push commits to this PR.
             
@@ -77,6 +63,7 @@ jobs:
             - **Commit:** ${{ github.sha }}
             - **Branch:** ${{ github.head_ref }}
             - **Workflow:** [${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            - **Platform:** Surge.sh
             
             </details>
           edit-mode: replace
