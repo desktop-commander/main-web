@@ -9,7 +9,8 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
   },
   // Relative base path works with both GitHub Pages subdirectory and custom domain
-  base: mode === 'production' ? './' : '/',
+  // Preview mode uses relative paths for PR previews
+  base: mode === 'production' ? './' : mode === 'preview' ? './' : '/',
   plugins: [react()],
   resolve: {
     alias: {

@@ -25,7 +25,7 @@ jobs:
         run: npm ci
 
       - name: 🏗 Build for preview
-        run: npm run build:dev
+        run: npm run build:preview
 
       - name: 🚀 Deploy to GitHub Pages branch
         uses: peaceiris/actions-gh-pages@v3
@@ -41,7 +41,8 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const prNumber = context.payload.pull_request.number;
-            const previewUrl = `https://${context.repo.owner}.github.io/${context.repo.repo}/pr-${prNumber}/`;
+            // Use GitHub Pages URL for previews, not custom domain
+            const previewUrl = `https://desktop-commander.github.io/main-web/pr-${prNumber}/`;
             
             console.log(`PR Number: ${prNumber}`);
             console.log(`Preview URL: ${previewUrl}`);
