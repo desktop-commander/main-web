@@ -28,6 +28,6 @@ export default defineConfig(({ mode }) => ({
       }
     }
   },
-  // GitHub Pages needs /main-web/ base path, local dev needs /
-  base: mode === 'production' ? '/main-web/' : '/',
+  // Relative base path works with both GitHub Pages subdirectory and custom domain
+  base: mode === 'production' ? './' : '/',
 }));

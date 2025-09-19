@@ -11,8 +11,21 @@ import { initializePostHog } from "./lib/analytics/posthog";
 
 const queryClient = new QueryClient();
 
-// GitHub Pages HashRouter implementation - Updated
-const basename = import.meta.env.MODE === 'production' ? '/main-web' : '';
+// Smart basename detection: works with both GitHub Pages and custom domain
+const getBasename = () => {
+  if (import.meta.env.MODE === 'development') return '';
+  
+  // In production, check if we're on GitHub Pages subdirectory
+  const { pathname } = window.location;
+  if (pathname.startsWith('/main-web/')) {
+    return '/main-web';
+  }
+  
+  // For custom domain or root deployment
+  return '';
+};
+
+const basename = getBasename();
 
 const App = () => {
   // Initialize PostHog when the app starts

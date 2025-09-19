@@ -8,8 +8,8 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  // GitHub Pages needs /main-web/ base path, local dev needs /
-  base: mode === 'production' ? '/main-web/' : '/',
+  // Relative base path works with both GitHub Pages subdirectory and custom domain
+  base: mode === 'production' ? './' : '/',
   plugins: [react()],
   resolve: {
     alias: {
