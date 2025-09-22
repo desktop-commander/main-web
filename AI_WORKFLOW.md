@@ -29,7 +29,7 @@ This repo requires special handling because it hosts static files on GitHub Page
 - This script:
   - Removes old build files from git tracking
   - Rebuilds the static site
-  - Commits new build files with timestamp
+  - Commits new build files with message "Static website changes"
 
 ```bash
 # After making source code changes:
@@ -45,7 +45,7 @@ cd root && npm run dev
 # Runs on http://localhost:8082
 
 # Production preview (see actual built version)  
-npm run serve
+npm run serve:static
 # Runs on http://localhost:3000
 ```
 
