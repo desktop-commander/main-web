@@ -334,37 +334,37 @@ const Hero = () => {
             <div className={`flex flex-col sm:flex-row sm:flex-wrap lg:justify-start justify-center gap-3 transition-all duration-1200 delay-2000 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
-              <div className="flex items-center gap-3 px-4 py-3 bg-dc-surface border border-dc-border rounded-lg text-sm w-full sm:w-auto sm:min-w-[200px] transition-all duration-300 hover:scale-105 hover:bg-dc-surface/80 hover:border-dc-accent/30 hover:shadow-md cursor-pointer group">
-                <div className="flex items-center justify-center w-6 h-6 bg-dc-border rounded-sm transition-colors duration-300 group-hover:bg-dc-accent/20 flex-shrink-0">
-                  <Download className="h-3 w-3 text-muted-foreground transition-colors duration-300 group-hover:text-dc-accent" />
+              <div className="flex items-center gap-2 px-3 py-2 bg-dc-surface border border-dc-border rounded-lg text-sm w-full sm:w-auto sm:min-w-[160px] transition-all duration-300 hover:scale-105 hover:bg-dc-surface/80 hover:border-dc-accent/30 hover:shadow-md cursor-pointer group">
+                <div className="flex items-center justify-center w-5 h-5 bg-dc-border rounded-sm transition-colors duration-300 group-hover:bg-dc-accent/20 flex-shrink-0">
+                  <Download className="h-2.5 w-2.5 text-muted-foreground transition-colors duration-300 group-hover:text-dc-accent" />
                 </div>
                 <div className="text-left flex-1 min-w-0">
                   <div className="text-muted-foreground text-xs uppercase tracking-wide transition-colors duration-300 group-hover:text-foreground">NPM Downloads</div>
-                  <div className="font-semibold text-foreground text-sm">
+                  <div className="font-semibold text-foreground text-xs">
                     {npmCount}k/week
                   </div>
                 </div>
               </div>
               
-              <div className="flex items-center gap-3 px-4 py-3 bg-dc-surface border border-dc-border rounded-lg text-sm w-full sm:w-auto sm:min-w-[200px] transition-all duration-300 hover:scale-105 hover:bg-dc-surface/80 hover:border-dc-accent/30 hover:shadow-md cursor-pointer group">
-                <div className="flex items-center justify-center w-6 h-6 bg-dc-border rounded-sm transition-colors duration-300 group-hover:bg-dc-accent/20 flex-shrink-0">
-                  <Star className="h-3 w-3 text-muted-foreground transition-colors duration-300 group-hover:text-dc-accent" />
+              <div className="flex items-center gap-2 px-3 py-2 bg-dc-surface border border-dc-border rounded-lg text-sm w-full sm:w-auto sm:min-w-[160px] transition-all duration-300 hover:scale-105 hover:bg-dc-surface/80 hover:border-dc-accent/30 hover:shadow-md cursor-pointer group">
+                <div className="flex items-center justify-center w-5 h-5 bg-dc-border rounded-sm transition-colors duration-300 group-hover:bg-dc-accent/20 flex-shrink-0">
+                  <Star className="h-2.5 w-2.5 text-muted-foreground transition-colors duration-300 group-hover:text-dc-accent" />
                 </div>
                 <div className="text-left flex-1 min-w-0">
                   <div className="text-muted-foreground text-xs uppercase tracking-wide transition-colors duration-300 group-hover:text-foreground">GitHub Stars</div>
-                  <div className="font-semibold text-foreground text-sm">
+                  <div className="font-semibold text-foreground text-xs">
                     {(githubStars / 10).toFixed(1)}k stars
                   </div>
                 </div>
               </div>
               
-              <div className="flex items-center gap-3 px-4 py-3 bg-dc-surface border border-dc-border rounded-lg text-sm w-full sm:w-auto sm:min-w-[200px] transition-all duration-300 hover:scale-105 hover:bg-dc-surface/80 hover:border-dc-accent/30 hover:shadow-md cursor-pointer group">
-                <div className="flex items-center justify-center w-6 h-6 bg-dc-border rounded-sm transition-colors duration-300 group-hover:bg-dc-accent/20 flex-shrink-0">
-                  <TrendingUp className="h-3 w-3 text-muted-foreground transition-colors duration-300 group-hover:text-dc-accent" />
+              <div className="flex items-center gap-2 px-3 py-2 bg-dc-surface border border-dc-border rounded-lg text-sm w-full sm:w-auto sm:min-w-[160px] transition-all duration-300 hover:scale-105 hover:bg-dc-surface/80 hover:border-dc-accent/30 hover:shadow-md cursor-pointer group">
+                <div className="flex items-center justify-center w-5 h-5 bg-dc-border rounded-sm transition-colors duration-300 group-hover:bg-dc-accent/20 flex-shrink-0">
+                  <TrendingUp className="h-2.5 w-2.5 text-muted-foreground transition-colors duration-300 group-hover:text-dc-accent" />
                 </div>
                 <div className="text-left flex-1 min-w-0">
                   <div className="text-muted-foreground text-xs uppercase tracking-wide transition-colors duration-300 group-hover:text-foreground">SMITHERY.COM</div>
-                  <div className="font-semibold text-foreground text-sm">No.1 (Aug 2025)</div>
+                  <div className="font-semibold text-foreground text-xs">Top Ranked MCP</div>
                 </div>
               </div>
             </div>
