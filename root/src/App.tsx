@@ -11,17 +11,34 @@ import { initializePostHog } from "./lib/analytics/posthog";
 
 const queryClient = new QueryClient();
 
-// Smart basename detection: works with both GitHub Pages and custom domain
+// Smart basename detection: works with GitHub Pages, custom domain, and PR previews
 const getBasename = () => {
-  if (import.meta.env.MODE === 'development') return '';
+  // Always log for debugging
+  const { pathname, hostname, href } = window.location;
+  console.log('App.tsx - Detecting basename for:', { pathname, hostname, href });
   
-  // In production, check if we're on GitHub Pages subdirectory
-  const { pathname } = window.location;
-  if (pathname.startsWith('/main-web/')) {
+  if (import.meta.env.MODE === 'development') {
+    console.log('App.tsx - Development mode, using empty basename');
+    return '';
+  }
+  
+  // In production/preview, check the actual URL path
+  
+  // If we're on a PR preview (path starts with /pr-NUMBER/)
+  if (pathname.match(/^\/pr-\d+\//)) {
+    const prBasename = pathname.match(/^\/pr-\d+/)[0];
+    console.log('App.tsx - PR preview detected, basename:', prBasename);
+    return prBasename;
+  }
+  
+  // If we're on GitHub Pages subdirectory (not custom domain)
+  if (hostname.includes('github.io') && pathname.startsWith('/main-web/')) {
+    console.log('App.tsx - GitHub Pages subdirectory detected, basename: /main-web');
     return '/main-web';
   }
   
   // For custom domain or root deployment
+  console.log('App.tsx - Using empty basename for custom domain/root');
   return '';
 };
 
