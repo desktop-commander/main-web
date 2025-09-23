@@ -11,7 +11,8 @@ import {
   ChevronUp,
   Users,
   Calendar,
-  Mail
+  Mail,
+  MessageCircle
 } from "lucide-react";
 import { useCareers } from "@/hooks/useCareers";
 import { Job } from "@/lib/careers";
@@ -238,7 +239,7 @@ const JobListings = () => {
                   <div className="flex flex-col sm:flex-row gap-3 justify-center">
                     <Button variant="outline" asChild>
                       <a 
-                        href="mailto:hello@desktopcommander.com" 
+                        href="mailto:er@desktopcommander.app" 
                         className="flex items-center gap-2"
                       >
                         <Mail className="h-4 w-4" />
@@ -247,13 +248,13 @@ const JobListings = () => {
                     </Button>
                     <Button variant="outline" asChild>
                       <a 
-                        href="https://github.com/wonderwhy-er/DesktopCommanderMCP" 
+                        href="https://discord.gg/kQ27sNnZr7" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="flex items-center gap-2"
                       >
-                        <ExternalLink className="h-4 w-4" />
-                        Check Our GitHub
+                        <MessageCircle className="h-4 w-4" />
+                        Let's chat on Discord
                       </a>
                     </Button>
                   </div>

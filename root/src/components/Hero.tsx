@@ -295,37 +295,37 @@ const Hero = () => {
                 <img 
                   src={getAssetPath("star-logo.png")} 
                   alt="Star logo" 
-                  className="h-5 sm:h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 justify-self-center"
+                  className="h-5 sm:h-6 object-contain grayscale justify-self-center"
                 />
                 <img 
                   src={getAssetPath("claude-desktop-logo.png")} 
                   alt="Claude Desktop logo" 
-                  className="h-6 sm:h-8 w-6 sm:w-8 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 justify-self-center"
+                  className="h-6 sm:h-8 w-6 sm:w-8 object-contain grayscale justify-self-center"
                 />
                 <img 
                   src={getAssetPath("cursor-logo.png")} 
                   alt="Cursor IDE logo" 
-                  className="h-5 sm:h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 justify-self-center"
+                  className="h-5 sm:h-6 object-contain grayscale justify-self-center"
                 />
                 <img 
                   src={getAssetPath("vscode-new-logo.png")} 
                   alt="VS Code logo" 
-                  className="h-5 sm:h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 justify-self-center"
+                  className="h-5 sm:h-6 object-contain grayscale justify-self-center"
                 />
                 <img 
                   src={getAssetPath("client-logo-1.png")} 
                   alt="Client logo" 
-                  className="h-5 sm:h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 justify-self-center lg:justify-self-auto"
+                  className="h-5 sm:h-6 object-contain grayscale justify-self-center lg:justify-self-auto"
                 />
                 <img 
                   src={getAssetPath("client-logo-2.png")} 
                   alt="Client logo" 
-                  className="h-5 sm:h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 justify-self-center lg:justify-self-auto"
+                  className="h-5 sm:h-6 object-contain grayscale justify-self-center lg:justify-self-auto"
                 />
                 <img 
                   src={getAssetPath("client-logo-3.png")} 
                   alt="Client logo" 
-                  className="h-8 sm:h-12 object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 justify-self-center lg:justify-self-auto col-span-2 lg:col-span-1"
+                  className="h-8 sm:h-12 object-contain grayscale justify-self-center lg:justify-self-auto col-span-2 lg:col-span-1"
                 />
               </div>
             </div>
@@ -334,7 +334,12 @@ const Hero = () => {
             <div className={`flex flex-col sm:flex-row sm:flex-wrap lg:justify-start justify-center gap-3 transition-all duration-1200 delay-2000 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
-              <div className="flex items-center gap-2 px-3 py-2 bg-dc-surface border border-dc-border rounded-lg text-sm w-full sm:w-auto sm:min-w-[160px] transition-all duration-300 hover:scale-105 hover:bg-dc-surface/80 hover:border-dc-accent/30 hover:shadow-md cursor-pointer group">
+              <a 
+                href="https://www.npmjs.com/package/@wonderwhy-er/desktop-commander" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-3 py-2 bg-dc-surface border border-dc-border rounded-lg text-sm w-full sm:w-auto sm:min-w-[160px] transition-all duration-300 hover:scale-105 hover:bg-dc-surface/80 hover:border-dc-accent/30 hover:shadow-md cursor-pointer group"
+              >
                 <div className="flex items-center justify-center w-5 h-5 bg-dc-border rounded-sm transition-colors duration-300 group-hover:bg-dc-accent/20 flex-shrink-0">
                   <Download className="h-2.5 w-2.5 text-muted-foreground transition-colors duration-300 group-hover:text-dc-accent" />
                 </div>
@@ -344,9 +349,14 @@ const Hero = () => {
                     {npmCount}k/week
                   </div>
                 </div>
-              </div>
+              </a>
               
-              <div className="flex items-center gap-2 px-3 py-2 bg-dc-surface border border-dc-border rounded-lg text-sm w-full sm:w-auto sm:min-w-[160px] transition-all duration-300 hover:scale-105 hover:bg-dc-surface/80 hover:border-dc-accent/30 hover:shadow-md cursor-pointer group">
+              <a 
+                href="https://github.com/wonderwhy-er/DesktopCommanderMCP/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-3 py-2 bg-dc-surface border border-dc-border rounded-lg text-sm w-full sm:w-auto sm:min-w-[160px] transition-all duration-300 hover:scale-105 hover:bg-dc-surface/80 hover:border-dc-accent/30 hover:shadow-md cursor-pointer group"
+              >
                 <div className="flex items-center justify-center w-5 h-5 bg-dc-border rounded-sm transition-colors duration-300 group-hover:bg-dc-accent/20 flex-shrink-0">
                   <Star className="h-2.5 w-2.5 text-muted-foreground transition-colors duration-300 group-hover:text-dc-accent" />
                 </div>
@@ -356,9 +366,14 @@ const Hero = () => {
                     {(githubStars / 10).toFixed(1)}k stars
                   </div>
                 </div>
-              </div>
+              </a>
               
-              <div className="flex items-center gap-2 px-3 py-2 bg-dc-surface border border-dc-border rounded-lg text-sm w-full sm:w-auto sm:min-w-[160px] transition-all duration-300 hover:scale-105 hover:bg-dc-surface/80 hover:border-dc-accent/30 hover:shadow-md cursor-pointer group">
+              <a 
+                href="https://smithery.ai/server/@wonderwhy-er/desktop-commander" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-3 py-2 bg-dc-surface border border-dc-border rounded-lg text-sm w-full sm:w-auto sm:min-w-[160px] transition-all duration-300 hover:scale-105 hover:bg-dc-surface/80 hover:border-dc-accent/30 hover:shadow-md cursor-pointer group"
+              >
                 <div className="flex items-center justify-center w-5 h-5 bg-dc-border rounded-sm transition-colors duration-300 group-hover:bg-dc-accent/20 flex-shrink-0">
                   <TrendingUp className="h-2.5 w-2.5 text-muted-foreground transition-colors duration-300 group-hover:text-dc-accent" />
                 </div>
@@ -366,7 +381,7 @@ const Hero = () => {
                   <div className="text-muted-foreground text-xs uppercase tracking-wide transition-colors duration-300 group-hover:text-foreground">SMITHERY.COM</div>
                   <div className="font-semibold text-foreground text-xs">Top Ranked MCP</div>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>
