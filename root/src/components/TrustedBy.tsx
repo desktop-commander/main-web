@@ -196,9 +196,7 @@ const TrustedBy = () => {
               asChild
             >
               <a 
-                href="https://library.desktopcommander.app/" 
-                target="_blank" 
-                rel="noopener noreferrer"
+                href="/library/" 
                 className="flex items-center justify-center gap-2"
               >
                 Browse Prompt Library

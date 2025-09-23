@@ -55,11 +55,9 @@ const Navigation = () => {
               
               <Button variant="ghost" size="sm" asChild>
                 <a 
-                  href="https://library.desktopcommander.app/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
+                  href="/library/" 
                   className="text-white hover:text-white/80 font-medium"
-                  onClick={() => trackNavigation('Prompts', 'https://library.desktopcommander.app/', 'external')}
+                  onClick={() => trackNavigation('Prompts', '/library/', 'internal')}
                 >
                   Prompts
                 </a>
@@ -171,14 +169,11 @@ const Navigation = () => {
                   </a>
                   
                   <a 
-                    href="https://library.desktopcommander.app/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
+                    href="/library/" 
                     className="flex items-center justify-between px-4 py-3 text-foreground hover:bg-dc-surface rounded-lg transition-colors"
-                    onClick={() => handleMobileNavClick('Prompts', 'https://library.desktopcommander.app/', 'external')}
+                    onClick={() => handleMobileNavClick('Prompts', '/library/', 'internal')}
                   >
                     Prompts
-                    <ExternalLink className="h-4 w-4" />
                   </a>
                   
                   <a 

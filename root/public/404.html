@@ -4,16 +4,31 @@
     <meta charset="utf-8">
     <title>Desktop Commander</title>
     <script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      var pathSegmentsToKeep = 0;
-      var l = window.location;
-      l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-        l.hash
-      );
+      // Single Page Apps for GitHub Pages with Library Support
+      // Check if this is a library route
+      if (window.location.pathname.startsWith('/library/')) {
+        // For library routes, redirect to the library's index.html
+        var libraryPath = window.location.pathname.substring(8); // Remove '/library'
+        if (libraryPath === '' || libraryPath === '/') {
+          // Root library route - redirect to library index
+          window.location.replace('/library/');
+        } else {
+          // Sub-library route - store in sessionStorage and redirect to library
+          sessionStorage.setItem('libraryRedirect', window.location.pathname + window.location.search + window.location.hash);
+          window.location.replace('/library/');
+        }
+      } else {
+        // Main site SPA routing
+        var pathSegmentsToKeep = 0;
+        var l = window.location;
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+          l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+          (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+          l.hash
+        );
+      }
     </script>
   </head>
   <body>
