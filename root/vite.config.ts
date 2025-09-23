@@ -8,9 +8,9 @@ export default defineConfig(({ mode }) => ({
     host: "localhost",
     port: 8080,
   },
-  // Relative base path works with both GitHub Pages subdirectory and custom domain
-  // Preview mode uses relative paths for PR previews
-  base: mode === 'production' ? './' : mode === 'preview' ? './' : '/',
+  // Base path for unified SPA - use absolute paths from root
+  // This ensures assets load from /assets/ regardless of route depth
+  base: mode === 'production' ? '/' : mode === 'preview' ? './' : '/',
   plugins: [react()],
   resolve: {
     alias: {

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Github, Heart, MessageCircle, Play, Package } from "lucide-react";
 import dcLogo from "@/assets/dc-logo-dark.png";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const { trackCustomEvent } = useAnalytics();
@@ -62,8 +63,8 @@ const Footer = () => {
             <h4 className="font-semibold text-foreground mb-4">Browse</h4>
             <ul className="space-y-3">
               <li>
-                <a 
-                  href="#use-cases" 
+                <Link 
+                  to="/#use-cases"
                   className="text-muted-foreground hover:text-primary transition-smooth text-sm"
                   onClick={() => trackCustomEvent('navigation_clicked', {
                     button_text: 'Use Cases',
@@ -73,11 +74,11 @@ const Footer = () => {
                   })}
                 >
                   Use Cases
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  href="#installation" 
+                <Link 
+                  to="/#installation"
                   className="text-muted-foreground hover:text-primary transition-smooth text-sm"
                   onClick={() => trackCustomEvent('navigation_clicked', {
                     button_text: 'Installation',
@@ -87,11 +88,11 @@ const Footer = () => {
                   })}
                 >
                   Installation
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  href="#prompts" 
+                <Link 
+                  to="/#prompts"
                   className="text-muted-foreground hover:text-primary transition-smooth text-sm"
                   onClick={() => trackCustomEvent('navigation_clicked', {
                     button_text: 'Prompt Library',
@@ -101,11 +102,25 @@ const Footer = () => {
                   })}
                 >
                   Prompt Library
-                </a>
+                </Link>
               </li>
               <li>
                 <a 
-                  href="#faq" 
+                  href="/careers" 
+                  className="text-muted-foreground hover:text-primary transition-smooth text-sm"
+                  onClick={() => trackCustomEvent('navigation_clicked', {
+                    button_text: 'Careers',
+                    button_location: 'footer',
+                    link_type: 'internal',
+                    section: 'careers'
+                  })}
+                >
+                  Careers
+                </a>
+              </li>
+              <li>
+                <Link 
+                  to="/#faq"
                   className="text-muted-foreground hover:text-primary transition-smooth text-sm"
                   onClick={() => trackCustomEvent('navigation_clicked', {
                     button_text: 'FAQ',
@@ -115,7 +130,7 @@ const Footer = () => {
                   })}
                 >
                   FAQ
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -125,8 +140,8 @@ const Footer = () => {
             <h4 className="font-semibold text-foreground mb-4">Resources</h4>
             <ul className="space-y-3">
               <li>
-                <a 
-                  href="#blog" 
+                <Link 
+                  to="/#blog"
                   className="text-muted-foreground hover:text-primary transition-smooth text-sm"
                   onClick={() => trackCustomEvent('navigation_clicked', {
                     button_text: 'Blog',
@@ -136,11 +151,11 @@ const Footer = () => {
                   })}
                 >
                   Blog
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  href="#community" 
+                <Link 
+                  to="/#community"
                   className="text-muted-foreground hover:text-primary transition-smooth text-sm"
                   onClick={() => trackCustomEvent('navigation_clicked', {
                     button_text: 'Community',
@@ -150,7 +165,7 @@ const Footer = () => {
                   })}
                 >
                   Community
-                </a>
+                </Link>
               </li>
               <li>
                 <a 

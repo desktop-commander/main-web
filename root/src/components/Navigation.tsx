@@ -14,6 +14,7 @@ import { Terminal, ChevronDown, ExternalLink, Menu, X } from "lucide-react";
 import dcLogo from "@/assets/dc-logo.png";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navigation = () => {
   const { trackDownload, trackNavigation, trackCommunity } = useAnalytics();
@@ -44,35 +45,33 @@ const Navigation = () => {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-6">
               <Button variant="ghost" size="sm" asChild>
-                <a 
-                  href="#use-cases" 
+                <Link 
+                  to="/#use-cases"
                   className="text-white hover:text-white/80 font-medium"
-                  onClick={() => trackNavigation('Use Cases', '#use-cases')}
+                  onClick={() => trackNavigation('Use Cases', '/#use-cases')}
                 >
                   Use Cases
-                </a>
+                </Link>
               </Button>
               
               <Button variant="ghost" size="sm" asChild>
                 <a 
-                  href="https://library.desktopcommander.app/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
+                  href="/library/" 
                   className="text-white hover:text-white/80 font-medium"
-                  onClick={() => trackNavigation('Prompts', 'https://library.desktopcommander.app/', 'external')}
+                  onClick={() => trackNavigation('Prompts', '/library/', 'internal')}
                 >
                   Prompts
                 </a>
               </Button>
               
               <Button variant="ghost" size="sm" asChild>
-                <a 
-                  href="#community" 
+                <Link 
+                  to="/#community"
                   className="text-white hover:text-white/80 font-medium"
-                  onClick={() => trackNavigation('Community', '#community')}
+                  onClick={() => trackNavigation('Community', '/#community')}
                 >
                   Community
-                </a>
+                </Link>
               </Button>
               
               
@@ -85,22 +84,22 @@ const Navigation = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start" className="w-48">
                   <DropdownMenuItem asChild>
-                    <a 
-                      href="#blog" 
+                    <Link 
+                      to="/#blog"
                       className="flex items-center"
-                      onClick={() => trackNavigation('Blog', '#blog')}
+                      onClick={() => trackNavigation('Blog', '/#blog')}
                     >
                       Blog
-                    </a>
+                    </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <a 
-                      href="#faq" 
+                    <Link 
+                      to="/#faq"
                       className="flex items-center"
-                      onClick={() => trackNavigation('FAQ', '#faq')}
+                      onClick={() => trackNavigation('FAQ', '/#faq')}
                     >
                       FAQ
-                    </a>
+                    </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
                     <a 
@@ -122,25 +121,25 @@ const Navigation = () => {
           <div className="flex items-center gap-3">
             {/* Desktop Install Button */}
             <Button size="default" asChild className="hidden sm:flex bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 py-2">
-              <a 
-                href="#installation" 
+              <Link 
+                to="/#installation"
                 className="flex items-center gap-2"
                 onClick={() => trackDownload('Install', 'navigation_header')}
               >
                 <Terminal className="h-4 w-4" />
                 Install
-              </a>
+              </Link>
             </Button>
 
             {/* Mobile Install Button - Icon only */}
             <Button size="sm" asChild className="sm:hidden bg-blue-600 hover:bg-blue-700 text-white p-2">
-              <a 
-                href="#installation" 
+              <Link 
+                to="/#installation"
                 className="flex items-center"
                 onClick={() => trackDownload('Install', 'navigation_header_mobile')}
               >
                 <Terminal className="h-4 w-4" />
-              </a>
+              </Link>
             </Button>
             
             {/* Mobile Menu */}
@@ -152,51 +151,48 @@ const Navigation = () => {
               </SheetTrigger>
               <SheetContent side="right" className="w-80 bg-background border-l border-dc-border">
                 <div className="flex flex-col space-y-4 mt-6">
-                  <a 
-                    href="#use-cases" 
+                  <Link 
+                    to="/#use-cases"
                     className="flex items-center px-4 py-3 text-foreground hover:bg-dc-surface rounded-lg transition-colors"
-                    onClick={() => handleMobileNavClick('Use Cases', '#use-cases')}
+                    onClick={() => handleMobileNavClick('Use Cases', '/#use-cases')}
                   >
                     Use Cases
-                  </a>
+                  </Link>
                   
                   <a 
-                    href="https://library.desktopcommander.app/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
+                    href="/library/" 
                     className="flex items-center justify-between px-4 py-3 text-foreground hover:bg-dc-surface rounded-lg transition-colors"
-                    onClick={() => handleMobileNavClick('Prompts', 'https://library.desktopcommander.app/', 'external')}
+                    onClick={() => handleMobileNavClick('Prompts', '/library/', 'internal')}
                   >
                     Prompts
-                    <ExternalLink className="h-4 w-4" />
                   </a>
                   
-                  <a 
-                    href="#community" 
+                  <Link 
+                    to="/#community"
                     className="flex items-center px-4 py-3 text-foreground hover:bg-dc-surface rounded-lg transition-colors"
-                    onClick={() => handleMobileNavClick('Community', '#community')}
+                    onClick={() => handleMobileNavClick('Community', '/#community')}
                   >
                     Community
-                  </a>
+                  </Link>
                   
                   <div className="border-t border-dc-border pt-4">
                     <p className="px-4 py-2 text-sm text-muted-foreground font-medium">Resources</p>
                     
-                    <a 
-                      href="#blog" 
+                    <Link 
+                      to="/#blog"
                       className="flex items-center px-4 py-3 text-foreground hover:bg-dc-surface rounded-lg transition-colors"
-                      onClick={() => handleMobileNavClick('Blog', '#blog')}
+                      onClick={() => handleMobileNavClick('Blog', '/#blog')}
                     >
                       Blog
-                    </a>
+                    </Link>
                     
-                    <a 
-                      href="#faq" 
+                    <Link 
+                      to="/#faq"
                       className="flex items-center px-4 py-3 text-foreground hover:bg-dc-surface rounded-lg transition-colors"
-                      onClick={() => handleMobileNavClick('FAQ', '#faq')}
+                      onClick={() => handleMobileNavClick('FAQ', '/#faq')}
                     >
                       FAQ
-                    </a>
+                    </Link>
                     
                     <a 
                       href="https://github.com/wonderwhy-er/DesktopCommanderMCP" 
@@ -216,8 +212,8 @@ const Navigation = () => {
                   {/* Mobile Install Button in Menu */}
                   <div className="border-t border-dc-border pt-4">
                     <Button size="lg" asChild className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-                      <a 
-                        href="#installation" 
+                      <Link 
+                        to="/#installation"
                         className="flex items-center justify-center gap-2"
                         onClick={() => {
                           setIsSheetOpen(false);
@@ -226,7 +222,7 @@ const Navigation = () => {
                       >
                         <Terminal className="h-4 w-4" />
                         Install Desktop Commander
-                      </a>
+                      </Link>
                     </Button>
                   </div>
                 </div>

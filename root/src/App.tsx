@@ -6,8 +6,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import Index from "./pages/Index";
 import Careers from "./pages/Careers";
+import LibraryHome from "./pages/library/Index";
+import LibraryPrompts from "./pages/library/Prompts";
 import NotFound from "./pages/NotFound";
 import { initializePostHog } from "./lib/analytics/posthog";
+import { PostHogProvider } from "./components/PostHogProvider";
 
 const queryClient = new QueryClient();
 
@@ -52,18 +55,22 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter basename={basename}>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/careers" element={<Careers />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
+      <PostHogProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter basename={basename}>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/careers" element={<Careers />} />
+              <Route path="/library" element={<LibraryHome />} />
+              <Route path="/library/prompts" element={<LibraryPrompts />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </PostHogProvider>
     </QueryClientProvider>
   );
 };

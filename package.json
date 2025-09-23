@@ -6,13 +6,13 @@
     "doc": "docs"
   },
   "scripts": {
-    "build": "cd ./root && npm run build && cd ../prompt-library && npm run build",
-    "build:dev": "cd ./root && npx vite build --mode development && cd ../prompt-library && npx vite build --mode development",
+    "build": "cd ./root && npm run build",
+    "build:dev": "cd ./root && npm run build:dev",
     "postbuild": "echo \"desktopcommander.app\" > docs/CNAME",
     "commit-static": "git rm -r --cached docs/ 2>/dev/null || true && npm run build && git add docs/ && git commit -m 'Static website changes'",
-    "serve": "npx serve docs --listen 3000",
-    "serve:static": "npx serve docs --listen 3000",
-    "serve:docs": "npx serve docs --listen 3000"
+    "serve": "npx serve docs --listen 3000 --single",
+    "serve:static": "npx serve docs --listen 3000 --single",
+    "serve:docs": "npx serve docs --listen 3000 --single"
   },
   "repository": {
     "type": "git",
@@ -31,7 +31,6 @@
   },
   "nx": {},
   "workspaces": [
-    "prompt-library",
     "root"
   ],
   "dependencies": {

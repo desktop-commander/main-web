@@ -13,19 +13,19 @@ const promptCategories = [
         icon: Code2,
         title: "Explain Codebase or Repository",
         description: "Understand and analyze your codebase structure",
-        url: "https://library.desktopcommander.app/?i=59"
+        url: "/library/?i=59"
       },
       {
         icon: GitCompare,
         title: "Compare Config Files to Baseline",
         description: "Compare configuration files against standards",
-        url: "https://library.desktopcommander.app/?i=34"
+        url: "/library/?i=34"
       },
       {
         icon: Trash2,
         title: "Clean Up Unused Code",
         description: "Remove dead code and optimize your project",
-        url: "https://library.desktopcommander.app/?i=5"
+        url: "/library/?i=5"
       }
     ]
   },
@@ -37,19 +37,19 @@ const promptCategories = [
         icon: FileText,
         title: "Create Project Documentation",
         description: "Generate comprehensive project documentation",
-        url: "https://library.desktopcommander.app/?i=60"
+        url: "/library/?i=60"
       },
       {
         icon: Database,
         title: "Create Database Schema Diagram",
         description: "Visualize your database structure and relationships",
-        url: "https://library.desktopcommander.app/?i=67"
+        url: "/library/?i=67"
       },
       {
         icon: Server,
         title: "Document Ansible Configuration",
         description: "Create clear documentation for your Ansible setup",
-        url: "https://library.desktopcommander.app/?i=70"
+        url: "/library/?i=70"
       }
     ]
   },
@@ -61,19 +61,19 @@ const promptCategories = [
         icon: Cloud,
         title: "Set Up Cloud Infrastructure",
         description: "Deploy scalable cloud infrastructure from scratch",
-        url: "https://library.desktopcommander.app/?i=53"
+        url: "/library/?i=53"
       },
       {
         icon: Server,
         title: "Set Up WordPress Environment",
         description: "Configure complete WordPress development environment",
-        url: "https://library.desktopcommander.app/?i=55"
+        url: "/library/?i=55"
       },
       {
         icon: Code2,
         title: "Build and Deploy Landing Page",
         description: "Create and deploy a professional landing page",
-        url: "https://library.desktopcommander.app/?i=82"
+        url: "/library/?i=82"
       }
     ]
   },
@@ -85,19 +85,19 @@ const promptCategories = [
         icon: FolderOpen,
         title: "Organise my Downloads folder",
         description: "Sort messy downloads into organized folders",
-        url: "https://library.desktopcommander.app/?i=8"
+        url: "/library/?i=8"
       },
       {
         icon: FileText,
         title: "Extract Data from PDFs",
         description: "Pull structured data from PDF documents",
-        url: "https://library.desktopcommander.app/?i=43"
+        url: "/library/?i=43"
       },
       {
         icon: Image,
         title: "Convert HEIC to PNG",
         description: "Batch convert image formats efficiently",
-        url: "https://library.desktopcommander.app/?i=38"
+        url: "/library/?i=38"
       }
     ]
   },
@@ -109,19 +109,19 @@ const promptCategories = [
         icon: BookOpen,
         title: "Create Knowledge Base Folder",
         description: "Organize information into searchable knowledge base",
-        url: "https://library.desktopcommander.app/?i=17"
+        url: "/library/?i=17"
       },
       {
         icon: Database,
         title: "Consolidate Data Files into One",
         description: "Merge multiple data sources into unified format",
-        url: "https://library.desktopcommander.app/?i=46"
+        url: "/library/?i=46"
       },
       {
         icon: BarChart3,
         title: "Automate Competitor Research",
         description: "Set up automated competitive analysis workflows",
-        url: "https://library.desktopcommander.app/?i=11"
+        url: "/library/?i=11"
       }
     ]
   }
@@ -218,8 +218,6 @@ const PromptLibrary = () => {
                       <a
                         key={promptIndex}
                         href={prompt.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
                         onClick={() => {
                           // Track individual prompt clicks
                           trackCustomEvent('prompt_clicked', {
@@ -269,9 +267,7 @@ const PromptLibrary = () => {
         }`}>
           <Button asChild variant="hero" size="lg" className="transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20 transform active:scale-95">
             <a 
-              href="https://library.desktopcommander.app/" 
-              target="_blank" 
-              rel="noopener noreferrer"
+              href="/library/"
               onClick={() => {
                 // Track main library CTA
                 trackCustomEvent('prompt_library_cta_clicked', {
