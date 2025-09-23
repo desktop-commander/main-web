@@ -2,9 +2,30 @@ import { Button } from "@/components/ui/button";
 import { Github, Heart, MessageCircle, Play, Package } from "lucide-react";
 import dcLogo from "@/assets/dc-logo-dark.png";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Footer = () => {
   const { trackCustomEvent } = useAnalytics();
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  // Helper function to navigate to main page sections
+  const navigateToSection = (sectionId: string, trackingData: any) => {
+    if (location.pathname === '/') {
+      // Already on main page, just scroll to section
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    } else {
+      // Navigate to main page with hash - the Index page will handle the scrolling
+      navigate(`/#${sectionId}`);
+    }
+    trackCustomEvent('navigation_clicked', trackingData);
+  };
 
   return (
     <footer className="border-t border-dc-border bg-dc-surface/50">
@@ -62,46 +83,43 @@ const Footer = () => {
             <h4 className="font-semibold text-foreground mb-4">Browse</h4>
             <ul className="space-y-3">
               <li>
-                <a 
-                  href="#use-cases" 
-                  className="text-muted-foreground hover:text-primary transition-smooth text-sm"
-                  onClick={() => trackCustomEvent('navigation_clicked', {
+                <button 
+                  onClick={() => navigateToSection('use-cases', {
                     button_text: 'Use Cases',
                     button_location: 'footer',
                     link_type: 'internal',
                     section: 'use-cases'
                   })}
+                  className="text-muted-foreground hover:text-primary transition-smooth text-sm cursor-pointer"
                 >
                   Use Cases
-                </a>
+                </button>
               </li>
               <li>
-                <a 
-                  href="#installation" 
-                  className="text-muted-foreground hover:text-primary transition-smooth text-sm"
-                  onClick={() => trackCustomEvent('navigation_clicked', {
+                <button 
+                  onClick={() => navigateToSection('installation', {
                     button_text: 'Installation',
                     button_location: 'footer',
                     link_type: 'internal',
                     section: 'installation'
                   })}
+                  className="text-muted-foreground hover:text-primary transition-smooth text-sm cursor-pointer"
                 >
                   Installation
-                </a>
+                </button>
               </li>
               <li>
-                <a 
-                  href="#prompts" 
-                  className="text-muted-foreground hover:text-primary transition-smooth text-sm"
-                  onClick={() => trackCustomEvent('navigation_clicked', {
+                <button 
+                  onClick={() => navigateToSection('prompts', {
                     button_text: 'Prompt Library',
                     button_location: 'footer',
                     link_type: 'internal',
                     section: 'prompts'
                   })}
+                  className="text-muted-foreground hover:text-primary transition-smooth text-sm cursor-pointer"
                 >
                   Prompt Library
-                </a>
+                </button>
               </li>
               <li>
                 <a 
@@ -118,18 +136,17 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a 
-                  href="#faq" 
-                  className="text-muted-foreground hover:text-primary transition-smooth text-sm"
-                  onClick={() => trackCustomEvent('navigation_clicked', {
+                <button 
+                  onClick={() => navigateToSection('faq', {
                     button_text: 'FAQ',
                     button_location: 'footer',
                     link_type: 'internal',
                     section: 'faq'
                   })}
+                  className="text-muted-foreground hover:text-primary transition-smooth text-sm cursor-pointer"
                 >
                   FAQ
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -139,32 +156,30 @@ const Footer = () => {
             <h4 className="font-semibold text-foreground mb-4">Resources</h4>
             <ul className="space-y-3">
               <li>
-                <a 
-                  href="#blog" 
-                  className="text-muted-foreground hover:text-primary transition-smooth text-sm"
-                  onClick={() => trackCustomEvent('navigation_clicked', {
+                <button 
+                  onClick={() => navigateToSection('blog', {
                     button_text: 'Blog',
                     button_location: 'footer',
                     link_type: 'internal',
                     section: 'blog'
                   })}
+                  className="text-muted-foreground hover:text-primary transition-smooth text-sm cursor-pointer"
                 >
                   Blog
-                </a>
+                </button>
               </li>
               <li>
-                <a 
-                  href="#community" 
-                  className="text-muted-foreground hover:text-primary transition-smooth text-sm"
-                  onClick={() => trackCustomEvent('navigation_clicked', {
+                <button 
+                  onClick={() => navigateToSection('community', {
                     button_text: 'Community',
                     button_location: 'footer',
                     link_type: 'internal',
                     section: 'community'
                   })}
+                  className="text-muted-foreground hover:text-primary transition-smooth text-sm cursor-pointer"
                 >
                   Community
-                </a>
+                </button>
               </li>
               <li>
                 <a 

@@ -259,7 +259,7 @@ const Hero = () => {
                 asChild
               >
                 <a 
-                  href="#installation"
+                  href="./#installation"
                   onClick={() => trackDownload('Install', 'hero_primary_cta')}
                 >
                   <Terminal className="h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />

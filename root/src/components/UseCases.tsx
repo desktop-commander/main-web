@@ -141,14 +141,13 @@ const UseCases = () => {
               className="w-full sm:w-auto transition-all duration-300 hover:scale-105 active:scale-95" 
               asChild
             >
-              <a href="#installation" className="flex items-center justify-center gap-2">
+              <a href="./#installation" className="flex items-center justify-center gap-2">
                 <Terminal className="h-5 w-5" />
                 Start Building
               </a>
             </Button>
             <a 
-              href="https://library.desktopcommander.app/" 
-              target="_blank" 
+              href="/library"
               rel="noopener noreferrer"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 border border-dc-border text-foreground rounded-lg font-medium hover:bg-dc-surface/50 transition-all duration-300 hover:scale-105 active:scale-95 text-center"
             >
