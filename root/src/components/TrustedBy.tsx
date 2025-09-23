@@ -196,7 +196,7 @@ const TrustedBy = () => {
               asChild
             >
               <a 
-                href="/library/" 
+                href="/library"
                 className="flex items-center justify-center gap-2"
               >
                 Browse Prompt Library

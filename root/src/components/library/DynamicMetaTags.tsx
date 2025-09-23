@@ -30,7 +30,7 @@ export const DynamicMetaTags = ({ useCase, isPromptPage }: DynamicMetaTagsProps)
       // Dynamic meta tags for individual prompts
       const promptTitle = `${useCase.title} - Desktop Commander Automation Template`;
       const promptDescription = `${useCase.description} Session Type: ${useCase.sessionType}. Categories: ${useCase.categories.join(', ')}. AI automation template for Desktop Commander.`;
-      const promptUrl = `/library/?i=${useCase.id}`;
+      const promptUrl = `/library?i=${useCase.id}`;
 
       // Update title
       if (titleElement) {
