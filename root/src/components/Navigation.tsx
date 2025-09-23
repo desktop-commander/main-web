@@ -74,16 +74,6 @@ const Navigation = () => {
                 </Link>
               </Button>
               
-              <Button variant="ghost" size="sm" asChild>
-                <a 
-                  href="/careers" 
-                  className="text-white hover:text-white/80 font-medium"
-                  onClick={() => trackNavigation('Careers', '/careers')}
-                >
-                  Careers
-                </a>
-              </Button>
-              
               
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -184,14 +174,6 @@ const Navigation = () => {
                   >
                     Community
                   </Link>
-                  
-                  <a 
-                    href="/careers" 
-                    className="flex items-center px-4 py-3 text-foreground hover:bg-dc-surface rounded-lg transition-colors"
-                    onClick={() => handleMobileNavClick('Careers', '/careers')}
-                  >
-                    Careers
-                  </a>
                   
                   <div className="border-t border-dc-border pt-4">
                     <p className="px-4 py-2 text-sm text-muted-foreground font-medium">Resources</p>
