@@ -546,6 +546,7 @@ npm run setup`);
 
 const Installation = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [openModal, setOpenModal] = useState<string | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   
   // Analytics hook
@@ -571,6 +572,63 @@ const Installation = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  // Maps for URL parameter <-> modal name conversion
+  const modalNames: Record<string, string> = {
+    'smithery': 'Install via Smithery',
+    'docker': 'Install using Docker',
+    'manual': 'Install manually', 
+    'local': 'Install locally',
+    'cursor': 'Install in Cursor'
+  };
+
+  const modalNamesToSlugs: Record<string, string> = {
+    'Install via Smithery': 'smithery',
+    'Install using Docker': 'docker',
+    'Install manually': 'manual',
+    'Install locally': 'local',
+    'Install in Cursor': 'cursor'
+  };
+
+  // Helper function to update URL when modal opens/closes
+  const updateUrlForModal = (modalName: string | null) => {
+    const url = new URL(window.location.href);
+    
+    if (modalName && modalNamesToSlugs[modalName]) {
+      // Modal is opening - add install parameter
+      url.searchParams.set('install', modalNamesToSlugs[modalName]);
+      url.hash = 'installation';
+    } else {
+      // Modal is closing - remove install parameter but keep hash
+      url.searchParams.delete('install');
+      url.hash = 'installation';
+    }
+    
+    // Update URL without reloading the page
+    window.history.replaceState({}, '', url.toString());
+  };
+
+  // Check for installation parameter on load
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const installMethod = urlParams.get('install');
+    
+    if (installMethod) {
+      const modalName = modalNames[installMethod];
+      if (modalName) {
+        // Small delay to ensure component is mounted
+        setTimeout(() => {
+          setOpenModal(modalName);
+        }, 1000);
+        
+        // Track that someone used a direct install link
+        trackCustomEvent('direct_install_link_used', {
+          installation_method: modalName,
+          url_parameter: installMethod
+        });
+      }
+    }
+  }, [trackCustomEvent]);
 
   return (
     <section ref={sectionRef} id="installation" className="py-12 bg-dc-surface/30 scroll-mt-24">
@@ -719,7 +777,7 @@ const Installation = () => {
 
         {/* Additional Options */}
         <div className="mt-10 max-w-4xl mx-auto">
-          <Accordion type="single" collapsible className="space-y-3">
+          <Accordion type="single" collapsible defaultValue="more-options" className="space-y-3">
             {/* More Installation Options */}
             <AccordionItem value="more-options" className="border border-dc-border rounded-lg bg-dc-card">
               <AccordionTrigger className="px-4 py-3 hover:no-underline">
@@ -728,7 +786,19 @@ const Installation = () => {
               <AccordionContent className="px-4 pb-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                   {moreInstallationOptions.map((option, index) => (
-                    <Dialog key={index}>
+                    <Dialog 
+                      key={index}
+                      open={openModal === option.name}
+                      onOpenChange={(open) => {
+                        if (!open) {
+                          setOpenModal(null);
+                          updateUrlForModal(null);
+                        } else {
+                          setOpenModal(option.name);
+                          updateUrlForModal(option.name);
+                        }
+                      }}
+                    >
                       <DialogTrigger asChild>
                          <Button 
                            variant="outline" 
@@ -743,11 +813,11 @@ const Installation = () => {
                            </div>
                          </Button>
                       </DialogTrigger>
-                      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                      <DialogContent className="max-w-4xl max-h-[90vh]">
                         <DialogHeader>
                           <DialogTitle>{option.name}</DialogTitle>
                         </DialogHeader>
-                        <div className="space-y-4 pr-2">
+                        <div className="space-y-4 overflow-y-auto max-h-[70vh]">
                           {option.content}
                         </div>
                       </DialogContent>

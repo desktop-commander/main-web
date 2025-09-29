@@ -9,6 +9,7 @@ import Careers from "./pages/Careers";
 import LibraryHome from "./pages/library/Index";
 import LibraryPrompts from "./pages/library/Prompts";
 import NotFound from "./pages/NotFound";
+import InstallRedirect from "./components/InstallRedirect";
 import { initializePostHog } from "./lib/analytics/posthog";
 import { PostHogProvider } from "./components/PostHogProvider";
 
@@ -65,6 +66,8 @@ const App = () => {
               <Route path="/careers" element={<Careers />} />
               <Route path="/library" element={<LibraryHome />} />
               <Route path="/library/prompts" element={<LibraryPrompts />} />
+              {/* Installation redirect routes */}
+              <Route path="/install/:method" element={<InstallRedirect />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
