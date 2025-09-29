@@ -226,7 +226,7 @@ const Index = () => {
 
   const browseAllUrl = useMemo(() => {
     if (selectedRole === 'For all' && selectedCategory === 'All Categories') {
-      return '/prompts';
+      return '/library/prompts';
     }
     
     // Build URL with filters
@@ -236,7 +236,7 @@ const Index = () => {
     }
     // Note: We'll need to implement category filtering in the prompts page if needed
     
-    return `/prompts?${params.toString()}`;
+    return `/library/prompts?${params.toString()}`;
   }, [selectedRole, selectedCategory]);
 
   // Always display the filtered prompts
