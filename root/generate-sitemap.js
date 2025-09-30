@@ -46,10 +46,18 @@ const generateSitemap = () => {
     </url>
 `;
 
-  // Add individual prompt URLs
+  // Add individual prompt URLs with slugs
   useCasesData.useCases.forEach(useCase => {
+    const slug = useCase.title
+      .toLowerCase()
+      .trim()
+      .replace(/[^\w\s-]/g, '') // Remove special characters except spaces and hyphens
+      .replace(/\s+/g, '-') // Replace spaces with hyphens
+      .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+      .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+    
     sitemap += `    <url>
-        <loc>${baseUrl}/library?i=${useCase.id}</loc>
+        <loc>${baseUrl}/library/prompts/${slug}</loc>
         <lastmod>${currentDate}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>

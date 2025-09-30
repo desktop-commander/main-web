@@ -41,6 +41,7 @@ interface PromptDetailModalProps {
   isOpen: boolean;
   onClose: () => void;
   onVote: (id: string) => void;
+  isFullPage?: boolean; // New prop for rendering as full page instead of modal
 }
 
 const iconMap = {
@@ -61,7 +62,7 @@ const iconMap = {
   Search
 };
 
-export function PromptDetailModal({ useCase, isOpen, onClose, onVote }: PromptDetailModalProps) {
+export function PromptDetailModal({ useCase, isOpen, onClose, onVote, isFullPage = false }: PromptDetailModalProps) {
   const [hasVoted, setHasVoted] = useState(false);
   const [showSessionTypeExplainer, setShowSessionTypeExplainer] = useState(false);
   const [showWizard, setShowWizard] = useState(false);

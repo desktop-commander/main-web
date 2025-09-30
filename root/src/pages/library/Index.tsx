@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Code, Users, Search, Heart, Zap } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { useCases, sessionTypeExplanations, categories } from '@/data/library/useCases';
+import { useCasesWithSlugs as useCases, sessionTypeExplanations, categories, idToSlugMap } from '@/data/library/useCases';
 import { PromptDetailModal } from '@/components/library/PromptDetailModal';
 import { SubmitPromptButton } from '@/components/library/SubmitPromptButton';
 import TestimonialsRow from '@/components/library/TestimonialsRow';
@@ -14,6 +14,7 @@ import { EngagementMeter } from '@/components/library/EngagementMeter';
 import { CategoryFilter } from '@/components/library/CategoryFilter';
 import { usePostHog } from '@/components/PostHogProvider';
 import { DynamicMetaTags } from '@/components/library/DynamicMetaTags';
+import LegacyRedirect from '@/components/LegacyRedirect';
 
 const Index = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -267,12 +268,8 @@ const Index = () => {
         Math.round((new Date().getTime() - new Date(viralInfo.entry_time).getTime()) / 1000) : null
     });
     
-    setSelectedUseCase(useCase);
-    setIsModalOpen(true);
-    // Update URL with prompt ID while preserving role filter
-    const newSearchParams = new URLSearchParams(searchParams);
-    newSearchParams.set('i', useCase.id);
-    setSearchParams(newSearchParams);
+    // Navigate to individual prompt page using slug
+    window.location.href = `/library/prompts/${useCase.slug}`;
   };
 
   const handleCloseModal = () => {
@@ -367,6 +364,7 @@ const Index = () => {
 
   return (
     <>
+      <LegacyRedirect />
       <Navigation />
       
       <div className="min-h-screen bg-background mt-20">

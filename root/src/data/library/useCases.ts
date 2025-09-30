@@ -23,6 +23,7 @@ export interface UseCase {
   dateAdded?: string; // Made optional
   verified?: boolean;
   difficulty?: string; // Added difficulty as optional string
+  slug?: string; // SEO-friendly URL slug
 }
 
 // Import prompts from JSON file
@@ -63,3 +64,41 @@ export const sessionTypeExplanations = {
   'Instant output': 'Get immediate, ready-to-use results in a single prompt',
   'Step-by-step flow': 'This prompt runs in multiple steps and leads you through an iterative workflow'
 };
+
+// Slug generation utility functions
+export const generateSlug = (title: string): string => {
+  return title
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '') // Remove special characters except spaces and hyphens
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+    .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+};
+
+// Add slugs to use cases
+export const useCasesWithSlugs: UseCase[] = useCases.map(useCase => ({
+  ...useCase,
+  slug: generateSlug(useCase.title)
+}));
+
+// Utility functions for slug/ID conversion
+export const findUseCaseBySlug = (slug: string): UseCase | undefined => {
+  return useCasesWithSlugs.find(uc => uc.slug === slug);
+};
+
+export const findUseCaseById = (id: string): UseCase | undefined => {
+  return useCasesWithSlugs.find(uc => uc.id === id);
+};
+
+// Map of slugs to IDs for quick lookups
+export const slugToIdMap = useCasesWithSlugs.reduce((map, uc) => {
+  map[uc.slug!] = uc.id;
+  return map;
+}, {} as Record<string, string>);
+
+// Map of IDs to slugs for quick lookups  
+export const idToSlugMap = useCasesWithSlugs.reduce((map, uc) => {
+  map[uc.id] = uc.slug!;
+  return map;
+}, {} as Record<string, string>);

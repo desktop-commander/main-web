@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { useCases as initialUseCases, UseCase } from '@/data/library/useCases';
+import { useCasesWithSlugs as initialUseCases, UseCase, idToSlugMap } from '@/data/library/useCases';
 import { PromptCard } from '@/components/library/PromptCard';
 import { FilterControls } from '@/components/library/FilterControls';
 import { SubmitPromptButton } from '@/components/library/SubmitPromptButton';
@@ -204,9 +204,8 @@ export default function Prompts() {
         Math.round((new Date().getTime() - new Date(viralInfo.entry_time).getTime()) / 1000) : null
     });
     
-    setSelectedUseCase(useCase);
-    setIsModalOpen(true);
-    setSearchParams({ i: useCase.id });
+    // Navigate to individual prompt page using slug
+    window.location.href = `/library/prompts/${useCase.slug}`;
   };
 
   const handleCloseModal = () => {
