@@ -373,14 +373,13 @@ export function PromptDetailModal({ useCase, isOpen, onClose, onVote, isFullPage
   };
 
   const getShareUrl = (shareSource = 'share_button') => {
-    const url = new URL('/', window.location.origin); // Fixed: Use root path instead of /prompts
-    url.searchParams.set('i', useCase.id);
+    const url = new URL(`/library/prompts/${useCase.slug}`, window.location.origin);
     
-    // Phase 3: Add share tracking parameters
-    url.searchParams.set('utm_source', 'style_scout');
+    // Add share tracking parameters
+    url.searchParams.set('utm_source', 'desktop_commander');
     url.searchParams.set('utm_medium', shareSource);
     url.searchParams.set('utm_campaign', 'prompt_sharing');
-    url.searchParams.set('utm_content', useCase.id);
+    url.searchParams.set('utm_content', useCase.slug);
     
     // Add timestamp for unique tracking
     url.searchParams.set('shared_at', Date.now().toString());

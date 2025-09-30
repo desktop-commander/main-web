@@ -15,8 +15,20 @@ const LegacyRedirect = () => {
     
     if (promptId && idToSlugMap[promptId]) {
       const slug = idToSlugMap[promptId];
-      // Redirect to new URL structure
-      navigate(`/library/prompts/${slug}`, { replace: true });
+      
+      // Preserve UTM parameters when redirecting
+      const newUrl = new URL(`/library/prompts/${slug}`, window.location.origin);
+      const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'shared_at'];
+      
+      utmParams.forEach(param => {
+        const value = searchParams.get(param);
+        if (value) {
+          newUrl.searchParams.set(param, value);
+        }
+      });
+      
+      // Redirect to new URL structure with preserved UTM parameters
+      window.location.replace(newUrl.toString());
     }
   }, [searchParams, navigate]);
 
