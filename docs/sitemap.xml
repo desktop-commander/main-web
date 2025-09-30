@@ -3,440 +3,440 @@
     <!-- Main Website Pages -->
     <url>
         <loc>https://desktopcommander.app/</loc>
-        <lastmod>2025-09-29</lastmod>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://desktopcommander.app/careers</loc>
-        <lastmod>2025-09-29</lastmod>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <!-- Library Pages -->
     <url>
         <loc>https://desktopcommander.app/library</loc>
-        <lastmod>2025-09-29</lastmod>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://desktopcommander.app/library/prompts</loc>
-        <lastmod>2025-09-29</lastmod>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=2</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/build-a-feature-from-scratch</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=3</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/analyze-my-data-file</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=4</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/set-up-local-development-environment</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=5</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/clean-up-unused-code</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=6</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/explain-react-component-architecture</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=8</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/organise-my-downloads-folder</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=9</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/build-personal-finance-tracker</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=11</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/automate-competitor-research</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=14</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/analyze-error-handling-strategy</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=15</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/implement-github-issue</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=16</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/set-up-new-project-structure</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=17</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/create-knowledge-base-folder</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=20</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/visualize-microservices-communication</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=21</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/create-team-onboarding-documentation</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=22</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/optimize-docker-setup</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=23</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/document-system-architecture</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=25</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/generate-dev-onboarding-guide</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=26</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/assess-scalability-challenges</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=28</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/document-dependencies-and-tools</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=29</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/plan-migration-strategy</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=30</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/create-git-history-presentation</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=31</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/build-github-issues-dashboard</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=33</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/find-error-patterns-in-logs</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=34</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/compare-config-files-to-baseline</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=35</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/update-my-cvresume</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=36</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/remove-background-from-profile-picture</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=37</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/merge-two-pdfs</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=38</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/convert-heic-to-png</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=39</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/convert-edoc-to-doc</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=40</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/create-folder-with-images</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=41</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/batch-convert-and-rename-images</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=42</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/organize-pdf-invoices-by-date</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=43</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/extract-data-from-pdfs</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=44</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/rename-bank-statements-by-account</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=45</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/find-large-receipts-by-vendor</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=46</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/consolidate-data-files-into-one</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=47</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/remove-duplicate-contacts-from-spreadsheet</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=48</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/find-all-todo-comments</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=49</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/generate-tests-for-missing-coverage</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=52</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/get-my-ip-address</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=53</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/set-up-cloud-infrastructure</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=55</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/set-up-wordpress-environment</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=56</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/document-api-endpoints</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=57</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/assess-technical-debt</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=58</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/assess-projects-security</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=59</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/explain-codebase-or-repository</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=60</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/create-project-documentation</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=61</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/find-invoices-and-move-them-to-folder</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=62</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/visualize-project-architecture</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=63</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/generate-architecture-diagram</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=64</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/document-rest-api-endpoints</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=65</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/document-graphql-schema</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=66</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/visualize-database-schema</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=67</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/create-database-schema-diagram</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=68</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/explain-docker-configuration</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=69</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/visualize-terraform-architecture</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=70</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/document-ansible-configuration</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=71</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/explain-cicd-pipeline</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=72</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/debug-remote-server-errors</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=73</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/optimize-database-schema</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=74</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/set-up-mysql-database</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=75</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/set-up-postgresql-database</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=76</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/set-up-mongodb-database</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=77</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/set-up-redis-server</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=78</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/generate-docker-configuration</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=79</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/set-up-github-actions-cicd</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=80</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/audit-authentication-security</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=81</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/analyze-test-coverage-gaps</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://desktopcommander.app/library?i=82</loc>
-        <lastmod>2025-09-29</lastmod>
+        <loc>https://desktopcommander.app/library/prompts/build-and-deploy-landing-page</loc>
+        <lastmod>2025-09-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
