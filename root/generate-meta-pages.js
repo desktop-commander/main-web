@@ -9,8 +9,8 @@ const __dirname = path.dirname(__filename);
 const useCasesPath = path.join(__dirname, 'src/data/library/useCases.json');
 const useCasesData = JSON.parse(fs.readFileSync(useCasesPath, 'utf8'));
 
-// Read the base index.html template
-const indexPath = path.join(__dirname, 'index.html');
+// Read the base index.html template from the built docs directory
+const indexPath = path.join(__dirname, '../docs/index.html');
 const baseTemplate = fs.readFileSync(indexPath, 'utf8');
 
 const generateSlug = (title) => {
@@ -103,13 +103,13 @@ const generateMetaHTML = (useCase) => {
     "inLanguage": "en-US"
   };
   
-  // Add the structured data script before closing head
+  // Add the structured data script before the existing scripts
   html = html.replace(
-    /<\/head>/,
+    /(\s*<script type="module")/,
     `    <script type="application/ld+json">
 ${JSON.stringify(structuredData, null, 2)}
     </script>
-</head>`
+$1`
   );
   
   return html;
