@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node generate-sitemap.js && node generate-meta-pages.js && NODE_ENV=production && vite build",
-    "build:dev": "node generate-sitemap.js && node generate-meta-pages.js && npx vite build --mode development",
+    "build": "vite build && node generate-sitemap.js && node generate-meta-pages.js",
+    "build:dev": "npx vite build --mode development && node generate-sitemap.js && node generate-meta-pages.js",
     "generate:sitemap": "node generate-sitemap.js",
     "generate:meta": "node generate-meta-pages.js",
     "lint": "eslint .",

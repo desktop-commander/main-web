@@ -1,6 +1,44 @@
 <!doctype html>
 <html lang="en">
   <head>
+    
+    <script type="text/javascript">
+      // SPA redirect for static pages (similar to 404.html)
+      // This is needed because GitHub Pages serves static HTML files directly
+      // instead of going through the 404 handler
+      (function() {
+        // Only redirect for real users, not crawlers (preserve SEO)
+        var isBot = /bot|crawler|spider|crawling|lighthouse/i.test(navigator.userAgent || '');
+        
+        // Also check for headless browsers often used by crawlers
+        var isHeadless = navigator.webdriver || 
+                        (window.outerHeight === 0) || 
+                        (typeof window.orientation === "undefined" && !navigator.userAgent.match(/Mobile|Tablet/));
+        
+        if (!isBot && !isHeadless) {
+          // For real users, redirect using the same pattern as 404.html
+          var pathSegmentsToKeep = 0;
+          var l = window.location;
+          
+          // Handle GitHub Pages subdirectory deployment
+          var basePath = '';
+          if (l.hostname.includes('github.io') && l.pathname.startsWith('/main-web/')) {
+            basePath = '/main-web';
+            pathSegmentsToKeep = 1;
+          }
+          
+          // No need to store in sessionStorage - the query parameter method works directly
+          
+          // Redirect to index.html with path encoded in query string
+          var redirectPath = basePath + '/?/' + 
+            l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+            (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+            l.hash;
+            
+          l.replace(redirectPath);
+        }
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Merge Two PDFs - Desktop Commander Prompt Library</title>
@@ -84,7 +122,7 @@
 }
     </script>
 
-    <script type="module" crossorigin src="/assets/main-CUoplc1d.js"></script>
+    <script type="module" crossorigin src="/assets/main-DFoAFwWq.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/main-CugOLXiQ.css">
   </head>
 
