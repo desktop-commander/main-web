@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { MessageCircle, ArrowRight, Download, Terminal, Star, TrendingUp, Loader2 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import dcHeroAnimation from "@/assets/hero.gif";
+import dcHeroAnimation from "@/assets/hero-8sec.gif";
 import dcLogo from "@/assets/dc-logo-dark.png";
 import { getAssetPath } from "@/utils/assets";
 import { useAnalytics } from "@/hooks/useAnalytics";
@@ -45,7 +45,7 @@ const Hero = () => {
   // Try to preload video, fallback to GIF if it fails
   useEffect(() => {
     const videoPath = getAssetPath('hero-video.mp4');
-    const gifPath = getAssetPath('hero.gif');
+    const gifPath = getAssetPath('hero-8sec.gif');
     
     // Try video first
     const video = document.createElement('video');
@@ -100,7 +100,7 @@ const Hero = () => {
         // Force GIF restart by updating src with timestamp
         const gifElement = document.querySelector('.hero-gif') as HTMLImageElement;
         if (gifElement) {
-          const gifPath = getAssetPath('hero.gif');
+          const gifPath = getAssetPath('hero-8sec.gif');
           gifElement.src = `${gifPath}?t=${Date.now()}`;
         }
       }, 7000);

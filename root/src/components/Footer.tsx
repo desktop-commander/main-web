@@ -14,7 +14,7 @@ const Footer = () => {
           {/* Brand - Full width on mobile, 2 cols on desktop */}
           <div className="col-span-1 sm:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <img src={dcLogo} alt="Desktop Commander" className="h-8 w-8" />
+              <img src={dcLogo} alt="Desktop Commander" className="h-8 w-8" loading="lazy" />
               <h3 className="text-xl font-bold text-foreground">Desktop Commander</h3>
             </div>
             <p className="text-muted-foreground mb-6 max-w-sm leading-relaxed">
