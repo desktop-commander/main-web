@@ -1,4 +1,4 @@
-import { getPostHog, isPostHogReady, trackEvent as trackEventSafe } from './posthog';
+import { posthog, isPostHogReady } from './posthog';
 import type { 
   EventProperties,
   PageViewProperties,
@@ -19,21 +19,32 @@ const logEvent = (eventName: AllEvents, properties?: EventProperties) => {
   });
 };
 
-// Generic tracking function  
-export const trackEvent = async (
+// Generic tracking function
+export const trackEvent = (
   eventName: AllEvents, 
   properties?: EventProperties
-): Promise<void> => {
+): void => {
   // Always log in development for debugging
   if (import.meta.env.DEV) {
     logEvent(eventName, properties);
   }
 
-  // Use the safe tracking wrapper
-  await trackEventSafe(eventName, {
-    ...properties,
-    timestamp: new Date().toISOString(),
-  });
+  // Only send to PostHog if ready
+  if (!isPostHogReady()) {
+    console.warn('PostHog not ready, event logged locally only:', eventName);
+    return;
+  }
+
+  try {
+    posthog.capture(eventName, {
+      ...properties,
+      timestamp: new Date().toISOString(),
+    });
+    
+    console.log('✅ Event sent to PostHog:', eventName);
+  } catch (error) {
+    console.error('❌ Error tracking event:', eventName, error);
+  }
 };
 
 // Page tracking

@@ -1,22 +1,13 @@
-import { createContext, useContext, ReactNode, useEffect, useState } from 'react';
-import { getPostHog, initializePostHog } from '@/lib/analytics/posthog';
+import { createContext, useContext, ReactNode } from 'react';
+import { posthog } from '@/lib/analytics/posthog';
 
-const PostHogContext = createContext<any>(null);
+const PostHogContext = createContext(posthog);
 
 interface PostHogProviderProps {
   children: ReactNode;
 }
 
 export function PostHogProvider({ children }: PostHogProviderProps) {
-  const [posthog, setPosthog] = useState<any>(null);
-
-  useEffect(() => {
-    // Initialize PostHog lazily
-    initializePostHog().then(() => {
-      getPostHog().then(setPosthog);
-    });
-  }, []);
-
   return (
     <PostHogContext.Provider value={posthog}>
       {children}
@@ -28,5 +19,4 @@ export const usePostHog = () => {
   return useContext(PostHogContext);
 };
 
-// Mock export for backward compatibility
-export default null;
+export default posthog;
