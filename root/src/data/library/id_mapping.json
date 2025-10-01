@@ -1,5 +1,5 @@
 {
-  "next_id": 55,
+  "next_id": 56,
   "title_to_id": {
     "Explore and Understand New Repository": 1,
     "Build Complete Feature from Scratch": 2,
@@ -54,7 +54,8 @@
     "Understand Any Codebase": 51,
     "Get my IP address": 52,
     "Set Up Cloud Infrastructure": 53,
-    "Create Project Context": 54
+    "Create Project Context": 54,
+    "Set up Google Analytics and analyze traffic": 55
   },
   "deleted_ids": [
     50

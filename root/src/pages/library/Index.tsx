@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Code, Users, Search, Heart, Zap } from 'lucide-react';
+import { ArrowRight, Code, Users, Search, Heart, Zap, Sparkles } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useCasesWithSlugs as useCases, sessionTypeExplanations, categories, idToSlugMap } from '@/data/library/useCases';
 import { PromptDetailModal } from '@/components/library/PromptDetailModal';
@@ -15,6 +15,18 @@ import { CategoryFilter } from '@/components/library/CategoryFilter';
 import { usePostHog } from '@/components/PostHogProvider';
 import { DynamicMetaTags } from '@/components/library/DynamicMetaTags';
 import LegacyRedirect from '@/components/LegacyRedirect';
+
+// Helper function to check if a prompt is new (within 14 days)
+const isNewPrompt = (dateAdded?: string): boolean => {
+  if (!dateAdded) return false;
+  
+  const addedDate = new Date(dateAdded);
+  const today = new Date();
+  const diffTime = Math.abs(today.getTime() - addedDate.getTime());
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  
+  return diffDays <= 14;
+};
 
 const Index = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -94,14 +106,14 @@ const Index = () => {
   const defaultFeaturedUseCases = useMemo(() => {
     const featuredTitles = [
       'Organise my Downloads folder',
-      'Explain Codebase or Repository',  
+      'Explain Codebase or Repository',
+      'Set up Google Analytics and analyze traffic',
       'Build A Feature from Scratch',
       'Set Up WordPress Environment',
       'Set Up Cloud Infrastructure',
       'Build and Deploy Landing Page',
       'Generate Docker Configuration',
-      'Set Up Local Development Environment',
-      'Extract Data from PDFs'
+      'Set Up Local Development Environment'
     ];
     
     // Find these specific prompts (with flexible matching for whitespace)
@@ -176,9 +188,9 @@ const Index = () => {
     (selectedRole === 'For all' && selectedCategory === 'All Categories') 
       ? [
           defaultFeaturedUseCases[0], // Organise my Downloads folder
-          defaultFeaturedUseCases[3], // Set Up WordPress Environment
-          defaultFeaturedUseCases[7], // Set Up Local Development Environment
-          defaultFeaturedUseCases[8]  // Extract Data from PDFs
+          defaultFeaturedUseCases[2], // Set up Google Analytics and analyze traffic
+          defaultFeaturedUseCases[3], // Build A Feature from Scratch
+          defaultFeaturedUseCases[4]  // Set Up WordPress Environment
         ].filter(Boolean).map((u) => u.id)
       : (selectedCategory === 'Deploy')
       ? [
@@ -433,7 +445,15 @@ const Index = () => {
                       <CardHeader>
                         <div className="flex items-start justify-between gap-3">
                           <div className="flex-1 min-w-0">
-                            <CardTitle className="text-base leading-snug mb-2 min-h-[2.5rem] flex items-start">{useCase.title}</CardTitle>
+                            <CardTitle className="text-base leading-snug mb-2 min-h-[2.5rem] flex items-start">
+                              {useCase.title}
+                              {isNewPrompt(useCase.dateAdded) && (
+                                <Badge variant="outline" className="ml-2 text-xs bg-primary/10 text-primary border-primary/20">
+                                  <Sparkles className="h-3 w-3 mr-1" />
+                                  New
+                                </Badge>
+                              )}
+                            </CardTitle>
                             <div className="flex items-center gap-2">
                               <Badge variant="outline" className="text-foreground/70 border-foreground/20 bg-transparent font-normal whitespace-nowrap">
                                 <div className="flex items-center gap-1">
@@ -461,7 +481,7 @@ const Index = () => {
 
                       </CardHeader>
                       <CardContent>
-                        <CardDescription className="leading-relaxed text-sm">
+                        <CardDescription className="leading-relaxed text-sm line-clamp-4">
                           {useCase.description}
                         </CardDescription>
 

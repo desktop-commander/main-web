@@ -21,7 +21,8 @@ import {
   ArrowRightLeft,
   Activity,
   Search,
-  Zap
+  Zap,
+  Sparkles
 } from 'lucide-react';
 import { EngagementMeter } from '@/components/library/EngagementMeter';
 
@@ -50,9 +51,22 @@ const iconMap = {
   Search
 };
 
+// Helper function to check if a prompt is new (within 14 days)
+const isNewPrompt = (dateAdded?: string): boolean => {
+  if (!dateAdded) return false;
+  
+  const addedDate = new Date(dateAdded);
+  const today = new Date();
+  const diffTime = Math.abs(today.getTime() - addedDate.getTime());
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  
+  return diffDays <= 14;
+};
+
 export function PromptCard({ useCase, onVote: _onVote, onOpen }: PromptCardProps) {
 
   const IconComponent = iconMap[useCase.icon as keyof typeof iconMap] || Code;
+  const showNewBadge = isNewPrompt(useCase.dateAdded);
 
 
 
@@ -100,7 +114,15 @@ export function PromptCard({ useCase, onVote: _onVote, onOpen }: PromptCardProps
               <IconComponent className="h-5 w-5 text-primary" />
             </div>
             <div className="flex-1">
-              <CardTitle className="text-lg leading-snug mb-2 min-h-[3rem] flex items-start">{useCase.title}</CardTitle>
+              <CardTitle className="text-lg leading-snug mb-2 min-h-[3rem] flex items-start">
+                {useCase.title}
+                {showNewBadge && (
+                  <Badge variant="outline" className="ml-2 text-xs bg-primary/10 text-primary border-primary/20">
+                    <Sparkles className="h-3 w-3 mr-1" />
+                    New
+                  </Badge>
+                )}
+              </CardTitle>
               <div className="flex items-center gap-2">
                 <Badge variant="outline" className={`text-foreground/70 border-foreground/20 bg-transparent font-normal ${getSessionTypeClass(useCase.sessionType)} whitespace-nowrap`}>
                   <div className="flex items-center gap-1">

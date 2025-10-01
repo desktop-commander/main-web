@@ -26,7 +26,8 @@ import {
   Rocket,
   Share2,
   Info,
-  BadgeCheck
+  BadgeCheck,
+  Sparkles
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { ToastAction } from '@/components/ui/toast';
@@ -60,6 +61,18 @@ const iconMap = {
   ArrowRightLeft,
   Activity,
   Search
+};
+
+// Helper function to check if a prompt is new (within 14 days)
+const isNewPrompt = (dateAdded?: string): boolean => {
+  if (!dateAdded) return false;
+  
+  const addedDate = new Date(dateAdded);
+  const today = new Date();
+  const diffTime = Math.abs(today.getTime() - addedDate.getTime());
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  
+  return diffDays <= 14;
 };
 
 export function PromptDetailModal({ useCase, isOpen, onClose, onVote, isFullPage = false }: PromptDetailModalProps) {
@@ -269,6 +282,7 @@ export function PromptDetailModal({ useCase, isOpen, onClose, onVote, isFullPage
   if (!useCase) return null;
 
   const IconComponent = iconMap[useCase.icon as keyof typeof iconMap] || Code;
+  const showNewBadge = isNewPrompt(useCase.dateAdded);
 
   const handleUsePrompt = () => {
     // Get engagement context
@@ -507,7 +521,15 @@ export function PromptDetailModal({ useCase, isOpen, onClose, onVote, isFullPage
               <IconComponent className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
             </div>
             <div className="flex-1 min-w-0">
-              <DialogTitle className="text-lg sm:text-2xl leading-tight mb-2 sm:mb-3 break-words">{useCase.title}</DialogTitle>
+              <DialogTitle className="text-lg sm:text-2xl leading-tight mb-2 sm:mb-3 break-words flex items-start gap-2">
+                {useCase.title}
+                {showNewBadge && (
+                  <Badge variant="outline" className="text-xs bg-primary/10 text-primary border-primary/20 flex-shrink-0">
+                    <Sparkles className="h-3 w-3 mr-1" />
+                    New
+                  </Badge>
+                )}
+              </DialogTitle>
               <DialogDescription className="sr-only">Detailed information and actions for this prompt.</DialogDescription>
               <div className="flex items-center gap-2 sm:gap-3 flex-wrap min-w-0">
                 {useCase.verified && (
