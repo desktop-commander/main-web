@@ -1,0 +1,30 @@
+# GitHub Pages headers for better caching
+# Assets with hashes can be cached for a long time
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images can be cached for a long time  
+*.png
+  Cache-Control: public, max-age=31536000
+*.jpg
+  Cache-Control: public, max-age=31536000
+*.gif
+  Cache-Control: public, max-age=31536000
+*.svg
+  Cache-Control: public, max-age=31536000
+*.webp
+  Cache-Control: public, max-age=31536000
+
+# Fonts
+*.woff2
+  Cache-Control: public, max-age=31536000
+*.woff
+  Cache-Control: public, max-age=31536000
+*.ttf
+  Cache-Control: public, max-age=31536000
+
+# Main files with shorter cache
+/
+  Cache-Control: public, max-age=3600
+/*.html
+  Cache-Control: public, max-age=3600

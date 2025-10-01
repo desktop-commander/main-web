@@ -1,7 +1,6 @@
-import { createContext, useContext, useEffect, ReactNode } from 'react';
-import posthog from 'posthog-js';
+import { createContext, useContext, useEffect, ReactNode, useState } from 'react';
 
-const PostHogContext = createContext(posthog);
+const PostHogContext = createContext<any>(null);
 
 interface PostHogProviderProps {
   children: ReactNode;
@@ -148,16 +147,22 @@ function setupUserIdentification(posthog: any) {
 }
 
 export function PostHogProvider({ children }: PostHogProviderProps) {
+  const [posthog, setPosthog] = useState<any>(null);
+
   useEffect(() => {
-    // Initialize PostHog only once when component mounts
-    if (typeof window !== 'undefined' && !posthog.__loaded) {
+    // Lazy load PostHog
+    import('posthog-js').then((module) => {
+      const posthogInstance = module.default;
+      
+      // Initialize PostHog only once when component mounts
+      if (typeof window !== 'undefined' && !posthogInstance.__loaded) {
       const apiKey = import.meta.env.VITE_PUBLIC_POSTHOG_KEY || 'phc_o3XE6MCo4vR8cnlszJy7kpPSiYwS7vx52wgR2ucsm8O';
       const apiHost = import.meta.env.VITE_PUBLIC_POSTHOG_HOST || 'https://eu.i.posthog.com';
       
       console.log('PostHog Init - API Key:', apiKey ? `${apiKey.substring(0, 10)}...` : 'MISSING');
       console.log('PostHog Init - API Host:', apiHost);
       
-      posthog.init(apiKey, {
+      posthogInstance.init(apiKey, {
         api_host: apiHost,
         debug: import.meta.env.DEV,
         capture_pageview: true, // Enable automatic pageview tracking
@@ -177,14 +182,15 @@ export function PostHogProvider({ children }: PostHogProviderProps) {
         },
         persistence: 'localStorage+cookie', // Enable return visitor tracking
         cross_subdomain_cookie: false, // Single domain setup
-        loaded: (posthog) => {
+        loaded: (loadedPosthog) => {
           console.log('PostHog loaded successfully!');
           
           // Phase 3: Advanced tracking setup
-          setupAdvancedTracking(posthog);
+          setupAdvancedTracking(loadedPosthog);
+          setPosthog(loadedPosthog);
           
           // Send initialization event
-          posthog.capture('posthog_initialized', {
+          loadedPosthog.capture('posthog_initialized', {
             timestamp: new Date().toISOString(),
             environment: import.meta.env.DEV ? 'development' : 'production',
             url: window.location.href,
@@ -197,7 +203,8 @@ export function PostHogProvider({ children }: PostHogProviderProps) {
           console.log('PostHog advanced tracking initialized!');
         }
       });
-    }
+      }
+    }).catch(console.error);
   }, []);
 
   return (
@@ -211,4 +218,4 @@ export const usePostHog = () => {
   return useContext(PostHogContext);
 };
 
-export default posthog;
+export default null;
