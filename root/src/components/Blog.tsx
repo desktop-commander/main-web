@@ -52,7 +52,7 @@ const blogPostsData = [
     title: "This Developer Ditched Windsurf, Cursor Using Claude with MCPs",
     description: "A developer's journey from popular IDEs to Claude with MCP integration, showcasing the power and flexibility of this new approach.",
     thumbnail: "blog-4.png",
-    youtubeUrl: "https://medium.com/@example/developer-ditched-windsurf-cursor",
+    youtubeUrl: "https://wonderwhy-er.medium.com/claude-with-mcps-replaced-cursor-windsurf-how-did-that-happen-c1d1e2795e96",
     duration: "Read",
     date: "December 1, 2024"
   }
