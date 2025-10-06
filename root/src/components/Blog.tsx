@@ -24,7 +24,7 @@ const blogPostsData = [
     id: 2,
     title: "Why I Went From REST APIs to MCPs to CLIs and ended up with Self-Improving AI",
     description: "Exploring the evolution from traditional REST APIs to MCPs and CLIs, and how this journey led to building self-improving AI systems.",
-    thumbnail: "blog-image-1.png",
+    thumbnail: "b1.png",
     youtubeUrl: "https://www.youtube.com/watch?v=xNlSt-4vTTo",
     duration: "23:20",
     date: "Sep 8, 2025"
@@ -33,7 +33,7 @@ const blogPostsData = [
     id: 3,
     title: "Vibe Coding With Desktop Commander: Code Documentation + Obsidian + GitHub",
     description: "Live coding session showcasing Desktop Commander's integration with Obsidian and GitHub for enhanced development workflows.",
-    thumbnail: "blog-image-2.png",
+    thumbnail: "b2.png",
     youtubeUrl: "https://www.youtube.com/watch?v=523coCdL8ZI&t=4s",
     duration: "1:00:13",
     date: "Sep 10, 2025"
@@ -42,7 +42,7 @@ const blogPostsData = [
     id: 4,
     title: "Claude with MCPs Replaced Cursor & Windsurf — How Did That Happen?",
     description: "Discover how Claude with MCP integration became a powerful alternative to popular development tools like Cursor and Windsurf.",
-    thumbnail: "blog-image-3.png",
+    thumbnail: "b3.png",
     youtubeUrl: "https://youtu.be/ly3bed99Dy8?si=pMrEbYD7ePOA3cRA",
     duration: "44:44",
     date: "Mar 19, 2025"
@@ -51,7 +51,7 @@ const blogPostsData = [
     id: 5,
     title: "This Developer Ditched Windsurf, Cursor Using Claude with MCPs",
     description: "A developer's journey from popular IDEs to Claude with MCP integration, showcasing the power and flexibility of this new approach.",
-    thumbnail: "blog-image-4.png",
+    thumbnail: "b4.png",
     youtubeUrl: "https://wonderwhy-er.medium.com/claude-with-mcps-replaced-cursor-windsurf-how-did-that-happen-c1d1e2795e96",
     duration: "Read",
     date: "December 1, 2024"
