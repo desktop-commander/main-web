@@ -5,9 +5,10 @@ import type {
   DownloadClickedProperties,
   CommunityLinkProperties,
   ScrollDepthProperties,
+  BlogPostClickedProperties,
   AllEvents
 } from './events';
-import { PAGE_EVENTS, INTERACTION_EVENTS } from './events';
+import { PAGE_EVENTS, INTERACTION_EVENTS, BLOG_EVENTS } from './events';
 
 // Enhanced logging for development
 const logEvent = (eventName: AllEvents, properties?: EventProperties) => {
@@ -80,4 +81,9 @@ export const trackCtaClick = (buttonText: string, location: string, additionalPr
 // Scroll depth tracking
 export const trackScrollDepth = (properties: ScrollDepthProperties): void => {
   trackEvent(INTERACTION_EVENTS.SCROLL_DEPTH, properties);
+};
+
+// Blog post click tracking
+export const trackBlogPostClick = (properties: BlogPostClickedProperties): void => {
+  trackEvent(BLOG_EVENTS.BLOG_POST_CLICKED, properties);
 };

@@ -40,8 +40,9 @@ export const INTERACTION_EVENTS = {
   SESSION_END: 'session_end',
 } as const;
 
-// Future events for blog section
+// Blog section events
 export const BLOG_EVENTS = {
+  BLOG_POST_CLICKED: 'blog_post_clicked',
   BLOG_POST_VIEW: 'blog_post_view',
   BLOG_POST_SHARE: 'blog_post_share',
   BLOG_CATEGORY_VIEW: 'blog_category_view',
@@ -104,6 +105,15 @@ export interface CopyCommandProperties extends EventProperties {
   button_location: string;
   installation_method: string;
   command: string;
+}
+
+export interface BlogPostClickedProperties extends EventProperties {
+  post_title: string;
+  post_url: string;
+  post_type: 'video' | 'article';
+  post_position: number;
+  post_date: string;
+  has_badge?: string;
 }
 
 // All events union type

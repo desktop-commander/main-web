@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ExternalLink } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { getAssetPath } from "@/utils/assets";
+import { trackBlogPostClick } from "@/lib/analytics/tracking";
 import {
   Carousel,
   CarouselContent,
@@ -78,6 +79,17 @@ const Blog = () => {
     thumbnail: getAssetPath(post.thumbnail)
   }));
 
+  const handleBlogPostClick = (post: typeof blogPostsData[0], index: number) => {
+    trackBlogPostClick({
+      post_title: post.title,
+      post_url: post.youtubeUrl,
+      post_type: post.duration === 'Read' ? 'article' : 'video',
+      post_position: index + 1,
+      post_date: post.date,
+      has_badge: post.badge
+    });
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -141,6 +153,7 @@ const Blog = () => {
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="block h-full"
+                      onClick={() => handleBlogPostClick(post, index)}
                     >
                       <div className="relative overflow-hidden rounded-t-lg">
                         <img
