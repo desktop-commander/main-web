@@ -13,6 +13,16 @@ import {
 const blogPostsData = [
   {
     id: 1,
+    title: "Build a Google Analytics AI Assistant in 10 Minutes",
+    description: "In my previous article, I explained how our Desktop Commander team uses CLIs and AI agents to automate various workflows — from BigQuery data analysis to CRM integrations to task management. Recently, we published a prompt that sets up a Google Analytics assistant in 10 minutes.",
+    thumbnail: "b5.png",
+    youtubeUrl: "https://wonderwhy-er.medium.com/build-a-google-analytics-ai-assistant-in-10-minutes-a19f0971d4b6",
+    duration: "Read",
+    date: "Oct 6, 2025",
+    badge: "new"
+  },
+  {
+    id: 2,
     title: "Why I Went From REST APIs to MCPs to CLIs and Ended Up with Self-Improving AI",
     description: "In recent months, I noticed something strange about my workflow. Instead of looking for MCPs to give to AI, I started asking for CLIs instead.",
     thumbnail: "meetup-poster.png",
@@ -21,7 +31,7 @@ const blogPostsData = [
     date: "September 12, 2025"
   },
   {
-    id: 2,
+    id: 3,
     title: "Why I Went From REST APIs to MCPs to CLIs and ended up with Self-Improving AI",
     description: "Exploring the evolution from traditional REST APIs to MCPs and CLIs, and how this journey led to building self-improving AI systems.",
     thumbnail: "b1.png",
@@ -30,7 +40,7 @@ const blogPostsData = [
     date: "Sep 8, 2025"
   },
   {
-    id: 3,
+    id: 4,
     title: "Vibe Coding With Desktop Commander: Code Documentation + Obsidian + GitHub",
     description: "Live coding session showcasing Desktop Commander's integration with Obsidian and GitHub for enhanced development workflows.",
     thumbnail: "b2.png",
@@ -39,7 +49,7 @@ const blogPostsData = [
     date: "Sep 10, 2025"
   },
   {
-    id: 4,
+    id: 5,
     title: "Claude with MCPs Replaced Cursor & Windsurf — How Did That Happen?",
     description: "Discover how Claude with MCP integration became a powerful alternative to popular development tools like Cursor and Windsurf.",
     thumbnail: "b3.png",
@@ -48,7 +58,7 @@ const blogPostsData = [
     date: "Mar 19, 2025"
   },
   {
-    id: 5,
+    id: 6,
     title: "This Developer Ditched Windsurf, Cursor Using Claude with MCPs",
     description: "A developer's journey from popular IDEs to Claude with MCP integration, showcasing the power and flexibility of this new approach.",
     thumbnail: "b4.png",
@@ -141,7 +151,12 @@ const Blog = () => {
                         <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-1 rounded transition-all duration-300 group-hover:bg-black/90">
                           {post.duration}
                         </div>
-                        {post.id === 2 && (
+                        {post.badge === 'new' && (
+                          <div className="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full font-semibold flex items-center gap-1 transition-all duration-300 group-hover:scale-110">
+                            ✨ New
+                          </div>
+                        )}
+                        {post.id === 3 && (
                           <div className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold flex items-center gap-1 transition-all duration-300 group-hover:scale-110">
                             🔥 Hot
                           </div>
