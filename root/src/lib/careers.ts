@@ -8,6 +8,8 @@ export interface Job {
   responsibilities: string[];
   requirements: string[];
   niceToHave: string[];
+  benefits?: string[];
+  bonusPoints?: string[];
   applyUrl: string;
   isActive: boolean;
   postedDate: string;

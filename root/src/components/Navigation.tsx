@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -77,10 +78,13 @@ const Navigation = () => {
               <Button variant="ghost" size="sm" asChild>
                 <a
                   href="/careers"
-                  className="text-white hover:text-white/80 font-medium"
+                  className="text-white hover:text-white/80 font-medium relative pr-12"
                   onClick={() => trackNavigation('Careers', '/careers')}
                 >
                   Careers
+                  <Badge variant="default" className="absolute -top-1 right-2 bg-green-600 hover:bg-green-700 text-white text-[9px] px-1.5 py-0.5">
+                    Hiring
+                  </Badge>
                 </a>
               </Button>
 
@@ -187,10 +191,13 @@ const Navigation = () => {
                   
                   <a
                     href="/careers"
-                    className="flex items-center px-4 py-3 text-foreground hover:bg-dc-surface rounded-lg transition-colors"
+                    className="flex items-center px-4 py-3 text-foreground hover:bg-dc-surface rounded-lg transition-colors relative pr-18"
                     onClick={() => handleMobileNavClick('Careers', '/careers')}
                   >
                     Careers
+                    <Badge variant="default" className="absolute top-2.5 right-3 bg-green-600 hover:bg-green-700 text-white text-[9px] px-1.5 py-0.5">
+                      Hiring
+                    </Badge>
                   </a>
 
                   <div className="border-t border-dc-border pt-4">
