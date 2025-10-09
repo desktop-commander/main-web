@@ -92,9 +92,11 @@ const JobModal = ({ job, open, onOpenChange }: { job: Job; open: boolean; onOpen
 
           <div className="space-y-6 py-4">
             <div>
-              <p className="text-muted-foreground">
-                {job.description}
-              </p>
+              <div className="text-muted-foreground space-y-4">
+                {job.description.split('\n\n').map((paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                ))}
+              </div>
             </div>
 
             <Separator />
