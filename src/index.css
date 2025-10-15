@@ -56,8 +56,8 @@ All colors MUST be HSL.
     --shadow-elegant: 0 10px 30px -10px hsl(var(--dc-blue) / 0.2);
     --shadow-glow: 0 0 40px hsl(var(--dc-blue) / 0.3);
     
-    /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Animations - 20% faster */
+    --transition-smooth: all 0.24s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
 

@@ -547,6 +547,7 @@ npm run setup`);
 const Installation = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [openModal, setOpenModal] = useState<string | null>(null);
+  const [copiedCommand, setCopiedCommand] = useState<string | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   
   // Analytics hook
@@ -634,7 +635,7 @@ const Installation = () => {
     <section ref={sectionRef} id="installation" className="py-12 bg-dc-surface/30 scroll-mt-24">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6">
         {/* Header - Fade in */}
-        <div className={`text-center mb-10 transition-all duration-1000 ${
+        <div className={`text-center mb-10 transition-all duration-800 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
@@ -646,7 +647,7 @@ const Installation = () => {
         </div>
 
         {/* Requirements - Staggered animation */}
-        <div className={`mb-8 transition-all duration-1000 delay-300 ${
+        <div className={`mb-8 transition-all duration-800 delay-200 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <div className="max-w-4xl mx-auto">
@@ -674,7 +675,7 @@ const Installation = () => {
         </div>
 
         {/* Installation Options */}
-        <div className={`transition-all duration-1000 delay-500 ${
+        <div className={`transition-all duration-800 delay-400 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-6 text-center">
@@ -684,13 +685,13 @@ const Installation = () => {
             {installationOptions.map((option, index) => (
               <Card 
                 key={index} 
-                className={`p-6 bg-dc-card border-2 border-primary/30 hover:border-primary/50 transition-all duration-500 hover:scale-105 hover:shadow-lg relative ${!option.available ? 'opacity-60' : ''} ${
+                className={`p-6 bg-dc-card border-2 border-primary/30 hover:border-primary/50 transition-all duration-400 hover:scale-105 hover:shadow-lg relative ${!option.available ? 'opacity-60' : ''} ${
                   isVisible 
                     ? 'opacity-100 translate-y-0' 
                     : 'opacity-0 translate-y-8'
                 }`}
                 style={{
-                  transitionDelay: isVisible ? `${700 + index * 200}ms` : '0ms'
+                  transitionDelay: isVisible ? `${560 + index * 160}ms` : '0ms'
                 }}
               >
                 <div className="text-center mb-4">
@@ -737,6 +738,8 @@ const Installation = () => {
                       className="absolute top-3 right-2 h-6 w-6 p-0 hover:bg-muted transition-all duration-300 hover:scale-110"
                       onClick={() => {
                         navigator.clipboard.writeText(option.command);
+                        setCopiedCommand(option.method);
+                        setTimeout(() => setCopiedCommand(null), 2000);
                         trackCustomEvent('copy_command_clicked', {
                           button_text: 'Copy',
                           button_location: 'installation_main',
@@ -745,7 +748,11 @@ const Installation = () => {
                         });
                       }}
                     >
-                      <Copy className="h-3 w-3" />
+                      {copiedCommand === option.method ? (
+                        <Check className="h-3 w-3 text-green-500" />
+                      ) : (
+                        <Copy className="h-3 w-3" />
+                      )}
                     </Button>
                   </div>
                 )}
@@ -755,7 +762,7 @@ const Installation = () => {
         </div>
 
         {/* Getting Started Callout - Delayed animation */}
-        <div className={`mt-10 transition-all duration-1000 delay-1000 ${
+        <div className={`mt-10 transition-all duration-800 delay-800 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <Card className="p-4 bg-primary/5 border-primary/20 max-w-4xl mx-auto hover:bg-primary/10 transition-all duration-300 hover:scale-105">

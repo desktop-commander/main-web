@@ -327,8 +327,7 @@ export function UsePromptWizard({ isOpen, onClose, prompt, promptTitle }: UsePro
                 className="flex-1 w-full h-11 min-w-0"
                 size="lg"
               >
-                <span className="hidden sm:inline truncate">No, take me to install</span>
-                <span className="sm:hidden truncate">Install Desktop Commander</span>
+                <span className="truncate">No, take me there</span>
                 <ExternalLink className="ml-2 h-4 w-4 flex-shrink-0" />
               </Button>
             </div>
