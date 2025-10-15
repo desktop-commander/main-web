@@ -313,10 +313,10 @@ export function UsePromptWizard({ isOpen, onClose, prompt, promptTitle }: UsePro
                 To use this prompt, you'll need Desktop Commander installed.
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-2.5 mt-4 min-w-0">
+            <div className="flex flex-col gap-2.5 mt-4 min-w-0">
               <Button 
                 onClick={() => handleInstallationResponse(true)}
-                className="flex-1 w-full h-11 min-w-0"
+                className="w-full h-11 min-w-0"
                 size="lg"
               >
                 <span className="truncate">Yes, I have it</span>
@@ -324,10 +324,10 @@ export function UsePromptWizard({ isOpen, onClose, prompt, promptTitle }: UsePro
               <Button 
                 onClick={() => handleInstallationResponse(false)}
                 variant="outline"
-                className="flex-1 w-full h-11 min-w-0"
+                className="w-full h-11 min-w-0"
                 size="lg"
               >
-                <span className="truncate">No, take me there</span>
+                <span className="truncate">No, take me to installation</span>
                 <ExternalLink className="ml-2 h-4 w-4 flex-shrink-0" />
               </Button>
             </div>
