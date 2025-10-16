@@ -1414,6 +1414,28 @@
       "dateAdded": "2025-09-30",
       "verified": false,
       "difficulty": "Intermediate"
+    },
+    {
+      "id": "84",
+      "title": "Manage Wordpress site in natural language",
+      "description": "Install WP-CLI locally, establish SSH connection to your WordPress site, and manage your site remotely using command-line tools.",
+      "prompt": "I need to set up SSH access to my WordPress site and use WP-CLI for managing site, adding posts and adjusting its design. Use Desktop Commander to install WP-CLI on my local machine. When it's done, guide me through connecting to my WordPress site via SSH. Verify the SSH connection is working. Finally, show me how to use WP-CLI commands through the SSH connection to manage my WordPress site.",
+      "sessionType": "Step-by-step flow",
+      "targetRoles": [
+        "Developers",
+        "DevOps",
+        "Content makers"
+      ],
+      "categories": [
+        "Deploy",
+        "Automate tasks"
+      ],
+      "votes": 0,
+      "gaClicks": 0,
+      "icon": "Terminal",
+      "author": "DC team",
+      "dateAdded": "2025-10-16",
+      "verified": true
     }
   ]
 }

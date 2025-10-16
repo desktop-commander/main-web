@@ -109,25 +109,35 @@ const Index = () => {
       'Explain Codebase or Repository',
       'Set up Google Analytics and analyze traffic',
       'Build A Feature from Scratch',
-      'Set Up WordPress Environment',
+      'Manage Wordpress site in natural language',
       'Set Up Cloud Infrastructure',
       'Build and Deploy Landing Page',
       'Generate Docker Configuration',
       'Set Up Local Development Environment'
     ];
     
+    console.log('🔍 DEBUGGING: Looking for featured prompts');
+    console.log('Total prompts available:', useCases.length);
+    console.log('Looking for titles:', featuredTitles);
+    
     // Find these specific prompts (with flexible matching for whitespace)
     const featured = [];
     for (const title of featuredTitles) {
       const useCase = useCases.find(uc => 
-        uc.title.trim() === title || 
-        uc.title.trim() === title.trim() ||
-        uc.title.replace(/\s+/g, ' ').trim() === title.trim()
+        uc.title.trim().toLowerCase() === title.trim().toLowerCase() || 
+        uc.title.replace(/\s+/g, ' ').trim().toLowerCase() === title.trim().toLowerCase()
       );
       if (useCase) {
+        console.log(`✅ Found: "${title}" -> ID ${useCase.id}`);
         featured.push(useCase);
+      } else {
+        console.warn(`❌ Could not find featured prompt: "${title}"`);
+        console.log(`Searching for similar:`, useCases.filter(uc => uc.title.toLowerCase().includes(title.toLowerCase().substring(0, 10))).map(uc => `"${uc.title}" (ID: ${uc.id})`));
       }
     }
+    
+    console.log('✨ Featured prompts found:', featured.length, '/', featuredTitles.length);
+    console.log('Featured IDs:', featured.map(uc => `${uc.id}: ${uc.title}`));
     
     // If we don't find all 9, log a warning
     if (featured.length < 9) {
@@ -190,13 +200,13 @@ const Index = () => {
           defaultFeaturedUseCases[0], // Organise my Downloads folder
           defaultFeaturedUseCases[2], // Set up Google Analytics and analyze traffic
           defaultFeaturedUseCases[3], // Build A Feature from Scratch
-          defaultFeaturedUseCases[4]  // Set Up WordPress Environment
+          defaultFeaturedUseCases[4]  // Manage Wordpress site in natural language
         ].filter(Boolean).map((u) => u.id)
       : (selectedCategory === 'Deploy')
       ? [
-          defaultFeaturedUseCases[3], // Set Up WordPress Environment
-          defaultFeaturedUseCases[4], // Set Up Cloud Infrastructure
-          defaultFeaturedUseCases[6]  // Generate Docker Configuration (Optimize Docker Setup)
+          defaultFeaturedUseCases[4], // Manage Wordpress site in natural language
+          defaultFeaturedUseCases[5], // Set Up Cloud Infrastructure
+          defaultFeaturedUseCases[7]  // Generate Docker Configuration (Optimize Docker Setup)
         ].filter(Boolean).map((u) => u.id)
       : (selectedCategory === 'Explore codebase')
       ? [

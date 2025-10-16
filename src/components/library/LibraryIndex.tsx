@@ -31,7 +31,7 @@ const LibraryIndex = () => {
       'Explain Codebase or Repository',
       'Set up Google Analytics and analyze traffic',
       'Build A Feature from Scratch',
-      'Set Up WordPress Environment',
+      'Manage Wordpress site in natural language',
       'Set Up Cloud Infrastructure',
       'Build and Deploy Landing Page',
       'Generate Docker Configuration',
