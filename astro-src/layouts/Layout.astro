@@ -39,9 +39,72 @@ import BasePathFixer from '../components/BasePathFixer.astro';
     <meta name="twitter:site" content="@desktop_commander" />
     <meta name="twitter:image" content={ogImage} />
     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXL4Y3Y62N"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HXL4Y3Y62N');
+    </script>
+    
     <!-- Inject base path for React components -->
     <script is:inline define:vars={{ basePath: import.meta.env.BASE_URL }}>
       window.__BASE_PATH__ = basePath;
+    </script>
+    
+    <!-- PostHog Analytics Initialization -->
+    <!-- Note: PostHog loads from npm package via React bundle -->
+    <!-- This script initializes it once the library is available -->
+    <script is:inline>
+      // PostHog configuration
+      const POSTHOG_CONFIG = {
+        apiKey: 'phc_SmlF1mKK199Blt4hUNL6V19IWydNNJ9o7Qbym2Y4zQa',
+        apiHost: 'https://eu.i.posthog.com',
+        environment: window.location.hostname === 'localhost' ? 'development' : 'production'
+      };
+
+      // Wait for PostHog to be loaded by React bundle
+      let initAttempts = 0;
+      const maxAttempts = 50; // 5 seconds max
+      
+      const initPostHog = setInterval(function() {
+        initAttempts++;
+        
+        if (window.posthog && typeof window.posthog.init === 'function') {
+          clearInterval(initPostHog);
+          
+          window.posthog.init(POSTHOG_CONFIG.apiKey, {
+            api_host: POSTHOG_CONFIG.apiHost,
+            session_recording: {
+              enabled: true,
+              record_console: POSTHOG_CONFIG.environment === 'development',
+              record_network: POSTHOG_CONFIG.environment === 'development',
+            },
+            autocapture: {
+              dom_event_allowlist: ['click', 'change', 'submit'],
+              mask_all_element_attributes: false,
+              mask_all_text: false,
+            },
+            loaded: function(posthog) {
+              if (POSTHOG_CONFIG.environment === 'development') {
+                posthog.debug(true);
+              }
+              console.log('PostHog initialized for ' + POSTHOG_CONFIG.environment + ' environment');
+            },
+            respect_dnt: true,
+            disable_session_recording: false,
+          });
+
+          window.posthog.register({
+            environment: POSTHOG_CONFIG.environment,
+            website_section: 'main_site'
+          });
+        } else if (initAttempts >= maxAttempts) {
+          clearInterval(initPostHog);
+          console.warn('PostHog library not loaded after 5 seconds');
+        }
+      }, 100);
     </script>
   </head>
   <body>

@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PostHogInit from '../../src/components/PostHogInit';
 import NavigationAstro from '../../src/components/NavigationAstro';
 import HeroAstro from '../../src/components/HeroAstro';
 import UseCases from '../../src/components/UseCases';
@@ -16,6 +17,9 @@ import Footer from '../../src/components/Footer';
   title="Desktop Commander - MCP Tool for Developers"
   description="Desktop Commander is a powerful MCP tool that helps developers manage files, set up servers, and deploy applications with ease."
 >
+  <!-- Load PostHog early to expose window.posthog -->
+  <PostHogInit client:only="react" />
+  
   <div class="min-h-screen bg-background">
     <NavigationAstro client:load />
     <main>

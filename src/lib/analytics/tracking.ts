@@ -1,4 +1,3 @@
-import { posthog, isPostHogReady } from './posthog';
 import type { 
   EventProperties,
   PageViewProperties,
@@ -16,8 +15,13 @@ const logEvent = (eventName: AllEvents, properties?: EventProperties) => {
     event: eventName,
     properties,
     timestamp: new Date().toISOString(),
-    posthogReady: isPostHogReady()
+    posthogReady: !!(window as any).posthog?.__loaded
   });
+};
+
+// Check if PostHog is ready (use window.posthog for Astro compatibility)
+const isPostHogReady = (): boolean => {
+  return !!(window as any).posthog && !!(window as any).posthog.__loaded;
 };
 
 // Generic tracking function
@@ -37,7 +41,7 @@ export const trackEvent = (
   }
 
   try {
-    posthog.capture(eventName, {
+    (window as any).posthog.capture(eventName, {
       ...properties,
       timestamp: new Date().toISOString(),
     });
