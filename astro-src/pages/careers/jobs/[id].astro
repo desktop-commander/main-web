@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import PostHogInit from '../../../../src/components/PostHogInit';
 import NavigationAstro from '../../../../src/components/NavigationAstro';
 import Footer from '../../../../src/components/Footer';
 import jobsData from '../../../../src/data/jobs.json';
@@ -44,6 +45,9 @@ const formatResponsibility = (text: string) => {
   title={`${job.title} - Desktop Commander`}
   description={job.description}
 >
+  <!-- Load PostHog early to initialize analytics -->
+  <PostHogInit client:load />
+  
   <div class="min-h-screen bg-background">
     <NavigationAstro client:load />
     <div class="pt-20">

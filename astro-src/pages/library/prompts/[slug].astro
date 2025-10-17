@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import PostHogInit from '../../../../src/components/PostHogInit';
 import NavigationAstro from '../../../../src/components/NavigationAstro';
 import Footer from '../../../../src/components/Footer';
 import PromptDetailPage from '../../../../src/components/library/PromptDetailPage';
@@ -29,6 +30,9 @@ const promptId = useCase.id;
   title={`${useCase.title} - Desktop Commander`}
   description={useCase.description}
 >
+  <!-- Load PostHog early to initialize analytics -->
+  <PostHogInit client:load />
+  
   <div class="min-h-screen bg-background">
     <NavigationAstro client:load />
     <PromptDetailPage client:load useCase={useCase} />

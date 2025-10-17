@@ -1,5 +1,9 @@
 import posthog from 'posthog-js';
 
+// IMPORTANT: This file is deprecated in the Astro setup.
+// PostHog initialization now happens in src/components/PostHogInit.tsx
+// This file is kept for reference and the isPostHogReady helper function.
+
 // PostHog configuration
 interface PostHogConfig {
   apiKey: string;
@@ -18,7 +22,9 @@ const getPostHogConfig = (): PostHogConfig => {
   };
 };
 
-// Initialize PostHog
+// DEPRECATED: This function is no longer used in the Astro setup.
+// PostHog is now initialized in PostHogInit.tsx component.
+// Keeping for backward compatibility only.
 export const initializePostHog = (): void => {
   const config = getPostHogConfig();
   

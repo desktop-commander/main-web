@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import PostHogInit from '../../../src/components/PostHogInit';
 import NavigationAstro from '../../../src/components/NavigationAstro';
 import Footer from '../../../src/components/Footer';
 import LibraryIndex from '../../../src/components/library/LibraryIndex';
@@ -9,6 +10,9 @@ import LibraryIndex from '../../../src/components/library/LibraryIndex';
   title="Prompt Library - Desktop Commander"
   description="Discover powerful AI workflows and automation prompts for Desktop Commander"
 >
+  <!-- Load PostHog early to initialize analytics -->
+  <PostHogInit client:load />
+  
   <div class="min-h-screen bg-background">
     <NavigationAstro client:load />
     <main>

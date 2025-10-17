@@ -17,8 +17,8 @@ import Footer from '../../src/components/Footer';
   title="Desktop Commander - MCP Tool for Developers"
   description="Desktop Commander is a powerful MCP tool that helps developers manage files, set up servers, and deploy applications with ease."
 >
-  <!-- Load PostHog early to expose window.posthog -->
-  <PostHogInit client:only="react" />
+  <!-- Load PostHog early to initialize analytics -->
+  <PostHogInit client:load />
   
   <div class="min-h-screen bg-background">
     <NavigationAstro client:load />

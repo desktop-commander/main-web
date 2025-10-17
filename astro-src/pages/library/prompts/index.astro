@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import PostHogInit from '../../../../src/components/PostHogInit';
 import NavigationAstro from '../../../../src/components/NavigationAstro';
 import Footer from '../../../../src/components/Footer';
 import PromptsLibrary from '../../../../src/components/library/PromptsLibraryAstro';
@@ -13,6 +14,9 @@ const promptId = url.searchParams.get('i');
   title="Prompt Library - Desktop Commander"
   description="Browse 60+ curated prompts for Desktop Commander MCP"
 >
+  <!-- Load PostHog early to initialize analytics -->
+  <PostHogInit client:load />
+  
   <div class="min-h-screen bg-background">
     <NavigationAstro client:load />
     <main>

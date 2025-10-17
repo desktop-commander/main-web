@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PostHogInit from '../../src/components/PostHogInit';
 import NavigationAstro from '../../src/components/NavigationAstro';
 import Footer from '../../src/components/Footer';
 import jobsData from '../../src/data/jobs.json';
@@ -27,6 +28,9 @@ const truncateDescription = (text: string, maxLength: number = 200) => {
   title="Careers - Desktop Commander"
   description="Join us in building the future of developer automation"
 >
+  <!-- Load PostHog early to initialize analytics -->
+  <PostHogInit client:load />
+  
   <div class="min-h-screen bg-background">
     <NavigationAstro client:load />
     <main>
