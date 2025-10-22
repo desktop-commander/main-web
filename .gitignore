@@ -8,3 +8,4 @@ daemon.log
 /.idea/main-web-fork.iml
 /.idea/modules.xml
 /.idea/inspectionProfiles/Project_Default.xml
+.DS_Store
