@@ -117,10 +117,10 @@ const Blog = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Blog
+            Hear from our founders
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Follow our content on AI, MCPs and latest tools in the industry.
+            Follow our team on YouTube and Medium to see our latest thinking
           </p>
         </div>
         
