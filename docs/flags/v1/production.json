@@ -1,0 +1,7 @@
+{
+  "version": "0.0.1",
+  "cacheDuration": 1800,
+  "flags": {
+    "user_surveys": true
+  }
+}
