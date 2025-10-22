@@ -22,40 +22,95 @@ import { getLink } from '../utils/basePath';
           </a>
           
           <a href={getLink('/library/prompts')} class="text-sm font-medium hover:text-primary transition-colors">
-            Prompt Library
+            Prompts
           </a>
           
-          <a href={getLink('/#features')} class="text-sm font-medium hover:text-primary transition-colors">
-            Features
+          <a href={getLink('/#community')} class="text-sm font-medium hover:text-primary transition-colors">
+            Community
           </a>
           
-          <a href={getLink('/careers')} class="text-sm font-medium hover:text-primary transition-colors">
+          <a href={getLink('/careers')} class="text-sm font-medium hover:text-primary transition-colors relative inline-flex items-center">
             Careers
+            <span class="absolute -top-1 -right-12 bg-green-600 text-white text-[9px] px-1.5 py-0.5 rounded font-semibold">Hiring</span>
           </a>
           
-          <a 
-            href="https://github.com/desktopcommander/desktop-commander"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
-          >
-            GitHub
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-              <polyline points="15 3 21 3 21 9"></polyline>
-              <line x1="10" y1="14" x2="21" y2="3"></line>
-            </svg>
-          </a>
+          <!-- Resources Dropdown -->
+          <div class="relative resources-dropdown">
+            <button class="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
+              Resources
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="resources-menu hidden absolute top-full left-0 mt-2 w-48 bg-background border border-dc-border rounded-lg shadow-lg py-2">
+              <a 
+                href="https://desktopcommander.app/blog/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-between px-4 py-2 text-sm hover:bg-dc-surface transition-colors"
+              >
+                Blog
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
+              <a 
+                href="https://blog.desktopcommander.app/about/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-between px-4 py-2 text-sm hover:bg-dc-surface transition-colors"
+              >
+                About
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
+              <a 
+                href="https://blog.desktopcommander.app/contact/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-between px-4 py-2 text-sm hover:bg-dc-surface transition-colors"
+              >
+                Contact
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
+              <a 
+                href={getLink('/#faq')}
+                class="flex items-center px-4 py-2 text-sm hover:bg-dc-surface transition-colors"
+              >
+                FAQ
+              </a>
+              <a 
+                href="https://github.com/wonderwhy-er/DesktopCommanderMCP"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-between px-4 py-2 text-sm hover:bg-dc-surface transition-colors"
+              >
+                GitHub
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       
       <!-- CTA Button -->
       <div class="hidden lg:block">
         <a 
-          href="https://docs.desktopcommander.app/installation"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 gap-2"
+          href={getLink('/#installation')}
+          class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-blue-600 hover:bg-blue-700 text-white h-10 px-4 py-2 gap-2"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect width="14" height="8" x="5" y="2" rx="2"></rect>
@@ -63,7 +118,7 @@ import { getLink } from '../utils/basePath';
             <path d="M6 18h2"></path>
             <path d="M12 18h6"></path>
           </svg>
-          Install Desktop Commander
+          Install
         </a>
       </div>
       
@@ -97,29 +152,91 @@ import { getLink } from '../utils/basePath';
         Use Cases
       </a>
       <a href={getLink('/library/prompts')} class="text-lg font-medium hover:text-primary transition-colors">
-        Prompt Library
+        Prompts
       </a>
-      <a href={getLink('/#features')} class="text-lg font-medium hover:text-primary transition-colors">
-        Features
+      <a href={getLink('/#community')} class="text-lg font-medium hover:text-primary transition-colors">
+        Community
       </a>
-      <a href={getLink('/careers')} class="text-lg font-medium hover:text-primary transition-colors">
+      <a href={getLink('/careers')} class="text-lg font-medium hover:text-primary transition-colors relative inline-flex items-center">
         Careers
-      </a>
-      <a 
-        href="https://github.com/desktopcommander/desktop-commander"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-lg font-medium hover:text-primary transition-colors"
-      >
-        GitHub
+        <span class="ml-2 bg-green-600 text-white text-[9px] px-1.5 py-0.5 rounded font-semibold">Hiring</span>
       </a>
       
+      <div class="border-t border-dc-border pt-4 mt-2">
+        <p class="text-sm text-muted-foreground font-medium mb-3">Resources</p>
+        
+        <div class="flex flex-col gap-3">
+          <a 
+            href="https://desktopcommander.app/blog/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-base font-medium hover:text-primary transition-colors flex items-center justify-between"
+          >
+            Blog
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+          <a 
+            href="https://blog.desktopcommander.app/about/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-base font-medium hover:text-primary transition-colors flex items-center justify-between"
+          >
+            About
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+          <a 
+            href="https://blog.desktopcommander.app/contact/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-base font-medium hover:text-primary transition-colors flex items-center justify-between"
+          >
+            Contact
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+          <a 
+            href={getLink('/#faq')}
+            class="text-base font-medium hover:text-primary transition-colors"
+          >
+            FAQ
+          </a>
+          <a 
+            href="https://github.com/wonderwhy-er/DesktopCommanderMCP"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-base font-medium hover:text-primary transition-colors flex items-center justify-between"
+          >
+            GitHub
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
       <a 
-        href="https://docs.desktopcommander.app/installation"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="mt-4 inline-flex items-center justify-center rounded-md text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+        href={getLink('/#installation')}
+        class="mt-4 inline-flex items-center justify-center rounded-md text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white h-10 px-4 py-2 gap-2"
       >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="14" height="8" x="5" y="2" rx="2"></rect>
+          <rect width="20" height="8" x="2" y="14" rx="2"></rect>
+          <path d="M6 18h2"></path>
+          <path d="M12 18h6"></path>
+        </svg>
         Install Desktop Commander
       </a>
     </div>
@@ -146,5 +263,21 @@ import { getLink } from '../utils/basePath';
     link.addEventListener('click', () => {
       mobileMenu?.classList.add('hidden');
     });
+  });
+  
+  // Resources dropdown toggle
+  const resourcesDropdown = document.querySelector('.resources-dropdown');
+  const resourcesButton = resourcesDropdown?.querySelector('button');
+  const resourcesMenu = resourcesDropdown?.querySelector('.resources-menu');
+  
+  resourcesButton?.addEventListener('click', () => {
+    resourcesMenu?.classList.toggle('hidden');
+  });
+  
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (resourcesDropdown && !resourcesDropdown.contains(e.target as Node)) {
+      resourcesMenu?.classList.add('hidden');
+    }
   });
 </script>
