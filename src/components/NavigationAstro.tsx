@@ -76,6 +76,17 @@ const NavigationAstro = () => {
                 </a>
               </Button>
 
+              <Button variant="ghost" size="sm" asChild>
+                <a 
+                  href="https://desktopcommander.app/blog/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-white/80 font-medium"
+                >
+                  Blog
+                </a>
+              </Button>
+
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="sm" className="text-white hover:text-white/80 font-medium">
@@ -85,8 +96,23 @@ const NavigationAstro = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start" className="w-48">
                   <DropdownMenuItem asChild>
-                    <a href="/#blog" className="flex items-center cursor-pointer">
-                      Blog
+                    <a 
+                      href="https://blog.desktopcommander.app/about/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center cursor-pointer"
+                    >
+                      About
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <a 
+                      href="https://blog.desktopcommander.app/contact/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center cursor-pointer"
+                    >
+                      Contact
                     </a>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
@@ -155,13 +181,33 @@ const NavigationAstro = () => {
                     Hiring
                   </Badge>
                 </a>
-                <div className="border-t border-border my-2"></div>
                 <a 
-                  href="/#blog" 
+                  href="https://desktopcommander.app/blog/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={handleMobileNavClick}
                   className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors"
                 >
                   Blog
+                </a>
+                <div className="border-t border-border my-2"></div>
+                <a 
+                  href="https://blog.desktopcommander.app/about/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={handleMobileNavClick}
+                  className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors"
+                >
+                  About
+                </a>
+                <a 
+                  href="https://blog.desktopcommander.app/contact/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={handleMobileNavClick}
+                  className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors"
+                >
+                  Contact
                 </a>
                 <a 
                   href="/#faq" 
