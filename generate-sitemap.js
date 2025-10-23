@@ -26,20 +26,20 @@ const generateSitemap = () => {
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>${baseUrl}/careers</loc>
+        <loc>${baseUrl}/careers/</loc>
         <lastmod>${currentDate}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <!-- Library Pages -->
     <url>
-        <loc>${baseUrl}/library</loc>
+        <loc>${baseUrl}/library/</loc>
         <lastmod>${currentDate}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>${baseUrl}/library/prompts</loc>
+        <loc>${baseUrl}/library/prompts/</loc>
         <lastmod>${currentDate}</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
@@ -57,7 +57,7 @@ const generateSitemap = () => {
       .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
     
     sitemap += `    <url>
-        <loc>${baseUrl}/library/prompts/${slug}</loc>
+        <loc>${baseUrl}/library/prompts/${slug}/</loc>
         <lastmod>${currentDate}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
