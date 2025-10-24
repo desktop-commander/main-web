@@ -15,6 +15,39 @@ export default function Prompts() {
   const [searchParams, setSearchParams] = useSearchParams();
   const posthog = usePostHog();
   
+  // REDIRECT: Handle old ID-based URLs (?i=X) and redirect to new slug-based URLs
+  // This fixes the 404 errors Google Search Console is reporting
+  useEffect(() => {
+    const promptId = searchParams.get('i');
+    
+    if (promptId && idToSlugMap[promptId]) {
+      const slug = idToSlugMap[promptId];
+      // Preserve UTM parameters when redirecting
+      const utmParams = new URLSearchParams();
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(param => {
+        const value = searchParams.get(param);
+        if (value) utmParams.set(param, value);
+      });
+      
+      // Build new URL with slug
+      const newPath = `/library/prompts/${slug}/`;
+      const queryString = utmParams.toString();
+      const fullPath = queryString ? `${newPath}?${queryString}` : newPath;
+      
+      // Track the redirect for monitoring
+      posthog.capture('legacy_url_redirect', {
+        old_id: promptId,
+        new_slug: slug,
+        referrer: document.referrer,
+        has_utm_params: queryString.length > 0
+      });
+      
+      // Perform 301-equivalent redirect
+      window.location.replace(fullPath);
+      return;
+    }
+  }, [searchParams, posthog]);
+  
   // Phase 3: Track page load time for performance monitoring
   useEffect(() => {
     window.pageLoadTime = new Date().getTime();

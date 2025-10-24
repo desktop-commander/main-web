@@ -1,0 +1,16 @@
+# Legacy URL Redirects
+# Redirect old ID-based URLs to new slug-based URLs
+# Format: /old-path /new-path 301
+
+# Old subdomain redirects (if library.desktopcommander.app was used)
+# These handle the URLs shown in Google Search Console
+https://library.desktopcommander.app/* https://desktopcommander.app/library/:splat 301
+
+# Individual ID-based redirects (if you have specific ones Google is flagging)
+# You would need to add these manually for each ID → slug mapping
+# Example:
+# /library/prompts?i=5 /library/prompts/convert-heic-to-png/ 301
+# /library/?i=32 /library/prompts/[appropriate-slug]/ 301
+
+# Note: The client-side redirect in Prompts.tsx will handle most cases
+# These server-side redirects are backup and for SEO juice preservation
