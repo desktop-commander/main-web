@@ -115,6 +115,34 @@ This document outlines a prioritized, step-by-step plan to address SEO issues id
 
 ---
 
+### 1.2.5 Fix Remaining Orphaned Canonical URLs ✅ **COMPLETED - Oct 24, 2025**
+**Issue:** Ahrefs detected 4 additional pages with canonical tags but insufficient internal links  
+**Affected Pages:**
+- `/library/prompts/` - Had only 1 incoming link
+- `/careers/jobs/senior-fullstack-ai-engineer-2025/` - Had JavaScript navigation only
+
+**Status:** ✅ **FIXED AND READY FOR DEPLOYMENT**
+
+**Changes Implemented:**
+
+**1. Job Posting Links - JobListings.tsx ✅**
+- Wrapped job cards in proper `<a href>` tags
+- Changed from `onClick` JavaScript navigation to crawlable HTML links
+- File: `src/components/JobListings.tsx`
+
+**2. Browse All Prompts Links - Multiple Locations ✅**
+- Added to footer navigation (site-wide visibility)
+- Added to desktop Resources dropdown menu
+- Added to mobile navigation menu
+- File: `src/components/Footer.tsx` and `src/components/Navigation.tsx`
+
+**Impact:**
+- `/library/prompts/` now has 4+ incoming links (footer + nav + mobile + existing)
+- Job posting has proper HTML link from careers page
+- All links fully crawlable by search engines
+
+---
+
 ### 1.3 Optimize Large Images ✅ **COMPLETED - Oct 22, 2025**
 **Issue:** 2 images exceed recommended file sizes (b4.png: 1MB, b5.png: 1.5MB)  
 **Location:** Root directory images  
@@ -447,6 +475,16 @@ Track these metrics to measure improvement:
 ---
 
 ## Completed Tasks
+
+### ✅ October 24, 2025 - Phase 1.2.5 Complete
+- **Fix Remaining Orphaned Canonical URLs (Ahrefs Alert)**
+  - ✅ Converted job posting cards to proper HTML `<a href>` links
+  - ✅ Added "Browse All Prompts" link to footer navigation
+  - ✅ Added "Browse All Prompts" to desktop Resources dropdown
+  - ✅ Added "Browse All Prompts" to mobile navigation menu
+  - ✅ All links now fully crawlable by search engines
+  - 📊 Expected impact: 4 orphaned pages → 0 orphaned pages in next Ahrefs crawl
+  - 🔍 Monitor: Ahrefs "Orphaned Canonical URLs" alert should resolve within 1-2 weeks
 
 ### ✅ October 24, 2025 - Legacy URL 404 Fix
 - **Fix Google Search Console 404 Errors for Old ID-Based URLs**

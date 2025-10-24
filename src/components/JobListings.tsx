@@ -252,7 +252,8 @@ const JobCard = ({ job }: { job: Job }) => {
   };
 
   return (
-    <Card className="group hover:shadow-lg transition-all duration-300 cursor-pointer" onClick={handleClick}>
+    <a href={getLink(`/careers/jobs/${job.id}`)} className="block no-underline">
+      <Card className="group hover:shadow-lg transition-all duration-300 cursor-pointer">
       <CardHeader>
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
           <div className="flex-1">
@@ -292,6 +293,7 @@ const JobCard = ({ job }: { job: Job }) => {
         </Button>
       </CardContent>
     </Card>
+    </a>
   );
 };
 
