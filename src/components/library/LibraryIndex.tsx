@@ -111,8 +111,8 @@ const LibraryIndex = () => {
   }, [selectedRole, selectedCategory, defaultFeaturedUseCases]);
 
   const handleUseCaseClick = (useCase: any) => {
-    // Navigate to slug URL - this will cause page load and modal to open
-    window.location.href = getLink(`/library/prompts/${useCase.slug}`);
+    // Analytics tracking - actual navigation handled by <a> tag
+    // This function is now mainly for tracking purposes
   };
 
   const getSessionTypeDisplay = (sessionType: string) => {
@@ -180,61 +180,61 @@ const LibraryIndex = () => {
                 {displayedUseCases.map((useCase) => {
                   const sessionDisplay = getSessionTypeDisplay(useCase.sessionType);
                   const SessionIcon = sessionDisplay.icon;
+                  const promptUrl = getLink(`/library/prompts/${useCase.slug}/`);
                   
                   return (
-                    <Card 
-                      key={useCase.id} 
-                      className={`dc-card cursor-pointer hover:shadow-lg transition-shadow relative group focus:outline-none focus:ring-2 focus:ring-primary/50 ${
-                        hotIds.has(useCase.id) ? 'border-2 border-primary' : ''
-                      } after:content-['↗'] after:absolute after:bottom-3 after:right-3 after:text-xs after:text-muted-foreground/70 after:pointer-events-none after:transition-transform after:transition-colors after:duration-200 hover:after:text-primary hover:after:translate-x-0.5 hover:after:-translate-y-0.5`}
+                    <a
+                      key={useCase.id}
+                      href={promptUrl}
+                      className="block h-full no-underline"
                       onClick={() => handleUseCaseClick(useCase)}
-                      role="button"
-                      tabIndex={0}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          e.preventDefault();
-                          handleUseCaseClick(useCase);
-                        }
-                      }}
                     >
-                      <CardHeader>
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="flex-1 min-w-0">
-                            <CardTitle className="text-base leading-snug mb-2 min-h-[2.5rem] flex items-start">
-                              {useCase.title}
-                              {isNewPrompt(useCase.dateAdded) && (
-                                <Badge 
-                                  variant="outline" 
-                                  className="ml-2 text-[10px] px-1.5 py-0 bg-green-500/10 text-green-700 dark:text-green-400 border-green-500/20 flex-shrink-0"
-                                >
-                                  New
-                                </Badge>
-                              )}
-                            </CardTitle>
+                      <Card 
+                        className={`dc-card h-full cursor-pointer hover:shadow-lg transition-shadow relative group focus:outline-none focus:ring-2 focus:ring-primary/50 ${
+                          hotIds.has(useCase.id) ? 'border-2 border-primary' : ''
+                        } after:content-['↗'] after:absolute after:bottom-3 after:right-3 after:text-xs after:text-muted-foreground/70 after:pointer-events-none after:transition-transform after:transition-colors after:duration-200 hover:after:text-primary hover:after:translate-x-0.5 hover:after:-translate-y-0.5`}
+                        role="button"
+                        tabIndex={-1}
+                      >
+                        <CardHeader>
+                          <div className="flex items-start justify-between gap-3">
+                            <div className="flex-1 min-w-0">
+                              <CardTitle className="text-base leading-snug mb-2 min-h-[2.5rem] flex items-start">
+                                {useCase.title}
+                                {isNewPrompt(useCase.dateAdded) && (
+                                  <Badge 
+                                    variant="outline" 
+                                    className="ml-2 text-[10px] px-1.5 py-0 bg-green-500/10 text-green-700 dark:text-green-400 border-green-500/20 flex-shrink-0"
+                                  >
+                                    New
+                                  </Badge>
+                                )}
+                              </CardTitle>
+                            </div>
+                            {hotIds.has(useCase.id) && (
+                              <span className="text-lg flex-shrink-0">🔥</span>
+                            )}
                           </div>
-                          {hotIds.has(useCase.id) && (
-                            <span className="text-lg flex-shrink-0">🔥</span>
-                          )}
-                        </div>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3 mb-4">
-                          {useCase.description}
-                        </p>
-                        
-                        <div className="flex items-center justify-between gap-2">
-                          <div className="flex items-center gap-2">
-                            {SessionIcon && <SessionIcon className="h-3.5 w-3.5 text-primary" />}
-                            <span className="text-xs text-muted-foreground">{sessionDisplay.text}</span>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3 mb-4">
+                            {useCase.description}
+                          </p>
+                          
+                          <div className="flex items-center justify-between gap-2">
+                            <div className="flex items-center gap-2">
+                              {SessionIcon && <SessionIcon className="h-3.5 w-3.5 text-primary" />}
+                              <span className="text-xs text-muted-foreground">{sessionDisplay.text}</span>
+                            </div>
+                            <EngagementMeter 
+                              useCaseId={useCase.id} 
+                              gaClicks={useCase.gaClicks || 0}
+                              compact
+                            />
                           </div>
-                          <EngagementMeter 
-                            useCaseId={useCase.id} 
-                            gaClicks={useCase.gaClicks || 0}
-                            compact
-                          />
-                        </div>
-                      </CardContent>
-                    </Card>
+                        </CardContent>
+                      </Card>
+                    </a>
                   );
                 })}
               </div>
@@ -242,7 +242,7 @@ const LibraryIndex = () => {
               {/* Browse All Prompts & Submit CTA */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
                 <a 
-                  href="/library/prompts"
+                  href="/library/prompts/"
                   className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-11 px-8"
                 >
                   Browse All Prompts

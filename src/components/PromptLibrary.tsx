@@ -13,19 +13,19 @@ const promptCategories = [
         icon: Code2,
         title: "Explain Codebase or Repository",
         description: "Understand and analyze your codebase structure",
-        url: "/library?i=59"
+        url: "/library/prompts/explain-codebase-or-repository/"
       },
       {
         icon: GitCompare,
         title: "Compare Config Files to Baseline",
         description: "Compare configuration files against standards",
-        url: "/library?i=34"
+        url: "/library/prompts/compare-config-files-to-baseline/"
       },
       {
         icon: Trash2,
         title: "Clean Up Unused Code",
         description: "Remove dead code and optimize your project",
-        url: "/library?i=5"
+        url: "/library/prompts/clean-up-unused-code/"
       }
     ]
   },
@@ -37,19 +37,19 @@ const promptCategories = [
         icon: FileText,
         title: "Create Project Documentation",
         description: "Generate comprehensive project documentation",
-        url: "/library?i=60"
+        url: "/library/prompts/create-project-documentation/"
       },
       {
         icon: Database,
         title: "Create Database Schema Diagram",
         description: "Visualize your database structure and relationships",
-        url: "/library?i=67"
+        url: "/library/prompts/create-database-schema-diagram/"
       },
       {
         icon: Server,
         title: "Document Ansible Configuration",
         description: "Create clear documentation for your Ansible setup",
-        url: "/library?i=70"
+        url: "/library/prompts/document-ansible-configuration/"
       }
     ]
   },
@@ -61,19 +61,19 @@ const promptCategories = [
         icon: Cloud,
         title: "Set Up Cloud Infrastructure",
         description: "Deploy scalable cloud infrastructure from scratch",
-        url: "/library?i=53"
+        url: "/library/prompts/set-up-cloud-infrastructure/"
       },
       {
         icon: Server,
         title: "Set Up WordPress Environment",
         description: "Configure complete WordPress development environment",
-        url: "/library?i=55"
+        url: "/library/prompts/set-up-wordpress-environment/"
       },
       {
         icon: Code2,
         title: "Build and Deploy Landing Page",
         description: "Create and deploy a professional landing page",
-        url: "/library?i=82"
+        url: "/library/prompts/build-and-deploy-landing-page/"
       }
     ]
   },
@@ -85,19 +85,19 @@ const promptCategories = [
         icon: FolderOpen,
         title: "Organise my Downloads folder",
         description: "Sort messy downloads into organized folders",
-        url: "/library?i=8"
+        url: "/library/prompts/organise-my-downloads-folder/"
       },
       {
         icon: FileText,
         title: "Extract Data from PDFs",
         description: "Pull structured data from PDF documents",
-        url: "/library?i=43"
+        url: "/library/prompts/extract-data-from-pdfs/"
       },
       {
         icon: Image,
         title: "Convert HEIC to PNG",
         description: "Batch convert image formats efficiently",
-        url: "/library?i=38"
+        url: "/library/prompts/convert-heic-to-png/"
       }
     ]
   },
@@ -109,19 +109,19 @@ const promptCategories = [
         icon: BookOpen,
         title: "Create Knowledge Base Folder",
         description: "Organize information into searchable knowledge base",
-        url: "/library?i=17"
+        url: "/library/prompts/create-knowledge-base-folder/"
       },
       {
         icon: Database,
         title: "Consolidate Data Files into One",
         description: "Merge multiple data sources into unified format",
-        url: "/library?i=46"
+        url: "/library/prompts/consolidate-data-files-into-one/"
       },
       {
         icon: BarChart3,
         title: "Automate Competitor Research",
         description: "Set up automated competitive analysis workflows",
-        url: "/library?i=11"
+        url: "/library/prompts/automate-competitor-research/"
       }
     ]
   }
@@ -267,7 +267,7 @@ const PromptLibrary = () => {
         }`}>
           <Button asChild variant="hero" size="lg" className="transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20 transform active:scale-95">
             <a 
-              href="/library"
+              href="/library/"
               onClick={() => {
                 // Track main library CTA
                 trackCustomEvent('prompt_library_cta_clicked', {

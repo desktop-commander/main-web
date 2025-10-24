@@ -68,8 +68,6 @@ export function PromptCard({ useCase, onVote: _onVote, onOpen }: PromptCardProps
   const IconComponent = iconMap[useCase.icon as keyof typeof iconMap] || Code;
   const showNewBadge = isNewPrompt(useCase.dateAdded);
 
-
-
   const getSessionTypeClass = (sessionType: string) => {
     switch (sessionType) {
       case 'Instant output':
@@ -94,63 +92,73 @@ export function PromptCard({ useCase, onVote: _onVote, onOpen }: PromptCardProps
     }
   };
 
+  // SEO FIX: Use proper <a> tag wrapper for crawlability
+  const promptUrl = `/library/prompts/${useCase.slug}/`;
+
+  const handleClick = (e: React.MouseEvent) => {
+    // Call analytics/tracking if onOpen is provided
+    if (onOpen) {
+      onOpen(useCase);
+    }
+    // Let the <a> tag handle navigation naturally
+  };
+
   return (
-    <Card
-      className="dc-card h-full flex flex-col cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/50 relative group after:content-['↗'] after:absolute after:bottom-3 after:right-3 after:text-xs after:text-muted-foreground/70 after:pointer-events-none after:transition-transform after:transition-colors after:duration-200 hover:after:text-primary hover:after:translate-x-0.5 hover:after:-translate-y-0.5"
-      onClick={() => onOpen?.(useCase)}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          onOpen?.(useCase);
-        }
-      }}
+    <a 
+      href={promptUrl}
+      className="block h-full no-underline"
+      onClick={handleClick}
     >
-      <CardHeader className="pb-3">
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <div className="flex items-center gap-3 flex-1 min-w-0">
-            <div className="p-2 bg-dc-surface-elevated rounded-lg">
-              <IconComponent className="h-5 w-5 text-primary" />
-            </div>
-            <div className="flex-1">
-              <CardTitle className="text-lg leading-snug mb-2 min-h-[3rem] flex items-start">
-                {useCase.title}
-                {showNewBadge && (
-                  <Badge variant="outline" className="ml-2 text-xs bg-primary/10 text-primary border-primary/20">
-                    <Sparkles className="h-3 w-3 mr-1" />
-                    New
+      <Card
+        className="dc-card h-full flex flex-col cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/50 relative group after:content-['↗'] after:absolute after:bottom-3 after:right-3 after:text-xs after:text-muted-foreground/70 after:pointer-events-none after:transition-transform after:transition-colors after:duration-200 hover:after:text-primary hover:after:translate-x-0.5 hover:after:-translate-y-0.5"
+        role="button"
+        tabIndex={-1}
+      >
+        <CardHeader className="pb-3">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div className="flex items-center gap-3 flex-1 min-w-0">
+              <div className="p-2 bg-dc-surface-elevated rounded-lg">
+                <IconComponent className="h-5 w-5 text-primary" />
+              </div>
+              <div className="flex-1">
+                <CardTitle className="text-lg leading-snug mb-2 min-h-[3rem] flex items-start">
+                  {useCase.title}
+                  {showNewBadge && (
+                    <Badge variant="outline" className="ml-2 text-xs bg-primary/10 text-primary border-primary/20">
+                      <Sparkles className="h-3 w-3 mr-1" />
+                      New
+                    </Badge>
+                  )}
+                </CardTitle>
+                <div className="flex items-center gap-2">
+                  <Badge variant="outline" className={`text-foreground/70 border-foreground/20 bg-transparent font-normal ${getSessionTypeClass(useCase.sessionType)} whitespace-nowrap`}>
+                    <div className="flex items-center gap-1">
+                      {(() => {
+                        const display = getCardSessionTypeDisplay(useCase.sessionType);
+                        return (
+                          <>
+                            {display.icon && <display.icon className="h-3 w-3" />}
+                            <span>{display.text}</span>
+                          </>
+                        );
+                      })()}
+                    </div>
                   </Badge>
-                )}
-              </CardTitle>
-              <div className="flex items-center gap-2">
-                <Badge variant="outline" className={`text-foreground/70 border-foreground/20 bg-transparent font-normal ${getSessionTypeClass(useCase.sessionType)} whitespace-nowrap`}>
-                  <div className="flex items-center gap-1">
-                    {(() => {
-                      const display = getCardSessionTypeDisplay(useCase.sessionType);
-                      return (
-                        <>
-                          {display.icon && <display.icon className="h-3 w-3" />}
-                          <span>{display.text}</span>
-                        </>
-                      );
-                    })()}
-                  </div>
-                </Badge>
+                </div>
               </div>
             </div>
+            <div className="flex items-center shrink-0 min-w-[90px] whitespace-nowrap" aria-label="All-time engagement">
+              <EngagementMeter count={useCase.votes} size="sm" />
+            </div>
           </div>
-          <div className="flex items-center shrink-0 min-w-[90px] whitespace-nowrap" aria-label="All-time engagement">
-            <EngagementMeter count={useCase.votes} size="sm" />
-          </div>
-        </div>
-      </CardHeader>
+        </CardHeader>
 
-      <CardContent className="flex-1 flex flex-col">
-        <CardDescription className="text-sm leading-relaxed mb-4">
-          {useCase.description}
-        </CardDescription>
-      </CardContent>
-    </Card>
+        <CardContent className="flex-1 flex flex-col">
+          <CardDescription className="text-sm leading-relaxed mb-4">
+            {useCase.description}
+          </CardDescription>
+        </CardContent>
+      </Card>
+    </a>
   );
 }
