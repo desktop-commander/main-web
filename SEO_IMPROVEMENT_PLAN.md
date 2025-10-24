@@ -156,16 +156,29 @@ This document outlines a prioritized, step-by-step plan to address SEO issues id
 
 ---
 
-### 1.4 Fix Robots.txt Access Error
+### 1.4 Fix Robots.txt Access Error ✅ **COMPLETED - Oct 24, 2025**
 **Issue:** `https://docs.desktopcommander.app/robots.txt` returns internal error  
-**Impact:** Subdomain may not be crawled properly
+**Root Cause:** Non-existent subdomain referenced in site code - DNS lookup returns NXDOMAIN  
+**Impact:** Ahrefs crawler error, broken documentation links for users
 
-**Action Items:**
-1. Investigate why `docs.desktopcommander.app` robots.txt fails
-2. Options:
-   - If subdomain is intended to be public: Create valid robots.txt
-   - If subdomain is internal/staging: Add noindex meta tag or block in main robots.txt
-3. Verify hosting configuration allows robots.txt access
+**Status:** ✅ **FIXED AND DEPLOYED**
+- ✅ Identified root cause: Two locations linking to non-existent `docs.desktopcommander.app`
+- ✅ Updated `src/components/library/PromptsLibraryAstro.tsx` documentation button
+- ✅ Updated `astro-src/components/SimpleFooter.astro` footer documentation link
+- ✅ Changed all links to correct GitHub repo: `https://github.com/wonderwhy-er/DesktopCommanderMCP`
+- ✅ Rebuilt static site and deployed to production
+- ✅ Verified zero references to `docs.desktopcommander` remain in built files
+
+**Deployment Details:**
+- Commit: `85d288e` - "Fix: Update documentation links from non-existent docs.desktopcommander.app to GitHub repo"
+- Commit: `b6b2c74` - "Static website changes"
+- Deployed: October 24, 2025
+- Files Changed: 2 source files + 85 rebuilt static files
+
+**Expected Impact:**
+- ✅ Ahrefs robots.txt error will resolve in next crawl (1-2 weeks)
+- ✅ Users now get correct working documentation links
+- ✅ Eliminates broken subdomain from SEO crawler reports
 
 ---
 
@@ -415,8 +428,8 @@ AFTER: "Easily convert HEIC images from iPhone to PNG format using Desktop Comma
 | 🔴 P0 | Fix sitemap redirects | Medium | Very High | Week 1 | ✅ DONE |
 | 🔴 P0 | **Fix orphaned prompt pages (70+ pages)** | **High** | **CRITICAL** | **Week 1-2** | **✅ DONE** |
 | 🔴 P0 | Optimize large images | Low | High | Week 1 | ✅ DONE |
-| 🔴 P0 | Fix robots.txt error | Low | Medium | Week 1 | |
-| 🟡 P1 | Fix orphaned canonicals | Medium | High | Week 2 | |
+| 🔴 P0 | Fix robots.txt error | Low | Medium | Week 1 | ✅ DONE |
+| 🟡 P1 | Fix orphaned canonicals | Medium | High | Week 2 | ✅ DONE |
 | 🟡 P1 | Fix legal page | Medium | Medium | Week 2 | |
 | 🟡 P1 | Add trailing slashes to internal links | High | High | Week 2-3 | |
 | 🟡 P1 | Complete Open Graph tags | Low | Medium | Week 2 | |
@@ -475,6 +488,17 @@ Track these metrics to measure improvement:
 ---
 
 ## Completed Tasks
+
+### ✅ October 24, 2025 - Phase 1.4 Complete
+- **Fix Robots.txt Access Error (Ahrefs Alert)**
+  - ✅ Identified non-existent `docs.desktopcommander.app` subdomain (DNS: NXDOMAIN)
+  - ✅ Updated documentation links in `PromptsLibraryAstro.tsx` and `SimpleFooter.astro`
+  - ✅ Changed to correct GitHub repo: `https://github.com/wonderwhy-er/DesktopCommanderMCP`
+  - ✅ Rebuilt static site (85 files changed)
+  - ✅ Deployed to production (commits: 85d288e, b6b2c74)
+  - ✅ Verified zero references to broken subdomain remain
+  - 📊 Expected impact: Ahrefs error resolves in 1-2 weeks
+  - 🔍 Monitor: Ahrefs crawler should stop reporting robots.txt error
 
 ### ✅ October 24, 2025 - Phase 1.2.5 Complete
 - **Fix Remaining Orphaned Canonical URLs (Ahrefs Alert)**
@@ -697,17 +721,18 @@ A: You can request removal in GSC, but it's better to let Google discover the re
 1. **COMPLETED ✅:** 
    - ~~Fix orphaned prompt pages (Phase 1.2)~~ - DEPLOYED TO PRODUCTION
    - ~~Convert JavaScript navigation to HTML links~~
-   - ~~Test and deploy~~
+   - ~~Fix robots.txt error (Phase 1.4)~~ - DEPLOYED TO PRODUCTION
+   - ~~Fix orphaned canonicals (Phase 1.2.5)~~ - DEPLOYED TO PRODUCTION
 
-2. **This Week (Phase 1.4-1.5):**
-   - Fix robots.txt error on docs subdomain
-   - Fix remaining orphaned canonicals
-   - Verify all pages have proper internal linking
-
-3. **Next Week (Phase 2):**
+2. **This Week (Phase 1.6 & Phase 2):**
+   - Fix legal page issues (missing H1, meta description, content)
    - Begin Phase 2 - Add trailing slashes to all internal links
    - Complete Open Graph and Twitter Card implementation
+
+3. **Next Week (Phase 2 continued):**
    - Optimize CSS file sizes
+   - Optimize meta descriptions
+   - Add structured data (schema.org)
 
 ---
 
