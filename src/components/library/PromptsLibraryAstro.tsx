@@ -141,7 +141,7 @@ export default function PromptsLibrary({ initialPromptId }: PromptsLibraryProps)
               <SubmitPromptButton />
               <Button variant="outline" asChild>
                 <a 
-                  href="https://docs.desktopcommander.app" 
+                  href="https://github.com/wonderwhy-er/DesktopCommanderMCP" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"
