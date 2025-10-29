@@ -14,12 +14,15 @@ import {
 import { Terminal, ChevronDown, ExternalLink, Menu, X } from "lucide-react";
 import dcLogo from "@/assets/dc-logo.png";
 import { useState } from "react";
+import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
 
-// Astro-compatible Navigation (no useAnalytics/useLocation)
+// Astro-compatible Navigation
 const NavigationAstro = () => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const { trackNavigation, trackCustomEvent } = useAnalyticsAstro();
   
-  const handleMobileNavClick = () => {
+  const handleMobileNavClick = (linkText: string, destination: string, linkType: 'internal' | 'external' = 'internal') => {
+    trackNavigation(linkText, destination, linkType);
     setIsSheetOpen(false);
   };
 
@@ -41,6 +44,7 @@ const NavigationAstro = () => {
                 <a 
                   href="/#use-cases"
                   className="text-white hover:text-white/80 font-medium"
+                  onClick={() => trackNavigation('Use Cases', '/#use-cases', 'internal')}
                 >
                   Use Cases
                 </a>
@@ -50,6 +54,7 @@ const NavigationAstro = () => {
                 <a 
                   href="/library"
                   className="text-white hover:text-white/80 font-medium"
+                  onClick={() => trackNavigation('Prompts', '/library', 'internal')}
                 >
                   Prompts
                 </a>
@@ -59,6 +64,7 @@ const NavigationAstro = () => {
                 <a 
                   href="/#community"
                   className="text-white hover:text-white/80 font-medium"
+                  onClick={() => trackNavigation('Community', '/#community', 'internal')}
                 >
                   Community
                 </a>
@@ -68,6 +74,7 @@ const NavigationAstro = () => {
                 <a
                   href="/careers"
                   className="text-white hover:text-white/80 font-medium relative pr-12"
+                  onClick={() => trackNavigation('Careers', '/careers', 'internal')}
                 >
                   Careers
                   <Badge variant="default" className="absolute -top-1 right-2 bg-green-600 hover:bg-green-700 text-white text-[9px] px-1.5 py-0.5">
@@ -82,6 +89,7 @@ const NavigationAstro = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white hover:text-white/80 font-medium"
+                  onClick={() => trackNavigation('Blog', 'https://desktopcommander.app/blog/', 'external')}
                 >
                   Blog
                 </a>
@@ -134,7 +142,11 @@ const NavigationAstro = () => {
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <Button size="default" asChild className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2">
-              <a href="/#installation" className="flex items-center gap-2">
+              <a 
+                href="/#installation" 
+                className="flex items-center gap-2"
+                onClick={() => trackNavigation('Install', '/#installation', 'internal')}
+              >
                 <Terminal className="h-4 w-4" />
                 Install
               </a>
@@ -152,28 +164,28 @@ const NavigationAstro = () => {
               <nav className="flex flex-col gap-4 mt-8">
                 <a 
                   href="/#use-cases" 
-                  onClick={handleMobileNavClick}
+                  onClick={() => handleMobileNavClick('Use Cases', '/#use-cases')}
                   className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors"
                 >
                   Use Cases
                 </a>
                 <a 
                   href="/library" 
-                  onClick={handleMobileNavClick}
+                  onClick={() => handleMobileNavClick('Prompts', '/library')}
                   className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors"
                 >
                   Prompts
                 </a>
                 <a 
                   href="/#community" 
-                  onClick={handleMobileNavClick}
+                  onClick={() => handleMobileNavClick('Community', '/#community')}
                   className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors"
                 >
                   Community
                 </a>
                 <a 
                   href="/careers" 
-                  onClick={handleMobileNavClick}
+                  onClick={() => handleMobileNavClick('Careers', '/careers')}
                   className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors flex items-center gap-2"
                 >
                   Careers
@@ -185,7 +197,7 @@ const NavigationAstro = () => {
                   href="https://desktopcommander.app/blog/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={handleMobileNavClick}
+                  onClick={() => handleMobileNavClick('Blog', 'https://desktopcommander.app/blog/', 'external')}
                   className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors"
                 >
                   Blog
@@ -195,7 +207,7 @@ const NavigationAstro = () => {
                   href="https://blog.desktopcommander.app/about/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={handleMobileNavClick}
+                  onClick={() => handleMobileNavClick('About', 'https://blog.desktopcommander.app/about/', 'external')}
                   className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors"
                 >
                   About
@@ -204,14 +216,14 @@ const NavigationAstro = () => {
                   href="https://blog.desktopcommander.app/contact/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={handleMobileNavClick}
+                  onClick={() => handleMobileNavClick('Contact', 'https://blog.desktopcommander.app/contact/', 'external')}
                   className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors"
                 >
                   Contact
                 </a>
                 <a 
                   href="/#faq" 
-                  onClick={handleMobileNavClick}
+                  onClick={() => handleMobileNavClick('FAQ', '/#faq')}
                   className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors"
                 >
                   FAQ
@@ -220,14 +232,18 @@ const NavigationAstro = () => {
                   href="https://github.com/wonderwhy-er/DesktopCommanderMCP" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  onClick={handleMobileNavClick}
+                  onClick={() => handleMobileNavClick('GitHub', 'https://github.com/wonderwhy-er/DesktopCommanderMCP', 'external')}
                   className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors flex items-center gap-2"
                 >
                   GitHub
                   <ExternalLink className="h-4 w-4" />
                 </a>
                 <Button size="default" asChild className="mt-4 bg-blue-600 hover:bg-blue-700 text-white">
-                  <a href="/#installation" className="flex items-center gap-2">
+                  <a 
+                    href="/#installation" 
+                    className="flex items-center gap-2"
+                    onClick={() => handleMobileNavClick('Install', '/#installation')}
+                  >
                     <Terminal className="h-4 w-4" />
                     Install
                   </a>
