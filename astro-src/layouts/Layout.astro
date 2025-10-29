@@ -39,6 +39,28 @@ import BasePathFixer from '../components/BasePathFixer.astro';
     <meta name="twitter:site" content="@desktop_commander" />
     <meta name="twitter:image" content={ogImage} />
     
+    <!-- Cookiebot -->
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="83cceb09-32d2-409b-ada6-17cc28478ba6" data-blockingmode="auto" type="text/javascript"></script>
+    
+    <!-- Cookiebot Custom Sizing -->
+    <style is:inline>
+      /* Scale banner to 80% */
+      div#CybotCookiebotDialog {
+        scale: 80%;
+        margin-bottom: 0 !important;
+      }
+      
+      /* Remove Cookiebot branding */
+      a#CybotCookiebotDialogPoweredbyCybot,
+      div#CybotCookiebotDialogPoweredByText {
+        display: none;
+      }
+      
+      #CookiebotWidget .CookiebotWidget-body .CookiebotWidget-main-logo {
+        display: none;
+      }
+    </style>
+    
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXL4Y3Y62N"></script>
     <script is:inline>
