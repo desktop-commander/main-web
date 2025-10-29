@@ -26,6 +26,7 @@ export const INTERACTION_EVENTS = {
   EXTERNAL_LINK_CLICKED: 'external_link_clicked',
   
   // Installation and copy events
+  INSTALLATION_METHOD_CLICKED: 'installation_method_clicked',
   COPY_COMMAND_CLICKED: 'copy_command_clicked',
   SOCIAL_CLICKED: 'social_clicked',
   
@@ -105,6 +106,12 @@ export interface CopyCommandProperties extends EventProperties {
   button_location: string;
   installation_method: string;
   command: string;
+}
+
+export interface InstallationMethodClickedProperties extends EventProperties {
+  installation_method: string;
+  method_location: string; // 'main_options' or 'more_options'
+  method_description: string;
 }
 
 export interface BlogPostClickedProperties extends EventProperties {

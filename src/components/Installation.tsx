@@ -36,7 +36,8 @@ const installationOptions = [
   }
 ];
 
-const moreInstallationOptions = [
+// Function to generate installation options with tracking
+const getMoreInstallationOptions = (trackCustomEvent: (event: string, properties: any) => void) => [
   { 
     name: "Install via Smithery", 
     description: "Install through Smithery",
@@ -792,7 +793,7 @@ const Installation = () => {
               </AccordionTrigger>
               <AccordionContent className="px-4 pb-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                  {moreInstallationOptions.map((option, index) => (
+                  {getMoreInstallationOptions(trackCustomEvent).map((option, index) => (
                     <Dialog 
                       key={index}
                       open={openModal === option.name}
@@ -803,6 +804,12 @@ const Installation = () => {
                         } else {
                           setOpenModal(option.name);
                           updateUrlForModal(option.name);
+                          // Track when user opens an installation method modal
+                          trackCustomEvent('installation_method_clicked', {
+                            installation_method: option.name,
+                            method_location: 'more_options',
+                            method_description: option.description
+                          });
                         }
                       }}
                     >
