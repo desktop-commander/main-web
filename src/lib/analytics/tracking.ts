@@ -24,6 +24,11 @@ const isPostHogReady = (): boolean => {
   return !!(window as any).posthog && !!(window as any).posthog.__loaded;
 };
 
+// Check if Google Analytics is ready
+const isGtagReady = (): boolean => {
+  return typeof window !== 'undefined' && typeof (window as any).gtag === 'function';
+};
+
 // Generic tracking function
 export const trackEvent = (
   eventName: AllEvents, 
@@ -34,21 +39,30 @@ export const trackEvent = (
     logEvent(eventName, properties);
   }
 
-  // Only send to PostHog if ready
-  if (!isPostHogReady()) {
+  // Send to PostHog if ready
+  if (isPostHogReady()) {
+    try {
+      (window as any).posthog.capture(eventName, {
+        ...properties,
+        timestamp: new Date().toISOString(),
+      });
+      
+      console.log('✅ Event sent to PostHog:', eventName);
+    } catch (error) {
+      console.error('❌ Error tracking event to PostHog:', eventName, error);
+    }
+  } else {
     console.warn('PostHog not ready, event logged locally only:', eventName);
-    return;
   }
 
-  try {
-    (window as any).posthog.capture(eventName, {
-      ...properties,
-      timestamp: new Date().toISOString(),
-    });
-    
-    console.log('✅ Event sent to PostHog:', eventName);
-  } catch (error) {
-    console.error('❌ Error tracking event:', eventName, error);
+  // Send to Google Analytics if ready
+  if (isGtagReady()) {
+    try {
+      (window as any).gtag('event', eventName, properties);
+      console.log('✅ Event sent to Google Analytics:', eventName);
+    } catch (error) {
+      console.error('❌ Error tracking event to Google Analytics:', eventName, error);
+    }
   }
 };
 
