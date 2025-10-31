@@ -1436,6 +1436,28 @@
       "author": "DC team",
       "dateAdded": "2025-10-16",
       "verified": true
+    },
+    {
+      "id": "85",
+      "title": "Setting up Posthog Analytics with custom events",
+      "description": "Set up PostHog web analytics with event tracking, autocapture, reverse proxy configuration, and privacy compliance across marketing sites and web apps.",
+      "prompt": "# TASK NAME\nSetting up Posthog Analytics with custom events\n\n## Automation Mission Statement\nYou are an expert in web analytics and PostHog implementation. Your role is to guide the user through streamlined, best-practice setup and tracking using the capabilities of Desktop Commander.\n\n---\n\n## Multi-Chat Workflow Task Type\nThis workflow may span multiple chats to avoid context limits. Progress is tracked in the `posthog-setup-progress.md` file after each phase, containing:\n- Instructions, context, requirements, findings, and next steps.\n- Recap of phases, outputs, and current status.\n- Next tasks, pending items, and critical file locations.\n\n**Continuation:**  \nStart a new chat session when the conversation is too long, you want to focus on a different aspect, or are returning to work after a break. In a new chat:  \n\"Continue task type - please read posthog-setup-progress.md to understand where we left off, then proceed with the next phase.\"\n\n---\n\n## Streamlined Phase-Based Methodology (MAX 3 PHASES)\n- **Phase 1 - Foundation:** Core tool installation and initial capture setup.\n- **Phase 2 - Key Implementation:** Integration, event tracking, custom events/properties, and privacy compliance.\n- **Phase 3 - Finalization:** Optimization, updates, QA, and documentation.\n\nAfter each phase: progress is updated and confirmation requested before advancing.\n\n---\n\n## Desktop Commander Integration\n\nUse Desktop Commander where needed to complete this task. \n\n---\n\n## Initial Context Gathering (Optional but Recommended)\nAnswering the following questions will help customize the setup. Skip or use defaults if preferred.\n\n**Essential Setup Questions (Optional):**\n1. Where is your website hosted? (e.g., Vercel, Netlify, AWS, custom server)  \n   _Determines appropriate snippet and reverse proxy approach_  \n2. Which key user events do you want to track? (e.g., sign up, purchase, button click, page view)  \n   _Defines event schema for custom analytics_  \n3. Any custom user properties or tracking needs?  \n   _Ensures all business-relevant data is captured_  \n\n\nQuick-start options:\n- \"Use defaults\" to apply sensible choices and proceed.\n- \"Skip questions\" to begin immediately with standard best-practice setup.\n\n---\n\n## Core Task Framework & Best Practices\n\n- Use the official PostHog JavaScript snippet/SDK in your website's `<head>` for maximum coverage.\n- Enable autocapture for pageviews, clicks, and scrolls.\n- Route analytics through a reverse proxy (via managed service or your stack) to minimize tracking/ad blocker impact.\n- Group related platforms (marketing site, mobile, web app) in one PostHog project for unified measurement.\n- Configure and track custom events directly relevant to your business needs.\n- Regularly update your PostHog version for optimal performance and security.\n- Honor privacy/compliance obligations using built-in consent settings and by capturing anonymous events if required.\n\n---\n\n## Quality Standards\n\n- Installation and event tracking scripts must be validated by running on target web property.\n- Documentation is concise, clear, and complete for technical implementation.\n- Compliance with privacy standards validated against regional/industry norms.\n- File outputs must be easily readable and self-explanatory.\n\n---\n\n## Getting Started\n\nOnce you answer the above context questions (or skip to defaults), the workflow will:\n- Create `posthog-setup-progress.md` with all context and selected options.\n- Confirm understanding and planned approach.\n- Begin with Phase 1: Foundation (installation, snippet integration, initial autocapture validation).\n\n**One-Time Task Execution Command:**  \n\"Begin PostHog Setup\"\n\n---\n\n## Results Usage Guidance\n\n**After Completion, You'll Have:**\n- A fully working PostHog web analytics system, tracking your key events and honoring privacy requirements.\n- All config files and progress tracking for reference and future updates.\n- A one-command, multi-phase system you can continue or adapt anytime.\n\n**Immediate Next Steps:**\n- Validate integration with live site.\n- Review captured analytics in your PostHog dashboard.\n- Update event schema and privacy settings as business needs evolve.\n\n---\n\n## Scope Management & Safety\n\nThis workflow is strictly limited to 3 phases unless more complexity is explicitly requested.  \nMajor changes, deletions, or overwrites always require user confirmation.  \nA backup is created before any destructive action.\n\n---\n\n**Success Indicator:**  \nYou have actionable, validated analytics tracking on your web property, with all integration and usage context fully documented and locally stored.",
+      "sessionType": "Step-by-step flow",
+      "targetRoles": [
+        "Developers",
+        "Professionals",
+        "Data analysts"
+      ],
+      "categories": [
+        "Deploy",
+        "Analyze data"
+      ],
+      "votes": 0,
+      "gaClicks": 0,
+      "icon": "BarChart3",
+      "author": "DC team",
+      "verified": true,
+      "dateAdded": "2025-10-31"
     }
   ]
 }
