@@ -16,7 +16,8 @@ const detectBlogReferral = (): void => {
   const urlParams = new URLSearchParams(window.location.search);
   
   // Check if user came from blog
-  const isFromBlog = referrer.includes('blog.desktopcommander.app') || 
+  const isFromBlog = referrer.includes('/blog') || 
+                     referrer.includes('blog.desktopcommander.app') || 
                      referrer.includes('rk7f8a7274b9330-haqfg.wpcomstaging.com');
   
   if (isFromBlog) {
