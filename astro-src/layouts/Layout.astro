@@ -39,6 +39,10 @@ import BasePathFixer from '../components/BasePathFixer.astro';
     <meta name="twitter:site" content="@desktop_commander" />
     <meta name="twitter:image" content={ogImage} />
     
+    <!-- AI Crawling Control - Opt out of AI training -->
+    <meta name="robots" content="noai, noimageai" />
+    <meta name="googlebot" content="noai" />
+    
     <!-- Cookiebot -->
     <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="83cceb09-32d2-409b-ada6-17cc28478ba6" data-blockingmode="auto" type="text/javascript"></script>
     
