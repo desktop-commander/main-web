@@ -9,6 +9,10 @@ const __dirname = path.dirname(__filename);
 const useCasesPath = path.join(__dirname, 'src/data/library/useCases.json');
 const useCasesData = JSON.parse(fs.readFileSync(useCasesPath, 'utf8'));
 
+// Read the jobs data
+const jobsPath = path.join(__dirname, 'src/data/jobs.json');
+const jobsData = JSON.parse(fs.readFileSync(jobsPath, 'utf8'));
+
 // Extract categories for category pages
 const categories = Array.from(new Set(useCasesData.useCases.map(uc => uc.category))).sort();
 
@@ -65,6 +69,18 @@ const generateSitemap = () => {
 `;
   });
 
+  // Add job posting URLs for active jobs
+  const activeJobs = jobsData.jobs.filter(job => job.isActive);
+  activeJobs.forEach(job => {
+    sitemap += `    <url>
+        <loc>${baseUrl}/careers/jobs/${job.id}/</loc>
+        <lastmod>${currentDate}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+`;
+  });
+
   // Close the sitemap
   sitemap += `</urlset>
 `;
@@ -83,5 +99,6 @@ if (!fs.existsSync(path.join(__dirname, 'docs'))) {
 
 fs.writeFileSync(outputPath, sitemapContent, 'utf8');
 
-console.log(`Sitemap generated with ${useCasesData.useCases.length} individual prompt URLs`);
+const activeJobsCount = jobsData.jobs.filter(job => job.isActive).length;
+console.log(`Sitemap generated with ${useCasesData.useCases.length} individual prompt URLs and ${activeJobsCount} job posting URLs`);
 console.log(`Sitemap saved to: ${outputPath}`);
