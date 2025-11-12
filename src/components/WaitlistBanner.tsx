@@ -36,7 +36,7 @@ const WaitlistBanner = () => {
   };
 
   const handleBannerClick = () => {
-    window.open('https://tally.so/r/VLE7dv', '_blank', 'noopener,noreferrer');
+    window.location.href = '/product/early-access/';
   };
 
   if (!isVisible) return null;
@@ -60,7 +60,7 @@ const WaitlistBanner = () => {
               <Sparkles className="h-4 w-4 text-amber-400 flex-shrink-0 group-hover:scale-110 transition-transform" />
               <span className="text-sm sm:text-base">
                 <span className="font-semibold text-blue-600 group-hover:text-blue-500 transition-colors">App Launching Soon</span>
-                <span className="hidden sm:inline text-muted-foreground"> — Get exclusive early beta access</span>
+                <span className="hidden sm:inline text-muted-foreground"> — Get early beta access</span>
                 <span className="mx-1.5 text-muted-foreground">•</span>
                 <span className="font-medium text-blue-600 group-hover:text-blue-500 transition-colors">Join Waitlist</span>
               </span>

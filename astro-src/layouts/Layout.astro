@@ -10,6 +10,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'http://localhost
 
 // Import the base path fixer
 import BasePathFixer from '../components/BasePathFixer.astro';
+
+// Import global styles
+import '../../src/index.css';
 ---
 
 <!DOCTYPE html>

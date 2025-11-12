@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NavigationAstro from '../../../src/components/NavigationAstro';
+import Footer from '../../../src/components/Footer';
+---
+
+<Layout 
+  title="Test Page"
+  description="Test"
+>
+  <div class="min-h-screen bg-background">
+    <NavigationAstro client:load />
+    
+    <main class="pt-32">
+      <div class="container mx-auto px-4">
+        <h1 class="text-4xl font-bold text-white">Test Page</h1>
+        <p class="text-xl text-slate-300 mt-4">If you can read this with proper styling, the Layout works!</p>
+      </div>
+    </main>
+
+    <Footer client:load />
+  </div>
+</Layout>
