@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PostHogInit from '../../src/components/PostHogInit';
+import WaitlistBanner from '../../src/components/WaitlistBanner';
 import NavigationAstro from '../../src/components/NavigationAstro';
 import HeroAstro from '../../src/components/HeroAstro';
 import UseCases from '../../src/components/UseCases';
@@ -19,6 +20,9 @@ import Footer from '../../src/components/Footer';
 >
   <!-- Load PostHog early to initialize analytics -->
   <PostHogInit client:load />
+  
+  <!-- Waitlist Banner -->
+  <WaitlistBanner client:load />
   
   <div class="min-h-screen bg-background">
     <NavigationAstro client:load />

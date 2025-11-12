@@ -1,22 +1,26 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PostHogInit from '../../../src/components/PostHogInit';
+import WaitlistBanner from '../../../src/components/WaitlistBanner';
 import NavigationAstro from '../../../src/components/NavigationAstro';
+import PromptsLibraryAstro from '../../../src/components/library/PromptsLibraryAstro';
 import Footer from '../../../src/components/Footer';
-import LibraryIndex from '../../../src/components/library/LibraryIndex';
 ---
 
 <Layout 
   title="Prompt Library - Desktop Commander"
-  description="Discover powerful AI workflows and automation prompts for Desktop Commander"
+  description="Browse our collection of AI prompts for Desktop Commander - deploy servers, analyze data, and automate tasks."
 >
-  <!-- Load PostHog early to initialize analytics -->
+  <!-- Load PostHogInit early to initialize analytics -->
   <PostHogInit client:load />
+  
+  <!-- Waitlist Banner -->
+  <WaitlistBanner client:load />
   
   <div class="min-h-screen bg-background">
     <NavigationAstro client:load />
     <main>
-      <LibraryIndex client:load />
+      <PromptsLibraryAstro client:load />
     </main>
     <Footer client:visible />
   </div>
