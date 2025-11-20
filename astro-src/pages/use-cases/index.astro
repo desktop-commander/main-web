@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostHogInit from '../../../src/components/PostHogInit';
+import NavigationAstro from '../../../src/components/NavigationAstro';
+import UseCasesHub from '../../../src/components/use-cases/UseCasesHub';
+import Footer from '../../../src/components/Footer';
+---
+
+<Layout 
+  title="Use Cases | Desktop Commander - AI-Powered Automation"
+  description="Discover how Desktop Commander can help with file management, data analysis, development, automation, content creation, and DevOps tasks."
+>
+  <!-- Load PostHog early to initialize analytics -->
+  <PostHogInit client:load />
+  
+  <div class="min-h-screen bg-background">
+    <NavigationAstro client:load />
+    
+    <main>
+      <UseCasesHub client:load />
+    </main>
+    
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../../src/index.css';
+</style>

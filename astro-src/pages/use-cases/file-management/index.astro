@@ -1,0 +1,58 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import PostHogInit from '../../../../src/components/PostHogInit';
+import NavigationLandingPage from '../../../../src/components/NavigationLandingPage';
+import FileManagementHero from '../../../../src/components/use-cases/FileManagementHero';
+import ProblemSection from '../../../../src/components/use-cases/ProblemSection';
+import SolutionSection from '../../../../src/components/use-cases/SolutionSection';
+import HowItWorksFlowSection from '../../../../src/components/use-cases/HowItWorksFlowSection';
+import PrivacyDiagramSection from '../../../../src/components/use-cases/PrivacyDiagramSection';
+import TestimonialsSection from '../../../../src/components/use-cases/TestimonialsSection';
+import HowItWorksSection from '../../../../src/components/use-cases/HowItWorksSection';
+import FinalCTASection from '../../../../src/components/use-cases/FinalCTASection';
+import Footer from '../../../../src/components/Footer';
+---
+
+<Layout 
+  title="File Management Made Simple | Desktop Commander"
+  description="Organize, convert, and manage files using natural language. No uploading, everything stays on your computer. Works with HEIC, PDF, CSV, and more."
+>
+  <!-- Load PostHog early to initialize analytics -->
+  <PostHogInit client:load />
+  
+  <div class="min-h-screen bg-background">
+    <NavigationLandingPage client:load />
+    
+    <main>
+      <!-- Hero Section -->
+      <FileManagementHero client:load />
+      
+      <!-- Problem Section -->
+      <ProblemSection client:visible />
+      
+      <!-- Solution Section with Features -->
+      <SolutionSection client:visible />
+      
+      <!-- How It Works Flow -->
+      <HowItWorksFlowSection client:visible />
+      
+      <!-- Privacy Diagram -->
+      <PrivacyDiagramSection client:visible />
+      
+      <!-- Testimonials -->
+      <TestimonialsSection client:visible />
+      
+      <!-- How It Works -->
+      <HowItWorksSection client:visible />
+      
+      <!-- Final CTA -->
+      <FinalCTASection client:visible />
+    </main>
+    
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../../../src/index.css';
+</style>
