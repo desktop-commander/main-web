@@ -49,7 +49,7 @@ const WaitlistBanner = () => {
       }`}
     >
       <div 
-        className="bg-gradient-to-r from-dc-card via-amber-500/10 to-dc-card border-b border-amber-500/40 backdrop-blur-md cursor-pointer hover:border-amber-500/60 hover:via-amber-500/15 transition-all duration-300 group hover:shadow-lg hover:shadow-amber-500/10"
+        className="bg-gradient-to-r from-amber-500/20 via-orange-500/25 to-amber-500/20 border-b-2 border-amber-400/60 backdrop-blur-md cursor-pointer hover:border-amber-400/80 hover:from-amber-500/25 hover:via-orange-500/30 hover:to-amber-500/25 transition-all duration-300 group hover:shadow-lg hover:shadow-amber-500/20"
         onClick={handleBannerClick}
       >
         <div className="container mx-auto max-w-7xl px-4 sm:px-6">
@@ -57,14 +57,14 @@ const WaitlistBanner = () => {
             
             {/* Centered content */}
             <div className="flex items-center gap-2 sm:gap-3">
-              <Sparkles className="h-4 w-4 text-amber-400 flex-shrink-0 group-hover:scale-110 transition-transform" />
+              <Sparkles className="h-5 w-5 text-amber-500 flex-shrink-0 group-hover:scale-110 transition-transform drop-shadow-sm" />
               <span className="text-sm sm:text-base">
-                <span className="font-semibold text-blue-600 group-hover:text-blue-500 transition-colors">App Launching Soon</span>
-                <span className="hidden sm:inline text-muted-foreground"> — Get early beta access</span>
-                <span className="mx-1.5 text-muted-foreground">•</span>
-                <span className="font-medium text-blue-600 group-hover:text-blue-500 transition-colors">Join Waitlist</span>
+                <span className="font-bold text-amber-600 dark:text-amber-400 group-hover:text-amber-700 dark:group-hover:text-amber-300 transition-colors">App Launching Soon</span>
+                <span className="hidden sm:inline text-foreground/90 font-medium"> — Get early beta access</span>
+                <span className="mx-1.5 text-foreground/70">•</span>
+                <span className="font-bold text-orange-600 dark:text-orange-400 group-hover:text-orange-700 dark:group-hover:text-orange-300 transition-colors">Join Waitlist</span>
               </span>
-              <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-blue-600 group-hover:translate-x-1 group-hover:scale-110 transition-all" />
+              <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 text-orange-600 dark:text-orange-400 group-hover:translate-x-1 group-hover:scale-110 transition-all drop-shadow-sm" />
             </div>
 
             {/* Close button - absolute positioned */}
