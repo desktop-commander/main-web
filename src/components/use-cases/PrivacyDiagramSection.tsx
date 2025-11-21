@@ -8,13 +8,13 @@ const PrivacyDiagramSection = () => {
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-sm font-medium text-primary mb-6">
             <Shield className="w-4 h-4" />
-            <span>100% Private & Secure</span>
+            <span>AI Processing • No Random Sites</span>
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Everything Happens on Your Computer
+            Connect AI to Your Files
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Your files never leave your machine. No uploading, no cloud storage, complete privacy.
+            Desktop Commander connects your AI assistant directly to your files. File processing happens through your trusted AI provider—no sketchy third-party websites.
           </p>
         </div>
 
@@ -30,20 +30,20 @@ const PrivacyDiagramSection = () => {
                 <h3 className="text-xl font-semibold mb-2 text-green-400">With Desktop Commander</h3>
                 <ul className="space-y-2 text-muted-foreground">
                   <li className="flex items-start gap-2">
-                    <Lock className="w-4 h-4 text-green-400 mt-1 shrink-0" />
-                    <span>Files stay on your local machine</span>
+                    <CheckCircle className="w-4 h-4 text-green-400 mt-1 shrink-0" />
+                    <span>Direct access to files on your computer</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <Lock className="w-4 h-4 text-green-400 mt-1 shrink-0" />
-                    <span>No internet upload required</span>
+                    <CheckCircle className="w-4 h-4 text-green-400 mt-1 shrink-0" />
+                    <span>Processed by Claude, ChatGPT, Gemini, or Qwen</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <Lock className="w-4 h-4 text-green-400 mt-1 shrink-0" />
-                    <span>Complete control over your data</span>
+                    <CheckCircle className="w-4 h-4 text-green-400 mt-1 shrink-0" />
+                    <span>No random third-party conversion websites</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <Lock className="w-4 h-4 text-green-400 mt-1 shrink-0" />
-                    <span>Works offline</span>
+                    <CheckCircle className="w-4 h-4 text-green-400 mt-1 shrink-0" />
+                    <span>You control what files your AI accesses</span>
                   </li>
                 </ul>
               </div>
@@ -54,23 +54,23 @@ const PrivacyDiagramSection = () => {
                 <XCircle className="w-6 h-6 text-red-400" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold mb-2 text-red-400">Traditional Online Tools</h3>
+                <h3 className="text-xl font-semibold mb-2 text-red-400">Random Online Tools</h3>
                 <ul className="space-y-2 text-muted-foreground">
                   <li className="flex items-start gap-2">
                     <XCircle className="w-4 h-4 text-red-400 mt-1 shrink-0" />
-                    <span>Files uploaded to unknown servers</span>
+                    <span>Files uploaded to unknown third-party servers</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <XCircle className="w-4 h-4 text-red-400 mt-1 shrink-0" />
-                    <span>Privacy risks and data harvesting</span>
+                    <span>Sketchy websites with malware risks</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <XCircle className="w-4 h-4 text-red-400 mt-1 shrink-0" />
-                    <span>Sketchy websites with malware</span>
+                    <span>Unknown data handling and privacy policies</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <XCircle className="w-4 h-4 text-red-400 mt-1 shrink-0" />
-                    <span>Requires internet connection</span>
+                    <span>Manual download and re-upload workflows</span>
                   </li>
                 </ul>
               </div>
@@ -80,60 +80,78 @@ const PrivacyDiagramSection = () => {
           {/* Right side - Visual diagram */}
           <div className="relative">
             <div className="bg-gradient-to-br from-dc-card to-dc-surface rounded-2xl border border-dc-border p-8">
-              {/* Your Computer */}
+              {/* Step 1: Your Computer */}
               <div className="text-center mb-8">
                 <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 border-2 border-primary mb-4">
                   <span className="text-4xl">💻</span>
                 </div>
                 <h4 className="text-lg font-semibold">Your Computer</h4>
-                <p className="text-sm text-muted-foreground">All processing happens here</p>
-              </div>
-
-              {/* Files staying local */}
-              <div className="grid grid-cols-3 gap-4 mb-8">
-                <div className="text-center">
-                  <div className="w-16 h-16 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto mb-2">
-                    <span className="text-2xl">📄</span>
+                <p className="text-sm text-muted-foreground mb-6">Desktop Commander accesses files here</p>
+                
+                {/* Files on your computer */}
+                <div className="grid grid-cols-3 gap-3">
+                  <div className="text-center">
+                    <div className="w-14 h-14 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto">
+                      <span className="text-2xl">📄</span>
+                    </div>
                   </div>
-                  <p className="text-xs text-muted-foreground">Documents</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mx-auto mb-2">
-                    <span className="text-2xl">🖼️</span>
+                  <div className="text-center">
+                    <div className="w-14 h-14 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mx-auto">
+                      <span className="text-2xl">🖼️</span>
+                    </div>
                   </div>
-                  <p className="text-xs text-muted-foreground">Images</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 rounded-lg bg-green-500/10 border border-green-500/20 flex items-center justify-center mx-auto mb-2">
-                    <span className="text-2xl">📊</span>
+                  <div className="text-center">
+                    <div className="w-14 h-14 rounded-lg bg-green-500/10 border border-green-500/20 flex items-center justify-center mx-auto">
+                      <span className="text-2xl">📊</span>
+                    </div>
                   </div>
-                  <p className="text-xs text-muted-foreground">Data Files</p>
                 </div>
               </div>
 
-              {/* Shield barrier */}
-              <div className="relative py-6">
+              {/* Step 2: Desktop Commander reads & sends */}
+              <div className="relative py-6 mb-8">
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t-2 border-dashed border-primary/30"></div>
                 </div>
                 <div className="relative flex justify-center">
                   <div className="bg-dc-card px-4 py-2 rounded-full border-2 border-primary flex items-center gap-2">
-                    <Shield className="w-5 h-5 text-primary" />
-                    <span className="text-sm font-semibold text-primary">Protected</span>
+                    <span className="text-sm font-semibold text-primary">Directly Processed By</span>
                   </div>
                 </div>
               </div>
 
-              {/* Internet/Cloud - blocked */}
-              <div className="text-center opacity-40">
-                <div className="relative inline-flex items-center justify-center w-16 h-16 rounded-full bg-muted mb-2">
-                  <span className="text-3xl">☁️</span>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <XCircle className="w-12 h-12 text-red-500" strokeWidth={3} />
-                  </div>
+              {/* Step 3: Your AI Provider (with multiple options) */}
+              <div className="text-center">
+                <div className="relative inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 border-2 border-primary mb-3">
+                  <span className="text-3xl">🤖</span>
                 </div>
-                <p className="text-sm text-muted-foreground">No cloud upload needed</p>
+                <p className="text-sm font-medium mb-2">Your AI Provider</p>
+                
+                {/* AI Provider names */}
+                <div className="flex flex-wrap justify-center gap-2 text-xs text-muted-foreground">
+                  <span className="px-2 py-1 rounded bg-dc-surface border border-dc-border">Claude</span>
+                  <span className="px-2 py-1 rounded bg-dc-surface border border-dc-border">ChatGPT</span>
+                  <span className="px-2 py-1 rounded bg-dc-surface border border-dc-border">Gemini</span>
+                  <span className="px-2 py-1 rounded bg-dc-surface border border-dc-border">Qwen</span>
+                </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* How data is handled callout */}
+        <div className="mt-16 p-6 md:p-8 rounded-2xl bg-primary/5 border border-primary/20">
+          <div className="flex items-start gap-4">
+            <div className="p-2 rounded-lg bg-primary/10 shrink-0">
+              <Shield className="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <p className="text-lg font-medium mb-2">
+                How data is handled
+              </p>
+              <p className="text-muted-foreground">
+                Desktop Commander connects your AI directly to files on your computer. Your files are processed by your chosen AI provider (Claude, ChatGPT, Gemini, or Qwen)—not random third-party websites. You get AI-powered file management without the risk.
+              </p>
             </div>
           </div>
         </div>

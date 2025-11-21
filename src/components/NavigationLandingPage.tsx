@@ -161,7 +161,7 @@ const NavigationLandingPage = () => {
                 onClick={handleDownloadClick}
               >
                 <Download className="w-4 h-4" />
-                Download DC
+                Try DC
               </a>
             </Button>
           </div>
@@ -278,7 +278,7 @@ const NavigationLandingPage = () => {
                         }}
                       >
                         <Download className="w-4 h-4" />
-                        Download DC
+                        Try DC
                       </a>
                     </Button>
                   </div>

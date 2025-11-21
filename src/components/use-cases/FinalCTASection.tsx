@@ -28,7 +28,7 @@ const FinalCTASection = () => {
             >
               <a href="#get-started">
                 <Download className="w-5 h-5" />
-                Download Desktop Commander
+                Try Desktop Commander
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
             </Button>
@@ -45,7 +45,7 @@ const FinalCTASection = () => {
             </div>
             <div className="flex items-center gap-2 text-primary">
               <Check className="w-4 h-4" />
-              <span>Your files stay private on your machine</span>
+              <span>Direct file access • No sketchy websites</span>
             </div>
           </div>
         </div>

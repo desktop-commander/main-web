@@ -9,10 +9,10 @@ const SolutionSection = () => {
       videoPlaceholder: "Demo: Organizing files by natural language"
     },
     {
-      title: "Convert any file format instantly—privately",
-      description: '"Convert these HEIC photos to JPG" → Done instantly, without uploading to random websites or installing bloatware. Works with HEIC to JPG, PDF to Word, image formats, and more. Your files never leave your computer.',
+      title: "Convert any file format instantly",
+      description: '"Convert these HEIC photos to JPG" → Done instantly, without uploading to random websites or installing bloatware. Works with HEIC to JPG, PDF to Word, image formats, and more.',
       icon: FileImage,
-      videoPlaceholder: "Demo: Converting HEIC to JPG locally"
+      videoPlaceholder: "Demo: Converting HEIC to JPG"
     },
     {
       title: "Clean up folders with simple instructions",
@@ -33,12 +33,17 @@ const SolutionSection = () => {
       <div className="container mx-auto max-w-6xl px-4 sm:px-6">
         {/* Section header */}
         <div className="text-center mb-16">
+          {/* Time-saving badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-sm font-medium text-primary mb-6">
+            <span>70% of our users save 3+ hours per week</span>
+          </div>
+          
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Work with your files on your local machine
+            Work with your files directly
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Desktop Commander is your AI-powered file organizer that connects directly to your files. 
-            It works with your actual files on your computer—no uploading, no cloud copies, everything stays local on your machine.
+            Desktop Commander connects your AI assistant directly to files on your computer. 
+            Files are processed through your trusted AI provider—no random third-party conversion sites, no downloading and re-uploading.
           </p>
         </div>
 
@@ -119,23 +124,59 @@ const SolutionSection = () => {
                     </video>
                   )}
                 </div>
+                
+                {/* Command example below video */}
+                <div className="mt-4 p-4 rounded-lg bg-dc-surface border border-dc-border">
+                  <p className="text-xs font-medium text-muted-foreground mb-2">Try this command in Desktop Commander app:</p>
+                  <p className="text-sm font-mono text-foreground">
+                    {index === 0 ? '"Find all invoices from Q3 and move them to my accounting folder"' : 
+                     index === 1 ? '"Convert these HEIC photos to JPG"' : 
+                     index === 2 ? '"Organize my downloads folder by file type"' : 
+                     '"Show me the trends in this CSV"'}
+                  </p>
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Privacy callout */}
-        <div className="mt-16 p-6 md:p-8 rounded-2xl bg-primary/5 border border-primary/20">
-          <div className="flex items-start gap-4">
-            <div className="p-2 rounded-lg bg-primary/10 shrink-0">
-              <Shield className="w-5 h-5 text-primary" />
-            </div>
-            <div>
-              <p className="text-lg font-medium mb-2">
-                ✅ Complete privacy. Everything happens on your computer.
-              </p>
+        {/* Key Benefits - More prominent section */}
+        <div className="mt-24 pt-12 border-t border-dc-border">
+          <div className="text-center mb-12">
+            <h3 className="text-2xl md:text-3xl font-bold">The smarter way to manage your files</h3>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Save Time */}
+            <div className="p-8 rounded-2xl bg-gradient-to-b from-dc-surface to-dc-card border-2 border-dc-border hover:border-primary/50 transition-colors text-center">
+              <div className="w-16 h-16 rounded-full bg-primary/10 border-2 border-primary/20 flex items-center justify-center mx-auto mb-6">
+                <span className="text-3xl">⚡</span>
+              </div>
+              <h3 className="text-xl font-bold mb-3">Save time</h3>
               <p className="text-muted-foreground">
-                Your files never leave your machine—Desktop Commander simply helps you manage what's already yours.
+                70% users save 3+ hours per week using DC
+              </p>
+            </div>
+
+            {/* Keep Files Secure */}
+            <div className="p-8 rounded-2xl bg-gradient-to-b from-dc-surface to-dc-card border-2 border-dc-border hover:border-primary/50 transition-colors text-center">
+              <div className="w-16 h-16 rounded-full bg-primary/10 border-2 border-primary/20 flex items-center justify-center mx-auto mb-6">
+                <span className="text-3xl">🔒</span>
+              </div>
+              <h3 className="text-xl font-bold mb-3">Keep files secure</h3>
+              <p className="text-muted-foreground">
+                Do not use random websites to work with your files
+              </p>
+            </div>
+
+            {/* Do It All in One App */}
+            <div className="p-8 rounded-2xl bg-gradient-to-b from-dc-surface to-dc-card border-2 border-dc-border hover:border-primary/50 transition-colors text-center">
+              <div className="w-16 h-16 rounded-full bg-primary/10 border-2 border-primary/20 flex items-center justify-center mx-auto mb-6">
+                <span className="text-3xl">🎯</span>
+              </div>
+              <h3 className="text-xl font-bold mb-3">Do it all in one app</h3>
+              <p className="text-muted-foreground">
+                Manage all file operations - from converting to moving files with AI
               </p>
             </div>
           </div>

@@ -17,7 +17,7 @@ const FileManagementHero = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-dc-surface border border-dc-border text-sm text-muted-foreground">
             <Shield className="w-4 h-4 text-primary" />
-            <span>100% Private • Files Never Leave Your Computer</span>
+            <span>AI Processing • No Random Sites</span>
           </div>
 
           {/* Headline */}
@@ -28,8 +28,7 @@ const FileManagementHero = () => {
 
           {/* Subheadline */}
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl leading-relaxed">
-            Manage files by simply describing what you want—no sketchy websites, no uploading, 
-            everything stays privately on your computer.
+            Manage files by simply describing what you want. Desktop Commander connects your AI directly to your files—no random conversion websites, no manual workflows.
           </p>
 
           {/* CTA */}
@@ -41,19 +40,19 @@ const FileManagementHero = () => {
             >
               <a href="#get-started">
                 <Download className="w-5 h-5" />
-                Download Desktop Commander
+                Try Desktop Commander
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
             </Button>
           </div>
 
-          {/* Platform badges */}
+          {/* Value points */}
           <div className="flex items-center gap-4 text-sm text-muted-foreground pt-2">
-            <span>Works on Mac</span>
+            <span>Save time</span>
             <span className="w-1 h-1 rounded-full bg-muted-foreground/50" />
-            <span>Windows</span>
+            <span>Keep files safe</span>
             <span className="w-1 h-1 rounded-full bg-muted-foreground/50" />
-            <span>Linux</span>
+            <span>Manage all in natural language</span>
           </div>
         </div>
       </div>
