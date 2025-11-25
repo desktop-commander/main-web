@@ -14,8 +14,7 @@ const KnowledgeManagementHero = () => {
 
           {/* Subheadline */}
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl leading-relaxed">
-            Stop switching between chats and apps. Keep your knowledge base up-to-date automatically 
-            by directly managing your markdown files, documentation, and notes.
+            Keep your knowledge base up-to-date automatically by directly managing your markdown files, documentation, and notes.
           </p>
 
           {/* Tool Integration Badges */}
