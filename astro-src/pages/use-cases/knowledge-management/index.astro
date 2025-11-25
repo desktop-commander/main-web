@@ -1,0 +1,44 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import PostHogInit from '../../../../src/components/PostHogInit';
+import NavigationLandingPage from '../../../../src/components/NavigationLandingPage';
+import KnowledgeManagementHero from '../../../../src/components/use-cases/knowledge-management/KnowledgeManagementHero';
+import KMProblemSection from '../../../../src/components/use-cases/knowledge-management/KMProblemSection';
+import KMSolutionSection from '../../../../src/components/use-cases/knowledge-management/KMSolutionSection';
+import KMWhyDifferentSection from '../../../../src/components/use-cases/knowledge-management/KMWhyDifferentSection';
+import KMToolsSection from '../../../../src/components/use-cases/knowledge-management/KMToolsSection';
+import KMGitNativeSection from '../../../../src/components/use-cases/knowledge-management/KMGitNativeSection';
+import KMPersonasSection from '../../../../src/components/use-cases/knowledge-management/KMPersonasSection';
+import DownloadSection from '../../../../src/components/use-cases/DownloadSection';
+import KMFinalCTASection from '../../../../src/components/use-cases/knowledge-management/KMFinalCTASection';
+import Footer from '../../../../src/components/Footer';
+---
+
+<Layout 
+  title="Knowledge Management Made Simple | Desktop Commander"
+  description="Write, edit, and organize markdown files in natural language. Turn AI conversations into permanent knowledge. Works with Obsidian, Google Drive, VS Code, and local files."
+>
+  <PostHogInit client:load />
+  
+  <div class="min-h-screen bg-background">
+    <NavigationLandingPage client:load />
+    
+    <main>
+      <KnowledgeManagementHero client:load />
+      <KMProblemSection client:visible />
+      <KMSolutionSection client:visible />
+      <KMWhyDifferentSection client:visible />
+      <KMToolsSection client:visible />
+      <KMGitNativeSection client:visible />
+      <KMPersonasSection client:visible />
+      <DownloadSection client:visible />
+      <KMFinalCTASection client:visible />
+    </main>
+    
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../../../src/index.css';
+</style>
