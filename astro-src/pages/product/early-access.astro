@@ -9,8 +9,10 @@ import SimpleFooter from '../../components/SimpleFooter.astro';
   title="Early Access - Desktop Commander App"
   description="Take control of your machine. Local filesystem access. Pick your own model. Infinite chats. Join the waitlist for Desktop Commander app."
 >
-  <!-- Load PostHog early to initialize analytics -->
   <PostHogInit client:load />
+  
+  <!-- HubSpot Forms Script -->
+  <script src="https://js-eu1.hsforms.net/forms/embed/146727725.js" defer></script>
   
   <div class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950">
     <SimpleNav />
@@ -46,9 +48,9 @@ import SimpleFooter from '../../components/SimpleFooter.astro';
                 </div>
 
                 <!-- Title & Description -->
-                <div class="text-center mb-8">
+                <div class="text-center mb-6">
                   <h3 class="text-xl font-semibold text-white mb-3">Build Without Barriers</h3>
-                  <p class="text-slate-300 leading-relaxed">
+                  <p class="text-slate-300 leading-relaxed text-sm">
                     Desktop Commander bridges your technical gaps. Code, build, and deploy—all in natural language, all on your local machine.
                   </p>
                 </div>
@@ -75,19 +77,15 @@ import SimpleFooter from '../../components/SimpleFooter.astro';
                   </div>
                 </div>
 
-                <!-- CTA Button -->
-                <a 
-                  href="https://tally.so/r/VLE7dv"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-4 px-6 rounded-xl shadow-lg transition-all duration-300 hover:scale-105"
-                >
-                  <span>Join Waitlist</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M5 12h14"></path>
-                    <path d="m12 5 7 7-7 7"></path>
-                  </svg>
-                </a>
+                <!-- HubSpot Form -->
+                <div class="hubspot-form-wrapper">
+                  <div 
+                    class="hs-form-frame" 
+                    data-region="eu1" 
+                    data-form-id="a539622f-bf22-490f-a3b7-32a6f647614d" 
+                    data-portal-id="146727725"
+                  ></div>
+                </div>
 
                 <p class="text-center text-xs text-slate-500 mt-4">
                   Join first 100 users with early access
@@ -101,4 +99,130 @@ import SimpleFooter from '../../components/SimpleFooter.astro';
 
     <SimpleFooter />
   </div>
+
+  <!-- HubSpot Form Styling -->
+  <style is:global>
+    .hubspot-form-wrapper {
+      min-height: 100px;
+    }
+    
+    /* Reset HubSpot container */
+    .hs-form-frame > div,
+    .hs-form-frame .hbspt-form,
+    .hs-form-frame form {
+      background: transparent !important;
+      padding: 0 !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+    
+    /* Input fields */
+    .hs-form-frame input[type="text"],
+    .hs-form-frame input[type="email"],
+    .hs-form-frame input[type="tel"],
+    .hs-form-frame textarea,
+    .hs-form-frame select {
+      background-color: rgba(15, 23, 42, 0.9) !important;
+      border: 1px solid rgba(71, 85, 105, 0.5) !important;
+      border-radius: 0.75rem !important;
+      color: #f1f5f9 !important;
+      padding: 0.875rem 1rem !important;
+      font-size: 0.9375rem !important;
+      width: 100% !important;
+      transition: border-color 0.2s, box-shadow 0.2s !important;
+    }
+    
+    .hs-form-frame input:focus,
+    .hs-form-frame textarea:focus {
+      outline: none !important;
+      border-color: rgba(59, 130, 246, 0.6) !important;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+    }
+    
+    .hs-form-frame input::placeholder {
+      color: #64748b !important;
+    }
+    
+    /* Labels - hide if using placeholder only */
+    .hs-form-frame label {
+      color: #cbd5e1 !important;
+      font-size: 0.875rem !important;
+      font-weight: 500 !important;
+      margin-bottom: 0.5rem !important;
+      display: block !important;
+    }
+    
+    .hs-form-frame .hs-form-required {
+      color: #f87171 !important;
+    }
+    
+    /* Submit button */
+    .hs-form-frame input[type="submit"],
+    .hs-form-frame .hs-button {
+      background-color: #2563eb !important;
+      color: white !important;
+      border: none !important;
+      border-radius: 0.75rem !important;
+      padding: 1rem 1.5rem !important;
+      font-size: 1rem !important;
+      font-weight: 600 !important;
+      width: 100% !important;
+      cursor: pointer !important;
+      transition: all 0.3s !important;
+      box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.3) !important;
+    }
+    
+    .hs-form-frame input[type="submit"]:hover,
+    .hs-form-frame .hs-button:hover {
+      background-color: #3b82f6 !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 6px 20px 0 rgba(37, 99, 235, 0.4) !important;
+    }
+    
+    /* Form field spacing */
+    .hs-form-frame .hs-form-field {
+      margin-bottom: 1rem !important;
+    }
+    
+    .hs-form-frame .input {
+      margin-right: 0 !important;
+    }
+    
+    /* Error messages */
+    .hs-form-frame .hs-error-msgs {
+      list-style: none !important;
+      padding: 0 !important;
+      margin: 0.5rem 0 0 0 !important;
+    }
+    
+    .hs-form-frame .hs-error-msgs li {
+      color: #f87171 !important;
+      font-size: 0.75rem !important;
+    }
+    
+    /* Success message */
+    .hs-form-frame .submitted-message {
+      color: #4ade80 !important;
+      text-align: center !important;
+      padding: 1.5rem !important;
+      font-size: 1rem !important;
+      font-weight: 500 !important;
+    }
+    
+    /* Hide any HubSpot branding */
+    .hs-form-frame .hubspot-link__container,
+    .hs-form-frame .hs-form__virality-link {
+      display: none !important;
+    }
+    
+    /* Loading state */
+    .hubspot-form-wrapper:empty::after {
+      content: "Loading...";
+      display: block;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.875rem;
+      padding: 2rem;
+    }
+  </style>
 </Layout>
