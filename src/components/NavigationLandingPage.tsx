@@ -11,7 +11,7 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Terminal, ChevronDown, ExternalLink, Menu, X, Download } from "lucide-react";
+import { Terminal, ChevronDown, ExternalLink, Menu, X, ArrowRight } from "lucide-react";
 import dcLogo from "@/assets/dc-logo.png";
 import { useState } from "react";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
@@ -149,19 +149,19 @@ const NavigationLandingPage = () => {
             </div>
           </div>
           
-          {/* Desktop CTA - Download DC */}
+          {/* Desktop CTA - Join Waitlist */}
           <div className="hidden lg:flex items-center gap-3">
             <Button 
               size="sm" 
-              className="shadow-lg shadow-primary/20"
+              className="shadow-lg shadow-primary/20 group"
               asChild
             >
               <a 
-                href="#get-started"
+                href="/product/early-access/"
                 onClick={handleDownloadClick}
               >
-                <Download className="w-4 h-4" />
-                Try DC
+                Join the Waitlist
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
             </Button>
           </div>
@@ -267,18 +267,18 @@ const NavigationLandingPage = () => {
                   <div className="border-t border-dc-border pt-4 mt-4">
                     <Button 
                       size="lg" 
-                      className="w-full shadow-lg shadow-primary/20"
+                      className="w-full shadow-lg shadow-primary/20 group"
                       asChild
                     >
                       <a 
-                        href="#get-started"
+                        href="/product/early-access/"
                         onClick={() => {
                           handleDownloadClick();
                           setIsSheetOpen(false);
                         }}
                       >
-                        <Download className="w-4 h-4" />
-                        Try DC
+                        Join the Waitlist
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </a>
                     </Button>
                   </div>

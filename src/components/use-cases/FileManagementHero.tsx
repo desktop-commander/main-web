@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield, Download } from "lucide-react";
+import { ArrowRight, Shield } from "lucide-react";
 
 const FileManagementHero = () => {
   const handleInstallClick = () => {
@@ -38,9 +38,8 @@ const FileManagementHero = () => {
               asChild
               className="group"
             >
-              <a href="#get-started">
-                <Download className="w-5 h-5" />
-                Try Desktop Commander
+              <a href="/product/early-access/">
+                Join the Waitlist
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
             </Button>

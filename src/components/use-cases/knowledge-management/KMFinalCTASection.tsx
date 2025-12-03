@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Download, Check } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 
 const KMFinalCTASection = () => {
   return (
@@ -24,9 +24,8 @@ const KMFinalCTASection = () => {
               asChild
               className="group"
             >
-              <a href="#get-started">
-                <Download className="w-5 h-5" />
-                Install Desktop Commander
+              <a href="/product/early-access/">
+                Join the Waitlist
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
             </Button>
