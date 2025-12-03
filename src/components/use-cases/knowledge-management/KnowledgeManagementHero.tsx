@@ -9,7 +9,7 @@ const KnowledgeManagementHero = () => {
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight max-w-4xl">
             Your AI knowledge assistant —{" "}
-            <span className="text-primary">write, edit, and organize markdown files in natural language</span>
+            <span className="text-primary">organize your knowledge in local filesystem by talking with AI</span>
           </h1>
 
           {/* Subheadline */}
