@@ -1,0 +1,44 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import PostHogInit from '../../../../src/components/PostHogInit';
+import NavigationLandingPage from '../../../../src/components/NavigationLandingPage';
+import BPHeroSection from '../../../../src/components/use-cases/build-prototype/BPHeroSection';
+import BPProblemSection from '../../../../src/components/use-cases/build-prototype/BPProblemSection';
+import BPSolutionSection from '../../../../src/components/use-cases/build-prototype/BPSolutionSection';
+import BPExamplesSection from '../../../../src/components/use-cases/build-prototype/BPExamplesSection';
+import BPWhyDifferentSection from '../../../../src/components/use-cases/build-prototype/BPWhyDifferentSection';
+import BPComparisonSection from '../../../../src/components/use-cases/build-prototype/BPComparisonSection';
+import WaitlistSection from '../../../../src/components/use-cases/WaitlistSection';
+import BPPersonasSection from '../../../../src/components/use-cases/build-prototype/BPPersonasSection';
+import BPFinalCTASection from '../../../../src/components/use-cases/build-prototype/BPFinalCTASection';
+import Footer from '../../../../src/components/Footer';
+---
+
+<Layout 
+  title="Build Software in Natural Language | Desktop Commander"
+  description="Build apps, scripts, and MVPs without learning to code. Describe what you want, get working code on your machine. Works with Python, JavaScript, HTML/CSS, Git, and Terminal."
+>
+  <PostHogInit client:load />
+  
+  <div class="min-h-screen bg-background">
+    <NavigationLandingPage client:load />
+    
+    <main>
+      <BPHeroSection client:load />
+      <BPProblemSection client:visible />
+      <BPSolutionSection client:visible />
+      <BPExamplesSection client:visible />
+      <BPWhyDifferentSection client:visible />
+      <BPComparisonSection client:visible />
+      <WaitlistSection client:visible />
+      <BPPersonasSection client:visible />
+      <BPFinalCTASection client:visible />
+    </main>
+    
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../../../src/index.css';
+</style>
