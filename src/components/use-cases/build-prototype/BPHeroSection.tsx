@@ -13,7 +13,7 @@ const BPHeroSection = () => {
 
           {/* Subheadline */}
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl leading-relaxed">
-            Describe what you want to build, and create working code on your computer.
+            Describe what you want to build—AI writes the code, saves it locally, and you own every file.
           </p>
 
           {/* Tool Integration Badges */}

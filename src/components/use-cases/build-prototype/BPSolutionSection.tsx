@@ -27,10 +27,13 @@ const BPSolutionSection = () => {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
             Desktop Commander turns plain English into working code on your machine.
           </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            It fills the gaps in your technical skills and lets you build like a full-stack developer.
+          </p>
         </div>
 
         {/* Features Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
           {features.map((feature, index) => (
             <div 
               key={index}
@@ -45,6 +48,13 @@ const BPSolutionSection = () => {
               </p>
             </div>
           ))}
+        </div>
+
+        {/* Stat Callout */}
+        <div className="text-center mb-16 p-6 rounded-xl bg-primary/5 border border-primary/20">
+          <p className="text-xl md:text-2xl font-medium">
+            <span className="text-primary font-bold">70% of users</span> save 3+ hours per week with Desktop Commander
+          </p>
         </div>
 
         {/* Video Placeholder */}

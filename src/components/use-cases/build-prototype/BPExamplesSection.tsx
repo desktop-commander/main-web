@@ -1,4 +1,5 @@
-import { Globe, Terminal, Server, Link } from "lucide-react";
+import { Globe, Terminal, Server, Link, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const BPExamplesSection = () => {
   const examples = [
@@ -53,6 +54,21 @@ const BPExamplesSection = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Secondary CTA */}
+        <div className="text-center pt-12">
+          <Button 
+            variant="outline" 
+            size="lg" 
+            asChild
+            className="group"
+          >
+            <a href="/library/">
+              Explore More Prompts
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </Button>
         </div>
       </div>
     </section>
