@@ -74,9 +74,9 @@ const HeroAstro = () => {
   }, [mediaLoaded, useVideo]);
 
   return (
-    <section ref={heroRef} className="pt-32 pb-16 md:pt-48 md:pb-24">
+    <section ref={heroRef} className="pt-40 pb-24 md:pt-56 md:pb-32">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="flex flex-col items-center gap-12 lg:gap-16 lg:grid lg:grid-cols-12 lg:items-center">
+        <div className="flex flex-col items-center gap-16 lg:gap-20 lg:grid lg:grid-cols-12 lg:items-center">
           
           {/* Animation section */}
           <div className={`w-full max-w-xl lg:max-w-none lg:col-span-6 lg:order-2 transition-all duration-1200 delay-300 ${
@@ -140,19 +140,19 @@ const HeroAstro = () => {
           {/* Content section */}
           <div className="lg:col-span-6 text-center lg:text-left lg:order-1 w-full">
             
-            <h1 className={`text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-6 md:mb-8 leading-tight transition-all duration-1200 ${
+            <h1 className={`text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-8 md:mb-10 leading-tight transition-all duration-1200 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
               One Chat, Full Stack
             </h1>
             
-            <p className={`text-lg sm:text-xl text-muted-foreground mb-8 md:mb-12 max-w-2xl mx-auto lg:mx-0 leading-relaxed transition-all duration-1200 delay-500 ${
+            <p className={`text-lg sm:text-xl text-muted-foreground mb-10 md:mb-14 max-w-2xl mx-auto lg:mx-0 leading-relaxed transition-all duration-1200 delay-500 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
-              Give AI direct access to your system—manage files, automate terminal commands, and deploy in plain language
+              Give AI direct access to your system and terminal
             </p>
 
-            <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 lg:justify-start justify-center items-center mb-8 md:mb-12 transition-all duration-1200 delay-1000 ${
+            <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 lg:justify-start justify-center items-center mb-10 md:mb-14 transition-all duration-1200 delay-1000 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
               <Button 
@@ -182,22 +182,6 @@ const HeroAstro = () => {
                   Join Discord
                 </a>
               </Button>
-            </div>
-
-            {/* Connect to your toolkit */}
-            <div className={`mb-6 md:mb-8 pt-6 md:pt-8 border-t border-dc-border/50 transition-all duration-1200 delay-1500 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}>
-              <p className="text-sm text-muted-foreground mb-3 md:mb-4 text-center lg:text-left">Connect to your toolkit</p>
-              <div className="grid grid-cols-4 gap-4 sm:gap-6 lg:flex lg:items-center lg:justify-start opacity-60">
-                <img src={getAssetPath("star-logo.png")} alt="Star logo" className="h-5 sm:h-6 object-contain grayscale justify-self-center" />
-                <img src={getAssetPath("claude-desktop-logo.png")} alt="Claude Desktop" className="h-6 sm:h-8 w-6 sm:w-8 object-contain grayscale justify-self-center" />
-                <img src={getAssetPath("cursor-logo.png")} alt="Cursor IDE" className="h-5 sm:h-6 object-contain grayscale justify-self-center" />
-                <img src={getAssetPath("vscode-new-logo.png")} alt="VS Code" className="h-5 sm:h-6 object-contain grayscale justify-self-center" />
-                <img src={getAssetPath("client-logo-1.png")} alt="Client logo" className="h-5 sm:h-6 object-contain grayscale justify-self-center lg:justify-self-auto" />
-                <img src={getAssetPath("client-logo-2.png")} alt="Client logo" className="h-5 sm:h-6 object-contain grayscale justify-self-center lg:justify-self-auto" />
-                <img src={getAssetPath("client-logo-3.png")} alt="Client logo" className="h-8 sm:h-12 object-contain grayscale justify-self-center lg:justify-self-auto col-span-2 lg:col-span-1" />
-              </div>
             </div>
 
             {/* Trust Badges */}
