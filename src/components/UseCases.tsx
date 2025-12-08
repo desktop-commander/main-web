@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Terminal, FileText, Zap, Shield, GitBranch, Cloud, ArrowRight } from "lucide-react";
+import { Terminal, FileText, Zap, Shield, ArrowRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
 
@@ -45,34 +45,25 @@ const UseCases = () => {
 
   const useCases = [
     {
-      icon: Cloud,
-      title: "Set up infrastructure through conversation",
-      description: "Deploy servers, configure databases, and orchestrate cloud services without memorizing complex CLI commands."
-    },
-    {
-      icon: Terminal,
-      title: "Explore and debug codebases",
-      description: "Navigate complex repositories, trace issues, and fix problems through intelligent analysis."
+      icon: Shield,
+      title: "Organize and manage your files",
+      description: "Move, convert, and organize files in natural language. No random websites, everything stays local.",
+      href: "/use-cases/file-management/",
+      linkText: "See how it works"
     },
     {
       icon: FileText,
-      title: "Build and maintain documentation or context",
-      description: "Create reusable project context that makes every AI interaction smarter."
-    },
-    {
-      icon: Shield,
-      title: "Organize and manage your files",
-      description: "Navigate, search, and organize your local files through natural conversation."
+      title: "Build and maintain your knowledge base",
+      description: "Write, edit, and organize markdown files by talking to AI. Works with Obsidian, VS Code, and local files.",
+      href: "/use-cases/knowledge-management/",
+      linkText: "See how it works"
     },
     {
       icon: Zap,
-      title: "Build prototypes and applications locally",
-      description: "Transform ideas into working software through natural conversation."
-    },
-    {
-      icon: GitBranch,
-      title: "Automate workflows in natural language",
-      description: "From invoice processing to email campaigns, describe what you want automated."
+      title: "Build software without coding",
+      description: "Describe what you want—AI writes the code and saves it locally. You own every file.",
+      href: "/use-cases/build-prototype/",
+      linkText: "See how it works"
     }
   ];
 
@@ -95,33 +86,60 @@ const UseCases = () => {
         <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
           {useCases.map((useCase, index) => {
             const IconComponent = useCase.icon;
+            const cardContent = (
+              <CardContent className="p-6 sm:p-8 h-full flex flex-col">
+                {/* Mobile: Vertical layout, Desktop: Horizontal with icon */}
+                <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4 mb-4">
+                  <div className="flex items-center justify-center w-12 h-12 bg-dc-surface border border-dc-border rounded-xl group-hover:border-dc-blue/30 group-hover:bg-dc-blue/5 transition-all duration-300 flex-shrink-0 mx-auto sm:mx-0">
+                    <IconComponent className="h-6 w-6 text-foreground group-hover:text-dc-blue transition-colors duration-300" />
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-semibold text-foreground text-center sm:text-left leading-tight">
+                    {useCase.title}
+                  </h3>
+                </div>
+                
+                <p className="text-muted-foreground leading-relaxed text-center sm:text-left flex-grow">
+                  {useCase.description}
+                </p>
+
+                {useCase.href && useCase.linkText && (
+                  <div className="mt-4 text-center sm:text-left">
+                    <span className="text-primary text-sm font-medium group-hover:underline inline-flex items-center gap-1">
+                      {useCase.linkText}
+                      <ArrowRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </div>
+                )}
+              </CardContent>
+            );
+
+            const cardClasses = `group bg-background/50 border-dc-border hover:border-dc-blue/20 hover:bg-dc-blue/3 transition-all duration-300 hover:shadow-md hover:shadow-dc-blue/5 ${
+              isVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-8'
+            } ${useCase.href ? 'cursor-pointer' : ''}`;
+
+            const cardStyle = {
+              transitionDelay: isVisible ? `${200 + index * 150}ms` : '0ms'
+            };
+
+            if (useCase.href) {
+              return (
+                <a key={index} href={useCase.href} className="block h-full">
+                  <Card className={`${cardClasses} h-full`} style={cardStyle}>
+                    {cardContent}
+                  </Card>
+                </a>
+              );
+            }
+
             return (
               <Card 
                 key={index} 
-                className={`group bg-background/50 border-dc-border hover:border-dc-blue/20 hover:bg-dc-blue/3 transition-all duration-300 hover:shadow-md hover:shadow-dc-blue/5 ${
-                  isVisible 
-                    ? 'opacity-100 translate-y-0' 
-                    : 'opacity-0 translate-y-8'
-                }`}
-                style={{
-                  transitionDelay: isVisible ? `${200 + index * 150}ms` : '0ms'
-                }}
+                className={cardClasses}
+                style={cardStyle}
               >
-                <CardContent className="p-6 sm:p-8">
-                  {/* Mobile: Vertical layout, Desktop: Horizontal with icon */}
-                  <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4 mb-4">
-                    <div className="flex items-center justify-center w-12 h-12 bg-dc-surface border border-dc-border rounded-xl group-hover:border-dc-blue/30 group-hover:bg-dc-blue/5 transition-all duration-300 flex-shrink-0 mx-auto sm:mx-0">
-                      <IconComponent className="h-6 w-6 text-foreground group-hover:text-dc-blue transition-colors duration-300" />
-                    </div>
-                    <h3 className="text-lg sm:text-xl font-semibold text-foreground text-center sm:text-left leading-tight">
-                      {useCase.title}
-                    </h3>
-                  </div>
-                  
-                  <p className="text-muted-foreground leading-relaxed text-center sm:text-left">
-                    {useCase.description}
-                  </p>
-                </CardContent>
+                {cardContent}
               </Card>
             );
           })}
