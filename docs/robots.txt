@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://desktopcommander.com/sitemap.xml
+Sitemap: https://desktopcommander.app/sitemap.xml

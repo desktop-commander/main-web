@@ -48,6 +48,31 @@ const generateSitemap = () => {
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
+    <!-- Use Cases Landing Pages -->
+    <url>
+        <loc>${baseUrl}/use-cases/</loc>
+        <lastmod>${currentDate}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>${baseUrl}/use-cases/file-management/</loc>
+        <lastmod>${currentDate}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>${baseUrl}/use-cases/knowledge-management/</loc>
+        <lastmod>${currentDate}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>${baseUrl}/use-cases/build-prototype/</loc>
+        <lastmod>${currentDate}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
 `;
 
   // Add individual prompt URLs with slugs
