@@ -1,5 +1,4 @@
-import { FileText, BarChart3, Users, GitBranch, Search, Plus, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { FileText, BarChart3, Users, GitBranch, Search, Plus } from "lucide-react";
 
 const CAIntegrationsSection = () => {
   const integrations = [
@@ -72,19 +71,6 @@ const CAIntegrationsSection = () => {
           </div>
         </div>
 
-        <div className="text-center">
-          <Button 
-            variant="outline" 
-            size="lg" 
-            asChild
-            className="group"
-          >
-            <a href="/integrations/">
-              View All Integrations
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </Button>
-        </div>
       </div>
     </section>
   );
