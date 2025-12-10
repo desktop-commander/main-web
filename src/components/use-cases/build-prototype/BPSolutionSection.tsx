@@ -57,11 +57,21 @@ const BPSolutionSection = () => {
           </p>
         </div>
 
-        {/* Video Placeholder */}
-        <div className="relative aspect-video rounded-xl border border-dc-border bg-dc-surface overflow-hidden max-w-4xl mx-auto">
-          <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
-            <p className="text-lg">Video demo coming soon</p>
-          </div>
+        {/* Video Demo */}
+        <div className="relative aspect-video rounded-xl border border-dc-border bg-dc-surface overflow-hidden max-w-4xl mx-auto shadow-lg">
+          <video
+            className="w-full h-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+            aria-label="Desktop Commander build prototype demo - showing how to create software using natural language"
+            title="Build software with natural language - Desktop Commander demo"
+          >
+            <source src="/videos/build-prototype-demo.mov" type="video/quicktime" />
+            <source src="/videos/build-prototype-demo.mov" type="video/mp4" />
+            <p className="text-muted-foreground">Your browser does not support the video tag. <a href="/videos/build-prototype-demo.mov" className="text-primary hover:underline">Download the demo video</a></p>
+          </video>
         </div>
       </div>
     </section>
