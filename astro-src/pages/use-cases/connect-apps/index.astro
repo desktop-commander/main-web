@@ -1,0 +1,46 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import PostHogInit from '../../../../src/components/PostHogInit';
+import NavigationLandingPage from '../../../../src/components/NavigationLandingPage';
+import CAHeroSection from '../../../../src/components/use-cases/connect-apps/CAHeroSection';
+import CAProblemSection from '../../../../src/components/use-cases/connect-apps/CAProblemSection';
+import CASolutionSection from '../../../../src/components/use-cases/connect-apps/CASolutionSection';
+import CAIntegrationsSection from '../../../../src/components/use-cases/connect-apps/CAIntegrationsSection';
+import CAExamplesSection from '../../../../src/components/use-cases/connect-apps/CAExamplesSection';
+import CAWhyDifferentSection from '../../../../src/components/use-cases/connect-apps/CAWhyDifferentSection';
+import CAComparisonSection from '../../../../src/components/use-cases/connect-apps/CAComparisonSection';
+import CAHowItWorksSection from '../../../../src/components/use-cases/connect-apps/CAHowItWorksSection';
+import CAPersonasSection from '../../../../src/components/use-cases/connect-apps/CAPersonasSection';
+import CAFinalCTASection from '../../../../src/components/use-cases/connect-apps/CAFinalCTASection';
+import Footer from '../../../../src/components/Footer';
+---
+
+<Layout 
+  title="Control Your Apps Through Chat | Desktop Commander"
+  description="Connect Desktop Commander to 100+ tools you already use. Manage HubSpot, WordPress, Google Analytics, GitHub, and more — all in natural language. Save 3+ hours per week."
+>
+  <PostHogInit client:load />
+  
+  <div class="min-h-screen bg-background">
+    <NavigationLandingPage client:load />
+    
+    <main>
+      <CAHeroSection client:load />
+      <CAProblemSection client:visible />
+      <CASolutionSection client:visible />
+      <CAIntegrationsSection client:visible />
+      <CAExamplesSection client:visible />
+      <CAWhyDifferentSection client:visible />
+      <CAComparisonSection client:visible />
+      <CAHowItWorksSection client:visible />
+      <CAPersonasSection client:visible />
+      <CAFinalCTASection client:visible />
+    </main>
+    
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../../../src/index.css';
+</style>
