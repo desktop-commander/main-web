@@ -139,9 +139,9 @@ const NavigationLandingPage = () => {
 
               <Button variant="ghost" size="sm" asChild>
                 <a 
-                  href="https://desktopcommander.app/about"
+                  href="https://blog.desktopcommander.app/about/"
                   className="text-white hover:text-white/80 font-medium"
-                  onClick={() => trackNavigation('About', 'https://desktopcommander.app/about', 'internal')}
+                  onClick={() => trackNavigation('About', 'https://blog.desktopcommander.app/about/', 'internal')}
                 >
                   About
                 </a>
@@ -254,9 +254,9 @@ const NavigationLandingPage = () => {
                     </Button>
                     <Button variant="ghost" size="sm" asChild>
                       <a 
-                        href="https://desktopcommander.app/about"
+                        href="https://blog.desktopcommander.app/about/"
                         className="text-white hover:text-white/80 font-medium justify-start w-full"
-                        onClick={() => handleMobileNavClick('About', 'https://desktopcommander.app/about', 'internal')}
+                        onClick={() => handleMobileNavClick('About', 'https://blog.desktopcommander.app/about/', 'internal')}
                       >
                         About
                       </a>
