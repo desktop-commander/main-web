@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Folder, Database, Code, Zap, FileText, Server } from "lucide-react";
+import { ArrowRight, Folder, Database, Hammer, Link, BookOpen } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 
 interface UseCaseCategory {
@@ -23,36 +23,29 @@ const UseCasesHub = () => {
       title: "Data Analysis",
       description: "Process and analyze CSV, JSON, and log files",
       icon: Database,
-      href: "/use-cases/data-analysis/",
+      href: "/use-cases/analyze-data/",
       color: "text-green-500"
     },
     {
-      title: "Development",
-      description: "Build features, debug, and refactor code",
-      icon: Code,
-      href: "/use-cases/development/",
+      title: "Build Prototypes",
+      description: "Rapidly prototype and build software projects",
+      icon: Hammer,
+      href: "/use-cases/build-prototype/",
       color: "text-purple-500"
     },
     {
-      title: "Automation",
-      description: "Automate repetitive tasks and workflows",
-      icon: Zap,
-      href: "/use-cases/automation/",
+      title: "Connect Apps",
+      description: "Integrate and automate between different applications",
+      icon: Link,
+      href: "/use-cases/connect-apps/",
       color: "text-yellow-500"
     },
     {
-      title: "Content Creation",
-      description: "Write, document, and research with AI",
-      icon: FileText,
-      href: "/use-cases/content-creation/",
+      title: "Knowledge Management",
+      description: "Organize notes, documentation, and research",
+      icon: BookOpen,
+      href: "/use-cases/knowledge-management/",
       color: "text-pink-500"
-    },
-    {
-      title: "DevOps",
-      description: "Deploy, monitor, and manage infrastructure",
-      icon: Server,
-      href: "/use-cases/devops/",
-      color: "text-orange-500"
     }
   ];
 
