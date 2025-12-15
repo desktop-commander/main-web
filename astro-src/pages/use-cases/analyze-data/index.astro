@@ -1,0 +1,44 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import PostHogInit from '../../../../src/components/PostHogInit';
+import NavigationLandingPage from '../../../../src/components/NavigationLandingPage';
+import ADHeroSection from '../../../../src/components/use-cases/analyze-data/ADHeroSection';
+import ADProblemSection from '../../../../src/components/use-cases/analyze-data/ADProblemSection';
+import ADSolutionSection from '../../../../src/components/use-cases/analyze-data/ADSolutionSection';
+import ADExamplesSection from '../../../../src/components/use-cases/analyze-data/ADExamplesSection';
+import ADComparisonSection from '../../../../src/components/use-cases/analyze-data/ADComparisonSection';
+import ADWhyDifferentSection from '../../../../src/components/use-cases/analyze-data/ADWhyDifferentSection';
+import ADWaitlistSection from '../../../../src/components/use-cases/analyze-data/ADWaitlistSection';
+import ADPersonasSection from '../../../../src/components/use-cases/analyze-data/ADPersonasSection';
+import ADFinalCTASection from '../../../../src/components/use-cases/analyze-data/ADFinalCTASection';
+import Footer from '../../../../src/components/Footer';
+---
+
+<Layout 
+  title="Analyze Data in Natural Language | Desktop Commander"
+  description="Process large files, find patterns, and automate reports without learning Python. Get accurate insights from CSV, Excel, and JSON files of any size."
+>
+  <PostHogInit client:load />
+  
+  <div class="min-h-screen bg-background">
+    <NavigationLandingPage client:load />
+    
+    <main>
+      <ADHeroSection client:load />
+      <ADProblemSection client:visible />
+      <ADSolutionSection client:visible />
+      <ADExamplesSection client:visible />
+      <ADComparisonSection client:visible />
+      <ADWhyDifferentSection client:visible />
+      <ADWaitlistSection client:visible />
+      <ADPersonasSection client:visible />
+      <ADFinalCTASection client:visible />
+    </main>
+    
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../../../src/index.css';
+</style>

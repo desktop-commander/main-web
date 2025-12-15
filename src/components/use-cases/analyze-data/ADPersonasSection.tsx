@@ -1,0 +1,87 @@
+import { Rocket, BarChart3 } from "lucide-react";
+
+const ADPersonasSection = () => {
+  const personas = [
+    {
+      icon: Rocket,
+      title: "Business operators & founders",
+      color: "blue",
+      useCases: [
+        "Analyze customer data without waiting for engineering",
+        "Get answers from spreadsheets in minutes, not days",
+        "Make data-backed decisions without hiring analysts"
+      ]
+    },
+    {
+      icon: BarChart3,
+      title: "Analysts hitting tool limits",
+      color: "purple",
+      useCases: [
+        "Process files too large for Excel",
+        "Automate repetitive report generation",
+        "Skip the copy-paste-into-AI workflow"
+      ]
+    }
+  ];
+
+  const getColorClasses = (color: string) => {
+    const colors: Record<string, { bg: string; border: string; iconBg: string; iconColor: string; titleColor: string }> = {
+      blue: {
+        bg: "bg-blue-500/5",
+        border: "border-blue-500/30",
+        iconBg: "bg-blue-500/20",
+        iconColor: "text-blue-400",
+        titleColor: "text-blue-400"
+      },
+      purple: {
+        bg: "bg-purple-500/5",
+        border: "border-purple-500/30",
+        iconBg: "bg-purple-500/20",
+        iconColor: "text-purple-400",
+        titleColor: "text-purple-400"
+      }
+    };
+    return colors[color] || colors.blue;
+  };
+
+  return (
+    <section className="py-16 md:py-24 bg-gradient-to-b from-background to-dc-card/30">
+      <div className="container mx-auto max-w-4xl px-4 sm:px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+            Who This Is For
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          {personas.map((persona, index) => {
+            const colors = getColorClasses(persona.color);
+            return (
+              <div 
+                key={index}
+                className={`p-6 rounded-xl ${colors.bg} border-2 ${colors.border}`}
+              >
+                <div className={`w-12 h-12 rounded-xl ${colors.iconBg} flex items-center justify-center mb-4`}>
+                  <persona.icon className={`w-6 h-6 ${colors.iconColor}`} />
+                </div>
+                <h3 className={`text-xl font-semibold mb-4 ${colors.titleColor}`}>
+                  {persona.title}
+                </h3>
+                <ul className="space-y-2 text-muted-foreground">
+                  {persona.useCases.map((useCase, ucIndex) => (
+                    <li key={ucIndex} className="flex items-start gap-2">
+                      <span className={`w-1.5 h-1.5 rounded-full ${colors.iconBg} mt-2 shrink-0`} />
+                      <span>{useCase}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ADPersonasSection;
