@@ -1,0 +1,256 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PostHogInit from '../../src/components/PostHogInit';
+import NavigationLandingPage from '../../src/components/NavigationLandingPage';
+import Footer from '../../src/components/Footer';
+---
+
+<Layout 
+  title="Welcome to Desktop Commander"
+  description="Desktop Commander installed! Choose how to get started."
+>
+  <PostHogInit client:load />
+  
+  <div class="min-h-screen bg-background">
+    <NavigationLandingPage client:load />
+    
+    <main class="pt-24 pb-16 md:pt-32 md:pb-24">
+      <div class="container mx-auto max-w-4xl px-4 sm:px-6">
+        
+        <!-- Celebration Header -->
+        <div class="text-center mb-12 relative">
+          <div id="confetti-container" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
+          
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-green-500/20 rounded-full mb-5 animate-success-pop">
+            <svg class="checkmark w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+              <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none" stroke="rgb(74 222 128)" stroke-width="2"/>
+              <path class="checkmark-check" fill="none" stroke="rgb(74 222 128)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M14 27l7 7 16-16"/>
+            </svg>
+          </div>
+          
+          <h1 class="text-3xl sm:text-4xl font-bold text-foreground mb-3 animate-fade-in-up">
+            Desktop Commander Installed!
+          </h1>
+          <p class="text-lg text-muted-foreground animate-fade-in-up animation-delay-100">
+            How would you like to get started?
+          </p>
+        </div>
+
+        <!-- Two Path Choice -->
+        <div class="grid md:grid-cols-2 gap-6 mb-12 animate-fade-in-up animation-delay-200">
+          
+          <!-- Path 1: Try First Command -->
+          <div class="bg-gradient-to-br from-primary/10 via-dc-card/50 to-dc-card/30 border border-primary/30 rounded-2xl p-6 hover:border-primary/50 transition-colors">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                  <polygon points="6 3 20 12 6 21 6 3"/>
+                </svg>
+              </div>
+              <h2 class="text-xl font-semibold text-foreground">Try Your First Command</h2>
+            </div>
+            
+            <p class="text-muted-foreground text-sm mb-4">
+              Copy this prompt into Claude Desktop and see the magic:
+            </p>
+            
+            <!-- Copyable prompt -->
+            <div class="relative group mb-4">
+              <div class="bg-dc-surface border border-dc-border rounded-lg p-4 pr-12 font-mono text-sm text-foreground">
+                Organize my Downloads folder by file type
+              </div>
+              <button 
+                id="copy-prompt-btn"
+                class="absolute right-3 top-1/2 -translate-y-1/2 p-2 text-muted-foreground hover:text-foreground hover:bg-dc-card rounded transition-colors"
+                title="Copy to clipboard"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="copy-icon">
+                  <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                  <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="check-icon" class="hidden text-green-400">
+                  <path d="M20 6 9 17l-5-5"/>
+                </svg>
+              </button>
+            </div>
+            
+            <!-- Video -->
+            <div class="rounded-lg overflow-hidden">
+              <video class="w-full h-auto" autoplay loop muted playsinline>
+                <source src="/videos/welcome-try-prompt.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+
+          <!-- Path 2: Browse Prompts -->
+          <div class="bg-dc-card/30 border border-dc-border rounded-2xl p-6 hover:border-dc-border/80 transition-colors flex flex-col">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 bg-dc-card rounded-lg flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground">
+                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+                </svg>
+              </div>
+              <h2 class="text-xl font-semibold text-foreground">Browse the Prompt Library</h2>
+            </div>
+            
+            <p class="text-muted-foreground text-sm mb-6">
+              Explore dozens of ready-to-use prompts for file management, coding, data analysis, and more.
+            </p>
+            
+            <!-- Preview of prompts -->
+            <div class="space-y-2 mb-6 flex-1">
+              <div class="bg-dc-surface/50 border border-dc-border/50 rounded-lg px-4 py-2 text-sm text-muted-foreground">
+                📁 Organize my project files...
+              </div>
+              <div class="bg-dc-surface/50 border border-dc-border/50 rounded-lg px-4 py-2 text-sm text-muted-foreground">
+                📊 Analyze this CSV data...
+              </div>
+              <div class="bg-dc-surface/50 border border-dc-border/50 rounded-lg px-4 py-2 text-sm text-muted-foreground">
+                🔍 Explain this codebase...
+              </div>
+              <div class="bg-dc-surface/50 border border-dc-border/50 rounded-lg px-4 py-2 text-sm text-muted-foreground opacity-60">
+                + 50 more prompts...
+              </div>
+            </div>
+            
+            <a 
+              href="/library/" 
+              class="inline-flex items-center justify-center gap-2 bg-dc-card hover:bg-dc-card/80 border border-dc-border text-foreground font-medium px-5 py-3 rounded-lg transition-colors w-full"
+            >
+              Open Prompt Library
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/>
+                <path d="m12 5 7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Email capture -->
+        <div class="bg-dc-card/30 border border-dc-border rounded-xl p-6 mb-8 text-center">
+          <p class="text-muted-foreground mb-3">
+            Get new prompts & feature updates
+          </p>
+          <div class="max-w-md mx-auto hubspot-form-wrapper">
+            <script src="https://js-eu1.hsforms.net/forms/embed/146727725.js" defer></script>
+            <div class="hs-form-frame" data-region="eu1" data-form-id="5fc2eb78-4b8b-4f64-a213-37d0fbb86a50" data-portal-id="146727725"></div>
+          </div>
+          <p class="text-xs text-muted-foreground mt-2">
+            <a href="/privacy" class="text-primary hover:text-primary/80 underline">Privacy Policy</a>
+          </p>
+        </div>
+
+        <!-- Bottom links -->
+        <div class="flex flex-wrap items-center justify-center gap-4 text-sm">
+          <a 
+            href="https://discord.gg/kQ27sNnZr7" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Join Discord
+          </a>
+          <span class="text-muted-foreground/30">•</span>
+          <a 
+            href="https://github.com/wonderwhy-er/DesktopCommanderMCP" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Star on GitHub
+          </a>
+          <span class="text-muted-foreground/30">•</span>
+          <a 
+            href="https://github.com/wonderwhy-er/DesktopCommanderMCP#troubleshooting" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Having issues?
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+    <Footer client:visible />
+  </div>
+
+  <style>
+    .checkmark-circle {
+      stroke-dasharray: 166;
+      stroke-dashoffset: 166;
+      animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+    }
+    .checkmark-check {
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.4s forwards;
+    }
+    @keyframes stroke {
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes success-pop {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .animate-success-pop {
+      animation: success-pop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    }
+    @keyframes fade-in-up {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up {
+      animation: fade-in-up 0.6s ease-out forwards;
+    }
+    .animation-delay-100 { animation-delay: 0.1s; opacity: 0; }
+    .animation-delay-200 { animation-delay: 0.2s; opacity: 0; }
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      opacity: 0;
+    }
+    @keyframes confetti-fall {
+      0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+      100% { opacity: 0; transform: translateY(400px) rotate(720deg); }
+    }
+  </style>
+
+  <script is:inline>
+    document.getElementById('copy-prompt-btn').addEventListener('click', async function() {
+      const prompt = 'Organize my Downloads folder by file type';
+      try {
+        await navigator.clipboard.writeText(prompt);
+        document.getElementById('copy-icon').classList.add('hidden');
+        document.getElementById('check-icon').classList.remove('hidden');
+        setTimeout(() => {
+          document.getElementById('copy-icon').classList.remove('hidden');
+          document.getElementById('check-icon').classList.add('hidden');
+        }, 2000);
+      } catch (err) {
+        console.error('Failed to copy:', err);
+      }
+    });
+
+    function createConfetti() {
+      const container = document.getElementById('confetti-container');
+      const colors = ['#3b82f6', '#22c55e', '#eab308', '#ef4444', '#8b5cf6', '#ec4899'];
+      for (let i = 0; i < 40; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.top = '-10px';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+        confetti.style.animation = `confetti-fall ${1.5 + Math.random() * 2}s ease-out ${Math.random() * 0.5}s forwards`;
+        container.appendChild(confetti);
+      }
+      setTimeout(() => { container.innerHTML = ''; }, 4000);
+    }
+    setTimeout(createConfetti, 300);
+  </script>
+</Layout>
