@@ -1,15 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield } from "lucide-react";
+import { Shield, Download, ArrowRight } from "lucide-react";
 
 const FileManagementHero = () => {
-  const handleInstallClick = () => {
-    // Navigate to installation section
-    const installSection = document.getElementById('installation');
-    if (installSection) {
-      installSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <section className="pt-32 pb-16 md:pt-40 md:pb-20">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6">
@@ -38,8 +30,9 @@ const FileManagementHero = () => {
               asChild
               className="group"
             >
-              <a href="/product/early-access/">
-                Join the Waitlist
+              <a href="#get-started">
+                <Download className="w-5 h-5" />
+                Download App
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
             </Button>

@@ -1,5 +1,5 @@
-import { Download, MessageSquare, Sparkles, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Download, MessageSquare, Sparkles } from "lucide-react";
+import DownloadButtons from "@/components/shared/DownloadButtons";
 
 const HowItWorksFlowSection = () => {
   const steps = [
@@ -67,16 +67,7 @@ const HowItWorksFlowSection = () => {
 
         {/* CTA Button */}
         <div className="flex justify-center mt-12">
-          <Button 
-            size="lg" 
-            asChild
-            className="group"
-          >
-            <a href="/product/early-access/">
-              Join the Waitlist
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </Button>
+          <DownloadButtons location="how_it_works_simple" />
         </div>
       </div>
     </section>

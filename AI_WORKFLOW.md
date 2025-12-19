@@ -1,5 +1,9 @@
 # AI Workflow Instructions
 
+## Quick Reference Files
+- **CTA_BUTTONS_GUIDE.md** - All CTA button locations for site-wide updates
+- **LOCAL_DEVELOPMENT_SETUP.md** - Development environment setup
+
 ## Repository Overview
 This repository contains the Desktop Commander website - a static site built from React/Vite source code and hosted on GitHub Pages from the `docs/` folder.
 

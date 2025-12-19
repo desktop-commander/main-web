@@ -1,12 +1,11 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import DownloadButtons from "@/components/shared/DownloadButtons";
 
 const WaitlistSection = () => {
   const steps = [
     {
       number: "1",
-      title: "Join the Early Access Program",
-      description: "Sign up to get priority access when Desktop Commander launches. Be among the first to experience AI-native file management."
+      title: "Download Desktop Commander",
+      description: "One-time setup on your Mac or Windows computer. No accounts, no subscriptions required to start."
     },
     {
       number: "2",
@@ -49,19 +48,10 @@ const WaitlistSection = () => {
                   {step.description}
                 </p>
                 
-                {/* CTA button - only show on first step */}
+                {/* Download buttons - only show on first step */}
                 {index === 0 && (
                   <div className="mt-6">
-                    <Button 
-                      size="lg"
-                      className="group"
-                      asChild
-                    >
-                      <a href="/product/early-access/">
-                        Join the Waitlist
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </a>
-                    </Button>
+                    <DownloadButtons location="waitlist_section_step1" />
                   </div>
                 )}
               </div>

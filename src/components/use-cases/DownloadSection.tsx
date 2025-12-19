@@ -1,5 +1,4 @@
-import { Button } from "@/components/ui/button";
-import { Download, Apple } from "lucide-react";
+import DownloadButtons from "@/components/shared/DownloadButtons";
 
 const HowItWorksSection = () => {
   const steps = [
@@ -52,36 +51,7 @@ const HowItWorksSection = () => {
                 {/* Download buttons - only show on first step */}
                 {index === 0 && (
                   <div className="flex flex-wrap gap-3 mt-6">
-                    <Button 
-                      size="lg"
-                      className="bg-black hover:bg-black/90 text-white border-2 border-white/20 hover:border-primary/50"
-                      asChild
-                    >
-                      <a href="https://github.com/desktop-commander/desktop-commander/releases/latest" target="_blank" rel="noopener noreferrer">
-                        <Apple className="w-5 h-5" />
-                        macOS M Chip
-                      </a>
-                    </Button>
-                    <Button 
-                      size="lg"
-                      className="bg-black hover:bg-black/90 text-white border-2 border-white/20 hover:border-primary/50"
-                      asChild
-                    >
-                      <a href="https://github.com/desktop-commander/desktop-commander/releases/latest" target="_blank" rel="noopener noreferrer">
-                        <Apple className="w-5 h-5" />
-                        macOS Intel
-                      </a>
-                    </Button>
-                    <Button 
-                      size="lg"
-                      className="bg-black hover:bg-black/90 text-white border-2 border-white/20 hover:border-primary/50"
-                      asChild
-                    >
-                      <a href="https://github.com/desktop-commander/desktop-commander/releases/latest" target="_blank" rel="noopener noreferrer">
-                        <Download className="w-5 h-5" />
-                        Windows
-                      </a>
-                    </Button>
+                    <DownloadButtons location="download_section_step1" />
                   </div>
                 )}
               </div>

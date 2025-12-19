@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { Download } from "lucide-react";
+import DownloadButtons from "@/components/shared/DownloadButtons";
 
 const CAFinalCTASection = () => {
   return (
@@ -17,14 +17,15 @@ const CAFinalCTASection = () => {
             70% of Desktop Commander users save 3+ hours per week. Connect your tools and control your entire stack through conversation.
           </p>
 
-          {/* CTA Button */}
+          {/* Download Label */}
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <Download className="w-5 h-5 text-primary" />
+            <span className="text-lg font-semibold">Download Desktop Commander</span>
+          </div>
+
+          {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Button size="lg" asChild className="group">
-              <a href="/product/early-access/">
-                Join the Waitlist
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </Button>
+            <DownloadButtons variant="hero" location="connect_apps_final_cta" />
           </div>
 
           {/* Supporting Info */}

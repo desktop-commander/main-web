@@ -11,7 +11,7 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Terminal, ChevronDown, ExternalLink, Menu, X, ArrowRight } from "lucide-react";
+import { Terminal, ChevronDown, ExternalLink, Menu, X, ArrowRight, Download } from "lucide-react";
 import dcLogo from "@/assets/dc-logo.png";
 import { useState } from "react";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
@@ -149,7 +149,7 @@ const NavigationLandingPage = () => {
             </div>
           </div>
           
-          {/* Desktop CTA - Join Waitlist */}
+          {/* Desktop CTA - Download */}
           <div className="hidden lg:flex items-center gap-3">
             <Button 
               size="sm" 
@@ -157,10 +157,11 @@ const NavigationLandingPage = () => {
               asChild
             >
               <a 
-                href="/product/early-access/"
+                href="#get-started"
                 onClick={handleDownloadClick}
               >
-                Join the Waitlist
+                <Download className="w-4 h-4" />
+                Download
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
             </Button>
@@ -271,13 +272,14 @@ const NavigationLandingPage = () => {
                       asChild
                     >
                       <a 
-                        href="/product/early-access/"
+                        href="#get-started"
                         onClick={() => {
                           handleDownloadClick();
                           setIsSheetOpen(false);
                         }}
                       >
-                        Join the Waitlist
+                        <Download className="w-4 h-4" />
+                        Download
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </a>
                     </Button>

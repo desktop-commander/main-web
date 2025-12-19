@@ -1,6 +1,6 @@
-import { BookOpen, RefreshCw, FolderTree, Network, Sparkles, FileEdit, Move, Download, FolderOpen, MessageSquare, Command, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { BookOpen, RefreshCw, FolderTree, Network, Sparkles, FileEdit, Move, Download, FolderOpen, MessageSquare, Command } from "lucide-react";
 import { useEffect, useRef } from "react";
+import DownloadButtons from "@/components/shared/DownloadButtons";
 
 const KMSolutionSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -124,16 +124,7 @@ const KMSolutionSection = () => {
 
         {/* CTA Button */}
         <div className="flex justify-center mt-10">
-          <Button 
-            size="lg" 
-            asChild
-            className="group"
-          >
-            <a href="/product/early-access/">
-              Join the Waitlist
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </Button>
+          <DownloadButtons location="knowledge_management_solution" />
         </div>
 
         {/* Divider + Benefits Header */}

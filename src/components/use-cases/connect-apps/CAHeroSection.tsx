@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { Download, ArrowRight } from "lucide-react";
 
 const CAHeroSection = () => {
   return (
@@ -48,8 +48,9 @@ const CAHeroSection = () => {
               asChild
               className="group"
             >
-              <a href="/product/early-access/">
-                Join the Waitlist
+              <a href="#get-started">
+                <Download className="w-5 h-5" />
+                Download App
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
             </Button>
