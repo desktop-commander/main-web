@@ -1,6 +1,11 @@
 {
   "version": "0.0.2",
   "flags": {
-    "user_surveys": false
+    "user_surveys": false,
+    "experiments": {
+      "OnboardingPreTool": {
+        "variants": ["noOnboardingPage", "showOnboardingPage"]
+      }
+    }
   }
 }
