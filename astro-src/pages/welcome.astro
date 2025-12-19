@@ -1,0 +1,377 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PostHogInit from '../../src/components/PostHogInit';
+import NavigationLandingPage from '../../src/components/NavigationLandingPage';
+import Footer from '../../src/components/Footer';
+---
+
+<Layout 
+  title="Welcome to Desktop Commander"
+  description="Desktop Commander installed! Get started now."
+>
+  <PostHogInit client:load />
+  
+  <div class="min-h-screen bg-background">
+    <NavigationLandingPage client:load />
+    
+    <main class="pt-24 pb-16 md:pt-28 md:pb-24">
+      <div class="container mx-auto max-w-4xl px-4 sm:px-6">
+        
+        <!-- Celebration Header -->
+        <div class="text-center mb-10 relative">
+          <div id="confetti-container" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
+          
+          <div class="inline-flex items-center justify-center w-20 h-20 relative mb-6">
+            <div class="absolute inset-0 rounded-full bg-green-500/20 animate-ping-slow"></div>
+            <div class="absolute inset-2 rounded-full bg-green-500/10 animate-ping-slower"></div>
+            <div class="relative w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center animate-success-pop">
+              <svg class="checkmark w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none" stroke="rgb(74 222 128)" stroke-width="2"/>
+                <path class="checkmark-check" fill="none" stroke="rgb(74 222 128)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M14 27l7 7 16-16"/>
+              </svg>
+            </div>
+          </div>
+          
+          <h1 class="text-3xl sm:text-4xl font-bold text-foreground mb-3">
+            Desktop Commander Installed!
+          </h1>
+          <p class="text-lg text-muted-foreground">
+            You're ready to supercharge Claude Desktop
+          </p>
+        </div>
+
+        <!-- Vertical Stack -->
+        <div class="flex flex-col gap-5 mb-10 animate-fade-in-up animation-delay-200">
+          
+          <!-- Card 1: Try First Prompt (HERO - side by side) -->
+          <div class="bg-gradient-to-br from-primary/15 via-primary/10 to-dc-card/50 border-2 border-primary/40 rounded-2xl p-6 relative overflow-hidden">
+            <div class="absolute -top-20 -right-20 w-40 h-40 bg-primary/20 rounded-full blur-3xl"></div>
+            
+            <div class="relative flex flex-col md:flex-row gap-6">
+              <!-- Left: Text content -->
+              <div class="md:w-2/5 shrink-0">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 bg-primary/30 rounded-lg flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                      <polygon points="6 3 20 12 6 21 6 3"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="text-xs font-medium text-primary uppercase tracking-wide">Start Here</span>
+                    <h2 class="text-xl font-semibold text-foreground">Try Your First Command</h2>
+                  </div>
+                </div>
+                
+                <p class="text-muted-foreground text-sm mb-4">
+                  Copy this into Claude Desktop:
+                </p>
+                
+                <div class="relative group">
+                  <div class="bg-dc-surface/80 border border-dc-border rounded-lg p-4 pr-12 font-mono text-sm text-foreground">
+                    Organize my Downloads folder by file type
+                  </div>
+                  <button 
+                    id="copy-prompt-btn"
+                    class="absolute right-3 top-1/2 -translate-y-1/2 p-2 text-muted-foreground hover:text-foreground hover:bg-dc-card rounded transition-colors"
+                    title="Copy to clipboard"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="copy-icon">
+                      <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="check-icon" class="hidden text-green-400">
+                      <path d="M20 6 9 17l-5-5"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Right: Video (wider) -->
+              <div class="md:w-3/5 rounded-lg overflow-hidden bg-dc-surface/30">
+                <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                  <source src="/videos/welcome-try-prompt.mp4" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Having Issues (with border) -->
+          <div class="bg-dc-card/30 border border-dc-border rounded-2xl p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 bg-dc-card rounded-lg flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                  <path d="M12 17h.01"/>
+                </svg>
+              </div>
+              <h2 class="text-xl font-semibold text-foreground">Having Issues?</h2>
+            </div>
+            
+            <p class="text-muted-foreground text-sm mb-4">
+              Quick fixes for common setup problems:
+            </p>
+            
+            <!-- Accordion -->
+            <div class="space-y-2" id="accordion-container">
+              <div class="accordion-item bg-dc-surface/50 border border-dc-border/50 rounded-lg" data-accordion="1">
+                <button class="accordion-trigger w-full px-4 py-3 cursor-pointer text-sm font-medium text-foreground flex items-center justify-between text-left">
+                  <span>1. Check if Desktop Commander is enabled</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accordion-icon text-muted-foreground transition-transform">
+                    <path d="m6 9 6 6 6-6"/>
+                  </svg>
+                </button>
+                <div class="accordion-content hidden px-4 pb-3">
+                  <p class="text-sm text-muted-foreground mb-3">Go to Claude Desktop settings and toggle Desktop Commander on.</p>
+                  <div class="rounded-lg overflow-hidden">
+                    <video class="w-full h-auto" muted playsinline controls>
+                      <source src="/videos/welcome-enable-dc.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="accordion-item bg-dc-surface/50 border border-dc-border/50 rounded-lg" data-accordion="2">
+                <button class="accordion-trigger w-full px-4 py-3 cursor-pointer text-sm font-medium text-foreground flex items-center justify-between text-left">
+                  <span>2. Allow tools in connector settings</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accordion-icon text-muted-foreground transition-transform">
+                    <path d="m6 9 6 6 6-6"/>
+                  </svg>
+                </button>
+                <div class="accordion-content hidden px-4 pb-3">
+                  <p class="text-sm text-muted-foreground mb-3">Enable tools in your MCP connector settings.</p>
+                  <div class="rounded-lg overflow-hidden">
+                    <video class="w-full h-auto" muted playsinline controls>
+                      <source src="/videos/welcome-allow-tools.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+
+          <!-- Card 3: Prompt Library (with border, clickable prompts) -->
+          <div class="bg-dc-card/30 border border-dc-border rounded-2xl p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 bg-dc-card rounded-lg flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground">
+                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+                </svg>
+              </div>
+              <h2 class="text-xl font-semibold text-foreground">Prompt Library</h2>
+            </div>
+            
+            <p class="text-muted-foreground text-sm mb-4">
+              Explore ready-to-use prompts for any task:
+            </p>
+            
+            <div class="space-y-2 mb-4">
+              <a href="/library/prompts/explain-codebase-or-repository/" class="block bg-dc-surface/50 border border-dc-border/50 hover:border-primary/50 hover:bg-dc-surface rounded-lg px-4 py-3 text-sm text-foreground transition-colors">
+                🔍 Explain Codebase or Repository
+              </a>
+              <a href="/library/prompts/analyze-my-data-file/" class="block bg-dc-surface/50 border border-dc-border/50 hover:border-primary/50 hover:bg-dc-surface rounded-lg px-4 py-3 text-sm text-foreground transition-colors">
+                📊 Analyze My Data File
+              </a>
+              <a href="/library/prompts/extract-data-from-pdfs/" class="block bg-dc-surface/50 border border-dc-border/50 hover:border-primary/50 hover:bg-dc-surface rounded-lg px-4 py-3 text-sm text-foreground transition-colors">
+                📄 Extract Data from PDFs
+              </a>
+              <a href="/library/prompts/create-knowledge-base-folder/" class="block bg-dc-surface/50 border border-dc-border/50 hover:border-primary/50 hover:bg-dc-surface rounded-lg px-4 py-3 text-sm text-foreground transition-colors">
+                📁 Create Knowledge Base Folder
+              </a>
+            </div>
+            
+            <a 
+              href="/library/" 
+              class="inline-flex items-center justify-center gap-2 bg-dc-card hover:bg-dc-card/80 border border-dc-border text-foreground font-medium px-5 py-3 rounded-lg transition-colors w-full"
+            >
+              Browse All 72+ Prompts
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/>
+                <path d="m12 5 7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Card 4: Stay Updated - VARIATION C: Minimal centered -->
+          <div class="bg-dc-card/30 border border-dc-border rounded-2xl p-8 text-center">
+            <div class="inline-flex items-center justify-center w-14 h-14 bg-primary/20 rounded-full mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </div>
+            
+            <h2 class="text-2xl font-semibold text-foreground mb-2">Level Up Your Automations</h2>
+            <p class="text-muted-foreground text-sm mb-6 max-w-md mx-auto">
+              Get weekly tips, new prompt ideas, and be first to know about new features.
+            </p>
+            
+            <div class="hubspot-form-wrapper max-w-sm mx-auto">
+              <script src="https://js-eu1.hsforms.net/forms/embed/146727725.js" defer></script>
+              <div class="hs-form-frame" data-region="eu1" data-form-id="5fc2eb78-4b8b-4f64-a213-37d0fbb86a50" data-portal-id="146727725"></div>
+            </div>
+            <p class="text-xs text-muted-foreground mt-3">
+              <a href="https://legal.desktopcommander.app/website_privacy_policy" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary/80 underline">Privacy Policy</a> · No spam, unsubscribe anytime
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Bottom links -->
+        <div class="grid grid-cols-2 gap-3">
+          <a 
+            href="https://discord.gg/kQ27sNnZr7" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center gap-2 bg-dc-card/30 hover:bg-dc-card/60 border border-dc-border rounded-lg p-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            <span class="font-medium">Join Discord</span>
+          </a>
+          
+          <a 
+            href="https://github.com/wonderwhy-er/DesktopCommanderMCP" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center gap-2 bg-dc-card/30 hover:bg-dc-card/60 border border-dc-border rounded-lg p-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            <span class="font-medium">Star on GitHub</span>
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+    <Footer client:visible />
+  </div>
+
+  <style>
+    .checkmark-circle {
+      stroke-dasharray: 166;
+      stroke-dashoffset: 166;
+      animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) 0.5s forwards;
+    }
+    .checkmark-check {
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.9s forwards;
+    }
+    @keyframes stroke {
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes success-pop {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .animate-success-pop {
+      animation: success-pop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.2s forwards;
+      opacity: 0;
+    }
+    
+    @keyframes ping-slow {
+      0% { transform: scale(1); opacity: 0.4; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+    @keyframes ping-slower {
+      0% { transform: scale(1); opacity: 0.3; }
+      100% { transform: scale(1.8); opacity: 0; }
+    }
+    .animate-ping-slow {
+      animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+    .animate-ping-slower {
+      animation: ping-slower 2s cubic-bezier(0, 0, 0.2, 1) 0.5s infinite;
+    }
+    
+    .animation-delay-200 { animation-delay: 0.2s; opacity: 0; }
+    .animate-fade-in-up {
+      animation: fade-in-up 0.6s ease-out forwards;
+    }
+    @keyframes fade-in-up {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      opacity: 0;
+    }
+    @keyframes confetti-fall {
+      0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+      100% { opacity: 0; transform: translateY(400px) rotate(720deg); }
+    }
+    .accordion-item.open .accordion-icon {
+      transform: rotate(180deg);
+    }
+    .accordion-item.open .accordion-content {
+      display: block;
+    }
+  </style>
+
+  <script is:inline>
+    document.getElementById('copy-prompt-btn').addEventListener('click', async function() {
+      const prompt = 'Organize my Downloads folder by file type';
+      try {
+        await navigator.clipboard.writeText(prompt);
+        document.getElementById('copy-icon').classList.add('hidden');
+        document.getElementById('check-icon').classList.remove('hidden');
+        setTimeout(() => {
+          document.getElementById('copy-icon').classList.remove('hidden');
+          document.getElementById('check-icon').classList.add('hidden');
+        }, 2000);
+      } catch (err) {
+        console.error('Failed to copy:', err);
+      }
+    });
+
+    document.querySelectorAll('.accordion-trigger').forEach(trigger => {
+      trigger.addEventListener('click', function() {
+        const item = this.closest('.accordion-item');
+        const isOpen = item.classList.contains('open');
+        
+        document.querySelectorAll('.accordion-item').forEach(i => {
+          i.classList.remove('open');
+          const video = i.querySelector('video');
+          if (video) {
+            video.pause();
+            video.currentTime = 0;
+          }
+        });
+        
+        if (!isOpen) {
+          item.classList.add('open');
+          const video = item.querySelector('video');
+          if (video) {
+            video.play();
+          }
+        }
+      });
+    });
+
+    function createConfetti() {
+      const container = document.getElementById('confetti-container');
+      const colors = ['#3b82f6', '#22c55e', '#eab308', '#ef4444', '#8b5cf6', '#ec4899'];
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.top = '-10px';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+        confetti.style.animation = `confetti-fall ${1.5 + Math.random() * 2}s ease-out ${Math.random() * 0.5}s forwards`;
+        container.appendChild(confetti);
+      }
+      setTimeout(() => { container.innerHTML = ''; }, 4000);
+    }
+    setTimeout(createConfetti, 600);
+  </script>
+</Layout>
