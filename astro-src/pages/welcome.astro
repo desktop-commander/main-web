@@ -170,22 +170,23 @@ import Footer from '../../src/components/Footer';
             </p>
             
             <div class="space-y-2 mb-4">
-              <a href="/library/prompts/explain-codebase-or-repository/" class="block bg-dc-surface/50 border border-dc-border/50 hover:border-primary/50 hover:bg-dc-surface rounded-lg px-4 py-3 text-sm text-foreground transition-colors">
+              <a href="/library/prompts/explain-codebase-or-repository/" class="prompt-link block bg-dc-surface/50 border border-dc-border/50 hover:border-primary/50 hover:bg-dc-surface rounded-lg px-4 py-3 text-sm text-foreground transition-colors" data-prompt-slug="explain-codebase-or-repository" data-prompt-title="Explain Codebase or Repository">
                 🔍 Explain Codebase or Repository
               </a>
-              <a href="/library/prompts/analyze-my-data-file/" class="block bg-dc-surface/50 border border-dc-border/50 hover:border-primary/50 hover:bg-dc-surface rounded-lg px-4 py-3 text-sm text-foreground transition-colors">
+              <a href="/library/prompts/analyze-my-data-file/" class="prompt-link block bg-dc-surface/50 border border-dc-border/50 hover:border-primary/50 hover:bg-dc-surface rounded-lg px-4 py-3 text-sm text-foreground transition-colors" data-prompt-slug="analyze-my-data-file" data-prompt-title="Analyze My Data File">
                 📊 Analyze My Data File
               </a>
-              <a href="/library/prompts/extract-data-from-pdfs/" class="block bg-dc-surface/50 border border-dc-border/50 hover:border-primary/50 hover:bg-dc-surface rounded-lg px-4 py-3 text-sm text-foreground transition-colors">
+              <a href="/library/prompts/extract-data-from-pdfs/" class="prompt-link block bg-dc-surface/50 border border-dc-border/50 hover:border-primary/50 hover:bg-dc-surface rounded-lg px-4 py-3 text-sm text-foreground transition-colors" data-prompt-slug="extract-data-from-pdfs" data-prompt-title="Extract Data from PDFs">
                 📄 Extract Data from PDFs
               </a>
-              <a href="/library/prompts/create-knowledge-base-folder/" class="block bg-dc-surface/50 border border-dc-border/50 hover:border-primary/50 hover:bg-dc-surface rounded-lg px-4 py-3 text-sm text-foreground transition-colors">
+              <a href="/library/prompts/create-knowledge-base-folder/" class="prompt-link block bg-dc-surface/50 border border-dc-border/50 hover:border-primary/50 hover:bg-dc-surface rounded-lg px-4 py-3 text-sm text-foreground transition-colors" data-prompt-slug="create-knowledge-base-folder" data-prompt-title="Create Knowledge Base Folder">
                 📁 Create Knowledge Base Folder
               </a>
             </div>
             
             <a 
               href="/library/" 
+              id="browse-all-prompts"
               class="inline-flex items-center justify-center gap-2 bg-dc-card hover:bg-dc-card/80 border border-dc-border text-foreground font-medium px-5 py-3 rounded-lg transition-colors w-full"
             >
               Browse All 72+ Prompts
@@ -321,18 +322,50 @@ import Footer from '../../src/components/Footer';
   </style>
 
   <script is:inline>
+    // Copy prompt button tracking
     document.getElementById('copy-prompt-btn').addEventListener('click', async function() {
       const prompt = 'Organize my Downloads folder by file type';
       try {
         await navigator.clipboard.writeText(prompt);
         document.getElementById('copy-icon').classList.add('hidden');
         document.getElementById('check-icon').classList.remove('hidden');
+        
+        // Track in PostHog
+        if (window.posthog) {
+          window.posthog.capture('welcome_prompt_copied', {
+            prompt_text: prompt,
+            page: '/welcome/'
+          });
+        }
+        
         setTimeout(() => {
           document.getElementById('copy-icon').classList.remove('hidden');
           document.getElementById('check-icon').classList.add('hidden');
         }, 2000);
       } catch (err) {
         console.error('Failed to copy:', err);
+      }
+    });
+
+    // Prompt library link tracking
+    document.querySelectorAll('.prompt-link').forEach(link => {
+      link.addEventListener('click', function() {
+        if (window.posthog) {
+          window.posthog.capture('welcome_prompt_link_clicked', {
+            prompt_slug: this.dataset.promptSlug,
+            prompt_title: this.dataset.promptTitle,
+            page: '/welcome/'
+          });
+        }
+      });
+    });
+
+    // Browse all prompts button tracking
+    document.getElementById('browse-all-prompts').addEventListener('click', function() {
+      if (window.posthog) {
+        window.posthog.capture('welcome_browse_all_prompts_clicked', {
+          page: '/welcome/'
+        });
       }
     });
 
