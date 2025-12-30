@@ -1,25 +1,18 @@
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Terminal, ChevronDown, ExternalLink, Menu, X } from "lucide-react";
+import { Download, ExternalLink, Menu } from "lucide-react";
 import dcLogo from "@/assets/dc-logo.png";
 import { useState } from "react";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
 
-// Astro-compatible Navigation
+// Astro-compatible Navigation - Redesigned for App-first positioning
 const NavigationAstro = () => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const { trackNavigation, trackCustomEvent } = useAnalyticsAstro();
+  const { trackNavigation } = useAnalyticsAstro();
   
   const handleMobileNavClick = (linkText: string, destination: string, linkType: 'internal' | 'external' = 'internal') => {
     trackNavigation(linkText, destination, linkType);
@@ -62,24 +55,11 @@ const NavigationAstro = () => {
               
               <Button variant="ghost" size="sm" asChild>
                 <a 
-                  href="/#community"
+                  href="/mcp"
                   className="text-white hover:text-white/80 font-medium"
-                  onClick={() => trackNavigation('Community', '/#community', 'internal')}
+                  onClick={() => trackNavigation('MCP', '/mcp', 'internal')}
                 >
-                  Community
-                </a>
-              </Button>
-
-              <Button variant="ghost" size="sm" asChild>
-                <a
-                  href="/careers"
-                  className="text-white hover:text-white/80 font-medium relative pr-12"
-                  onClick={() => trackNavigation('Careers', '/careers', 'internal')}
-                >
-                  Careers
-                  <Badge variant="default" className="absolute -top-1 right-2 bg-green-600 hover:bg-green-700 text-white text-[9px] px-1.5 py-0.5">
-                    Hiring
-                  </Badge>
+                  MCP
                 </a>
               </Button>
 
@@ -95,47 +75,15 @@ const NavigationAstro = () => {
                 </a>
               </Button>
 
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm" className="text-white hover:text-white/80 font-medium">
-                    Resources
-                    <ChevronDown className="ml-1 h-3 w-3" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-48">
-                  <DropdownMenuItem asChild>
-                    <a 
-                      href="https://blog.desktopcommander.app/about/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center cursor-pointer"
-                    >
-                      About
-                    </a>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <a 
-                      href="https://blog.desktopcommander.app/contact/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center cursor-pointer"
-                    >
-                      Contact
-                    </a>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <a href="/#faq" className="flex items-center cursor-pointer">
-                      FAQ
-                    </a>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <a href="https://github.com/wonderwhy-er/DesktopCommanderMCP" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 cursor-pointer">
-                      GitHub
-                      <ExternalLink className="ml-auto h-3 w-3" />
-                    </a>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <Button variant="ghost" size="sm" asChild>
+                <a 
+                  href="/careers"
+                  className="text-white hover:text-white/80 font-medium"
+                  onClick={() => trackNavigation('Careers', '/careers', 'internal')}
+                >
+                  Careers
+                </a>
+              </Button>
             </div>
           </div>
 
@@ -143,12 +91,12 @@ const NavigationAstro = () => {
           <div className="hidden lg:flex items-center gap-3">
             <Button size="default" asChild className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2">
               <a 
-                href="/#installation" 
+                href="/#download" 
                 className="flex items-center gap-2"
-                onClick={() => trackNavigation('Install', '/#installation', 'internal')}
+                onClick={() => trackNavigation('Download', '/#download', 'internal')}
               >
-                <Terminal className="h-4 w-4" />
-                Install
+                <Download className="h-4 w-4" />
+                Download
               </a>
             </Button>
           </div>
@@ -177,21 +125,11 @@ const NavigationAstro = () => {
                   Prompts
                 </a>
                 <a 
-                  href="/#community" 
-                  onClick={() => handleMobileNavClick('Community', '/#community')}
+                  href="/mcp" 
+                  onClick={() => handleMobileNavClick('MCP', '/mcp')}
                   className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors"
                 >
-                  Community
-                </a>
-                <a 
-                  href="/careers" 
-                  onClick={() => handleMobileNavClick('Careers', '/careers')}
-                  className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors flex items-center gap-2"
-                >
-                  Careers
-                  <Badge variant="default" className="bg-green-600 text-white text-[9px] px-1.5 py-0.5">
-                    Hiring
-                  </Badge>
+                  MCP
                 </a>
                 <a 
                   href="https://desktopcommander.app/blog/"
@@ -202,50 +140,21 @@ const NavigationAstro = () => {
                 >
                   Blog
                 </a>
-                <div className="border-t border-border my-2"></div>
                 <a 
-                  href="https://blog.desktopcommander.app/about/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => handleMobileNavClick('About', 'https://blog.desktopcommander.app/about/', 'external')}
+                  href="/careers" 
+                  onClick={() => handleMobileNavClick('Careers', '/careers')}
                   className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors"
                 >
-                  About
-                </a>
-                <a 
-                  href="https://blog.desktopcommander.app/contact/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => handleMobileNavClick('Contact', 'https://blog.desktopcommander.app/contact/', 'external')}
-                  className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors"
-                >
-                  Contact
-                </a>
-                <a 
-                  href="/#faq" 
-                  onClick={() => handleMobileNavClick('FAQ', '/#faq')}
-                  className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors"
-                >
-                  FAQ
-                </a>
-                <a 
-                  href="https://github.com/wonderwhy-er/DesktopCommanderMCP" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  onClick={() => handleMobileNavClick('GitHub', 'https://github.com/wonderwhy-er/DesktopCommanderMCP', 'external')}
-                  className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors flex items-center gap-2"
-                >
-                  GitHub
-                  <ExternalLink className="h-4 w-4" />
+                  Careers
                 </a>
                 <Button size="default" asChild className="mt-4 bg-blue-600 hover:bg-blue-700 text-white">
                   <a 
-                    href="/#installation" 
+                    href="/#download" 
                     className="flex items-center gap-2"
-                    onClick={() => handleMobileNavClick('Install', '/#installation')}
+                    onClick={() => handleMobileNavClick('Download', '/#download')}
                   >
-                    <Terminal className="h-4 w-4" />
-                    Install
+                    <Download className="h-4 w-4" />
+                    Download
                   </a>
                 </Button>
               </nav>
