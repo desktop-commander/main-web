@@ -43,23 +43,24 @@ const CapabilityProof = () => {
           </p>
         </div>
 
-        {/* Video placeholder */}
+        {/* Video */}
         <div className={`mb-12 md:mb-16 transition-all duration-1000 delay-200 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <div className="max-w-4xl mx-auto">
-            <div className="aspect-video rounded-xl lg:rounded-2xl border border-dc-border bg-dc-surface/50 overflow-hidden">
-              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-dc-surface to-dc-surface/50">
-                <div className="text-center text-muted-foreground">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-dc-border/50 flex items-center justify-center">
-                    <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                  <p className="text-sm uppercase tracking-wide mb-1">Video Demo</p>
-                  <p className="text-xs">Coming soon</p>
-                </div>
-              </div>
+            <div className="aspect-video rounded-xl lg:rounded-2xl border border-dc-border bg-dc-surface/50 overflow-hidden shadow-elegant">
+              <video 
+                className="w-full h-full object-cover"
+                autoPlay 
+                muted 
+                loop 
+                playsInline
+                preload="auto"
+                title="Desktop Commander App Demo - AI executing tasks on your computer"
+              >
+                <source src="/videos/desktop-commander-app-demo.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
         </div>
