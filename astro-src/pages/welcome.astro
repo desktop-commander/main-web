@@ -85,38 +85,38 @@ import Footer from '../../src/components/Footer';
                 <!-- Divider text -->
                 <p class="text-sm text-muted-foreground mb-4">Or try one of these:</p>
                 
-                <!-- Secondary prompts - 2x2 grid -->
-                <div class="grid grid-cols-2 gap-3 mb-5">
-                  <div class="copyable-prompt bg-dc-surface/50 border border-dc-border/50 hover:border-primary/50 hover:bg-dc-surface rounded-lg px-4 py-3 text-sm text-foreground transition-colors cursor-pointer flex items-center gap-2 group" data-prompt="Explain this codebase to me" data-prompt-slug="explain-codebase" data-prompt-title="Explain Codebase">
-                    <span>🔍</span>
-                    <span class="flex-1 truncate">Explain this codebase to me</span>
+                <!-- Secondary prompts - vertical stack -->
+                <div class="flex flex-col gap-2 mb-5">
+                  <div class="copyable-prompt bg-dc-surface/50 border border-dc-border/50 hover:border-primary/50 hover:bg-dc-surface rounded-lg px-4 py-3 text-sm text-foreground transition-colors cursor-pointer flex items-start gap-2 group" data-prompt="Explain this codebase to me" data-prompt-slug="explain-codebase" data-prompt-title="Explain Codebase">
+                    <span class="shrink-0">🔍</span>
+                    <span class="flex-1">Explain this codebase to me</span>
                     <button class="copy-btn p-1 text-muted-foreground hover:text-foreground opacity-0 group-hover:opacity-100 transition-opacity shrink-0" data-prompt="Explain this codebase to me">
                       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="copy-icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
                       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="check-icon hidden text-green-400"><path d="M20 6 9 17l-5-5"/></svg>
                     </button>
                   </div>
                   
-                  <div class="copyable-prompt bg-dc-surface/50 border border-dc-border/50 hover:border-primary/50 hover:bg-dc-surface rounded-lg px-4 py-3 text-sm text-foreground transition-colors cursor-pointer flex items-center gap-2 group" data-prompt="Analyze my data file and show insights" data-prompt-slug="analyze-data" data-prompt-title="Analyze Data File">
-                    <span>📊</span>
-                    <span class="flex-1 truncate">Analyze my data file</span>
+                  <div class="copyable-prompt bg-dc-surface/50 border border-dc-border/50 hover:border-primary/50 hover:bg-dc-surface rounded-lg px-4 py-3 text-sm text-foreground transition-colors cursor-pointer flex items-start gap-2 group" data-prompt="Analyze my data file and show insights" data-prompt-slug="analyze-data" data-prompt-title="Analyze Data File">
+                    <span class="shrink-0">📊</span>
+                    <span class="flex-1">Analyze my data file</span>
                     <button class="copy-btn p-1 text-muted-foreground hover:text-foreground opacity-0 group-hover:opacity-100 transition-opacity shrink-0" data-prompt="Analyze my data file and show insights">
                       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="copy-icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
                       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="check-icon hidden text-green-400"><path d="M20 6 9 17l-5-5"/></svg>
                     </button>
                   </div>
                   
-                  <div class="copyable-prompt bg-dc-surface/50 border border-dc-border/50 hover:border-primary/50 hover:bg-dc-surface rounded-lg px-4 py-3 text-sm text-foreground transition-colors cursor-pointer flex items-center gap-2 group" data-prompt="Extract data from my PDF files" data-prompt-slug="extract-pdf" data-prompt-title="Extract from PDFs">
-                    <span>📄</span>
-                    <span class="flex-1 truncate">Extract data from PDFs</span>
+                  <div class="copyable-prompt bg-dc-surface/50 border border-dc-border/50 hover:border-primary/50 hover:bg-dc-surface rounded-lg px-4 py-3 text-sm text-foreground transition-colors cursor-pointer flex items-start gap-2 group" data-prompt="Extract data from my PDF files" data-prompt-slug="extract-pdf" data-prompt-title="Extract from PDFs">
+                    <span class="shrink-0">📄</span>
+                    <span class="flex-1">Extract data from PDFs</span>
                     <button class="copy-btn p-1 text-muted-foreground hover:text-foreground opacity-0 group-hover:opacity-100 transition-opacity shrink-0" data-prompt="Extract data from my PDF files">
                       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="copy-icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
                       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="check-icon hidden text-green-400"><path d="M20 6 9 17l-5-5"/></svg>
                     </button>
                   </div>
                   
-                  <div class="copyable-prompt bg-dc-surface/50 border border-dc-border/50 hover:border-primary/50 hover:bg-dc-surface rounded-lg px-4 py-3 text-sm text-foreground transition-colors cursor-pointer flex items-center gap-2 group" data-prompt="Create a knowledge base folder from my documents" data-prompt-slug="knowledge-base" data-prompt-title="Create Knowledge Base">
-                    <span>🗂️</span>
-                    <span class="flex-1 truncate">Create knowledge base folder</span>
+                  <div class="copyable-prompt bg-dc-surface/50 border border-dc-border/50 hover:border-primary/50 hover:bg-dc-surface rounded-lg px-4 py-3 text-sm text-foreground transition-colors cursor-pointer flex items-start gap-2 group" data-prompt="Create a knowledge base folder from my documents" data-prompt-slug="knowledge-base" data-prompt-title="Create Knowledge Base">
+                    <span class="shrink-0">🗂️</span>
+                    <span class="flex-1">Create knowledge base folder</span>
                     <button class="copy-btn p-1 text-muted-foreground hover:text-foreground opacity-0 group-hover:opacity-100 transition-opacity shrink-0" data-prompt="Create a knowledge base folder from my documents">
                       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="copy-icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
                       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="check-icon hidden text-green-400"><path d="M20 6 9 17l-5-5"/></svg>
