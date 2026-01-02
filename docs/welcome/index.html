@@ -103,7 +103,23 @@ Get weekly tips, new prompt ideas, and be first to know about new features.
           setTimeout(() => {
             copyIcon.classList.remove('hidden');
             checkIcon.classList.add('hidden');
-          }, 2000);
+          }, 3000);
+        }
+        
+        // Show feedback by replacing text temporarily
+        const parent = buttonElement.closest('.copyable-prompt');
+        if (parent) {
+          const textSpan = parent.querySelector('span.flex-1') || parent.querySelector('span.font-mono');
+          if (textSpan) {
+            const originalText = textSpan.textContent;
+            textSpan.textContent = '✓ Copied! Now paste in Claude Desktop';
+            textSpan.style.color = 'rgb(74 222 128)';
+            
+            setTimeout(() => {
+              textSpan.textContent = originalText;
+              textSpan.style.color = '';
+            }, 2500);
+          }
         }
         
         if (window.posthog) {
