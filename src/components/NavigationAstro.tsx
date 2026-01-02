@@ -16,8 +16,12 @@ import dcLogo from "@/assets/dc-logo.png";
 import { useState } from "react";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
 
+interface NavigationAstroProps {
+  hideInstall?: boolean;
+}
+
 // Astro-compatible Navigation
-const NavigationAstro = () => {
+const NavigationAstro = ({ hideInstall = false }: NavigationAstroProps) => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const { trackNavigation, trackCustomEvent } = useAnalyticsAstro();
   
@@ -104,7 +108,7 @@ const NavigationAstro = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start" className="w-48">
                   <DropdownMenuItem asChild>
-                    <a 
+                    <a
                       href="https://blog.desktopcommander.app/about/"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -114,7 +118,7 @@ const NavigationAstro = () => {
                     </a>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <a 
+                    <a
                       href="https://blog.desktopcommander.app/contact/"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -140,18 +144,20 @@ const NavigationAstro = () => {
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center gap-3">
-            <Button size="default" asChild className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2">
-              <a 
-                href="/#installation" 
-                className="flex items-center gap-2"
-                onClick={() => trackNavigation('Install', '/#installation', 'internal')}
-              >
-                <Terminal className="h-4 w-4" />
-                Install
-              </a>
-            </Button>
-          </div>
+          {!hideInstall && (
+            <div className="hidden lg:flex items-center gap-3">
+              <Button size="default" asChild className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2">
+                <a
+                  href="/#installation"
+                  className="flex items-center gap-2"
+                  onClick={() => trackNavigation('Install', '/#installation', 'internal')}
+                >
+                  <Terminal className="h-4 w-4" />
+                  Install
+                </a>
+              </Button>
+            </div>
+          )}
 
           {/* Mobile Menu Trigger */}
           <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
@@ -177,14 +183,14 @@ const NavigationAstro = () => {
                   Prompts
                 </a>
                 <a 
-                  href="/#community" 
+                  href="/#community"
                   onClick={() => handleMobileNavClick('Community', '/#community')}
                   className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors"
                 >
                   Community
                 </a>
-                <a 
-                  href="/careers" 
+                <a
+                  href="/careers"
                   onClick={() => handleMobileNavClick('Careers', '/careers')}
                   className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors flex items-center gap-2"
                 >
@@ -203,7 +209,7 @@ const NavigationAstro = () => {
                   Blog
                 </a>
                 <div className="border-t border-border my-2"></div>
-                <a 
+                <a
                   href="https://blog.desktopcommander.app/about/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -212,7 +218,7 @@ const NavigationAstro = () => {
                 >
                   About
                 </a>
-                <a 
+                <a
                   href="https://blog.desktopcommander.app/contact/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -221,16 +227,16 @@ const NavigationAstro = () => {
                 >
                   Contact
                 </a>
-                <a 
-                  href="/#faq" 
+                <a
+                  href="/#faq"
                   onClick={() => handleMobileNavClick('FAQ', '/#faq')}
                   className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors"
                 >
                   FAQ
                 </a>
-                <a 
-                  href="https://github.com/wonderwhy-er/DesktopCommanderMCP" 
-                  target="_blank" 
+                <a
+                  href="https://github.com/wonderwhy-er/DesktopCommanderMCP"
+                  target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => handleMobileNavClick('GitHub', 'https://github.com/wonderwhy-er/DesktopCommanderMCP', 'external')}
                   className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors flex items-center gap-2"
@@ -238,16 +244,18 @@ const NavigationAstro = () => {
                   GitHub
                   <ExternalLink className="h-4 w-4" />
                 </a>
-                <Button size="default" asChild className="mt-4 bg-blue-600 hover:bg-blue-700 text-white">
-                  <a 
-                    href="/#installation" 
-                    className="flex items-center gap-2"
-                    onClick={() => handleMobileNavClick('Install', '/#installation')}
-                  >
-                    <Terminal className="h-4 w-4" />
-                    Install
-                  </a>
-                </Button>
+                {!hideInstall && (
+                  <Button size="default" asChild className="mt-4 bg-blue-600 hover:bg-blue-700 text-white">
+                    <a
+                      href="/#installation"
+                      className="flex items-center gap-2"
+                      onClick={() => handleMobileNavClick('Install', '/#installation')}
+                    >
+                      <Terminal className="h-4 w-4" />
+                      Install
+                    </a>
+                  </Button>
+                )}
               </nav>
             </SheetContent>
           </Sheet>
