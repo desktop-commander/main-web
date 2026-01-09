@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing - Desktop Commander</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background-color: #f8f9fa;
+      color: #1a1a2e;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .back-link {
+      color: #1a1a2e;
+      text-decoration: none;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 40px;
+    }
+
+    .back-link:hover {
+      opacity: 0.7;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .header h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #1a1a2e;
+    }
+
+    .header p {
+      font-size: 18px;
+      color: #6b7280;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+
+    @media (max-width: 900px) {
+      .pricing-cards {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 32px;
+      border: 1px solid #e5e7eb;
+      position: relative;
+    }
+
+    .card.featured {
+      border: 2px solid #1a1a2e;
+    }
+
+    .badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a1a2e;
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .card-price {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .card-price span {
+      font-size: 16px;
+      font-weight: 400;
+      color: #6b7280;
+    }
+
+    .card-description {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 24px;
+      min-height: 40px;
+    }
+
+    .card-button {
+      width: 100%;
+      padding: 14px 24px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 24px;
+    }
+
+    .btn-outline {
+      background: white;
+      border: 1px solid #d1d5db;
+      color: #1a1a2e;
+    }
+
+    .btn-outline:hover {
+      background: #f3f4f6;
+    }
+
+    .btn-primary {
+      background: #1a1a2e;
+      border: none;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #2d2d44;
+    }
+
+    .features-list {
+      list-style: none;
+    }
+
+    .features-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      margin-bottom: 12px;
+      color: #374151;
+    }
+
+    .features-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .check-icon {
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      background: #e8f5e9;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #4caf50;
+      font-size: 12px;
+    }
+
+    /* How Credits Work Section */
+    .credits-section {
+      background: white;
+      border-radius: 12px;
+      padding: 48px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .credits-section h2 {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 40px;
+    }
+
+    .credits-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+
+    @media (max-width: 700px) {
+      .credits-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .credit-item h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #1a1a2e;
+    }
+
+    .credit-item p {
+      font-size: 14px;
+      color: #6b7280;
+    }
+
+    /* Credit Flow Diagram */
+    .credit-flow {
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .credit-flow h3 {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      color: #1a1a2e;
+    }
+
+    .flow-diagram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .flow-box {
+      background: #f3f4f6;
+      padding: 16px 24px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .flow-box.primary {
+      background: #1a1a2e;
+      color: white;
+    }
+
+    .flow-box .label {
+      font-size: 12px;
+      opacity: 0.7;
+      margin-bottom: 4px;
+    }
+
+    .flow-box .value {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .flow-arrow {
+      font-size: 20px;
+      color: #9ca3af;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="#" class="back-link">← Back</a>
+
+    <div class="header">
+      <h1>Simple, Credit-Based Pricing</h1>
+      <p>Choose the plan that fits your workflow. All plans include full access to our powerful AI models.</p>
+    </div>
+
+    <div class="pricing-cards">
+      <!-- Free Tier -->
+      <div class="card">
+        <span class="badge" style="background: #6b7280;">Pay as you go</span>
+        <div class="card-title">Free</div>
+        <div class="card-price">$0<span>/mo</span></div>
+        <p class="card-description">Start with $10 in credits. Top up whenever you need more.</p>
+        <button class="card-button btn-outline">Current Plan</button>
+        <ul class="features-list">
+          <li>
+            <span class="check-icon">✓</span>
+            $10 credits to get started
+          </li>
+          <li>
+            <span class="check-icon">✓</span>
+            Pay only for what you use
+          </li>
+          <li>
+            <span class="check-icon">✓</span>
+            All MCPs, tools & models
+          </li>
+          <li>
+            <span class="check-icon">✓</span>
+            BYOK (Bring Your Own Key)
+          </li>
+        </ul>
+      </div>
+
+      <!-- Subscription Tier -->
+      <div class="card featured">
+        <span class="badge">Most Popular</span>
+        <div class="card-title">Subscription</div>
+        <div class="card-price">$25<span>/mo</span></div>
+        <p class="card-description">For power users who need generous limits and continuous performance.</p>
+        <button class="card-button btn-primary">Subscribe</button>
+        <ul class="features-list">
+          <li>
+            <span class="check-icon">✓</span>
+            Everything in Free
+          </li>
+          <li>
+            <span class="check-icon">✓</span>
+            Generous monthly credits (top up when they run out)
+          </li>
+          <li>
+            <span class="check-icon">✓</span>
+            Top-ups roll over forever
+          </li>
+          <li>
+            <span class="check-icon">✓</span>
+            Priority support
+          </li>
+        </ul>
+      </div>
+
+      <!-- Team Tier -->
+      <div class="card">
+        <div class="card-title">Team</div>
+        <div class="card-price">Custom</div>
+        <p class="card-description">Scale your team with centralized control and deep collaboration.</p>
+        <button class="card-button btn-outline">Contact Sales</button>
+        <ul class="features-list">
+          <li>
+            <span class="check-icon">✓</span>
+            Everything in Subscription
+          </li>
+          <li>
+            <span class="check-icon">✓</span>
+            Centralized team billing
+          </li>
+          <li>
+            <span class="check-icon">✓</span>
+            Collaboration workspaces
+          </li>
+          <li>
+            <span class="check-icon">✓</span>
+            Advanced team analytics
+          </li>
+          <li>
+            <span class="check-icon">✓</span>
+            Enterprise security & SSO
+          </li>
+          <li>
+            <span class="check-icon">✓</span>
+            Custom credit allocation
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- How Credits Work -->
+    <div class="credits-section">
+      <h2>How credits work</h2>
+      <div class="credits-grid">
+        <div class="credit-item">
+          <h3>Free tier</h3>
+          <p>Start with $10 in credits. When they run out, top up as needed. No monthly reset — use them at your own pace.</p>
+        </div>
+        <div class="credit-item">
+          <h3>Top-ups</h3>
+          <p>Purchased credits never expire and roll over forever. Only used after your monthly credits run out.</p>
+        </div>
+        <div class="credit-item">
+          <h3>Subscription monthly credits</h3>
+          <p>Generous monthly allowance resets each billing cycle. Need more? Top up and those credits never expire.</p>
+        </div>
+        <div class="credit-item">
+          <h3>Bring your own keys</h3>
+          <p>Prefer your own API keys? Use them anytime on any plan. We don't lock you in.</p>
+        </div>
+      </div>
+
+      <div class="credit-flow">
+        <h3>Subscription credit consumption order</h3>
+        <div class="flow-diagram">
+          <div class="flow-box primary">
+            <div class="label">Used first</div>
+            <div class="value">Monthly Credits</div>
+          </div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-box">
+            <div class="label">Then</div>
+            <div class="value">Top-up Credits</div>
+          </div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-box">
+            <div class="label">Top-ups</div>
+            <div class="value">Never Expire</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
