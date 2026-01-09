@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PostHogInit from '../../src/components/PostHogInit';
-import WaitlistBanner from '../../src/components/WaitlistBanner';
 import NavigationAstro from '../../src/components/NavigationAstro';
 import Footer from '../../src/components/Footer';
 ---
@@ -11,8 +10,6 @@ import Footer from '../../src/components/Footer';
   description="Desktop Commander installed! Get started now."
 >
   <PostHogInit client:load />
-  
-  <WaitlistBanner client:load />
   
   <div class="min-h-screen bg-background">
     <NavigationAstro hideInstall={true} client:load />
