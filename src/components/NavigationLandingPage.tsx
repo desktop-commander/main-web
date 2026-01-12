@@ -119,9 +119,6 @@ const NavigationLandingPage = () => {
                       onClick={() => trackNavigation('Careers', '/careers/', 'internal')}
                     >
                       Careers
-                      <Badge variant="secondary" className="ml-2 bg-green-500/10 text-green-400 border-green-500/20 text-xs px-1.5 py-0">
-                        Hiring
-                      </Badge>
                     </a>
                   </DropdownMenuItem>
                 </DropdownMenuContent>

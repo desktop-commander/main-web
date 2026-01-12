@@ -77,13 +77,10 @@ const NavigationAstro = ({ hideInstall = false }: NavigationAstroProps) => {
               <Button variant="ghost" size="sm" asChild>
                 <a
                   href="/careers"
-                  className="text-white hover:text-white/80 font-medium relative pr-12"
+                  className="text-white hover:text-white/80 font-medium"
                   onClick={() => trackNavigation('Careers', '/careers', 'internal')}
                 >
                   Careers
-                  <Badge variant="default" className="absolute -top-1 right-2 bg-green-600 hover:bg-green-700 text-white text-[9px] px-1.5 py-0.5">
-                    Hiring
-                  </Badge>
                 </a>
               </Button>
 
@@ -192,12 +189,9 @@ const NavigationAstro = ({ hideInstall = false }: NavigationAstroProps) => {
                 <a
                   href="/careers"
                   onClick={() => handleMobileNavClick('Careers', '/careers')}
-                  className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors flex items-center gap-2"
+                  className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors"
                 >
                   Careers
-                  <Badge variant="default" className="bg-green-600 text-white text-[9px] px-1.5 py-0.5">
-                    Hiring
-                  </Badge>
                 </a>
                 <a 
                   href="https://desktopcommander.app/blog/"
