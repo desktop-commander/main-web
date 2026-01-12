@@ -74,15 +74,6 @@ const NavigationAstro = ({ hideInstall = false }: NavigationAstroProps) => {
                 </a>
               </Button>
 
-              <Button variant="ghost" size="sm" asChild>
-                <a
-                  href="/careers"
-                  className="text-white hover:text-white/80 font-medium"
-                  onClick={() => trackNavigation('Careers', '/careers', 'internal')}
-                >
-                  Careers
-                </a>
-              </Button>
 
               <Button variant="ghost" size="sm" asChild>
                 <a 
@@ -104,6 +95,15 @@ const NavigationAstro = ({ hideInstall = false }: NavigationAstroProps) => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start" className="w-48">
+                  <DropdownMenuItem asChild>
+                    <a
+                      href="/careers"
+                      className="flex items-center cursor-pointer"
+                      onClick={() => trackNavigation('Careers', '/careers', 'internal')}
+                    >
+                      Careers
+                    </a>
+                  </DropdownMenuItem>
                   <DropdownMenuItem asChild>
                     <a
                       href="https://blog.desktopcommander.app/about/"
@@ -186,13 +186,6 @@ const NavigationAstro = ({ hideInstall = false }: NavigationAstroProps) => {
                 >
                   Community
                 </a>
-                <a
-                  href="/careers"
-                  onClick={() => handleMobileNavClick('Careers', '/careers')}
-                  className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors"
-                >
-                  Careers
-                </a>
                 <a 
                   href="https://desktopcommander.app/blog/"
                   target="_blank"
@@ -203,6 +196,13 @@ const NavigationAstro = ({ hideInstall = false }: NavigationAstroProps) => {
                   Blog
                 </a>
                 <div className="border-t border-border my-2"></div>
+                <a
+                  href="/careers"
+                  onClick={() => handleMobileNavClick('Careers', '/careers')}
+                  className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors"
+                >
+                  Careers
+                </a>
                 <a
                   href="https://blog.desktopcommander.app/about/"
                   target="_blank"

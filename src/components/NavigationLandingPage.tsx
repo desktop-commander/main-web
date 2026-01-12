@@ -232,10 +232,6 @@ const NavigationLandingPage = () => {
                         className="text-white hover:text-white/80 font-medium justify-start w-full"
                         onClick={() => handleMobileNavClick('Careers', '/careers/', 'internal')}
                       >
-                        Careers
-                        <Badge variant="secondary" className="ml-2 bg-green-500/10 text-green-400 border-green-500/20 text-xs">
-                          Hiring
-                        </Badge>
                       </a>
                     </Button>
                   </div>
