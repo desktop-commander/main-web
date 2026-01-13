@@ -87,7 +87,6 @@ All colors MUST be HSL.
   }
 
   html {
-    scroll-behavior: smooth;
     /* Prevent horizontal scroll */
     overflow-x: hidden;
     /* Consistent scrollbar space - this prevents the layout shift! */
