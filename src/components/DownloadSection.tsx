@@ -1,30 +1,29 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
+import posthog from 'posthog-js';
 
 const downloadOptions = [
   {
     label: "macOS M Chip",
-    platform: "mac-arm",
-    url: "https://github.com/wonderwhy-er/DesktopCommanderApp/releases/latest/download/Desktop.Commander-mac-arm64.dmg",
+    platform: "macos-m",
+    url: "https://github.com/desktop-commander/dc-app-client-releases/releases/latest/download/desktop-commander-mac-arm64.dmg",
   },
   {
     label: "macOS Intel",
-    platform: "mac-intel",
-    url: "https://github.com/wonderwhy-er/DesktopCommanderApp/releases/latest/download/Desktop.Commander-mac-x64.dmg",
+    platform: "macos-intel",
+    url: "https://github.com/desktop-commander/dc-app-client-releases/releases/latest/download/desktop-commander-mac-x64.dmg",
   },
   {
     label: "Windows",
     platform: "windows",
-    url: "https://github.com/wonderwhy-er/DesktopCommanderApp/releases/latest/download/Desktop.Commander-win-x64.exe",
+    url: "https://github.com/desktop-commander/dc-app-client-releases/releases/latest/download/desktop-commander-win-x64.exe",
   },
 ];
 
 const DownloadSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
-  const { trackDownload } = useAnalyticsAstro();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -44,7 +43,12 @@ const DownloadSection = () => {
   }, []);
 
   const handleDownload = (option: typeof downloadOptions[0]) => {
-    trackDownload(option.platform, option.label);
+    posthog.capture('download_clicked', {
+      platform: option.platform,
+      url: option.url,
+      button_location: 'download_section',
+      page_path: window.location.pathname
+    });
   };
 
   return (

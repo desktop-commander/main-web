@@ -50,10 +50,18 @@ const MCPInstallation = () => {
     navigator.clipboard.writeText(command);
     setCopiedCommand(method);
     setTimeout(() => setCopiedCommand(null), 2000);
-    trackCustomEvent('copy_command_clicked', {
+    trackCustomEvent('mcp_install_clicked', {
       button_location: 'mcp_installation',
       installation_method: method,
       command
+    });
+  };
+
+  const trackInstallClick = (method: string, url?: string) => {
+    trackCustomEvent('mcp_install_clicked', {
+      button_location: 'mcp_installation',
+      installation_method: method,
+      url
     });
   };
 
@@ -68,7 +76,7 @@ const MCPInstallation = () => {
             <li className="flex items-start gap-3">
               <span className="flex-shrink-0 w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center text-xs font-bold text-primary">1</span>
               <div>
-                Visit <a href="https://smithery.ai/server/@wonderwhy-er/desktop-commander" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">smithery.ai/server/@wonderwhy-er/desktop-commander</a>
+                Visit <a href="https://smithery.ai/server/@wonderwhy-er/desktop-commander" target="_blank" rel="noopener noreferrer" onClick={() => trackInstallClick('Smithery', 'https://smithery.ai/server/@wonderwhy-er/desktop-commander')} className="text-primary hover:underline">smithery.ai/server/@wonderwhy-er/desktop-commander</a>
               </div>
             </li>
             <li className="flex items-start gap-3">
@@ -91,6 +99,7 @@ const MCPInstallation = () => {
           <p className="text-muted-foreground">Install Desktop Commander in Cursor with one click:</p>
           <a 
             href="cursor://anysphere.cursor-deeplink/mcp/install?name=desktop-commander&config=eyJjb21tYW5kIjoibnB4IC15IEB3b25kZXJ3aHktZXIvZGVza3RvcC1jb21tYW5kZXJAbGF0ZXN0In0%3D" 
+            onClick={() => trackInstallClick('Cursor', 'cursor://anysphere.cursor-deeplink/mcp/install')}
             className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium"
           >
             Install in Cursor

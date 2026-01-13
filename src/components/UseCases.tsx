@@ -144,7 +144,7 @@ const UseCases = () => {
               className="w-full sm:w-auto transition-all duration-300 hover:scale-105 active:scale-95" 
               asChild
             >
-              <a href="./#installation" className="flex items-center justify-center gap-2">
+              <a href="./#download" className="flex items-center justify-center gap-2">
                 <Terminal className="h-5 w-5" />
                 Start Building
               </a>
