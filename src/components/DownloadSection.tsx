@@ -59,6 +59,11 @@ const DownloadSection = () => {
           <div className={`text-center mb-12 md:mb-16 transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
+            <div className="flex items-center gap-3 justify-center mb-4">
+              <span className="px-3 py-1 text-xs font-semibold uppercase tracking-wider bg-dc-accent/20 text-dc-accent border border-dc-accent/30 rounded-full">
+                Beta
+              </span>
+            </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
               Download Desktop Commander
             </h2>

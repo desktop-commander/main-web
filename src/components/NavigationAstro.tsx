@@ -26,9 +26,12 @@ const NavigationAstro = () => {
           <div className="flex items-center gap-8">
             <a 
               href="https://desktopcommander.app" 
-              className="hover:opacity-80 transition-opacity flex-shrink-0"
+              className="hover:opacity-80 transition-opacity flex-shrink-0 flex items-center gap-2"
             >
               <img src={dcLogo.src} alt="Desktop Commander" className="h-7 sm:h-8 w-auto min-w-[270px]" width="200" height="32" />
+              <span className="px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-dc-accent/20 text-dc-accent border border-dc-accent/30 rounded-full">
+                Beta
+              </span>
             </a>
             
             {/* Desktop Navigation */}

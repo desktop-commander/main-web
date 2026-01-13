@@ -145,6 +145,14 @@ const HeroAstro = () => {
           {/* Content section */}
           <div className="lg:col-span-6 text-center lg:text-left lg:order-1 w-full">
             
+            <div className={`flex items-center gap-3 justify-center lg:justify-start mb-4 transition-all duration-1000 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>
+              <span className="px-3 py-1 text-xs font-semibold uppercase tracking-wider bg-dc-accent/20 text-dc-accent border border-dc-accent/30 rounded-full">
+                Beta
+              </span>
+            </div>
+            
             <h1 className={`text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-8 md:mb-10 leading-tight transition-all duration-1000 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
