@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Download, Clock } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import posthog from 'posthog-js';
 
@@ -67,9 +67,10 @@ const DownloadSection = () => {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
               Download Desktop Commander
             </h2>
-            <p className="text-lg sm:text-xl text-muted-foreground">
-              Use AI to automate your tasks
-            </p>
+            <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+              <Clock className="h-4 w-4 text-dc-accent" />
+              <span>84% of users save 3+ hours every week</span>
+            </div>
           </div>
 
           {/* Download buttons */}
