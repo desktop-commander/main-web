@@ -9,8 +9,12 @@ import dcLogo from "@/assets/dc-logo.png";
 import { useState } from "react";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
 
+interface NavigationAstroProps {
+  hideInstall?: boolean;
+}
+
 // Astro-compatible Navigation - Redesigned for App-first positioning
-const NavigationAstro = () => {
+const NavigationAstro = ({ hideInstall = false }: NavigationAstroProps) => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const { trackNavigation } = useAnalyticsAstro();
   
@@ -88,18 +92,20 @@ const NavigationAstro = () => {
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center gap-3">
-            <Button size="default" asChild className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2">
-              <a 
-                href="/#download" 
-                className="flex items-center gap-2"
-                onClick={() => trackNavigation('Download', '/#download', 'internal')}
-              >
-                <Download className="h-4 w-4" />
-                Download
-              </a>
-            </Button>
-          </div>
+          {!hideInstall && (
+            <div className="hidden lg:flex items-center gap-3">
+              <Button size="default" asChild className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2">
+                <a 
+                  href="/#download" 
+                  className="flex items-center gap-2"
+                  onClick={() => trackNavigation('Download', '/#download', 'internal')}
+                >
+                  <Download className="h-4 w-4" />
+                  Download
+                </a>
+              </Button>
+            </div>
+          )}
 
           {/* Mobile Menu Trigger */}
           <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
@@ -147,16 +153,18 @@ const NavigationAstro = () => {
                 >
                   Careers
                 </a>
-                <Button size="default" asChild className="mt-4 bg-blue-600 hover:bg-blue-700 text-white">
-                  <a 
-                    href="/#download" 
-                    className="flex items-center gap-2"
-                    onClick={() => handleMobileNavClick('Download', '/#download')}
-                  >
-                    <Download className="h-4 w-4" />
-                    Download
-                  </a>
-                </Button>
+                {!hideInstall && (
+                  <Button size="default" asChild className="mt-4 bg-blue-600 hover:bg-blue-700 text-white">
+                    <a 
+                      href="/#download" 
+                      className="flex items-center gap-2"
+                      onClick={() => handleMobileNavClick('Download', '/#download')}
+                    >
+                      <Download className="h-4 w-4" />
+                      Download
+                    </a>
+                  </Button>
+                )}
               </nav>
             </SheetContent>
           </Sheet>
