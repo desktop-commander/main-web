@@ -1,0 +1,79 @@
+---
+// Pure Astro Navigation - Server-rendered for instant display
+// Mobile menu uses a separate React component for interactivity
+import MobileMenu from '../../src/components/MobileMenu';
+import dcLogo from '../../src/assets/dc-logo.png';
+---
+
+<nav class="fixed left-0 right-0 z-50 border-b border-dc-border bg-background/80 backdrop-blur-md transition-all duration-300" style="top: var(--banner-height, 0px);">
+  <div class="container mx-auto max-w-7xl px-4 sm:px-6 py-4">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-8">
+        <a 
+          href="https://desktopcommander.app" 
+          class="hover:opacity-80 transition-opacity flex-shrink-0"
+        >
+          <img src={dcLogo.src} alt="Desktop Commander" class="h-7 sm:h-8 w-auto min-w-[270px]" width="200" height="32" />
+        </a>
+        
+        <!-- Desktop Navigation -->
+        <div class="hidden lg:flex items-center gap-6">
+          <a 
+            href="/#use-cases"
+            class="text-white hover:text-white/80 font-medium text-sm px-3 py-2 rounded-md hover:bg-white/10 transition-colors"
+          >
+            Use Cases
+          </a>
+          
+          <a 
+            href="/library"
+            class="text-white hover:text-white/80 font-medium text-sm px-3 py-2 rounded-md hover:bg-white/10 transition-colors"
+          >
+            Prompts
+          </a>
+          
+          <a 
+            href="/mcp"
+            class="text-white hover:text-white/80 font-medium text-sm px-3 py-2 rounded-md hover:bg-white/10 transition-colors"
+          >
+            MCP
+          </a>
+
+          <a 
+            href="https://desktopcommander.app/blog/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-white hover:text-white/80 font-medium text-sm px-3 py-2 rounded-md hover:bg-white/10 transition-colors"
+          >
+            Blog
+          </a>
+
+          <a 
+            href="/careers"
+            class="text-white hover:text-white/80 font-medium text-sm px-3 py-2 rounded-md hover:bg-white/10 transition-colors"
+          >
+            Careers
+          </a>
+        </div>
+      </div>
+
+      <!-- Desktop CTA -->
+      <div class="hidden lg:flex items-center gap-3">
+        <a 
+          href="/#download" 
+          class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium text-sm transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Download
+        </a>
+      </div>
+
+      <!-- Mobile Menu (React for interactivity) -->
+      <MobileMenu client:load />
+    </div>
+  </div>
+</nav>

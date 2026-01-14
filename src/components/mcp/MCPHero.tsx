@@ -90,7 +90,7 @@ const MCPHero = () => {
               className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               <Star className="h-4 w-4" />
-              4.4k GitHub stars
+              5.2k GitHub stars
             </a>
             <a 
               href="https://smithery.ai/server/@wonderwhy-er/desktop-commander" 

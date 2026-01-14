@@ -1,10 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
 import PostHogInit from '../../../src/components/PostHogInit';
-import NavigationAstro from '../../../src/components/NavigationAstro';
 import MCPHero from '../../../src/components/mcp/MCPHero';
 import MCPInstallation from '../../../src/components/mcp/MCPInstallation';
 import MCPFeatures from '../../../src/components/mcp/MCPFeatures';
+import MCPFAQ from '../../../src/components/mcp/MCPFAQ';
 import Footer from '../../../src/components/Footer';
 ---
 
@@ -15,11 +16,12 @@ import Footer from '../../../src/components/Footer';
   <PostHogInit client:load />
   
   <div class="min-h-screen bg-background">
-    <NavigationAstro client:load />
+    <Navigation />
     <main>
       <MCPHero client:load />
       <MCPInstallation client:visible />
       <MCPFeatures client:visible />
+      <MCPFAQ client:visible />
     </main>
     <Footer client:visible />
   </div>

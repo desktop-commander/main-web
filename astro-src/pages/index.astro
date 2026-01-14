@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
 import PostHogInit from '../../src/components/PostHogInit';
-import NavigationAstro from '../../src/components/NavigationAstro';
 import HeroAstro from '../../src/components/HeroAstro';
 import CapabilityProof from '../../src/components/CapabilityProof';
 import UseCases from '../../src/components/UseCases';
@@ -10,7 +10,6 @@ import PromptLibrary from '../../src/components/PromptLibrary';
 import TrustedBy from '../../src/components/TrustedBy';
 import Blog from '../../src/components/Blog';
 import DownloadSection from '../../src/components/DownloadSection';
-import FAQ from '../../src/components/FAQ';
 import Footer from '../../src/components/Footer';
 ---
 
@@ -22,7 +21,7 @@ import Footer from '../../src/components/Footer';
   <PostHogInit client:load />
   
   <div class="min-h-screen bg-background">
-    <NavigationAstro client:load />
+    <Navigation />
     <main>
       <HeroAstro client:load />
       <CapabilityProof client:visible />
@@ -32,7 +31,6 @@ import Footer from '../../src/components/Footer';
       <TrustedBy client:visible />
       <Blog client:visible />
       <DownloadSection client:visible />
-      <FAQ client:visible />
     </main>
     <Footer client:visible />
   </div>

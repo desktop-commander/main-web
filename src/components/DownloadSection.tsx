@@ -68,7 +68,7 @@ const DownloadSection = () => {
               Download Desktop Commander
             </h2>
             <p className="text-lg sm:text-xl text-muted-foreground">
-              One-time setup. No accounts or subscriptions required.
+              Use AI to automate your tasks
             </p>
           </div>
 

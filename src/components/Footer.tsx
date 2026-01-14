@@ -79,7 +79,7 @@ const Footer = () => {
                     section: 'mcp'
                   })}
                 >
-                  MCP Server (Free)
+                  MCP Server
                 </a>
               </li>
               <li>
@@ -133,22 +133,7 @@ const Footer = () => {
               </li>
               <li>
                 <a 
-                  href="https://github.com/wonderwhy-er/DesktopCommanderMCP" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="text-muted-foreground hover:text-primary transition-smooth text-sm"
-                  onClick={() => trackCustomEvent('github_clicked', {
-                    button_text: 'Source Code',
-                    button_location: 'footer',
-                    link_type: 'external'
-                  })}
-                >
-                  Source Code
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="/#faq"
+                  href="/mcp#faq"
                   className="text-muted-foreground hover:text-primary transition-smooth text-sm"
                   onClick={() => trackCustomEvent('navigation_clicked', {
                     button_text: 'FAQ',
@@ -166,7 +151,7 @@ const Footer = () => {
 
         <div className="border-t border-dc-border mt-8 md:mt-12 pt-6 md:pt-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <p className="text-muted-foreground text-sm">
-            © 2025 Desktop Commander. Open-source MCP under MIT license.
+            © 2025 Desktop Commander.
           </p>
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
             <a 
