@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PostHogInit from '../../src/components/PostHogInit';
-import WaitlistBanner from '../../src/components/WaitlistBanner';
 import NavigationAstro from '../../src/components/NavigationAstro';
 import Footer from '../../src/components/Footer';
 import jobsData from '../../src/data/jobs.json';
@@ -32,9 +31,7 @@ const truncateDescription = (text: string, maxLength: number = 200) => {
   <!-- Load PostHog early to initialize analytics -->
   <PostHogInit client:load />
   
-  <!-- Waitlist Banner -->
-  <WaitlistBanner client:load />
-  
+
   <div class="min-h-screen bg-background">
     <NavigationAstro client:load />
     <main>
