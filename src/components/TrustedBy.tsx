@@ -1,4 +1,4 @@
-import { Star, Download, Github, Terminal } from "lucide-react";
+import { Star, Download, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef } from "react";
 import TestimonialsStrip from "./TestimonialsStrip";
@@ -43,7 +43,7 @@ const TrustedBy = () => {
     },
     {
       icon: Github,
-      value: "4.3k+",
+      value: "5.2k+",
       label: "GitHub Stars",
       description: "Community trust"
     }
@@ -184,9 +184,9 @@ const TrustedBy = () => {
               className="w-full sm:w-auto transition-all duration-300 hover:scale-105 active:scale-95" 
               asChild
             >
-              <a href="./#installation" className="flex items-center justify-center gap-2">
-                <Terminal className="h-5 w-5" />
-                Install Desktop Commander
+              <a href="#download" className="flex items-center justify-center gap-2">
+                <Download className="h-5 w-5" />
+                Download
               </a>
             </Button>
             <Button 

@@ -1,158 +1,163 @@
 import { Button } from "@/components/ui/button";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { MessageCircle, ArrowRight, Download, Terminal, Star, TrendingUp, Loader2 } from "lucide-react";
+import { ArrowRight, Download, Star } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import dcHeroAnimation from "@/assets/hero-8sec.gif";
-import dcLogo from "@/assets/dc-logo-dark.png";
-import { getAssetPath } from "@/utils/assets";
 
-// Astro-compatible Hero (no useAnalytics dependency)
+// Astro-compatible Hero - Redesigned for App-first positioning
 const HeroAstro = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [mediaLoaded, setMediaLoaded] = useState(false);
-  const [mediaError, setMediaError] = useState(false);
-  const [useVideo, setUseVideo] = useState(true);
   const heroRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  // Static values for badges (no animations)
-  const npmCount = 24;
-  const githubStars = 44;
-
-  // Media loading - only runs on client
-  useEffect(() => {
-    // Use getAssetPath to properly handle base path for GitHub Pages
-    const videoPath = getAssetPath('/hero-video.mp4');
-    const gifPath = getAssetPath('/hero-8sec.gif');
-    
-    const video = document.createElement('video');
-    video.oncanplaythrough = () => {
-      setMediaLoaded(true);
-      setUseVideo(true);
-    };
-    video.onerror = () => {
-      const img = new Image();
-      img.onload = () => {
-        setMediaLoaded(true);
-        setUseVideo(false);
-      };
-      img.onerror = () => setMediaError(true);
-      img.src = gifPath;
-    };
-    video.src = videoPath;
-    video.load();
-  }, []);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
-  // Media restart logic
-  useEffect(() => {
-    if (!mediaLoaded) return;
-    
-    if (useVideo) {
-      const video = videoRef.current;
-      if (video) {
-        const handleVideoEnd = () => {
-          video.currentTime = 0;
-          video.play().catch(console.error);
-        };
-        video.addEventListener('ended', handleVideoEnd);
-        return () => video.removeEventListener('ended', handleVideoEnd);
-      }
-    } else {
-      const restartInterval = setInterval(() => {
-        const gifElement = document.querySelector('.hero-gif') as HTMLImageElement;
-        if (gifElement) {
-          const gifPath = getAssetPath('hero-8sec.gif');
-          gifElement.src = `${gifPath}?t=${Date.now()}`;
-        }
-      }, 7000);
-      return () => clearInterval(restartInterval);
-    }
-  }, [mediaLoaded, useVideo]);
-
   return (
-    <section ref={heroRef} className="pt-40 pb-24 md:pt-56 md:pb-32">
+    <section ref={heroRef} className="pt-32 pb-24 md:pt-40 md:pb-32">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6">
         <div className="flex flex-col items-center gap-16 lg:gap-20 lg:grid lg:grid-cols-12 lg:items-center">
           
-          {/* Animation section */}
-          <div className={`w-full max-w-xl lg:max-w-none lg:col-span-6 lg:order-2 transition-all duration-1200 delay-300 ${
+          {/* Product interface mockup - styled as screenshot */}
+          <div className={`w-full max-w-xl lg:max-w-none lg:col-span-6 lg:order-2 transition-all duration-1000 delay-300 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <div className="relative mx-auto w-full">
-              <AspectRatio 
-                ratio={16 / 9} 
-                className="rounded-xl lg:rounded-2xl border border-dc-border bg-dc-surface/50 shadow-elegant overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-[1.02]"
-              >
-                <div className="w-full h-full relative bg-gradient-to-r from-dc-surface/50 to-dc-surface/30">
-                  {!mediaLoaded && !mediaError && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-dc-surface/80 z-10">
-                      <div className="flex flex-col items-center gap-3">
-                        <Loader2 className="h-8 w-8 animate-spin text-dc-accent" />
-                        <p className="text-sm text-muted-foreground">Loading animation...</p>
+            <div className="relative mx-auto w-full perspective-1000">
+              {/* Screenshot frame with subtle tilt */}
+              <div className="transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                <div className="rounded-xl lg:rounded-2xl border border-dc-border bg-dc-surface shadow-2xl shadow-black/30 overflow-hidden pointer-events-none select-none">
+                  {/* Window chrome / title bar */}
+                  <div className="flex items-center gap-2 px-4 py-3 bg-dc-surface/80 border-b border-dc-border">
+                    <div className="flex gap-1.5">
+                      <div className="w-3 h-3 rounded-full bg-red-500/60"></div>
+                      <div className="w-3 h-3 rounded-full bg-yellow-500/60"></div>
+                      <div className="w-3 h-3 rounded-full bg-green-500/60"></div>
+                    </div>
+                    <div className="flex-1 text-center">
+                      <span className="text-xs text-muted-foreground">Desktop Commander</span>
+                    </div>
+                    <div className="w-12"></div>
+                  </div>
+                  
+                  {/* App content */}
+                  <div className="p-4 sm:p-6 bg-gradient-to-b from-dc-surface to-background">
+                    {/* Folder selector */}
+                    <div className="flex items-center gap-2 mb-4 px-3 py-2 bg-background/50 border border-dc-border rounded-lg w-fit">
+                      <svg className="w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                      </svg>
+                      <span className="text-sm text-foreground">~/Desktop</span>
+                      <svg className="w-3 h-3 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                    
+                    {/* Main input - dark theme */}
+                    <div className="bg-background border border-dc-border rounded-2xl px-4 py-4 mb-4 flex items-center justify-between">
+                      <span className="text-muted-foreground text-sm sm:text-base">Move all invoices from Downloads to a new folder</span>
+                      <div className="w-8 h-8 bg-dc-accent rounded-full flex items-center justify-center flex-shrink-0 ml-3">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                        </svg>
                       </div>
                     </div>
-                  )}
-                  
-                  {mediaError && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-dc-surface/80 z-10">
-                      <div className="flex flex-col items-center gap-3 text-center">
-                        <Terminal className="h-12 w-12 text-dc-accent" />
-                        <div>
-                          <p className="font-semibold text-foreground">Desktop Commander</p>
-                          <p className="text-sm text-muted-foreground">Animation preview</p>
-                        </div>
+                    
+                    {/* Action buttons - no Auto */}
+                    <div className="flex flex-wrap gap-2">
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-500/10 border border-blue-500/30 rounded-full text-xs sm:text-sm text-blue-400">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                        </svg>
+                        Prompts
+                      </div>
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-purple-500/10 border border-purple-500/30 rounded-full text-xs sm:text-sm text-purple-400">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                        </svg>
+                        Apps
+                      </div>
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-dc-surface border border-dc-border rounded-full text-xs sm:text-sm text-muted-foreground">
+                        + Add Knowledge
+                      </div>
+                      <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-dc-surface border border-dc-border rounded-full text-xs sm:text-sm text-muted-foreground">
+                        claude-sonnet-4
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
                       </div>
                     </div>
-                  )}
-                  
-                  {mediaLoaded && useVideo && (
-                    <video
-                      ref={videoRef}
-                      src={getAssetPath('hero-video.mp4')}
-                      className="w-full h-full object-cover transition-opacity duration-500 opacity-100"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="auto"
-                      style={{ imageRendering: 'auto' }}
-                    />
-                  )}
-                  
-                  {mediaLoaded && !useVideo && (
-                    <img
-                      className="hero-gif w-full h-full object-cover transition-opacity duration-500 opacity-100"
-                      src={getAssetPath('hero-8sec.gif')}
-                      alt="Desktop Commander in action"
-                      loading="eager"
-                      style={{ imageRendering: 'auto' }}
-                    />
-                  )}
+                  </div>
                 </div>
-              </AspectRatio>
+              </div>
+              
+              {/* File browser overlay widget */}
+              <div className="absolute -top-12 -right-4 sm:-top-16 sm:-right-6 transform rotate-3 hover:rotate-1 transition-transform duration-500 pointer-events-none select-none opacity-90">
+                <div className="bg-dc-surface border border-dc-border rounded-lg shadow-xl shadow-black/40 overflow-hidden w-44 sm:w-52">
+                  {/* Mini title bar */}
+                  <div className="flex items-center gap-1.5 px-3 py-2 bg-background/50 border-b border-dc-border">
+                    <svg className="w-3 h-3 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                    </svg>
+                    <span className="text-[10px] text-muted-foreground">~/Desktop</span>
+                  </div>
+                  {/* File list */}
+                  <div className="p-2 space-y-1 text-xs">
+                    <div className="flex items-center gap-2 px-2 py-1 rounded hover:bg-dc-border/30">
+                      <svg className="w-3.5 h-3.5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+                      </svg>
+                      <span className="text-foreground">Projects</span>
+                    </div>
+                    <div className="flex items-center gap-2 px-2 py-1 rounded hover:bg-dc-border/30">
+                      <svg className="w-3.5 h-3.5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+                      </svg>
+                      <span className="text-foreground">Invoices</span>
+                    </div>
+                    <div className="flex items-center gap-2 px-2 py-1 rounded hover:bg-dc-border/30">
+                      <svg className="w-3.5 h-3.5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
+                      </svg>
+                      <span className="text-foreground">invoice-1.pdf</span>
+                    </div>
+                    <div className="flex items-center gap-2 px-2 py-1 rounded hover:bg-dc-border/30">
+                      <svg className="w-3.5 h-3.5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
+                      </svg>
+                      <span className="text-foreground">budget.xlsx</span>
+                    </div>
+                    <div className="flex items-center gap-2 px-2 py-1 rounded hover:bg-dc-border/30">
+                      <svg className="w-3.5 h-3.5 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
+                      </svg>
+                      <span className="text-foreground">photo.jpg</span>
+                    </div>
+                    <div className="flex items-center gap-2 px-2 py-1 rounded hover:bg-dc-border/30">
+                      <svg className="w-3.5 h-3.5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
+                      </svg>
+                      <span className="text-foreground">notes.txt</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Content section */}
           <div className="lg:col-span-6 text-center lg:text-left lg:order-1 w-full">
             
-            <h1 className={`text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-8 md:mb-10 leading-tight transition-all duration-1200 ${
+            <h1 className={`text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-8 md:mb-10 leading-tight transition-all duration-1000 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
-              One Chat, Full Stack
+              AI that executes
             </h1>
             
-            <p className={`text-lg sm:text-xl text-muted-foreground mb-10 md:mb-14 max-w-2xl mx-auto lg:mx-0 leading-relaxed transition-all duration-1200 delay-500 ${
+            <p className={`text-lg sm:text-xl text-muted-foreground mb-10 md:mb-14 max-w-2xl mx-auto lg:mx-0 leading-relaxed transition-all duration-1000 delay-200 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
-              Give AI direct access to your system and terminal
+              Desktop Commander reads your files, runs commands, and automates workflows — all in natural language.
             </p>
 
-            <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 lg:justify-start justify-center items-center mb-10 md:mb-14 transition-all duration-1200 delay-1000 ${
+            <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 lg:justify-start justify-center items-center mb-6 transition-all duration-1000 delay-400 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
               <Button 
@@ -161,31 +166,29 @@ const HeroAstro = () => {
                 className="w-full sm:w-auto flex items-center justify-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-dc-accent/20 transform active:scale-95 group" 
                 asChild
               >
-                <a href="./#installation">
-                  <Terminal className="h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
-                  Install
+                <a href="#download">
+                  <Download className="h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
+                  Download Beta
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </a>
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="w-full sm:w-auto flex items-center justify-center gap-2 transition-all duration-300 hover:scale-105 hover:bg-dc-surface hover:border-dc-accent/50 transform active:scale-95 group" 
-                asChild
-              >
-                <a 
-                  href="https://discord.gg/kQ27sNnZr7" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  <MessageCircle className="h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
-                  Join Discord
                 </a>
               </Button>
             </div>
 
+            {/* MCP Link */}
+            <div className={`mb-10 md:mb-14 transition-all duration-1000 delay-500 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>
+              <a 
+                href="/mcp" 
+                className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1 text-sm"
+              >
+                Looking for MCP?
+                <ArrowRight className="h-3 w-3" />
+              </a>
+            </div>
+
             {/* Trust Badges */}
-            <div className={`flex flex-col sm:flex-row sm:flex-wrap lg:justify-start justify-center gap-3 transition-all duration-1200 delay-2000 ${
+            <div className={`flex flex-col sm:flex-row sm:flex-wrap lg:justify-start justify-center gap-3 transition-all duration-1000 delay-600 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
               <a 
@@ -198,8 +201,8 @@ const HeroAstro = () => {
                   <Download className="h-2.5 w-2.5 text-muted-foreground transition-colors duration-300 group-hover:text-dc-accent" />
                 </div>
                 <div className="text-left flex-1 min-w-0">
-                  <div className="text-muted-foreground text-xs uppercase tracking-wide transition-colors duration-300 group-hover:text-foreground">NPM Downloads</div>
-                  <div className="font-semibold text-foreground text-xs">{npmCount}k/week</div>
+                  <div className="text-muted-foreground text-xs uppercase tracking-wide transition-colors duration-300 group-hover:text-foreground">Weekly Downloads</div>
+                  <div className="font-semibold text-foreground text-xs">26k+</div>
                 </div>
               </a>
               
@@ -214,22 +217,7 @@ const HeroAstro = () => {
                 </div>
                 <div className="text-left flex-1 min-w-0">
                   <div className="text-muted-foreground text-xs uppercase tracking-wide transition-colors duration-300 group-hover:text-foreground">GitHub Stars</div>
-                  <div className="font-semibold text-foreground text-xs">{(githubStars / 10).toFixed(1)}k stars</div>
-                </div>
-              </a>
-              
-              <a 
-                href="https://smithery.ai/server/@wonderwhy-er/desktop-commander" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-3 py-2 bg-dc-surface border border-dc-border rounded-lg text-sm w-full sm:w-auto sm:min-w-[160px] transition-all duration-300 hover:scale-105 hover:bg-dc-surface/80 hover:border-dc-accent/30 hover:shadow-md cursor-pointer group"
-              >
-                <div className="flex items-center justify-center w-5 h-5 bg-dc-border rounded-sm transition-colors duration-300 group-hover:bg-dc-accent/20 flex-shrink-0">
-                  <TrendingUp className="h-2.5 w-2.5 text-muted-foreground transition-colors duration-300 group-hover:text-dc-accent" />
-                </div>
-                <div className="text-left flex-1 min-w-0">
-                  <div className="text-muted-foreground text-xs uppercase tracking-wide transition-colors duration-300 group-hover:text-foreground">SMITHERY.COM</div>
-                  <div className="font-semibold text-foreground text-xs">Top Ranked MCP</div>
+                  <div className="font-semibold text-foreground text-xs">5.2k</div>
                 </div>
               </a>
             </div>

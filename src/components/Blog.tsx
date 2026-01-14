@@ -15,7 +15,7 @@ const blogPostsData = [
   {
     id: 1,
     title: "Build a Google Analytics AI Assistant in 10 Minutes",
-    description: "In my previous article, I explained how our Desktop Commander team uses CLIs and AI agents to automate various workflows — from BigQuery data analysis to CRM integrations to task management. Recently, we published a prompt that sets up a Google Analytics assistant in 10 minutes.",
+    description: "In my previous article, I explained how our Desktop Commander team uses CLIs and AI agents to automate various workflows — from BigQuery data analysis to CRM integrations to task management.",
     thumbnail: "b5.png",
     youtubeUrl: "https://wonderwhy-er.medium.com/build-a-google-analytics-ai-assistant-in-10-minutes-a19f0971d4b6",
     duration: "Read",
@@ -73,7 +73,6 @@ const Blog = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   
-  // Process blog posts with correct asset paths
   const blogPosts = blogPostsData.map(post => ({
     ...post,
     thumbnail: getAssetPath(post.thumbnail)
@@ -99,55 +98,38 @@ const Blog = () => {
       },
       { threshold: 0.1 }
     );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => { if (sectionRef.current) observer.unobserve(sectionRef.current); };
   }, []);
+
   return (
-    <section ref={sectionRef} id="blog" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className={`text-center mb-16 transition-all duration-1000 ${
+    <section ref={sectionRef} id="blog" className="py-20 bg-dc-surface/30">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+        <div className={`text-center mb-12 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
             Hear from our founders
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Follow our team on YouTube and Medium to see our latest thinking
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            Follow our team on YouTube and Medium
           </p>
         </div>
         
         <div className={`max-w-6xl mx-auto transition-all duration-1000 delay-300 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <Carousel
-            opts={{
-              align: "start",
-              loop: false,
-            }}
-            className="w-full"
-          >
+          <Carousel opts={{ align: "start", loop: false }} className="w-full">
             <CarouselContent className="-ml-3 md:-ml-4">
               {blogPosts.map((post, index) => (
                 <CarouselItem 
                   key={post.id} 
                   className={`pl-3 md:pl-4 sm:basis-full md:basis-1/2 lg:basis-1/3 transition-all duration-700 ${
-                    isVisible 
-                      ? 'opacity-100 translate-y-0' 
-                      : 'opacity-0 translate-y-8'
+                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
-                  style={{
-                    transitionDelay: isVisible ? `${500 + index * 150}ms` : '0ms'
-                  }}
+                  style={{ transitionDelay: isVisible ? `${500 + index * 150}ms` : '0ms' }}
                 >
-                  <Card className="group cursor-pointer hover:shadow-xl transition-all duration-300 bg-white border border-gray-200 h-full hover:scale-[1.02] transform">
+                  <Card className="group cursor-pointer hover:shadow-xl transition-all duration-300 bg-dc-card border border-dc-border h-full hover:scale-[1.02] hover:border-dc-accent/30">
                     <a 
                       href={post.youtubeUrl} 
                       target="_blank" 
@@ -161,35 +143,34 @@ const Blog = () => {
                           alt={post.title}
                           className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                         />
-                        <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-1 rounded transition-all duration-300 group-hover:bg-black/90">
+                        <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-1 rounded">
                           {post.duration}
                         </div>
                         {post.badge === 'new' && (
-                          <div className="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full font-semibold flex items-center gap-1 transition-all duration-300 group-hover:scale-110">
+                          <div className="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
                             ✨ New
                           </div>
                         )}
                         {post.id === 3 && (
-                          <div className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold flex items-center gap-1 transition-all duration-300 group-hover:scale-110">
+                          <div className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
                             🔥 Hot
                           </div>
                         )}
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
                       </div>
                       
                       <CardContent className="p-5 flex flex-col h-[calc(100%-12rem)]">
                         <div className="flex items-start justify-between mb-2">
-                          <h3 className="text-base font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 leading-tight line-clamp-2">
+                          <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors leading-tight line-clamp-2">
                             {post.title}
                           </h3>
-                          <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-blue-600 transition-all duration-300 flex-shrink-0 mt-1 ml-2 group-hover:scale-110" />
+                          <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-all flex-shrink-0 mt-1 ml-2" />
                         </div>
                         
-                        <p className="text-xs text-gray-500 mb-3 transition-colors duration-300 group-hover:text-gray-600">
+                        <p className="text-xs text-muted-foreground mb-3">
                           {post.date}
                         </p>
                         
-                        <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 flex-1 transition-colors duration-300 group-hover:text-gray-700">
+                        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3 flex-1">
                           {post.description}
                         </p>
                       </CardContent>
@@ -198,8 +179,8 @@ const Blog = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="hidden md:flex transition-all duration-300 hover:scale-110" />
-            <CarouselNext className="hidden md:flex transition-all duration-300 hover:scale-110" />
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
           </Carousel>
         </div>
       </div>

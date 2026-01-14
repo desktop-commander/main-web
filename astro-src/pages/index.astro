@@ -1,40 +1,36 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
 import PostHogInit from '../../src/components/PostHogInit';
-import WaitlistBanner from '../../src/components/WaitlistBanner';
-import NavigationAstro from '../../src/components/NavigationAstro';
 import HeroAstro from '../../src/components/HeroAstro';
+import CapabilityProof from '../../src/components/CapabilityProof';
 import UseCases from '../../src/components/UseCases';
-import TrustedBy from '../../src/components/TrustedBy';
+import WhyTheApp from '../../src/components/WhyTheApp';
 import PromptLibrary from '../../src/components/PromptLibrary';
-import Installation from '../../src/components/Installation';
+import TrustedBy from '../../src/components/TrustedBy';
 import Blog from '../../src/components/Blog';
-import Community from '../../src/components/Community';
-import FAQ from '../../src/components/FAQ';
+import DownloadSection from '../../src/components/DownloadSection';
 import Footer from '../../src/components/Footer';
 ---
 
 <Layout 
-  title="Desktop Commander - AI-Powered File & System Control"
-  description="Give AI direct access to your system. Manage files, build knowledge bases, and prototype applications—all through natural conversation."
+  title="Desktop Commander - AI that executes"
+  description="Desktop Commander reads your files, runs commands, and automates workflows — all in natural language."
 >
   <!-- Load PostHog early to initialize analytics -->
   <PostHogInit client:load />
   
-  <!-- Waitlist Banner -->
-  <WaitlistBanner client:load />
-  
   <div class="min-h-screen bg-background">
-    <NavigationAstro client:load />
+    <Navigation />
     <main>
       <HeroAstro client:load />
+      <CapabilityProof client:visible />
       <UseCases client:visible />
-      <TrustedBy client:visible />
+      <WhyTheApp client:visible />
       <PromptLibrary client:visible />
-      <Installation client:visible />
+      <TrustedBy client:visible />
       <Blog client:visible />
-      <Community client:visible />
-      <FAQ client:visible />
+      <DownloadSection client:visible />
     </main>
     <Footer client:visible />
   </div>

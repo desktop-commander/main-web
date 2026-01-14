@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import PostHogInit from '../../../src/components/PostHogInit';
+import MCPHero from '../../../src/components/mcp/MCPHero';
+import MCPInstallation from '../../../src/components/mcp/MCPInstallation';
+import MCPFeatures from '../../../src/components/mcp/MCPFeatures';
+import MCPFAQ from '../../../src/components/mcp/MCPFAQ';
+import Footer from '../../../src/components/Footer';
+---
+
+<Layout 
+  title="Desktop Commander MCP - Free & Open Source"
+  description="Give Claude and other AI assistants direct access to your system. Free, open-source MCP server with 26k+ weekly downloads."
+>
+  <PostHogInit client:load />
+  
+  <div class="min-h-screen bg-background">
+    <Navigation />
+    <main>
+      <MCPHero client:load />
+      <MCPInstallation client:visible />
+      <MCPFeatures client:visible />
+      <MCPFAQ client:visible />
+    </main>
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../../src/index.css';
+</style>
