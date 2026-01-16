@@ -1458,6 +1458,30 @@
       "author": "DC team",
       "verified": true,
       "dateAdded": "2025-10-31"
+    },
+    {
+      "id": "86",
+      "title": "Organize My Desktop Files",
+      "description": "Analyze your Desktop files and organize them into subfolders by type (Documents, Images, Videos, Archives, etc.). Deletes screenshots and creates a summary of what was organized.",
+      "prompt": "Analyze my Desktop files and organize all files into subfolders by type (Documents, Images, Videos, Archives, etc.). Delete all screenshots. Show me what you're doing and create a summary of what was organized. Open the new folder when you are done.",
+      "sessionType": "Instant output",
+      "targetRoles": [
+        "Vibe Coders",
+        "Content makers",
+        "Data analysts",
+        "Professionals",
+        "Developers"
+      ],
+      "categories": [
+        "Organize files"
+      ],
+      "votes": 0,
+      "gaClicks": 0,
+      "icon": "FolderSearch",
+      "author": "Jonathan Adelson",
+      "verified": false,
+      "dateAdded": "2025-01-16",
+      "difficulty": "Easy"
     }
   ]
 }

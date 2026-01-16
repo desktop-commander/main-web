@@ -30,7 +30,7 @@ export default function PromptsLibrary({ initialPromptId }: PromptsLibraryProps)
   const [sortBy, setSortBy] = useState('popularity');
   
   // Featured prompts - shown first when no filters are applied
-  const featuredPromptIds = ['8', '59', '2', '84', '53', '82', '78', '4', '43'];
+  const featuredPromptIds = ['86', '8', '59', '2', '84', '53', '82', '78', '4', '43'];
   
   const initialSelected = useMemo(() => {
     if (!initialPromptId) return null;
