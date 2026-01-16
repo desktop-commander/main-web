@@ -6,8 +6,8 @@ import SimpleFooter from '../../components/SimpleFooter.astro';
 ---
 
 <Layout 
-  title="Early Access - Desktop Commander App"
-  description="Take control of your machine. Local filesystem access. Pick your own model. Infinite chats. Join the waitlist for Desktop Commander app."
+  title="Windows Waitlist - Desktop Commander App"
+  description="Desktop Commander for Windows is coming soon. Join the waitlist to be first in line when we launch. Full filesystem access, any AI model, infinite chats."
 >
   <PostHogInit client:load />
   
@@ -24,11 +24,21 @@ import SimpleFooter from '../../components/SimpleFooter.astro';
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <!-- Left Column - Hero Text -->
             <div>
+              <!-- Windows Badge -->
+              <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600/10 border border-blue-500/30 rounded-full mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400">
+                  <rect width="20" height="20" x="2" y="2" rx="2" ry="2"></rect>
+                  <path d="M12 2v20"></path>
+                  <path d="M2 12h20"></path>
+                </svg>
+                <span class="text-blue-400 font-medium text-sm">Windows Version Coming Soon</span>
+              </div>
+              
               <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-4">
-                Take control of your machine.
+                Desktop Commander is coming to Windows.
               </h1>
               <p class="text-lg sm:text-xl text-slate-400 leading-relaxed mt-6">
-                Local filesystem access. Pick your own model. Infinite chats.
+                We're bringing the full Desktop Commander experience to Windows. Be the first to know when it launches.
               </p>
             </div>
 
@@ -39,19 +49,18 @@ import SimpleFooter from '../../components/SimpleFooter.astro';
                 <div class="flex justify-center mb-6">
                   <div class="p-4 bg-blue-600/10 rounded-full border border-blue-500/20">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400">
-                      <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
-                      <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
-                      <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
-                      <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+                      <rect width="20" height="20" x="2" y="2" rx="2" ry="2"></rect>
+                      <path d="M12 2v20"></path>
+                      <path d="M2 12h20"></path>
                     </svg>
                   </div>
                 </div>
 
                 <!-- Title & Description -->
                 <div class="text-center mb-6">
-                  <h3 class="text-xl font-semibold text-white mb-3">Build Without Barriers</h3>
+                  <h3 class="text-xl font-semibold text-white mb-3">Join the Windows Waitlist</h3>
                   <p class="text-slate-300 leading-relaxed text-sm">
-                    Desktop Commander bridges your technical gaps. Code, build, and deploy—all in natural language, all on your local machine.
+                    Get notified the moment Desktop Commander launches on Windows. Early access users get priority support.
                   </p>
                 </div>
 
@@ -61,7 +70,7 @@ import SimpleFooter from '../../components/SimpleFooter.astro';
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-blue-400 flex-shrink-0">
                       <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path>
                     </svg>
-                    <span class="text-sm">Full control of your system</span>
+                    <span class="text-sm">Full control of your Windows system</span>
                   </div>
                   <div class="flex items-center gap-3 text-slate-300">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-blue-400 flex-shrink-0">
@@ -73,7 +82,13 @@ import SimpleFooter from '../../components/SimpleFooter.astro';
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-blue-400 flex-shrink-0">
                       <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path>
                     </svg>
-                    <span class="text-sm">Infinite chats</span>
+                    <span class="text-sm">Unlimited conversations</span>
+                  </div>
+                  <div class="flex items-center gap-3 text-slate-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-blue-400 flex-shrink-0">
+                      <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path>
+                    </svg>
+                    <span class="text-sm">Everything runs locally on your PC</span>
                   </div>
                 </div>
 
@@ -88,7 +103,7 @@ import SimpleFooter from '../../components/SimpleFooter.astro';
                 </div>
 
                 <p class="text-center text-xs text-slate-500 mt-4">
-                  Join first 100 users with early access
+                  We'll email you as soon as Windows is ready
                 </p>
               </div>
             </div>

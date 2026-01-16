@@ -5,7 +5,7 @@ const WaitlistSection = () => {
     {
       number: "1",
       title: "Download Desktop Commander",
-      description: "One-time setup on your Mac or Windows computer. No accounts, no subscriptions required to start."
+      description: "One-time setup on your Mac. No accounts, no subscriptions required to start. Windows coming soon."
     },
     {
       number: "2",

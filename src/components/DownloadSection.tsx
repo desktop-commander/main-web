@@ -3,24 +3,6 @@ import { ArrowRight, Download, Clock } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import posthog from 'posthog-js';
 
-const downloadOptions = [
-  {
-    label: "macOS M Chip",
-    platform: "macos-m",
-    url: "https://github.com/desktop-commander/dc-app-client-releases/releases/latest/download/desktop-commander-mac-arm64.dmg",
-  },
-  {
-    label: "macOS Intel",
-    platform: "macos-intel",
-    url: "https://github.com/desktop-commander/dc-app-client-releases/releases/latest/download/desktop-commander-mac-x64.dmg",
-  },
-  {
-    label: "Windows",
-    platform: "windows",
-    url: "https://github.com/desktop-commander/dc-app-client-releases/releases/latest/download/desktop-commander-win-x64.exe",
-  },
-];
-
 const DownloadSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -42,10 +24,17 @@ const DownloadSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  const handleDownload = (option: typeof downloadOptions[0]) => {
+  const handleDownload = (platform: string, url: string) => {
     posthog.capture('download_clicked', {
-      platform: option.platform,
-      url: option.url,
+      platform,
+      url,
+      button_location: 'download_section',
+      page_path: window.location.pathname
+    });
+  };
+
+  const handleWindowsWaitlist = () => {
+    posthog.capture('windows_waitlist_clicked', {
       button_location: 'download_section',
       page_path: window.location.pathname
     });
@@ -74,27 +63,63 @@ const DownloadSection = () => {
           </div>
 
           {/* Download buttons */}
-          <div className={`flex flex-col sm:flex-row gap-4 justify-center mb-8 transition-all duration-1000 delay-200 ${
+          <div className={`flex flex-col sm:flex-row gap-4 justify-center items-start mb-8 transition-all duration-1000 delay-200 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            {downloadOptions.map((option, index) => (
+            {/* macOS M Chip */}
+            <Button
+              variant="hero"
+              size="lg"
+              className="min-w-[180px] transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-dc-accent/20"
+              asChild
+            >
+              <a
+                href="https://github.com/desktop-commander/dc-app-client-releases/releases/latest/download/desktop-commander-mac-arm64.dmg"
+                onClick={() => handleDownload('macos-m', 'https://github.com/desktop-commander/dc-app-client-releases/releases/latest/download/desktop-commander-mac-arm64.dmg')}
+                className="flex items-center justify-center gap-2"
+              >
+                <Download className="h-4 w-4" />
+                macOS M Chip
+              </a>
+            </Button>
+
+            {/* macOS Intel */}
+            <Button
+              variant="hero"
+              size="lg"
+              className="min-w-[180px] transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-dc-accent/20"
+              asChild
+            >
+              <a
+                href="https://github.com/desktop-commander/dc-app-client-releases/releases/latest/download/desktop-commander-mac-x64.dmg"
+                onClick={() => handleDownload('macos-intel', 'https://github.com/desktop-commander/dc-app-client-releases/releases/latest/download/desktop-commander-mac-x64.dmg')}
+                className="flex items-center justify-center gap-2"
+              >
+                <Download className="h-4 w-4" />
+                macOS Intel
+              </a>
+            </Button>
+
+            {/* Windows - Coming Soon with Waitlist */}
+            <div className="flex flex-col items-center gap-2">
               <Button
-                key={index}
                 variant="hero"
                 size="lg"
-                className="min-w-[180px] transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-dc-accent/20"
-                asChild
+                className="min-w-[180px] opacity-50 cursor-not-allowed"
+                disabled
               >
-                <a
-                  href={option.url}
-                  onClick={() => handleDownload(option)}
-                  className="flex items-center justify-center gap-2"
-                >
-                  <Download className="h-4 w-4" />
-                  {option.label}
-                </a>
+                <Clock className="h-4 w-4" />
+                Windows – Coming Soon
               </Button>
-            ))}
+              <a 
+                href="/product/early-access" 
+                onClick={handleWindowsWaitlist}
+                className="text-sm text-primary hover:text-primary/80 font-medium inline-flex items-center gap-1 transition-colors"
+              >
+                Join the Windows waitlist
+                <ArrowRight className="h-3 w-3" />
+              </a>
+            </div>
           </div>
 
           {/* MCP Link */}
