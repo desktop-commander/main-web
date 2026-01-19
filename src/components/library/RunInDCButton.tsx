@@ -73,10 +73,13 @@ export function RunInDCButton({ promptTitle, prompt, onCopySuccess }: RunInDCBut
   };
 
   const handleDownloadClick = (platform: string) => {
-    posthog.capture('prompt_library_download_clicked', {
-      prompt_title: promptTitle,
+    // Use main download_clicked event with prompt library identification
+    posthog.capture('download_clicked', {
       platform,
-      source: 'prompt_detail_page'
+      button_location: 'prompt_detail_page',
+      site_section: 'prompt_library',
+      prompt_title: promptTitle,
+      page_path: window.location.pathname
     });
   };
 
