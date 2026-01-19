@@ -103,9 +103,11 @@ export default function PromptsLibrary({ initialPromptId }: PromptsLibraryProps)
         break;
     }
 
-    // If no filters applied, show featured prompts first
+    // If no filters applied and NOT sorting by popularity, show featured prompts first
+    // When sorting by popularity, respect the actual gaClicks values
     if (!searchTerm && selectedCategories.length === 0 && 
-        selectedRoles.length === 0 && selectedSessionTypes.length === 0) {
+        selectedRoles.length === 0 && selectedSessionTypes.length === 0 &&
+        sortBy !== 'popularity') {
       const featured = sorted.filter(uc => featuredPromptIds.includes(uc.id));
       const rest = sorted.filter(uc => !featuredPromptIds.includes(uc.id));
       return [...featured, ...rest];
