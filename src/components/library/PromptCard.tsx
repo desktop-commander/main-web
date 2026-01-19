@@ -2,6 +2,7 @@ import { UseCase } from "@/data/library/useCases";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { EngagementMeter } from './EngagementMeter';
+import { usePostHog } from '@/components/PostHogProvider';
 import {
   FolderSearch,
   FolderOpen,
@@ -58,6 +59,7 @@ const isNewPrompt = (dateAdded?: string): boolean => {
 export function PromptCard({ useCase, onVote: _onVote, onOpen }: PromptCardProps) {
   const IconComponent = iconMap[useCase.icon as keyof typeof iconMap] || Code;
   const showNewBadge = isNewPrompt(useCase.dateAdded);
+  const posthog = usePostHog();
 
   const getSessionTypeDisplay = (sessionType: string) => {
     switch (sessionType) {
@@ -73,6 +75,17 @@ export function PromptCard({ useCase, onVote: _onVote, onOpen }: PromptCardProps
   const promptUrl = `/library/prompts/${useCase.slug}/`;
 
   const handleClick = (e: React.MouseEvent) => {
+    // Track prompt card click from library grid
+    posthog.capture('prompt_clicked', {
+      prompt_id: useCase.id,
+      prompt_title: useCase.title,
+      prompt_slug: useCase.slug,
+      prompt_categories: useCase.categories,
+      prompt_session_type: useCase.sessionType,
+      source: 'library_grid',
+      source_page: 'prompts_library'
+    });
+    
     if (onOpen) {
       onOpen(useCase);
     }
