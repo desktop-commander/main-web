@@ -1,6 +1,7 @@
 import { UseCase } from "@/data/library/useCases";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { EngagementMeter } from './EngagementMeter';
 import {
   FolderSearch,
   FolderOpen,
@@ -18,10 +19,7 @@ import {
   Activity,
   Search,
   Zap,
-  Sparkles,
-  Users
 } from 'lucide-react';
-import { EngagementMeter } from '@/components/library/EngagementMeter';
 
 interface PromptCardProps {
   useCase: UseCase;
@@ -89,13 +87,13 @@ export function PromptCard({ useCase, onVote: _onVote, onOpen }: PromptCardProps
       onClick={handleClick}
     >
       <Card
-        className="dc-card h-full flex flex-col cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/50 relative group"
+        className="h-full flex flex-col cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/50 relative group bg-card/50 border-border/40 hover:border-primary/30 hover:bg-card/80 transition-all duration-200"
         role="button"
         tabIndex={-1}
       >
         <CardHeader className="pb-2 pt-4 px-4">
           <div className="flex items-start gap-3">
-            <div className="p-1.5 bg-dc-surface-elevated rounded-md shrink-0">
+            <div className="p-1.5 bg-primary/10 rounded-md shrink-0">
               <IconComponent className="h-4 w-4 text-primary" />
             </div>
             <div className="flex-1 min-w-0">
@@ -103,38 +101,26 @@ export function PromptCard({ useCase, onVote: _onVote, onOpen }: PromptCardProps
                 {useCase.title}
               </CardTitle>
             </div>
-            <div className="flex items-center gap-2 shrink-0">
-              {showNewBadge && (
-                <Badge variant="outline" className="text-[10px] px-1.5 py-0 bg-primary/10 text-primary border-primary/20">
-                  New
-                </Badge>
-              )}
-              <EngagementMeter count={useCase.votes} size="sm" showLabel={false} />
-            </div>
+            {showNewBadge && (
+              <Badge variant="outline" className="text-[10px] px-1.5 py-0 bg-primary/10 text-primary border-primary/20 shrink-0">
+                New
+              </Badge>
+            )}
           </div>
         </CardHeader>
 
-        <CardContent className="flex-1 flex flex-col pt-0 px-4 pb-3">
-          <CardDescription className="text-sm leading-relaxed line-clamp-2 mb-3">
+        <CardContent className="flex-1 flex flex-col pt-0 px-4 pb-4">
+          <CardDescription className="text-sm leading-relaxed line-clamp-1 text-muted-foreground/80">
             {useCase.description}
           </CardDescription>
           
-          {/* Footer: Session type + Roles */}
-          <div className="mt-auto flex items-center justify-between gap-2 text-xs text-muted-foreground">
-            <Badge variant="outline" className="text-[10px] px-1.5 py-0 font-normal border-border/50 bg-transparent">
+          {/* Footer: Session type and popularity */}
+          <div className="mt-auto pt-3 flex items-center justify-between">
+            <Badge variant="outline" className="text-[10px] px-1.5 py-0 font-normal border-border/30 bg-transparent text-muted-foreground/70">
               {sessionDisplay.icon && <sessionDisplay.icon className="h-3 w-3 mr-1" />}
               {sessionDisplay.text}
             </Badge>
-            
-            {useCase.targetRoles && useCase.targetRoles.length > 0 && (
-              <span className="truncate flex items-center gap-1">
-                <Users className="h-3 w-3 shrink-0" />
-                {useCase.targetRoles.slice(0, 2).join(', ')}
-                {useCase.targetRoles.length > 2 && (
-                  <span className="text-muted-foreground/60">+{useCase.targetRoles.length - 2}</span>
-                )}
-              </span>
-            )}
+            <EngagementMeter count={useCase.gaClicks || 0} size="sm" showLabel={false} />
           </div>
         </CardContent>
       </Card>
