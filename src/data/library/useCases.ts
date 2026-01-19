@@ -24,6 +24,10 @@ export interface UseCase {
   verified?: boolean;
   difficulty?: string; // Added difficulty as optional string
   slug?: string; // SEO-friendly URL slug
+  // New fields for expanded prompt detail page
+  extendedDescription?: string; // Full description paragraph for detail page
+  howItWorks?: string[]; // Array of 4 steps explaining the flow
+  whyDC?: string; // "Why Desktop Commander?" explanation
 }
 
 // Import prompts from JSON file
@@ -44,18 +48,9 @@ export const taskCategories = [
   'Monitor Systems'
 ];
 
-// Extract unique roles from prompts and create role options with special tags
+// Extract unique roles from prompts and create role options
 const uniqueRoles = Array.from(new Set(useCases.flatMap(uc => uc.targetRoles))).sort();
-export const roles: RoleOption[] = uniqueRoles.map(role => {
-  if (role === 'DevOps') {
-    return {
-      value: role,
-      tag: 'New',
-      tagColor: 'new'
-    };
-  }
-  return { value: role };
-});
+export const roles: RoleOption[] = uniqueRoles.map(role => ({ value: role }));
 
 export const sessionTypes = ['Instant output', 'Step-by-step flow'];
 

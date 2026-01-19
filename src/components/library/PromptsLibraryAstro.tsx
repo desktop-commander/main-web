@@ -4,7 +4,6 @@ import { PromptCard } from '@/components/library/PromptCard';
 import { FilterControls } from '@/components/library/FilterControls';
 import { SubmitPromptButton } from '@/components/library/SubmitPromptButton';
 import { Button } from '@/components/ui/button';
-import { ExternalLink } from 'lucide-react';
 import { PromptDetailModal } from '@/components/library/PromptDetailModal';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { getLink } from '@/utils/basePath';
@@ -139,17 +138,6 @@ export default function PromptsLibrary({ initialPromptId }: PromptsLibraryProps)
             </div>
             <div className="flex gap-3">
               <SubmitPromptButton />
-              <Button variant="outline" asChild>
-                <a 
-                  href="https://github.com/wonderwhy-er/DesktopCommanderMCP" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
-                >
-                  Documentation
-                  <ExternalLink className="h-4 w-4" />
-                </a>
-              </Button>
             </div>
           </div>
 

@@ -1,0 +1,26 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostHogInit from '../../../src/components/PostHogInit';
+import NavigationAstro from '../../../src/components/NavigationAstro';
+import Footer from '../../../src/components/Footer';
+import PromptDetailTestPage from '../../../src/components/library/v2/PromptDetailTestPage';
+---
+
+<Layout 
+  title="CTA Test - Desktop Commander"
+  description="Testing new CTA flow for prompt library"
+>
+  <PostHogInit client:load />
+  
+  <div class="min-h-screen bg-background">
+    <NavigationAstro client:load />
+    <main class="pt-20">
+      <PromptDetailTestPage client:load />
+    </main>
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../../src/index.css';
+</style>

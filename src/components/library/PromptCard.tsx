@@ -1,11 +1,7 @@
-import { useState } from 'react';
-import { UseCase, sessionTypeExplanations } from "@/data/library/useCases";
-
+import { UseCase } from "@/data/library/useCases";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { formatCompactNumber } from '@/lib/utils';
 import {
-  Rocket,
   FolderSearch,
   FolderOpen,
   Code,
@@ -22,10 +18,10 @@ import {
   Activity,
   Search,
   Zap,
-  Sparkles
+  Sparkles,
+  Users
 } from 'lucide-react';
 import { EngagementMeter } from '@/components/library/EngagementMeter';
-
 
 interface PromptCardProps {
   useCase: UseCase;
@@ -54,34 +50,18 @@ const iconMap = {
 // Helper function to check if a prompt is new (within 14 days)
 const isNewPrompt = (dateAdded?: string): boolean => {
   if (!dateAdded) return false;
-  
   const addedDate = new Date(dateAdded);
   const today = new Date();
   const diffTime = Math.abs(today.getTime() - addedDate.getTime());
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  
   return diffDays <= 14;
 };
 
 export function PromptCard({ useCase, onVote: _onVote, onOpen }: PromptCardProps) {
-
   const IconComponent = iconMap[useCase.icon as keyof typeof iconMap] || Code;
   const showNewBadge = isNewPrompt(useCase.dateAdded);
 
-  const getSessionTypeClass = (sessionType: string) => {
-    switch (sessionType) {
-      case 'Instant output':
-        return 'session-instant-output';
-      case 'Step-by-step flow':
-        return 'session-step-by-step-flow';
-      default:
-        return 'session-instant-output';
-    }
-  };
-
-  const getCardSessionTypeDisplay = (sessionType: string) => {
-    // ⚠️ IMPORTANT: If you change this logic, also update it in src/pages/Index.tsx
-    // The homepage has its own inline card rendering with duplicate logic
+  const getSessionTypeDisplay = (sessionType: string) => {
     switch (sessionType) {
       case 'Instant output':
         return { text: 'Instant', icon: Zap };
@@ -92,16 +72,15 @@ export function PromptCard({ useCase, onVote: _onVote, onOpen }: PromptCardProps
     }
   };
 
-  // SEO FIX: Use proper <a> tag wrapper for crawlability
   const promptUrl = `/library/prompts/${useCase.slug}/`;
 
   const handleClick = (e: React.MouseEvent) => {
-    // Call analytics/tracking if onOpen is provided
     if (onOpen) {
       onOpen(useCase);
     }
-    // Let the <a> tag handle navigation naturally
   };
+
+  const sessionDisplay = getSessionTypeDisplay(useCase.sessionType);
 
   return (
     <a 
@@ -110,53 +89,53 @@ export function PromptCard({ useCase, onVote: _onVote, onOpen }: PromptCardProps
       onClick={handleClick}
     >
       <Card
-        className="dc-card h-full flex flex-col cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/50 relative group after:content-['↗'] after:absolute after:bottom-3 after:right-3 after:text-xs after:text-muted-foreground/70 after:pointer-events-none after:transition-transform after:transition-colors after:duration-200 hover:after:text-primary hover:after:translate-x-0.5 hover:after:-translate-y-0.5"
+        className="dc-card h-full flex flex-col cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/50 relative group"
         role="button"
         tabIndex={-1}
       >
-        <CardHeader className="pb-3">
-          <div className="flex flex-wrap items-start justify-between gap-3">
-            <div className="flex items-center gap-3 flex-1 min-w-0">
-              <div className="p-2 bg-dc-surface-elevated rounded-lg">
-                <IconComponent className="h-5 w-5 text-primary" />
-              </div>
-              <div className="flex-1">
-                <CardTitle className="text-lg leading-snug mb-2 min-h-[3rem] flex items-start">
-                  {useCase.title}
-                  {showNewBadge && (
-                    <Badge variant="outline" className="ml-2 text-xs bg-primary/10 text-primary border-primary/20">
-                      <Sparkles className="h-3 w-3 mr-1" />
-                      New
-                    </Badge>
-                  )}
-                </CardTitle>
-                <div className="flex items-center gap-2">
-                  <Badge variant="outline" className={`text-foreground/70 border-foreground/20 bg-transparent font-normal ${getSessionTypeClass(useCase.sessionType)} whitespace-nowrap`}>
-                    <div className="flex items-center gap-1">
-                      {(() => {
-                        const display = getCardSessionTypeDisplay(useCase.sessionType);
-                        return (
-                          <>
-                            {display.icon && <display.icon className="h-3 w-3" />}
-                            <span>{display.text}</span>
-                          </>
-                        );
-                      })()}
-                    </div>
-                  </Badge>
-                </div>
-              </div>
+        <CardHeader className="pb-2 pt-4 px-4">
+          <div className="flex items-start gap-3">
+            <div className="p-1.5 bg-dc-surface-elevated rounded-md shrink-0">
+              <IconComponent className="h-4 w-4 text-primary" />
             </div>
-            <div className="flex items-center shrink-0 min-w-[90px] whitespace-nowrap" aria-label="All-time engagement">
-              <EngagementMeter count={useCase.votes} size="sm" />
+            <div className="flex-1 min-w-0">
+              <CardTitle className="text-base leading-snug line-clamp-2">
+                {useCase.title}
+              </CardTitle>
+            </div>
+            <div className="flex items-center gap-2 shrink-0">
+              {showNewBadge && (
+                <Badge variant="outline" className="text-[10px] px-1.5 py-0 bg-primary/10 text-primary border-primary/20">
+                  New
+                </Badge>
+              )}
+              <EngagementMeter count={useCase.votes} size="sm" showLabel={false} />
             </div>
           </div>
         </CardHeader>
 
-        <CardContent className="flex-1 flex flex-col">
-          <CardDescription className="text-sm leading-relaxed mb-4">
+        <CardContent className="flex-1 flex flex-col pt-0 px-4 pb-3">
+          <CardDescription className="text-sm leading-relaxed line-clamp-2 mb-3">
             {useCase.description}
           </CardDescription>
+          
+          {/* Footer: Session type + Roles */}
+          <div className="mt-auto flex items-center justify-between gap-2 text-xs text-muted-foreground">
+            <Badge variant="outline" className="text-[10px] px-1.5 py-0 font-normal border-border/50 bg-transparent">
+              {sessionDisplay.icon && <sessionDisplay.icon className="h-3 w-3 mr-1" />}
+              {sessionDisplay.text}
+            </Badge>
+            
+            {useCase.targetRoles && useCase.targetRoles.length > 0 && (
+              <span className="truncate flex items-center gap-1">
+                <Users className="h-3 w-3 shrink-0" />
+                {useCase.targetRoles.slice(0, 2).join(', ')}
+                {useCase.targetRoles.length > 2 && (
+                  <span className="text-muted-foreground/60">+{useCase.targetRoles.length - 2}</span>
+                )}
+              </span>
+            )}
+          </div>
         </CardContent>
       </Card>
     </a>
