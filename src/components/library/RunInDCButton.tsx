@@ -25,6 +25,7 @@ const getCookie = (name: string): string | null => {
 const downloadUrls = {
   'macos-m': 'https://github.com/desktop-commander/dc-app-client-releases/releases/latest/download/desktop-commander-mac-arm64.dmg',
   'macos-intel': 'https://github.com/desktop-commander/dc-app-client-releases/releases/latest/download/desktop-commander-mac-x64.dmg',
+  'windows': 'https://github.com/desktop-commander/dc-app-client-releases-windows/releases/latest/download/desktop-commander-win-x64.msi',
 };
 
 interface RunInDCButtonProps {
@@ -216,13 +217,13 @@ export function RunInDCButton({ promptTitle, prompt, onCopySuccess }: RunInDCBut
             {showOtherOptions && (
               <div className="w-full max-w-md animate-in slide-in-from-top-1 duration-200">
                 <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-sm">
-                  {/* Windows waitlist */}
+                  {/* Windows download */}
                   <a 
-                    href="/product/early-access" 
+                    href={downloadUrls['windows']}
                     className="text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-1"
                   >
                     <Monitor className="w-4 h-4" />
-                    Windows waitlist
+                    Windows
                     <ArrowRight className="w-3 h-3" />
                   </a>
                   

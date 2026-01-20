@@ -1,12 +1,19 @@
 import { Button } from "@/components/ui/button";
-import { Apple, Clock, ArrowRight } from "lucide-react";
+import { Apple } from "lucide-react";
 import posthog from 'posthog-js';
+
+// Windows icon component
+const WindowsIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+  </svg>
+);
 
 // Download URLs for each platform
 export const downloadUrls = {
   'macos-m': 'https://github.com/desktop-commander/dc-app-client-releases/releases/latest/download/desktop-commander-mac-arm64.dmg',
   'macos-intel': 'https://github.com/desktop-commander/dc-app-client-releases/releases/latest/download/desktop-commander-mac-x64.dmg',
-  'windows': 'https://github.com/desktop-commander/dc-app-client-releases/releases/latest/download/desktop-commander-win-x64.exe'
+  'windows': 'https://github.com/desktop-commander/dc-app-client-releases-windows/releases/latest/download/desktop-commander-win-x64.msi'
 };
 
 interface DownloadButtonsProps {
@@ -24,20 +31,9 @@ const DownloadButtons = ({ variant = 'default', location = 'unknown' }: Download
     });
   };
 
-  const trackWindowsWaitlist = () => {
-    posthog.capture('windows_waitlist_clicked', {
-      button_location: location,
-      page_path: window.location.pathname
-    });
-  };
-
   const buttonClass = variant === 'hero' 
     ? "bg-primary hover:bg-primary/90 text-primary-foreground"
     : "bg-black hover:bg-black/90 text-white border-2 border-white/20 hover:border-primary/50";
-
-  const disabledButtonClass = variant === 'hero'
-    ? "bg-primary/40 text-primary-foreground/60 cursor-not-allowed"
-    : "bg-black/40 text-white/60 border-2 border-white/10 cursor-not-allowed";
 
   const size = variant === 'compact' ? 'default' : 'lg';
 
@@ -72,25 +68,20 @@ const DownloadButtons = ({ variant = 'default', location = 'unknown' }: Download
           </a>
         </Button>
         
-        {/* Windows Button + Waitlist grouped together */}
-        <div className="flex flex-col items-center gap-2">
-          <Button 
-            size={size}
-            className={disabledButtonClass}
-            disabled
-          >
-            <Clock className="w-5 h-5" />
-            Windows – Coming Soon
-          </Button>
+        {/* Windows Button */}
+        <Button 
+          size={size}
+          className={buttonClass}
+          asChild
+        >
           <a 
-            href="/product/early-access" 
-            onClick={trackWindowsWaitlist}
-            className="text-sm text-primary hover:text-primary/80 font-medium inline-flex items-center gap-1 transition-colors"
+            href={downloadUrls['windows']}
+            onClick={() => trackDownload('windows', downloadUrls['windows'])}
           >
-            Join the Windows waitlist
-            <ArrowRight className="w-3 h-3" />
+            <WindowsIcon className="w-5 h-5" />
+            Windows
           </a>
-        </div>
+        </Button>
       </div>
     </div>
   );

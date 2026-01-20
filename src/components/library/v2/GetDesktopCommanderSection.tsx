@@ -62,6 +62,7 @@ const detectAppleSilicon = (): boolean => {
 const downloadUrls = {
   'macos-m': 'https://github.com/desktop-commander/dc-app-client-releases/releases/latest/download/desktop-commander-mac-arm64.dmg',
   'macos-intel': 'https://github.com/desktop-commander/dc-app-client-releases/releases/latest/download/desktop-commander-mac-x64.dmg',
+  'windows': 'https://github.com/desktop-commander/dc-app-client-releases-windows/releases/latest/download/desktop-commander-win-x64.msi',
 };
 
 interface RunInDCButtonProps {
@@ -258,13 +259,14 @@ export function RunInDCButton({ promptTitle, prompt, onCopySuccess }: RunInDCBut
                   
                   <div className="text-muted-foreground/50">·</div>
                   
-                  {/* Windows waitlist */}
+                  {/* Windows download */}
                   <a 
-                    href="/product/early-access" 
+                    href={downloadUrls['windows']}
+                    onClick={() => handleDownloadClick('windows')}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-1"
                   >
                     <Monitor className="w-3 h-3" />
-                    Windows (join waitlist)
+                    Windows
                   </a>
                   
                   <div className="text-muted-foreground/50">·</div>

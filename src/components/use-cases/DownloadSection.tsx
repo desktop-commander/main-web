@@ -5,7 +5,7 @@ const HowItWorksSection = () => {
     {
       number: "1",
       title: "Install Desktop Commander",
-      description: "One-time setup on your Mac. No accounts, no subscriptions to start. Windows coming soon."
+      description: "One-time setup on your Mac or Windows PC. No accounts, no subscriptions to start."
     },
     {
       number: "2",

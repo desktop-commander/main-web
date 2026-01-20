@@ -3,6 +3,13 @@ import { ArrowRight, Download, Clock } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import posthog from 'posthog-js';
 
+// Windows icon component
+const WindowsIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+  </svg>
+);
+
 const DownloadSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -28,13 +35,6 @@ const DownloadSection = () => {
     posthog.capture('download_clicked', {
       platform,
       url,
-      button_location: 'download_section',
-      page_path: window.location.pathname
-    });
-  };
-
-  const handleWindowsWaitlist = () => {
-    posthog.capture('windows_waitlist_clicked', {
       button_location: 'download_section',
       page_path: window.location.pathname
     });
@@ -100,26 +100,22 @@ const DownloadSection = () => {
               </a>
             </Button>
 
-            {/* Windows - Coming Soon with Waitlist */}
-            <div className="flex flex-col items-center gap-2">
-              <Button
-                variant="hero"
-                size="lg"
-                className="min-w-[180px] opacity-50 cursor-not-allowed"
-                disabled
+            {/* Windows */}
+            <Button
+              variant="hero"
+              size="lg"
+              className="min-w-[180px] transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-dc-accent/20"
+              asChild
+            >
+              <a
+                href="https://github.com/desktop-commander/dc-app-client-releases-windows/releases/latest/download/desktop-commander-win-x64.msi"
+                onClick={() => handleDownload('windows', 'https://github.com/desktop-commander/dc-app-client-releases-windows/releases/latest/download/desktop-commander-win-x64.msi')}
+                className="flex items-center justify-center gap-2"
               >
-                <Clock className="h-4 w-4" />
-                Windows – Coming Soon
-              </Button>
-              <a 
-                href="/product/early-access" 
-                onClick={handleWindowsWaitlist}
-                className="text-sm text-primary hover:text-primary/80 font-medium inline-flex items-center gap-1 transition-colors"
-              >
-                Join the Windows waitlist
-                <ArrowRight className="h-3 w-3" />
+                <WindowsIcon className="h-4 w-4" />
+                Windows
               </a>
-            </div>
+            </Button>
           </div>
 
           {/* MCP Link */}
