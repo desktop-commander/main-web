@@ -15,11 +15,12 @@ import { Terminal, ChevronDown, ExternalLink, Menu, X, ArrowRight, Download } fr
 import dcLogo from "@/assets/dc-logo.png";
 import { useState } from "react";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
+import { trackDownloadRedirect } from '@/lib/analytics/tracking';
 
 // Landing Page specific Navigation with Download CTA
 const NavigationLandingPage = () => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const { trackNavigation, trackCustomEvent } = useAnalyticsAstro();
+  const { trackNavigation } = useAnalyticsAstro();
   
   const handleMobileNavClick = (linkText: string, destination: string, linkType: 'internal' | 'external' = 'internal') => {
     trackNavigation(linkText, destination, linkType);
@@ -27,10 +28,12 @@ const NavigationLandingPage = () => {
   };
 
   const handleDownloadClick = () => {
-    trackCustomEvent('download_cta_clicked', {
-      location: 'navigation',
-      button_text: 'Download DC'
-    });
+    trackDownloadRedirect('landing_page_nav');
+  };
+
+  const handleMobileDownloadClick = () => {
+    trackDownloadRedirect('landing_page_nav_mobile');
+    setIsSheetOpen(false);
   };
 
   return (
@@ -266,10 +269,7 @@ const NavigationLandingPage = () => {
                     >
                       <a 
                         href="#get-started"
-                        onClick={() => {
-                          handleDownloadClick();
-                          setIsSheetOpen(false);
-                        }}
+                        onClick={handleMobileDownloadClick}
                       >
                         <Download className="w-4 h-4" />
                         Download
