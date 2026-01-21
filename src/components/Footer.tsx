@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Github, MessageCircle, Play, Package } from "lucide-react";
 import dcLogo from "@/assets/dc-logo-dark.png";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
+import { trackDownloadRedirect } from '@/lib/analytics/tracking';
 
 const Footer = () => {
   const { trackCustomEvent } = useAnalyticsAstro();
@@ -58,12 +59,7 @@ const Footer = () => {
                 <a 
                   href="/#download"
                   className="text-muted-foreground hover:text-primary transition-smooth text-sm"
-                  onClick={() => trackCustomEvent('navigation_clicked', {
-                    button_text: 'Download App',
-                    button_location: 'footer',
-                    link_type: 'internal',
-                    section: 'download'
-                  })}
+                  onClick={() => trackDownloadRedirect('footer')}
                 >
                   Download App
                 </a>

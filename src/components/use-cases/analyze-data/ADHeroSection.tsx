@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Download, ArrowRight } from "lucide-react";
+import { trackDownloadRedirect } from '@/lib/analytics/tracking';
 
 const ADHeroSection = () => {
   return (
@@ -45,7 +46,7 @@ const ADHeroSection = () => {
               asChild
               className="group"
             >
-              <a href="#get-started">
+              <a href="#get-started" onClick={() => trackDownloadRedirect('analyze_data_hero')}>
                 <Download className="w-5 h-5" />
                 Download App
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

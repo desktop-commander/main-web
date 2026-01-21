@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Terminal, FileText, Zap, Shield, ArrowRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import { trackDownloadRedirect } from '@/lib/analytics/tracking';
 
 const UseCases = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -144,7 +145,11 @@ const UseCases = () => {
               className="w-full sm:w-auto transition-all duration-300 hover:scale-105 active:scale-95" 
               asChild
             >
-              <a href="./#download" className="flex items-center justify-center gap-2">
+              <a 
+                href="./#download" 
+                className="flex items-center justify-center gap-2"
+                onClick={() => trackDownloadRedirect('use_cases_cta')}
+              >
                 <Terminal className="h-5 w-5" />
                 Start Building
               </a>

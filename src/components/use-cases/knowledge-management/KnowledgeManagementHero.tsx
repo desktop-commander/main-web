@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Download, ArrowRight } from "lucide-react";
+import { trackDownloadRedirect } from '@/lib/analytics/tracking';
 
 const KnowledgeManagementHero = () => {
   return (
@@ -43,7 +44,7 @@ const KnowledgeManagementHero = () => {
               asChild
               className="group"
             >
-              <a href="#get-started">
+              <a href="#get-started" onClick={() => trackDownloadRedirect('knowledge_management_hero')}>
                 <Download className="w-5 h-5" />
                 Download App
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

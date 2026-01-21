@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/sheet";
 import { Download, Menu } from "lucide-react";
 import { useState } from "react";
+import { trackDownloadRedirect } from '@/lib/analytics/tracking';
 
 // Mobile menu drawer - React component for interactivity
 const MobileMenu = () => {
@@ -65,7 +66,10 @@ const MobileMenu = () => {
             <a 
               href="/#download" 
               className="flex items-center gap-2"
-              onClick={handleNavClick}
+              onClick={() => {
+                trackDownloadRedirect('mobile_menu');
+                handleNavClick();
+              }}
             >
               <Download className="h-4 w-4" />
               Download

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download, Star } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import { trackDownloadRedirect } from '@/lib/analytics/tracking';
 
 // Astro-compatible Hero - Redesigned for App-first positioning
 const HeroAstro = () => {
@@ -166,7 +167,7 @@ const HeroAstro = () => {
                 className="w-full sm:w-auto flex items-center justify-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-dc-accent/20 transform active:scale-95 group" 
                 asChild
               >
-                <a href="#download">
+                <a href="#download" onClick={() => trackDownloadRedirect('hero_main')}>
                   <Download className="h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
                   Download Beta
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />

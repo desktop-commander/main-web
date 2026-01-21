@@ -8,6 +8,7 @@ import { Download, ExternalLink, Menu } from "lucide-react";
 import dcLogo from "@/assets/dc-logo.png";
 import { useState } from "react";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
+import { trackDownloadRedirect } from '@/lib/analytics/tracking';
 
 interface NavigationAstroProps {
   hideInstall?: boolean;
@@ -20,6 +21,11 @@ const NavigationAstro = ({ hideInstall = false }: NavigationAstroProps) => {
   
   const handleMobileNavClick = (linkText: string, destination: string, linkType: 'internal' | 'external' = 'internal') => {
     trackNavigation(linkText, destination, linkType);
+    setIsSheetOpen(false);
+  };
+
+  const handleMobileDownloadClick = () => {
+    trackDownloadRedirect('nav_mobile');
     setIsSheetOpen(false);
   };
 
@@ -98,7 +104,7 @@ const NavigationAstro = ({ hideInstall = false }: NavigationAstroProps) => {
                 <a 
                   href="/#download" 
                   className="flex items-center gap-2"
-                  onClick={() => trackNavigation('Download', '/#download', 'internal')}
+                  onClick={() => trackDownloadRedirect('nav_desktop')}
                 >
                   <Download className="h-4 w-4" />
                   Download
@@ -158,7 +164,7 @@ const NavigationAstro = ({ hideInstall = false }: NavigationAstroProps) => {
                     <a 
                       href="/#download" 
                       className="flex items-center gap-2"
-                      onClick={() => handleMobileNavClick('Download', '/#download')}
+                      onClick={handleMobileDownloadClick}
                     >
                       <Download className="h-4 w-4" />
                       Download

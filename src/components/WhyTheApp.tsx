@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Download, ArrowRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import { trackDownloadRedirect } from '@/lib/analytics/tracking';
 
 const features = [
   { text: "Model-agnostic", desc: "Use Opus 4.5, GPT-4.5, Gemini 2.5, or any model" },
@@ -74,7 +75,7 @@ const WhyTheApp = () => {
               className="flex items-center justify-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-dc-accent/20 transform active:scale-95 group" 
               asChild
             >
-              <a href="#download">
+              <a href="#download" onClick={() => trackDownloadRedirect('why_the_app_cta')}>
                 <Download className="h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
                 Download App
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />

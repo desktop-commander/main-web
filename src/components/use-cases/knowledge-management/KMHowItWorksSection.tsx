@@ -1,5 +1,6 @@
 import { FolderOpen, MessageSquare, Command, ArrowRight, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { trackDownloadRedirect } from '@/lib/analytics/tracking';
 
 const KMHowItWorksSection = () => {
   const steps = [
@@ -75,7 +76,7 @@ const KMHowItWorksSection = () => {
             asChild
             className="group"
           >
-            <a href="#get-started">
+            <a href="#get-started" onClick={() => trackDownloadRedirect('km_how_it_works')}>
               <Download className="w-5 h-5" />
               Get Started Now
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

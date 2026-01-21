@@ -7,6 +7,7 @@ import {
 import { ExternalLink, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef } from "react";
+import { trackDownloadRedirect } from '@/lib/analytics/tracking';
 
 const MCPFAQ = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -141,7 +142,11 @@ const MCPFAQ = () => {
                 Get started faster with the Desktop Commander App - no MCP configuration needed.
               </p>
               <Button variant="hero" size="sm" asChild>
-                <a href="/#download" className="inline-flex items-center gap-2">
+                <a 
+                  href="/#download" 
+                  className="inline-flex items-center gap-2"
+                  onClick={() => trackDownloadRedirect('mcp_faq_cta')}
+                >
                   <Download className="h-4 w-4" />
                   Download App
                 </a>

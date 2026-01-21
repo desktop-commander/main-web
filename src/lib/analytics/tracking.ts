@@ -76,6 +76,16 @@ export const trackDownloadClick = (properties: DownloadClickedProperties): void 
   trackEvent(INTERACTION_EVENTS.DOWNLOAD_CLICKED, properties);
 };
 
+// Download redirect tracking (when clicking buttons that scroll to #download section)
+export const trackDownloadRedirect = (location: string): void => {
+  trackEvent(INTERACTION_EVENTS.DOWNLOAD_CLICKED, {
+    platform: 'redirect_to_section',
+    button_location: location,
+    page_path: typeof window !== 'undefined' ? window.location.pathname : '',
+    action_type: 'redirect'
+  });
+};
+
 // Community link tracking
 export const trackCommunityLink = (properties: CommunityLinkProperties): void => {
   const eventMap = {

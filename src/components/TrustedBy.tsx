@@ -2,6 +2,7 @@ import { Star, Download, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef } from "react";
 import TestimonialsStrip from "./TestimonialsStrip";
+import { trackDownloadRedirect } from '@/lib/analytics/tracking';
 
 const TrustedBy = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -184,7 +185,11 @@ const TrustedBy = () => {
               className="w-full sm:w-auto transition-all duration-300 hover:scale-105 active:scale-95" 
               asChild
             >
-              <a href="#download" className="flex items-center justify-center gap-2">
+              <a 
+                href="#download" 
+                className="flex items-center justify-center gap-2"
+                onClick={() => trackDownloadRedirect('trusted_by_cta')}
+              >
                 <Download className="h-5 w-5" />
                 Download
               </a>
