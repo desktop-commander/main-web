@@ -163,11 +163,11 @@ export function RunInDCButton({ promptTitle, prompt, onCopySuccess }: RunInDCBut
 
           {/* Download Flow */}
           <div className="flex flex-col items-center gap-4">
-            {/* Level 1: Primary download buttons - both Mac options visible */}
+            {/* Level 1: Primary download buttons - Mac and Windows with equal importance */}
             <div className="flex flex-wrap justify-center gap-3">
               <Button 
                 size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground min-w-[270px] justify-center"
                 asChild
               >
                 <a 
@@ -180,15 +180,15 @@ export function RunInDCButton({ promptTitle, prompt, onCopySuccess }: RunInDCBut
               </Button>
               <Button 
                 size="lg"
-                variant="outline"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground min-w-[270px] justify-center"
                 asChild
               >
                 <a 
-                  href={downloadUrls['macos-intel']}
-                  onClick={() => handleDownloadClick('macos-intel')}
+                  href={downloadUrls['windows']}
+                  onClick={() => handleDownloadClick('windows')}
                 >
-                  <Apple className="w-5 h-5 mr-2" />
-                  Mac (Intel)
+                  <Monitor className="w-5 h-5 mr-2" />
+                  Download for Windows
                 </a>
               </Button>
             </div>
@@ -217,14 +217,14 @@ export function RunInDCButton({ promptTitle, prompt, onCopySuccess }: RunInDCBut
             {showOtherOptions && (
               <div className="w-full max-w-md animate-in slide-in-from-top-1 duration-200">
                 <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-sm">
-                  {/* Windows download */}
+                  {/* Mac Intel option */}
                   <a 
-                    href={downloadUrls['windows']}
+                    href={downloadUrls['macos-intel']}
+                    onClick={() => handleDownloadClick('macos-intel')}
                     className="text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-1"
                   >
-                    <Monitor className="w-4 h-4" />
-                    Windows
-                    <ArrowRight className="w-3 h-3" />
+                    <Apple className="w-4 h-4" />
+                    Mac (Intel)
                   </a>
                   
                   <span className="text-muted-foreground/30">|</span>
