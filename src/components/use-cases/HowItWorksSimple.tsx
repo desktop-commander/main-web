@@ -67,7 +67,7 @@ const HowItWorksFlowSection = () => {
 
         {/* CTA Button */}
         <div className="flex justify-center mt-12">
-          <DownloadButtons location="how_it_works_simple" />
+          <DownloadButtons location="file_management" />
         </div>
       </div>
     </section>

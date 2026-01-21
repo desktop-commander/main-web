@@ -27,7 +27,7 @@ const FinalCTASection = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <DownloadButtons variant="hero" location="final_cta_section" />
+            <DownloadButtons variant="hero" location="file_management" />
           </div>
 
           {/* Platform and privacy info */}

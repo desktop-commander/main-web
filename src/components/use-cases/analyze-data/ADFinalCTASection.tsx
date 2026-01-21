@@ -25,7 +25,7 @@ const ADFinalCTASection = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <DownloadButtons variant="hero" location="analyze_data_final_cta" />
+            <DownloadButtons variant="hero" location="analyze_data" />
           </div>
 
           {/* Supporting Info */}

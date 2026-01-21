@@ -51,7 +51,7 @@ const CAHowItWorksSection = () => {
                 {/* Download buttons - only show on first step */}
                 {index === 0 && (
                   <div className="mt-6">
-                    <DownloadButtons location="connect_apps_how_it_works" />
+                    <DownloadButtons location="connect_apps" />
                   </div>
                 )}
               </div>

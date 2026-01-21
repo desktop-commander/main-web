@@ -25,7 +25,7 @@ const NativeAIFinalCTASection = () => {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <DownloadButtons variant="hero" location="native_ai_final_cta" />
+            <DownloadButtons variant="hero" location="native_ai" />
           </div>
         </div>
       </div>

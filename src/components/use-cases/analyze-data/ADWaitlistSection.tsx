@@ -51,7 +51,7 @@ const ADWaitlistSection = () => {
                 {/* Download buttons - only show on first step */}
                 {index === 0 && (
                   <div className="mt-6">
-                    <DownloadButtons location="analyze_data_waitlist_step1" />
+                    <DownloadButtons location="analyze_data" />
                   </div>
                 )}
               </div>

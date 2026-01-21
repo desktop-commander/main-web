@@ -1,6 +1,10 @@
 import DownloadButtons from "@/components/shared/DownloadButtons";
 
-const WaitlistSection = () => {
+interface WaitlistSectionProps {
+  useCase?: string;
+}
+
+const WaitlistSection = ({ useCase = 'unknown' }: WaitlistSectionProps) => {
   const steps = [
     {
       number: "1",
@@ -51,7 +55,7 @@ const WaitlistSection = () => {
                 {/* Download buttons - only show on first step */}
                 {index === 0 && (
                   <div className="mt-6">
-                    <DownloadButtons location="waitlist_section_step1" />
+                    <DownloadButtons location={useCase} />
                   </div>
                 )}
               </div>

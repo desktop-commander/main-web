@@ -124,7 +124,7 @@ const KMSolutionSection = () => {
 
         {/* CTA Button */}
         <div className="flex justify-center mt-10">
-          <DownloadButtons location="knowledge_management_solution" />
+          <DownloadButtons location="knowledge_management" />
         </div>
 
         {/* Divider + Benefits Header */}
