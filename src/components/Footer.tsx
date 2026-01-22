@@ -166,6 +166,18 @@ const Footer = () => {
             >
               Privacy
             </a>
+            <a 
+              href="#" 
+              onClick={(e) => {
+                e.preventDefault();
+                if (typeof window !== 'undefined' && (window as any).Cookiebot) {
+                  (window as any).Cookiebot.renew();
+                }
+              }}
+              className="hover:text-primary transition-smooth"
+            >
+              Cookie Settings
+            </a>
           </div>
         </div>
       </div>

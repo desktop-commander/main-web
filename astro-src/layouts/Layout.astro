@@ -46,39 +46,20 @@ import '../../src/index.css';
     <meta name="robots" content="noai, noimageai" />
     <meta name="googlebot" content="noai" />
     
-    <!-- Cookiebot -->
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="83cceb09-32d2-409b-ada6-17cc28478ba6" data-blockingmode="auto" type="text/javascript"></script>
+    <!-- Cookiebot - MUST be first script in head -->
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="83cceb09-32d2-409b-ada6-17cc28478ba6" data-blockingmode="auto" type="text/javascript" async></script>
     
-    <!-- Cookiebot Custom Sizing -->
-    <style is:inline>
-      /* Scale banner to 80% */
-      div#CybotCookiebotDialog {
-        scale: 80%;
-        margin-bottom: 0 !important;
-      }
-      
-      /* Remove Cookiebot branding */
-      a#CybotCookiebotDialogPoweredbyCybot,
-      div#CybotCookiebotDialogPoweredByText {
-        display: none;
-      }
-      
-      #CookiebotWidget .CookiebotWidget-body .CookiebotWidget-main-logo {
-        display: none;
-      }
-    </style>
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXL4Y3Y62N"></script>
-    <script is:inline>
+    <!-- Google tag (gtag.js) - blocked until statistics consent -->
+    <script type="text/plain" data-cookieconsent="statistics" async src="https://www.googletagmanager.com/gtag/js?id=G-HXL4Y3Y62N"></script>
+    <script type="text/plain" data-cookieconsent="statistics">
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-HXL4Y3Y62N');
     </script>
     
-    <!-- Ahrefs Analytics -->
-    <script src="https://analytics.ahrefs.com/analytics.js" data-key="5Iumy4Rr7Do+R0CWUtQkHA" async></script>
+    <!-- Ahrefs Analytics - blocked until statistics consent -->
+    <script type="text/plain" data-cookieconsent="statistics" src="https://analytics.ahrefs.com/analytics.js" data-key="5Iumy4Rr7Do+R0CWUtQkHA" async></script>
     
     <!-- Inject base path for React components -->
     <script is:inline define:vars={{ basePath: import.meta.env.BASE_URL }}>

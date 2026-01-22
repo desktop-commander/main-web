@@ -8,6 +8,15 @@ const POSTHOG_CONFIG = {
 };
 
 /**
+ * Check if Cookiebot consent has been given for statistics cookies
+ */
+const hasStatisticsConsent = (): boolean => {
+  if (typeof window === 'undefined') return false;
+  const cookiebot = (window as any).Cookiebot;
+  return cookiebot?.consent?.statistics === true;
+};
+
+/**
  * Detects and tracks when a user arrives from the blog
  * This enables cross-domain user journey tracking
  */
@@ -82,6 +91,57 @@ const detectBlogReferral = (): void => {
   trackOrganicJourney();
 };
 
+/**
+ * Initialize PostHog with all configuration
+ */
+const initializePostHog = () => {
+  // Check if already initialized (prevent double init)
+  if (posthog.__loaded) {
+    console.log('PostHog already initialized');
+    return;
+  }
+
+  const environment = window.location.hostname === 'localhost' ? 'development' : 'production';
+
+  // Initialize PostHog
+  posthog.init(POSTHOG_CONFIG.apiKey, {
+    api_host: POSTHOG_CONFIG.apiHost,
+    
+    // CRITICAL: Enable cross-domain tracking
+    cross_subdomain_cookie: true,
+    
+    session_recording: {
+      enabled: true,
+      record_console: environment === 'development',
+      record_network: environment === 'development',
+    },
+    autocapture: {
+      dom_event_allowlist: ['click', 'change', 'submit'],
+      mask_all_element_attributes: false,
+      mask_all_text: false,
+    },
+    loaded: (posthogInstance) => {
+      if (environment === 'development') {
+        posthogInstance.debug(true);
+      }
+      console.log('✅ PostHog initialized for ' + environment + ' environment with cross-domain tracking');
+      
+      // Detect blog referrals after PostHog is loaded
+      detectBlogReferral();
+    },
+    respect_dnt: true,
+    disable_session_recording: false,
+  });
+
+  // Set environment as a super property
+  posthog.register({
+    environment,
+    website_section: 'main_site',
+    domain: 'desktopcommander.app',
+    timestamp: new Date().toISOString(),
+  });
+};
+
 export default function PostHogInit() {
   useEffect(() => {
     // Expose PostHog globally for Astro components and tracking functions
@@ -89,51 +149,30 @@ export default function PostHogInit() {
       (window as any).posthog = posthog;
     }
 
-    // Check if already initialized (prevent double init)
-    if (posthog.__loaded) {
-      console.log('PostHog already initialized');
-      return;
+    // Check if user has given consent for statistics cookies
+    if (hasStatisticsConsent()) {
+      initializePostHog();
+    } else {
+      console.log('⏳ PostHog: Waiting for Cookiebot statistics consent');
     }
 
-    const environment = window.location.hostname === 'localhost' ? 'development' : 'production';
+    // Listen for Cookiebot consent changes
+    const handleConsentChange = () => {
+      if (hasStatisticsConsent() && !posthog.__loaded) {
+        console.log('✅ Cookiebot statistics consent received, initializing PostHog');
+        initializePostHog();
+      }
+    };
 
-    // Initialize PostHog
-    posthog.init(POSTHOG_CONFIG.apiKey, {
-      api_host: POSTHOG_CONFIG.apiHost,
-      
-      // CRITICAL: Enable cross-domain tracking
-      cross_subdomain_cookie: true,
-      
-      session_recording: {
-        enabled: true,
-        record_console: environment === 'development',
-        record_network: environment === 'development',
-      },
-      autocapture: {
-        dom_event_allowlist: ['click', 'change', 'submit'],
-        mask_all_element_attributes: false,
-        mask_all_text: false,
-      },
-      loaded: (posthogInstance) => {
-        if (environment === 'development') {
-          posthogInstance.debug(true);
-        }
-        console.log('✅ PostHog initialized for ' + environment + ' environment with cross-domain tracking');
-        
-        // Detect blog referrals after PostHog is loaded
-        detectBlogReferral();
-      },
-      respect_dnt: true,
-      disable_session_recording: false,
+    // Cookiebot fires this event when consent is given/updated
+    window.addEventListener('CookiebotOnAccept', handleConsentChange);
+    window.addEventListener('CookiebotOnDecline', () => {
+      console.log('❌ Cookiebot statistics consent declined');
     });
 
-    // Set environment as a super property
-    posthog.register({
-      environment,
-      website_section: 'main_site',
-      domain: 'desktopcommander.app',
-      timestamp: new Date().toISOString(),
-    });
+    return () => {
+      window.removeEventListener('CookiebotOnAccept', handleConsentChange);
+    };
   }, []);
 
   return null;
