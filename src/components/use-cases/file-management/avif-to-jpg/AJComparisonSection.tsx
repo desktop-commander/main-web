@@ -6,7 +6,7 @@ const AJComparisonSection = () => {
     "100% local — files never leave your device",
     "Batch convert entire folders instantly",
     "Works offline, no internet required",
-    "Free to use, no subscriptions"
+    "Free plans available, works with any AI model"
   ];
 
   const withoutDC = [

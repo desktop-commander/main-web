@@ -61,7 +61,7 @@ const HJHeroSection = () => {
           <div className="flex flex-wrap items-center justify-center gap-6 pt-4 text-sm text-muted-foreground">
             <span className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
-              Convert 1000s of photos in minutes
+              Batch convert entire folders at once
             </span>
             <span className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-green-400" />

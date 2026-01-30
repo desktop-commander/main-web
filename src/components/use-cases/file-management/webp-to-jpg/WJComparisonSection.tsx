@@ -6,7 +6,7 @@ const WJComparisonSection = () => {
     "100% local — files never leave your device",
     "Batch rename and organize while converting",
     "Works offline, no internet required",
-    "Free to use, no subscriptions"
+    "Free plans available, works with any AI model"
   ];
 
   const withoutDC = [

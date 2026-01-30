@@ -4,10 +4,10 @@ const HJSolutionSection = () => {
   const features = [
     {
       title: "Batch convert in seconds",
-      description: "Select a folder with hundreds of HEIC files. Desktop Commander converts them all at once — no clicking through dialogs or waiting for uploads.",
+      description: "Select a folder with HEIC files. Desktop Commander converts them all at once — no clicking through dialogs or waiting for uploads.",
       icon: Zap,
       command: '"Convert all HEIC files in my Photos folder to JPG"',
-      result: "847 files converted in 2 minutes"
+      result: "All files converted successfully"
     },
     {
       title: "Organize as you convert",
@@ -36,6 +36,22 @@ const HJSolutionSection = () => {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             No menus. No settings. No figuring out which app to use. Just describe what you want in plain English.
           </p>
+        </div>
+
+        {/* Video Demo */}
+        <div className="relative aspect-video rounded-xl border border-dc-border bg-dc-surface overflow-hidden max-w-4xl mx-auto shadow-lg mb-16">
+          <video
+            className="w-full h-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+            aria-label="Desktop Commander converting HEIC photos to JPG - batch conversion demo"
+            title="Convert HEIC to JPG with natural language - Desktop Commander demo"
+          >
+            <source src="/videos/heic-to-jpg-demo.mp4" type="video/mp4" />
+            <p className="text-muted-foreground">Your browser does not support the video tag.</p>
+          </video>
         </div>
 
         {/* Features */}

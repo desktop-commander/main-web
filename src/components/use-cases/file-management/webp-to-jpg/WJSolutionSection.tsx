@@ -7,7 +7,7 @@ const WJSolutionSection = () => {
       description: "Select a folder full of WebP files. Desktop Commander converts them all at once — no clicking through dialogs or waiting for uploads.",
       icon: Zap,
       command: '"Convert all WebP files in Downloads to JPG"',
-      result: "156 files converted in 30 seconds"
+      result: "All files converted successfully"
     },
     {
       title: "Organize as you convert",
@@ -36,6 +36,22 @@ const WJSolutionSection = () => {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             No menus. No settings. No figuring out which app to use. Just describe what you want in plain English.
           </p>
+        </div>
+
+        {/* Video Demo */}
+        <div className="relative aspect-video rounded-xl border border-dc-border bg-dc-surface overflow-hidden max-w-4xl mx-auto shadow-lg mb-16">
+          <video
+            className="w-full h-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+            aria-label="Desktop Commander converting WebP images to JPG - batch conversion demo"
+            title="Convert WebP to JPG with natural language - Desktop Commander demo"
+          >
+            <source src="/videos/webp-to-jpg-demo.mp4" type="video/mp4" />
+            <p className="text-muted-foreground">Your browser does not support the video tag.</p>
+          </video>
         </div>
 
         {/* Features */}

@@ -73,6 +73,37 @@ const generateSitemap = () => {
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
+    <url>
+        <loc>${baseUrl}/use-cases/analyze-data/</loc>
+        <lastmod>${currentDate}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>${baseUrl}/use-cases/connect-apps/</loc>
+        <lastmod>${currentDate}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <!-- File Conversion Landing Pages -->
+    <url>
+        <loc>${baseUrl}/use-cases/file-management/heic-to-jpg/</loc>
+        <lastmod>${currentDate}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>${baseUrl}/use-cases/file-management/webp-to-jpg/</loc>
+        <lastmod>${currentDate}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>${baseUrl}/use-cases/file-management/avif-to-jpg/</loc>
+        <lastmod>${currentDate}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
     <!-- Blog Pages -->
     <url>
         <loc>${baseUrl}/blog/</loc>

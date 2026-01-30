@@ -9,7 +9,7 @@ const HJPersonasSection = () => {
       useCases: [
         "Convert years of iPhone photos for sharing",
         "Prepare images for websites and portfolios",
-        "Batch process event photos quickly"
+        "Batch process event photos"
       ]
     },
     {

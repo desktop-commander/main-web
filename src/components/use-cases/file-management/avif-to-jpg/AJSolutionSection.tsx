@@ -7,7 +7,7 @@ const AJSolutionSection = () => {
       description: "AVIF support is rare in most tools. Desktop Commander handles it instantly — just tell it what you need in plain English.",
       icon: Zap,
       command: '"Convert all AVIF files in Downloads to JPG"',
-      result: "42 AVIF files converted in 8 seconds"
+      result: "All files converted successfully"
     },
     {
       title: "Organize as you convert",
@@ -36,6 +36,22 @@ const AJSolutionSection = () => {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             No menus. No settings. No figuring out which app to use. Just describe what you want in plain English.
           </p>
+        </div>
+
+        {/* Video Demo */}
+        <div className="relative aspect-video rounded-xl border border-dc-border bg-dc-surface overflow-hidden max-w-4xl mx-auto shadow-lg mb-16">
+          <video
+            className="w-full h-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+            aria-label="Desktop Commander converting AVIF images to JPG - batch conversion demo"
+            title="Convert AVIF to JPG with natural language - Desktop Commander demo"
+          >
+            <source src="/videos/avif-to-jpg-demo.mp4" type="video/mp4" />
+            <p className="text-muted-foreground">Your browser does not support the video tag.</p>
+          </video>
         </div>
 
         {/* Features */}
