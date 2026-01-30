@@ -3,6 +3,14 @@
 // Mobile menu uses a separate React component for interactivity
 import MobileMenu from '../../src/components/MobileMenu';
 import dcLogo from '../../src/assets/dc-logo.png';
+
+const useCasePages = [
+  { name: 'File Management', href: '/use-cases/file-management/', description: 'Organize, rename, and convert files' },
+  { name: 'Knowledge Management', href: '/use-cases/knowledge-management/', description: 'Build searchable knowledge bases' },
+  { name: 'Analyze Data', href: '/use-cases/analyze-data/', description: 'Process CSVs, logs, and datasets' },
+  { name: 'Build Prototypes', href: '/use-cases/build-prototype/', description: 'Rapid app and tool development' },
+  { name: 'Connect Apps', href: '/use-cases/connect-apps/', description: 'Automate cross-app workflows' },
+];
 ---
 
 <nav class="fixed left-0 right-0 z-50 border-b border-dc-border bg-background/80 backdrop-blur-md transition-all duration-300" style="top: var(--banner-height, 0px);">
@@ -18,12 +26,30 @@ import dcLogo from '../../src/assets/dc-logo.png';
         
         <!-- Desktop Navigation -->
         <div class="hidden lg:flex items-center gap-6">
-          <a 
-            href="/#use-cases"
-            class="text-white hover:text-white/80 font-medium text-sm px-3 py-2 rounded-md hover:bg-white/10 transition-colors"
-          >
-            Use Cases
-          </a>
+          <!-- Use Cases Dropdown -->
+          <div class="relative group">
+            <button class="flex items-center gap-1 text-white hover:text-white/80 font-medium text-sm px-3 py-2 rounded-md hover:bg-white/10 transition-colors">
+              <span>Use Cases</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform duration-200 group-hover:rotate-180">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            
+            <!-- Dropdown Menu -->
+            <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div class="bg-[#1a1a2e] border border-dc-border rounded-lg shadow-xl py-2 min-w-[280px]">
+                {useCasePages.map((page) => (
+                  <a
+                    href={page.href}
+                    class="block px-4 py-3 hover:bg-white/10 transition-colors"
+                  >
+                    <div class="text-white font-medium text-sm">{page.name}</div>
+                    <div class="text-gray-400 text-xs mt-0.5">{page.description}</div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
           
           <a 
             href="/library"
