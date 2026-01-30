@@ -14,7 +14,7 @@ Created a complete, conversion-focused landing page for Desktop Commander's file
 ### React Components (`/src/components/use-cases/`)
 1. **FileManagementHero.tsx** - Hero section with headline, CTA, and platform badges
 2. **ProblemSection.tsx** - Problem statement with visual emphasis
-3. **SolutionSection.tsx** - 4 key features with video placeholders and privacy callout
+3. **SolutionSection.tsx** - 4 key features with video placeholders
 4. **TestimonialsSection.tsx** - 6 user testimonials in grid layout
 5. **HowItWorksSection.tsx** - 3-step process visualization
 6. **FinalCTASection.tsx** - Conversion-focused final CTA
@@ -38,7 +38,6 @@ Created a complete, conversion-focused landing page for Desktop Commander's file
 - **Border styling** with `border-dc-border` and hover states
 - **Icon integration** using lucide-react icons
 - **Responsive grid layouts** with Tailwind CSS
-- **Privacy callouts** with Shield icons and primary color highlighting
 
 ### Component Patterns
 - Hero sections with centered content and CTAs
@@ -51,7 +50,7 @@ Created a complete, conversion-focused landing page for Desktop Commander's file
 
 ### Multiple CTAs Throughout Journey
 1. Hero section - Primary install button
-2. Features section - Privacy callout builds trust
+2. Features section - Builds trust with concrete examples
 3. Installation section - Dedicated install options
 4. Final CTA - Reinforces value proposition
 
@@ -59,8 +58,6 @@ Created a complete, conversion-focused landing page for Desktop Commander's file
 Hero → Problem → Solution → Testimonials → How It Works → Install → Final CTA
 
 ### Trust Building Elements
-- "100% Private • Files Never Leave Your Computer" badge
-- Multiple privacy callouts throughout
 - Platform compatibility badges (Mac, Windows, Linux)
 - Real user testimonials with specific outcomes
 
@@ -71,7 +68,7 @@ Hero → Problem → Solution → Testimonials → How It Works → Install → 
 2. **Problem** - 3 pain points users face
 3. **Solution** - 4 key features with descriptions:
    - Find and organize files
-   - Convert file formats privately
+   - Convert file formats easily
    - Organize with instructions
    - Analyze data files
 4. **Testimonials** - 6 real user outcomes

@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Download, ArrowRight, Shield } from "lucide-react";
+import { Download, ArrowRight } from "lucide-react";
 import { trackDownloadRedirect } from '@/lib/analytics/tracking';
 
 const AJHeroSection = () => {
@@ -7,12 +7,6 @@ const AJHeroSection = () => {
     <section className="pt-32 pb-16 md:pt-40 md:pb-20">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6">
         <div className="flex flex-col items-center text-center space-y-8">
-          {/* Trust Badge */}
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
-            <Shield className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium">100% Local Processing — Your Files Never Leave Your Device</span>
-          </div>
-
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight max-w-4xl">
             Convert AVIF to JPG <span className="text-primary">instantly</span>
