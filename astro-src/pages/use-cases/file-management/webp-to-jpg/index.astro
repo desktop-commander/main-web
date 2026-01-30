@@ -1,0 +1,40 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import PostHogInit from '../../../../../src/components/PostHogInit';
+import NavigationLandingPage from '../../../../../src/components/NavigationLandingPage';
+import WJHeroSection from '../../../../../src/components/use-cases/file-management/webp-to-jpg/WJHeroSection';
+import WJProblemSection from '../../../../../src/components/use-cases/file-management/webp-to-jpg/WJProblemSection';
+import WJSolutionSection from '../../../../../src/components/use-cases/file-management/webp-to-jpg/WJSolutionSection';
+import WJComparisonSection from '../../../../../src/components/use-cases/file-management/webp-to-jpg/WJComparisonSection';
+import WJPersonasSection from '../../../../../src/components/use-cases/file-management/webp-to-jpg/WJPersonasSection';
+import WJFinalCTASection from '../../../../../src/components/use-cases/file-management/webp-to-jpg/WJFinalCTASection';
+import WaitlistSection from '../../../../../src/components/use-cases/WaitlistSection';
+import Footer from '../../../../../src/components/Footer';
+---
+
+<Layout 
+  title="Convert WebP to JPG Instantly | Free Local Converter | Desktop Commander"
+  description="Batch convert WebP images to JPG locally and privately. No uploads, no browser tabs — just instant conversion on your Mac or Windows PC. Free forever."
+>
+  <PostHogInit client:load />
+  
+  <div class="min-h-screen bg-background">
+    <NavigationLandingPage client:load />
+    
+    <main>
+      <WJHeroSection client:load />
+      <WJProblemSection client:visible />
+      <WJSolutionSection client:visible />
+      <WJComparisonSection client:visible />
+      <WaitlistSection useCase="webp_to_jpg" client:visible />
+      <WJPersonasSection client:visible />
+      <WJFinalCTASection client:visible />
+    </main>
+    
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../../../../src/index.css';
+</style>

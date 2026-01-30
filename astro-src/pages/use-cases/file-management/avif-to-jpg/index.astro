@@ -1,0 +1,40 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import PostHogInit from '../../../../../src/components/PostHogInit';
+import NavigationLandingPage from '../../../../../src/components/NavigationLandingPage';
+import AJHeroSection from '../../../../../src/components/use-cases/file-management/avif-to-jpg/AJHeroSection';
+import AJProblemSection from '../../../../../src/components/use-cases/file-management/avif-to-jpg/AJProblemSection';
+import AJSolutionSection from '../../../../../src/components/use-cases/file-management/avif-to-jpg/AJSolutionSection';
+import AJComparisonSection from '../../../../../src/components/use-cases/file-management/avif-to-jpg/AJComparisonSection';
+import AJPersonasSection from '../../../../../src/components/use-cases/file-management/avif-to-jpg/AJPersonasSection';
+import AJFinalCTASection from '../../../../../src/components/use-cases/file-management/avif-to-jpg/AJFinalCTASection';
+import WaitlistSection from '../../../../../src/components/use-cases/WaitlistSection';
+import Footer from '../../../../../src/components/Footer';
+---
+
+<Layout 
+  title="Convert AVIF to JPG Instantly | Free Local Converter | Desktop Commander"
+  description="Batch convert AVIF images to JPG locally and privately. Full AVIF support without waiting for app updates. Free forever on Mac & Windows."
+>
+  <PostHogInit client:load />
+  
+  <div class="min-h-screen bg-background">
+    <NavigationLandingPage client:load />
+    
+    <main>
+      <AJHeroSection client:load />
+      <AJProblemSection client:visible />
+      <AJSolutionSection client:visible />
+      <AJComparisonSection client:visible />
+      <WaitlistSection useCase="avif_to_jpg" client:visible />
+      <AJPersonasSection client:visible />
+      <AJFinalCTASection client:visible />
+    </main>
+    
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../../../../src/index.css';
+</style>

@@ -1,0 +1,40 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import PostHogInit from '../../../../../src/components/PostHogInit';
+import NavigationLandingPage from '../../../../../src/components/NavigationLandingPage';
+import HJHeroSection from '../../../../../src/components/use-cases/file-management/heic-to-jpg/HJHeroSection';
+import HJProblemSection from '../../../../../src/components/use-cases/file-management/heic-to-jpg/HJProblemSection';
+import HJSolutionSection from '../../../../../src/components/use-cases/file-management/heic-to-jpg/HJSolutionSection';
+import HJComparisonSection from '../../../../../src/components/use-cases/file-management/heic-to-jpg/HJComparisonSection';
+import HJPersonasSection from '../../../../../src/components/use-cases/file-management/heic-to-jpg/HJPersonasSection';
+import HJFinalCTASection from '../../../../../src/components/use-cases/file-management/heic-to-jpg/HJFinalCTASection';
+import WaitlistSection from '../../../../../src/components/use-cases/WaitlistSection';
+import Footer from '../../../../../src/components/Footer';
+---
+
+<Layout 
+  title="Convert HEIC to JPG Instantly | Free Local Converter | Desktop Commander"
+  description="Batch convert iPhone HEIC photos to JPG locally and privately. No uploads, no waiting — just instant conversion on your Mac or Windows PC. Free forever."
+>
+  <PostHogInit client:load />
+  
+  <div class="min-h-screen bg-background">
+    <NavigationLandingPage client:load />
+    
+    <main>
+      <HJHeroSection client:load />
+      <HJProblemSection client:visible />
+      <HJSolutionSection client:visible />
+      <HJComparisonSection client:visible />
+      <WaitlistSection useCase="heic_to_jpg" client:visible />
+      <HJPersonasSection client:visible />
+      <HJFinalCTASection client:visible />
+    </main>
+    
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../../../../src/index.css';
+</style>
