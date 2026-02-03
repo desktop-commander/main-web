@@ -1,22 +1,28 @@
-import { Clock, Link, Workflow } from "lucide-react";
+import { Clock, Zap, Workflow } from "lucide-react";
 
 const CASolutionSection = () => {
   const features = [
     {
-      title: "Cut hours of dashboard time",
-      description: "No more hunting through menus or remembering where settings live — just ask for what you need and get it instantly.",
+      title: "Skip the UI entirely",
+      description: "AI speaks directly to the service in its data language. No menus, no clicks, no learning curve.",
+      icon: Zap,
+    },
+    {
+      title: "Describe outcomes, not steps",
+      description: "\"Extract leads from last week's conference\" — you say what you want, not how to get it.",
       icon: Clock,
     },
     {
-      title: "Connect 100+ services",
-      description: "HubSpot, WordPress, Google Analytics, GitHub, Ahrefs, and more — your whole stack, one conversation.",
-      icon: Link,
-    },
-    {
-      title: "Build frictionless workflows",
-      description: "Pull data from one service, push to another, automate across your stack — remove the friction from everything you do.",
+      title: "Chain actions across tools",
+      description: "Read Slack → summarize in Notion → pull supporting analytics → all in one conversation.",
       icon: Workflow,
     }
+  ];
+
+  const exampleCommands = [
+    "Extract leads I added to my CRM after last week's conference.",
+    "Send a branded email to this contact segment.",
+    "Find any traffic spikes in the last 30 days.",
   ];
 
   return (
@@ -25,12 +31,15 @@ const CASolutionSection = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Desktop Commander connects to your tools and lets you control them in plain English.
+            One conversation. All your tools.
           </h2>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+            Desktop Commander connects to your services and lets you control them in plain English.
+          </p>
         </div>
 
         {/* Features Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
           {features.map((feature, index) => (
             <div 
               key={index}
@@ -47,11 +56,19 @@ const CASolutionSection = () => {
           ))}
         </div>
 
-        {/* Stat Callout */}
-        <div className="text-center mb-16 p-6 rounded-xl bg-primary/5 border border-primary/20">
-          <p className="text-xl md:text-2xl font-medium">
-            <span className="text-primary font-bold">70% of users</span> save 3+ hours per week with Desktop Commander
-          </p>
+        {/* Example Commands */}
+        <div className="max-w-3xl mx-auto mb-16">
+          <p className="text-sm text-muted-foreground text-center mb-4">Just say things like:</p>
+          <div className="space-y-3">
+            {exampleCommands.map((command, index) => (
+              <div 
+                key={index}
+                className="p-4 rounded-xl bg-dc-surface border border-dc-border font-mono text-sm md:text-base text-center"
+              >
+                "{command}"
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Video Demo */}

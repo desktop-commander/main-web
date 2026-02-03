@@ -9,12 +9,12 @@ const CAHeroSection = () => {
         <div className="flex flex-col items-center text-center space-y-8">
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight max-w-4xl">
-            Control your apps and services <span className="text-primary">through chat</span>
+            Stop learning interfaces. <span className="text-primary">Start describing outcomes.</span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl leading-relaxed">
-            Connect Desktop Commander to 100+ tools you already use. Manage your CRM, publish content, check analytics, and more — all in natural language.
+            Your tools are just databases wrapped in complicated UIs. Desktop Commander lets AI talk directly to them — so you describe what you want, and it happens.
           </p>
 
           {/* Tool Integration Badges */}
@@ -34,7 +34,7 @@ const CAHeroSection = () => {
                 GitHub
               </span>
               <span className="px-3 py-1.5 rounded-full bg-dc-surface border border-dc-border text-sm font-medium">
-                Ahrefs
+                Slack
               </span>
               <span className="px-3 py-1.5 rounded-full bg-dc-surface border border-dc-border text-sm font-medium">
                 + 100 more

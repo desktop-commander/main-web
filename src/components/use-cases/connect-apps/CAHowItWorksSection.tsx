@@ -1,21 +1,27 @@
 import DownloadButtons from "@/components/shared/DownloadButtons";
+import { Terminal, MessageSquare } from "lucide-react";
 
 const CAHowItWorksSection = () => {
   const steps = [
     {
       number: "1",
       title: "Download Desktop Commander",
-      description: "One-time setup on your Mac or Windows computer. No accounts, no subscriptions required to start."
+      description: "One-time setup on your Mac or Windows computer. No accounts required to start."
     },
     {
       number: "2",
-      title: "Connect your services",
-      description: "Install integrations for HubSpot, WordPress, GitHub, Google Analytics — whatever you use."
+      title: "Ask Desktop Commander to connect your tools",
+      description: "Just tell it what you want to connect. Desktop Commander handles the setup — installing MCP servers, configuring APIs, or connecting via terminal. You don't need to know how it works.",
+      subPoints: [
+        "\"Connect my HubSpot account\"",
+        "\"Set up Google Analytics integration\"", 
+        "\"I want to control WordPress from here\""
+      ]
     },
     {
       number: "3",
-      title: "Work in natural language",
-      description: '"Show me..." "Update..." "Create..." — just describe what you need and it happens.'
+      title: "Describe what you want done",
+      description: "Once connected, just talk to your tools. Ask questions, give commands, chain actions across services — all in natural language."
     }
   ];
 
@@ -48,10 +54,38 @@ const CAHowItWorksSection = () => {
                   {step.description}
                 </p>
                 
+                {/* Sub-points for step 2 */}
+                {step.subPoints && (
+                  <div className="space-y-2 mb-4">
+                    {step.subPoints.map((point, i) => (
+                      <div 
+                        key={i}
+                        className="inline-block mr-3 mb-2 px-3 py-1.5 rounded-lg bg-dc-surface border border-dc-border font-mono text-sm"
+                      >
+                        {point}
+                      </div>
+                    ))}
+                  </div>
+                )}
+                
                 {/* Download buttons - only show on first step */}
                 {index === 0 && (
                   <div className="mt-6">
                     <DownloadButtons location="connect_apps" />
+                  </div>
+                )}
+
+                {/* Connection methods note - show on step 2 */}
+                {index === 1 && (
+                  <div className="mt-4 p-4 rounded-xl bg-dc-surface border border-dc-border">
+                    <div className="flex items-start gap-3">
+                      <Terminal className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                      <div>
+                        <p className="text-sm text-muted-foreground">
+                          <span className="text-foreground font-medium">Under the hood:</span> Desktop Commander uses MCP (Model Context Protocol), terminal integrations, and API connections. But you don't need to configure any of this manually — just ask, and it sets everything up.
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
