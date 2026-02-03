@@ -1,4 +1,4 @@
-import { ArrowRight, Image, FileImage, Sparkles } from "lucide-react";
+import { ArrowRight, Image, FileImage, Sparkles, FileType, File } from "lucide-react";
 
 interface ConversionCard {
   title: string;
@@ -16,6 +16,25 @@ const FMPopularConversions = () => {
       href: "/use-cases/file-management/heic-to-jpg/",
       icon: Image,
       badge: "Most Popular"
+    },
+    {
+      title: "HEIC to PNG",
+      description: "Convert iPhone HEIC photos to PNG with lossless quality and transparency support. Perfect for creative work.",
+      href: "/use-cases/file-management/heic-to-png/",
+      icon: Image
+    },
+    {
+      title: "PDF to PNG",
+      description: "Extract pages from PDFs as high-quality PNG images. Perfect for presentations and social media sharing.",
+      href: "/use-cases/file-management/pdf-to-png/",
+      icon: File,
+      badge: "New"
+    },
+    {
+      title: "JFIF to JPG",
+      description: "Convert confusing JFIF files to standard JPG instantly. JFIF is just JPEG with a different extension.",
+      href: "/use-cases/file-management/jfif-to-jpg/",
+      icon: FileType
     },
     {
       title: "WebP to JPG",

@@ -1,0 +1,40 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import PostHogInit from '../../../../../src/components/PostHogInit';
+import NavigationLandingPage from '../../../../../src/components/NavigationLandingPage';
+import PPHeroSection from '../../../../../src/components/use-cases/file-management/pdf-to-png/PPHeroSection';
+import PPProblemSection from '../../../../../src/components/use-cases/file-management/pdf-to-png/PPProblemSection';
+import PPSolutionSection from '../../../../../src/components/use-cases/file-management/pdf-to-png/PPSolutionSection';
+import PPComparisonSection from '../../../../../src/components/use-cases/file-management/pdf-to-png/PPComparisonSection';
+import PPPersonasSection from '../../../../../src/components/use-cases/file-management/pdf-to-png/PPPersonasSection';
+import PPFinalCTASection from '../../../../../src/components/use-cases/file-management/pdf-to-png/PPFinalCTASection';
+import WaitlistSection from '../../../../../src/components/use-cases/WaitlistSection';
+import Footer from '../../../../../src/components/Footer';
+---
+
+<Layout 
+  title="Convert PDF to PNG Images | Free PDF Page Extractor | Desktop Commander"
+  description="Extract PDF pages as high-quality PNG images. Convert single pages or entire documents locally. No uploads, no watermarks. Free for Mac and Windows."
+>
+  <PostHogInit client:load />
+  
+  <div class="min-h-screen bg-background">
+    <NavigationLandingPage client:load />
+    
+    <main>
+      <PPHeroSection client:load />
+      <PPProblemSection client:visible />
+      <PPSolutionSection client:visible />
+      <PPComparisonSection client:visible />
+      <WaitlistSection useCase="pdf_to_png" client:visible />
+      <PPPersonasSection client:visible />
+      <PPFinalCTASection client:visible />
+    </main>
+    
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../../../../src/index.css';
+</style>

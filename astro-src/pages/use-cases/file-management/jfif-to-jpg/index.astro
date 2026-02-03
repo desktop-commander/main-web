@@ -1,0 +1,40 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import PostHogInit from '../../../../../src/components/PostHogInit';
+import NavigationLandingPage from '../../../../../src/components/NavigationLandingPage';
+import JJHeroSection from '../../../../../src/components/use-cases/file-management/jfif-to-jpg/JJHeroSection';
+import JJProblemSection from '../../../../../src/components/use-cases/file-management/jfif-to-jpg/JJProblemSection';
+import JJSolutionSection from '../../../../../src/components/use-cases/file-management/jfif-to-jpg/JJSolutionSection';
+import JJComparisonSection from '../../../../../src/components/use-cases/file-management/jfif-to-jpg/JJComparisonSection';
+import JJPersonasSection from '../../../../../src/components/use-cases/file-management/jfif-to-jpg/JJPersonasSection';
+import JJFinalCTASection from '../../../../../src/components/use-cases/file-management/jfif-to-jpg/JJFinalCTASection';
+import WaitlistSection from '../../../../../src/components/use-cases/WaitlistSection';
+import Footer from '../../../../../src/components/Footer';
+---
+
+<Layout 
+  title="Convert JFIF to JPG Instantly | Free JFIF Converter | Desktop Commander"
+  description="Convert JFIF files to JPG instantly and locally. JFIF is just JPEG with a different extension. Batch convert without uploads. Free for Mac and Windows."
+>
+  <PostHogInit client:load />
+  
+  <div class="min-h-screen bg-background">
+    <NavigationLandingPage client:load />
+    
+    <main>
+      <JJHeroSection client:load />
+      <JJProblemSection client:visible />
+      <JJSolutionSection client:visible />
+      <JJComparisonSection client:visible />
+      <WaitlistSection useCase="jfif_to_jpg" client:visible />
+      <JJPersonasSection client:visible />
+      <JJFinalCTASection client:visible />
+    </main>
+    
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../../../../src/index.css';
+</style>

@@ -1,0 +1,104 @@
+import { MessageSquare, Briefcase, Users } from "lucide-react";
+
+const JJPersonasSection = () => {
+  const personas = [
+    {
+      icon: MessageSquare,
+      title: "Chat & Message Users",
+      color: "blue",
+      useCases: [
+        "Convert images from WhatsApp backups",
+        "Fix downloaded images from Facebook",
+        "Process photos from messaging apps"
+      ]
+    },
+    {
+      icon: Briefcase,
+      title: "Professionals",
+      color: "purple",
+      useCases: [
+        "Clean up web-downloaded images",
+        "Prepare files for documents and presentations",
+        "Organize archived image collections"
+      ]
+    },
+    {
+      icon: Users,
+      title: "Everyday Users",
+      color: "green",
+      useCases: [
+        "Fix confusing image files",
+        "Make photos work with photo editors",
+        "Organize and convert image libraries"
+      ]
+    }
+  ];
+
+  const getColorClasses = (color: string) => {
+    const colors: Record<string, { bg: string; border: string; iconBg: string; iconColor: string; titleColor: string }> = {
+      blue: {
+        bg: "bg-blue-500/5",
+        border: "border-blue-500/30",
+        iconBg: "bg-blue-500/20",
+        iconColor: "text-blue-400",
+        titleColor: "text-blue-400"
+      },
+      purple: {
+        bg: "bg-purple-500/5",
+        border: "border-purple-500/30",
+        iconBg: "bg-purple-500/20",
+        iconColor: "text-purple-400",
+        titleColor: "text-purple-400"
+      },
+      green: {
+        bg: "bg-green-500/5",
+        border: "border-green-500/30",
+        iconBg: "bg-green-500/20",
+        iconColor: "text-green-400",
+        titleColor: "text-green-400"
+      }
+    };
+    return colors[color] || colors.blue;
+  };
+
+  return (
+    <section className="py-16 md:py-24 bg-gradient-to-b from-dc-card/30 to-background">
+      <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+            Who Uses This
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {personas.map((persona, index) => {
+            const colors = getColorClasses(persona.color);
+            return (
+              <div 
+                key={index}
+                className={`p-6 rounded-xl ${colors.bg} border-2 ${colors.border}`}
+              >
+                <div className={`w-12 h-12 rounded-xl ${colors.iconBg} flex items-center justify-center mb-4`}>
+                  <persona.icon className={`w-6 h-6 ${colors.iconColor}`} />
+                </div>
+                <h3 className={`text-xl font-semibold mb-4 ${colors.titleColor}`}>
+                  {persona.title}
+                </h3>
+                <ul className="space-y-2 text-muted-foreground">
+                  {persona.useCases.map((useCase, ucIndex) => (
+                    <li key={ucIndex} className="flex items-start gap-2">
+                      <span className={`w-1.5 h-1.5 rounded-full ${colors.iconBg} mt-2 shrink-0`} />
+                      <span>{useCase}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default JJPersonasSection;

@@ -1,0 +1,40 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import PostHogInit from '../../../../../src/components/PostHogInit';
+import NavigationLandingPage from '../../../../../src/components/NavigationLandingPage';
+import HPHeroSection from '../../../../../src/components/use-cases/file-management/heic-to-png/HPHeroSection';
+import HPProblemSection from '../../../../../src/components/use-cases/file-management/heic-to-png/HPProblemSection';
+import HPSolutionSection from '../../../../../src/components/use-cases/file-management/heic-to-png/HPSolutionSection';
+import HPComparisonSection from '../../../../../src/components/use-cases/file-management/heic-to-png/HPComparisonSection';
+import HPPersonasSection from '../../../../../src/components/use-cases/file-management/heic-to-png/HPPersonasSection';
+import HPFinalCTASection from '../../../../../src/components/use-cases/file-management/heic-to-png/HPFinalCTASection';
+import WaitlistSection from '../../../../../src/components/use-cases/WaitlistSection';
+import Footer from '../../../../../src/components/Footer';
+---
+
+<Layout 
+  title="Convert HEIC to PNG Instantly | Free Local Converter | Desktop Commander"
+  description="Convert iPhone HEIC photos to PNG with lossless quality. Batch convert locally with transparency support. No uploads required. Free for Mac and Windows."
+>
+  <PostHogInit client:load />
+  
+  <div class="min-h-screen bg-background">
+    <NavigationLandingPage client:load />
+    
+    <main>
+      <HPHeroSection client:load />
+      <HPProblemSection client:visible />
+      <HPSolutionSection client:visible />
+      <HPComparisonSection client:visible />
+      <WaitlistSection useCase="heic_to_png" client:visible />
+      <HPPersonasSection client:visible />
+      <HPFinalCTASection client:visible />
+    </main>
+    
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../../../../src/index.css';
+</style>
