@@ -1,0 +1,40 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import PostHogInit from '../../../../../src/components/PostHogInit';
+import NavigationLandingPage from '../../../../../src/components/NavigationLandingPage';
+import TJHeroSection from '../../../../../src/components/use-cases/file-management/tiff-to-jpg/TJHeroSection';
+import TJProblemSection from '../../../../../src/components/use-cases/file-management/tiff-to-jpg/TJProblemSection';
+import TJSolutionSection from '../../../../../src/components/use-cases/file-management/tiff-to-jpg/TJSolutionSection';
+import TJComparisonSection from '../../../../../src/components/use-cases/file-management/tiff-to-jpg/TJComparisonSection';
+import TJPersonasSection from '../../../../../src/components/use-cases/file-management/tiff-to-jpg/TJPersonasSection';
+import TJFinalCTASection from '../../../../../src/components/use-cases/file-management/tiff-to-jpg/TJFinalCTASection';
+import WaitlistSection from '../../../../../src/components/use-cases/WaitlistSection';
+import Footer from '../../../../../src/components/Footer';
+---
+
+<Layout 
+  title="Convert TIFF to JPG Instantly | Free Batch Converter | Desktop Commander"
+  description="Batch convert TIFF files from scanners, print workflows, and professional cameras to JPG. Free, fast, and works offline on Mac & Windows."
+>
+  <PostHogInit client:load />
+  
+  <div class="min-h-screen bg-background">
+    <NavigationLandingPage client:load />
+    
+    <main>
+      <TJHeroSection client:load />
+      <TJProblemSection client:visible />
+      <TJSolutionSection client:visible />
+      <TJComparisonSection client:visible />
+      <WaitlistSection useCase="tiff_to_jpg" client:visible />
+      <TJPersonasSection client:visible />
+      <TJFinalCTASection client:visible />
+    </main>
+    
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../../../../src/index.css';
+</style>

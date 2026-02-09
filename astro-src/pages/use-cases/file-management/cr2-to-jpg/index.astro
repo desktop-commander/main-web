@@ -1,0 +1,40 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import PostHogInit from '../../../../../src/components/PostHogInit';
+import NavigationLandingPage from '../../../../../src/components/NavigationLandingPage';
+import CRHeroSection from '../../../../../src/components/use-cases/file-management/cr2-to-jpg/CRHeroSection';
+import CRProblemSection from '../../../../../src/components/use-cases/file-management/cr2-to-jpg/CRProblemSection';
+import CRSolutionSection from '../../../../../src/components/use-cases/file-management/cr2-to-jpg/CRSolutionSection';
+import CRComparisonSection from '../../../../../src/components/use-cases/file-management/cr2-to-jpg/CRComparisonSection';
+import CRPersonasSection from '../../../../../src/components/use-cases/file-management/cr2-to-jpg/CRPersonasSection';
+import CRFinalCTASection from '../../../../../src/components/use-cases/file-management/cr2-to-jpg/CRFinalCTASection';
+import WaitlistSection from '../../../../../src/components/use-cases/WaitlistSection';
+import Footer from '../../../../../src/components/Footer';
+---
+
+<Layout 
+  title="Convert CR2 to JPG Instantly | Free Canon RAW Converter | Desktop Commander"
+  description="Batch convert Canon CR2 RAW photos to JPG locally. Process entire photo shoots in seconds. Free, fast, and works offline on Mac & Windows."
+>
+  <PostHogInit client:load />
+  
+  <div class="min-h-screen bg-background">
+    <NavigationLandingPage client:load />
+    
+    <main>
+      <CRHeroSection client:load />
+      <CRProblemSection client:visible />
+      <CRSolutionSection client:visible />
+      <CRComparisonSection client:visible />
+      <WaitlistSection useCase="cr2_to_jpg" client:visible />
+      <CRPersonasSection client:visible />
+      <CRFinalCTASection client:visible />
+    </main>
+    
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../../../../src/index.css';
+</style>

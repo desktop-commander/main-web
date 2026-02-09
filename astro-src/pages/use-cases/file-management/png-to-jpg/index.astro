@@ -1,0 +1,40 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import PostHogInit from '../../../../../src/components/PostHogInit';
+import NavigationLandingPage from '../../../../../src/components/NavigationLandingPage';
+import PJHeroSection from '../../../../../src/components/use-cases/file-management/png-to-jpg/PJHeroSection';
+import PJProblemSection from '../../../../../src/components/use-cases/file-management/png-to-jpg/PJProblemSection';
+import PJSolutionSection from '../../../../../src/components/use-cases/file-management/png-to-jpg/PJSolutionSection';
+import PJComparisonSection from '../../../../../src/components/use-cases/file-management/png-to-jpg/PJComparisonSection';
+import PJPersonasSection from '../../../../../src/components/use-cases/file-management/png-to-jpg/PJPersonasSection';
+import PJFinalCTASection from '../../../../../src/components/use-cases/file-management/png-to-jpg/PJFinalCTASection';
+import WaitlistSection from '../../../../../src/components/use-cases/WaitlistSection';
+import Footer from '../../../../../src/components/Footer';
+---
+
+<Layout 
+  title="Convert PNG to JPG Instantly | Free Batch Converter | Desktop Commander"
+  description="Batch convert PNG files to smaller JPG images locally. Reduce file sizes up to 80% for web, email, and storage. Free, fast, and works offline on Mac & Windows."
+>
+  <PostHogInit client:load />
+  
+  <div class="min-h-screen bg-background">
+    <NavigationLandingPage client:load />
+    
+    <main>
+      <PJHeroSection client:load />
+      <PJProblemSection client:visible />
+      <PJSolutionSection client:visible />
+      <PJComparisonSection client:visible />
+      <WaitlistSection useCase="png_to_jpg" client:visible />
+      <PJPersonasSection client:visible />
+      <PJFinalCTASection client:visible />
+    </main>
+    
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../../../../src/index.css';
+</style>

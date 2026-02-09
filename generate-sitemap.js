@@ -93,6 +93,12 @@ const generateSitemap = () => {
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>${baseUrl}/use-cases/file-management/heic-to-png/</loc>
+        <lastmod>${currentDate}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>${baseUrl}/use-cases/file-management/webp-to-jpg/</loc>
         <lastmod>${currentDate}</lastmod>
         <changefreq>monthly</changefreq>
@@ -100,6 +106,36 @@ const generateSitemap = () => {
     </url>
     <url>
         <loc>${baseUrl}/use-cases/file-management/avif-to-jpg/</loc>
+        <lastmod>${currentDate}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>${baseUrl}/use-cases/file-management/jfif-to-jpg/</loc>
+        <lastmod>${currentDate}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>${baseUrl}/use-cases/file-management/pdf-to-png/</loc>
+        <lastmod>${currentDate}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>${baseUrl}/use-cases/file-management/png-to-jpg/</loc>
+        <lastmod>${currentDate}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>${baseUrl}/use-cases/file-management/tiff-to-jpg/</loc>
+        <lastmod>${currentDate}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>${baseUrl}/use-cases/file-management/cr2-to-jpg/</loc>
         <lastmod>${currentDate}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>

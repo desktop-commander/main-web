@@ -218,7 +218,7 @@ const HeroAstro = () => {
                 </div>
                 <div className="text-left flex-1 min-w-0">
                   <div className="text-muted-foreground text-xs uppercase tracking-wide transition-colors duration-300 group-hover:text-foreground">GitHub Stars</div>
-                  <div className="font-semibold text-foreground text-xs">5.2k</div>
+                  <div className="font-semibold text-foreground text-xs">5.4k</div>
                 </div>
               </a>
             </div>

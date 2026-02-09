@@ -1,4 +1,4 @@
-import { ArrowRight, Image, FileImage, Sparkles, FileType, File } from "lucide-react";
+import { ArrowRight, Image, FileImage, Sparkles, FileType, File, Camera, Printer } from "lucide-react";
 
 interface ConversionCard {
   title: string;
@@ -18,6 +18,20 @@ const FMPopularConversions = () => {
       badge: "Most Popular"
     },
     {
+      title: "PNG to JPG",
+      description: "Reduce PNG file sizes by converting to JPG. Perfect for web uploads, email attachments, and saving storage space.",
+      href: "/use-cases/file-management/png-to-jpg/",
+      icon: FileImage,
+      badge: "New"
+    },
+    {
+      title: "CR2 to JPG",
+      description: "Convert Canon RAW photos to shareable JPG format. Batch process entire photo shoots in seconds.",
+      href: "/use-cases/file-management/cr2-to-jpg/",
+      icon: Camera,
+      badge: "New"
+    },
+    {
       title: "HEIC to PNG",
       description: "Convert iPhone HEIC photos to PNG with lossless quality and transparency support. Perfect for creative work.",
       href: "/use-cases/file-management/heic-to-png/",
@@ -27,7 +41,13 @@ const FMPopularConversions = () => {
       title: "PDF to PNG",
       description: "Extract pages from PDFs as high-quality PNG images. Perfect for presentations and social media sharing.",
       href: "/use-cases/file-management/pdf-to-png/",
-      icon: File,
+      icon: File
+    },
+    {
+      title: "TIFF to JPG",
+      description: "Convert TIFF files from scanners and print workflows to universally compatible JPG format.",
+      href: "/use-cases/file-management/tiff-to-jpg/",
+      icon: Printer,
       badge: "New"
     },
     {
