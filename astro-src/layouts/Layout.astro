@@ -7,6 +7,8 @@ interface Props {
 
 const { title, description, ogImage = '/bg-social-share.png' } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'http://localhost:4321');
+const siteBase = Astro.site?.origin || 'https://desktopcommander.app';
+const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${siteBase}${ogImage}`;
 
 // Import the base path fixer
 import BasePathFixer from '../components/BasePathFixer.astro';
@@ -35,12 +37,13 @@ import '../../src/index.css';
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={absoluteOgImage} />
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@desktop_commander" />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={absoluteOgImage} />
     
     <!-- AI Crawling Control - Opt out of AI training -->
     <meta name="robots" content="noai, noimageai" />
