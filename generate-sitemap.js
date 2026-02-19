@@ -154,55 +154,55 @@ const generateSitemap = () => {
     </url>
     <!-- Blog Posts -->
     <url>
-        <loc>${baseUrl}/blog/2026/01/07/build-a-personal-ai-knowledge-base-with-local-files/</loc>
+        <loc>${baseUrl}/blog/build-a-personal-ai-knowledge-base-with-local-files/</loc>
         <lastmod>2026-01-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>${baseUrl}/blog/2026/01/06/convert-heic-to-jpg-locally-with-desktop-commander/</loc>
+        <loc>${baseUrl}/blog/convert-heic-to-jpg-locally-with-desktop-commander/</loc>
         <lastmod>2026-01-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>${baseUrl}/blog/2025/12/30/automate-docker-workflows-with-ai/</loc>
+        <loc>${baseUrl}/blog/automate-docker-workflows-with-ai/</loc>
         <lastmod>2025-12-30</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>${baseUrl}/blog/2025/12/08/markdown-best-practices-technical-documentation/</loc>
+        <loc>${baseUrl}/blog/markdown-best-practices-technical-documentation/</loc>
         <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>${baseUrl}/blog/2025/12/04/ai-code-review-with-desktop-commander-a-practical-guide/</loc>
+        <loc>${baseUrl}/blog/ai-code-review-with-desktop-commander-a-practical-guide/</loc>
         <lastmod>2025-12-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>${baseUrl}/blog/2025/11/28/how-to-read-and-process-csv-files-in-python-complete-guide/</loc>
+        <loc>${baseUrl}/blog/how-to-read-and-process-csv-files-in-python-complete-guide/</loc>
         <lastmod>2025-11-28</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>${baseUrl}/blog/2025/11/25/best-mcp-servers/</loc>
+        <loc>${baseUrl}/blog/best-mcp-servers/</loc>
         <lastmod>2025-11-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>${baseUrl}/blog/2025/10/28/what-is-an-mcp-server-and-how-it-works-in-plain-english/</loc>
+        <loc>${baseUrl}/blog/what-is-an-mcp-server-and-how-it-works-in-plain-english/</loc>
         <lastmod>2025-10-28</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>${baseUrl}/blog/2025/10/22/how-to-set-up-local-development-environment-with-ease/</loc>
+        <loc>${baseUrl}/blog/how-to-set-up-local-development-environment-with-ease/</loc>
         <lastmod>2025-10-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
