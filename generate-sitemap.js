@@ -5,16 +5,9 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Read the use cases data
-const useCasesPath = path.join(__dirname, 'src/data/library/useCases.json');
-const useCasesData = JSON.parse(fs.readFileSync(useCasesPath, 'utf8'));
-
 // Read the jobs data
 const jobsPath = path.join(__dirname, 'src/data/jobs.json');
 const jobsData = JSON.parse(fs.readFileSync(jobsPath, 'utf8'));
-
-// Extract categories for category pages
-const categories = Array.from(new Set(useCasesData.useCases.map(uc => uc.category))).sort();
 
 const generateSitemap = () => {
   const baseUrl = 'https://desktopcommander.app';
@@ -145,19 +138,19 @@ const generateSitemap = () => {
         <loc>${baseUrl}/blog/</loc>
         <lastmod>${currentDate}</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.9</priority>
     </url>
     <url>
         <loc>${baseUrl}/blog/about/</loc>
         <lastmod>${currentDate}</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
+        <priority>0.8</priority>
     </url>
     <url>
         <loc>${baseUrl}/blog/contact/</loc>
         <lastmod>${currentDate}</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
+        <priority>0.8</priority>
     </url>
     <!-- Blog Posts -->
     <url>
@@ -216,25 +209,6 @@ const generateSitemap = () => {
     </url>
 `;
 
-  // Add individual prompt URLs with slugs
-  useCasesData.useCases.forEach(useCase => {
-    const slug = useCase.title
-      .toLowerCase()
-      .trim()
-      .replace(/[^\w\s-]/g, '') // Remove special characters except spaces and hyphens
-      .replace(/\s+/g, '-') // Replace spaces with hyphens
-      .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
-      .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
-    
-    sitemap += `    <url>
-        <loc>${baseUrl}/library/prompts/${slug}/</loc>
-        <lastmod>${currentDate}</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-`;
-  });
-
   // Add job posting URLs for active jobs
   const activeJobs = jobsData.jobs.filter(job => job.isActive);
   activeJobs.forEach(job => {
@@ -266,5 +240,5 @@ if (!fs.existsSync(path.join(__dirname, 'docs'))) {
 fs.writeFileSync(outputPath, sitemapContent, 'utf8');
 
 const activeJobsCount = jobsData.jobs.filter(job => job.isActive).length;
-console.log(`Sitemap generated with ${useCasesData.useCases.length} individual prompt URLs and ${activeJobsCount} job posting URLs`);
+console.log(`Sitemap generated without prompt detail URLs and with ${activeJobsCount} job posting URLs`);
 console.log(`Sitemap saved to: ${outputPath}`);

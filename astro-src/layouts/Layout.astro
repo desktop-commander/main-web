@@ -3,9 +3,17 @@ interface Props {
   title: string;
   description: string;
   ogImage?: string;
+  robots?: string;
+  googlebot?: string;
 }
 
-const { title, description, ogImage = '/bg-social-share.png' } = Astro.props;
+const {
+  title,
+  description,
+  ogImage = '/bg-social-share.png',
+  robots = 'index, follow, noai, noimageai',
+  googlebot = 'index, follow, noai'
+} = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'http://localhost:4321');
 const siteBase = Astro.site?.origin || 'https://desktopcommander.app';
 const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${siteBase}${ogImage}`;
@@ -45,9 +53,9 @@ import '../../src/index.css';
     <meta name="twitter:site" content="@desktop_commander" />
     <meta name="twitter:image" content={absoluteOgImage} />
     
-    <!-- AI Crawling Control - Opt out of AI training -->
-    <meta name="robots" content="noai, noimageai" />
-    <meta name="googlebot" content="noai" />
+    <!-- Search and AI crawler directives -->
+    <meta name="robots" content={robots} />
+    <meta name="googlebot" content={googlebot} />
     
     <!-- Cookiebot - MUST be first script in head -->
     <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="83cceb09-32d2-409b-ada6-17cc28478ba6" data-blockingmode="auto" type="text/javascript" async></script>

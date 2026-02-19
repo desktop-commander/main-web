@@ -29,6 +29,8 @@ const promptId = useCase.id;
 <Layout 
   title={`${useCase.title} - Desktop Commander`}
   description={useCase.description}
+  robots="noindex, nofollow, noai, noimageai"
+  googlebot="noindex, nofollow, noai"
 >
   <!-- Load PostHog early to initialize analytics -->
   <PostHogInit client:load />
