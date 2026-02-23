@@ -1,6 +1,5 @@
-# Allow all crawlers
+# https://desktopcommander.app/robots.txt
 User-agent: *
-Allow: /
+Disallow:
 
-# Sitemap location
 Sitemap: https://desktopcommander.app/sitemap.xml
