@@ -1,16 +1,13 @@
-# Legacy URL Redirects
-# Redirect old ID-based URLs to new slug-based URLs
-# Format: /old-path /new-path 301
+# Redirect Rules for desktopcommander.app
+# Note: _redirects only works on Cloudflare Pages / Netlify.
+# For GitHub Pages, redirects are handled client-side in Astro components.
 
-# Old subdomain redirects (if library.desktopcommander.app was used)
-# These handle the URLs shown in Google Search Console
+# Old subdomain redirects
 https://library.desktopcommander.app/* https://desktopcommander.app/library/:splat 301
 
-# Individual ID-based redirects (if you have specific ones Google is flagging)
-# You would need to add these manually for each ID → slug mapping
-# Example:
-# /library/prompts?i=5 /library/prompts/convert-heic-to-png/ 301
-# /library/?i=32 /library/prompts/[appropriate-slug]/ 301
+# www → non-www canonical
+https://www.desktopcommander.app/* https://desktopcommander.app/:splat 301
 
-# Note: The client-side redirect in Prompts.tsx will handle most cases
-# These server-side redirects are backup and for SEO juice preservation
+# Note: Legacy ?i= query parameter redirects are handled client-side
+# in astro-src/pages/library/index.astro (query params can't be matched
+# in static _redirects files on any platform).
