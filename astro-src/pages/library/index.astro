@@ -4,12 +4,25 @@ import PostHogInit from '../../../src/components/PostHogInit';
 import NavigationAstro from '../../../src/components/NavigationAstro';
 import PromptsLibraryAstro from '../../../src/components/library/PromptsLibraryAstro';
 import Footer from '../../../src/components/Footer';
+import { idToSlugMap } from '../../../src/data/library/useCases';
+
+// ID→slug map for legacy ?i= URL redirects
+const idToSlug = Object.fromEntries(Object.entries(idToSlugMap));
 ---
 
-<Layout 
+<Layout
   title="Prompt Library - Desktop Commander"
   description="Browse our collection of AI prompts for Desktop Commander - deploy servers, analyze data, and automate tasks."
 >
+  <!-- Redirect legacy ?i= URLs to proper slug-based pages (SEO fix) -->
+  <script define:vars={{ idToSlug }}>
+    const params = new URLSearchParams(window.location.search);
+    const promptId = params.get('i');
+    if (promptId && idToSlug[promptId]) {
+      window.location.replace('/library/prompts/' + idToSlug[promptId] + '/');
+    }
+  </script>
+
   <!-- Load PostHogInit early to initialize analytics -->
   <PostHogInit client:load />
   
