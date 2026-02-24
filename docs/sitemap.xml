@@ -3,137 +3,137 @@
     <!-- Main Website Pages -->
     <url>
         <loc>https://desktopcommander.app/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://desktopcommander.app/careers/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <!-- Library Pages -->
     <url>
         <loc>https://desktopcommander.app/library/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://desktopcommander.app/library/prompts/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <!-- Use Cases Landing Pages -->
     <url>
         <loc>https://desktopcommander.app/use-cases/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://desktopcommander.app/use-cases/file-management/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://desktopcommander.app/use-cases/knowledge-management/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://desktopcommander.app/use-cases/build-prototype/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://desktopcommander.app/use-cases/analyze-data/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://desktopcommander.app/use-cases/connect-apps/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <!-- File Conversion Landing Pages -->
     <url>
         <loc>https://desktopcommander.app/use-cases/file-management/heic-to-jpg/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://desktopcommander.app/use-cases/file-management/heic-to-png/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://desktopcommander.app/use-cases/file-management/webp-to-jpg/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://desktopcommander.app/use-cases/file-management/avif-to-jpg/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://desktopcommander.app/use-cases/file-management/jfif-to-jpg/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://desktopcommander.app/use-cases/file-management/pdf-to-png/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://desktopcommander.app/use-cases/file-management/png-to-jpg/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://desktopcommander.app/use-cases/file-management/tiff-to-jpg/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://desktopcommander.app/use-cases/file-management/cr2-to-jpg/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <!-- Blog Pages -->
     <url>
         <loc>https://desktopcommander.app/blog/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://desktopcommander.app/blog/about/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://desktopcommander.app/blog/contact/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -194,7 +194,7 @@
     </url>
     <url>
         <loc>https://desktopcommander.app/careers/jobs/senior-fullstack-ai-engineer-2025/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
