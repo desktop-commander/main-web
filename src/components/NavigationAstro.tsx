@@ -115,7 +115,17 @@ const NavigationAstro = ({ hideInstall = false }: NavigationAstroProps) => {
               </Button>
 
               <Button variant="ghost" size="sm" asChild>
-                <a 
+                <a
+                  href="/pricing"
+                  className="text-white hover:text-white/80 font-medium"
+                  onClick={() => trackNavigation('Pricing', '/pricing', 'internal')}
+                >
+                  Pricing
+                </a>
+              </Button>
+
+              <Button variant="ghost" size="sm" asChild>
+                <a
                   href="https://desktopcommander.app/blog/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -127,7 +137,7 @@ const NavigationAstro = ({ hideInstall = false }: NavigationAstroProps) => {
               </Button>
 
               <Button variant="ghost" size="sm" asChild>
-                <a 
+                <a
                   href="/careers"
                   className="text-white hover:text-white/80 font-medium"
                   onClick={() => trackNavigation('Careers', '/careers', 'internal')}
@@ -208,7 +218,14 @@ const NavigationAstro = ({ hideInstall = false }: NavigationAstroProps) => {
                 >
                   MCP
                 </a>
-                <a 
+                <a
+                  href="/pricing"
+                  onClick={() => handleMobileNavClick('Pricing', '/pricing')}
+                  className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors"
+                >
+                  Pricing
+                </a>
+                <a
                   href="https://desktopcommander.app/blog/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -217,8 +234,8 @@ const NavigationAstro = ({ hideInstall = false }: NavigationAstroProps) => {
                 >
                   Blog
                 </a>
-                <a 
-                  href="/careers" 
+                <a
+                  href="/careers"
                   onClick={() => handleMobileNavClick('Careers', '/careers')}
                   className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors"
                 >
