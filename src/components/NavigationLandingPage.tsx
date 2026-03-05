@@ -128,7 +128,17 @@ const NavigationLandingPage = () => {
               </DropdownMenu>
 
               <Button variant="ghost" size="sm" asChild>
-                <a 
+                <a
+                  href="/pricing"
+                  className="text-white hover:text-white/80 font-medium"
+                  onClick={() => trackNavigation('Pricing', '/pricing', 'internal')}
+                >
+                  Pricing
+                </a>
+              </Button>
+
+              <Button variant="ghost" size="sm" asChild>
+                <a
                   href="https://desktopcommander.app/blog"
                   className="text-white hover:text-white/80 font-medium"
                   onClick={() => trackNavigation('Blog', 'https://desktopcommander.app/blog', 'internal')}
@@ -138,7 +148,7 @@ const NavigationLandingPage = () => {
               </Button>
 
               <Button variant="ghost" size="sm" asChild>
-                <a 
+                <a
                   href="https://blog.desktopcommander.app/about/"
                   className="text-white hover:text-white/80 font-medium"
                   onClick={() => trackNavigation('About', 'https://blog.desktopcommander.app/about/', 'internal')}
@@ -241,7 +251,16 @@ const NavigationLandingPage = () => {
 
                   <div className="border-t border-dc-border pt-4">
                     <Button variant="ghost" size="sm" asChild>
-                      <a 
+                      <a
+                        href="/pricing"
+                        className="text-white hover:text-white/80 font-medium justify-start w-full"
+                        onClick={() => handleMobileNavClick('Pricing', '/pricing', 'internal')}
+                      >
+                        Pricing
+                      </a>
+                    </Button>
+                    <Button variant="ghost" size="sm" asChild>
+                      <a
                         href="https://desktopcommander.app/blog"
                         className="text-white hover:text-white/80 font-medium justify-start w-full"
                         onClick={() => handleMobileNavClick('Blog', 'https://desktopcommander.app/blog', 'internal')}
