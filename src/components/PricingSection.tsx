@@ -89,6 +89,7 @@ const PricingSection = () => {
           {/* Free Plan */}
           <div className="relative bg-dc-surface border border-dc-border rounded-xl p-8 transition-all duration-300 hover:shadow-lg hover:border-dc-border/80">
             <h3 className="text-lg font-semibold text-foreground mb-2">Free</h3>
+            <p className="text-xs text-muted-foreground/70 mb-3">Perfect for getting started and casual use.</p>
             <div className="mb-1">
               <span className="text-4xl font-bold text-foreground">$0</span>
               <span className="text-muted-foreground ml-1">/month</span>
@@ -137,6 +138,7 @@ const PricingSection = () => {
             </div>
 
             <h3 className="text-lg font-semibold text-foreground mb-2">Unlimited</h3>
+            <p className="text-xs text-muted-foreground/70 mb-3">For power users who rely on AI every day.</p>
             <div className="mb-1">
               <span className="text-4xl font-bold text-foreground">
                 {isYearly ? '$5.83' : '$7'}
@@ -162,14 +164,14 @@ const PricingSection = () => {
                 Upgrade now
               </a>
             </Button>
+            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-3">
+              Everything in Free, plus:
+            </p>
             <ul className="space-y-3">
               {[
                 "Unlimited messages",
-                "All AI models included",
-                "MCP tool support",
-                "Priority support",
                 "No weekly limits",
-                "$10 free AI credits",
+                "Priority support",
               ].map((feature) => (
                 <li key={feature} className="flex items-start gap-3 text-sm text-muted-foreground">
                   <Check className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
