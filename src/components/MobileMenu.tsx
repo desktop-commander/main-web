@@ -73,7 +73,14 @@ const MobileMenu = () => {
           >
             MCP
           </a>
-          <a 
+          <a
+            href="/pricing"
+            onClick={handleNavClick}
+            className="text-lg font-medium px-2 py-1 hover:text-primary transition-colors"
+          >
+            Pricing
+          </a>
+          <a
             href="https://desktopcommander.app/blog/"
             target="_blank"
             rel="noopener noreferrer"
