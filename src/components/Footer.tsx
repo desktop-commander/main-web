@@ -93,7 +93,21 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a 
+                <a
+                  href="/pricing"
+                  className="text-muted-foreground hover:text-primary transition-smooth text-sm"
+                  onClick={() => trackCustomEvent('navigation_clicked', {
+                    button_text: 'Pricing',
+                    button_location: 'footer',
+                    link_type: 'internal',
+                    section: 'pricing'
+                  })}
+                >
+                  Pricing
+                </a>
+              </li>
+              <li>
+                <a
                   href="/#use-cases"
                   className="text-muted-foreground hover:text-primary transition-smooth text-sm"
                   onClick={() => trackCustomEvent('navigation_clicked', {

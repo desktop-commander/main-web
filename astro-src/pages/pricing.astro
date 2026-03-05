@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PostHogInit from '../../src/components/PostHogInit';
+import NavigationAstro from '../../src/components/NavigationAstro';
+import PricingSection from '../../src/components/PricingSection';
+import PricingFAQ from '../../src/components/PricingFAQ';
+import Footer from '../../src/components/Footer';
+---
+
+<Layout
+  title="Pricing - Desktop Commander"
+  description="Simple, transparent pricing. Start free with 100 messages per week. Upgrade to Unlimited for $7/month."
+>
+  <!-- Load PostHog early to initialize analytics -->
+  <PostHogInit client:load />
+
+  <div class="min-h-screen bg-background">
+    <NavigationAstro client:load />
+    <main>
+      <PricingSection client:load />
+      <PricingFAQ client:visible />
+    </main>
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../src/index.css';
+</style>

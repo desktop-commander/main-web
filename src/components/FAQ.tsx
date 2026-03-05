@@ -47,7 +47,7 @@ const FAQ = () => {
     },
     {
       question: "How much does it cost to use Desktop Commander?",
-      answer: "Desktop Commander itself is free and open-source. However, to use it, you need a Claude Pro subscription, which costs $20/month. There are no additional charges beyond this subscription fee."
+      answer: "Desktop Commander is free to start — you get 100 messages per week and $10 in AI credits. For unlimited messages, upgrade to the Unlimited plan at $7/month (or $70/year). AI credits are separate from the messaging plan and cover the cost of running models. You can also bring your own API keys or run local models via Ollama for free."
     },
     {
       question: "Which operating systems does it support?",
