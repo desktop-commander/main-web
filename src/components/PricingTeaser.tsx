@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { ArrowRight, Check, Zap } from "lucide-react";
+import { ArrowRight, Check, Zap, Key } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
 
@@ -33,6 +33,16 @@ const PricingTeaser = () => {
           </p>
         </div>
 
+        {/* AI provider note */}
+        <div className={`max-w-2xl mx-auto mb-5 transition-all duration-1000 delay-150 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
+          <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground bg-dc-surface/50 border border-dc-border rounded-lg px-3 py-2">
+            <Key className="h-3.5 w-3.5 text-purple-400 flex-shrink-0" />
+            <span>AI provider not included — bring your own key, use ChatGPT, or top up DC credits.</span>
+          </div>
+        </div>
+
         {/* Compact two-card teaser */}
         <div className={`grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl mx-auto mb-10 transition-all duration-1000 delay-200 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -45,7 +55,7 @@ const PricingTeaser = () => {
               <span className="text-muted-foreground ml-1 text-sm">/month</span>
             </div>
             <ul className="space-y-2">
-              {["100 messages/week", "All AI models", "$10 free credits"].map((f) => (
+              {["100 messages/week", "All AI models", "$10 free AI credits", "Bring your own keys"].map((f) => (
                 <li key={f} className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Check className="h-3.5 w-3.5 text-green-500 flex-shrink-0" />
                   {f}
@@ -67,7 +77,7 @@ const PricingTeaser = () => {
               <span className="text-muted-foreground ml-1 text-sm">/month</span>
             </div>
             <ul className="space-y-2">
-              {["Unlimited messages", "Priority support", "No weekly limits"].map((f) => (
+              {["Unlimited messages", "No weekly limits", "Your keys or DC credits", "Priority support"].map((f) => (
                 <li key={f} className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Check className="h-3.5 w-3.5 text-green-500 flex-shrink-0" />
                   {f}
