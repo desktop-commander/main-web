@@ -82,6 +82,16 @@ const PricingSection = () => {
           )}
         </div>
 
+        {/* AI provider note */}
+        <div className={`max-w-3xl mx-auto mb-6 transition-all duration-1000 delay-300 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
+          <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground bg-dc-surface/50 border border-dc-border rounded-lg px-4 py-2.5">
+            <Key className="h-4 w-4 text-purple-400 flex-shrink-0" />
+            <span>Both plans require an AI provider — <a href="#ai-providers" className="text-blue-400 hover:text-blue-300 underline underline-offset-2">bring your own key</a>, use a ChatGPT subscription, or top up DC credits.</span>
+          </div>
+        </div>
+
         {/* Pricing Cards */}
         <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-16 transition-all duration-1000 delay-400 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -113,11 +123,12 @@ const PricingSection = () => {
             </Button>
             <ul className="space-y-3">
               {[
+                "$10 free AI credits to get started",
                 "100 messages per week",
-                "All AI models included",
+                "All AI models supported",
+                "Bring your own API keys or ChatGPT sub",
                 "MCP tool support",
                 "Community support",
-                "$10 free AI credits",
               ].map((feature) => (
                 <li key={feature} className="flex items-start gap-3 text-sm text-muted-foreground">
                   <Check className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
@@ -171,6 +182,7 @@ const PricingSection = () => {
               {[
                 "Unlimited messages",
                 "No weekly limits",
+                "Use your own keys, ChatGPT sub, or DC credits",
                 "Priority support",
               ].map((feature) => (
                 <li key={feature} className="flex items-start gap-3 text-sm text-muted-foreground">
@@ -186,7 +198,7 @@ const PricingSection = () => {
         <div className={`mt-20 max-w-4xl mx-auto transition-all duration-1000 delay-600 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <div className="text-center mb-4">
+          <div id="ai-providers" className="text-center mb-4 scroll-mt-24">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
               Choose how you power your AI
             </h2>
