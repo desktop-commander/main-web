@@ -1,5 +1,5 @@
 # https://desktopcommander.app/robots.txt
 User-agent: *
-Disallow:
+Disallow: /open/
 
 Sitemap: https://desktopcommander.app/sitemap.xml

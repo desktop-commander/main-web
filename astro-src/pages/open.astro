@@ -1,0 +1,70 @@
+---
+// Redirect page for deep-linking into the Desktop Commander app.
+// HubSpot CTA points here (https://desktopcommander.app/open) so clicks
+// are tracked normally.  The page immediately fires the custom protocol
+// `desktopcommander://` to launch the app, then falls back to the
+// download page after 2 seconds for users who don't have it installed.
+//
+// This page is excluded from search indexing via robots.txt and a
+// noindex meta tag.
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Opening Desktop Commander…</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0a0a0b;
+        color: #a1a1aa;
+        font-family: system-ui, -apple-system, sans-serif;
+      }
+      .container {
+        text-align: center;
+        padding: 2rem;
+      }
+      .spinner {
+        width: 32px;
+        height: 32px;
+        border: 3px solid rgba(255,255,255,0.1);
+        border-top-color: #3b82f6;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin: 0 auto 1.5rem;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      a {
+        color: #3b82f6;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="spinner"></div>
+      <p>Opening Desktop Commander…</p>
+      <p style="font-size: 0.875rem; margin-top: 1rem;">
+        Don't have it yet? <a href="https://desktopcommander.app/download">Download here</a>
+      </p>
+    </div>
+
+    <script is:inline>
+      // Try to launch the app via custom protocol
+      window.location.href = "desktopcommander://";
+
+      // Fallback: if the app didn't open, redirect to the download page
+      setTimeout(function () {
+        window.location.href = "https://desktopcommander.app/download";
+      }, 2000);
+    </script>
+  </body>
+</html>
