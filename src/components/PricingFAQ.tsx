@@ -28,11 +28,15 @@ const PricingFAQ = () => {
     },
     {
       question: "What's the difference between messages and AI credits?",
-      answer: "They're two separate things. Your plan controls how many messages you can send per week (100 on Free, unlimited on the paid plan). AI credits cover the cost of running cloud models like Claude, GPT, and Gemini. You can send messages without credits if you use local models or your own API keys."
+      answer: "They're two separate things. Your plan controls how many messages you can send per week (100 on Free, no cap on the paid plan). AI credits cover the cost of running cloud models like Claude, GPT, and Gemini. You can send messages without credits if you use local models or your own API keys. The weekly message limit applies to all messages regardless of which AI provider you use."
     },
     {
       question: "What are DC credits and how do they work?",
       answer: "DC credits are our built-in pay-as-you-go system for cloud AI models. Every account starts with $10 free. Each message costs a small amount depending on the model — more capable models cost a bit more. When you run low, top up in $10–$200 increments from Settings → Billing."
+    },
+    {
+      question: "Does the weekly message limit apply to my own API keys or ChatGPT subscription?",
+      answer: "Yes. The weekly message limit applies to all messages you send, regardless of how the AI is powered — DC credits, your own API keys, a ChatGPT subscription, or local models. To remove the limit, upgrade to the No Cap plan."
     },
     {
       question: "What models are available?",
@@ -48,7 +52,7 @@ const PricingFAQ = () => {
     },
     {
       question: "Can I use Desktop Commander completely free?",
-      answer: "Yes. You get 100 messages per week on the free plan, plus $10 in free credits to start. Beyond that, you can run local models via Ollama for free, or use providers with free tiers like Google Gemini. Bring your own API key and you won't spend any DC credits."
+      answer: "Yes. You get 100 messages per week on the free plan, plus $10 in free credits to start. Beyond that, you can run local models via Ollama for free, or use providers with free tiers like Google Gemini. Bring your own API key and you won't spend any DC credits. The weekly message limit applies whether you use DC credits, your own keys, or a ChatGPT subscription."
     },
     {
       question: "What's the cheapest way to use Desktop Commander?",
@@ -68,7 +72,7 @@ const PricingFAQ = () => {
     },
     {
       question: "What happens if I hit the message limit?",
-      answer: "You'll see a notification in chat. You can wait for the weekly reset on Monday, or upgrade to the Unlimited plan to remove the limit entirely."
+      answer: "You'll see a notification in chat. You can wait for the weekly reset on Monday, or upgrade to the No Cap plan to remove the message limit entirely."
     },
     {
       question: "Can I cancel anytime?",

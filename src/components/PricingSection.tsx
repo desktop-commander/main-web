@@ -50,7 +50,7 @@ const PricingSection = () => {
             Pricing
           </h1>
           <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            Start free with 100 messages per week. Upgrade when you need unlimited.
+            Start free with 100 messages per week. Upgrade to No Cap when you need more.
           </p>
         </div>
 
@@ -148,7 +148,7 @@ const PricingSection = () => {
               </span>
             </div>
 
-            <h3 className="text-lg font-semibold text-foreground mb-2">Unlimited</h3>
+            <h3 className="text-lg font-semibold text-foreground mb-2">No Cap</h3>
             <p className="text-xs text-muted-foreground/70 mb-3">For power users who rely on AI every day.</p>
             <div className="mb-1">
               <span className="text-4xl font-bold text-foreground">
@@ -158,8 +158,8 @@ const PricingSection = () => {
             </div>
             <p className="text-sm text-muted-foreground mb-6">
               {isYearly
-                ? 'Billed as $70/year. No weekly limits.'
-                : 'Unlimited messages, no weekly limits.'}
+                ? 'Billed as $70/year. No weekly message cap.'
+                : 'No weekly message cap. Send as many as you need.'}
             </p>
             <Button
               size="lg"
@@ -168,7 +168,7 @@ const PricingSection = () => {
             >
               <a
                 href="/#download"
-                onClick={() => handleCTA('unlimited', 'pricing_card')}
+                onClick={() => handleCTA('no_cap', 'pricing_card')}
                 className="flex items-center justify-center gap-2"
               >
                 <Zap className="h-4 w-4" />
@@ -180,8 +180,8 @@ const PricingSection = () => {
             </p>
             <ul className="space-y-3">
               {[
-                "Unlimited messages",
-                "No weekly limits",
+                "No weekly message cap",
+                "Send as many messages as you need",
                 "Use your own keys, ChatGPT sub, or DC credits",
                 "Priority support",
               ].map((feature) => (
@@ -203,7 +203,7 @@ const PricingSection = () => {
               Choose how you power your AI
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Your plan controls how many messages you can send. How those messages are powered is up to you — bring your own keys, use a subscription you already pay for, run models locally, or use DC credits.
+              Your plan controls how many messages you can send per week. How those messages are powered is up to you — bring your own keys, use a subscription you already pay for, run models locally, or use DC credits. The message limit applies to all providers.
             </p>
           </div>
 
