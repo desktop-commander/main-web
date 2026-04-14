@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import PostHogInit from '../../../../src/components/PostHogInit';
-import NavigationLandingPage from '../../../../src/components/NavigationLandingPage';
+import Navigation from '../../../components/Navigation.astro';
 import KnowledgeManagementHero from '../../../../src/components/use-cases/knowledge-management/KnowledgeManagementHero';
 import KMProblemSection from '../../../../src/components/use-cases/knowledge-management/KMProblemSection';
 import KMSolutionSection from '../../../../src/components/use-cases/knowledge-management/KMSolutionSection';
@@ -22,7 +22,7 @@ import Footer from '../../../../src/components/Footer';
   <PostHogInit client:load />
   
   <div class="min-h-screen bg-background">
-    <NavigationLandingPage client:load />
+    <Navigation />
     
     <main>
       <KnowledgeManagementHero client:load />

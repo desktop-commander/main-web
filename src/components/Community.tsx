@@ -89,7 +89,7 @@ const Community = () => {
                 className="bg-gray-900 hover:bg-gray-800 text-white px-6 py-2 w-full transition-all duration-300 hover:scale-105 hover:shadow-lg transform active:scale-95"
                 onClick={() => {
                   trackCommunity('discord', 'community_section', 'JOIN DISCORD');
-                  window.open('https://discord.gg/kQ27sNnZr7', '_blank');
+                  window.open('https://discord.gg/pyXshw54', '_blank');
                 }}
               >
                 JOIN DISCORD

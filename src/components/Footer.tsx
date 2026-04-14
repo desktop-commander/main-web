@@ -27,7 +27,7 @@ const Footer = () => {
                 </a>
               </Button>
               <Button variant="ghost" size="icon" asChild>
-                <a href="https://discord.gg/kQ27sNnZr7" target="_blank" rel="noopener noreferrer" title="Discord">
+                <a href="https://discord.gg/pyXshw54" target="_blank" rel="noopener noreferrer" title="Discord">
                   <MessageCircle className="h-5 w-5" />
                 </a>
               </Button>

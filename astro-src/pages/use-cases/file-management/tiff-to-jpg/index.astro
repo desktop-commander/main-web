@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../../layouts/Layout.astro';
 import PostHogInit from '../../../../../src/components/PostHogInit';
-import NavigationLandingPage from '../../../../../src/components/NavigationLandingPage';
+import Navigation from '../../../../components/Navigation.astro';
 import TJHeroSection from '../../../../../src/components/use-cases/file-management/tiff-to-jpg/TJHeroSection';
 import TJProblemSection from '../../../../../src/components/use-cases/file-management/tiff-to-jpg/TJProblemSection';
 import TJSolutionSection from '../../../../../src/components/use-cases/file-management/tiff-to-jpg/TJSolutionSection';
@@ -19,7 +19,7 @@ import Footer from '../../../../../src/components/Footer';
   <PostHogInit client:load />
   
   <div class="min-h-screen bg-background">
-    <NavigationLandingPage client:load />
+    <Navigation />
     
     <main>
       <TJHeroSection client:load />

@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../../layouts/Layout.astro';
 import PostHogInit from '../../../../../src/components/PostHogInit';
-import NavigationLandingPage from '../../../../../src/components/NavigationLandingPage';
+import Navigation from '../../../../components/Navigation.astro';
 import HJHeroSection from '../../../../../src/components/use-cases/file-management/heic-to-jpg/HJHeroSection';
 import HJProblemSection from '../../../../../src/components/use-cases/file-management/heic-to-jpg/HJProblemSection';
 import HJSolutionSection from '../../../../../src/components/use-cases/file-management/heic-to-jpg/HJSolutionSection';
@@ -19,7 +19,7 @@ import Footer from '../../../../../src/components/Footer';
   <PostHogInit client:load />
   
   <div class="min-h-screen bg-background">
-    <NavigationLandingPage client:load />
+    <Navigation />
     
     <main>
       <HJHeroSection client:load />

@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PostHogInit from '../../../src/components/PostHogInit';
-import NavigationAstro from '../../../src/components/NavigationAstro';
+import Navigation from '../../components/Navigation.astro';
 import Footer from '../../../src/components/Footer';
 import PromptDetailTestPage from '../../../src/components/library/v2/PromptDetailTestPage';
 ---
@@ -13,7 +13,7 @@ import PromptDetailTestPage from '../../../src/components/library/v2/PromptDetai
   <PostHogInit client:load />
   
   <div class="min-h-screen bg-background">
-    <NavigationAstro client:load />
+    <Navigation />
     <main class="pt-20">
       <PromptDetailTestPage client:load />
     </main>

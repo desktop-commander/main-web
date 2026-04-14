@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import PostHogInit from '../../../../src/components/PostHogInit';
-import NavigationLandingPage from '../../../../src/components/NavigationLandingPage';
+import Navigation from '../../../components/Navigation.astro';
 import FileManagementHero from '../../../../src/components/use-cases/FileManagementHero';
 import ProblemSection from '../../../../src/components/use-cases/ProblemSection';
 import SolutionSection from '../../../../src/components/use-cases/SolutionSection';
@@ -22,7 +22,7 @@ import Footer from '../../../../src/components/Footer';
   <PostHogInit client:load />
   
   <div class="min-h-screen bg-background">
-    <NavigationLandingPage client:load />
+    <Navigation />
     
     <main>
       <!-- Hero Section -->

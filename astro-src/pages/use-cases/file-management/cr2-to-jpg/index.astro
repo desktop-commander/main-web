@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../../layouts/Layout.astro';
 import PostHogInit from '../../../../../src/components/PostHogInit';
-import NavigationLandingPage from '../../../../../src/components/NavigationLandingPage';
+import Navigation from '../../../../components/Navigation.astro';
 import CRHeroSection from '../../../../../src/components/use-cases/file-management/cr2-to-jpg/CRHeroSection';
 import CRProblemSection from '../../../../../src/components/use-cases/file-management/cr2-to-jpg/CRProblemSection';
 import CRSolutionSection from '../../../../../src/components/use-cases/file-management/cr2-to-jpg/CRSolutionSection';
@@ -19,7 +19,7 @@ import Footer from '../../../../../src/components/Footer';
   <PostHogInit client:load />
   
   <div class="min-h-screen bg-background">
-    <NavigationLandingPage client:load />
+    <Navigation />
     
     <main>
       <CRHeroSection client:load />

@@ -1,102 +1,156 @@
 ---
-// Pure Astro Navigation - Server-rendered for instant display
-// Mobile menu uses a separate React component for interactivity
+/**
+ * Canonical site navigation.
+ *
+ * - Pure Astro: server-rendered, no React island on desktop.
+ * - Single source of IA: astro-src/data/navigation.ts
+ * - Mobile drawer: src/components/MobileMenu.tsx (React, reads same data).
+ * - Analytics: inline click delegation calls posthog.capture('navigation_clicked').
+ *
+ * SEO project / improvements / nav mega-menu (audit items #4, #12, #26).
+ */
 import MobileMenu from '../../src/components/MobileMenu';
 import dcLogo from '../../src/assets/dc-logo.png';
+import {
+  navOrder,
+  flatNavLinks,
+  useCasesMenu,
+  resourcesMenu,
+  type MegaMenu,
+  type NavLink,
+} from '../data/navigation';
 
-const useCasePages = [
-  { name: 'File Management', href: '/use-cases/file-management/', description: 'Organize, rename, and convert files' },
-  { name: 'Knowledge Management', href: '/use-cases/knowledge-management/', description: 'Build searchable knowledge bases' },
-  { name: 'Analyze Data', href: '/use-cases/analyze-data/', description: 'Process CSVs, logs, and datasets' },
-  { name: 'Build Prototypes', href: '/use-cases/build-prototype/', description: 'Rapid app and tool development' },
-  { name: 'Connect Apps', href: '/use-cases/connect-apps/', description: 'Automate cross-app workflows' },
-];
+const flatByHref = new Map(flatNavLinks.map((l) => [l.href, l]));
+const megaMenus: Record<string, MegaMenu> = {
+  [`mega:${useCasesMenu.label}`]: useCasesMenu,
+  [`mega:${resourcesMenu.label}`]: resourcesMenu,
+};
+
+const linkType = (l: NavLink) => (l.external ? 'external' : 'internal');
 ---
 
-<nav class="fixed left-0 right-0 z-50 border-b border-dc-border bg-background/80 backdrop-blur-md transition-all duration-300" style="top: var(--banner-height, 0px);">
+<nav
+  class="dc-nav fixed left-0 right-0 z-50 border-b border-dc-border bg-background/80 backdrop-blur-md transition-all duration-300"
+  style="top: var(--banner-height, 0px);"
+  aria-label="Primary"
+>
   <div class="container mx-auto max-w-7xl px-4 sm:px-6 py-4">
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-8">
-        <a 
-          href="https://desktopcommander.app" 
+        <a
+          href="https://desktopcommander.app"
           class="hover:opacity-80 transition-opacity flex-shrink-0"
+          data-nav-link
+          data-nav-text="Logo"
+          data-nav-destination="https://desktopcommander.app"
         >
           <img src={dcLogo.src} alt="Desktop Commander" class="h-7 sm:h-8 w-auto min-w-[270px]" width="200" height="32" />
         </a>
-        
+
         <!-- Desktop Navigation -->
-        <div class="hidden lg:flex items-center gap-6">
-          <!-- Use Cases Dropdown -->
-          <div class="relative group">
-            <button class="flex items-center gap-1 text-white hover:text-white/80 font-medium text-sm px-3 py-2 rounded-md hover:bg-white/10 transition-colors">
-              <span>Use Cases</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform duration-200 group-hover:rotate-180">
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
-            </button>
-            
-            <!-- Dropdown Menu -->
-            <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-              <div class="bg-[#1a1a2e] border border-dc-border rounded-lg shadow-xl py-2 min-w-[280px]">
-                {useCasePages.map((page) => (
-                  <a
-                    href={page.href}
-                    class="block px-4 py-3 hover:bg-white/10 transition-colors"
+        <ul class="hidden lg:flex items-center gap-1" role="menubar">
+          {navOrder.map((slot) => {
+            if (slot.startsWith('mega:')) {
+              const menu = megaMenus[slot];
+              if (!menu) return null;
+              return (
+                <li class="dc-mega relative" role="none">
+                  <button
+                    type="button"
+                    class="dc-mega__trigger flex items-center gap-1 text-white hover:text-white/80 font-medium text-sm px-3 py-2 rounded-md hover:bg-white/10 transition-colors"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    role="menuitem"
                   >
-                    <div class="text-white font-medium text-sm">{page.name}</div>
-                    <div class="text-gray-400 text-xs mt-0.5">{page.description}</div>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-          
-          <a 
-            href="/library"
-            class="text-white hover:text-white/80 font-medium text-sm px-3 py-2 rounded-md hover:bg-white/10 transition-colors"
-          >
-            Prompts
-          </a>
-          
-          <a 
-            href="/mcp"
-            class="text-white hover:text-white/80 font-medium text-sm px-3 py-2 rounded-md hover:bg-white/10 transition-colors"
-          >
-            MCP
-          </a>
+                    <span>{menu.label}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dc-mega__chev h-4 w-4 transition-transform duration-200">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </button>
 
-          <a
-            href="/pricing"
-            class="text-white hover:text-white/80 font-medium text-sm px-3 py-2 rounded-md hover:bg-white/10 transition-colors"
-          >
-            Pricing
-          </a>
+                  <div class="dc-mega__panel absolute left-0 top-full pt-2 z-50">
+                    <div class="bg-[#1a1a2e] border border-dc-border rounded-lg shadow-2xl overflow-hidden" style={`min-width: ${menu.columns.length * 220 + 48}px;`}>
+                      <div class="p-6 grid gap-8" style={`grid-template-columns: repeat(${menu.columns.length}, minmax(200px, 1fr));`}>
+                        {menu.columns.map((col) => (
+                          <div>
+                            <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">{col.heading}</h3>
+                            <ul class="space-y-1">
+                              {col.links.map((link) => (
+                                <li>
+                                  <a
+                                    href={link.href}
+                                    class="block px-2 py-1.5 -mx-2 rounded hover:bg-white/10 transition-colors group whitespace-nowrap"
+                                    target={link.external ? '_blank' : undefined}
+                                    rel={link.external ? 'noopener noreferrer' : undefined}
+                                    data-nav-link
+                                    data-nav-text={link.label}
+                                    data-nav-destination={link.href}
+                                    data-nav-type={linkType(link)}
+                                  >
+                                    <div class="flex items-center gap-2">
+                                      <span class="text-white text-sm font-medium group-hover:text-white">{link.label}</span>
+                                      {link.badge && (
+                                        <span class="text-[10px] font-semibold uppercase tracking-wider text-blue-300 bg-blue-500/15 border border-blue-400/20 rounded px-1.5 py-0.5">{link.badge}</span>
+                                      )}
+                                    </div>
+                                    {link.description && (
+                                      <div class="text-gray-400 text-xs mt-0.5 whitespace-normal">{link.description}</div>
+                                    )}
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                      {menu.footer && (
+                        <div class="bg-[#15152a] border-t border-dc-border px-6 py-3">
+                          <a
+                            href={menu.footer.href}
+                            class="text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors"
+                            data-nav-link
+                            data-nav-text={menu.footer.label}
+                            data-nav-destination={menu.footer.href}
+                            data-nav-type="internal"
+                          >{menu.footer.label}</a>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </li>
+              );
+            }
 
-          <a
-            href="https://desktopcommander.app/blog/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-white hover:text-white/80 font-medium text-sm px-3 py-2 rounded-md hover:bg-white/10 transition-colors"
-          >
-            Blog
-          </a>
-
-          <a 
-            href="/careers"
-            class="text-white hover:text-white/80 font-medium text-sm px-3 py-2 rounded-md hover:bg-white/10 transition-colors"
-          >
-            Careers
-          </a>
-        </div>
+            const link = flatByHref.get(slot);
+            if (!link) return null;
+            return (
+              <li role="none">
+                <a
+                  href={link.href}
+                  class="text-white hover:text-white/80 font-medium text-sm px-3 py-2 rounded-md hover:bg-white/10 transition-colors inline-block"
+                  target={link.external ? '_blank' : undefined}
+                  rel={link.external ? 'noopener noreferrer' : undefined}
+                  role="menuitem"
+                  data-nav-link
+                  data-nav-text={link.label}
+                  data-nav-destination={link.href}
+                  data-nav-type={linkType(link)}
+                >{link.label}</a>
+              </li>
+            );
+          })}
+        </ul>
       </div>
 
       <!-- Desktop CTA -->
       <div class="hidden lg:flex items-center gap-3">
-        <a 
-          href="/#download" 
+        <a
+          href="/#download"
           class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium text-sm transition-colors"
+          data-nav-cta="download"
+          data-nav-location="nav_desktop"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
             <polyline points="7 10 12 15 17 10"></polyline>
             <line x1="12" y1="15" x2="12" y2="3"></line>
@@ -110,3 +164,103 @@ const useCasePages = [
     </div>
   </div>
 </nav>
+
+<style>
+  /* Mega-menu open/close: hover OR focus-within OR explicit [data-open] */
+  .dc-mega__panel {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    transition: opacity 180ms ease, transform 180ms ease, visibility 180ms;
+  }
+  .dc-mega:hover > .dc-mega__panel,
+  .dc-mega:focus-within > .dc-mega__panel,
+  .dc-mega[data-open="true"] > .dc-mega__panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .dc-mega:hover > .dc-mega__trigger .dc-mega__chev,
+  .dc-mega:focus-within > .dc-mega__trigger .dc-mega__chev,
+  .dc-mega[data-open="true"] > .dc-mega__trigger .dc-mega__chev {
+    transform: rotate(180deg);
+  }
+  .dc-mega:hover > .dc-mega__trigger,
+  .dc-mega:focus-within > .dc-mega__trigger,
+  .dc-mega[data-open="true"] > .dc-mega__trigger {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  /* Panel hover bridge so cursor can travel from trigger to panel without closing */
+  .dc-mega__panel { padding-top: 0.5rem; }
+</style>
+
+<script>
+  // Keyboard accessibility for mega-menus: Enter/Space toggles, Esc closes.
+  // Click outside closes. Hover/focus already handled by CSS.
+  (() => {
+    const megas = document.querySelectorAll<HTMLLIElement>('.dc-nav .dc-mega');
+    megas.forEach((mega) => {
+      const trigger = mega.querySelector<HTMLButtonElement>('.dc-mega__trigger');
+      if (!trigger) return;
+      const close = () => {
+        mega.removeAttribute('data-open');
+        trigger.setAttribute('aria-expanded', 'false');
+      };
+      const open = () => {
+        // Close siblings
+        megas.forEach((m) => {
+          if (m !== mega) {
+            m.removeAttribute('data-open');
+            m.querySelector('.dc-mega__trigger')?.setAttribute('aria-expanded', 'false');
+          }
+        });
+        mega.setAttribute('data-open', 'true');
+        trigger.setAttribute('aria-expanded', 'true');
+      };
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isOpen = mega.getAttribute('data-open') === 'true';
+        isOpen ? close() : open();
+      });
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') close();
+      });
+    });
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest('.dc-mega')) {
+        megas.forEach((m) => {
+          m.removeAttribute('data-open');
+          m.querySelector('.dc-mega__trigger')?.setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        megas.forEach((m) => {
+          m.removeAttribute('data-open');
+          m.querySelector('.dc-mega__trigger')?.setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
+
+    // Analytics: delegate clicks on data-nav-link → posthog event.
+    document.querySelector('.dc-nav')?.addEventListener('click', (e) => {
+      const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('[data-nav-link]');
+      if (!a) {
+        const cta = (e.target as HTMLElement).closest<HTMLAnchorElement>('[data-nav-cta="download"]');
+        if (cta && (window as any).posthog) {
+          (window as any).posthog.capture('download_redirect', { location: cta.dataset.navLocation || 'nav_desktop' });
+        }
+        return;
+      }
+      const ph = (window as any).posthog;
+      if (!ph) return;
+      ph.capture('navigation_clicked', {
+        link_text: a.dataset.navText,
+        destination: a.dataset.navDestination,
+        link_type: a.dataset.navType || 'internal',
+      });
+    });
+  })();
+</script>

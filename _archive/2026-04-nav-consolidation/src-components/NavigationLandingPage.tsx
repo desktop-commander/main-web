@@ -70,11 +70,11 @@ const NavigationLandingPage = () => {
                 <DropdownMenuContent align="start" className="bg-dc-card border-dc-border">
                   <DropdownMenuItem asChild>
                     <a 
-                      href="https://discord.gg/desktop-commander" 
+                      href="https://discord.gg/pyXshw54" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="flex items-center justify-between cursor-pointer"
-                      onClick={() => trackNavigation('Discord', 'https://discord.gg/desktop-commander', 'external')}
+                      onClick={() => trackNavigation('Discord', 'https://discord.gg/pyXshw54', 'external')}
                     >
                       Discord
                       <ExternalLink className="ml-2 h-3 w-3" />
@@ -201,11 +201,11 @@ const NavigationLandingPage = () => {
                     <p className="text-sm font-medium text-muted-foreground mb-2 px-3">Community</p>
                     <Button variant="ghost" size="sm" asChild>
                       <a 
-                        href="https://discord.gg/desktop-commander"
+                        href="https://discord.gg/pyXshw54"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-white hover:text-white/80 font-medium justify-start w-full"
-                        onClick={() => handleMobileNavClick('Discord', 'https://discord.gg/desktop-commander', 'external')}
+                        onClick={() => handleMobileNavClick('Discord', 'https://discord.gg/pyXshw54', 'external')}
                       >
                         Discord
                         <ExternalLink className="ml-2 h-3 w-3" />

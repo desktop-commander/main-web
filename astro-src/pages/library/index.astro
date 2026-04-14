@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PostHogInit from '../../../src/components/PostHogInit';
-import NavigationAstro from '../../../src/components/NavigationAstro';
+import Navigation from '../../components/Navigation.astro';
 import PromptsLibraryAstro from '../../../src/components/library/PromptsLibraryAstro';
 import Footer from '../../../src/components/Footer';
 import { idToSlugMap } from '../../../src/data/library/useCases';
@@ -28,7 +28,7 @@ const idToSlug = Object.fromEntries(Object.entries(idToSlugMap));
   
 
   <div class="min-h-screen bg-background">
-    <NavigationAstro client:load />
+    <Navigation />
     <main>
       <PromptsLibraryAstro client:load />
     </main>

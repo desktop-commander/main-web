@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PostHogInit from '../../src/components/PostHogInit';
-import NavigationAstro from '../../src/components/NavigationAstro';
+import Navigation from '../components/Navigation.astro';
 import Footer from '../../src/components/Footer';
 import jobsData from '../../src/data/jobs.json';
 
@@ -33,7 +33,7 @@ const truncateDescription = (text: string, maxLength: number = 200) => {
   
 
   <div class="min-h-screen bg-background">
-    <NavigationAstro client:load />
+    <Navigation />
     <main>
       <section id="job-listings" class="pt-32 pb-20 bg-background">
         <div class="container mx-auto px-4">
@@ -186,7 +186,7 @@ const truncateDescription = (text: string, maxLength: number = 200) => {
                         Get in Touch
                       </a>
                       <a 
-                        href="https://discord.gg/kQ27sNnZr7"
+                        href="https://discord.gg/pyXshw54"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"

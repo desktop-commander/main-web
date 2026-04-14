@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../../layouts/Layout.astro';
 import PostHogInit from '../../../../../src/components/PostHogInit';
-import NavigationLandingPage from '../../../../../src/components/NavigationLandingPage';
+import Navigation from '../../../../components/Navigation.astro';
 import PPHeroSection from '../../../../../src/components/use-cases/file-management/pdf-to-png/PPHeroSection';
 import PPProblemSection from '../../../../../src/components/use-cases/file-management/pdf-to-png/PPProblemSection';
 import PPSolutionSection from '../../../../../src/components/use-cases/file-management/pdf-to-png/PPSolutionSection';
@@ -19,7 +19,7 @@ import Footer from '../../../../../src/components/Footer';
   <PostHogInit client:load />
   
   <div class="min-h-screen bg-background">
-    <NavigationLandingPage client:load />
+    <Navigation />
     
     <main>
       <PPHeroSection client:load />

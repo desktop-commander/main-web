@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import PostHogInit from '../../../../src/components/PostHogInit';
-import NavigationAstro from '../../../../src/components/NavigationAstro';
+import Navigation from '../../../components/Navigation.astro';
 import Footer from '../../../../src/components/Footer';
 import PromptDetailPage from '../../../../src/components/library/PromptDetailPage';
 import { useCasesWithSlugs } from '../../../../src/data/library/useCases';
@@ -36,7 +36,7 @@ const promptId = useCase.id;
   <PostHogInit client:load />
   
   <div class="min-h-screen bg-background">
-    <NavigationAstro client:load />
+    <Navigation />
     <PromptDetailPage client:load useCase={useCase} />
     <Footer client:visible />
   </div>
