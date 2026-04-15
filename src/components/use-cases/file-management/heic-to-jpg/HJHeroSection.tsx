@@ -9,12 +9,12 @@ const HJHeroSection = () => {
         <div className="flex flex-col items-center text-center space-y-8">
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight max-w-4xl">
-            Convert HEIC to JPG <span className="text-primary">instantly</span>
+            Batch convert HEIC to JPG, <span className="text-primary">locally</span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl leading-relaxed">
-            Batch convert iPhone photos to JPG in seconds. No uploads, no waiting, no privacy concerns. Just tell Desktop Commander what you need, and it handles the rest.
+            Point Desktop Commander at a folder of iPhone photos and get JPGs in seconds — on your Mac or Windows PC. No uploads, no cloud, no file limits.
           </p>
 
           {/* Format Badges */}
