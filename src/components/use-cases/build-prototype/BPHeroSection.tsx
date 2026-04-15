@@ -9,7 +9,7 @@ const BPHeroSection = () => {
         <div className="flex flex-col items-center text-center space-y-8">
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight max-w-4xl">
-            Build software <span className="text-primary">without learning how to code</span>
+            Vibe-code your next app <span className="text-primary">on your own desktop</span>
           </h1>
 
           {/* Subheadline */}

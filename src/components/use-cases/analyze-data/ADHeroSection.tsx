@@ -9,7 +9,7 @@ const ADHeroSection = () => {
         <div className="flex flex-col items-center text-center space-y-8">
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight max-w-4xl">
-            Analyze data <span className="text-primary">in natural language</span>
+            Chat with <span className="text-primary">your data</span>
           </h1>
 
           {/* Subheadline */}

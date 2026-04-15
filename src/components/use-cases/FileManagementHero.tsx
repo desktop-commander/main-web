@@ -15,8 +15,7 @@ const FileManagementHero = () => {
 
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight max-w-4xl">
-            Your personal file organizer —{" "}
-            <span className="text-primary">move, edit, convert files in natural language</span>
+            Manage your files <span className="text-primary">with chat</span>
           </h1>
 
           {/* Subheadline */}

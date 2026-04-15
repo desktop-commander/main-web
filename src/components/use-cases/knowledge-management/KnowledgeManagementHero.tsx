@@ -9,8 +9,8 @@ const KnowledgeManagementHero = () => {
         <div className="flex flex-col items-center text-center space-y-8">
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight max-w-4xl">
-            Your AI knowledge assistant —{" "}
-            <span className="text-primary">organize your knowledge in local filesystem by talking with AI</span>
+            Chat with your notes —{" "}
+            <span className="text-primary">your AI knowledge base for markdown and local files</span>
           </h1>
 
           {/* Subheadline */}
