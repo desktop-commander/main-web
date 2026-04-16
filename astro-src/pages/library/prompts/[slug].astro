@@ -26,8 +26,8 @@ if (!useCase) {
 const promptId = useCase.id;
 ---
 
-<Layout 
-  title={`${useCase.title} - Desktop Commander`}
+<Layout
+  title={useCase.seoTitle || `${useCase.title} - Desktop Commander`}
   description={useCase.description}
   robots="index, follow, noai, noimageai"
   googlebot="index, follow, noai"

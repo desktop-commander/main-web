@@ -24,6 +24,7 @@ export interface UseCase {
   verified?: boolean;
   difficulty?: string; // Added difficulty as optional string
   slug?: string; // SEO-friendly URL slug
+  seoTitle?: string; // Optional SEO <title> override (keyword-optimized). Falls back to `${title} - Desktop Commander` when absent.
   // New fields for expanded prompt detail page
   extendedDescription?: string; // Full description paragraph for detail page
   howItWorks?: string[]; // Array of 4 steps explaining the flow
