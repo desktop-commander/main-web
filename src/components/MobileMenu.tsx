@@ -4,7 +4,7 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Download, Menu, ChevronDown, ExternalLink } from "lucide-react";
+import { Download, Terminal, Menu, ChevronDown, ExternalLink } from "lucide-react";
 import { useState } from "react";
 import { trackDownloadRedirect } from '@/lib/analytics/tracking';
 import { useAnalyticsAstro } from '@/hooks/useAnalyticsAstro';
@@ -23,10 +23,20 @@ const megaByKey: Record<string, MegaMenu> = {
   [`mega:${resourcesMenu.label}`]: resourcesMenu,
 };
 
-const MobileMenu = () => {
+interface MobileMenuProps {
+  // SEO #10 — passed from Navigation.astro via Astro.url.pathname so the
+  // primary CTA can switch to "Install MCP" on /mcp routes.
+  pathname?: string;
+}
+
+const MobileMenu = ({ pathname = '/' }: MobileMenuProps) => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [openMega, setOpenMega] = useState<string | null>(null);
   const { trackNavigation } = useAnalyticsAstro();
+
+  const isMcpPage = pathname.startsWith('/mcp');
+  const ctaLabel = isMcpPage ? 'Install MCP' : 'Download App';
+  const ctaHref = isMcpPage ? '/mcp#installation' : '/#download';
 
   const handleNavClick = (link: NavLink | { label: string; href: string; external?: boolean }) => {
     trackNavigation(link.label, link.href, link.external ? 'external' : 'internal');
@@ -114,15 +124,21 @@ const MobileMenu = () => {
 
           <Button size="default" asChild className="mt-4 bg-blue-600 hover:bg-blue-700 text-white">
             <a
-              href="/#download"
+              href={ctaHref}
               className="flex items-center gap-2"
               onClick={() => {
-                trackDownloadRedirect('mobile_menu');
+                if (isMcpPage) {
+                  // Match Navigation.astro's event name for /mcp nav CTA.
+                  const ph = (window as unknown as { posthog?: { capture: (e: string, p?: object) => void } }).posthog;
+                  if (ph) ph.capture('install_mcp_redirect', { location: 'mobile_menu' });
+                } else {
+                  trackDownloadRedirect('mobile_menu');
+                }
                 setIsSheetOpen(false);
               }}
             >
-              <Download className="h-4 w-4" />
-              Download
+              {isMcpPage ? <Terminal className="h-4 w-4" /> : <Download className="h-4 w-4" />}
+              {ctaLabel}
             </a>
           </Button>
         </nav>

@@ -5,7 +5,7 @@ const CAHowItWorksSection = () => {
   const steps = [
     {
       number: "1",
-      title: "Download Desktop Commander",
+      title: "Download App",
       description: "One-time setup on your Mac or Windows computer. No accounts required to start."
     },
     {

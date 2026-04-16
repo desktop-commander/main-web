@@ -169,7 +169,7 @@ const HeroAstro = () => {
               >
                 <a href="#download" onClick={() => trackDownloadRedirect('hero_main')}>
                   <Download className="h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
-                  Download Beta
+                  Download App
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </a>
               </Button>

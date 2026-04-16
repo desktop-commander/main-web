@@ -20,7 +20,7 @@ const ADFinalCTASection = () => {
           {/* Download Label */}
           <div className="flex items-center justify-center gap-2 mb-4">
             <Download className="w-5 h-5 text-primary" />
-            <span className="text-lg font-semibold">Download Desktop Commander</span>
+            <span className="text-lg font-semibold">Download App</span>
           </div>
 
           {/* CTA Buttons */}

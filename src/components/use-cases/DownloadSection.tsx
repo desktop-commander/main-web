@@ -28,7 +28,7 @@ const HowItWorksSection = () => {
             Get Started Now
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Download Desktop Commander and start managing your files in minutes
+            Download the App and start managing your files in minutes
           </p>
         </div>
 

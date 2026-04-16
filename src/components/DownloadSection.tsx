@@ -54,7 +54,7 @@ const DownloadSection = () => {
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Download Desktop Commander
+              Download the App
             </h2>
             <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
               <Clock className="h-4 w-4 text-dc-accent" />

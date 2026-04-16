@@ -8,7 +8,7 @@ const WaitlistSection = ({ useCase = 'unknown' }: WaitlistSectionProps) => {
   const steps = [
     {
       number: "1",
-      title: "Download Desktop Commander",
+      title: "Download App",
       description: "One-time setup on your Mac or Windows PC. No accounts, no subscriptions required to start."
     },
     {

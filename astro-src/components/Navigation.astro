@@ -27,6 +27,16 @@ const megaMenus: Record<string, MegaMenu> = {
 };
 
 const linkType = (l: NavLink) => (l.external ? 'external' : 'internal');
+
+// SEO #10 — context-aware primary CTA.
+// On /mcp (and any future MCP sub-routes) the nav CTA points at MCP install,
+// not the App download. Keeps a single nav component but matches page intent.
+// PostHog event name is dispatched via data-nav-cta in the click-delegation
+// handler below: data-nav-cta="download" → download_redirect,
+// data-nav-cta="install-mcp" → install_mcp_redirect.
+const isMcpPage = Astro.url.pathname.startsWith('/mcp');
+const ctaLabel = isMcpPage ? 'Install MCP' : 'Download App';
+const ctaHref = isMcpPage ? '/mcp#installation' : '/#download';
 ---
 
 <nav
@@ -145,22 +155,29 @@ const linkType = (l: NavLink) => (l.external ? 'external' : 'internal');
       <!-- Desktop CTA -->
       <div class="hidden lg:flex items-center gap-3">
         <a
-          href="/#download"
+          href={ctaHref}
           class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium text-sm transition-colors"
-          data-nav-cta="download"
+          data-nav-cta={isMcpPage ? 'install-mcp' : 'download'}
           data-nav-location="nav_desktop"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-            <polyline points="7 10 12 15 17 10"></polyline>
-            <line x1="12" y1="15" x2="12" y2="3"></line>
-          </svg>
-          Download
+          {isMcpPage ? (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+              <polyline points="4 17 10 11 4 5"></polyline>
+              <line x1="12" y1="19" x2="20" y2="19"></line>
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+          )}
+          {ctaLabel}
         </a>
       </div>
 
       <!-- Mobile Menu (React for interactivity) -->
-      <MobileMenu client:load />
+      <MobileMenu client:load pathname={Astro.url.pathname} />
     </div>
   </div>
 </nav>
@@ -248,9 +265,13 @@ const linkType = (l: NavLink) => (l.external ? 'external' : 'internal');
     document.querySelector('.dc-nav')?.addEventListener('click', (e) => {
       const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('[data-nav-link]');
       if (!a) {
-        const cta = (e.target as HTMLElement).closest<HTMLAnchorElement>('[data-nav-cta="download"]');
-        if (cta && (window as any).posthog) {
-          (window as any).posthog.capture('download_redirect', { location: cta.dataset.navLocation || 'nav_desktop' });
+        const downloadCta = (e.target as HTMLElement).closest<HTMLAnchorElement>('[data-nav-cta="download"]');
+        if (downloadCta && (window as any).posthog) {
+          (window as any).posthog.capture('download_redirect', { location: downloadCta.dataset.navLocation || 'nav_desktop' });
+        }
+        const installCta = (e.target as HTMLElement).closest<HTMLAnchorElement>('[data-nav-cta="install-mcp"]');
+        if (installCta && (window as any).posthog) {
+          (window as any).posthog.capture('install_mcp_redirect', { location: installCta.dataset.navLocation || 'nav_desktop' });
         }
         return;
       }
