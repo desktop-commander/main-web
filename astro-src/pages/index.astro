@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { organizationSchema } from '../data/schema';
 import Navigation from '../components/Navigation.astro';
 import PostHogInit from '../../src/components/PostHogInit';
 import HeroAstro from '../../src/components/HeroAstro';
@@ -14,9 +15,10 @@ import DownloadSection from '../../src/components/DownloadSection';
 import Footer from '../../src/components/Footer';
 ---
 
-<Layout 
+<Layout
   title="Desktop Commander - AI that executes"
   description="Desktop Commander reads your files, runs commands, and automates workflows — all in natural language."
+  jsonLd={organizationSchema}
 >
   <!-- Load PostHog early to initialize analytics -->
   <PostHogInit client:load />

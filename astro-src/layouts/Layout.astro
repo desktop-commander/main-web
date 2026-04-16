@@ -5,6 +5,12 @@ interface Props {
   ogImage?: string;
   robots?: string;
   googlebot?: string;
+  /**
+   * schema.org JSON-LD payload(s) to emit in <head>.
+   * Pass a single object for one graph node, or an array for multiple.
+   * Each entry is serialized to its own <script type="application/ld+json"> tag.
+   */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
@@ -12,8 +18,12 @@ const {
   description,
   ogImage = '/bg-social-share.png',
   robots = 'index, follow, noai, noimageai',
-  googlebot = 'index, follow, noai'
+  googlebot = 'index, follow, noai',
+  jsonLd
 } = Astro.props;
+
+// Normalize jsonLd to an array so the template has a single code path.
+const jsonLdNodes = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'http://localhost:4321');
 const siteBase = Astro.site?.origin || 'https://desktopcommander.app';
 const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${siteBase}${ogImage}`;
@@ -56,6 +66,11 @@ import '../../src/index.css';
     <!-- Search and AI crawler directives -->
     <meta name="robots" content={robots} />
     <meta name="googlebot" content={googlebot} />
+
+    {/* schema.org JSON-LD — one <script> per node so graphs stay separate & debuggable */}
+    {jsonLdNodes.map((node) => (
+      <script type="application/ld+json" set:html={JSON.stringify(node)} />
+    ))}
     
     <!-- Cookiebot - MUST be first script in head -->
     <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="83cceb09-32d2-409b-ada6-17cc28478ba6" data-blockingmode="auto" type="text/javascript" async></script>
