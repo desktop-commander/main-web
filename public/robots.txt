@@ -2,4 +2,75 @@
 User-agent: *
 Disallow: /open/
 
+# SEO #8 Tier 2: low-traffic prompt pages de-indexed to save crawl budget.
+# URLs kept live (for direct links / share URLs) but hidden from search.
+# Also emitted as <meta name="robots" content="noindex"> on the page itself,
+# and the /library/prompts hub renders these as non-anchors so crawlers
+# don't discover them. See useCases.ts `noindex` field.
+Disallow: /library/prompts/analyze-error-handling-strategy/
+Disallow: /library/prompts/analyze-my-data-file/
+Disallow: /library/prompts/analyze-test-coverage-gaps/
+Disallow: /library/prompts/assess-projects-security/
+Disallow: /library/prompts/assess-scalability-challenges/
+Disallow: /library/prompts/assess-technical-debt/
+Disallow: /library/prompts/audit-authentication-security/
+Disallow: /library/prompts/batch-convert-and-rename-images/
+Disallow: /library/prompts/build-and-deploy-landing-page/
+Disallow: /library/prompts/build-github-issues-dashboard/
+Disallow: /library/prompts/clean-up-unused-code/
+Disallow: /library/prompts/compare-config-files-to-baseline/
+Disallow: /library/prompts/consolidate-data-files-into-one/
+Disallow: /library/prompts/convert-edoc-to-doc/
+Disallow: /library/prompts/convert-heic-to-png/
+Disallow: /library/prompts/create-database-schema-diagram/
+Disallow: /library/prompts/create-folder-with-images/
+Disallow: /library/prompts/create-git-history-presentation/
+Disallow: /library/prompts/create-team-onboarding-documentation/
+Disallow: /library/prompts/debug-remote-server-errors/
+Disallow: /library/prompts/document-ansible-configuration/
+Disallow: /library/prompts/document-api-endpoints/
+Disallow: /library/prompts/document-dependencies-and-tools/
+Disallow: /library/prompts/document-graphql-schema/
+Disallow: /library/prompts/document-rest-api-endpoints/
+Disallow: /library/prompts/document-system-architecture/
+Disallow: /library/prompts/explain-cicd-pipeline/
+Disallow: /library/prompts/explain-docker-configuration/
+Disallow: /library/prompts/explain-react-component-architecture/
+Disallow: /library/prompts/find-all-todo-comments/
+Disallow: /library/prompts/find-error-patterns-in-logs/
+Disallow: /library/prompts/find-invoices-and-move-them-to-folder/
+Disallow: /library/prompts/find-large-receipts-by-vendor/
+Disallow: /library/prompts/generate-architecture-diagram/
+Disallow: /library/prompts/generate-dev-onboarding-guide/
+Disallow: /library/prompts/generate-docker-configuration/
+Disallow: /library/prompts/generate-tests-for-missing-coverage/
+Disallow: /library/prompts/get-my-ip-address/
+Disallow: /library/prompts/implement-github-issue/
+Disallow: /library/prompts/manage-wordpress-site-in-natural-language/
+Disallow: /library/prompts/merge-two-pdfs/
+Disallow: /library/prompts/optimize-database-schema/
+Disallow: /library/prompts/optimize-docker-setup/
+Disallow: /library/prompts/organize-my-desktop-files/
+Disallow: /library/prompts/organize-pdf-invoices-by-date/
+Disallow: /library/prompts/plan-migration-strategy/
+Disallow: /library/prompts/remove-background-from-profile-picture/
+Disallow: /library/prompts/remove-duplicate-contacts-from-spreadsheet/
+Disallow: /library/prompts/rename-bank-statements-by-account/
+Disallow: /library/prompts/set-up-cloud-infrastructure/
+Disallow: /library/prompts/set-up-github-actions-cicd/
+Disallow: /library/prompts/set-up-google-analytics-and-analyze-traffic/
+Disallow: /library/prompts/set-up-local-development-environment/
+Disallow: /library/prompts/set-up-mongodb-database/
+Disallow: /library/prompts/set-up-mysql-database/
+Disallow: /library/prompts/set-up-new-project-structure/
+Disallow: /library/prompts/set-up-postgresql-database/
+Disallow: /library/prompts/set-up-redis-server/
+Disallow: /library/prompts/set-up-wordpress-environment/
+Disallow: /library/prompts/setting-up-posthog-analytics-with-custom-events/
+Disallow: /library/prompts/update-my-cvresume/
+Disallow: /library/prompts/visualize-database-schema/
+Disallow: /library/prompts/visualize-microservices-communication/
+Disallow: /library/prompts/visualize-project-architecture/
+Disallow: /library/prompts/visualize-terraform-architecture/
+
 Sitemap: https://desktopcommander.app/sitemap.xml

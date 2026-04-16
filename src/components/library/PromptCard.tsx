@@ -85,58 +85,90 @@ export function PromptCard({ useCase, onVote: _onVote, onOpen }: PromptCardProps
       source: 'library_grid',
       source_page: 'prompts_library'
     });
-    
+
     if (onOpen) {
       onOpen(useCase);
+    }
+
+    // For noindex (Tier 2) prompts we render a non-anchor so crawlers don't
+    // discover the URL. Navigate programmatically on user click instead.
+    if (useCase.noindex) {
+      e.preventDefault();
+      window.location.href = promptUrl;
     }
   };
 
   const sessionDisplay = getSessionTypeDisplay(useCase.sessionType);
 
+  const cardInner = (
+    <Card
+      className="h-full flex flex-col cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/50 relative group bg-card/50 border-border/40 hover:border-primary/30 hover:bg-card/80 transition-all duration-200"
+      role="button"
+      tabIndex={-1}
+    >
+      <CardHeader className="pb-2 pt-4 px-4">
+        <div className="flex items-start gap-3">
+          <div className="p-1.5 bg-primary/10 rounded-md shrink-0">
+            <IconComponent className="h-4 w-4 text-primary" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <CardTitle className="text-base leading-snug line-clamp-2">
+              {useCase.title}
+            </CardTitle>
+          </div>
+          {showNewBadge && (
+            <Badge variant="outline" className="text-[10px] px-1.5 py-0 bg-primary/10 text-primary border-primary/20 shrink-0">
+              New
+            </Badge>
+          )}
+        </div>
+      </CardHeader>
+
+      <CardContent className="flex-1 flex flex-col pt-0 px-4 pb-4">
+        <CardDescription className="text-sm leading-relaxed line-clamp-1 text-muted-foreground/80">
+          {useCase.description}
+        </CardDescription>
+
+        {/* Footer: Session type and popularity */}
+        <div className="mt-auto pt-3 flex items-center justify-between">
+          <Badge variant="outline" className="text-[10px] px-1.5 py-0 font-normal border-border/30 bg-transparent text-muted-foreground/70">
+            {sessionDisplay.icon && <sessionDisplay.icon className="h-3 w-3 mr-1" />}
+            {sessionDisplay.text}
+          </Badge>
+          <EngagementMeter count={useCase.gaClicks || 0} size="sm" showLabel={false} />
+        </div>
+      </CardContent>
+    </Card>
+  );
+
+  // Tier 2 (noindex): render a non-anchor so search crawlers don't discover
+  // the URL from the hub. User click still navigates via handleClick.
+  if (useCase.noindex) {
+    return (
+      <div
+        role="link"
+        tabIndex={0}
+        className="block h-full no-underline cursor-pointer"
+        onClick={handleClick}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handleClick(e as unknown as React.MouseEvent);
+          }
+        }}
+      >
+        {cardInner}
+      </div>
+    );
+  }
+
   return (
-    <a 
+    <a
       href={promptUrl}
       className="block h-full no-underline"
       onClick={handleClick}
     >
-      <Card
-        className="h-full flex flex-col cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/50 relative group bg-card/50 border-border/40 hover:border-primary/30 hover:bg-card/80 transition-all duration-200"
-        role="button"
-        tabIndex={-1}
-      >
-        <CardHeader className="pb-2 pt-4 px-4">
-          <div className="flex items-start gap-3">
-            <div className="p-1.5 bg-primary/10 rounded-md shrink-0">
-              <IconComponent className="h-4 w-4 text-primary" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <CardTitle className="text-base leading-snug line-clamp-2">
-                {useCase.title}
-              </CardTitle>
-            </div>
-            {showNewBadge && (
-              <Badge variant="outline" className="text-[10px] px-1.5 py-0 bg-primary/10 text-primary border-primary/20 shrink-0">
-                New
-              </Badge>
-            )}
-          </div>
-        </CardHeader>
-
-        <CardContent className="flex-1 flex flex-col pt-0 px-4 pb-4">
-          <CardDescription className="text-sm leading-relaxed line-clamp-1 text-muted-foreground/80">
-            {useCase.description}
-          </CardDescription>
-          
-          {/* Footer: Session type and popularity */}
-          <div className="mt-auto pt-3 flex items-center justify-between">
-            <Badge variant="outline" className="text-[10px] px-1.5 py-0 font-normal border-border/30 bg-transparent text-muted-foreground/70">
-              {sessionDisplay.icon && <sessionDisplay.icon className="h-3 w-3 mr-1" />}
-              {sessionDisplay.text}
-            </Badge>
-            <EngagementMeter count={useCase.gaClicks || 0} size="sm" showLabel={false} />
-          </div>
-        </CardContent>
-      </Card>
+      {cardInner}
     </a>
   );
 }

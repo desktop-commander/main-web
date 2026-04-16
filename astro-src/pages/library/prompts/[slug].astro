@@ -24,13 +24,23 @@ if (!useCase) {
 }
 
 const promptId = useCase.id;
+
+// SEO #8 Tier 2: low-traffic prompts marked noindex to save crawl budget
+// (also listed in robots.txt Disallow + hub card renders non-anchor so
+// crawlers don't discover the URL in the first place).
+const robotsMeta = useCase.noindex
+  ? 'noindex, nofollow, noai, noimageai'
+  : 'index, follow, noai, noimageai';
+const googlebotMeta = useCase.noindex
+  ? 'noindex, nofollow, noai'
+  : 'index, follow, noai';
 ---
 
 <Layout
   title={useCase.seoTitle || `${useCase.title} - Desktop Commander`}
   description={useCase.description}
-  robots="index, follow, noai, noimageai"
-  googlebot="index, follow, noai"
+  robots={robotsMeta}
+  googlebot={googlebotMeta}
 >
   <!-- Load PostHog early to initialize analytics -->
   <PostHogInit client:load />

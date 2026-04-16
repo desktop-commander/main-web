@@ -25,6 +25,7 @@ export interface UseCase {
   difficulty?: string; // Added difficulty as optional string
   slug?: string; // SEO-friendly URL slug
   seoTitle?: string; // Optional SEO <title> override (keyword-optimized). Falls back to `${title} - Desktop Commander` when absent.
+  noindex?: boolean; // If true: [slug].astro emits robots=noindex,nofollow; hub card renders non-anchor (no <a href>) so crawlers don't discover; URL is also listed in /public/robots.txt Disallow. Used for low-traffic prompts we don't want competing for crawl budget (SEO #8 Tier 2).
   // New fields for expanded prompt detail page
   extendedDescription?: string; // Full description paragraph for detail page
   howItWorks?: string[]; // Array of 4 steps explaining the flow
