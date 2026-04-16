@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "astro dev",
     "dev:host": "astro dev --host",
-    "build": "astro build && node generate-sitemap.js && cp docs/index.html docs/404.html",
+    "build": "astro build && node generate-sitemap.js",
     "postbuild": "echo \"desktopcommander.app\" > docs/CNAME",
-    "build:github": "BASE_PATH=/main-web-astro astro build && node generate-sitemap.js && cp docs/index.html docs/404.html",
+    "build:github": "BASE_PATH=/main-web-astro astro build && node generate-sitemap.js",
     "build:dev": "astro build --mode development && node generate-sitemap.js",
     "preview": "astro preview",
     "generate:sitemap": "node generate-sitemap.js",
