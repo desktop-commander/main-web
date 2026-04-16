@@ -59,6 +59,9 @@ export const organizationSchema = {
   ],
   address: {
     '@type': 'PostalAddress',
+    streetAddress: 'Elizabetes iela 8 - 6',
+    addressLocality: 'Rīga',
+    postalCode: 'LV-1010',
     addressCountry: 'LV',
   },
   contactPoint: {
