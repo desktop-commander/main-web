@@ -16,7 +16,7 @@ const blogPostsData = [
     id: 1,
     title: "Build a Google Analytics AI Assistant in 10 Minutes",
     description: "In my previous article, I explained how our Desktop Commander team uses CLIs and AI agents to automate various workflows — from BigQuery data analysis to CRM integrations to task management.",
-    thumbnail: "b5.png",
+    thumbnail: "b5.jpg",
     youtubeUrl: "https://wonderwhy-er.medium.com/build-a-google-analytics-ai-assistant-in-10-minutes-a19f0971d4b6",
     duration: "Read",
     date: "Oct 6, 2025",
@@ -26,7 +26,7 @@ const blogPostsData = [
     id: 2,
     title: "Why I Went From REST APIs to MCPs to CLIs and Ended Up with Self-Improving AI",
     description: "In recent months, I noticed something strange about my workflow. Instead of looking for MCPs to give to AI, I started asking for CLIs instead.",
-    thumbnail: "meetup-poster.png",
+    thumbnail: "meetup-poster.jpg",
     youtubeUrl: "https://medium.com/@wonderwhy-er/why-i-went-from-rest-apis-to-mcps-to-clis-and-ended-up-with-self-improving-ai-8b492631f565",
     duration: "Read",
     date: "September 12, 2025"
@@ -35,7 +35,7 @@ const blogPostsData = [
     id: 3,
     title: "Why I Went From REST APIs to MCPs to CLIs and ended up with Self-Improving AI",
     description: "Exploring the evolution from traditional REST APIs to MCPs and CLIs, and how this journey led to building self-improving AI systems.",
-    thumbnail: "b1.png",
+    thumbnail: "b1.jpg",
     youtubeUrl: "https://www.youtube.com/watch?v=xNlSt-4vTTo",
     duration: "23:20",
     date: "Sep 8, 2025"
@@ -44,7 +44,7 @@ const blogPostsData = [
     id: 4,
     title: "Vibe Coding With Desktop Commander: Code Documentation + Obsidian + GitHub",
     description: "Live coding session showcasing Desktop Commander's integration with Obsidian and GitHub for enhanced development workflows.",
-    thumbnail: "b2.png",
+    thumbnail: "b2.jpg",
     youtubeUrl: "https://www.youtube.com/watch?v=523coCdL8ZI&t=4s",
     duration: "1:00:13",
     date: "Sep 10, 2025"
@@ -53,7 +53,7 @@ const blogPostsData = [
     id: 5,
     title: "Claude with MCPs Replaced Cursor & Windsurf — How Did That Happen?",
     description: "Discover how Claude with MCP integration became a powerful alternative to popular development tools like Cursor and Windsurf.",
-    thumbnail: "b3.png",
+    thumbnail: "b3.jpg",
     youtubeUrl: "https://youtu.be/ly3bed99Dy8?si=pMrEbYD7ePOA3cRA",
     duration: "44:44",
     date: "Mar 19, 2025"
@@ -62,7 +62,7 @@ const blogPostsData = [
     id: 6,
     title: "This Developer Ditched Windsurf, Cursor Using Claude with MCPs",
     description: "A developer's journey from popular IDEs to Claude with MCP integration, showcasing the power and flexibility of this new approach.",
-    thumbnail: "b4.png",
+    thumbnail: "b4.jpg",
     youtubeUrl: "https://wonderwhy-er.medium.com/claude-with-mcps-replaced-cursor-windsurf-how-did-that-happen-c1d1e2795e96",
     duration: "Read",
     date: "December 1, 2024"
