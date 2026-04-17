@@ -13,14 +13,43 @@ import {
 
 const blogPostsData = [
   {
+    id: 7,
+    title: "Software Was Always a Compromise. AI Just Broke It.",
+    description: "Computers could always do anything. Most people never knew what's possible.",
+    thumbnail: "b6.jpg",
+    youtubeUrl: "https://medium.com/@wonderwhy-er/software-was-always-a-compromise-ai-just-broke-it-13b22df1cabf",
+    duration: "Read",
+    date: "Mar 19, 2026",
+    badge: "new"
+  },
+  {
+    id: 8,
+    title: "Is Anthropic the New Microsoft? Then Claude Code Is the New Internet Explorer…",
+    description: "I'm a paying Anthropic subscriber. This still concerns me.",
+    thumbnail: "b7.jpg",
+    youtubeUrl: "https://medium.com/@wonderwhy-er/is-anthropic-the-new-microsoft-then-claude-code-is-the-new-internet-explorer-98375ba9dce2",
+    duration: "Read",
+    date: "Mar 2026",
+    badge: "new"
+  },
+  {
+    id: 9,
+    title: "How AI Skills Are Quietly Automating My Workday",
+    description: "Ricards Krizanovskis shares how AI skills are quietly transforming daily workflows — from routine tasks to complex automations.",
+    thumbnail: "b8.jpg",
+    youtubeUrl: "https://medium.com/@ricardskrizanovskis/how-ai-skills-are-quietly-automating-my-workday-220a1b7b4707",
+    duration: "Read",
+    date: "Feb 26, 2026",
+    badge: "new"
+  },
+  {
     id: 1,
     title: "Build a Google Analytics AI Assistant in 10 Minutes",
     description: "In my previous article, I explained how our Desktop Commander team uses CLIs and AI agents to automate various workflows — from BigQuery data analysis to CRM integrations to task management.",
     thumbnail: "b5.jpg",
     youtubeUrl: "https://wonderwhy-er.medium.com/build-a-google-analytics-ai-assistant-in-10-minutes-a19f0971d4b6",
     duration: "Read",
-    date: "Oct 6, 2025",
-    badge: "new"
+    date: "Oct 6, 2025"
   },
   {
     id: 2,
@@ -109,7 +138,7 @@ const Blog = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Hear from our founders
+            Hear from our team
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Follow our team on YouTube and Medium
