@@ -12,6 +12,7 @@ import {
   navOrder,
   flatNavLinks,
   useCasesMenu,
+  promptsMenu,
   resourcesMenu,
   type MegaMenu,
   type NavLink,
@@ -20,6 +21,7 @@ import {
 const flatByHref = new Map(flatNavLinks.map((l) => [l.href, l]));
 const megaByKey: Record<string, MegaMenu> = {
   [`mega:${useCasesMenu.label}`]: useCasesMenu,
+  [`mega:${promptsMenu.label}`]: promptsMenu,
   [`mega:${resourcesMenu.label}`]: resourcesMenu,
 };
 

@@ -127,11 +127,30 @@ export const resourcesMenu: MegaMenu = {
 };
 
 // ---------------------------------------------------------------------------
+// Prompts dropdown (single-column mega-menu)
+// ---------------------------------------------------------------------------
+
+export const promptsMenu: MegaMenu = {
+  label: 'Prompts',
+  columns: [
+    {
+      heading: 'Popular prompts',
+      links: [
+        { label: 'Organise my Downloads', href: '/library/prompts/organise-my-downloads-folder/' },
+        { label: 'Explain a codebase', href: '/library/prompts/explain-codebase-or-repository/' },
+        { label: 'Create knowledge base', href: '/library/prompts/create-knowledge-base-folder/' },
+        { label: 'Extract data from PDFs', href: '/library/prompts/extract-data-from-pdfs/' },
+      ],
+    },
+  ],
+  footer: { label: 'Browse all prompts →', href: '/library/prompts/' },
+};
+
+// ---------------------------------------------------------------------------
 // Flat top-level items rendered alongside the mega-menus
 // ---------------------------------------------------------------------------
 
 export const flatNavLinks: NavLink[] = [
-  { label: 'Prompts', href: '/library/' },
   { label: 'MCP', href: '/mcp/' },
   { label: 'Pricing', href: '/pricing/' },
 ];
@@ -140,7 +159,7 @@ export const flatNavLinks: NavLink[] = [
 // `mega:<label>` slots a mega-menu, anything else is treated as a flat link href.
 export const navOrder: ReadonlyArray<string> = [
   'mega:Use Cases',
-  '/library/',
+  'mega:Prompts',
   '/mcp/',
   '/pricing/',
   'mega:Resources',
