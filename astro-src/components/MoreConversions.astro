@@ -1,0 +1,53 @@
+---
+/**
+ * Cross-linking grid for file-conversion use-case pages.
+ *
+ * Shows all conversion pages except the current one, giving each page
+ * 8 extra inbound internal links (SEO #20 — click-depth improvement).
+ *
+ * Usage:
+ *   <MoreConversions current="heic-to-jpg" />
+ */
+interface Props {
+  /** Slug of the current page so it can be excluded from the grid */
+  current: string;
+}
+
+const { current } = Astro.props;
+
+const conversions = [
+  { slug: 'heic-to-jpg',  label: 'HEIC → JPG',  from: 'HEIC', to: 'JPG' },
+  { slug: 'heic-to-png',  label: 'HEIC → PNG',  from: 'HEIC', to: 'PNG' },
+  { slug: 'png-to-jpg',   label: 'PNG → JPG',   from: 'PNG',  to: 'JPG' },
+  { slug: 'webp-to-jpg',  label: 'WebP → JPG',  from: 'WebP', to: 'JPG' },
+  { slug: 'pdf-to-png',   label: 'PDF → PNG',   from: 'PDF',  to: 'PNG' },
+  { slug: 'avif-to-jpg',  label: 'AVIF → JPG',  from: 'AVIF', to: 'JPG' },
+  { slug: 'cr2-to-jpg',   label: 'CR2 → JPG',   from: 'CR2',  to: 'JPG' },
+  { slug: 'jfif-to-jpg',  label: 'JFIF → JPG',  from: 'JFIF', to: 'JPG' },
+  { slug: 'tiff-to-jpg',  label: 'TIFF → JPG',  from: 'TIFF', to: 'JPG' },
+];
+
+const others = conversions.filter((c) => c.slug !== current);
+---
+
+<section class="py-16 md:py-20 border-t border-dc-border">
+  <div class="container mx-auto max-w-5xl px-4 sm:px-6">
+    <h2 class="text-2xl font-bold text-foreground mb-2 text-center">More file conversions</h2>
+    <p class="text-muted-foreground text-center mb-8">All local, all free — no uploads required.</p>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+      {others.map((c) => (
+        <a
+          href={`/use-cases/file-management/${c.slug}/`}
+          class="flex items-center justify-center gap-2 bg-dc-card/30 hover:bg-dc-card/60 border border-dc-border hover:border-primary/40 rounded-lg px-4 py-3 text-sm font-medium text-foreground transition-colors"
+        >
+          <span class="text-muted-foreground">{c.from}</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary shrink-0">
+            <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+          </svg>
+          <span>{c.to}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

@@ -2,9 +2,10 @@
 User-agent: *
 Disallow: /open/
 
-# Internal test / scratch pages — not real content, never intended for search.
+# Internal test / scratch / legacy pages — not real content, never intended for search.
 Disallow: /library/cta-test/
 Disallow: /product/test/
+Disallow: /product/early-access/
 
 # SEO #8 Tier 2: low-traffic prompt pages de-indexed to save crawl budget.
 # URLs kept live (for direct links / share URLs) but hidden from search.

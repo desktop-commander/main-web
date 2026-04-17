@@ -10,6 +10,7 @@ import WJPersonasSection from '../../../../../src/components/use-cases/file-mana
 import WJFinalCTASection from '../../../../../src/components/use-cases/file-management/webp-to-jpg/WJFinalCTASection';
 import WaitlistSection from '../../../../../src/components/use-cases/WaitlistSection';
 import Footer from '../../../../../src/components/Footer';
+import MoreConversions from '../../../../components/MoreConversions.astro';
 ---
 
 <Layout 
@@ -31,7 +32,8 @@ import Footer from '../../../../../src/components/Footer';
       <WJFinalCTASection client:visible />
     </main>
     
-    <Footer client:visible />
+    <MoreConversions current="webp-to-jpg" />
+      <Footer client:visible />
   </div>
 </Layout>
 

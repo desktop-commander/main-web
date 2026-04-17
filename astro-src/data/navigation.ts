@@ -94,6 +94,7 @@ export const resourcesMenu: MegaMenu = {
       heading: 'Resources',
       links: [
         { label: 'All articles', href: '/blog/' },
+        { label: 'Prompt Library', href: '/library/prompts/' },
         { label: 'MCP server', href: '/mcp/' },
       ],
     },
