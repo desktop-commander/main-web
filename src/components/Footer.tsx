@@ -50,6 +50,7 @@ const Footer = () => {
       heading: 'Resources',
       links: [
         { label: 'Blog', href: '/blog/' },
+        { label: 'AI value comparison', href: '/best-value-ai/' },
         { label: 'Discord', href: 'https://discord.gg/pyXshw54', external: true },
         {
           label: 'GitHub',

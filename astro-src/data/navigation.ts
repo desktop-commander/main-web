@@ -96,6 +96,11 @@ export const resourcesMenu: MegaMenu = {
         { label: 'All articles', href: '/blog/' },
         { label: 'Prompt Library', href: '/library/prompts/' },
         { label: 'MCP server', href: '/mcp/' },
+        {
+          label: 'AI value comparison',
+          href: '/best-value-ai/',
+          description: 'Which AI models and providers are best value?',
+        },
       ],
     },
     {
