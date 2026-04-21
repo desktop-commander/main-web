@@ -46,7 +46,7 @@ const ctaHref = isMcpPage ? '/mcp#installation' : '/#download';
   style="top: var(--banner-height, 0px);"
   aria-label="Primary"
 >
-  <div class="container mx-auto max-w-7xl px-4 sm:px-6 py-4">
+  <div class="container mx-auto max-w-7xl px-4 sm:px-6 py-4 relative">
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-8">
         <a
@@ -211,7 +211,8 @@ const ctaHref = isMcpPage ? '/mcp#installation' : '/#download';
   }
   /* Panel hover bridge so cursor can travel from trigger to panel without closing */
   .dc-mega__panel { padding-top: 0.5rem; left: 0; }
-  /* Last mega-menu (Resources): align panel to right edge so it doesn't overflow viewport */
+  /* Last mega-menu (Resources): break out of <li> positioning and align to nav container */
+  .dc-mega:last-child { position: static; }
   .dc-mega:last-child > .dc-mega__panel { left: auto; right: 0; }
 </style>
 
