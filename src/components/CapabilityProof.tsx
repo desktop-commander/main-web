@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from "react";
-import { Check } from "lucide-react";
+import { Check, Download } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { trackDownloadRedirect } from "@/lib/analytics/tracking";
 
 const capabilities = [
   "Organize files and folders",
   "Connect apps and tools",
   "Automate repetitive workflows",
   "Build apps and software",
-  "Solve technical tasks on your computer",
 ];
 
 const CapabilityProof = () => {
@@ -80,6 +81,28 @@ const CapabilityProof = () => {
                   </li>
                 ))}
               </ul>
+            </div>
+
+            {/* CTA */}
+            <div
+              className={`mt-8 transition-all duration-700 ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
+              }`}
+              style={{
+                transitionDelay: isVisible ? "620ms" : "0ms",
+              }}
+            >
+              <Button size="lg" asChild className="group">
+                <a
+                  href="#download"
+                  onClick={() => trackDownloadRedirect("capability_proof")}
+                >
+                  <Download className="w-5 h-5" />
+                  Download App
+                </a>
+              </Button>
             </div>
           </div>
 
