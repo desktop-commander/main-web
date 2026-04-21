@@ -82,34 +82,6 @@ const CapabilityProof = () => {
                 ))}
               </ul>
             </div>
-
-            {/* CTA */}
-            <div
-              className={`mt-8 flex justify-center transition-all duration-700 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-4"
-              }`}
-              style={{
-                transitionDelay: isVisible ? "620ms" : "0ms",
-              }}
-            >
-              <Button
-                variant="hero"
-                size="lg"
-                asChild
-                className="group transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-dc-accent/20 active:scale-95"
-              >
-                <a
-                  href="#download"
-                  onClick={() => trackDownloadRedirect("capability_proof")}
-                  className="flex items-center gap-2"
-                >
-                  <Download className="w-5 h-5 transition-transform duration-300 group-hover:rotate-12" />
-                  Download App
-                </a>
-              </Button>
-            </div>
           </div>
 
           {/* Right: video with overlays */}
@@ -136,6 +108,34 @@ const CapabilityProof = () => {
               </video>
             </div>
           </div>
+        </div>
+
+        {/* Full-width centered CTA */}
+        <div
+          className={`mt-14 md:mt-20 flex justify-center transition-all duration-700 ${
+            isVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-4"
+          }`}
+          style={{
+            transitionDelay: isVisible ? "700ms" : "0ms",
+          }}
+        >
+          <Button
+            variant="hero"
+            size="lg"
+            asChild
+            className="group transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-dc-accent/20 active:scale-95"
+          >
+            <a
+              href="#download"
+              onClick={() => trackDownloadRedirect("capability_proof")}
+              className="flex items-center gap-2"
+            >
+              <Download className="w-5 h-5 transition-transform duration-300 group-hover:rotate-12" />
+              Download App
+            </a>
+          </Button>
         </div>
       </div>
     </section>

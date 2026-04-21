@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { FolderOpen, BarChart3, Plug, ArrowRight, Terminal } from "lucide-react";
+import { FolderOpen, BarChart3, Plug, ArrowRight, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { trackDownloadRedirect } from "@/lib/analytics/tracking";
 
@@ -71,7 +71,7 @@ const UseCases = () => {
           }`}
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 leading-[1.15]">
-            Three ways people use it
+            Three ways to get started
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Start with one of these and let your agent run.
@@ -86,7 +86,7 @@ const UseCases = () => {
               <a
                 key={useCase.title}
                 href={useCase.href}
-                className={`group relative flex flex-col h-full p-6 sm:p-8 rounded-2xl border border-dc-border bg-background/60 hover:border-dc-blue/40 hover:bg-background/80 transition-all duration-500 ${
+                className={`group relative flex flex-col h-full p-6 sm:p-8 rounded-2xl border border-dc-border bg-background/60 hover:border-blue-500/40 hover:bg-background/80 transition-all duration-500 ${
                   isVisible
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-8"
@@ -96,8 +96,8 @@ const UseCases = () => {
                 }}
               >
                 {/* Icon */}
-                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-dc-blue/10 ring-1 ring-dc-blue/20 mb-6 group-hover:bg-dc-blue/15 transition-colors">
-                  <Icon className="w-6 h-6 text-dc-blue" />
+                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-blue-500/10 ring-1 ring-blue-500/30 mb-6 group-hover:bg-blue-500/20 transition-colors">
+                  <Icon className="w-6 h-6 text-blue-400" />
                 </div>
 
                 {/* Title */}
@@ -120,7 +120,7 @@ const UseCases = () => {
                 </ul>
 
                 {/* CTA */}
-                <div className="flex items-center gap-1.5 text-sm font-medium text-primary group-hover:gap-2.5 transition-all">
+                <div className="flex items-center gap-1.5 text-sm font-medium text-blue-400 group-hover:gap-2.5 transition-all">
                   <span>See the full guide</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </div>
@@ -139,14 +139,19 @@ const UseCases = () => {
           }}
         >
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" asChild className="group">
+            <Button
+              variant="hero"
+              size="lg"
+              asChild
+              className="group transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-dc-accent/20 active:scale-95"
+            >
               <a
                 href="#download"
                 onClick={() => trackDownloadRedirect("use_cases_cta")}
                 className="flex items-center justify-center gap-2"
               >
-                <Terminal className="h-5 w-5" />
-                Start Building
+                <Download className="h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
+                Download App
               </a>
             </Button>
             <a
