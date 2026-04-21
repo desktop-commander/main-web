@@ -7,36 +7,30 @@ const useCases = [
   {
     icon: FolderOpen,
     title: "Managing files",
-    description:
-      "Move, organize, convert, rename. Anything you'd normally open Finder or write a script for.",
     prompts: [
-      "Sort my Downloads folder by file type",
-      "Convert every HEIC in this folder to JPG",
-      "Find duplicate photos and list them",
+      "Sort my Downloads by file type",
+      "Convert HEIC photos to JPG",
+      "Find duplicate photos",
     ],
     href: "/use-cases/file-management/",
   },
   {
     icon: BarChart3,
     title: "Chatting with your data",
-    description:
-      "Pandas-level analysis on your CSVs and spreadsheets without writing any code.",
     prompts: [
-      "Summarize Q1 sales by region from revenue.csv",
-      "Find customers who churned after 3 months",
-      "Compare this month's invoices to last month's",
+      "Summarize revenue.csv by region",
+      "Find customers who churned",
+      "Compare last month's invoices to this month's",
     ],
     href: "/use-cases/analyze-data/",
   },
   {
     icon: Plug,
     title: "Connecting apps",
-    description:
-      "Your tools are databases wrapped in UIs. Let AI talk to them directly.",
     prompts: [
-      "Pull this week's new HubSpot deals and summarize in Slack",
-      "Add yesterday's Calendly calls to the CRM",
-      "Export this week's Linear tasks to a markdown doc",
+      "Summarize new HubSpot deals in Slack",
+      "Add Calendly calls to the CRM",
+      "Export Linear tasks to markdown",
     ],
     href: "/use-cases/connect-apps/",
   },
@@ -107,33 +101,23 @@ const UseCases = () => {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-3">
+                <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-5">
                   {useCase.title}
                 </h3>
 
-                {/* Description */}
-                <p className="text-base text-muted-foreground leading-relaxed mb-6">
-                  {useCase.description}
-                </p>
-
                 {/* Starter prompts */}
-                <div className="mb-6 flex-grow">
-                  <p className="text-xs uppercase tracking-wider text-muted-foreground font-medium mb-3">
-                    Try starting with:
-                  </p>
-                  <ul className="space-y-2">
-                    {useCase.prompts.map((prompt) => (
-                      <li
-                        key={prompt}
-                        className="text-sm text-foreground/90 leading-relaxed font-mono"
-                      >
-                        <span className="text-muted-foreground/60">&ldquo;</span>
-                        {prompt}
-                        <span className="text-muted-foreground/60">&rdquo;</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <ul className="space-y-2 mb-6 flex-grow">
+                  {useCase.prompts.map((prompt) => (
+                    <li
+                      key={prompt}
+                      className="text-sm text-foreground/85 leading-relaxed font-mono"
+                    >
+                      <span className="text-muted-foreground/60">&ldquo;</span>
+                      {prompt}
+                      <span className="text-muted-foreground/60">&rdquo;</span>
+                    </li>
+                  ))}
+                </ul>
 
                 {/* CTA */}
                 <div className="flex items-center gap-1.5 text-sm font-medium text-primary group-hover:gap-2.5 transition-all">
