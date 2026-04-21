@@ -1,14 +1,51 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Terminal, FileText, Zap, Shield, ArrowRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import { trackDownloadRedirect } from '@/lib/analytics/tracking';
+import { FolderOpen, BarChart3, Plug, ArrowRight, Terminal } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { trackDownloadRedirect } from "@/lib/analytics/tracking";
+
+const useCases = [
+  {
+    icon: FolderOpen,
+    title: "Managing files",
+    description:
+      "Move, organize, convert, rename. Anything you'd normally open Finder or write a script for.",
+    prompts: [
+      "Sort my Downloads folder by file type",
+      "Convert every HEIC in this folder to JPG",
+      "Find duplicate photos and list them",
+    ],
+    href: "/use-cases/file-management/",
+  },
+  {
+    icon: BarChart3,
+    title: "Chatting with your data",
+    description:
+      "Pandas-level analysis on your CSVs and spreadsheets without writing any code.",
+    prompts: [
+      "Summarize Q1 sales by region from revenue.csv",
+      "Find customers who churned after 3 months",
+      "Compare this month's invoices to last month's",
+    ],
+    href: "/use-cases/analyze-data/",
+  },
+  {
+    icon: Plug,
+    title: "Connecting apps",
+    description:
+      "Your tools are databases wrapped in UIs. Let AI talk to them directly.",
+    prompts: [
+      "Pull this week's new HubSpot deals and summarize in Slack",
+      "Add yesterday's Calendly calls to the CRM",
+      "Export this week's Linear tasks to a markdown doc",
+    ],
+    href: "/use-cases/connect-apps/",
+  },
+];
 
 const UseCases = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Intersection Observer for scroll-triggered animations
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -16,10 +53,7 @@ const UseCases = () => {
           setIsVisible(true);
         }
       },
-      {
-        threshold: 0.1,
-        rootMargin: '-50px'
-      }
+      { threshold: 0.1, rootMargin: "-50px" },
     );
 
     if (sectionRef.current) {
@@ -29,141 +63,116 @@ const UseCases = () => {
     return () => observer.disconnect();
   }, []);
 
-  const useCases = [
-    {
-      icon: Shield,
-      title: "Manage your files",
-      description: "Move, convert, and organize files using natural language.",
-      href: "/use-cases/file-management/",
-      linkText: "See how it works"
-    },
-    {
-      icon: FileText,
-      title: "Build your knowledge base",
-      description: "Write and organize markdown files by talking to AI.",
-      href: "/use-cases/knowledge-management/",
-      linkText: "See how it works"
-    },
-    {
-      icon: Zap,
-      title: "Build software without coding",
-      description: "Describe what you want—AI writes the code and saves it locally.",
-      href: "/use-cases/build-prototype/",
-      linkText: "See how it works"
-    }
-  ];
-
   return (
-    <section ref={sectionRef} id="use-cases" className="py-16 md:py-24 bg-dc-surface/30">
+    <section
+      ref={sectionRef}
+      id="use-cases"
+      className="py-20 md:py-28 bg-dc-surface/30"
+    >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-        {/* Header - Mobile optimized */}
-        <div className={`text-center mb-12 md:mb-16 transition-all duration-1000 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
-            What you can do
+        {/* Header */}
+        <div
+          className={`text-center mb-14 md:mb-20 transition-all duration-1000 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 leading-[1.15]">
+            Three ways people use it
           </h2>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-            From file operations to deployment pipelines—all through conversation
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Start with one of these and let your agent run.
           </p>
         </div>
 
-        {/* Use Cases Grid - Mobile responsive */}
-        <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {/* Cards */}
+        <div className="grid gap-6 md:gap-8 md:grid-cols-3">
           {useCases.map((useCase, index) => {
-            const IconComponent = useCase.icon;
-            const cardContent = (
-              <CardContent className="p-6 sm:p-8 h-full flex flex-col">
-                {/* Mobile: Vertical layout, Desktop: Horizontal with icon */}
-                <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4 mb-4">
-                  <div className="flex items-center justify-center w-12 h-12 bg-dc-surface border border-dc-border rounded-xl group-hover:border-dc-blue/30 group-hover:bg-dc-blue/5 transition-all duration-300 flex-shrink-0 mx-auto sm:mx-0">
-                    <IconComponent className="h-6 w-6 text-foreground group-hover:text-dc-blue transition-colors duration-300" />
-                  </div>
-                  <h3 className="text-lg sm:text-xl font-semibold text-foreground text-center sm:text-left leading-tight">
-                    {useCase.title}
-                  </h3>
+            const Icon = useCase.icon;
+            return (
+              <a
+                key={useCase.title}
+                href={useCase.href}
+                className={`group relative flex flex-col h-full p-6 sm:p-8 rounded-2xl border border-dc-border bg-background/60 hover:border-dc-blue/40 hover:bg-background/80 transition-all duration-500 ${
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
+                }`}
+                style={{
+                  transitionDelay: isVisible ? `${200 + index * 120}ms` : "0ms",
+                }}
+              >
+                {/* Icon */}
+                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-dc-blue/10 ring-1 ring-dc-blue/20 mb-6 group-hover:bg-dc-blue/15 transition-colors">
+                  <Icon className="w-6 h-6 text-dc-blue" />
                 </div>
-                
-                <p className="text-muted-foreground leading-relaxed text-center sm:text-left flex-grow">
+
+                {/* Title */}
+                <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-3">
+                  {useCase.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-base text-muted-foreground leading-relaxed mb-6">
                   {useCase.description}
                 </p>
 
-                {useCase.href && useCase.linkText && (
-                  <div className="mt-4 text-center sm:text-left">
-                    <span className="text-primary text-sm font-medium group-hover:underline inline-flex items-center gap-1">
-                      {useCase.linkText}
-                      <ArrowRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </div>
-                )}
-              </CardContent>
-            );
+                {/* Starter prompts */}
+                <div className="mb-6 flex-grow">
+                  <p className="text-xs uppercase tracking-wider text-muted-foreground font-medium mb-3">
+                    Try starting with:
+                  </p>
+                  <ul className="space-y-2">
+                    {useCase.prompts.map((prompt) => (
+                      <li
+                        key={prompt}
+                        className="text-sm text-foreground/90 leading-relaxed font-mono"
+                      >
+                        <span className="text-muted-foreground/60">&ldquo;</span>
+                        {prompt}
+                        <span className="text-muted-foreground/60">&rdquo;</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-            const cardClasses = `group bg-background/50 border-dc-border hover:border-dc-blue/20 hover:bg-dc-blue/3 transition-all duration-300 hover:shadow-md hover:shadow-dc-blue/5 ${
-              isVisible 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-8'
-            } ${useCase.href ? 'cursor-pointer' : ''}`;
-
-            const cardStyle = {
-              transitionDelay: isVisible ? `${200 + index * 150}ms` : '0ms'
-            };
-
-            if (useCase.href) {
-              return (
-                <a key={index} href={useCase.href} className="block h-full">
-                  <Card className={`${cardClasses} h-full`} style={cardStyle}>
-                    {cardContent}
-                  </Card>
-                </a>
-              );
-            }
-
-            return (
-              <Card 
-                key={index} 
-                className={cardClasses}
-                style={cardStyle}
-              >
-                {cardContent}
-              </Card>
+                {/* CTA */}
+                <div className="flex items-center gap-1.5 text-sm font-medium text-primary group-hover:gap-2.5 transition-all">
+                  <span>See the full guide</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </div>
+              </a>
             );
           })}
         </div>
 
-        {/* Bottom CTA - Mobile optimized */}
-        <div className={`text-center mt-12 md:mt-16 transition-all duration-1000 delay-1000 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
-          <p className="text-base sm:text-lg text-muted-foreground mb-6 px-4 sm:px-0">
-            Try these use cases with Desktop Commander
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 sm:px-0">
-            <Button 
-              variant="hero" 
-              size="lg" 
-              className="w-full sm:w-auto transition-all duration-300 hover:scale-105 active:scale-95" 
-              asChild
-            >
-              <a 
-                href="./#download" 
+        {/* Bottom CTA */}
+        <div
+          className={`text-center mt-14 md:mt-20 transition-all duration-1000 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+          style={{
+            transitionDelay: isVisible ? "640ms" : "0ms",
+          }}
+        >
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button size="lg" asChild className="group">
+              <a
+                href="#download"
+                onClick={() => trackDownloadRedirect("use_cases_cta")}
                 className="flex items-center justify-center gap-2"
-                onClick={() => trackDownloadRedirect('use_cases_cta')}
               >
                 <Terminal className="h-5 w-5" />
                 Start Building
               </a>
             </Button>
-            <a 
+            <a
               href="/library"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 border border-dc-border text-foreground rounded-lg font-medium hover:bg-dc-surface/50 transition-all duration-300 hover:scale-105 active:scale-95 text-center"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-dc-border text-foreground rounded-lg font-medium hover:bg-dc-surface/50 transition-all"
             >
-              Browse 60+ Prompts to use with DC
+              Browse 60+ prompts
             </a>
           </div>
         </div>
-
       </div>
     </section>
   );
