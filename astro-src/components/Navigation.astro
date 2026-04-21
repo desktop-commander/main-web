@@ -211,6 +211,8 @@ const ctaHref = isMcpPage ? '/mcp#installation' : '/#download';
   }
   /* Panel hover bridge so cursor can travel from trigger to panel without closing */
   .dc-mega__panel { padding-top: 0.5rem; }
+  /* Last mega-menu (Resources): align panel to right edge so it doesn't overflow viewport */
+  .dc-mega:last-child > .dc-mega__panel { left: auto; right: 0; }
 </style>
 
 <script>
