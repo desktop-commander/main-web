@@ -178,7 +178,7 @@ const HeroAstro = () => {
               </div>
               
               {/* File browser overlay widget */}
-              <div className="absolute -top-16 -right-6 sm:-top-20 sm:-right-10 transform rotate-3 hover:rotate-1 transition-transform duration-500 pointer-events-none select-none opacity-90">
+              <div className="absolute -top-4 -right-6 sm:-top-6 sm:-right-10 transform rotate-3 hover:rotate-1 transition-transform duration-500 pointer-events-none select-none opacity-90">
                 <div className="bg-dc-surface border border-dc-border rounded-lg shadow-xl shadow-black/40 overflow-hidden w-44 sm:w-52">
                   {/* Mini title bar */}
                   <div className="flex items-center gap-1.5 px-3 py-2 bg-background/50 border-b border-dc-border">
@@ -298,7 +298,7 @@ const HeroAstro = () => {
             <p className={`text-sm text-muted-foreground transition-all duration-1000 delay-500 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
-              join 1M+ users agentising their workflows.
+              join 250k+ people agentising their workflows.
             </p>
 
           </div>

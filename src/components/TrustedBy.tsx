@@ -1,8 +1,6 @@
 import { Star, Download, Github } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef } from "react";
 import TestimonialsStrip from "./TestimonialsStrip";
-import { trackDownloadRedirect } from '@/lib/analytics/tracking';
 
 const TrustedBy = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -44,7 +42,7 @@ const TrustedBy = () => {
     },
     {
       icon: Github,
-      value: "5.2k+",
+      value: "5.9k+",
       label: "GitHub Stars",
       description: "Community trust"
     }
@@ -119,14 +117,14 @@ const TrustedBy = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="py-12 md:py-16 bg-white">
+    <section ref={sectionRef} className="pt-16 md:pt-20 pb-8 md:pb-10 bg-dc-surface/30">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6">
         {/* Header - Mobile optimized */}
         <div className={`text-center mb-8 md:mb-12 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-4 md:mb-6 leading-tight">
-            Trusted by the AI community
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
+            From the community
           </h2>
         </div>
 
@@ -146,14 +144,14 @@ const TrustedBy = () => {
                   transitionDelay: isVisible ? `${500 + index * 200}ms` : '0ms'
                 }}
               >
-                <div className="flex items-center justify-center w-12 h-12 bg-dc-blue/10 rounded-xl group-hover:bg-dc-blue/20 group-hover:scale-110 transition-all duration-300 flex-shrink-0">
-                  <IconComponent className="h-6 w-6 text-dc-blue transition-transform duration-300 group-hover:rotate-12" />
+                <div className="flex items-center justify-center w-12 h-12 bg-blue-500/10 ring-1 ring-blue-500/30 rounded-xl group-hover:bg-blue-500/20 group-hover:scale-110 transition-all duration-300 flex-shrink-0">
+                  <IconComponent className="h-6 w-6 text-blue-400 transition-transform duration-300 group-hover:rotate-12" />
                 </div>
                 <div className="text-center sm:text-left">
-                  <div className="text-2xl sm:text-3xl font-bold text-slate-900">
+                  <div className="text-2xl sm:text-3xl font-bold text-foreground">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-slate-600">
+                  <div className="text-sm text-muted-foreground">
                     {stat.label}
                   </div>
                 </div>
@@ -164,51 +162,10 @@ const TrustedBy = () => {
       </div>
 
       {/* Testimonials - Outside container for full-width */}
-      <div className={`mb-6 transition-all duration-1000 delay-1000 ${
+      <div className={`transition-all duration-1000 delay-1000 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}>
         <TestimonialsStrip testimonials={testimonials} />
-      </div>
-
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-        {/* CTA Section - Mobile optimized */}
-        <div className={`text-center transition-all duration-1000 delay-1200 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
-          <p className="text-lg sm:text-xl text-slate-600 mb-6 px-4 sm:px-0">
-            Try it out for yourself or browse our prompt library!
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 sm:px-0">
-            <Button 
-              variant="hero" 
-              size="lg" 
-              className="w-full sm:w-auto transition-all duration-300 hover:scale-105 active:scale-95" 
-              asChild
-            >
-              <a 
-                href="#download" 
-                className="flex items-center justify-center gap-2"
-                onClick={() => trackDownloadRedirect('trusted_by_cta')}
-              >
-                <Download className="h-5 w-5" />
-                Download
-              </a>
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="w-full sm:w-auto transition-all duration-300 hover:scale-105 active:scale-95" 
-              asChild
-            >
-              <a 
-                href="/library"
-                className="flex items-center justify-center gap-2"
-              >
-                Browse Prompt Library
-              </a>
-            </Button>
-          </div>
-        </div>
       </div>
     </section>
   );

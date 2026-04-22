@@ -132,16 +132,16 @@ const Blog = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="blog" className="py-20 bg-dc-surface/30">
+    <section ref={sectionRef} id="blog" className="pt-8 md:pt-10 pb-20 bg-dc-surface/30">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6">
         <div className={`text-center mb-12 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Hear from our team
+            From our team
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Follow our team on YouTube and Medium
+            Thoughts and demos on Medium and YouTube
           </p>
         </div>
         
