@@ -8,6 +8,7 @@ import CapabilityProof from '../../src/components/CapabilityProof';
 import UseCases from '../../src/components/UseCases';
 import WhyTheApp from '../../src/components/WhyTheApp';
 import PromptLibrary from '../../src/components/PromptLibrary';
+import AppAndMCP from '../../src/components/AppAndMCP';
 import TrustedBy from '../../src/components/TrustedBy';
 import Blog from '../../src/components/Blog';
 import PricingTeaser from '../../src/components/PricingTeaser';
@@ -30,8 +31,10 @@ import Footer from '../../src/components/Footer';
       <CapabilityProof client:visible />
       <UseCases client:visible />
       <WhyTheApp client:visible />
-      <PromptLibrary client:visible />
+      {/* PromptLibrary hidden — users reach prompts via nav or UseCases "Browse 60+ prompts" link */}
+      {/* <PromptLibrary client:visible /> */}
       <PricingTeaser client:visible />
+      <AppAndMCP client:visible />
       <TrustedBy client:visible />
       <Blog client:visible />
       <DownloadSection client:visible />

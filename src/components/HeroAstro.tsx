@@ -1,15 +1,63 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Download, Star } from "lucide-react";
+import { ArrowRight, Download, Check } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { trackDownloadRedirect } from '@/lib/analytics/tracking';
 
 // Astro-compatible Hero - Redesigned for App-first positioning
+type LogStep = { label: string; delay: number; done?: boolean };
+
+const EXECUTION_STEPS: LogStep[] = [
+  { label: "Opened ~/Downloads", delay: 600 },
+  { label: 'Scanning 247 files…', delay: 900 },
+  { label: 'Found 12 matching "invoice"', delay: 900 },
+  { label: "Created /Desktop/Invoices-2026", delay: 900 },
+  { label: "Moved 12 files · 1.4s", delay: 900, done: true },
+];
+
 const HeroAstro = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [visibleSteps, setVisibleSteps] = useState(0);
   const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     setIsVisible(true);
+  }, []);
+
+  // Streaming execution log — steps appear one at a time, then loop.
+  useEffect(() => {
+    let cancelled = false;
+    let timers: ReturnType<typeof setTimeout>[] = [];
+
+    const run = () => {
+      setVisibleSteps(0);
+      EXECUTION_STEPS.forEach((_step, i) => {
+        const cumulative = EXECUTION_STEPS.slice(0, i + 1).reduce(
+          (acc, s) => acc + s.delay,
+          0,
+        );
+        timers.push(
+          setTimeout(() => {
+            if (!cancelled) setVisibleSteps(i + 1);
+          }, cumulative),
+        );
+      });
+      // Restart the loop after the last step lingers on screen.
+      const total = EXECUTION_STEPS.reduce((a, s) => a + s.delay, 0) + 3200;
+      timers.push(
+        setTimeout(() => {
+          if (!cancelled) run();
+        }, total),
+      );
+    };
+
+    // Small initial delay so the entrance animation can breathe.
+    const boot = setTimeout(run, 800);
+
+    return () => {
+      cancelled = true;
+      clearTimeout(boot);
+      timers.forEach(clearTimeout);
+    };
   }, []);
 
   return (
@@ -85,12 +133,52 @@ const HeroAstro = () => {
                         </svg>
                       </div>
                     </div>
+
+                    {/* Live execution log — proves "reports back" */}
+                    <div className="mt-5 pt-4 border-t border-dc-border/60">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="relative flex h-2 w-2">
+                          <span className={`absolute inline-flex h-full w-full rounded-full bg-dc-accent ${
+                            visibleSteps > 0 && visibleSteps < EXECUTION_STEPS.length ? 'animate-ping opacity-60' : 'opacity-0'
+                          }`}></span>
+                          <span className={`relative inline-flex rounded-full h-2 w-2 ${
+                            visibleSteps >= EXECUTION_STEPS.length ? 'bg-green-500' : 'bg-dc-accent'
+                          }`}></span>
+                        </span>
+                        <span className="text-[11px] uppercase tracking-wider text-muted-foreground font-medium">
+                          {visibleSteps >= EXECUTION_STEPS.length ? 'Completed' : visibleSteps > 0 ? 'Executing' : 'Ready'}
+                        </span>
+                      </div>
+                      <div className="font-mono text-[11px] sm:text-xs space-y-1.5 min-h-[132px]">
+                        {EXECUTION_STEPS.map((step, i) => {
+                          const shown = i < visibleSteps;
+                          const isLast = i === EXECUTION_STEPS.length - 1;
+                          return (
+                            <div
+                              key={i}
+                              className={`flex items-start gap-2 transition-all duration-500 ${
+                                shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-1'
+                              }`}
+                            >
+                              {step.done ? (
+                                <Check className="h-3.5 w-3.5 text-green-500 flex-shrink-0 mt-0.5" />
+                              ) : (
+                                <span className="text-dc-accent flex-shrink-0 mt-0.5 leading-none">›</span>
+                              )}
+                              <span className={`${isLast && shown ? 'text-foreground' : 'text-muted-foreground'} break-words`}>
+                                {step.label}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
               
               {/* File browser overlay widget */}
-              <div className="absolute -top-12 -right-4 sm:-top-16 sm:-right-6 transform rotate-3 hover:rotate-1 transition-transform duration-500 pointer-events-none select-none opacity-90">
+              <div className="absolute -top-4 -right-6 sm:-top-6 sm:-right-10 transform rotate-3 hover:rotate-1 transition-transform duration-500 pointer-events-none select-none opacity-90">
                 <div className="bg-dc-surface border border-dc-border rounded-lg shadow-xl shadow-black/40 overflow-hidden w-44 sm:w-52">
                   {/* Mini title bar */}
                   <div className="flex items-center gap-1.5 px-3 py-2 bg-background/50 border-b border-dc-border">
@@ -101,6 +189,37 @@ const HeroAstro = () => {
                   </div>
                   {/* File list */}
                   <div className="p-2 space-y-1 text-xs">
+                    {/* Newly created folder — appears when the log reports "Created …" */}
+                    <div
+                      aria-hidden={visibleSteps < 4}
+                      className={`flex items-center gap-2 px-2 rounded overflow-hidden transition-all duration-500 ease-out ${
+                        visibleSteps >= 4
+                          ? 'max-h-8 py-1 opacity-100'
+                          : 'max-h-0 py-0 opacity-0'
+                      } ${
+                        visibleSteps === 4
+                          ? 'bg-green-500/15 ring-1 ring-green-500/40'
+                          : 'hover:bg-dc-border/30'
+                      }`}
+                    >
+                      <svg
+                        className={`w-3.5 h-3.5 flex-shrink-0 transition-colors duration-500 ${
+                          visibleSteps === 4 ? 'text-green-400' : 'text-blue-400'
+                        }`}
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+                      </svg>
+                      <span className="text-foreground truncate">Invoices-2026</span>
+                      <span
+                        className={`ml-auto text-[8px] uppercase tracking-wider font-medium text-green-400 transition-opacity duration-500 ${
+                          visibleSteps === 4 ? 'opacity-100' : 'opacity-0'
+                        }`}
+                      >
+                        New
+                      </span>
+                    </div>
                     <div className="flex items-center gap-2 px-2 py-1 rounded hover:bg-dc-border/30">
                       <svg className="w-3.5 h-3.5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
@@ -149,22 +268,22 @@ const HeroAstro = () => {
             <h1 className={`text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-8 md:mb-10 leading-tight transition-all duration-1000 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
-              AI that executes
+              AI that executes.
             </h1>
-            
+
             <p className={`text-lg sm:text-xl text-muted-foreground mb-10 md:mb-14 max-w-2xl mx-auto lg:mx-0 leading-relaxed transition-all duration-1000 delay-200 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
-              Desktop Commander reads your files, runs commands, and automates workflows — all in natural language.
+              Most AI assistants talk. Desktop Commander opens folders, runs commands, writes files, reports back.
             </p>
 
-            <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 lg:justify-start justify-center items-center mb-6 transition-all duration-1000 delay-400 ${
+            <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 lg:justify-start justify-center items-center mb-5 transition-all duration-1000 delay-400 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
-              <Button 
-                variant="hero" 
-                size="lg" 
-                className="w-full sm:w-auto flex items-center justify-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-dc-accent/20 transform active:scale-95 group" 
+              <Button
+                variant="hero"
+                size="lg"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-dc-accent/20 transform active:scale-95 group"
                 asChild
               >
                 <a href="#download" onClick={() => trackDownloadRedirect('hero_main')}>
@@ -175,53 +294,13 @@ const HeroAstro = () => {
               </Button>
             </div>
 
-            {/* MCP Link */}
-            <div className={`mb-10 md:mb-14 transition-all duration-1000 delay-500 ${
+            {/* Quiet trust line — replaces the old badges */}
+            <p className={`text-sm text-muted-foreground transition-all duration-1000 delay-500 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
-              <a 
-                href="/mcp" 
-                className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1 text-sm"
-              >
-                Looking for MCP?
-                <ArrowRight className="h-3 w-3" />
-              </a>
-            </div>
+              join 250k+ people agentising their workflows.
+            </p>
 
-            {/* Trust Badges */}
-            <div className={`flex flex-col sm:flex-row sm:flex-wrap lg:justify-start justify-center gap-3 transition-all duration-1000 delay-600 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}>
-              <a 
-                href="https://www.npmjs.com/package/@wonderwhy-er/desktop-commander" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-3 py-2 bg-dc-surface border border-dc-border rounded-lg text-sm w-full sm:w-auto sm:min-w-[160px] transition-all duration-300 hover:scale-105 hover:bg-dc-surface/80 hover:border-dc-accent/30 hover:shadow-md cursor-pointer group"
-              >
-                <div className="flex items-center justify-center w-5 h-5 bg-dc-border rounded-sm transition-colors duration-300 group-hover:bg-dc-accent/20 flex-shrink-0">
-                  <Download className="h-2.5 w-2.5 text-muted-foreground transition-colors duration-300 group-hover:text-dc-accent" />
-                </div>
-                <div className="text-left flex-1 min-w-0">
-                  <div className="text-muted-foreground text-xs uppercase tracking-wide transition-colors duration-300 group-hover:text-foreground">Weekly Downloads</div>
-                  <div className="font-semibold text-foreground text-xs">26k+</div>
-                </div>
-              </a>
-              
-              <a 
-                href="https://github.com/wonderwhy-er/DesktopCommanderMCP/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-3 py-2 bg-dc-surface border border-dc-border rounded-lg text-sm w-full sm:w-auto sm:min-w-[160px] transition-all duration-300 hover:scale-105 hover:bg-dc-surface/80 hover:border-dc-accent/30 hover:shadow-md cursor-pointer group"
-              >
-                <div className="flex items-center justify-center w-5 h-5 bg-dc-border rounded-sm transition-colors duration-300 group-hover:bg-dc-accent/20 flex-shrink-0">
-                  <Star className="h-2.5 w-2.5 text-muted-foreground transition-colors duration-300 group-hover:text-dc-accent" />
-                </div>
-                <div className="text-left flex-1 min-w-0">
-                  <div className="text-muted-foreground text-xs uppercase tracking-wide transition-colors duration-300 group-hover:text-foreground">GitHub Stars</div>
-                  <div className="font-semibold text-foreground text-xs">5.4k</div>
-                </div>
-              </a>
-            </div>
           </div>
         </div>
       </div>
