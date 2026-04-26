@@ -193,6 +193,27 @@ import Footer from '../../src/components/Footer';
           toggle Desktop Commander on, and approve its tools.
         </div>
 
+        <!-- Newsletter (always visible) -->
+        <section class="mb-12 p-6 md:p-8 rounded-2xl border border-dc-border bg-dc-card/30 text-center">
+          <div class="inline-flex items-center justify-center w-12 h-12 mb-4 rounded-full bg-primary/15 text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="20" height="16" x="2" y="4" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+          </div>
+          <h2 class="text-xl md:text-2xl font-semibold text-foreground mb-2">Weekly prompt ideas for Claude Desktop</h2>
+          <p class="text-sm text-muted-foreground max-w-md mx-auto mb-5">
+            Get new prompts, automation tips, and feature updates in your inbox. No spam, unsubscribe anytime.
+          </p>
+          <div class="hubspot-form-wrapper max-w-sm mx-auto">
+            <script src="https://js-eu1.hsforms.net/forms/embed/146727725.js" defer></script>
+            <div class="hs-form-frame" data-region="eu1" data-form-id="5fc2eb78-4b8b-4f64-a213-37d0fbb86a50" data-portal-id="146727725"></div>
+          </div>
+          <p class="text-xs text-muted-foreground mt-3">
+            <a href="https://legal.desktopcommander.app/website_privacy_policy" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary/80 underline">Privacy Policy</a>
+          </p>
+        </section>
+
         <!-- Quiet utility footer -->
         <div class="flex items-center justify-center gap-6 md:gap-8 pt-7 border-t border-dc-border/60 text-sm text-muted-foreground">
           <a href="https://discord.gg/pyXshw54" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 hover:text-foreground transition-colors">
@@ -207,33 +228,6 @@ import Footer from '../../src/components/Footer';
             </svg>
             GitHub
           </a>
-          <button
-            type="button"
-            id="newsletter-trigger"
-            class="inline-flex items-center gap-2 hover:text-foreground transition-colors"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect width="20" height="16" x="2" y="4" rx="2"/>
-              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-            </svg>
-            Weekly prompt ideas
-          </button>
-        </div>
-
-        <!-- Newsletter reveal (collapsed by default, opens on click) -->
-        <div
-          id="newsletter-panel"
-          class="hidden mt-8 p-6 rounded-xl border border-dc-border bg-dc-card/30 text-center"
-        >
-          <h2 class="text-lg font-semibold text-foreground mb-1">Weekly prompt ideas for Claude Desktop</h2>
-          <p class="text-xs text-muted-foreground mb-4">No spam. Unsubscribe anytime.</p>
-          <div class="hubspot-form-wrapper max-w-sm mx-auto">
-            <script src="https://js-eu1.hsforms.net/forms/embed/146727725.js" defer></script>
-            <div class="hs-form-frame" data-region="eu1" data-form-id="5fc2eb78-4b8b-4f64-a213-37d0fbb86a50" data-portal-id="146727725"></div>
-          </div>
-          <p class="text-xs text-muted-foreground mt-3">
-            <a href="https://legal.desktopcommander.app/website_privacy_policy" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary/80 underline">Privacy Policy</a>
-          </p>
         </div>
 
       </div>
@@ -322,19 +316,6 @@ import Footer from '../../src/components/Footer';
     document.getElementById('browse-all-prompts')?.addEventListener('click', () => {
       if (window.posthog) {
         window.posthog.capture('welcome_browse_all_prompts_clicked', { page: '/welcome/' });
-      }
-    });
-
-    // ---------- Newsletter reveal ----------
-    const newsletterTrigger = document.getElementById('newsletter-trigger');
-    const newsletterPanel = document.getElementById('newsletter-panel');
-    newsletterTrigger?.addEventListener('click', () => {
-      newsletterPanel?.classList.toggle('hidden');
-      if (newsletterPanel && !newsletterPanel.classList.contains('hidden')) {
-        newsletterPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        if (window.posthog) {
-          window.posthog.capture('welcome_newsletter_revealed', { page: '/welcome/' });
-        }
       }
     });
 
