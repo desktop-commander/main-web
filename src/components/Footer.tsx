@@ -20,6 +20,7 @@ type FooterColumn = {
 const Footer = () => {
   const { trackCustomEvent } = useAnalyticsAstro();
   const currentYear = new Date().getFullYear();
+  const hubSpotScriptUrl = 'https://js-eu1.hs-scripts.com/146727725.js';
 
   // Mirrors the top-nav IA (see astro-src/data/navigation.ts).
   const columns: FooterColumn[] = [
@@ -73,6 +74,61 @@ const Footer = () => {
     });
   };
 
+  const openHubSpotChat = () => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    trackCustomEvent('support_chat_opened', {
+      button_location: 'footer',
+      provider: 'hubspot',
+    });
+
+    const hubspotWindow = window as any;
+    const openWidget = () => {
+      const widget = hubspotWindow.HubSpotConversations?.widget;
+
+      if (!widget) {
+        return;
+      }
+
+      const status = widget.status?.();
+      if (status?.loaded) {
+        widget.open?.();
+        return;
+      }
+
+      widget.load?.({ widgetOpen: true });
+    };
+
+    hubspotWindow.hsConversationsSettings = {
+      ...(hubspotWindow.hsConversationsSettings || {}),
+      loadImmediately: false,
+    };
+
+    if (hubspotWindow.HubSpotConversations) {
+      openWidget();
+      return;
+    }
+
+    hubspotWindow.hsConversationsOnReady = [
+      ...(hubspotWindow.hsConversationsOnReady || []),
+      openWidget,
+    ];
+
+    if (document.getElementById('hs-script-loader')) {
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.id = 'hs-script-loader';
+    script.async = true;
+    script.defer = true;
+    script.src = hubSpotScriptUrl;
+    document.body.appendChild(script);
+  };
+
   return (
     <footer className="border-t border-dc-border bg-dc-surface/50">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-12 md:py-16">
@@ -112,6 +168,17 @@ const Footer = () => {
               <a href="https://www.npmjs.com/package/@wonderwhy-er/desktop-commander" target="_blank" rel="noopener noreferrer" title="NPM">
                 <Package className="h-5 w-5" />
               </a>
+            </Button>
+          </div>
+          <div className="mt-5">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={openHubSpotChat}
+              className="group h-11 gap-2 rounded-lg border-white/15 bg-white/[0.06] px-5 text-white shadow-sm shadow-black/10 backdrop-blur-sm hover:border-primary/45 hover:bg-white/[0.1] hover:text-white"
+            >
+              <MessageCircle className="h-4 w-4 text-primary transition-smooth group-hover:text-dc-blue-glow" />
+              Chat with us
             </Button>
           </div>
         </div>
