@@ -64,7 +64,7 @@ const BPExamplesSection = () => {
             asChild
             className="group"
           >
-            <a href="/library/">
+            <a href="/library/prompts/">
               Explore More Prompts
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>

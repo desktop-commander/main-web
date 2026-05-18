@@ -249,7 +249,7 @@ const Index = () => {
 
   const browseAllUrl = useMemo(() => {
     if (selectedRole === 'For all' && selectedCategory === 'All Categories') {
-      return '/library/prompts';
+      return '/library/prompts/';
     }
     
     // Build URL with filters
@@ -291,7 +291,7 @@ const Index = () => {
     });
     
     // Navigate to individual prompt page using slug
-    window.location.href = `/library/prompts/${useCase.slug}`;
+    window.location.href = `/library/prompts/${useCase.slug}/`;
   };
 
   const handleCloseModal = () => {

@@ -119,7 +119,7 @@ export default function PromptsLibrary({ initialPromptId }: PromptsLibraryProps)
   const handlePromptClick = (useCase: UseCase) => {
     // Navigate to slug URL - causes page navigation and modal opens
     const slug = useCase.slug || useCase.id;
-    window.location.href = getLink(`/library/prompts/${slug}`);
+    window.location.href = getLink(`/library/prompts/${slug}/`);
   };
 
   const handleVote = (id: string) => {

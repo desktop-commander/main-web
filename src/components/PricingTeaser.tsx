@@ -120,7 +120,7 @@ const PricingTeaser = () => {
         }`}>
           <Button variant="outline" size="lg" asChild className="border-dc-border hover:bg-dc-surface/80">
             <a
-              href="/pricing"
+              href="/pricing/"
               className="inline-flex items-center gap-2"
               onClick={() => trackCustomEvent('pricing_teaser_cta_clicked', {
                 button_text: 'View full pricing',

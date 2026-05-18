@@ -212,7 +212,7 @@ const UseCases = () => {
           </span>
           <span className="opacity-50">&middot;</span>
           <a
-            href="/library"
+            href="/library/prompts/"
             className="text-blue-400 hover:text-blue-300 font-medium underline-offset-4 hover:underline"
           >
             Browse 60+ prompts

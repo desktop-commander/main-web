@@ -134,7 +134,7 @@ const PromptDetailPage = ({ useCase }: PromptDetailPageProps) => {
   const whyDC = useCase.whyDC || getDefaultWhyDC();
 
   const handleClose = () => {
-    window.location.href = getLink('/library/prompts');
+    window.location.href = getLink('/library/prompts/');
   };
 
   const handleCopyPrompt = async () => {
@@ -174,7 +174,7 @@ const PromptDetailPage = ({ useCase }: PromptDetailPageProps) => {
   };
 
   const getShareUrl = (shareSource = 'share_button') => {
-    const url = new URL(getLink(`/library/prompts/${useCase.slug}`), window.location.origin);
+    const url = new URL(getLink(`/library/prompts/${useCase.slug}/`), window.location.origin);
     url.searchParams.set('utm_source', 'desktop_commander');
     url.searchParams.set('utm_medium', shareSource);
     url.searchParams.set('utm_campaign', 'prompt_sharing');

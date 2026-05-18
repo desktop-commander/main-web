@@ -57,9 +57,9 @@ const Navigation = () => {
               
               <Button variant="ghost" size="sm" asChild>
                 <a 
-                  href="/library"
+                  href="/library/prompts/"
                   className="text-white hover:text-white/80 font-medium"
-                  onClick={() => trackNavigation('Prompts', '/library', 'internal')}
+                  onClick={() => trackNavigation('Prompts', '/library/prompts/', 'internal')}
                 >
                   Prompts
                 </a>
@@ -77,9 +77,9 @@ const Navigation = () => {
 
               <Button variant="ghost" size="sm" asChild>
                 <a
-                  href="/careers"
+                  href="/careers/"
                   className="text-white hover:text-white/80 font-medium relative pr-12"
-                  onClick={() => trackNavigation('Careers', '/careers')}
+                  onClick={() => trackNavigation('Careers', '/careers/')}
                 >
                   Careers
                   <Badge variant="default" className="absolute -top-1 right-2 bg-green-600 hover:bg-green-700 text-white text-[9px] px-1.5 py-0.5">
@@ -183,9 +183,9 @@ const Navigation = () => {
                   </Link>
                   
                   <a 
-                    href="/library"
+                    href="/library/prompts/"
                     className="flex items-center justify-between px-4 py-3 text-foreground hover:bg-dc-surface rounded-lg transition-colors"
-                    onClick={() => handleMobileNavClick('Prompts', '/library', 'internal')}
+                    onClick={() => handleMobileNavClick('Prompts', '/library/prompts/', 'internal')}
                   >
                     Prompts
                   </a>
@@ -199,9 +199,9 @@ const Navigation = () => {
                   </Link>
                   
                   <a
-                    href="/careers"
+                    href="/careers/"
                     className="flex items-center px-4 py-3 text-foreground hover:bg-dc-surface rounded-lg transition-colors relative pr-18"
-                    onClick={() => handleMobileNavClick('Careers', '/careers')}
+                    onClick={() => handleMobileNavClick('Careers', '/careers/')}
                   >
                     Careers
                     <Badge variant="default" className="absolute top-2.5 right-3 bg-green-600 hover:bg-green-700 text-white text-[9px] px-1.5 py-0.5">

@@ -238,7 +238,7 @@ export default function Prompts() {
     });
     
     // Navigate to individual prompt page using slug
-    window.location.href = `/library/prompts/${useCase.slug}`;
+    window.location.href = `/library/prompts/${useCase.slug}/`;
   };
 
   const handleCloseModal = () => {

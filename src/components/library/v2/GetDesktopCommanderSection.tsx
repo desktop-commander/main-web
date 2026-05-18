@@ -273,7 +273,7 @@ export function RunInDCButton({ promptTitle, prompt, onCopySuccess }: RunInDCBut
                   
                   {/* MCP alternative */}
                   <a 
-                    href="/mcp"
+                    href="/mcp/"
                     onClick={handleMCPClick}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-1"
                   >

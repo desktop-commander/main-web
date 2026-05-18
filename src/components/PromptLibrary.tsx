@@ -267,7 +267,7 @@ const PromptLibrary = () => {
         }`}>
           <Button asChild variant="hero" size="lg" className="transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20 transform active:scale-95">
             <a 
-              href="/library/"
+              href="/library/prompts/"
               onClick={() => {
                 // Track main library CTA
                 trackCustomEvent('prompt_library_cta_clicked', {

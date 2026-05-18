@@ -388,7 +388,7 @@ export function PromptDetailModal({ useCase, isOpen, onClose, onVote, isFullPage
   };
 
   const getShareUrl = (shareSource = 'share_button') => {
-    const url = new URL(getLink(`/library/prompts/${useCase.slug}`), window.location.origin);
+    const url = new URL(getLink(`/library/prompts/${useCase.slug}/`), window.location.origin);
     
     // Add share tracking parameters
     url.searchParams.set('utm_source', 'desktop_commander');

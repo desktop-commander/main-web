@@ -214,6 +214,18 @@ async function generate() {
     { loc: `${BASE_URL}/blog/`, lastmod: today, priority: '0.9', changefreq: 'weekly' },
     { loc: `${BASE_URL}/blog/about/`, lastmod: today, priority: '0.8', changefreq: 'monthly' },
     { loc: `${BASE_URL}/blog/contact/`, lastmod: today, priority: '0.8', changefreq: 'monthly' },
+    // Author archive pages (crawled but not in WP posts API)
+    { loc: `${BASE_URL}/blog/author/rafaelpinheiro/`, lastmod: today, priority: '0.5', changefreq: 'weekly' },
+    { loc: `${BASE_URL}/blog/author/karlina/`, lastmod: today, priority: '0.5', changefreq: 'weekly' },
+    { loc: `${BASE_URL}/blog/author/rk7f8a7274b9330/`, lastmod: today, priority: '0.5', changefreq: 'weekly' },
+    { loc: `${BASE_URL}/blog/author/romanmakarenko/`, lastmod: today, priority: '0.5', changefreq: 'weekly' },
+    { loc: `${BASE_URL}/blog/author/eduardruzga/`, lastmod: today, priority: '0.5', changefreq: 'weekly' },
+    { loc: `${BASE_URL}/blog/author/sidraarif/`, lastmod: today, priority: '0.5', changefreq: 'weekly' },
+  ];
+
+  // --- Extra main-site pages not built by Astro but live on the site
+  const extraPages = [
+    { loc: `${BASE_URL}/best-value-ai/`, lastmod: today, priority: '0.8', changefreq: 'monthly' },
   ];
 
   // --- Job postings from jobs.json (active only)
@@ -233,7 +245,7 @@ async function generate() {
   const seen = new Set();
   const allEntries = [];
   let dupes = 0;
-  for (const e of [...astroEntries, ...wpPages, ...blogEntries, ...jobEntries]) {
+  for (const e of [...astroEntries, ...extraPages, ...wpPages, ...blogEntries, ...jobEntries]) {
     if (seen.has(e.loc)) {
       dupes++;
       continue;
@@ -253,7 +265,7 @@ async function generate() {
   const outputPath = path.join(DOCS_DIR, 'sitemap.xml');
   fs.writeFileSync(outputPath, xml, 'utf8');
   console.log(
-    `Sitemap: ${astroEntries.length} Astro + ${wpPages.length} WP pages + ` +
+    `Sitemap: ${astroEntries.length} Astro + ${extraPages.length} extra + ${wpPages.length} WP pages + ` +
     `${blogEntries.length} blog posts + ${jobEntries.length} jobs − ${dupes} dupes = ${allEntries.length} URLs`
   );
   console.log(`Sitemap saved to: ${outputPath}`);

@@ -116,7 +116,7 @@ export const resourcesMenu: MegaMenu = {
     {
       heading: 'Community & dev',
       links: [
-        { label: 'Discord', href: 'https://discord.gg/pyXshw54', external: true },
+        { label: 'Discord', href: 'https://discord.gg/eHZeUKRQG', external: true },
         {
           label: 'GitHub',
           href: 'https://github.com/wonderwhy-er/DesktopCommanderMCP',

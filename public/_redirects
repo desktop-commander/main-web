@@ -8,6 +8,16 @@ https://library.desktopcommander.app/* https://desktopcommander.app/library/:spl
 # www → non-www canonical
 https://www.desktopcommander.app/* https://desktopcommander.app/:splat 301
 
+# Force trailing slash on /blog/* paths.
+# The Cloudflare Pages proxy to WordPress follows WP's 301 internally
+# and returns a 200, so the redirect must happen here instead.
+# :placeholder matches exactly one path segment WITHOUT trailing slash,
+# so /blog/foo/ does NOT match /blog/:slug (no redirect loop).
+/blog/:slug https://desktopcommander.app/blog/:slug/ 301
+/blog/author/:slug https://desktopcommander.app/blog/author/:slug/ 301
+/blog/category/:slug https://desktopcommander.app/blog/category/:slug/ 301
+/blog/page/:num https://desktopcommander.app/blog/page/:num/ 301
+
 # Note: Legacy ?i= query parameter redirects are handled client-side
 # in astro-src/pages/library/index.astro (query params can't be matched
 # in static _redirects files on any platform).
