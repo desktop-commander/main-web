@@ -1,70 +1,130 @@
 ---
-// Redirect page for deep-linking into the Desktop Commander app.
-// HubSpot CTA points here (https://desktopcommander.app/open) so clicks
-// are tracked normally.  The page immediately fires the custom protocol
-// `desktopcommander://` to launch the app, then falls back to the
-// download page after 2 seconds for users who don't have it installed.
+import Layout from '../layouts/Layout.astro';
+import PostHogInit from '../../src/components/PostHogInit';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../../src/components/Footer';
+import DownloadButtons from '../../src/components/shared/DownloadButtons';
+
+// Deep-link page for launching the Desktop Commander app.
+// HubSpot CTAs and other tracked entry points target /open so clicks
+// can be counted, then the page fires the `desktopcommander://` custom
+// protocol to launch the installed app.
 //
-// This page is excluded from search indexing via robots.txt and a
-// noindex meta tag.
+// If the app is installed, the protocol handler takes over and the
+// browser tab is left on this page in the background — so the content
+// here only matters when the app didn't launch (not installed yet, or
+// protocol blocked). For that fallback we show a friendly install
+// prompt with native download buttons instead of redirecting to a
+// non-existent /download page (which used to 404).
+//
+// Excluded from search indexing via robots.txt and the noindex meta
+// tag set below.
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="robots" content="noindex, nofollow" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Opening Desktop Commander…</title>
-    <style>
-      body {
-        margin: 0;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #0a0a0b;
-        color: #a1a1aa;
-        font-family: system-ui, -apple-system, sans-serif;
-      }
-      .container {
-        text-align: center;
-        padding: 2rem;
-      }
-      .spinner {
-        width: 32px;
-        height: 32px;
-        border: 3px solid rgba(255,255,255,0.1);
-        border-top-color: #3b82f6;
-        border-radius: 50%;
-        animation: spin 0.8s linear infinite;
-        margin: 0 auto 1.5rem;
-      }
-      @keyframes spin {
-        to { transform: rotate(360deg); }
-      }
-      a {
-        color: #3b82f6;
-        text-decoration: underline;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="spinner"></div>
-      <p>Opening Desktop Commander…</p>
-      <p style="font-size: 0.875rem; margin-top: 1rem;">
-        Don't have it yet? <a href="https://desktopcommander.app/download">Download here</a>
-      </p>
-    </div>
+<Layout
+  title="Opening Desktop Commander…"
+  description="Launching the Desktop Commander app. Don't have it yet? Install for macOS or Windows."
+  robots="noindex, nofollow"
+  googlebot="noindex, nofollow"
+>
+  <PostHogInit client:load />
 
-    <script is:inline>
-      // Try to launch the app via custom protocol
-      window.location.href = "desktopcommander://";
+  <div class="min-h-screen bg-background flex flex-col">
+    <Navigation />
 
-      // Fallback: if the app didn't open, redirect to the download page
-      setTimeout(function () {
-        window.location.href = "https://desktopcommander.app/download";
-      }, 2000);
-    </script>
-  </body>
-</html>
+    <main class="flex-1 flex items-center justify-center px-4 sm:px-6 py-16 md:py-24">
+      <div class="max-w-2xl w-full text-center">
+
+        <!-- State 1: Launching -->
+        <div id="launching-state" class="flex flex-col items-center">
+          <div class="spinner mb-6"></div>
+          <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3">
+            Opening Desktop Commander…
+          </h1>
+          <p class="text-base sm:text-lg text-muted-foreground max-w-md">
+            If the app is installed, it should launch in a moment.
+          </p>
+        </div>
+
+        <!-- State 2: Fallback (revealed after delay) -->
+        <div id="fallback-state" class="hidden flex-col items-center">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 leading-tight">
+            App didn't open?
+          </h1>
+          <p class="text-base sm:text-lg text-muted-foreground mb-8 max-w-md mx-auto leading-relaxed">
+            You probably don't have Desktop Commander installed yet.
+            Grab it below — it takes under a minute.
+          </p>
+
+          <div class="mb-8">
+            <DownloadButtons client:load location="open_fallback" variant="hero" />
+          </div>
+
+          <p class="text-sm text-muted-foreground">
+            Already installed?
+            <button
+              id="retry-launch"
+              type="button"
+              class="text-blue-400 hover:text-blue-300 font-medium underline-offset-4 hover:underline"
+            >
+              Try opening it again
+            </button>
+          </p>
+        </div>
+
+      </div>
+    </main>
+
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style>
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.08);
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  .hidden {
+    display: none !important;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var launchingEl = document.getElementById('launching-state');
+    var fallbackEl = document.getElementById('fallback-state');
+    var retryBtn = document.getElementById('retry-launch');
+
+    function launch() {
+      window.location.href = 'desktopcommander://';
+    }
+
+    // Fire the protocol handler immediately on load.
+    launch();
+
+    // After ~2.5s, reveal the fallback (install / retry) UI.
+    // If the app launched, the user is already in it and never sees this.
+    // If it didn't, they get a clean install prompt instead of a 404.
+    setTimeout(function () {
+      if (launchingEl) launchingEl.classList.add('hidden');
+      if (fallbackEl) {
+        fallbackEl.classList.remove('hidden');
+        fallbackEl.style.display = 'flex';
+      }
+    }, 2500);
+
+    // Manual retry button on the fallback view.
+    if (retryBtn) {
+      retryBtn.addEventListener('click', function () {
+        launch();
+      });
+    }
+  })();
+</script>
