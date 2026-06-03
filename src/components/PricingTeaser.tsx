@@ -69,7 +69,7 @@ const PricingTeaser = () => {
             </div>
             <ul className="space-y-2">
               {[
-                "100 messages per week, resets Mondays",
+                "200 messages per week, resets Mondays",
                 "Works across all models: DC credits, BYOK, or ChatGPT",
                 "Top up AI credits any time",
               ].map((f) => (

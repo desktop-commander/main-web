@@ -28,7 +28,7 @@ const PricingFAQ = () => {
     },
     {
       question: "What's the difference between messages and AI credits?",
-      answer: "They're two separate things. Your plan controls how many messages you can send per week (100 on Free, no cap on the paid plan). AI credits cover the cost of running cloud models like Claude, GPT, and Gemini. You can send messages without credits if you use local models or your own API keys. The weekly message limit applies to all messages regardless of which AI provider you use."
+      answer: "They're two separate things. Your plan controls how many messages you can send per week (200 on Free, no cap on the paid plan). AI credits cover the cost of running cloud models like Claude, GPT, and Gemini. You can send messages without credits if you use local models or your own API keys. The weekly message limit applies to all messages regardless of which AI provider you use."
     },
     {
       question: "What are DC credits and how do they work?",
@@ -52,11 +52,11 @@ const PricingFAQ = () => {
     },
     {
       question: "Can I use Desktop Commander completely free?",
-      answer: "Yes. You get 100 messages per week on the free plan, plus $10 in free credits to start. Beyond that, you can run local models via Ollama for free, or use providers with free tiers like Google Gemini. Bring your own API key and you won't spend any DC credits. The weekly message limit applies whether you use DC credits, your own keys, or a ChatGPT subscription."
+      answer: "Yes. You get 200 messages per week on the free plan, plus $10 in free credits to start. Beyond that, you can run local models via Ollama for free, or use providers with free tiers like Google Gemini. Bring your own API key and you won't spend any DC credits. The weekly message limit applies whether you use DC credits, your own keys, or a ChatGPT subscription."
     },
     {
       question: "What's the cheapest way to use Desktop Commander?",
-      answer: "Several options cost nothing at all: run local models with Ollama, or use cloud providers with free tiers — Google Gemini, for example, offers generous free usage. You can also bring your own API keys from any provider. The free plan gives you 100 messages per week, and every account starts with $10 in free credits."
+      answer: "Several options cost nothing at all: run local models with Ollama, or use cloud providers with free tiers — Google Gemini, for example, offers generous free usage. You can also bring your own API keys from any provider. The free plan gives you 200 messages per week, and every account starts with $10 in free credits."
     },
     {
       question: "Can I mix different AI providers?",

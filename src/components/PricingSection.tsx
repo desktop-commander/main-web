@@ -50,7 +50,7 @@ const PricingSection = () => {
             Pricing
           </h1>
           <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            Start free with 100 messages per week. Upgrade to No Cap when you need more.
+            Start free with 200 messages per week. Upgrade to No Cap when you need more.
           </p>
         </div>
 
@@ -105,7 +105,7 @@ const PricingSection = () => {
               <span className="text-muted-foreground ml-1">/month</span>
             </div>
             <p className="text-sm text-muted-foreground mb-6">
-              Get started with 100 messages per week.
+              Get started with 200 messages per week.
             </p>
             <Button
               variant="outline"
@@ -124,7 +124,7 @@ const PricingSection = () => {
             <ul className="space-y-3">
               {[
                 "$10 free AI credits to get started",
-                "100 messages per week",
+                "200 messages per week",
                 "All AI models supported",
                 "Bring your own API keys or ChatGPT sub",
                 "MCP tool support",

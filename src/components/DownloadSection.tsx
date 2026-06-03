@@ -149,7 +149,7 @@ const DownloadSection = () => {
           <a
             href={DOWNLOADS.windows}
             onClick={() => handleDownload("windows", DOWNLOADS.windows)}
-            className="group relative inline-flex items-center justify-center gap-3 px-7 py-5 rounded-xl bg-dc-surface hover:bg-dc-surface/80 text-foreground font-semibold text-base border border-dc-border hover:border-blue-500/40 ring-1 ring-white/5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-500/10"
+            className="group relative inline-flex items-center justify-center gap-3 px-7 py-5 rounded-xl bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white font-semibold text-base shadow-lg shadow-blue-500/30 ring-1 ring-white/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-500/40"
           >
             <WindowsIcon className="w-6 h-6" />
             <span>Download for Windows</span>
