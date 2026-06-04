@@ -1,0 +1,129 @@
+---
+/**
+ * BlogLayout — reproduces the WP theme's <head> (functions.php wp_head outputs) and
+ * chrome so migrated pages are byte-for-byte close to today. Self-contained: imports the
+ * ported theme CSS (NOT the marketing site's index.css).
+ *
+ * NOTE: analytics here are un-gated (direct PostHog + GA4), matching the current blog.
+ * The marketing site gates analytics behind Cookiebot consent — unifying is a follow-up.
+ */
+import BlogHeader from '../components/blog/BlogHeader.astro';
+import BlogFooter from '../components/blog/BlogFooter.astro';
+// blog.css is served statically from public/blog/blog.css via <link> (no PostCSS),
+// matching how WordPress serves the theme stylesheet verbatim.
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  ogTitle?: string;
+  ogType?: 'website' | 'article';
+  ogUrl?: string;
+  ogImage?: string;
+  jsonLd?: Record<string, unknown>[];
+  isPost?: boolean;
+  bodyClass?: string;
+  articlePublished?: string;
+  articleModified?: string;
+  articleAuthor?: string;
+}
+
+const ORIGIN = 'https://desktopcommander.app';
+const {
+  title, description, canonical,
+  ogTitle, ogType = 'website', ogUrl, ogImage,
+  jsonLd = [], isPost = false, bodyClass = '',
+  articlePublished, articleModified, articleAuthor,
+} = Astro.props;
+
+const absImage = ogImage ? (ogImage.startsWith('http') ? ogImage : `${ORIGIN}${ogImage}`) : '';
+const ogU = ogUrl || canonical;
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Analytics (PostHog + GA4) — wp_head priority 0 -->
+    <script is:inline>
+      !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+      posthog.init('phc_SmlF1mKK199Blt4hUNL6V19IWydNNJ9o7Qbym2Y4zQa', { api_host: 'https://eu.i.posthog.com', cross_subdomain_cookie: true, capture_pageview: true, capture_pageleave: true });
+    </script>
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-HXL4Y3Y62N"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HXL4Y3Y62N', { linker: { domains: ['desktopcommander.app', 'blog.desktopcommander.app'] } });
+    </script>
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Desktop Commander Blog" />
+    <meta property="og:title" content={ogTitle || title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={ogU} />
+    {absImage && (
+      <>
+        <meta property="og:image" content={absImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+      </>
+    )}
+    {isPost && articlePublished && <meta property="article:published_time" content={articlePublished} />}
+    {isPost && articleModified && <meta property="article:modified_time" content={articleModified} />}
+    {isPost && articleAuthor && <meta property="article:author" content={articleAuthor} />}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content={absImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={ogTitle || title} />
+    <meta name="twitter:description" content={description} />
+    {absImage && <meta name="twitter:image" content={absImage} />}
+
+    <link rel="canonical" href={canonical} />
+
+    <!-- Favicons (shared with main site) -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Ported theme stylesheet, served verbatim (no PostCSS) -->
+    <link rel="stylesheet" href="/blog/blog.css" />
+
+    {jsonLd.map((node) => (
+      <script type="application/ld+json" set:html={JSON.stringify(node)} />
+    ))}
+  </head>
+  <body class={bodyClass}>
+    <BlogHeader />
+    <slot />
+    <BlogFooter />
+
+    {isPost && (
+      <>
+        <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+        <script is:inline>
+          document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('pre code:not([class*="language-"])').forEach(function (codeBlock) {
+              var code = codeBlock.textContent;
+              if (code.match(/^\s*(import |from |def |class |print\(|if __name__|pandas|numpy)/m)) codeBlock.classList.add('language-python');
+              else if (code.match(/^\s*(npm |npx |yarn |node |const |let |var |function\s|=>|require\()/m)) codeBlock.classList.add('language-javascript');
+              else if (code.match(/^\s*(\$|curl |wget |chmod |sudo |apt |brew |pip |cd |ls |mkdir )/m)) codeBlock.classList.add('language-bash');
+              else if (code.match(/<[a-zA-Z][^>]*>/)) codeBlock.classList.add('language-markup');
+              else codeBlock.classList.add('language-python');
+            });
+            if (typeof Prism !== 'undefined') Prism.highlightAll();
+          });
+        </script>
+        <script is:inline src="/blog/js/table-of-contents.js"></script>
+        <script is:inline src="/blog/js/blog-cta-tracking.js"></script>
+      </>
+    )}
+  </body>
+</html>

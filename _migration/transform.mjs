@@ -19,7 +19,7 @@ const REPO = path.resolve(__dirname, '..');
 const EXPORT = path.join(__dirname, 'wp-export');
 const DATA = JSON.parse(fs.readFileSync(path.join(EXPORT, 'data.json'), 'utf8'));
 
-const OUT_CONTENT = path.join(REPO, 'astro-src/content/blog');
+const OUT_CONTENT = path.join(REPO, 'astro-src/blog-content');
 const OUT_DATA = path.join(REPO, 'astro-src/data/blog');
 const OUT_MEDIA = path.join(REPO, 'public/blog/media');
 for (const d of [OUT_CONTENT, OUT_DATA, OUT_MEDIA]) fs.mkdirSync(d, { recursive: true });
