@@ -13,6 +13,9 @@ const DOCS = path.join(REPO, 'docs');
 const data = JSON.parse(fs.readFileSync(path.join(__dirname, 'wp-export/data.json'), 'utf8'));
 const built = JSON.parse(fs.readFileSync(path.join(REPO, 'astro-src/data/blog/posts.json'), 'utf8'));
 const builtBySlug = Object.fromEntries(built.map((p) => [p.slug, p]));
+const REDIRECTS = JSON.parse(fs.readFileSync(path.join(REPO, 'astro-src/data/blog/redirects.json'), 'utf8'));
+const redirectedSlugs = new Set(Object.keys(REDIRECTS));
+const redirectsFile = fs.existsSync(path.join(REPO, 'public/_redirects')) ? fs.readFileSync(path.join(REPO, 'public/_redirects'), 'utf8') : '';
 
 const SITE = 'https://desktopcommander.app';
 const issues = [];
@@ -43,7 +46,7 @@ const canonOf = (h) => tag(h, /<link rel="canonical" href="([^"]*)"/);
 const decode = (s) => (s || '').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 
 // ---- 1. Coverage: every exported post has a built page; counts match ----
-const exportSlugs = data.posts.map((p) => p.slug).sort();
+const exportSlugs = data.posts.map((p) => p.slug).filter((s) => !redirectedSlugs.has(s)).sort();
 const builtSlugs = built.map((p) => p.slug).sort();
 const missing = exportSlugs.filter((s) => !builtSlugs.includes(s));
 const extra = builtSlugs.filter((s) => !exportSlugs.includes(s));
@@ -56,6 +59,11 @@ const mediaDir = path.join(REPO, 'public/blog/media');
 let okPosts = 0;
 for (const p of data.posts) {
   const slug = p.slug;
+  if (redirectedSlugs.has(slug)) {
+    if (read(`blog/${slug}`)) add(issues, slug, 'redirected slug still has a built page (301 would be shadowed)');
+    if (!redirectsFile.includes(`/blog/${slug}/`)) add(issues, slug, 'redirected slug missing from public/_redirects');
+    continue;
+  }
   const html = read(`blog/${slug}`);
   if (!html) { add(issues, slug, 'built page MISSING'); continue; }
   const bp = builtBySlug[slug];

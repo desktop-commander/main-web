@@ -124,7 +124,7 @@ export const resourcesMenu: MegaMenu = {
           badge: 'MCP',
         },
         { label: 'Careers', href: '/careers/' },
-        { label: 'About', href: 'https://blog.desktopcommander.app/about/', external: true },
+        { label: 'About', href: '/blog/about/' },
       ],
     },
   ],

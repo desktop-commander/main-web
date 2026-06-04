@@ -4,19 +4,30 @@
 
 # Old subdomain redirects
 https://library.desktopcommander.app/* https://desktopcommander.app/library/:splat 301
+# Blog subdomain → canonical /blog path (ported from WP theme legacy-host redirect)
+https://blog.desktopcommander.app/* https://desktopcommander.app/blog/:splat 301
 
 # www → non-www canonical
 https://www.desktopcommander.app/* https://desktopcommander.app/:splat 301
 
-# Force trailing slash on /blog/* paths.
-# The Cloudflare Pages proxy to WordPress follows WP's 301 internally
-# and returns a 200, so the redirect must happen here instead.
-# :placeholder matches exactly one path segment WITHOUT trailing slash,
-# so /blog/foo/ does NOT match /blog/:slug (no redirect loop).
+# Blog: retired/cannibalized posts → canonical destination (ported from WP theme
+# desktopcommander_seo_cannibalization_redirects). Must precede the generic
+# /blog/:slug trailing-slash rule below so first-match wins (no double hop).
+/blog/convert-heic-to-jpg-locally-with-desktop-commander /use-cases/file-management/heic-to-jpg/ 301
+/blog/convert-heic-to-jpg-locally-with-desktop-commander/ /use-cases/file-management/heic-to-jpg/ 301
+
+# Force trailing slash on /blog/* paths. Post-migration these are static Astro pages
+# (no WordPress proxy). Cloudflare Pages serves existing assets before applying these,
+# so they only normalize non-trailing-slash requests.
 /blog/:slug https://desktopcommander.app/blog/:slug/ 301
 /blog/author/:slug https://desktopcommander.app/blog/author/:slug/ 301
 /blog/category/:slug https://desktopcommander.app/blog/category/:slug/ 301
 /blog/page/:num https://desktopcommander.app/blog/page/:num/ 301
+
+# Legacy date-based permalinks → flat slug (ported from WP desktopcommander_redirect_old_date_urls).
+# Real 4-segment paths (category/author pagination) exist as static files and are served
+# first on Cloudflare Pages (asset-first), so only non-existent date URLs fall through here.
+/blog/:yyyy/:mm/:dd/:slug https://desktopcommander.app/blog/:slug/ 301
 
 # Note: Legacy ?i= query parameter redirects are handled client-side
 # in astro-src/pages/library/index.astro (query params can't be matched

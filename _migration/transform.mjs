@@ -19,6 +19,12 @@ const REPO = path.resolve(__dirname, '..');
 const EXPORT = path.join(__dirname, 'wp-export');
 const DATA = JSON.parse(fs.readFileSync(path.join(EXPORT, 'data.json'), 'utf8'));
 
+// Slugs the live WP site 301-redirects away from (functions.php cannibalization map).
+// We don't build a page for these; a 301 rule goes in public/_redirects instead.
+const REDIRECTS = {
+  'convert-heic-to-jpg-locally-with-desktop-commander': '/use-cases/file-management/heic-to-jpg/',
+};
+
 const OUT_CONTENT = path.join(REPO, 'astro-src/blog-content');
 const OUT_DATA = path.join(REPO, 'astro-src/data/blog');
 const OUT_MEDIA = path.join(REPO, 'public/blog/media');
@@ -158,6 +164,7 @@ function extractFaq(content) {
 // --- process posts ---
 const postsMeta = [];
 for (const p of DATA.posts) {
+  if (REDIRECTS[p.slug]) continue; // retired/redirected — no page, listing, or sitemap entry
   let body = p.content;
   const faq = extractFaq(body);
   body = stripWpComments(body);
@@ -200,6 +207,7 @@ fs.writeFileSync(path.join(OUT_DATA, 'authors.json'), JSON.stringify(DATA.author
 fs.writeFileSync(path.join(OUT_DATA, 'categories.json'), JSON.stringify(DATA.categories, null, 2));
 fs.writeFileSync(path.join(OUT_DATA, 'pages.json'), JSON.stringify(DATA.pages.map(({ content, ...m }) => m), null, 2));
 fs.writeFileSync(path.join(OUT_DATA, 'site.json'), JSON.stringify(DATA.site, null, 2));
+fs.writeFileSync(path.join(OUT_DATA, 'redirects.json'), JSON.stringify(REDIRECTS, null, 2));
 
 console.log(`posts: ${postsMeta.length} | media copied: ${copied}`);
 console.log(`auto-desc posts: ${postsMeta.filter(p => p.description_source === 'auto').map(p => p.slug).join(', ') || '(none)'}`);
