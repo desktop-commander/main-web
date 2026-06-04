@@ -121,13 +121,24 @@ function relativizeLinks(h) {
     .replace(/https?:\/\/rk7f8a7274b9330-haqfg\.wpcomstaging\.com\//g, '/blog/');
 }
 
-// strip_shortcodes + strip_tags + collapse, truncate 157+"…"  (matches WP fallback)
-function autoDescription(content) {
-  let t = content.replace(/\[[^\]]*\]/g, '').replace(/<[^>]+>/g, ' ');
-  t = t.replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&[^;]+;/g, ' ');
-  t = t.replace(/\s+/g, ' ').trim();
-  if (t.length > 160) t = t.slice(0, 157) + '...';
-  return t;
+// WP desktopcommander_get_meta_description() output transform, applied to custom /
+// excerpt / auto alike: strip tags, collapse whitespace, truncate to 157 + "..." when >160.
+function wpProcessDesc(s) {
+  let d = String(s || '').replace(/<[^>]+>/g, '');
+  d = d.replace(/[\r\n\t]/g, ' ').replace(/\s+/g, ' ').trim();
+  if (d.length > 160) d = d.slice(0, 157) + '...';
+  return d;
+}
+
+// Add trailing slashes to internal /blog/* links (avoid 301 redirect hops). Skips
+// asset-like paths (last segment contains a dot) and anchors/queries.
+function addTrailingSlashes(h) {
+  return h.replace(/href="(\/blog\/[^"#?]*)"/g, (m, p) => {
+    if (p.endsWith('/')) return m;
+    const last = p.split('/').pop();
+    if (last.includes('.')) return m; // e.g. /blog/blog.css, /blog/media/x.png
+    return `href="${p}/"`;
+  });
 }
 
 // FAQ extraction — mirror WP regex: <details>…<summary>…<span>Q</span>…</summary>…<div>A</div></details>
@@ -153,12 +164,14 @@ for (const p of DATA.posts) {
   body = expandShortcodes(body, p.slug, p.title);
   body = rewriteImages(body);
   body = relativizeLinks(body);
+  body = addTrailingSlashes(body);
   const { html, toc } = addHeadingIds(body);
   body = html;
 
-  const description = (p.meta_description && p.meta_description.trim())
-    ? p.meta_description.trim()
-    : (p.excerpt && p.excerpt.trim() ? p.excerpt.trim().replace(/<[^>]+>/g, '') : autoDescription(p.content));
+  const rawDesc = (p.meta_description && p.meta_description.trim())
+    ? p.meta_description
+    : (p.excerpt && p.excerpt.trim() ? p.excerpt : p.content.replace(/\[[^\]]*\]/g, ''));
+  const description = wpProcessDesc(rawDesc); // matches WP's strip/collapse/160-truncate
 
   fs.writeFileSync(path.join(OUT_CONTENT, `${p.slug}.html`), body);
   postsMeta.push({
@@ -178,6 +191,7 @@ postsMeta.sort((a, b) => new Date(b.date) - new Date(a.date));
 // pages
 for (const pg of DATA.pages) {
   let body = relativizeLinks(rewriteImages(expandShortcodes(stripWpComments(pg.content), pg.slug, pg.title)));
+  body = addTrailingSlashes(body);
   fs.writeFileSync(path.join(OUT_CONTENT, `page-${pg.slug}.html`), body);
 }
 

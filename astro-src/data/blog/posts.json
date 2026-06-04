@@ -480,7 +480,7 @@
       "developer-tools",
       "mcp"
     ],
-    "description": "Set up Notion MCP to give Claude, ChatGPT, or Cursor direct access to your Notion workspace. Covers hosted and open-source options, 17 tools, and troubleshooting.",
+    "description": "Set up Notion MCP to give Claude, ChatGPT, or Cursor direct access to your Notion workspace. Covers hosted and open-source options, 17 tools, and troubleshoo...",
     "description_source": "custom",
     "featured_image": "/blog/media/2026/03/notion-mcp-featured.png",
     "featured_image_w": 1200,
@@ -1129,7 +1129,7 @@
       "Uncategorized"
     ],
     "tags": [],
-    "description": "Most knowledge management systems fail because they demand constant upkeep. Learn how AI-native local tools like Desktop Commander turn your existing files into a searchable knowledge base — no migration, no new platform required.",
+    "description": "Most knowledge management systems fail because they demand constant upkeep. Learn how AI-native local tools like Desktop Commander turn your existing files i...",
     "description_source": "custom",
     "featured_image": "/blog/media/2026/02/Screenshot-2026-02-18-at-14.15.24.png",
     "featured_image_w": 1460,
@@ -1266,7 +1266,7 @@
       "Use Cases"
     ],
     "tags": [],
-    "description": "An honest comparison of Desktop Commander and Claude Cowork from someone on the DC team. See where each tool excels — terminal access, file editing, deployment, and security tradeoffs.",
+    "description": "An honest comparison of Desktop Commander and Claude Cowork from someone on the DC team. See where each tool excels — terminal access, file editing, deployme...",
     "description_source": "custom",
     "featured_image": "/blog/media/2026/02/Screenshot-2026-02-13-at-11.05.48.png",
     "featured_image_w": 1646,
@@ -2481,7 +2481,7 @@
       "Markdown"
     ],
     "tags": [],
-    "description": "Learn how to manage your Obsidian vault with AI using Desktop Commander. Organize attachments, rename notes, and clean up your knowledge base with natural language commands.",
+    "description": "Learn how to manage your Obsidian vault with AI using Desktop Commander. Organize attachments, rename notes, and clean up your knowledge base with natural la...",
     "description_source": "custom",
     "featured_image": "/blog/media/2026/01/Screenshot-2026-01-14-at-09.44.42.png",
     "featured_image_w": 1648,
@@ -2663,7 +2663,7 @@
       "Markdown"
     ],
     "tags": [],
-    "description": "Markdown files are plain text documents with simple formatting. Learn why .md files are the foundation for AI-powered file management and modern documentation workflows.",
+    "description": "Markdown files are plain text documents with simple formatting. Learn why .md files are the foundation for AI-powered file management and modern documentatio...",
     "description_source": "custom",
     "featured_image": "/blog/media/2026/01/Screenshot-2026-01-09-at-11.29.25.png",
     "featured_image_w": 1746,
@@ -2834,7 +2834,7 @@
       "Use Cases"
     ],
     "tags": [],
-    "description": "Learn how to build a personal AI knowledge base using local files. Skip the complex RAG pipelines—manage your notes and documents with natural language through Desktop Commander.",
+    "description": "Learn how to build a personal AI knowledge base using local files. Skip the complex RAG pipelines—manage your notes and documents with natural language throu...",
     "description_source": "custom",
     "featured_image": "/blog/media/2026/01/Screenshot-2026-01-07-at-09.45.54.png",
     "featured_image_w": 1600,
@@ -2982,7 +2982,7 @@
       "Tutorials"
     ],
     "tags": [],
-    "description": "Learn how to convert HEIC to JPG locally without uploading photos anywhere. Covers Mac, Windows, and how AI tools like Desktop Commander simplify batch conversion.",
+    "description": "Learn how to convert HEIC to JPG locally without uploading photos anywhere. Covers Mac, Windows, and how AI tools like Desktop Commander simplify batch conve...",
     "description_source": "custom",
     "featured_image": "/blog/media/2026/01/Screenshot-2026-01-06-at-11.25.02.png",
     "featured_image_w": 1596,
@@ -3240,7 +3240,7 @@
       "markdown-best-practices",
       "technical-documentation"
     ],
-    "description": "Master markdown best practices for technical documentation. Learn formatting, version control, error checking tools, and how Desktop Commander automates documentation with AI.",
+    "description": "Master markdown best practices for technical documentation. Learn formatting, version control, error checking tools, and how Desktop Commander automates docu...",
     "description_source": "custom",
     "featured_image": "/blog/media/2025/12/markdown-documentation-featured-e1765184673758.jpg",
     "featured_image_w": 1122,
