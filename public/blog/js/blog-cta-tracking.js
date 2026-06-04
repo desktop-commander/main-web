@@ -2,7 +2,7 @@
  * Blog CTA Tracking for Desktop Commander
  * Tracks CTA button clicks from blog posts to PostHog
  * Uses sendBeacon for reliable tracking during navigation
- * Version: 1.5.0
+ * Version: 1.6.0 - Fixed distinct_id handling
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -14,24 +14,47 @@ document.addEventListener('DOMContentLoaded', function() {
     // Get or create anonymous ID (PostHog uses this)
     function getDistinctId() {
         // Try to get PostHog's distinct_id if available
-        if (typeof posthog !== 'undefined' && posthog.get_distinct_id) {
-            return posthog.get_distinct_id();
+        if (typeof posthog !== 'undefined' && typeof posthog.get_distinct_id === 'function') {
+            var phId = posthog.get_distinct_id();
+            if (phId) return phId;
         }
-        // Fallback: check cookie
-        var match = document.cookie.match(/ph_[^=]+=([^;]+)/);
-        if (match) {
-            try {
-                var data = JSON.parse(decodeURIComponent(match[1]));
-                if (data.distinct_id) return data.distinct_id;
-            } catch(e) {}
+        
+        // Fallback: check PostHog cookie
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.indexOf('ph_') === 0 && cookie.indexOf('_posthog=') !== -1) {
+                try {
+                    var value = cookie.split('=')[1];
+                    var data = JSON.parse(decodeURIComponent(value));
+                    if (data.distinct_id) return data.distinct_id;
+                } catch(e) {
+                    console.log('[Blog Tracking] Cookie parse error:', e);
+                }
+            }
         }
-        // Generate anonymous ID
-        return 'anon_' + Math.random().toString(36).substr(2, 9);
+        
+        // Final fallback: Generate and store anonymous ID
+        var storageKey = 'dc_anonymous_id';
+        var storedId = null;
+        try {
+            storedId = localStorage.getItem(storageKey);
+        } catch(e) {}
+        
+        if (storedId) return storedId;
+        
+        var newId = 'dc_anon_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        try {
+            localStorage.setItem(storageKey, newId);
+        } catch(e) {}
+        
+        return newId;
     }
     
     // Send event using sendBeacon (reliable during navigation)
     function sendEventBeacon(eventName, properties) {
         var distinctId = getDistinctId();
+        
         var payload = {
             api_key: POSTHOG_TOKEN,
             event: eventName,
@@ -42,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 $host: window.location.host,
                 $pathname: window.location.pathname,
                 $lib: 'web-beacon',
+                $lib_version: '1.6.0',
                 token: POSTHOG_TOKEN
             }),
             timestamp: new Date().toISOString()
@@ -73,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
         sendEventBeacon(eventName, properties);
         
         // Also try PostHog if loaded (for session linkage)
-        if (typeof posthog !== 'undefined' && posthog.capture) {
+        if (typeof posthog !== 'undefined' && typeof posthog.capture === 'function') {
             posthog.capture(eventName, properties);
         }
         
@@ -84,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 window.location.href = targetUrl;
             }
-        }, 100);
+        }, 150);
         
         return true;
     }
@@ -176,5 +200,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Log initialization
-    console.log('[Blog Tracking] Initialized:', ctaButtons.length, 'CTA buttons,', headerButtons.length, 'header buttons (v1.5.0 beacon)');
+    console.log('[Blog Tracking] Initialized:', ctaButtons.length, 'CTA buttons,', headerButtons.length, 'header buttons (v1.6.0)');
 });
