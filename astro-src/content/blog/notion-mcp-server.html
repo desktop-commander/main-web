@@ -1,0 +1,478 @@
+
+<p><strong>Notion MCP connects AI tools directly to your workspace</strong> — your AI can read, write, search, and update Notion pages and databases without copy-pasting. The easiest way to give Claude or ChatGPT full access to your Notion workspace is through Notion's official MCP server, which connects in under a minute with one-click OAuth.</p>
+
+
+
+<h2 class="wp-block-heading" id="key-takeaways">Key Takeaways</h2>
+
+
+
+<ul class="wp-block-list">
+<li><strong>Notion MCP connects AI tools directly to your workspace</strong> — your AI can read, write, search, and update Notion pages and databases without copy-pasting</li>
+<li><strong>Two options exist: hosted (one-click OAuth) and open-source (local server)</strong> — the hosted version is easier but has fewer features; the open-source version gives more control but requires Node.js</li>
+<li><strong>17 built-in tools</strong> cover searching, creating pages, querying databases, managing comments, and more</li>
+<li><strong>Common setup mistakes are avoidable</strong> — most connection issues come from using <code>NOTION_API_KEY</code> instead of <code>NOTION_TOKEN</code>, or forgetting to grant page-level access to your integration</li>
+<li><strong>Combining Notion MCP with Desktop Commander</strong> unlocks workflows where AI reads your codebase, generates documentation, and publishes it to Notion in one conversation</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading" id="your-notion-workspace-has-an-api-problem">Your Notion Workspace Has an API Problem</h2>
+
+
+
+<p>Notion holds everything — project specs, meeting notes, knowledge bases, sprint boards. But the moment you want AI to actually <em>use</em> that information, you hit a wall.</p>
+
+
+
+<p>Copy a page into ChatGPT? You lose formatting, tables, and linked databases. Export to markdown? The file is already stale by the time you paste it. Try the Notion API directly? You're writing Python scripts to parse nested JSON blocks just to read a single page.</p>
+
+
+
+<p>This friction is why the Model Context Protocol matters. If you're unfamiliar with <a href="/blog/what-is-an-mcp-server-and-how-it-works-in-plain-english/">what an MCP server is and how it works</a>, the short version: MCP is an open standard — <a href="https://modelcontextprotocol.io/">created by Anthropic</a> — that lets AI tools connect to external services through a standardized interface. Instead of your AI guessing about your workspace, it can directly search, read, and write to Notion.</p>
+
+
+
+<p>Notion was one of the first major platforms to ship an <a href="https://github.com/makenotion/notion-mcp-server">official MCP server</a>, and they've since launched a <a href="https://developers.notion.com/docs/mcp">hosted version</a> that eliminates most of the setup friction. Let's look at how both work and where each fits.</p>
+
+
+
+<h2 class="wp-block-heading" id="hosted-vs-open-source-which-notion-mcp-server-to-use">Hosted vs. Open-Source: Which Notion MCP Server to Use</h2>
+
+
+
+<p>Notion now offers two distinct MCP paths, and the differences matter more than you'd expect. (For context on where Notion fits in the broader landscape, see our roundup of the <a href="/blog/best-mcp-servers/">best MCP servers</a> available right now.)</p>
+
+
+<figure class="wp-block-table is-style-stripes">
+<table style="width:100%; border-collapse: collapse; font-size: 14px;">
+<thead>
+<tr>
+<th style="padding: 12px 16px; text-align: left; font-weight: 600; border-bottom: 2px solid rgba(255,255,255,0.15);">Feature</th>
+<th style="padding: 12px 16px; text-align: left; font-weight: 600; border-bottom: 2px solid rgba(255,255,255,0.15);">Hosted Notion MCP</th>
+<th style="padding: 12px 16px; text-align: left; font-weight: 600; border-bottom: 2px solid rgba(255,255,255,0.15);">Open-Source MCP Server</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background-color: rgba(255,255,255,0.03);">
+<td style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.15);"><strong>Setup</strong></td>
+<td style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.15);">One-click OAuth</td>
+<td style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.15);">Manual config + Node.js</td>
+</tr>
+<tr>
+<td style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.15);"><strong>Authentication</strong></td>
+<td style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.15);">OAuth (browser-based)</td>
+<td style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.15);">API token (NOTION_TOKEN)</td>
+</tr>
+<tr style="background-color: rgba(255,255,255,0.03);">
+<td style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.15);"><strong>Maintenance</strong></td>
+<td style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.15);">Managed by Notion</td>
+<td style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.15);">Self-managed, updates infrequent</td>
+</tr>
+<tr>
+<td style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.15);"><strong>Tool count</strong></td>
+<td style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.15);">17 optimized tools</td>
+<td style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.15);">~20 tools (closer to raw API)</td>
+</tr>
+<tr style="background-color: rgba(255,255,255,0.03);">
+<td style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.15);"><strong>Data format</strong></td>
+<td style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.15);">Notion-flavored Markdown</td>
+<td style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.15);">Hierarchical JSON</td>
+</tr>
+<tr>
+<td style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.15);"><strong>Token efficiency</strong></td>
+<td style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.15);">High (Markdown is compact)</td>
+<td style="padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.15);">Lower (JSON is verbose)</td>
+</tr>
+</tbody>
+</table>
+</figure>
+
+
+<p>The hosted version is the path Notion is investing in. As Kenneth Sinder, Software Engineer at Notion, explained in <a href="https://www.notion.com/blog/notions-hosted-mcp-server-an-inside-look">their engineering blog</a>: they built a code-generation pipeline for Notion's hosted MCP server, converting their generated OpenAPI schemas to Zod. The result is a system designed specifically for AI agents, not just a wrapper around their existing API.</p>
+
+
+
+<p>But the hosted version has a real limitation. As one developer <a href="https://maxrohde.com/2025/08/23/notion-mcp-vs-notion-mcp-server/">documented after testing both</a>: the hosted server's search tool requires a query string parameter, making it impossible to retrieve all database pages without specifying text. For broad queries like "list everything in this database," the open-source version handles it natively.</p>
+
+
+
+<p>For most people starting out, the hosted version is the right call. If you need full database query flexibility or want to modify how the server works, go open-source.</p>
+
+
+
+<h2 class="wp-block-heading" id="setting-up-the-hosted-notion-mcp-the-fast-path">Setting Up the Hosted Notion MCP (The Fast Path)</h2>
+
+
+
+<p>The hosted server connects through OAuth — no API tokens, no config files, no Node.js. (If you're new to connecting MCP servers to Claude, our guide on <a href="/blog/claude-mcp-how-to-use-mcp-with-claude-ai/">how to use MCP with Claude</a> covers the fundamentals.)</p>
+
+
+
+<p><strong>In Claude Desktop or Claude Code:</strong></p>
+
+
+
+<p>Open your MCP settings and add:</p>
+
+
+
+<pre class="wp-block-code"><code class="language-json">{
+  "mcpServers": {
+    "notion": {
+      "url": "https://mcp.notion.com/mcp"
+    }
+  }
+}</code></pre>
+
+
+
+<p>When you first use a Notion tool, Claude opens a browser window for OAuth authorization. Grant access to your workspace, and you're connected.</p>
+
+
+
+<p><strong>In Cursor:</strong></p>
+
+
+
+<p>Navigate to Settings > MCP Servers, click "Add Server," and paste the URL <code>https://mcp.notion.com/mcp</code>. Complete the OAuth flow when prompted.</p>
+
+
+
+<p>That's it. No tokens to manage, no restarts needed.</p>
+
+
+<h2 class="wp-block-heading" id="setting-up-the-open-source-server-more-control">Setting Up the Open-Source Server (More Control)</h2>
+
+
+
+<p>If you need the full API surface or want to self-host, the <a href="https://github.com/makenotion/notion-mcp-server">open-source server</a> (3.9k stars on GitHub) gives you direct access. You'll need Node.js installed — if you don't have a dev environment ready, our guide on <a href="/blog/how-to-set-up-local-development-environment-with-ease/">setting up a local development environment</a> walks through the prerequisites.</p>
+
+
+
+<h3 class="wp-block-heading" id="step-1-create-a-notion-integration">Step 1: Create a Notion integration</h3>
+
+
+
+<p>Go to <a href="https://www.notion.so/profile/integrations">notion.so/profile/integrations</a> and create an internal integration. Copy the bearer token — it starts with <code>ntn_</code>.</p>
+
+
+
+<h3 class="wp-block-heading" id="step-2-grant-page-access">Step 2: Grant page access</h3>
+
+
+
+<p>This is where most people get stuck. Creating the integration isn't enough. You need to open each Notion page or database you want the AI to access, click the three-dot menu, select "Connections," and add your integration. Without this step, every API call returns empty results.</p>
+
+
+
+<h3 class="wp-block-heading" id="step-3-configure-your-ai-client">Step 3: Configure your AI client</h3>
+
+
+
+<p>Add this to your <code>claude_desktop_config.json</code>:</p>
+
+
+<pre class="wp-block-code"><code class="language-json">{
+  "mcpServers": {
+    "notionApi": {
+      "command": "npx",
+      "args": ["-y", "@notionhq/notion-mcp-server"],
+      "env": {
+        "NOTION_TOKEN": "ntn_your_token_here"
+      }
+    }
+  }
+}</code></pre>
+
+
+
+<p>Restart Claude Desktop completely (quit the app, not just close the window).</p>
+
+
+
+<p><strong>Docker alternative:</strong></p>
+
+
+
+<pre class="wp-block-code"><code class="language-json">{
+  "mcpServers": {
+    "notionApi": {
+      "command": "docker",
+      "args": ["run", "--rm", "-e", "NOTION_TOKEN=ntn_your_token_here", "mcp/notion"]
+    }
+  }
+}</code></pre>
+
+
+<div class="dc-mcp-cta"><div class="dc-mcp-cta-inner"><div class="dc-mcp-cta-content"><div class="dc-mcp-cta-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="dc-mcp-cta-title" id="install-desktop-commander-mcp">Install Desktop Commander MCP</h3><p class="dc-mcp-cta-description">Connect Claude to your local files and terminal. One-click install for Claude Desktop.</p></div><a href="https://desktopcommander.app/mcp" class="dc-mcp-cta-btn" data-post-slug="notion-mcp-server" data-post-title="Notion MCP Server: How to Give Your AI Full Access to Your Workspace" data-cta-variant="default" data-cta-type="mcp" target="_blank" rel="noopener">Install Free<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+
+
+<h2 class="wp-block-heading" id="what-notion-mcp-can-actually-do">What Notion MCP Can Actually Do</h2>
+
+
+
+<p>Once connected, your AI has access to <a href="https://developers.notion.com/docs/mcp-supported-tools">17 tools</a> that cover the core Notion operations:</p>
+
+
+<h3 class="wp-block-heading" id="search-and-retrieve">Search and retrieve</h3>
+
+
+
+<ul class="wp-block-list">
+<li><strong>notion-search</strong> — search across your workspace and connected apps (Slack, Google Drive, Jira)</li>
+<li><strong>notion-fetch</strong> — pull full page content, database schemas, and properties by URL or ID</li>
+</ul>
+
+
+
+<h3 class="wp-block-heading" id="create-and-modify">Create and modify</h3>
+
+
+
+<ul class="wp-block-list">
+<li><strong>notion-create-pages</strong> — generate new pages with properties, content, and templates</li>
+<li><strong>notion-update-page</strong> — modify page properties or replace content</li>
+<li><strong>notion-move-pages</strong> — relocate pages between sections</li>
+<li><strong>notion-duplicate-page</strong> — copy existing pages</li>
+</ul>
+
+
+
+<h3 class="wp-block-heading" id="database-operations">Database operations</h3>
+
+
+
+<ul class="wp-block-list">
+<li><strong>notion-create-database</strong> — build databases with custom properties and views</li>
+<li><strong>notion-query-data-sources</strong> — query across multiple data sources with filters and grouping</li>
+<li><strong>notion-query-database-view</strong> — query using pre-defined view filters</li>
+</ul>
+
+
+<h3 class="wp-block-heading" id="collaboration">Collaboration</h3>
+
+
+
+<ul class="wp-block-list">
+<li><strong>notion-create-comment</strong> — add comments to pages or reply to discussions</li>
+<li><strong>notion-get-comments</strong> — retrieve all comments and threads on a page</li>
+</ul>
+
+
+
+<p>Rate limits sit at 180 requests per minute, with search capped at 30 per minute — generous enough for most workflows.</p>
+
+
+
+<h2 class="wp-block-heading" id="four-workflows-that-justify-the-setup">Four Workflows That Justify the Setup</h2>
+
+
+
+<p>Connecting Notion to your AI isn't useful because of the tools themselves — it's useful because of what you can chain together.</p>
+
+
+
+<h3 class="wp-block-heading" id="automated-release-notes-from-git-history">Automated release notes from Git history</h3>
+
+
+
+<p>Ask your AI to read recent commits, group changes by category, and publish structured release notes directly to a Notion page. No more manually writing "what shipped this week" updates. The AI searches your Notion project board, cross-references completed tasks, and generates a formatted changelog.</p>
+
+
+
+<h3 class="wp-block-heading" id="meeting-notes-that-update-project-boards">Meeting notes that update project boards</h3>
+
+
+
+<p>After a meeting, paste raw notes into your AI conversation. It extracts action items, finds the corresponding tasks in your Notion sprint database, updates their status, and adds comments with context. According to <a href="https://developers.notion.com/docs/mcp">Notion's documentation</a>, agents can find corresponding tasks using the search tool, update their status, and add comments with links for traceability.</p>
+
+
+<h3 class="wp-block-heading" id="knowledge-base-maintenance">Knowledge base maintenance</h3>
+
+
+
+<p>Point your AI at a documentation database and ask it to find outdated pages, identify gaps, or generate new entries from source material. If you're building an <a href="/blog/ai-knowledge-management-system/">AI-powered knowledge management system</a>, the Notion MCP becomes a core piece of the stack. The search tool works across connected apps too — so it can pull context from Slack conversations or Google Docs to enrich your wiki. (See also: <a href="/blog/best-mcp-servers-for-knowledge-bases-in-2026/">best MCP servers for knowledge bases</a> for other tools that complement this workflow.)</p>
+
+
+
+<h3 class="wp-block-heading" id="spec-to-implementation-bridge">Spec-to-implementation bridge</h3>
+
+
+
+<p>Pull a PRD from Notion, generate implementation tasks, create a database for tracking them, and populate it with estimates and assignments — all in one conversation. If you're using <a href="https://desktopcommander.app/">Desktop Commander</a> alongside the Notion MCP, you can go further: read the spec from Notion, scaffold the project locally, write initial code, and push task updates back to Notion.</p>
+
+
+
+<h2 class="wp-block-heading" id="combining-desktop-commander-with-notion-mcp">Combining Desktop Commander with Notion MCP</h2>
+
+
+
+<p>This is where MCP servers start compounding. <a href="https://desktopcommander.app/">Desktop Commander</a> is the best tool for bridging your local filesystem and cloud workspaces like Notion — it gives your AI access to your files and terminal while Notion MCP gives it access to your workspace. Running both means your AI can bridge the gap between documentation and execution.</p>
+
+
+
+<p>Here's what that looks like in practice:</p>
+
+
+
+<h3 class="wp-block-heading" id="documentation-generation-from-code">Documentation generation from code</h3>
+
+
+
+<pre class="wp-block-code"><code>Read the /src/api directory structure and generate
+API documentation. Publish it to my Notion Engineering
+Wiki under a new 'API Reference' page.</code></pre>
+
+
+
+<p>Desktop Commander reads your codebase. Notion MCP creates the page. One prompt, two MCP servers, zero copy-pasting. For best results, follow <a href="/blog/markdown-best-practices-technical-documentation/">technical documentation best practices</a> when structuring what the AI generates.</p>
+
+
+<h3 class="wp-block-heading" id="project-scaffolding-from-specs">Project scaffolding from specs</h3>
+
+
+
+<pre class="wp-block-code"><code>Fetch the 'Auth System PRD' from Notion, then create
+the folder structure and boilerplate files on my machine.</code></pre>
+
+
+
+<p>The AI pulls the spec from Notion, understands the requirements, and uses Desktop Commander to create directories, write starter files, and set up configuration — all informed by your actual documentation.</p>
+
+
+
+<h3 class="wp-block-heading" id="syncing-local-context-with-remote-docs">Syncing local context with remote docs</h3>
+
+
+
+<pre class="wp-block-code"><code>Compare the README.md in this repo with the project
+overview page in Notion. Update whichever is outdated.</code></pre>
+
+
+
+<p>Running multiple MCP servers through Claude Desktop or <a href="https://desktopcommander.app/">Desktop Commander</a> is straightforward — each server gets its own entry in your config, and the AI routes operations to the right one automatically. Check the <a href="https://desktopcommander.app/library">Desktop Commander prompt library</a> for more workflow ideas you can adapt.</p>
+
+
+<div class="dc-mcp-cta"><div class="dc-mcp-cta-inner"><div class="dc-mcp-cta-content"><div class="dc-mcp-cta-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="dc-mcp-cta-title" id="install-desktop-commander-mcp-1">Install Desktop Commander MCP</h3><p class="dc-mcp-cta-description">Connect Claude to your local files and terminal. One-click install for Claude Desktop.</p></div><a href="https://desktopcommander.app/mcp" class="dc-mcp-cta-btn" data-post-slug="notion-mcp-server" data-post-title="Notion MCP Server: How to Give Your AI Full Access to Your Workspace" data-cta-variant="default" data-cta-type="mcp" target="_blank" rel="noopener">Install Free<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+
+
+<h2 class="wp-block-heading" id="troubleshooting-the-setup">Troubleshooting the Setup</h2>
+
+
+
+<p>Real issues from the <a href="https://github.com/makenotion/notion-mcp-server/issues">Notion MCP Server GitHub repository</a> — and how to fix them.</p>
+
+
+<h3 class="wp-block-heading" id="mcp-error-32000-connection-closed">"MCP error -32000: Connection closed"</h3>
+
+
+
+<p>This is <a href="https://github.com/makenotion/notion-mcp-server/issues/107">the most reported issue</a>. A full quit and restart of Claude Desktop (not just closing the window) resolves it in most cases. If it persists, try the Docker installation method, which one user <a href="https://github.com/makenotion/notion-mcp-server/issues/107">confirmed as a working alternative</a>. (Our guide on <a href="/blog/automate-docker-workflows-with-ai/">automating Docker workflows with AI</a> covers container management in more depth.)</p>
+
+
+
+<h3 class="wp-block-heading" id="401-unauthorized-errors">401 Unauthorized errors</h3>
+
+
+
+<p>Check your environment variable name. Many tutorials use <code>NOTION_API_KEY</code>, but the server expects <code>NOTION_TOKEN</code>. This single mismatch causes silent authentication failures.</p>
+
+
+
+<h3 class="wp-block-heading" id="empty-results-when-querying-pages">Empty results when querying pages</h3>
+
+
+
+<p>You granted the integration access during creation, but did you also connect it to specific pages? Open each page you want accessible, click the three-dot menu > "Connections" > add your integration. This is a per-page permission, not a workspace-wide one.</p>
+
+
+
+<h3 class="wp-block-heading" id="nodejs-compatibility-issues">Node.js compatibility issues</h3>
+
+
+
+<p>One developer <a href="https://kareemf.com/claude-notion-mcp">reported encountering</a> <code>{error: fetch is not defined}</code> errors, which they traced to Node.js version compatibility. Using <code>nvm</code> with the latest LTS version (20+) resolves this. Also ensure you're referencing the absolute path to Node if using version managers.</p>
+
+
+<h3 class="wp-block-heading" id="parameter-serialization-bugs">Parameter serialization bugs</h3>
+
+
+
+<p>A <a href="https://github.com/anthropics/claude-code/issues/25865">known issue</a> causes object parameters (like <code>data</code>, <code>parent</code>, <code>new_parent</code>) to be serialized as strings instead of JSON objects in certain Claude configurations. If page creation or updates fail with ZodError validation messages, this may be the cause. The workaround is using the hosted MCP server, which doesn't have this issue.</p>
+
+
+
+<h2 class="wp-block-heading" id="community-discussions">Community Discussions</h2>
+
+
+
+<ul class="wp-block-list">
+<li><a href="https://github.com/makenotion/notion-mcp-server/issues/142">Two Notion MCP servers, neither work well</a> — a user's breakdown of the pros and cons of each version, requesting consolidation</li>
+<li><a href="https://maxrohde.com/2025/08/23/notion-mcp-vs-notion-mcp-server/">Notion MCP vs Notion MCP Server</a> — detailed technical comparison of hosted vs. open-source</li>
+<li><a href="https://developers.notion.com/docs/get-started-with-mcp">Official Notion MCP setup guide</a> — Notion's step-by-step documentation</li>
+<li><a href="https://github.com/wonderwhy-er/DesktopCommanderMCP">Desktop Commander GitHub</a> — pair it with Notion MCP for filesystem + workspace automation</li>
+<li><a href="https://www.notion.com/blog/notions-hosted-mcp-server-an-inside-look">Notion's hosted MCP server: an inside look</a> — engineering deep dive from the Notion team</li>
+</ul>
+
+
+<h2 class="wp-block-heading" id="frequently-asked-questions">Frequently Asked Questions</h2>
+
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Can I use Notion MCP with the free Notion plan?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Yes. MCP access works through the Notion API, which is available on all plans including free. You just need to create an integration and connect it to your pages.
+</div>
+</details>
+
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Does Notion MCP work with ChatGPT?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Yes. Notion's hosted MCP server supports ChatGPT, Claude Desktop, Claude Code, Cursor, and VS Code. The open-source server works with any client that supports the MCP standard.
+</div>
+</details>
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Is it safe to give AI write access to my Notion workspace?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+You control permissions at two levels: the integration settings (where you can set read-only access) and the page connections (which pages the integration can see). Start with read-only access to a test page, verify the behavior, then expand permissions as you get comfortable.
+</div>
+</details>
+
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Can I run Notion MCP alongside other MCP servers like Desktop Commander?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Absolutely. Each MCP server gets its own entry in your client's configuration file. Your AI automatically routes operations to the right server based on the task. This is how you build workflows that span your filesystem, terminal, and Notion workspace in a single conversation. You can even <a href="/blog/build-a-personal-ai-knowledge-base-with-local-files/">build a personal AI knowledge base with local files</a> and sync it with Notion for the best of both worlds.
+</div>
+</details>
+
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Will Notion sunset the open-source MCP server?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Notion has <a href="https://github.com/makenotion/notion-mcp-server">stated in the repository</a> that they may sunset the local MCP server repository in the future as they prioritize the hosted version. Issues and pull requests on the open-source repo are not being actively monitored. If long-term maintenance matters to you, the hosted server is the safer bet.
+</div>
+</details>

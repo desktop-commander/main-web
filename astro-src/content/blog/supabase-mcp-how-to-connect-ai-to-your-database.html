@@ -1,0 +1,472 @@
+
+<p>You're deep in a coding session and need to inspect your database schema. You switch to the browser, log into the Supabase dashboard, find the right project, open the SQL editor, run a query, then jump back to your code. Five minutes later, you need another query. Same dance again. And that's before the real friction starts: writing the right SQL, interpreting the results, iterating, etc.</p>
+
+
+
+<p>This context-switching kills momentum. <a href="https://supabase.com/blog/mcp-server">Supabase MCP</a> eliminates it entirely by letting AI tools like Claude and Cursor talk directly to your database.</p>
+
+
+
+<h2 class="wp-block-heading" id="key-takeaways">Key Takeaways</h2>
+
+
+
+<ul class="wp-block-list">
+<li><strong>Supabase MCP</strong> connects AI assistants (Claude, Cursor, Windsurf) directly to your Supabase projects</li>
+
+
+
+<li><strong>No personal access token required</strong> anymore—authentication happens through browser-based OAuth</li>
+
+
+
+<li><strong>Remote MCP</strong> is the recommended approach, connecting to https://mcp.supabase.com/mcp</li>
+
+
+
+<li><strong>Never connect to production</strong>—Supabase MCP is designed for development environments only</li>
+
+
+
+<li><strong>Read-only mode</strong> is available when you need to query real data safely</li>
+
+
+
+<li>Works alongside <a href="https://desktopcommander.app/mcp/">Desktop Commander</a> for complete local + cloud development</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading" id="the-frustrating-reality-of-database-work">The Frustrating Reality of Database Work</h2>
+
+
+
+<p>Every developer and most data analysts who work with databases knows this workflow: write code, wonder about the schema, open dashboard, find project, check tables, go back to code, realize you need another query, repeat.</p>
+
+
+
+<p>One developer <a href="https://www.specflow.com/reddit-wisdom/guides/posts/quick-guide-connecting-supabase-to-cursor-via-mcp-/index.html">shared on Reddit</a>:</p>
+
+
+
+<blockquote class="wp-block-quote">
+<p>"I struggled for hours last night because I skipped this step at first. Without this, Cursor just couldn't get accurate context from Supabase, even when I fed it the docs directly."</p>
+</blockquote>
+
+
+
+<p>Another user in a <a href="https://github.com/orgs/supabase/discussions/36750">GitHub discussion</a> described giving up entirely:</p>
+
+
+
+<blockquote class="wp-block-quote">
+<p>"We were not able to make it work. We gave up on working on it."</p>
+</blockquote>
+
+
+
+<p>The setup doesn't have to be this painful. Once you understand how Supabase MCP works, the configuration takes minutes—and transforms how you interact with your database.</p>
+
+
+
+<h2 class="wp-block-heading" id="what-supabase-mcp-actually-does">What Supabase MCP Actually Does</h2>
+
+
+
+<p>If you're new to <a href="/blog/what-is-an-mcp-server-and-how-it-works-in-plain-english/">MCP (Model Context Protocol)</a>, it's an open standard that lets AI tools communicate with external systems. Supabase built an <a href="https://supabase.com/docs/guides/getting-started/mcp">official MCP server</a> that exposes your projects to AI assistants.</p>
+
+
+
+<p>Here's what becomes possible:</p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>Capability</th><th>What You Can Do</th><th>Example Prompt</th></tr></thead><tbody><tr><td><strong>Schema Management</strong></td><td>List tables, create migrations, modify structure</td><td>"Show me all tables in my project and their relationships"</td></tr><tr><td><strong>SQL Queries</strong></td><td>Run SELECT, INSERT, UPDATE directly</td><td>"Find all users who signed up in the last 7 days"</td></tr><tr><td><strong>Project Management</strong></td><td>Create, pause, restore projects</td><td>"Create a new Supabase project called staging-api"</td></tr><tr><td><strong>Edge Functions</strong></td><td>List, view, deploy serverless functions</td><td>"Deploy this edge function to handle webhooks"</td></tr><tr><td><strong>Debugging</strong></td><td>Access logs, get performance advisors</td><td>"Show me the last 100 auth service logs"</td></tr><tr><td><strong>TypeScript Types</strong></td><td>Generate types from your schema</td><td>"Generate TypeScript types for my database"</td></tr></tbody></table></figure>
+
+
+
+<p>The <a href="https://github.com/supabase-community/supabase-mcp">full list of available tools</a> includes over 30 operations organized into feature groups you can enable or disable.</p>
+
+
+
+<h2 class="wp-block-heading" id="two-connection-methods-compared">Two Connection Methods Compared</h2>
+
+
+
+<p>Supabase offers two ways to connect MCP to your projects:</p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>Method</th><th>Best For</th><th>Authentication</th><th>Features</th></tr></thead><tbody><tr><td><strong>Remote MCP</strong></td><td>Most users, Claude/Cursor</td><td>Browser OAuth (automatic)</td><td>Full feature set</td></tr><tr><td><strong>Local CLI</strong></td><td>Local development, testing</td><td>None required</td><td>Limited tools</td></tr></tbody></table></figure>
+
+
+
+<p><strong>Remote MCP</strong> is the recommended approach. It connects to Supabase's hosted MCP server at https://mcp.supabase.com/mcp and handles authentication automatically through your browser.</p>
+
+
+
+<p><strong>Local CLI</strong> runs at http://localhost:54321/mcp when you have Supabase running locally. Useful for testing, but doesn't include OAuth or the full tool set.</p>
+
+
+
+<p>For most development workflows, remote MCP gives you everything you need.</p>
+
+
+
+<h2 class="wp-block-heading" id="setting-up-supabase-mcp-with-cursor">Setting Up Supabase MCP with Cursor</h2>
+
+
+
+<p>Cursor has the smoothest setup experience. Add this to your <code>.cursor/mcp.json</code> file:</p>
+
+
+
+<pre class="wp-block-code"><code>{
+  "mcpServers": {
+    "supabase": {
+      "url": "https://mcp.supabase.com/mcp"
+    }
+  }
+}</code></pre>
+
+
+
+<p>Restart Cursor, and it will prompt you to authenticate with Supabase through your browser. Select the organization you want to grant access to, and you're connected.</p>
+
+
+
+<p>To scope the connection to a specific project (recommended):</p>
+
+
+
+<pre class="wp-block-code"><code>{
+  "mcpServers": {
+    "supabase": {
+      "url": "https://mcp.supabase.com/mcp?project_ref=your-project-id"
+    }
+  }
+}</code></pre>
+
+
+
+<p>Find your project reference in your Supabase dashboard URL—it's the string after <code>project/</code>.</p>
+
+
+
+<h2 class="wp-block-heading" id="setting-up-supabase-mcp-with-claude-desktop">Setting Up Supabase MCP with Claude Desktop</h2>
+
+
+
+<p>For Claude Desktop, the configuration goes in <code>claude_desktop_config.json</code>:</p>
+
+
+
+<pre class="wp-block-code"><code>{
+  "mcpServers": {
+    "supabase": {
+      "command": "npx",
+      "args": &#91;"-y", "@supabase/mcp-server"]
+    }
+  }
+}</code></pre>
+
+
+
+<p>Alternatively, you can use the remote server URL directly if your Claude Desktop version supports HTTP MCP servers.</p>
+
+
+
+<p>If you're already using <a href="https://desktopcommander.app/mcp/">Desktop Commander</a> with Claude, you can run both MCP servers together—Desktop Commander for <a href="/blog/how-to-set-up-local-development-environment-with-ease/">local file and terminal access</a>, Supabase MCP for database operations.</p>
+
+
+
+<h2 class="wp-block-heading" id="setting-up-supabase-mcp-with-desktop-commander">Setting Up Supabase MCP with Desktop Commander</h2>
+
+
+
+<p>If you already use Desktop Commander, you don't need to touch configuration files at all.</p>
+
+
+
+<p>You can simply ask Desktop Commander to set up Supabase MCP for you. Just provide the required configuration details, and it will handle the rest—updating the necessary files and restarting your Claude Desktop client automatically.</p>
+
+
+
+<p>Under the hood, this results in the same configuration as below being added to <code>claude_desktop_config.json</code>:</p>
+
+
+
+<pre class="wp-block-code"><code>{
+  "mcpServers": {
+    "supabase": {
+      "command": "npx",
+      "args": &#91;"-y", "@supabase/mcp-server"]
+    }
+  }
+}</code></pre>
+
+
+
+<h2 class="wp-block-heading" id="sql-through-natural-language">SQL Through Natural Language</h2>
+
+
+
+<p>Once connected, database exploration becomes conversational. You no longer need to write SQL, remember syntax, or even know how your database is structured.</p>
+
+
+
+<p>You can simply ask your AI, in natural language, to explore, analyze, and reason about your data—and it will write and execute the necessary queries for you.</p>
+
+
+
+<p>This changes who can work with databases. What used to require SQL knowledge and data expertise becomes accessible to anyone: product managers, operators, founders, analysts, and non-technical teammates. Here are a few example prompts that demonstrate this workflow:</p>
+
+
+
+<p><strong>Exploring schema:</strong></p>
+
+
+
+<pre class="wp-block-code"><code>List all tables in my database and describe their columns. Highlight any tables that seem related through foreign keys.</code></pre>
+
+
+
+<p><strong>Writing queries:</strong></p>
+
+
+
+<pre class="wp-block-code"><code>Write a query to find the top 10 customers by total order value in the last 30 days.</code></pre>
+
+
+
+<p><strong>Creating migrations:</strong></p>
+
+
+
+<pre class="wp-block-code"><code>Add a 'status' column to the orders table with values 'pending', 'processing', 'shipped', 'delivered'. Default to 'pending'.</code></pre>
+
+
+
+<p><strong>Debugging issues:</strong></p>
+
+
+
+<pre class="wp-block-code"><code>Show me the last 50 error logs from the auth service. Are there any patterns?</code></pre>
+
+
+
+<p><strong>Generating types:</strong></p>
+
+
+
+<pre class="wp-block-code"><code>Generate TypeScript types for my entire database schema. I'm using Supabase's type generation format.</code></pre>
+
+
+
+<p>The MCP server translates these requests into actual SQL operations and returns real results from your database.</p>
+
+
+
+<h2 class="wp-block-heading" id="security-the-non-negotiables">Security: The Non-Negotiables</h2>
+
+
+
+<p>Supabase is explicit about this: <strong>never connect MCP to production data</strong>. The <a href="https://supabase.com/docs/guides/getting-started/mcp">official documentation</a> emphasizes this repeatedly, and for good reason.</p>
+
+
+
+<p>The primary risk is <strong>prompt injection</strong>. If malicious instructions get embedded in your database content, they could trick the AI into executing unauthorized commands. In a development environment with test data, this is manageable. In production with real customer data, it's a serious vulnerability.</p>
+
+
+
+<p><strong>Security best practices:</strong></p>
+
+
+
+<ol class="wp-block-list">
+<li><strong>Use development projects only</strong> with synthetic or obfuscated data</li>
+
+
+
+<li><strong>Enable read-only mode</strong> if you must query real data: <code>?read_only=true</code></li>
+
+
+
+<li><strong>Scope to specific projects</strong> rather than granting organization-wide access</li>
+
+
+
+<li><strong>Disable unused feature groups</strong> to minimize attack surface</li>
+
+
+
+<li><strong>Keep manual approval enabled</strong> in your MCP client—review each operation before execution</li>
+
+
+
+<li><strong>Use database branching</strong> to test schema changes safely</li>
+</ol>
+
+
+
+<p>To configure read-only mode:</p>
+
+
+
+<pre class="wp-block-code"><code>{
+  "mcpServers": {
+    "supabase": {
+      "url": "https://mcp.supabase.com/mcp?read_only=true&amp;project_ref=your-project-id"
+    }
+  }
+}</code></pre>
+
+
+
+<p>Read-only mode disables migrations, project creation/deletion, edge function deployment, and storage configuration changes.</p>
+
+
+
+<h2 class="wp-block-heading" id="feature-groups-enable-only-what-you-need">Feature Groups: Enable Only What You Need</h2>
+
+
+
+<p>Supabase MCP organizes tools into feature groups. By default, most are enabled, but you can restrict access:</p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>Feature Group</th><th>Includes</th><th>Risk Level</th></tr></thead><tbody><tr><td><strong>account</strong></td><td>Project management, organization access</td><td>Medium</td></tr><tr><td><strong>database</strong></td><td>Schema, queries, migrations</td><td>High</td></tr><tr><td><strong>debugging</strong></td><td>Logs, performance advisors</td><td>Low</td></tr><tr><td><strong>development</strong></td><td>URLs, keys, type generation</td><td>Low</td></tr><tr><td><strong>docs</strong></td><td>Documentation search</td><td>None</td></tr><tr><td><strong>functions</strong></td><td>Edge Functions deployment</td><td>Medium</td></tr><tr><td><strong>storage</strong></td><td>Bucket management (disabled by default)</td><td>Medium</td></tr><tr><td><strong>branching</strong></td><td>Database branching (experimental)</td><td>Medium</td></tr></tbody></table></figure>
+
+
+
+<p>To enable only specific groups:</p>
+
+
+
+<pre class="wp-block-code"><code>https:&#47;&#47;mcp.supabase.com/mcp?features=database,debugging,docs</code></pre>
+
+
+
+<p>This gives you schema access and debugging without the ability to deploy functions or manage projects.</p>
+
+
+
+<h2 class="wp-block-heading" id="combining-supabase-mcp-with-desktop-commander">Combining Supabase MCP with Desktop Commander</h2>
+
+
+
+<p>A powerful setup combines Supabase MCP for cloud database access with <a href="https://desktopcommander.app/mcp/">Desktop Commander</a> for local development. This mirrors how the <a href="/blog/best-mcp-servers/">best MCP servers</a> complement each other.</p>
+
+
+
+<p>With both configured:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Use Desktop Commander to navigate your codebase, <a href="/blog/automate-docker-workflows-with-ai/">run Docker containers</a>, and execute terminal commands</li>
+
+
+
+<li>Use Supabase MCP to query your database, generate migrations, and deploy edge functions</li>
+
+
+
+<li>Let Claude <a href="/blog/ai-code-review-with-desktop-commander-a-practical-guide/">review your code</a> while simultaneously checking how it interacts with your database schema</li>
+</ul>
+
+
+
+<p>The <a href="https://desktopcommander.app/library">Desktop Commander prompt library</a> includes templates for full-stack workflows that combine local and cloud operations.</p>
+
+
+
+<div class="dc-mcp-cta"><div class="dc-mcp-cta-inner"><div class="dc-mcp-cta-content"><div class="dc-mcp-cta-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="dc-mcp-cta-title" id="install-desktop-commander-mcp">Install Desktop Commander MCP</h3><p class="dc-mcp-cta-description">Connect Claude to your local files and terminal. One-click install for Claude Desktop.</p></div><a href="https://desktopcommander.app/mcp" class="dc-mcp-cta-btn" data-post-slug="supabase-mcp-how-to-connect-ai-to-your-database" data-post-title="Supabase MCP: How to Connect AI to Your Database" data-cta-variant="default" data-cta-type="mcp" target="_blank" rel="noopener">Install Free<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+
+
+
+<h2 class="wp-block-heading" id="troubleshooting-common-issues">Troubleshooting Common Issues</h2>
+
+
+
+<p><strong>Authentication not working:</strong> Clear your browser cache and try the OAuth flow again. Some browsers block the redirect silently.</p>
+
+
+
+<p><strong>"Project not found" errors:</strong> Double-check your <code>project_ref</code> parameter. The project reference is the alphanumeric ID in your dashboard URL, not the project name.</p>
+
+
+
+<p><strong>Tools not appearing:</strong> Restart your MCP client after configuration changes. MCP tools are loaded at startup.</p>
+
+
+
+<p><strong>Read-only blocking operations:</strong> If you enabled <code>read_only=true</code>, migrations and certain operations are intentionally disabled. Remove the parameter if you need write access.</p>
+
+
+
+<p><strong>Rate limiting:</strong> Supabase MCP has usage limits. If you're hitting them, reduce the frequency of queries or batch operations together.</p>
+
+
+
+<h2 class="wp-block-heading" id="frequently-asked-questions">Frequently Asked Questions</h2>
+
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Can I use Supabase MCP with production databases?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Technically yes, but Supabase strongly advises against it. Use development projects with test data. If you must access real data, enable read-only mode and review every operation manually.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Does Supabase MCP work with self-hosted Supabase?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+The remote MCP server connects to Supabase Cloud. For self-hosted instances, you can enable the local MCP server, though it has reduced functionality.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>What's the difference between Supabase MCP and just using the SQL editor?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Context. With MCP, your AI assistant can see your codebase and your database simultaneously, suggesting queries that match your application's data model and catching mismatches between code and schema.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Can I use multiple MCP servers at once?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Yes. Many developers run <a href="https://github.com/wonderwhy-er/DesktopCommanderMCP">Desktop Commander</a> alongside Supabase MCP and other specialized servers. Each handles different capabilities.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Is there a cost to using Supabase MCP?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+The MCP server itself is free. Standard Supabase pricing applies to your projects and any resources consumed.
+</div>
+</details>
+
+
+
+<p>Connecting AI to your database removes one of the biggest friction points in modern development. With Supabase MCP configured, schema exploration, query writing, and debugging happen in the same context as your code—no more dashboard dancing.</p>
+
+
+
+<div class="dc-mcp-cta"><div class="dc-mcp-cta-inner"><div class="dc-mcp-cta-content"><div class="dc-mcp-cta-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="dc-mcp-cta-title" id="install-desktop-commander-mcp-1">Install Desktop Commander MCP</h3><p class="dc-mcp-cta-description">Connect Claude to your local files and terminal. One-click install for Claude Desktop.</p></div><a href="https://desktopcommander.app/mcp" class="dc-mcp-cta-btn" data-post-slug="supabase-mcp-how-to-connect-ai-to-your-database" data-post-title="Supabase MCP: How to Connect AI to Your Database" data-cta-variant="default" data-cta-type="mcp" target="_blank" rel="noopener">Install Free<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>

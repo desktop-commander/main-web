@@ -1,0 +1,90 @@
+[
+  {
+    "id": 272016980,
+    "login": "ds",
+    "display_name": "ds",
+    "bio": "",
+    "avatar_url": "https://secure.gravatar.com/avatar/6b3e8dac6fa5578778ced9a10503fb4bf6308c9cd2bf81c322eaf1e9dda59d8d?s=400&d=identicon&r=g",
+    "linkedin": "",
+    "x_url": "",
+    "github": "",
+    "post_count": "0"
+  },
+  {
+    "id": 272016977,
+    "login": "eduardruzga",
+    "display_name": "Eduard Ruzga",
+    "bio": "Eduard Ruzga is CEO of Desktop Commander, building tools that close the gap between what AI can describe and what it can actually do. His open-source MCP server (5K+ GitHub stars) enables anyone—technical or not—to accomplish system-level tasks through AI. Previously a Staff Engineer at Prezi, Eduard builds tools at the intersection of AI, visual communication, and knowledge management.",
+    "avatar_url": "https://rk7f8a7274b9330-haqfg.wpcomstaging.com/wp-content/uploads/2026/04/eduard-400x400.png",
+    "linkedin": "https://www.linkedin.com/in/eduardruzga/",
+    "x_url": "https://x.com/wonderwhy_er",
+    "github": "https://github.com/wonderwhy-er",
+    "post_count": "2"
+  },
+  {
+    "id": 272016982,
+    "login": "er",
+    "display_name": "er",
+    "bio": "",
+    "avatar_url": "https://secure.gravatar.com/avatar/42e67409d700c50c51b4d861c2819a0932942d1315926895f4a1e7d8df42cda2?s=400&d=identicon&r=g",
+    "linkedin": "",
+    "x_url": "",
+    "github": "",
+    "post_count": "0"
+  },
+  {
+    "id": 272016979,
+    "login": "karlina",
+    "display_name": "Karlina Sara Rozkalne",
+    "bio": "Karlina is a guest content author exploring topics of AI, MCPs, and automation in collaboration with the Desktop Commander team.",
+    "avatar_url": "https://rk7f8a7274b9330-haqfg.wpcomstaging.com/wp-content/uploads/2026/04/karlina-400x400.jpeg",
+    "linkedin": "https://www.linkedin.com/in/karlinarozkalne/",
+    "x_url": "",
+    "github": "",
+    "post_count": "4"
+  },
+  {
+    "id": 272016983,
+    "login": "rafaelpinheiro",
+    "display_name": "Rafael Pinheiro",
+    "bio": "Rafael Pinheiro is founder of Ottic, building AI-native editorial infrastructure that helps companies turn expertise into scalable, high-quality content engines optimized for Google and AI search. Previously, he was founder of Clipping, an education platform focused on high-performance learning, where he led growth, product, and content at scale.",
+    "avatar_url": "https://i0.wp.com/rk7f8a7274b9330-haqfg.wpcomstaging.com/wp-content/uploads/2026/04/rafael.jpeg?fit=200%2C200&#038;ssl=1",
+    "linkedin": "https://www.linkedin.com/in/rafaelpinheirocosta/",
+    "x_url": "",
+    "github": "",
+    "post_count": "17"
+  },
+  {
+    "id": 272016976,
+    "login": "rk7f8a7274b9330",
+    "display_name": "Ricards Krizanovskis",
+    "bio": "Ricards is an AI enthusiast and startup founder who thrives in the messy middle where product meets growth. He loves to take deep dives with customers, uncover real problems, design solutions that work, and focus on the metrics that matter. At Desktop Commander, Ricards bridges the gap between cutting-edge AI technology and practical developer workflows.",
+    "avatar_url": "https://rk7f8a7274b9330-haqfg.wpcomstaging.com/wp-content/uploads/2026/04/ricards-400x400.jpeg",
+    "linkedin": "https://www.linkedin.com/in/ricardskrizanovskis/",
+    "x_url": "",
+    "github": "",
+    "post_count": "2"
+  },
+  {
+    "id": 272016981,
+    "login": "romanmakarenko",
+    "display_name": "Roman Makarenko",
+    "bio": "Roman specialises in technical analysis and data-driven optimization, leveraging 8+ years of digital marketing experience to help businesses achieve sustainable organic growth across industries.",
+    "avatar_url": "https://rk7f8a7274b9330-haqfg.wpcomstaging.com/wp-content/uploads/2025/12/roman-avatar.jpg",
+    "linkedin": "",
+    "x_url": "",
+    "github": "",
+    "post_count": "1"
+  },
+  {
+    "id": 272016978,
+    "login": "sidraarif",
+    "display_name": "Sidra Arif",
+    "bio": "Sidra Arif is a guest author and Desktop Commander user who specializes in technical writing on cybersecurity, software development, and AI/ML.",
+    "avatar_url": "https://secure.gravatar.com/avatar/1ab28b7323f3aa250e37fdf97c8e5ab6d6cedab461654c52b13a0ae32fb312e6?s=400&d=identicon&r=g",
+    "linkedin": "",
+    "x_url": "",
+    "github": "",
+    "post_count": "2"
+  }
+]

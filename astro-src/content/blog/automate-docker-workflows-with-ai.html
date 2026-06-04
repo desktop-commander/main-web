@@ -1,0 +1,205 @@
+What if figuring out Docker issues didn’t require 40 minutes? We all have been there. Need to start a new project or make changes to older service that was not touched for some time?
+
+You find a repo. For example this <a href="https://github.com/docker/awesome-compose/tree/master/nginx-flask-mysql">Nginx/Flask/MySQL Docker awesome compose repo</a>.
+
+It has the README with clear instructions.
+
+You clone it, expecting a quick start:
+<pre><code class="language-bash">% gh repo clone docker/awesome-compose Cloning into 'awesome-compose'... remote: Enumerating objects: 2787, done. remote: Counting objects: 100% (21/21), done. remote: Compressing objects: 100% (20/20), done. remote: Total 2787 (delta 9), reused 1 (delta 1), pack-reused 2766 (from 2) Receiving objects: 100% (2787/2787), 8.52 MiB | 11.01 MiB/s, done. Resolving deltas: 100% (1348/1348), done.</code></pre>
+Run docker up:
+<pre><code class="language-bash">% docker compose up -d 
+
+[+] Running 12/12 
+
+✔ db Pulled 6.4s</code></pre>
+You check the status:
+<pre><code class="language-bash">docker compose ps 
+
+NAME IMAGE COMMAND SERVICE CREATED STATUS PORTS nginx-flask-mysql-backend-1 nginx-flask-mysql-backend "flask run" backend 57 seconds ago Restarting (1) 23 seconds ago 
+
+nginx-flask-mysql-db-1 mariadb:10-focal "docker-entrypoint.s…" db 57 seconds ago Up 57 seconds (healthy) 3306/tcp, 33060/tcp 
+
+nginx-flask-mysql-proxy-1 nginx-flask-mysql-proxy "nginx -g 'daemon of…" proxy 57 seconds ago Up 51 seconds 0.0.0.0:80-&gt;80/tcp, [::]:80-&gt;80/tcp</code></pre>
+Looks good. The README says to test it, but instead of the expected response, you get:
+<pre><code class="language-bash">curl localhost:80 
+
+&lt;html&gt; 
+
+&lt;head&gt;&lt;title&gt;502 Bad Gateway&lt;/title&gt;&lt;/head&gt;
+
+&lt;body bgcolor="white"&gt; 
+
+&lt;center&gt;&lt;h1&gt;502 Bad Gateway&lt;/h1&gt;&lt;/center&gt; &lt;hr&gt;&lt;center&gt;nginx/1.13.12&lt;/center&gt; 
+
+&lt;/body&gt; 
+
+&lt;/html&gt;</code></pre>
+<h2 id="the-old-way-manual-debugging">The Old Way: Manual Debugging</h2>
+Usually, this means 20–40 minutes of debugging: checking logs from each container, reading through the compose file, examining Dockerfiles, searching Stack Overflow, maybe messaging the team or opening a GitHub issue. You’re pulled out of your flow, away from what you actually wanted to build.
+<blockquote>Usually, this means 20–40 minutes of debugging</blockquote>
+But today, there’s a faster way — thanks to AI tools that use the<strong> Model Context Protocol (MCP)</strong>.
+<h2 id="the-new-way-ai-powered-troubleshooting">The New Way: AI-Powered Troubleshooting</h2>
+<a href="https://modelcontextprotocol.io/docs/getting-started/intro">The Model Context Protocol (MCP)</a> lets AI assistants interact directly with your Docker environment — analyzing logs, correlating events across containers, identifying issues, and suggesting fixes. Instead of manually debugging, you can automate the investigation.
+
+Let me show you how this works with this exact example.
+
+There are multiple tools available today that can help with Docker workflows. For this walkthrough, we’ll use two components.
+<h2 id="what-youll-need">What You’ll Need</h2>
+<h3 id="1-claude-desktop">1. Claude Desktop</h3>
+<p style="text-align: center;"><img style="max-width: 500px; height: auto; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" src="/blog/media/2025/12/docker_img_01.png" alt="Docker Workflow Screenshot 1" /></p>
+Claude is an AI assistant from Anthropic that supports MCP servers. <a href="https://claude.ai/download">Download it here</a> and sign in with your account.
+<h3 id="2-desktop-commander-mcp">2. Desktop Commander MCP</h3>
+Desktop Commander is an MCP server that gives AI assistants access to your local filesystem and terminal, enabling them to read files, execute commands enabling it to help you with all kinds of workflows including analysis of Docker issues.
+
+There are <a href="https://desktopcommander.app/#installation">several installation options</a>:
+<ul>
+ 	<li>Via npx for Node.js users</li>
+ 	<li>Through <a href="https://hub.docker.com/r/mcp/desktop-commander">Docker Hub’s MCP catalog</a></li>
+</ul>
+<figure style="margin: 1.5em 0; text-align: center;"><img style="max-width: 500px; height: auto; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" src="/blog/media/2025/12/docker_img_02.png" alt="Docker Workflow Screenshot 2" />
+<figcaption style="color: #666; font-size: 0.85em; margin-top: 0.5em; text-align: center;">Docker MCP HUB with Desktop Commander in Developer Tools Category</figcaption></figure>
+<ul>
+ 	<li><strong>One-click install via Claude Extensions</strong> (recommended)</li>
+</ul>
+<h4>Installation Steps</h4>
+Click on “Search and Tools”:
+<figure style="margin: 1.5em 0; text-align: center;"><img style="max-width: 500px; height: auto; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" src="/blog/media/2025/12/docker_img_03.png" alt="Docker Workflow Screenshot 3" /></figure>
+Click the bottom-left part of the input box
+
+Add connectors:
+<figure style="margin: 1.5em 0; text-align: center;"><img style="max-width: 500px; height: auto; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" src="/blog/media/2025/12/docker_img_04.png" alt="Docker Workflow Screenshot 4" /></figure>
+I dropdown you will see these options, click add connectors
+
+Desktop extensions and click on Desktop Commander:
+<figure style="margin: 1.5em 0; text-align: center;"><img style="max-width: 500px; height: auto; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" src="/blog/media/2025/12/docker_img_05.png" alt="Docker Workflow Screenshot 5" /></figure>
+Choose Desktop Extensions and you’ll find Desktop Commander in first page, click on it
+
+Click install:
+<figure style="margin: 1.5em 0; text-align: center;"><img style="max-width: 500px; height: auto; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" src="/blog/media/2025/12/docker_img_06.png" alt="Docker Workflow Screenshot 6" /></figure>
+In top right click on install
+
+Ensure that Desktop Commander is turned on indicated by blue switch:
+<figure style="margin: 1.5em 0; text-align: center;"><img style="max-width: 500px; height: auto; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" src="/blog/media/2025/12/docker_img_07.png" alt="Docker Workflow Screenshot 7" /></figure>
+After installation, you should see it turned on in tools dropdown with blue switch
+
+For better user experience with Docker workflows, disable Code executions in Settings → Capabilities:
+<figure style="margin: 1.5em 0; text-align: center;"><img style="max-width: 500px; height: auto; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" src="/blog/media/2025/12/docker_img_08.png" alt="Docker Workflow Screenshot 8" /></figure>
+Claude Settings -&gt; Capabilities, turn off Code execution and file creation
+
+<strong>Why?</strong> Code execution lets Claude work with remote containers, which may confuse the AI when debugging local Docker. Disabling it keeps the focus on your local environment.
+<h2 id="investigating-the-issue-with-desktop-commander">Investigating the Issue with Desktop Commander</h2>
+Now that everything is set up, let’s return to our broken nginx-flask-mysql project. We have containers running, but we’re getting a 502 Bad Gateway error. Instead of manually checking logs and files, let’s ask Claude to investigate.
+<h3 id="the-prompt">The Prompt</h3>
+Start a new conversation in Claude Desktop and give it context about the problem:
+<pre><code class="language-bash">I'm working with the nginx-flask-mysql project from Docker's awesome-compose repository. 
+
+The project is located at: /Users/eduardsruzga/work/awesome-compose/nginx-flask-mysql 
+
+I ran docker compose up -d and the containers started, but when I curl localhost:80, 
+
+I get a 502 Bad Gateway error instead of the expected blog posts. 
+
+Can you investigate what's wrong and help me fix it?</code></pre>
+<h3 id="what-desktop-commander-does">What Desktop Commander Does</h3>
+Desktop Commander immediately starts investigating. You’ll see it:
+
+<strong>1. List the project structure and reading compose.yaml</strong>
+<p style="text-align: center;"><img style="max-width: 500px; height: auto; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" src="/blog/media/2025/12/docker_img_09.png" alt="Docker Workflow Screenshot 9" /></p>
+<strong>2. Check container status with <em>docker compose ps:</em></strong>
+<p style="text-align: center;"><img style="max-width: 500px; height: auto; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" src="/blog/media/2025/12/docker_img_10.png" alt="Docker Workflow Screenshot 10" /></p>
+<strong>3. Analyze the backend container logs and later requirements.txt:</strong>
+<p style="text-align: center;"><img style="max-width: 500px; height: auto; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" src="/blog/media/2025/12/docker_img_11.png" alt="Docker Workflow Screenshot 11" /></p>
+
+<h3 id="the-diagnosis">The Diagnosis</h3>
+After analyzing logs and configuration files, Desktop Commander identifies the root cause:
+<p style="text-align: center;"><img style="max-width: 500px; height: auto; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" src="/blog/media/2025/12/docker_img_12.png" alt="Docker Workflow Screenshot 12" /></p>
+
+<blockquote>This is a version compatibility issue between Flask and Werkzeug. The url_quote function was removed in newer versions of Werkzeug (3.x), but the Flask version being used still expects it.</blockquote>
+The issue is that Flask 2.0.1 is incompatible with newer versions of Werkzeug.
+<h3 id="the-solution">The Solution</h3>
+Desktop Commander identifies the fix: pin Werkzeug to a compatible version. It then automatically:
+
+<strong>Updates requirements.txt to pin Werkzeug to a compatible version:</strong>
+<p style="text-align: center;"><img style="max-width: 500px; height: auto; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" src="/blog/media/2025/12/docker_img_13.png" alt="Docker Workflow Screenshot 13" /></p>
+<strong>Rebuilds, restarts the containers and verifies the fix works:</strong>
+<p style="text-align: center;"><img style="max-width: 500px; height: auto; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" src="/blog/media/2025/12/docker_img_14.png" alt="Docker Workflow Screenshot 14" /></p>
+
+<h3 id="time-comparison">Time Comparison</h3>
+<strong>Manually</strong> for unfamiliar repo you would need to:
+<ul>
+ 	<li>Check logs from multiple containers (5–10 minutes at least)</li>
+ 	<li>Research online possible reasons and version incompatibilities (10+ minutes)</li>
+ 	<li>Find right versions, fix, rebuild, test (10+ minutes more)</li>
+</ul>
+<strong>With AI help</strong> where it can do a full loop it took a minute to share the right context with it and a minute for it to find and fix the problem:
+<ul>
+ 	<li>Write prompt (1 minute)</li>
+ 	<li>Wait for it to finish the task (1 minute)</li>
+</ul>
+All of that took only a few minutes. Now this example is straightforward, but Desktop Commander acts just as fast in far more complex situations as well. This one just serves as something straightforward and quick you can try right now.
+<h3 id="try-it-yourself">Try It Yourself</h3>
+You can also ask Desktop Commander to check out and run the example to save even more time.
+
+Try it now by using a prompt like this:
+<pre><code class="language-bash">In my work folder: [path to your work folder] 
+
+Checkout this folder from the repo, investigate, run with docker https://github.com/docker/awesome-compose/tree/master/nginx-flask-mysql</code></pre>
+<h2 id="its-working-but-is-it-production-ready">It’s Working — But Is It Production-Ready?</h2>
+We’ve fixed the immediate issue and the application runs locally. But before deploying this to production, you’d typically spend another 30–60 minutes reviewing the compose file for best practices: checking health checks, configuring logging, setting resource limits, adding restart policies, and ensuring security configurations are in place.
+
+Let’s ask Desktop Commander to analyze the compose file and suggest production improvements.
+<h3 id="the-prompt-1">The Prompt</h3>
+<pre><code class="language-bash">Now that the application is working, analyze the compose.yaml file for production readiness.</code></pre>
+<h3 id="the-analysis">The Analysis</h3>
+Desktop Commander performs a comprehensive review and creates a report.
+<p style="text-align: center;"><img style="max-width: 500px; height: auto; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" src="/blog/media/2025/12/docker_img_15.png" alt="Docker Workflow Screenshot 15" /></p>
+Desktop Commander identified 15 issues across critical, high, medium, and low severity levels. You can see<a href="https://claude.ai/public/artifacts/89eb9659-b09f-4422-b46f-1cc1f952e42c"> the full analysis here.</a>
+
+To keep this article focused, let’s fix a few key issues that can be addressed directly in the compose file:
+<ul>
+ 	<li><strong>Healthchecks Missing for Backend/Proxy 🟠 HIGH
+Problem:</strong> Only the database has a healthcheck. If the backend or proxy fails, Docker Compose doesn’t know and continues routing traffic to broken containers.</li>
+ 	<li><strong>No Logging Configuration 🟡 MEDIUM
+Problem:</strong> Default Docker logging has no rotation. Logs grow unbounded and can fill up disk space over time.</li>
+ 	<li><strong>Restart Policy Not Optimized 🟡 MEDIUM
+Problem:</strong> Using restart: always means containers restart even after manual stops, which can be problematic during maintenance.</li>
+</ul>
+<h3 id="applying-and-testing-the-fixes">Applying and Testing the Fixes</h3>
+Desktop Commander automatically applies all these improvements and verifies they work:
+<p style="text-align: center;"><img style="max-width: 500px; height: auto; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" src="/blog/media/2025/12/docker_img_16.png" alt="Docker Workflow Screenshot 16" /></p>
+This time it takes a few minutes to apply and test all the changes. As it works and tests it:
+<ul>
+ 	<li>Gets to all services to show health status</li>
+ 	<li>Configures logging rotation</li>
+ 	<li>Optimizes restart policy</li>
+</ul>
+For example, below is a section where it checks new healthcheck endpoints:
+<p style="text-align: center;"><img style="max-width: 500px; height: auto; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" src="/blog/media/2025/12/docker_img_17.png" alt="Docker Workflow Screenshot 17" /></p>
+Now that we have working improvements, let’s publish them in a fork on GitHub.
+<h3 id="creating-a-pull-request">Creating a Pull Request</h3>
+Desktop Commander can handle the entire Git workflow:
+<p style="text-align: center;"><img style="max-width: 500px; height: auto; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" src="/blog/media/2025/12/docker_img_18.png" alt="Docker Workflow Screenshot 18" /></p>
+Desktop Commander created a fork and opened this PR.
+
+The only issue was an overly verbose commit message. When asked to fix it, Desktop Commander amended the commit and force-pushed to update the PR.
+<h2 id="lessons-learned">Lessons Learned</h2>
+We started with a common frustration:
+<blockquote>Finding a Docker example that doesn’t work out of the box.</blockquote>
+Through Desktop Commander MCP, we automated the entire workflow — from diagnosing a Flask/Werkzeug compatibility issue to implementing production improvements and contributing them back to the community.
+
+<strong>Key transformations:</strong>
+<ul>
+ 	<li><strong>Debugging:</strong> 20–40 minutes of manual log checking → 1 minute automated analysis</li>
+ 	<li><strong>Production review:</strong> 30–60 minutes of best practices research → 1 minute comprehensive report with specific fixes</li>
+ 	<li><strong>Contributing back:</strong> 10–15 minutes of Git workflow → 2 minutes automated fork, branch, and PR</li>
+</ul>
+<blockquote>That’s over an hour of tedious debugging compressed into less than five minutes</blockquote>
+The Model Context Protocol makes this possible by giving AI assistants controlled access to your local Docker environment. Desktop Commander leverages this to automate the repetitive parts of Docker development while keeping you in control.
+
+This is just one example, but it shows how quickly AI tools can evolve from chat assistants to true development copilots. With MCP, your AI doesn’t just “talk” about code — it can see, run, and fix it. The line between “assistant” and “teammate” is starting to blur — and that’s where the next wave of developer productivity is heading.
+<h2 id="learn-more">Learn More</h2>
+<ul>
+ 	<li><strong>Get started:</strong> Install Desktop Commander from Claude Extensions</li>
+ 	<li><strong>Explore more MCP servers:</strong><a href="https://hub.docker.com/search?q=mcp"> Browse the Docker MCP Catalog</a></li>
+ 	<li><strong>Share feedback:</strong><a href="https://github.com/wonderwhy-er/DesktopCommanderMCP/issues"> Contribute to Desktop Commander on GitHub</a> or<a href="https://discord.gg/eHZeUKRQG"> Join Discord Community</a></li>
+</ul>

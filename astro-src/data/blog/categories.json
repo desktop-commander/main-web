@@ -1,0 +1,72 @@
+[
+  {
+    "term_id": 1368,
+    "name": "Deep Dives",
+    "slug": "deep-dives",
+    "description": "In-depth technical explorations",
+    "count": 7
+  },
+  {
+    "term_id": 1371,
+    "name": "How-to",
+    "slug": "how-to",
+    "description": "",
+    "count": 14
+  },
+  {
+    "term_id": 1394,
+    "name": "Insights",
+    "slug": "insights",
+    "description": "Thought leadership and perspectives on AI, work, and technology",
+    "count": 3
+  },
+  {
+    "term_id": 1388,
+    "name": "Knowledge base",
+    "slug": "knowledge-base",
+    "description": "",
+    "count": 7
+  },
+  {
+    "term_id": 1387,
+    "name": "Markdown",
+    "slug": "markdown",
+    "description": "",
+    "count": 5
+  },
+  {
+    "term_id": 1370,
+    "name": "MCP",
+    "slug": "mcp",
+    "description": "MCP (Model Context Protocol) related content",
+    "count": 6
+  },
+  {
+    "term_id": 1367,
+    "name": "Product Updates",
+    "slug": "product-updates",
+    "description": "Latest features and updates",
+    "count": 0
+  },
+  {
+    "term_id": 1365,
+    "name": "Tutorials",
+    "slug": "tutorials",
+    "description": "Step-by-step guides and tutorials for Desktop Commander",
+    "count": 9
+  },
+  {
+    "term_id": 1,
+    "name": "Uncategorized",
+    "slug": "uncategorized",
+    "description": "",
+    "count": 3
+  },
+  {
+    "term_id": 1366,
+    "name": "Use Cases",
+    "slug": "use-cases",
+    "description": "Real-world use cases and examples",
+    "count": 8
+  }
+]

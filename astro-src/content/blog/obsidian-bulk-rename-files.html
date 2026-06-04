@@ -1,0 +1,352 @@
+
+<p>You imported 3,000 notes from another app. The filenames look like SDT p2313 SDT and DNA db60e6524e3a463a8990ec8d1135d870. You want clean names. So you reach for a bulk rename tool, run it across the folder, and open Obsidian to find hundreds of broken links staring back at you.</p>
+
+
+
+<p>This is one of the most common “oh no” moments in Obsidian. The app is built on links between notes — [[wikilinks]] that connect your thinking together. (If you need a refresher on Obsidian’s link syntax, our <a href="/blog/obsidian-markdown-cheatsheet-every-syntax-you-actually-need/">Obsidian Markdown cheatsheet</a> covers every format you’ll run into.) But those links are just text pointing to filenames. Change the filename outside of Obsidian, and the link has no idea where to point anymore.</p>
+
+
+
+<p>“I see it as a major flaw of an otherwise outstanding note management software.” — BigSpaces, <a href="https://forum.obsidian.md/t/bulk-file-management-vault-evolving-help-a-newbie-ish/67910">Obsidian Forum</a></p>
+
+
+
+<p>The good news: there are ways to rename hundreds or thousands of files and keep everything connected. This guide covers what works, what breaks, and which approach fits your situation.</p>
+
+
+
+<h2 class="wp-block-heading" id="key-takeaways">Key Takeaways</h2>
+
+
+
+<ul class="wp-block-list">
+<li><strong>Renaming files outside Obsidian breaks every link</strong> pointing to those files — the app only updates links when you rename through its own interface</li>
+
+
+
+<li><strong>The </strong><a href="/blog/best-obsidian-plugins/"><strong>Bulk Rename plugin</strong></a> handles batch renames inside Obsidian and updates links automatically, but requires learning its regex interface</li>
+
+
+
+<li><strong>Chaining external tools</strong> (rename first, then find-and-replace the links) works but is fragile and error-prone</li>
+
+
+
+<li><strong>AI tools like Desktop Commander</strong> let you describe renaming patterns in plain English and handle both filenames and link updates in one step</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading" id="why-renaming-outside-obsidian-breaks-everything">Why Renaming Outside Obsidian Breaks Everything</h2>
+
+
+
+<p>When you rename a note through Obsidian — clicking the title and typing a new name — the app scans your entire vault and updates every [[link]] that pointed to the old name. It’s automatic and reliable.</p>
+
+
+
+<p>But Obsidian can only do this when it knows a rename happened. If you use Finder, File Explorer, a terminal command, or any external bulk rename tool, Obsidian never gets that signal. As one user explained:</p>
+
+
+
+<p>“In order to have Obsidian update your links, you have to rename the file within Obsidian.” — I-d-as, <a href="https://forum.obsidian.md/t/will-externally-renamed-files-lose-all-backlinks-do-settings-matter/40004">Obsidian Forum</a></p>
+
+
+
+<p>This creates a two-part problem that trips up almost everyone:</p>
+
+
+
+<p><strong>Part 1 — The filenames.</strong> You need to rename the actual files on disk, following some pattern (add a prefix, change a date format, remove junk characters).</p>
+
+
+
+<p><strong>Part 2 — The references.</strong> Every other note that links to a renamed file needs its link text updated to match the new filename.</p>
+
+
+
+<p>Obsidian handles both parts together when you rename one file at a time. But it has no built-in way to rename files in bulk. So you’re stuck: rename externally and break links, or rename one by one and spend hours clicking.</p>
+
+
+
+<p>“Making a name change within Obsidian updates the text in links to that file. With an external bulk editor you have to remember to change both file names and the relevant text in the files.” — Dor, <a href="https://forum.obsidian.md/t/will-externally-renamed-files-lose-all-backlinks-do-settings-matter/40004">Obsidian Forum</a></p>
+
+
+
+<h2 class="wp-block-heading" id="the-bulk-rename-plugin">The Bulk Rename Plugin</h2>
+
+
+
+<p>The closest thing to a built-in solution is the <a href="https://github.com/OlegLustenko/obsidian-bulk-rename">Bulk Rename plugin</a> by Oleg Lustenko. (It’s one of the <a href="/blog/best-obsidian-plugins/">best Obsidian plugins</a> for vault maintenance.) It runs inside Obsidian, which means it uses Obsidian’s own renaming function — and that means links update automatically.</p>
+
+
+
+<p><strong>What it can do:</strong></p>
+
+
+
+<ul class="wp-block-list">
+<li>Rename files by folder (target a specific directory)</li>
+
+
+
+<li>Rename files by tag (find everything with #journal and rename — see our guide on <a href="/blog/how-to-use-tags-in-obsidian-markdown/">using tags in Obsidian</a> for best practices)</li>
+
+
+
+<li>Use regex patterns for advanced transformations</li>
+
+
+
+<li>Preview every change before applying it</li>
+</ul>
+
+
+
+<p><strong>How to use it:</strong> 1. Install from Settings &gt; Community Plugins &gt; search “Bulk Rename” 2. Open the plugin panel 3. Choose your search method (folder, tag, or regex) 4. Type the pattern you want to find and what to replace it with 5. Click Preview to see the results, then Rename to apply</p>
+
+
+
+<p>For straightforward renames — adding a prefix, removing a suffix, changing a separator — the plugin works well. One user working with MOC (Map of Content) notes reported it “works perfectly” for adding labels to batches of files. — ryadaj, <a href="https://forum.obsidian.md/t/bulk-rename-notes-updating-links/8286">Obsidian Forum</a></p>
+
+
+
+<p><strong>Where it gets tricky:</strong></p>
+
+
+
+<p>The plugin speaks regex. For simple swaps (replace “meeting” with “mtg”), that’s no barrier. But for complex patterns — like stripping random IDs from imported filenames — you need to construct the right regex expression. One user trying to clean up 3,000 imported notes admitted: “I am not good with RegEx and Claude-2 is writing me complete bullshit instructions.” — svr, <a href="https://forum.obsidian.md/t/bulk-rename-regex-help/66851">Obsidian Forum</a></p>
+
+
+
+<p>That’s a common wall. You know what you want (“remove everything after the first word”), but translating that into a regex pattern like ^(.+?)\s+p\d+\s+.+$ isn’t something most people can do without help.</p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>Capability</th><th>Bulk Rename Plugin</th></tr></thead><tbody><tr><td><strong>Renames files in batch</strong></td><td>Yes</td></tr><tr><td><strong>Updates links automatically</strong></td><td>Yes</td></tr><tr><td><strong>Regex support</strong></td><td>Yes</td></tr><tr><td><strong>Preview before applying</strong></td><td>Yes</td></tr><tr><td><strong>Works with large vaults (5K+ notes)</strong></td><td>Can be slow</td></tr><tr><td><strong>Easy for non-technical users</strong></td><td>No — requires regex knowledge</td></tr><tr><td><strong>Handles complex patterns (dates, IDs, conditional)</strong></td><td>Limited by your regex skill</td></tr></tbody></table></figure>
+
+
+
+<h2 class="wp-block-heading" id="the-multi-tool-workaround">The Multi-Tool Workaround</h2>
+
+
+
+<p>When the Bulk Rename plugin doesn’t fit — or when you’ve already renamed files externally and need to fix the damage — people chain multiple tools together.</p>
+
+
+
+<p>The most common approach, shared across dozens of forum threads:</p>
+
+
+
+<ol class="wp-block-list">
+<li><strong>Rename the files</strong> using an external tool (PowerRename on Windows, NameChanger on Mac, or terminal commands)</li>
+
+
+
+<li><strong>Open the vault in VS Code</strong> and use its “Find and Replace in Files” (Cmd+Shift+H) to update every broken link</li>
+</ol>
+
+
+
+<p>One user who renamed thousands of Bible study notes described this process:</p>
+
+
+
+<p>“I ended up using a combination of tools: NameChanger to do a simple find and replace of the file/note names, VS Code to find and replace the links inside the files/notes.” — Rostehea, <a href="https://forum.obsidian.md/t/batch-rename-files-preserve-internal-links/40841">Obsidian Forum</a></p>
+
+
+
+<p>It works, but it’s fragile. You’re doing the same operation twice (once for filenames, once for link text), and if the patterns don’t match exactly, you’ll miss references or create new broken links. There’s also no undo — if something goes wrong halfway through, you’re left with a vault where some links are updated and others aren’t.</p>
+
+
+
+<p>Some users chain even more tools together. One forum solution involves <a href="https://forum.obsidian.md/t/how-can-i-bulk-move-files-without-breaking-links/97239">three plugins working in sequence</a> — Multi Tag to mark files, Auto Note Mover to relocate them, then manual cleanup. Three plugins for what should be one operation.</p>
+
+
+
+<div class="dc-app-cta"><div class="dc-app-cta-inner"><div class="dc-app-cta-content"><div class="dc-app-cta-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 17L10 11L4 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 19H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="dc-app-cta-title" id="try-desktop-commander-app">Try Desktop Commander App</h3><p class="dc-app-cta-description">Desktop Commander reads your files, runs commands, and automates workflows — all in natural language.</p></div><a href="https://desktopcommander.app/#download" class="dc-app-cta-btn" data-post-slug="obsidian-bulk-rename-files" data-post-title="How to Bulk Rename Obsidian Files Without Breaking Every Link" data-cta-variant="default" target="_blank" rel="noopener">Download Free<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+
+
+
+<h2 class="wp-block-heading" id="the-scenarios-that-bring-people-here">The Scenarios That Bring People Here</h2>
+
+
+
+<p>Reading through the forum threads, the same situations come up again and again: cleaning up 3,000 filenames after importing from another app (<a href="https://forum.obsidian.md/t/bulk-rename-regex-help/66851">svr on the forum</a> needed to strip random IDs from every filename), changing a naming convention mid-vault (abbreviated names like 1cor15 becoming 1 Corinthians 15 — <a href="https://forum.obsidian.md/t/batch-rename-files-preserve-internal-links/40841">Rostehea’s experience</a>), adding prefixes like MOC - to batches of notes (<a href="https://forum.obsidian.md/t/bulk-rename-notes-updating-links/8286">ryadaj’s use case</a>), renaming attachments to match the notes they belong to (<a href="https://forum.obsidian.md/t/bulk-rename-attachments-with-file-name-prefix/85753">andy4222’s request</a>), and switching date formats so calendar plugins stop breaking (<a href="https://forum.obsidian.md/t/bulk-rename-notes-updating-links/8286">Alcesdatae’s problem</a>).</p>
+
+
+
+<p>Every one involves the same challenge: rename the file, then find and update every reference to it across the vault. It’s a core pain point for anyone building a serious <a href="/blog/knowledge-management-system/">knowledge management system</a> around Obsidian.</p>
+
+
+
+<h2 class="wp-block-heading" id="letting-ai-bulk-rename-obsidian-files">Letting AI Bulk Rename Obsidian Files</h2>
+
+
+
+<p>The core problem with every approach above is that renaming is actually two operations — change the filename, then update the references — and you have to coordinate them perfectly. Miss one link and you’ve got a broken connection hiding somewhere in your vault.</p>
+
+
+
+<p><a href="https://desktopcommander.app/">Desktop Commander</a> takes a different approach. Instead of separating the two operations, you describe what you want in plain English, and the AI handles the filenames and the link updates together.</p>
+
+
+
+<p>Your Obsidian vault is just a folder of <a href="/blog/markdown-file-the-complete-reference-guide-for-2026-with-cheatsheet/">markdown files</a> on your computer. Desktop Commander connects an AI assistant (like Claude) to your local files through something called an <a href="/blog/what-is-an-mcp-server-and-how-it-works-in-plain-english/">MCP server</a>, so it can read your notes, understand the link structure, and make changes to both filenames and file contents in one pass.</p>
+
+
+
+<h3 class="wp-block-heading" id="desktop-commander-for-bulk-renaming-obsidian-files">Desktop Commander for Bulk renaming Obsidian Files</h3>
+
+
+
+<p><strong>Clean up imported filenames:</strong></p>
+
+
+
+<p>“In my Obsidian vault, I have notes with names like 'SDT p2313 SDT'. Strip the middle part (the 'p' followed by numbers) and the repeated word at the end. So 'SDT p2313 SDT' becomes 'SDT'. Update all links in other notes that pointed to the old names.”</p>
+
+
+
+<p>No regex required. You describe the pattern in words, and the AI figures out how to match it.</p>
+
+
+
+<p><strong>Change a naming convention:</strong></p>
+
+
+
+<p>“My daily notes are named like '01-15-2024'. Rename them all to '2024-01-15' format. Update every link across the vault that references the old names.”</p>
+
+
+
+<p><strong>Add a prefix based on content:</strong></p>
+
+
+
+<p>“Find every note in my vault that contains the tag #moc. Add 'MOC -' to the beginning of its filename. Update all links.”</p>
+
+
+
+<p><strong>Rename attachments to match their parent notes:</strong></p>
+
+
+
+<p>“For each note in my vault, find the images it references. Rename each image to match the note’s name plus a number (like 'ProjectAlpha_1.png', 'ProjectAlpha_2.png'). Update the references inside the note.”</p>
+
+
+
+<p>That last one is something no plugin handles. It requires reading each note, finding its image references, generating new names based on the note’s own filename, renaming the image files, and updating the markdown references — all coordinated across the entire vault. If you want to see more examples of what AI-powered file management looks like, our guide on <a href="/blog/create-and-manage-your-obsidian-knowledge-base-with-ai/">managing your Obsidian knowledge base with AI</a> goes deeper.</p>
+
+
+
+<h3 class="wp-block-heading" id="getting-started">Getting started</h3>
+
+
+
+<ol class="wp-block-list">
+<li>Download <a href="https://claude.ai/download">Claude Desktop</a> (free) — our <a href="/blog/claude-mcp-how-to-use-mcp-with-claude-ai/">Claude MCP setup guide</a> walks through the full process</li>
+
+
+
+<li>Install Desktop Commander from <a href="https://desktopcommander.app/#installation">desktopcommander.app</a></li>
+
+
+
+<li>Tell Claude where your vault folder is</li>
+
+
+
+<li>Describe the rename you want — Claude will show you what it plans to do before making changes</li>
+</ol>
+
+
+
+<p>The <a href="https://desktopcommander.app/library">prompt library</a> includes templates for file organization and renaming tasks that adapt well to Obsidian workflows.</p>
+
+
+
+<div class="dc-app-cta"><div class="dc-app-cta-inner"><div class="dc-app-cta-content"><div class="dc-app-cta-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 17L10 11L4 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 19H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="dc-app-cta-title" id="try-desktop-commander-app-1">Try Desktop Commander App</h3><p class="dc-app-cta-description">Desktop Commander reads your files, runs commands, and automates workflows — all in natural language.</p></div><a href="https://desktopcommander.app/#download" class="dc-app-cta-btn" data-post-slug="obsidian-bulk-rename-files" data-post-title="How to Bulk Rename Obsidian Files Without Breaking Every Link" data-cta-variant="default" target="_blank" rel="noopener">Download Free<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+
+
+
+<h2 class="wp-block-heading" id="before-you-rename-anything-a-safety-checklist">Before You Rename Anything: A Safety Checklist</h2>
+
+
+
+<p>Bulk renaming hundreds of files is powerful but permanent. Take two minutes before you start:</p>
+
+
+
+<p><strong>Back up your vault.</strong> Copy the entire folder somewhere safe, or if you use git, run a quick commit: git add . &amp;&amp; git commit -m "before rename". If something goes wrong, you can restore everything in seconds.</p>
+
+
+
+<p><strong>Start small.</strong> Whatever method you choose, test it on 5-10 files first. Make sure the rename pattern and link updates work the way you expect before running it across thousands of notes.</p>
+
+
+
+<p><strong>Check for edge cases.</strong> Do any of your filenames contain special characters? Do some notes use aliases in their links (like [[old name|display text]])? These details can trip up simple rename patterns.</p>
+
+
+
+<p><strong>Keep Obsidian’s File Recovery on.</strong> Settings &gt; Core Plugins &gt; File Recovery. It saves snapshots of your notes automatically. Not a full substitute for a backup, but an extra safety net for individual files.</p>
+
+
+
+<h2 class="wp-block-heading" id="community-discussions">Community Discussions</h2>
+
+
+
+<p>These forum threads go deeper into specific rename scenarios and community-built workarounds:</p>
+
+
+
+<ul class="wp-block-list">
+<li><a href="https://forum.obsidian.md/t/bulk-rename-notes-updating-links/8286"><strong>Bulk Rename Notes Updating Links</strong></a> — The original feature request thread, with users sharing use cases from daily notes to MOC prefixes.</li>
+
+
+
+<li><a href="https://forum.obsidian.md/t/batch-rename-files-preserve-internal-links/40841"><strong>Batch Rename Files, Preserve Internal Links</strong></a> — A detailed walkthrough of renaming thousands of Bible study notes with NameChanger + VS Code.</li>
+
+
+
+<li><a href="https://forum.obsidian.md/t/bulk-rename-regex-help/66851"><strong>Bulk Rename Regex Help</strong></a> — A user struggling with 3,000 imported notes and messy filename patterns.</li>
+
+
+
+<li><a href="https://forum.obsidian.md/t/how-can-i-bulk-move-files-without-breaking-links/97239"><strong>How Can I Bulk Move Files Without Breaking Links?</strong></a> — Creative plugin-chaining solutions for moving and renaming files within Obsidian.</li>
+
+
+
+<li><a href="https://forum.obsidian.md/t/will-externally-renamed-files-lose-all-backlinks-do-settings-matter/40004"><strong>Will Externally Renamed Files Lose All Backlinks?</strong></a> — Clear explanation of what happens when you rename files outside the app, and why links break.</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading" id="frequently-asked-questions">Frequently Asked Questions</h2>
+
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;"><summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;"><span>Can I rename a file in Finder or File Explorer without breaking links?</span><span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span></summary><div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">No. Obsidian only updates links when the rename happens through its own interface. Rename a file externally, and every [[link]] pointing to the old filename breaks.</div></details>
+
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;"><summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;"><span>How many files can the Bulk Rename plugin handle?</span><span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span></summary><div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">No hard limit, but it slows down on very large vaults. A few hundred files with a simple pattern works fine. Thousands of files with complex regex may cause Obsidian to hang.</div></details>
+
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;"><summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;"><span>What happens to aliases when I rename a file?</span><span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span></summary><div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">Obsidian updates the link target but keeps your display text. [[old name|My Custom Text]] becomes [[new name|My Custom Text]]. External tools won’t handle aliases at all.</div></details>
+
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;"><summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;"><span>I already renamed files externally and my links are broken. How do I fix them?</span><span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span></summary><div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">Open your vault folder in VS Code and use “Find and Replace in Files” to update every [[old name]] to [[new name]]. Desktop Commander can also scan your vault, identify broken references, and fix them based on your description.</div></details>
+
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;"><summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;"><span>Do I need to know regex to use the Bulk Rename plugin?</span><span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span></summary><div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">For simple renames (swap one word for another, add a prefix), no. For patterns involving dates, IDs, or variable-length strings, yes. Desktop Commander lets you describe the pattern in normal sentences instead.</div></details>
+
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;"><summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;"><span>Can Desktop Commander help with other Obsidian vault tasks beyond renaming?</span><span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span></summary><div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">Yes. Anything you can describe, it can do — reorganizing folders, <a href="/blog/build-a-personal-ai-knowledge-base-with-local-files/">building an AI knowledge base</a> from your notes, bulk-editing frontmatter, or cleaning up orphaned attachments. It works on any local files, not just Obsidian.</div></details>

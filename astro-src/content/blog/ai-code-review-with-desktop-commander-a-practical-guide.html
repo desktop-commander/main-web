@@ -1,0 +1,503 @@
+
+<p>This guide covers how to use Desktop Commander for AI code review: what it does, how it compares to other tools, practical workflows, and when it's the right choice for your project.</p>
+
+
+
+<p>Desktop Commander is the best tool for AI code review on your local machine because it gives Claude access to your entire codebase — not just individual files or PR diffs — allowing full-context analysis across your project.</p>
+
+
+
+<p>Desktop Commander is an MCP server that gives Claude direct access to your local filesystem and terminal. Instead of pasting code into a chat window or relying on PR diffs, you can point Claude at your actual codebase and have a conversation about it—asking questions, running tests, and applying fixes.</p>
+
+
+
+<h2 class="wp-block-heading" id="key-takeaways">Key Takeaways</h2>
+
+
+
+<ul class="wp-block-list">
+<li>Review code through natural language conversations instead of manual file-by-file inspection</li>
+
+
+
+<li>Analyze entire codebases locally—not just PR diffs or open files</li>
+
+
+
+<li>Run tests, linters, and terminal commands as part of your review workflow</li>
+
+
+
+<li>Get started in under 2 minutes with one terminal command</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading" id="the-code-review-problem">The Code Review Problem</h2>
+
+
+
+<p>Code review is essential, but the process is full of friction. When you join a new project, you spend hours understanding the architecture before you can meaningfully review anything. PRs pile up in your queue, each one requiring context-switching between files, tracing dependencies, and piecing together how components interact.</p>
+
+
+
+<p>For solo developers and small teams, the problem is different but equally frustrating: there's no second pair of eyes. You review your own code, miss things, and bugs slip into production.</p>
+
+
+
+<h2 class="wp-block-heading" id="how-ai-code-review-tools-work-today">How AI Code Review Tools Work Today</h2>
+
+
+
+<p>The AI code review landscape has grown rapidly. Most tools fall into a few categories:</p>
+
+
+
+<p><strong>PR-focused tools</strong> like CodeRabbit and Qodo integrate with GitHub or GitLab, analyze pull request diffs, and leave automated comments. They're useful for catching issues before merge, but they only see the diff—not the full context of your codebase.</p>
+
+
+
+<p><strong>IDE assistants</strong> like Cursor and Windsurf bring AI into your editor. They can answer questions about your code and suggest changes, but they're limited to the currently open project.</p>
+
+
+
+<p><strong>Static analyzers</strong> like SonarQube and Snyk scan for security vulnerabilities and code smells using predefined rules. They're thorough but not conversational—you can't ask follow-up questions or explore issues interactively.</p>
+
+
+
+<figure class="wp-block-image size-full"><img src="/blog/media/2025/12/Screenshot-2025-12-04-at-08.47.27.png" alt="AI Code Review Tools 2025" class="wp-image-368"/><figcaption class="wp-element-caption">AI Code Review Tools 2025</figcaption></figure>
+
+
+
+<h2 class="wp-block-heading" id="ai-code-review-with-desktop-commander">AI Code Review with Desktop Commander</h2>
+
+
+
+<p>Desktop Commander is an MCP (Model Context Protocol) server that connects Claude to your local filesystem and terminal. Instead of being limited to a single IDE or PR diff, it gives Claude access to your entire machine.</p>
+
+
+
+<p>For code review, this means you can:</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>Read any file</strong> across your machine, not just the currently open project</li>
+
+
+
+<li><strong>Search across repositories</strong> using ripgrep-powered pattern matching</li>
+
+
+
+<li><strong>Run terminal commands</strong> like tests, linters, and git operations as part of your review</li>
+
+
+
+<li><strong>Apply fixes directly</strong> with diff-based editing that makes surgical changes without rewriting entire files</li>
+
+
+
+<li><strong>Track all operations</strong> in an audit log (.mcp-server-log.jsonl)</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading" id="setting-up-desktop-commander-for-ai-code-review">Setting Up Desktop Commander for AI Code Review</h2>
+
+
+
+<div class="dc-app-cta"><div class="dc-app-cta-inner"><div class="dc-app-cta-content"><div class="dc-app-cta-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 17L10 11L4 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 19H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="dc-app-cta-title" id="try-desktop-commander-app">Try Desktop Commander App</h3><p class="dc-app-cta-description">Desktop Commander reads your files, runs commands, and automates workflows — all in natural language.</p></div><a href="https://desktopcommander.app/#download" class="dc-app-cta-btn" data-post-slug="ai-code-review-with-desktop-commander-a-practical-guide" data-post-title="AI Code Review with Desktop Commander: A Practical Guide" data-cta-variant="default" target="_blank" rel="noopener">Download Free<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+
+
+
+<h3 class="wp-block-heading" id="quick-installation">Quick Installation</h3>
+
+
+
+<p>Open your terminal and run:</p>
+
+
+
+<pre class="wp-block-code"><code>npx @wonderwhy-er/desktop-commander@latest setup</code></pre>
+
+
+
+<p>This automatically configures Claude Desktop to work with Desktop Commander. Restart Claude Desktop to enable the new capabilities.</p>
+
+
+
+<h3 class="wp-block-heading" id="manual-configuration-alternative">Manual Configuration (Alternative)</h3>
+
+
+
+<p>If you prefer manual setup, add this to your claude_desktop_config.json:</p>
+
+
+
+<pre class="wp-block-code"><code>{
+  "mcpServers": {
+    "desktop-commander": {
+      "command": "npx",
+      "args": &#91;"-y", "@wonderwhy-er/desktop-commander"]
+    }
+  }
+}</code></pre>
+
+
+
+<p><strong>Config file location:</strong></p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>Mac:</strong> ~/Library/Application Support/Claude/claude_desktop_config.json</li>
+
+
+
+<li><strong>Windows:</strong> %APPDATA%\Claude\claude_desktop_config.json</li>
+</ul>
+
+
+
+<h3 class="wp-block-heading" id="verify-installation">Verify Installation</h3>
+
+
+
+<p>After restarting Claude Desktop, ask: "What tools do you have access to?"</p>
+
+
+
+<p>Claude should list file operations, terminal commands, and search capabilities.</p>
+
+
+
+<p>For more installation options (Docker, Smithery, Cursor), see the <a href="https://desktopcommander.app/#installation">official installation guide</a>.</p>
+
+
+
+<h2 class="wp-block-heading" id="code-review-workflows-with-desktop-commander">Code Review Workflows with Desktop Commander</h2>
+
+
+
+<p>Once set up, code review becomes a conversation. Here are four practical workflows:</p>
+
+
+
+<h3 class="wp-block-heading" id="workflow-1-understand-an-unfamiliar-codebase">Workflow 1: Understand an Unfamiliar Codebase</h3>
+
+
+
+<p><strong>Scenario:</strong> You just cloned a repo or joined a project with minimal documentation.</p>
+
+
+
+<p><strong>Prompts to try:</strong></p>
+
+
+
+<pre class="wp-block-code"><code>Analyze the directory structure of /path/to/project and explain the architecture</code></pre>
+
+
+
+<pre class="wp-block-code"><code>What are the main entry points in this codebase?</code></pre>
+
+
+
+<pre class="wp-block-code"><code>How does authentication work in this project? Trace the flow from login to session creation.</code></pre>
+
+
+
+<p>Desktop Commander traverses your filesystem, reads relevant files, and provides a structural overview. This is especially useful when documentation is outdated or nonexistent.</p>
+
+
+
+<p>Check this related prompt from our library: <a href="https://desktopcommander.app/library">Explain Codebase or Repository</a></p>
+
+
+
+<h3 class="wp-block-heading" id="workflow-2-review-specific-files-or-changes">Workflow 2: Review Specific Files or Changes</h3>
+
+
+
+<p><strong>Scenario:</strong> You need to review a component, a recent commit, or a set of changes.</p>
+
+
+
+<p><strong>Prompts to try:</strong></p>
+
+
+
+<pre class="wp-block-code"><code>Review src/components/UserAuth.tsx for security vulnerabilities and performance issues</code></pre>
+
+
+
+<pre class="wp-block-code"><code>Find all TODO comments in this project and list them by priority</code></pre>
+
+
+
+<pre class="wp-block-code"><code>Look for unused imports and dead code in the /lib directory</code></pre>
+
+
+
+<p>Claude reads the files, identifies potential issues, and provides specific recommendations with line numbers.</p>
+
+
+
+<p>Check these related prompts from our library:</p>
+
+
+
+<ul class="wp-block-list">
+<li><a href="https://desktopcommander.app/library">Find All TODO Comments</a></li>
+
+
+
+<li><a href="https://desktopcommander.app/library">Clean Up Unused Code</a></li>
+
+
+
+<li><a href="https://desktopcommander.app/library">Analyze Error Handling Strategy</a></li>
+</ul>
+
+
+
+<h3 class="wp-block-heading" id="workflow-3-run-tests-and-linters-as-part-of-review">Workflow 3: Run Tests and Linters as Part of Review</h3>
+
+
+
+<p><strong>Scenario:</strong> You want automated checks integrated into your review conversation.</p>
+
+
+
+<p><strong>Prompts to try:</strong></p>
+
+
+
+<pre class="wp-block-code"><code>Run npm test and summarize any failures</code></pre>
+
+
+
+<pre class="wp-block-code"><code>Run eslint on the src directory and list critical issues</code></pre>
+
+
+
+<pre class="wp-block-code"><code>Check if the TypeScript build passes. If there are errors, explain each one.</code></pre>
+
+
+
+<p>Desktop Commander executes commands in your terminal and returns the results. You can then ask follow-up questions about specific failures or have Claude suggest fixes.</p>
+
+
+
+<p>This integrates your existing tooling into the review process—no need to switch between Claude and your terminal.</p>
+
+
+
+<h3 class="wp-block-heading" id="workflow-4-apply-fixes-directly">Workflow 4: Apply Fixes Directly</h3>
+
+
+
+<p><strong>Scenario:</strong> Claude identified an issue, and you want it fixed.</p>
+
+
+
+<p><strong>Prompts to try:</strong></p>
+
+
+
+<pre class="wp-block-code"><code>Fix the SQL injection vulnerability you found in line 47</code></pre>
+
+
+
+<pre class="wp-block-code"><code>Refactor this function to handle the null case you mentioned</code></pre>
+
+
+
+<pre class="wp-block-code"><code>Apply the suggested changes to all files that have this pattern</code></pre>
+
+
+
+<p>Desktop Commander uses diff-based editing to make precise changes without touching unrelated code. This avoids the common LLM problem of rewriting entire files for small modifications.</p>
+
+
+
+<blockquote class="wp-block-quote">
+<p>"I had 76 errors in 23 files in my Svelte 5 project. Used desktop-commander, sequentialthinking, and tree-sitter to fix them all. Never resolved type errors this quickly with AI before!"<br>— @dependablecalls</p>
+</blockquote>
+
+
+
+<h2 class="wp-block-heading" id="best-practices-for-ai-code-review">Best Practices for AI Code Review</h2>
+
+
+
+<h3 class="wp-block-heading" id="do">Do:</h3>
+
+
+
+<p><strong>Provide context.</strong> Tell Claude about your project's conventions. Like in this prompt:</p>
+
+
+
+<pre class="wp-block-code"><code>This project uses React with TypeScript. We follow the Airbnb style guide. Review this component for adherence to our patterns</code></pre>
+
+
+
+<p><strong>Be specific.</strong> Narrow reviews are more useful than broad ones. Here is prompt example:</p>
+
+
+
+<pre class="wp-block-code"><code>Check this authentication module specifically for: 1) OWASP Top 10 vulnerabilities, 2) proper error handling, 3) edge cases in token refresh logic</code></pre>
+
+
+
+<p><strong>Prompt your AI to ask follow-up questions.</strong> The more context you provide, the better the results—so let the model guide you by requesting the details it needs.</p>
+
+
+
+<p><strong>Use the prompt library.</strong> The <a href="https://desktopcommander.app/library">Desktop Commander Prompt Library</a> has 60+ ready-made prompts for development workflows—no need to craft every prompt from scratch.</p>
+
+
+
+<h3 class="wp-block-heading" id="dont">Don't:</h3>
+
+
+
+<p><strong>Skip human verification.</strong> AI code review augments human judgment; it doesn't replace it. Always verify suggestions for:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Security-sensitive code</li>
+
+
+
+<li>Business logic requiring domain knowledge</li>
+
+
+
+<li>Architectural decisions with long-term implications</li>
+</ul>
+
+
+
+<p><strong>Accept changes blindly.</strong> Understand what Claude suggests before applying it. Ask follow-up questions if something isn't clear.</p>
+
+
+
+<p><strong>Ignore the audit log.</strong> Desktop Commander logs all operations to .mcp-server-log.jsonl. Review this if you need to track what was changed.</p>
+
+
+
+<h2 class="wp-block-heading" id="frequently-asked-questions">Frequently Asked Questions</h2>
+
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>How is Desktop Commander different from Cursor or Copilot?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Desktop Commander operates at the OS level, not within an IDE. It can access any file on your machine, run terminal commands, and work across multiple projects simultaneously. IDE tools are limited to the currently open project or file.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Is it safe to let AI edit my files?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Desktop Commander uses diff-based editing and logs all operations to <code>.mcp-server-log.jsonl</code>. You can review every change before committing and roll back if needed.<br><br>However, you should always be careful when working with sensitive or important data. Keep backups of critical files—Desktop Commander can create backup copies for you on request. Always verify suggestions before applying them, especially for high-stakes edits.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>What programming languages are supported?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Any language Claude or your LLM understands. Desktop Commander itself is language-agnostic—it reads files and runs commands. Claude handles the language-specific analysis.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Where can I find ready-made prompts for code review?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+The <a href="https://desktopcommander.app/library" style="color: #60a5fa;">Desktop Commander Prompt Library</a> includes prompts for codebase analysis, documentation generation, debugging, and more. Relevant ones for code review:
+<ul style="margin-top: 12px; padding-left: 20px;">
+<li>Explain Codebase or Repository</li>
+<li>Clean Up Unused Code</li>
+<li>Assess Technical Debt</li>
+<li>Analyze Error Handling Strategy</li>
+</ul>
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Can I use Desktop Commander with other AI clients?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Yes. Desktop Commander works with Claude Desktop, Claude Code, Cursor, and other MCP-compatible clients. This also means that you can use Desktop Commander with any LLM model — it supports 8 model providers including Anthropic, OpenAI, Google, xAI, Mistral, and others across 6+ MCP-compatible clients.
+</div>
+</details>
+
+
+
+<h2 class="wp-block-heading" id="getting-started">Getting Started</h2>
+
+
+
+<p>Ready to try AI-powered code review? Here's how to start:</p>
+
+
+
+<ol class="wp-block-list">
+<li><strong>Install:</strong> <code>npx @wonderwhy-er/desktop-commander@latest setup</code></li>
+
+
+
+<li><strong>Restart</strong> Claude Desktop</li>
+
+
+
+<li><strong>Try:</strong> "Analyze the directory structure of [your project path] and explain the architecture"</li>
+</ol>
+
+
+
+<h2 class="wp-block-heading" id="resources">Resources</h2>
+
+
+
+<ul class="wp-block-list">
+<li><a href="https://desktopcommander.app/">Desktop Commander Website</a></li>
+
+
+
+<li><a href="https://github.com/wonderwhy-er/DesktopCommanderMCP">GitHub Repository</a></li>
+
+
+
+<li><a href="https://desktopcommander.app/library">Prompt Library</a></li>
+
+
+
+<li><a href="https://www.youtube.com/@EduardsRuzga">Eduard Ruzga's YouTube</a></li>
+
+
+
+<li><a href="https://smithery.ai/server/@wonderwhy-er/desktop-commander">Smithery Listing</a></li>
+
+
+
+<li><a href="https://www.producthunt.com/products/desktop-commander-mcp/reviews">Product Hunt Reviews</a></li>
+</ul>

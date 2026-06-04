@@ -1,0 +1,629 @@
+
+<p>Manually aligning pipes. Counting dashes. Watching your carefully formatted table collapse because you missed one character. Creating tables in Markdown is notoriously frustrating—until you understand the rules.</p>
+
+
+
+<p>This guide is an extension of the <a href="/blog/markdown-file-the-complete-reference-guide-for-2026-with-cheatsheet/">Markdown File Complete Reference Guide</a>. It covers everything from basic syntax to advanced formatting of markdown tables, plus tools that eliminate the tedium entirely.</p>
+
+
+
+<h2 class="wp-block-heading" id="key-takeaways">Key Takeaways</h2>
+
+
+
+<ul class="wp-block-list">
+<li><strong>Tables use pipes (|) for columns</strong> and hyphens (-) for the header separator</li>
+
+
+
+<li><strong>Alignment uses colons</strong>: :--- left, :---: center, ---: right</li>
+
+
+
+<li><strong>You can format text inside cells</strong> with bold, italic, code, and links</li>
+
+
+
+<li><strong>You cannot use</strong> headings, images, lists, or code blocks inside cells</li>
+
+
+
+<li><strong>Table generators</strong> and VS Code extensions handle formatting automatically</li>
+
+
+
+<li><a href="https://desktopcommander.app/"><strong>Desktop Commander</strong></a> app can create and format tables through natural language</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading" id="anatomy-of-a-markdown-table">Anatomy of a Markdown Table</h2>
+
+
+
+<p>Every Markdown table has three parts:</p>
+
+
+
+<pre class="wp-block-code"><code>| Header 1 | Header 2 | Header 3 |   ← Header row
+|----------|----------|----------|   ← Separator row (required)
+| Cell 1   | Cell 2   | Cell 3   |   ← Data rows
+| Cell 4   | Cell 5   | Cell 6   |</code></pre>
+
+
+
+<p>The <strong>header row</strong> defines your column names. </p>
+
+
+
+<p>The <strong>separator row</strong> tells the parser "this is a table" and optionally controls alignment. </p>
+
+
+
+<p><strong>Data rows</strong> contain your actual content.</p>
+
+
+
+<p>When rendered, this produces:</p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>Header 1</th><th>Header 2</th><th>Header 3</th></tr></thead><tbody><tr><td>Cell 1</td><td>Cell 2</td><td>Cell 3</td></tr><tr><td>Cell 4</td><td>Cell 5</td><td>Cell 6</td></tr></tbody></table></figure>
+
+
+
+<p>Tables weren't part of John Gruber's original Markdown specification. They were popularized by <a href="https://github.github.com/gfm/">GitHub Flavored Markdown</a> (GFM) and are now supported by most Markdown processors.</p>
+
+
+
+<h2 class="wp-block-heading" id="building-your-first-table">Building Your First Table</h2>
+
+
+
+<p>Start simple. A two-column table needs just this:</p>
+
+
+
+<pre class="wp-block-code"><code>| Name  | Role      |
+|-------|-----------|
+| Alice | Developer |
+| Bob   | Designer  |</code></pre>
+
+
+
+<p><strong>Result:</strong></p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>Name</th><th>Role</th></tr></thead><tbody><tr><td>Alice</td><td>Developer</td></tr><tr><td>Bob</td><td>Designer</td></tr></tbody></table></figure>
+
+
+
+<p>The minimum separator is three hyphens (---). You can use more for visual alignment in your source file, but it doesn't affect the output.</p>
+
+
+
+<p><strong>Pipes at the edges are optional but recommended.</strong> This works:</p>
+
+
+
+<pre class="wp-block-code"><code>Name | Role
+---|---
+Alice | Developer</code></pre>
+
+
+
+<p>But this is harder to read and edit. Always include the outer pipes for clarity.</p>
+
+
+
+<h2 class="wp-block-heading" id="column-alignment">Column Alignment</h2>
+
+
+
+<p>By default, text aligns left. Control alignment by adding colons to the separator row:</p>
+
+
+
+<pre class="wp-block-code"><code>| Left | Center | Right |
+|:-----|:------:|------:|
+| A    | B      | C     |
+| AA   | BB     | CC    |
+| AAA  | BBB    | CCC   |</code></pre>
+
+
+
+<p><strong>Result:</strong></p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>Left</th><th>Center</th><th>Right</th></tr></thead><tbody><tr><td>A</td><td>B</td><td>C</td></tr><tr><td>AA</td><td>BB</td><td>CC</td></tr><tr><td>AAA</td><td>BBB</td><td>CCC</td></tr></tbody></table></figure>
+
+
+
+<p><strong>The alignment rules:</strong></p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>Syntax</th><th>Alignment</th><th>Example</th></tr></thead><tbody><tr><td>:---</td><td>Left</td><td>Text hugs the left edge</td></tr><tr><td>:---:</td><td>Center</td><td>Text centers in the column</td></tr><tr><td>---:</td><td>Right</td><td>Text hugs the right edge</td></tr><tr><td>---</td><td>Default (left)</td><td>Same as :---</td></tr></tbody></table></figure>
+
+
+
+<p>Numbers often look better right-aligned. Text usually works best left-aligned. Headers might look good centered. Match alignment to your content.</p>
+
+
+
+<h2 class="wp-block-heading" id="formatting-inside-table-cells">Formatting Inside Table Cells</h2>
+
+
+
+<p>You can apply inline formatting within cells:</p>
+
+
+
+<pre class="wp-block-code"><code>| Format | Syntax | Result |
+|--------|--------|--------|
+| Bold | `**text**` | **text** |
+| Italic | `*text*` | *text* |
+| Code | `` `code` `` | `code` |
+| Link | `&#91;text](url)` | &#91;text](url) |
+| Strikethrough | `~~text~~` | ~~text~~ |</code></pre>
+
+
+
+<p><strong>Combine formats:</strong></p>
+
+
+
+<pre class="wp-block-code"><code>| Feature | Status | Notes |
+|---------|--------|-------|
+| Auth | **Done** | `OAuth2` implemented |
+| API | *In Progress* | See &#91;docs](/docs) |
+| Tests | ~~Blocked~~ | Now unblocked |</code></pre>
+
+
+
+<p><strong>Result:</strong></p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>Feature</th><th>Status</th><th>Notes</th></tr></thead><tbody><tr><td>Auth</td><td>Done</td><td>OAuth2 implemented</td></tr><tr><td>API</td><td>In Progress</td><td>See docs</td></tr><tr><td>Tests</td><td>Blocked</td><td>Now unblocked</td></tr></tbody></table></figure>
+
+
+
+<p>This is particularly useful for <a href="/blog/markdown-best-practices-technical-documentation/">technical documentation</a> where you need to reference code or link to resources.</p>
+
+
+
+<h2 class="wp-block-heading" id="what-you-cannot-put-in-tables">What You Cannot Put in Tables</h2>
+
+
+
+<p>Markdown tables have real limitations. These <strong>do not work</strong> inside cells:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Headings (# Title)</li>
+
+
+
+<li>Images (![alt](url)) — some processors support this, many don't</li>
+
+
+
+<li>Lists (bulleted or numbered)</li>
+
+
+
+<li>Code blocks (multi-line)</li>
+
+
+
+<li>Blockquotes</li>
+
+
+
+<li>Horizontal rules</li>
+</ul>
+
+
+
+<p><strong>Workarounds exist.</strong> For line breaks within a cell, use &lt;br&gt;:</p>
+
+
+
+<pre class="wp-block-code"><code>| Task | Description |
+|------|-------------|
+| Setup | Install dependencies&lt;br&gt;Configure environment&lt;br&gt;Run tests |</code></pre>
+
+
+
+<p>For lists, use HTML:</p>
+
+
+
+<pre class="wp-block-code"><code>| Category | Items |
+|----------|-------|
+| Fruits | &lt;ul&gt;&lt;li&gt;Apple&lt;/li&gt;&lt;li&gt;Banana&lt;/li&gt;&lt;/ul&gt; |</code></pre>
+
+
+
+<p>But at this point, consider whether a table is the right format. Complex content often works better as structured sections. For a deeper understanding of when to use different Markdown elements, check out the <a href="/blog/markdown-file-the-complete-reference-guide-for-2026-with-cheatsheet/">complete Markdown reference guide</a>.</p>
+
+
+
+<h2 class="wp-block-heading" id="escaping-special-characters">Escaping Special Characters</h2>
+
+
+
+<p>The pipe character (|) separates columns. To use a literal pipe in your content, escape it:</p>
+
+
+
+<pre class="wp-block-code"><code>| Command | Description |
+|---------|-------------|
+| `a \| b` | Logical OR |
+| `cmd \| grep` | Pipe output |</code></pre>
+
+
+
+<p><strong>Result:</strong></p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>Command</th><th>Description</th></tr></thead><tbody><tr><td>a | b</td><td>Logical OR</td></tr><tr><td>cmd | grep</td><td>Pipe output</td></tr></tbody></table></figure>
+
+
+
+<p>Inside code spans (backticks), you typically don't need to escape pipes, but some processors are inconsistent. Test your specific environment.</p>
+
+
+
+<h2 class="wp-block-heading" id="when-tables-break-common-errors">When Tables Break: Common Errors</h2>
+
+
+
+<p><strong>Missing separator row:</strong></p>
+
+
+
+<pre class="wp-block-code"><code>| Name | Age |
+| Alice | 25 |</code></pre>
+
+
+
+<p>This won't render as a table. The separator (|---|---|) is required.</p>
+
+
+
+<p><strong>Mismatched columns:</strong></p>
+
+
+
+<pre class="wp-block-code"><code>| A | B | C |
+|---|---|
+| 1 | 2 | 3 |</code></pre>
+
+
+
+<p>The separator has two columns, but the rows have three. Some processors handle this gracefully; others break completely.</p>
+
+
+
+<p><strong>Spaces around pipes:</strong></p>
+
+
+
+<pre class="wp-block-code"><code>|Name|Age|
+|---|---|
+|Alice|25|</code></pre>
+
+
+
+<p>This works but is hard to read. Add spaces:</p>
+
+
+
+<pre class="wp-block-code"><code>| Name  | Age |
+|-------|-----|
+| Alice | 25  |</code></pre>
+
+
+
+<p><strong>Forgetting the header:</strong></p>
+
+
+
+<p>You cannot create a table without a header row. If you need a headerless table, use empty headers:</p>
+
+
+
+<pre class="wp-block-code"><code>|   |   |
+|---|---|
+| A | B |
+| C | D |</code></pre>
+
+
+
+<h2 class="wp-block-heading" id="tools-that-eliminate-table-frustration">Tools That Eliminate Table Frustration</h2>
+
+
+
+<p>Manually formatting tables wastes time. These tools handle the syntax for you:</p>
+
+
+
+<h3 class="wp-block-heading" id="online-generators">Online Generators</h3>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>Tool</th><th>Features</th><th>Best For</th></tr></thead><tbody><tr><td>Tables Generator</td><td>Visual editor, import from Excel</td><td>Complex tables</td></tr><tr><td>Markdown Table Generator</td><td>Simple interface, instant export</td><td>Quick tables</td></tr><tr><td>TableConvert</td><td>Multiple format support</td><td>Converting from CSV/Excel</td></tr></tbody></table></figure>
+
+
+
+<h3 class="wp-block-heading" id="vs-code-extensions">VS Code Extensions</h3>
+
+
+
+<p>If you write Markdown in VS Code, these extensions transform the experience:</p>
+
+
+
+<p><a href="https://marketplace.visualstudio.com/items?itemName=darkriszty.markdown-table-prettify"><strong>Markdown Table Prettifier</strong></a> — Auto-aligns columns when you save. Messy source becomes perfectly formatted.</p>
+
+
+
+<p><a href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one"><strong>Markdown All in One</strong></a> — Complete Markdown toolkit with table formatting, keyboard shortcuts, and preview.</p>
+
+
+
+<p><a href="https://marketplace.visualstudio.com/items?itemName=sswatson.table-editor"><strong>Table Editor</strong></a> — Spreadsheet-style editing for tables. Edit cells visually, export as Markdown.</p>
+
+
+
+<p><a href="https://marketplace.visualstudio.com/items?itemName=TakumiI.markdowntable"><strong>Markdown Table</strong></a> — Navigate tables with Tab/Enter, insert rows and columns with shortcuts.</p>
+
+
+
+<p>Install one of these, and you'll never manually count dashes again.</p>
+
+
+
+<h2 class="wp-block-heading" id="creating-markdown-tables-with-desktop-commander">Creating Markdown Tables with Desktop Commander</h2>
+
+
+
+<p>With the <a href="https://desktopcommander.app/">Desktop Commander</a> app, you can generate tables using natural-language prompts:</p>
+
+
+<p>For users who don’t want to learn table syntax at all, Desktop Commander is the easiest way to create Markdown tables — describe your data in plain English and it generates properly formatted tables instantly.</p>
+
+
+
+<p>"Create a comparison table of JavaScript frameworks: React, Vue, and Svelte. Include columns for learning curve, performance, and ecosystem size."</p>
+
+
+
+<p>The AI generates properly formatted Markdown:</p>
+
+
+
+<pre class="wp-block-code"><code>| Framework | Learning Curve | Performance | Ecosystem |
+|-----------|---------------|-------------|-----------|
+| React | Moderate | Excellent | Massive |
+| Vue | Easy | Excellent | Large |
+| Svelte | Easy | Exceptional | Growing |</code></pre>
+
+
+
+<p><strong>More useful prompts:</strong></p>
+
+
+
+<p>"Convert this CSV data into a Markdown table"</p>
+
+
+
+<p>"Reformat this table to be right-aligned on numeric columns"</p>
+
+
+
+<p>"Add a new row to this table with data for Angular"</p>
+
+
+
+<p>This approach integrates naturally into documentation workflows. The <a href="https://desktopcommander.app/library">Desktop Commander prompt library</a> includes templates for common documentation tasks.</p>
+
+
+
+<p>For building larger documentation projects, understanding <a href="/blog/build-a-personal-ai-knowledge-base-with-local-files/">how to build a knowledge base with local files</a> helps you organize content that includes many tables.</p>
+
+
+
+<h2 class="wp-block-heading" id="platform-specific-quirks">Platform-Specific Quirks</h2>
+
+
+
+<p>Markdown table support varies by platform:</p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>Platform</th><th>Table Support</th><th>Notes</th></tr></thead><tbody><tr><td>GitHub</td><td>Full GFM</td><td>Alignment, formatting all work</td></tr><tr><td>GitLab</td><td>Full GFM</td><td>Same as GitHub</td></tr><tr><td>Reddit</td><td>Basic</td><td>No alignment, limited formatting</td></tr><tr><td>Notion</td><td>Extended</td><td>Supports more features than standard</td></tr><tr><td>Obsidian</td><td>Full + extras</td><td>Supports advanced plugins</td></tr><tr><td>Slack</td><td>None</td><td>Tables don't render</td></tr></tbody></table></figure>
+
+
+
+<p>Always test tables in your target platform. What works on GitHub might not render correctly elsewhere.</p>
+
+
+
+<h2 class="wp-block-heading" id="quick-reference-cheatsheet">Quick Reference Cheatsheet</h2>
+
+
+
+<p><strong>Basic table:</strong></p>
+
+
+
+<pre class="wp-block-code"><code>| Col 1 | Col 2 |
+|-------|-------|
+| A     | B     |</code></pre>
+
+
+
+<p><strong>Alignment:</strong></p>
+
+
+
+<pre class="wp-block-code"><code>| Left | Center | Right |
+|:-----|:------:|------:|</code></pre>
+
+
+
+<p><strong>Formatting in cells:</strong></p>
+
+
+
+<p>| **bold** | *italic* | <strong><em>`code`</em></strong> | <em>[</em>link<em>](url)</em> |</p>
+
+
+
+<p><strong>Escape pipe:</strong></p>
+
+
+
+<p>| Use \| for literal pipe |</p>
+
+
+
+<p><strong>Line break in cell:</strong></p>
+
+
+
+<p>| Line 1&lt;<strong>br</strong>&gt;Line 2 |</p>
+
+
+
+<p><strong>Minimum valid table:</strong></p>
+
+
+
+<pre class="wp-block-code"><code>|a|b|
+|-|-|
+|1|2|</code></pre>
+
+
+<p>
+
+
+<h2 class="wp-block-heading" id="frequently-asked-questions">Frequently Asked Questions</h2>
+
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>How do I create a table in Markdown?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Use pipes (|) for columns and hyphens (-) for the header separator. Every table needs three parts: a header row, a separator row, and data rows. The separator row is required — without it, Markdown won’t recognize the content as a table. Columns don’t need to be perfectly aligned in the source; the renderer handles alignment.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>How do I align columns in a Markdown table?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Use colons in the separator row. Left-align with <code>:---</code>, center with <code>:---:</code>, and right-align with <code>---:</code>. Without colons, most renderers default to left alignment.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Can I use bold or links inside Markdown table cells?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Yes. You can format text inside cells with bold, italic, inline code, and links. These all work normally within table cells.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>What can’t you put inside a Markdown table?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+You cannot use headings, images, lists, or code blocks inside Markdown table cells. Tables only support inline formatting — bold, italic, code, and links. For complex content, consider using HTML tables instead.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>What is the best tool for creating Markdown tables?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Table generators and VS Code extensions handle formatting automatically, eliminating manual pipe alignment. Desktop Commander can also create and format Markdown tables through natural language — just describe the table you want and it generates the properly formatted syntax.
+</div>
+</details>
+
+
+<div class="dc-app-cta"><div class="dc-app-cta-inner"><div class="dc-app-cta-content"><div class="dc-app-cta-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 17L10 11L4 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 19H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="dc-app-cta-title" id="try-desktop-commander-app">Try Desktop Commander App</h3><p class="dc-app-cta-description">Desktop Commander reads your files, runs commands, and automates workflows — all in natural language.</p></div><a href="https://desktopcommander.app/#download" class="dc-app-cta-btn" data-post-slug="markdown-tables-complete-syntax-guide" data-post-title="Markdown Tables: Complete Syntax Guide" data-cta-variant="default" target="_blank" rel="noopener">Download Free<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div></p>
+
+
+<h2 class="wp-block-heading" id="faq">FAQ</h2>
+
+
+
+<h3 class="wp-block-heading" id="do-columns-need-to-be-aligned-in-the-source">Do columns need to be aligned in the source?</h3>
+
+
+
+<p>No. The renderer ignores extra spaces. But aligned source is easier to read and edit. Use a prettifier extension to automate this.</p>
+
+
+
+<h3 class="wp-block-heading" id="can-i-merge-cells-like-in-html">Can I merge cells like in HTML?</h3>
+
+
+
+<p>No. Markdown tables don't support rowspan or colspan. For complex layouts, use HTML tables or consider restructuring your content.</p>
+
+
+
+<h3 class="wp-block-heading" id="why-wont-my-table-render">Why won't my table render?</h3>
+
+
+
+<p>Check for: missing separator row, mismatched column counts, or unsupported Markdown processor. Test with a known-working example first.</p>
+
+
+
+<h3 class="wp-block-heading" id="can-i-use-tables-in-comments-or-readmes">Can I use tables in comments or READMEs?</h3>
+
+
+
+<p>On GitHub, GitLab, and most documentation platforms, yes. In code comments, typically no—comments don't process Markdown.</p>
+
+
+
+<h3 class="wp-block-heading" id="whats-the-maximum-number-of-columns">What's the maximum number of columns?</h3>
+
+
+
+<p>There's no hard limit, but wide tables become unreadable. If you need more than 5-6 columns, consider splitting into multiple tables or using a different format.</p>
+
+
+
+<h3 class="wp-block-heading" id="how-do-i-create-a-table-from-existing-data">How do I create a table from existing data?</h3>
+
+
+
+<p> Use <a href="https://tableconvert.com/">TableConvert</a> to import CSV, Excel, or JSON and export as Markdown. Or ask <a href="https://github.com/wonderwhy-er/DesktopCommander">Desktop Commander</a> to convert data for you.</p>
+
+
+
+<p>Markdown tables become second nature once you internalize the syntax. The pipe-and-dash structure is simple—it's the manual formatting that creates friction. Use the tools available, and tables become a strength rather than an obstacle.</p>

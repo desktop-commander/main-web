@@ -1,0 +1,420 @@
+
+<p>You changed your mind about a tag. Maybe #project should have been #work all along. Or a client corrected their name spelling and now it's wrong in 300 notes. You press Cmd+H, ready to fix it — and Obsidian's replace bar says "Search and replace in current file."</p>
+
+
+
+<p>One file. That's it.</p>
+
+
+
+<p>This gap has frustrated the Obsidian community since 2020. The <a href="https://forum.obsidian.md/t/global-mass-vault-wise-search-replace/4395">original feature request</a> has over 260 likes and keeps growing. As one user put it:</p>
+
+
+
+<blockquote class="wp-block-quote">
+<p>"I think this is a key feature that seems core to a text editor." — sam.baron, <a href="https://forum.obsidian.md/t/global-mass-vault-wise-search-replace/4395">Obsidian Forum</a></p>
+</blockquote>
+
+
+
+<p>The good news: there are real solutions now. Some are plugins you install in a minute. Others involve external editors. And newer AI-powered tools let you describe what you want changed in plain English. The right choice depends on what you're trying to do — so let's start there.</p>
+
+
+
+<h2 class="wp-block-heading" id="key-takeaways">Key Takeaways</h2>
+
+
+
+<ul class="wp-block-list">
+<li><strong>Obsidian has no built-in vault-wide replace</strong> — Cmd+H / Ctrl+H only works in the note you're editing</li>
+
+
+
+<li><strong>Two community plugins</strong> handle vault-wide replacement, each with different strengths — one prioritizes speed, the other safety</li>
+
+
+
+<li><strong>VS Code works as an external workaround</strong> but doesn't understand Obsidian's [[wikilinks]], so you can break connections</li>
+
+
+
+<li><strong>Tag-specific changes</strong> have a dedicated solution in the Tag Wrangler plugin (873 GitHub stars)</li>
+
+
+
+<li><strong>AI tools like Desktop Commander</strong> handle conditional, context-aware replacements that no plugin can — like "only replace in files tagged #draft"</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading" id="quick-reference-which-tool-for-which-job">Quick Reference: Which Tool for Which Job</h2>
+
+
+
+<p>Before diving into each option, here's the short answer:</p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>What you need to do</th><th>Best tool</th><th>Why</th></tr></thead><tbody><tr><td>Fix a typo in a single note</td><td>Obsidian's built-in Cmd+H</td><td>Already there, no setup</td></tr><tr><td>Replace a word or phrase across your vault</td><td><a href="https://github.com/MahmoudFawzyKhalil/obsidian-global-search-and-replace">Global Search and Replace</a> plugin</td><td>Fast, regex support, stays inside Obsidian</td></tr><tr><td>Replace with a preview of every change</td><td><a href="https://github.com/gapmiss/find-n-replace">Find-n-Replace</a> plugin</td><td>Shows each match, lets you pick which to change</td></tr><tr><td>Rename or merge tags vault-wide</td><td><a href="https://github.com/pjeby/tag-wrangler">Tag Wrangler</a> plugin</td><td>Built specifically for tag operations</td></tr><tr><td>Advanced regex across files with filtering</td><td>VS Code (Cmd+Shift+H)</td><td>Powerful search, file pattern filtering</td></tr><tr><td>Conditional replacements ("only in draft files")</td><td><a href="https://desktopcommander.app/">Desktop Commander</a></td><td>Natural language, reads file context before acting</td></tr></tbody></table></figure>
+
+
+
+<p>Now let's look at each approach in detail.</p>
+
+
+
+<h2 class="wp-block-heading" id="the-built-in-replace-what-it-does-and-where-it-stops">The Built-in Replace: What It Does and Where It Stops</h2>
+
+
+
+<p>Obsidian's native find-and-replace is easy to miss because it looks like it might work vault-wide. Open it with Cmd+H on Mac (Ctrl+H on Windows) or through the Command Palette by typing "replace."</p>
+
+
+
+<p>It handles single-file replacements well. Swap a word, fix a date, clean up formatting — within the note you're editing, it's fine.</p>
+
+
+
+<p>But the vault-wide Search panel (the left sidebar) is read-only. You can find text across every note in your vault using operators like file:, path:, tag:, and even regex — but there's no replace button. You can look, but you can't touch.</p>
+
+
+
+<blockquote class="wp-block-quote">
+<p>"There is currently no core Obsidian ways to search and replace." — smiggles, <a href="https://forum.obsidian.md/t/vault-wide-find-and-replace/56287">Obsidian Forum</a></p>
+</blockquote>
+
+
+
+<p>This is the wall that sends people searching for alternatives.</p>
+
+
+
+<h2 class="wp-block-heading" id="vault-wide-plugins-two-options-different-tradeoffs">Vault-wide Plugins: Two Options, Different Tradeoffs</h2>
+
+
+
+<p>The Obsidian community has built plugins to fill the gap. Both are worth knowing about — they solve different versions of the same problem. (For more community plugins that extend Obsidian, our roundup of the <a href="/blog/best-obsidian-plugins/">best Obsidian plugins</a> covers the essentials.)</p>
+
+
+
+<h3 class="wp-block-heading" id="global-search-and-replace">Global Search and Replace</h3>
+
+
+
+<p>The <a href="https://github.com/MahmoudFawzyKhalil/obsidian-global-search-and-replace">Global Search and Replace plugin</a> was born directly from that 2020 feature request thread. Its creator, Mahmoud Fawzy Khalil, <a href="https://forum.obsidian.md/t/global-mass-vault-wise-search-replace/4395">announced it in the forum</a> after years of community demand. It now has over 52,000 downloads.</p>
+
+
+
+<p><strong>Install it:</strong> Settings &gt; Community Plugins &gt; search "Global Search and Replace" &gt; Install &gt; Enable.</p>
+
+
+
+<p><strong>How it works:</strong> Open the Command Palette, type "Global Search and Replace." A search box appears that works across every <a href="/blog/markdown-file-the-complete-reference-guide-for-2026-with-cheatsheet/">markdown file</a> in your vault. It supports regex, case-sensitive matching, and special replacement patterns like $1 for capture groups.</p>
+
+
+
+<p><strong>The tradeoff:</strong> Speed over caution. There's no preview of what will change — you type the replacement, confirm, and it applies everywhere immediately. For straightforward swaps ("Johanson" to "Johansson"), this is fast and effective. For anything involving patterns that might match more than you expect, you're operating without a safety net.</p>
+
+
+
+<h3 class="wp-block-heading" id="find-n-replace">Find-n-Replace</h3>
+
+
+
+<p>The <a href="https://github.com/gapmiss/find-n-replace">Find-n-Replace plugin</a> takes the opposite approach: safety over speed.</p>
+
+
+
+<p>It shows every match before you commit. You can click individual results to include or exclude them. It supports file filtering (include/exclude patterns like VS Code), multiline matching, and search history. It works on all text-based files in your vault, not just .md.</p>
+
+
+
+<p><strong>Where it shines:</strong> When you need to see exactly what's about to change. Replace #project with #work and you'll see every match listed — including the ones you didn't expect, like #project-alpha appearing in the results.</p>
+
+
+
+<p><strong>The catch:</strong> It's newer (released late 2025) and its warning is direct: "This plugin directly modifies your vault files! All replace operations permanently change file contents." There's no undo beyond what you've backed up.</p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>Feature</th><th>Global Search and Replace</th><th>Find-n-Replace</th></tr></thead><tbody><tr><td>Preview before replacing</td><td>No</td><td>Yes</td></tr><tr><td>Select individual matches</td><td>No</td><td>Yes (Ctrl/Cmd+click)</td></tr><tr><td>File include/exclude filters</td><td>No</td><td>Yes</td></tr><tr><td>Regex support</td><td>Yes</td><td>Yes</td></tr><tr><td>Multiline matching</td><td>No</td><td>Yes</td></tr><tr><td>Search history</td><td>No</td><td>Yes (configurable)</td></tr><tr><td>Downloads</td><td>52,000+</td><td>New (2025)</td></tr><tr><td>Non-.md files</td><td>No</td><td>Yes</td></tr></tbody></table></figure>
+
+
+
+<h2 class="wp-block-heading" id="when-tags-are-the-problem-tag-wrangler">When Tags Are the Problem: Tag Wrangler</h2>
+
+
+
+<p>A huge portion of "search and replace" requests in Obsidian are actually about tags. Someone synced highlights from Readwise and ended up with thousands of #orange and #pink <a href="/blog/how-to-use-tags-in-obsidian-markdown/">tags</a> scattered across their vault. Or they want to restructure #project into #work/project.</p>
+
+
+
+<blockquote class="wp-block-quote">
+<p>"Having synced my Obsidian with highlights from readwise, I now have tags from those highlights in Obsidian, many thousands of 'orange', 'pink' etc" — drjasonclark, <a href="https://forum.obsidian.md/t/how-to-find-and-replace-a-tag-in-all-documents-vault/85854">Obsidian Forum</a></p>
+</blockquote>
+
+
+
+<p>For tag-specific operations, <a href="https://github.com/pjeby/tag-wrangler">Tag Wrangler</a> is the tool. With 873 GitHub stars, it's the most popular plugin in this space. Right-click any tag in the sidebar and you can rename it — across every file in your vault. It handles subtags, merges, and hierarchical restructuring.</p>
+
+
+
+<p>The key advantage: Tag Wrangler understands what a tag <em>is</em>. A generic find-and-replace would change #project inside a heading like ## Project Overview, which isn't a tag at all. Tag Wrangler uses Obsidian's own parser to identify real tag instances and only touches those.</p>
+
+
+
+<h2 class="wp-block-heading" id="the-vs-code-workaround-and-why-its-risky">The VS Code Workaround (and Why It's Risky)</h2>
+
+
+
+<p>In nearly every forum thread about vault-wide replace, someone recommends VS Code within the first three replies:</p>
+
+
+
+<blockquote class="wp-block-quote">
+<p>"If you install Code from Microsoft you can use Ctrl - Shift - H to search and replace I believe." — b83s, <a href="https://forum.obsidian.md/t/how-to-replace-delete-text-throughout-entire-vault/18179">Obsidian Forum</a></p>
+</blockquote>
+
+
+
+<p>The steps are simple: open VS Code, go to File &gt; Open Folder, pick your vault, and press Cmd+Shift+H (Mac) or Ctrl+Shift+H (Windows). You get regex support, file filtering by pattern, and a full preview of every match.</p>
+
+
+
+<p><strong>It works well for plain text.</strong> Fixing a misspelled word, updating a URL, standardizing a date format — VS Code handles these cleanly.</p>
+
+
+
+<p><strong>It doesn't understand Obsidian.</strong> This is where people get burned. Change "Meeting Notes" to "Meetings" and VS Code dutifully updates every file — including inside [[Meeting Notes]] links that other notes use. Obsidian won't know those links changed, so they all break silently. You might not notice for weeks, until you click a link and land on an empty page. (Our guide to <a href="/blog/obsidian-markdown-cheatsheet-every-syntax-you-actually-need/">Obsidian's markdown syntax</a> explains how these links work under the hood.)</p>
+
+
+
+<p>If you use VS Code for replacement, <strong>always check your wikilinks afterward</strong>. The core plugin "Outgoing Links" will show broken references in whatever note you're viewing.</p>
+
+
+
+<div class="dc-app-cta"><div class="dc-app-cta-inner"><div class="dc-app-cta-content"><div class="dc-app-cta-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 17L10 11L4 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 19H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="dc-app-cta-title" id="try-desktop-commander-app">Try Desktop Commander App</h3><p class="dc-app-cta-description">Desktop Commander reads your files, runs commands, and automates workflows — all in natural language.</p></div><a href="https://desktopcommander.app/#download" class="dc-app-cta-btn" data-post-slug="obsidian-find-replace-vault" data-post-title="Obsidian Find and Replace Across All Files: How to Make it Work" data-cta-variant="default" target="_blank" rel="noopener">Download Free<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+
+
+
+<h2 class="wp-block-heading" id="desktop-commander-ai-approach-to-search-and-replace-in-obsidian">Desktop Commander AI Approach to Search and Replace in Obsidian</h2>
+
+
+
+<p>All the tools above share a limitation: they can only match patterns. They can find text that looks like what you typed and replace it with what you told them. But they can't <em>reason</em> about what they're doing.</p>
+
+
+
+<p>Here's what that means in practice. Say you want to:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Replace #todo with #review — but only in files that have status: draft in their frontmatter</li>
+
+
+
+<li>Change [[Meeting Notes]] to [[Meetings]] across your vault — and update both the filename and every link pointing to it</li>
+
+
+
+<li>Fix a name everywhere — but skip code blocks and quotes</li>
+</ul>
+
+
+
+<p>None of those are "find and replace" operations. They require reading each file, understanding its structure, making a judgment call, and then applying the right change. That's where <a href="https://desktopcommander.app/">Desktop Commander</a> fits in.</p>
+
+
+
+<p>Desktop Commander connects AI directly to the files on your machine. Your Obsidian vault is just a folder of <a href="/blog/markdown-file-the-complete-reference-guide-for-2026-with-cheatsheet/">markdown files</a> — Desktop Commander can read all of them, understand their structure, and apply exactly the changes you describe. It works through something called an <a href="/blog/what-is-an-mcp-server-and-how-it-works-in-plain-english/">MCP server</a>, which gives the AI direct access to your filesystem.</p>
+
+
+
+<h3 class="wp-block-heading" id="what-conditional-replacement-looks-like">What conditional replacement looks like</h3>
+
+
+
+<p>Instead of typing regex patterns, you describe what you want in plain English:</p>
+
+
+
+<p><strong>Replace a tag only in certain files:</strong></p>
+
+
+
+<p>"Find every file in my Obsidian vault with 'status: draft' in the frontmatter. In those files only, replace #todo with #review. Leave #todo-later and #todolist alone."</p>
+
+
+
+<p><strong>Convert link formats with context awareness:</strong></p>
+
+
+
+<p>"Change all wikilinks like [[Note Name]] to markdown links like [Note Name](Note Name.md). If a link has display text like [[Note Name|click here]], keep the display text as the link label."</p>
+
+
+
+<p><strong>Clean up imported content:</strong></p>
+
+
+
+<p>"I imported from Readwise and now have thousands of color tags. Remove every instance of #orange, #pink, #yellow, and #blue from all files. Don't remove any other tags."</p>
+
+
+
+<p>Each of these would require a different regex pattern in a traditional tool — and some (like the frontmatter-conditional replacement) aren't possible with regex at all. With Desktop Commander, the AI reads each file, evaluates whether it matches your criteria, and makes precise edits.</p>
+
+
+
+<h3 class="wp-block-heading" id="getting-started">Getting started</h3>
+
+
+
+<ol class="wp-block-list">
+<li>Download <a href="https://desktopcommander.app/">Desktop Commander</a> — available as a native app for macOS and Windows</li>
+
+
+
+<li>Point it at your vault folder</li>
+
+
+
+<li>Describe what you want to change</li>
+
+
+
+<li>Review the proposed changes before confirming</li>
+</ol>
+
+
+
+<p>The <a href="https://desktopcommander.app/library">prompt library</a> has ready-made templates for common Obsidian vault tasks. For a deeper look at how AI handles vault organization beyond search and replace, see our guide to <a href="/blog/create-and-manage-your-obsidian-knowledge-base-with-ai/">managing your Obsidian knowledge base with AI</a>.</p>
+
+
+
+<h2 class="wp-block-heading" id="protecting-your-vault-before-bulk-changes">Protecting Your Vault Before Bulk Changes</h2>
+
+
+
+<p>Whatever tool you use, bulk changes deserve a safety net. A few minutes of preparation can save hours of recovery:</p>
+
+
+
+<p><strong>Turn on File Recovery.</strong> Settings &gt; Core Plugins &gt; File Recovery. Obsidian will keep snapshots of your notes, so you can roll back individual files if something goes wrong.</p>
+
+
+
+<p><strong>Make a backup.</strong> Copy your vault folder somewhere else. If you use git (even basics), initialize it in your vault:</p>
+
+
+
+<pre class="wp-block-code"><code>git init
+git add .
+git commit -m &#34;backup before bulk replace&#34;</code></pre>
+
+
+
+<p>One command rolls everything back if you need it.</p>
+
+
+
+<p><strong>Preview first.</strong> Whether it's Find-n-Replace's match list, VS Code's diff view, or Desktop Commander's proposed changes — look before you confirm. This is the single best habit for vault maintenance, and it's one reason building a proper <a href="/blog/knowledge-management-system/">knowledge management system</a> includes documenting your change process.</p>
+
+
+
+<div class="dc-app-cta"><div class="dc-app-cta-inner"><div class="dc-app-cta-content"><div class="dc-app-cta-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 17L10 11L4 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 19H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="dc-app-cta-title" id="try-desktop-commander-app-1">Try Desktop Commander App</h3><p class="dc-app-cta-description">Desktop Commander reads your files, runs commands, and automates workflows — all in natural language.</p></div><a href="https://desktopcommander.app/#download" class="dc-app-cta-btn" data-post-slug="obsidian-find-replace-vault" data-post-title="Obsidian Find and Replace Across All Files: How to Make it Work" data-cta-variant="default" target="_blank" rel="noopener">Download Free<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+
+
+
+<h2 class="wp-block-heading" id="community-discussions-worth-reading">Community Discussions Worth Reading</h2>
+
+
+
+<p>Vault-wide find and replace has been one of Obsidian's most discussed missing features for years. These threads capture the full picture — workarounds, plugin announcements, and the creative solutions people have built:</p>
+
+
+
+<ul class="wp-block-list">
+<li><a href="https://forum.obsidian.md/t/global-mass-vault-wise-search-replace/4395"><strong>Global (Mass / Vault-wise) Search &amp; Replace</strong></a> — The original 2020 feature request with 260+ votes. Five years of community discussion, including the announcement of the Global Search and Replace plugin.</li>
+
+
+
+<li><a href="https://forum.obsidian.md/t/vault-wide-find-and-replace/56287"><strong>Vault-wide Find and Replace?</strong></a> — A concise thread showing the workarounds people stitch together, from VS Code to plugin combinations.</li>
+
+
+
+<li><a href="https://forum.obsidian.md/t/how-to-find-and-replace-a-tag-in-all-documents-vault/85854"><strong>How to Find and Replace a Tag in All Documents</strong></a> — Focused on the tag replacement problem, with a user dealing with thousands of unwanted Readwise color tags.</li>
+
+
+
+<li><a href="https://forum.obsidian.md/t/best-way-to-replace-notes-in-obsidian-with-regex/88721"><strong>Best Way to Replace Notes with Regex?</strong></a> — For users who need pattern matching and keep running into plugin limitations.</li>
+
+
+
+<li><a href="https://forum.obsidian.md/t/implement-regex-search-and-replace-within-files/65712"><strong>Implement Regex Search and Replace Within Files</strong></a> — A feature request thread where users note that "existing plugins are broken or unmaintained."</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading" id="frequently-asked-questions">Frequently Asked Questions</h2>
+
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Will replacing text break my Obsidian links?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+It depends on the tool. Obsidian automatically updates [[wikilinks]] when you rename a file through its own interface, but plugins and external editors don't trigger that update. If your replacement touches text inside links, you'll either need Tag Wrangler (for tag changes), careful regex that avoids link syntax, or Desktop Commander, which can update both the text and the references in a single operation.
+</div>
+</details>
+
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Can I undo a vault-wide replacement?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+There's no global "undo" button. Obsidian's File Recovery plugin saves snapshots of individual files, which helps for small mistakes. For full peace of mind, use git or copy your vault folder before any bulk operation. A single git checkout . command brings everything back.
+</div>
+</details>
+
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Can I replace text only in files with a specific tag or property?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Plugins can't filter replacements by file content — they work across everything. VS Code can filter by filename pattern but not by what's inside the file. <a href="https://desktopcommander.app/">Desktop Commander</a> handles this natively. Describe the condition ("only files tagged #work" or "only files with status: draft") and it targets just those files. For more on how AI tools bridge this gap, see our overview of the <a href="/blog/best-mcp-servers-for-knowledge-bases-in-2026/">best MCP servers for knowledge bases</a>.
+</div>
+</details>
+
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>What about regex — do any Obsidian plugins support it?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Yes. Global Search and Replace supports JavaScript regex with capture groups. Find-n-Replace supports regex with multiline matching. For single-file regex, the <a href="https://github.com/Gru80/obsidian-regex-replace">Regex Find/Replace plugin</a> offers a focused interface. None of these match VS Code's regex power, but they keep you inside Obsidian.
+</div>
+</details>
+
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>My vault has thousands of notes — will plugins slow down?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Plugins run inside Obsidian's interface, so large vaults (5,000+ notes) can cause noticeable lag. VS Code and Desktop Commander work outside Obsidian, accessing files directly on disk, so vault size isn't a bottleneck. Desktop Commander in particular uses streaming-based file operations designed to handle large volumes of files efficiently.
+</div>
+</details>

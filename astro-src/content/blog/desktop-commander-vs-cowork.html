@@ -1,0 +1,333 @@
+
+<p>My work with an AI assistant has changed from asking it how to do something and then doing it myself, to asking it to do the thing and just checking the result. Instead of telling me how, the AI actually does it.</p>
+
+
+
+<p>That was the main turning point for me when I joined the Desktop Commander team and learned about this MCP. It let me control my computer in a way I couldn't before and automate all sorts of tasks, from organizing files and knowledge to shipping production code.</p>
+
+
+<p>Desktop Commander is the best choice for users who want full control over their computer with any AI model, while Cowork is better for users who prioritize safety and only need to work with documents.</p>
+
+
+
+<p>I see how my own way of working has changed, and I think it will be changing for many.</p>
+
+
+
+<p>Now that we're launching Desktop Commander's desktop app, I've been getting a lot of questions about the recent launch of Claude Cowork.</p>
+
+
+
+<p>Cowork made waves when it launched, and for good reason. To me, it confirmed that this way of working — AI that acts, not just advises you how to do stuff — is becoming the norm.</p>
+
+
+
+<p>On the surface, we seem to promise similar things: AI that actually does work on your computer. But since Cowork launched, a lot of people have been asking how DC compares. So here's my take.</p>
+
+
+
+<h2 class="wp-block-heading" id="the-surface-level-similarities-and-where-they-diverge">The surface-level similarities and where they diverge</h2>
+
+
+
+<p>Both products give you a chat interface where you describe what you want, and the AI makes it happen. Both can edit files, work with code, create documents, manipulate data.</p>
+
+
+
+<p>Desktop Commander lets you bring your own models — Claude Opus, GPT-5, Gemini, DeepSeek, whatever works for your use case. You use your API keys, you control the costs, you choose the intelligence level you need for each task.</p>
+
+
+
+<p>Cowork gives you Anthropic's latest models with simple pricing built in. You're working with Claude's newest capabilities without managing keys or thinking about API costs.</p>
+
+
+
+<p>Both approaches work. The question is what you're trying to accomplish.</p>
+
+
+
+<p>More differences start when you look at how these tools actually run.</p>
+
+
+
+<h2 class="wp-block-heading" id="filesystem-access-the-first-tradeoff">Filesystem access: the first tradeoff</h2>
+
+
+
+<p>Desktop Commander lets you choose how much of your filesystem to expose — from a single folder to the entire system.</p>
+
+
+
+<p>Cowork works in designated folders. It's more contained, thus more controlled and secure.</p>
+
+
+
+<p>When you're working on a project that spans multiple directories or automating a workflow that touches config files in one place and project files in another, Desktop Commander's filesystem access eliminates friction.</p>
+
+
+
+<p>But it also means Desktop Commander can access and alter files across your system. Sometimes in ways you didn't anticipate.</p>
+
+
+
+<p>The tradeoff is less friction around workflows (just tell AI to do stuff and it handles everything in one chat) versus more security (Cowork can only touch what you explicitly give it access to).</p>
+
+
+
+<h2 class="wp-block-heading" id="file-editing-where-design-philosophy-shows">File editing: where design philosophy shows</h2>
+
+
+
+<p>Both tools handle file editing well. Basic functions like create, modify, and update are covered in both products.</p>
+
+
+
+<p>Both support the formats you typically use — .pptx, .xlsx, .docx, code, config files, data files. Cowork is particularly good with MS Office files.</p>
+
+
+
+<p>It gets interesting around file deletion. Desktop Commander can delete files. Cowork can't.</p>
+
+
+
+<p>A small design choice that reveals the philosophical difference. I think Cowork truly prioritizes safety, Desktop Commander prioritizes capability.</p>
+
+
+
+<p>Which brings us to the main dividing line.</p>
+
+
+
+<h2 class="wp-block-heading" id="the-terminal-access-difference">The terminal access difference</h2>
+
+
+
+<p>This is where the paths genuinely diverge.</p>
+
+
+
+<p>Cowork runs in a virtual machine (VM) setup. It's a contained environment separate from your actual computer. You're working in a sandbox. Every time you start a new chat, a fresh virtual environment spins up. It's a safer and more controlled way of working with AI assistants on your computer.</p>
+
+
+
+<p>Desktop Commander runs on your local machine. It has direct access to your terminal, your whole computer. The things you do in chat persist on your system.</p>
+
+
+
+<p>The VM approach is objectively safer. If something goes wrong, it's contained within the virtual environment and your actual system remains untouched.</p>
+
+
+
+<p>But that safety comes with fundamental limitations.</p>
+
+
+
+<p>With direct terminal access, Desktop Commander can run any command your system supports, including, install software, use CLI tools, build and deploy from one chat.</p>
+
+
+
+<p>Eduard, founder of Desktop Commander, made a video walking through this difference, <a href="https://www.youtube.com/watch?v=Yj0fvpMZWnY">take a look here</a>.</p>
+
+
+
+<p>For me, it opens up more agentic workflows (remember, I am biased here). The ones where I don't need to spend time jumping between different tools and copy-pasting stuff, but just talk to a chat and ask it to do things.</p>
+
+
+
+<p>Let me share an example from my workflow.</p>
+
+
+
+<h2 class="wp-block-heading" id="an-example-building-and-deploying-a-landing-page">An example: building and deploying a landing page</h2>
+
+
+
+<p>Let's say I want to create a landing page and launch it on GitHub Pages.</p>
+
+
+
+<p><strong>Desktop Commander flow:</strong></p>
+
+
+
+<p>I ask chat to create a page → DC writes the code files on my machine → starts a local server to preview the site → uses GitHub CLI to push code to my remote repo → the site goes live (assuming I've connected my domain).</p>
+
+
+
+<p>The prompt:</p>
+
+
+
+<figure class="wp-block-image size-full">
+<img src="/blog/media/2026/02/resized-article-1.png" alt="Desktop Commander prompt asking to create a landing page and deploy it to GitHub" class="wp-image-627"/>
+<figcaption class="wp-element-caption">A single prompt in Desktop Commander to create and deploy a landing page</figcaption>
+</figure>
+
+
+
+<p>The end result after running autonomously for 5 minutes (no additional input was given from me): <a href="https://rkrizanovskis.github.io/ricards-landing-page/">ready &amp; deployed landing page</a>.</p>
+
+
+
+<figure class="wp-block-image size-full">
+<img src="/blog/media/2026/02/resized-article-2.png" alt="Desktop Commander showing deployed landing page URLs on GitHub Pages" class="wp-image-628"/>
+<figcaption class="wp-element-caption">Desktop Commander automatically deployed the site and provided the live URLs</figcaption>
+</figure>
+
+
+
+<p>I participate mainly to check progress and define outcomes. The AI handles dependencies, build commands, local server verification, Git operations, deployment — all automatically in one chat.</p>
+
+
+
+<p><strong>Cowork flow:</strong></p>
+
+
+
+<p>I ask chat to create a page → Cowork writes the code files → then asks me to either copy commands to install/run GitHub CLI or walks me through pushing to my repo → I handle the deployment steps manually.</p>
+
+
+
+<figure class="wp-block-image size-full">
+<img src="/blog/media/2026/02/resized-article-3.png" alt="Claude Cowork processing the same landing page request" class="wp-image-629"/>
+<figcaption class="wp-element-caption">The same prompt in Claude Cowork — it creates the HTML but can't deploy directly</figcaption>
+</figure>
+
+
+
+<p>The result: HTML file with my landing page and step-by-step instructions on how to set up a repo on GitHub and deploy it.</p>
+
+
+
+<figure class="wp-block-image size-full">
+<img src="/blog/media/2026/02/resized-article-4.png" alt="Claude Cowork providing manual deployment steps for GitHub Pages" class="wp-image-630"/>
+<figcaption class="wp-element-caption">Cowork gives you the file and manual instructions to deploy it yourself</figcaption>
+</figure>
+
+
+
+<p>The VM setup doesn't allow Cowork to do things directly on my machine. It can't deploy to my actual infrastructure or install and use system-level tools my workflow depends on.</p>
+
+
+
+<p>To be fair, Cowork's VM approach means if something goes wrong during those steps, nothing on my actual machine is affected. That's a real benefit.</p>
+
+
+
+<p>More security, but also more manual steps.</p>
+
+
+
+<h2 class="wp-block-heading" id="what-this-means-for-my-actual-work">What this means for my actual work</h2>
+
+
+
+<p>Cowork excels at file-based work. Documents, spreadsheets, presentations, maybe even code editing. When I need to work with MS Office files especially, Cowork is incredibly good at that.</p>
+
+
+
+<p>The VM environment also means I'm never worried about an AI command accidentally touching system files. The contained folders keep projects organized. The inability to delete files means I can't accidentally lose work.</p>
+
+
+
+<p>It's great for content creation, document work, isolated coding projects.</p>
+
+
+
+<p>Desktop Commander excels at workflow automation and system-level tasks. Whenever my work involves "making these five tools work together," or "deploying this," or "automating this process that spans multiple applications" — that's where DC shines.</p>
+
+
+
+<p>The terminal access means I can:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Launch development servers</li>
+<li>Deploy applications</li>
+<li>Install tools needed for file manipulation</li>
+<li>Work with command-line applications (WP-CLI for WordPress, database CLIs, API tools)</li>
+<li>Install and configure software as needed</li>
+<li>Chain complex operations together</li>
+</ul>
+
+
+
+<p>Great for building, deploying, automating, integrating.</p>
+
+
+
+<h2 class="wp-block-heading" id="what-were-building-toward">What we're building toward</h2>
+
+
+
+<p>Both tools point to the same future: AI that does work instead of just advising about work.</p>
+
+
+
+<p>I can't imagine my workday without these tools now. They've changed how I work and how much I'm able to get done. Tasks that used to take an afternoon like setting up a project, deploying a site, reorganizing a file structure now happen in a single chat.</p>
+
+
+
+<p>Just a year ago, AI assistance meant chat windows and copy-paste workflows. Today, we're choosing between different philosophies of how AI should integrate with our actual computing environment.</p>
+
+
+
+<p>I think that's a good sign for where things are headed.</p>
+
+
+
+
+<h2 class="wp-block-heading" id="frequently-asked-questions">Frequently Asked Questions</h2>
+
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>What is the difference between Desktop Commander and Cowork?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Both are AI desktop assistants that do work on your computer rather than just advising. Desktop Commander gives full filesystem and terminal access with support for any AI model (Claude, GPT, Gemini, DeepSeek). Cowork runs in a contained VM environment using Anthropic’s models, with access limited to designated folders and no file deletion capability. Desktop Commander excels at workflow automation and system-level tasks; Cowork excels at document and file-based work.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Is Desktop Commander or Cowork better for developers?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Desktop Commander is generally better for developers because it provides terminal access for launching dev servers, deploying applications, running CLI tools, and chaining complex operations. Cowork’s contained environment is safer but more limited — it can’t run arbitrary commands, install packages, or interact with system-level tools like Docker, WP-CLI, or database CLIs.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Can Desktop Commander work with AI models other than Claude?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Yes. Desktop Commander lets you bring your own models — Claude Opus, GPT-5, Gemini, DeepSeek, or any other model that supports MCP. You use your own API keys and control costs. Cowork only works with Anthropic’s Claude models.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Is Cowork safer than Desktop Commander for file access?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Yes, in terms of containment. Cowork runs in a virtual machine with access restricted to designated folders, and it cannot delete files. Desktop Commander gives broader filesystem access — from a single folder to the entire system — which provides more flexibility but requires more trust. The tradeoff is less friction (Desktop Commander) versus more security (Cowork).
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Which AI desktop assistant is best for workflow automation?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Desktop Commander is the best AI desktop assistant for workflow automation. Its terminal access and full filesystem permissions let it launch servers, deploy applications, install tools, work with command-line applications, and chain complex multi-step operations. Cowork is better suited for isolated document work, spreadsheets, and presentations.
+</div>
+</details>

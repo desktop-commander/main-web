@@ -1,0 +1,4035 @@
+[
+  {
+    "id": 855,
+    "slug": "zettelkasten-obsidian",
+    "title": "The Zettelkasten Method in Obsidian: A Practical Setup Guide",
+    "date": "2026-04-09T10:42:48+03:00",
+    "modified": "2026-04-09T10:55:22+03:00",
+    "author_login": "karlina",
+    "author_id": 272016979,
+    "author_name": "Karlina Sara Rozkalne",
+    "categories": [
+      "deep-dives",
+      "how-to",
+      "knowledge-base",
+      "use-cases"
+    ],
+    "category_names": [
+      "Deep Dives",
+      "How-to",
+      "Knowledge base",
+      "Use Cases"
+    ],
+    "tags": [],
+    "description": "Learn how to set up a working Zettelkasten in Obsidian: note types, vault structure, MOCs, and how AI handles the maintenance that kills most systems.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2026/04/Screenshot-2026-04-09-at-10.50.17.png",
+    "featured_image_w": 1642,
+    "featured_image_h": 882,
+    "toc": [
+      {
+        "id": "what-the-zettelkasten-method-actually-is-and-what-it-isnt",
+        "text": "What the Zettelkasten method actually is (and what it isn't)",
+        "level": 2
+      },
+      {
+        "id": "why-obsidian-is-the-right-tool-for-this",
+        "text": "Why Obsidian is the right tool for this",
+        "level": 2
+      },
+      {
+        "id": "local-markdown-files",
+        "text": "Local markdown files",
+        "level": 3
+      },
+      {
+        "id": "bidirectional-links",
+        "text": "Bidirectional links",
+        "level": 3
+      },
+      {
+        "id": "graph-view",
+        "text": "Graph view",
+        "level": 3
+      },
+      {
+        "id": "no-vendor-lock-in",
+        "text": "No vendor lock-in",
+        "level": 3
+      },
+      {
+        "id": "setting-up-your-vault-structure-from-day-one",
+        "text": "Setting up your vault: structure from day one",
+        "level": 2
+      },
+      {
+        "id": "fleeting-notes-capturing-without-friction",
+        "text": "Fleeting notes: Capturing without friction",
+        "level": 3
+      },
+      {
+        "id": "literature-notes-processing-what-you-read",
+        "text": "Literature notes: Processing what you read",
+        "level": 3
+      },
+      {
+        "id": "permanent-notes-the-atomic-building-blocks",
+        "text": "Permanent notes: The atomic building blocks",
+        "level": 3
+      },
+      {
+        "id": "linking-tagging-and-building-your-first-moc",
+        "text": "Linking, tagging, and building your first MOC",
+        "level": 2
+      },
+      {
+        "id": "on-tags",
+        "text": "On tags",
+        "level": 3
+      },
+      {
+        "id": "maps-of-content-mocs",
+        "text": "Maps of Content (MOCs)",
+        "level": 3
+      },
+      {
+        "id": "the-maintenance-problem-and-how-ai-solves-it",
+        "text": "The maintenance problem (and how AI solves it)",
+        "level": 2
+      },
+      {
+        "id": "using-desktop-commander-to-automate-zettelkasten-upkeep",
+        "text": "Using Desktop Commander to automate Zettelkasten upkeep",
+        "level": 2
+      },
+      {
+        "id": "what-it-can-actually-do",
+        "text": "What it can actually do",
+        "level": 3
+      },
+      {
+        "id": "how-to-use-it-in-practice",
+        "text": "How to use it in practice",
+        "level": 3
+      },
+      {
+        "id": "ready-to-use-prompts-for-common-maintenance-tasks",
+        "text": "Ready-to-use prompts for common maintenance tasks",
+        "level": 3
+      },
+      {
+        "id": "minimum-viable-workflow-how-this-plays-out-day-to-day",
+        "text": "Minimum viable workflow: How this plays out day to day",
+        "level": 2
+      },
+      {
+        "id": "1-capture-a-fleeting-note-inbox",
+        "text": "1. Capture a fleeting note (Inbox)",
+        "level": 3
+      },
+      {
+        "id": "2-convert-to-a-literature-note-if-source-based",
+        "text": "2. Convert to a literature note (if source-based)",
+        "level": 3
+      },
+      {
+        "id": "3-distill-into-1-3-permanent-notes",
+        "text": "3. Distill into 1-3 permanent notes",
+        "level": 3
+      },
+      {
+        "id": "4-link-to-existing-notes",
+        "text": "4. Link to existing notes",
+        "level": 3
+      },
+      {
+        "id": "5-update-or-create-a-moc-optional",
+        "text": "5. Update or create a MOC (optional)",
+        "level": 3
+      },
+      {
+        "id": "a-simple-zettelkasten-template-for-obsidian",
+        "text": "A simple Zettelkasten template for Obsidian",
+        "level": 2
+      },
+      {
+        "id": "permanent-note-template",
+        "text": "Permanent note template",
+        "level": 3
+      },
+      {
+        "id": "fleeting-note-template",
+        "text": "Fleeting note template",
+        "level": 3
+      },
+      {
+        "id": "why-these-fields",
+        "text": "Why these fields",
+        "level": 3
+      },
+      {
+        "id": "zettelkasten-in-obsidian-what-to-take-with-you",
+        "text": "Zettelkasten in Obsidian: What to take with you",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions",
+        "level": 2
+      }
+    ],
+    "faq": [
+      {
+        "q": "What are the three types of notes in a Zettelkasten?",
+        "a": "The 3 main Zettelkasten note types are fleeting notes, literature notes, and permanent notes. Fleeting notes are quick captures of raw ideas before they're processed Literature notes summarize a single source in your own words Permanent notes contain one atomic idea that can stand alone and link to others These categories were introduced by Sönke Ahrens in How to Take Smart Notes. They're not part of Niklas Luhmann's original method, but they're a practical framework for applying the Zettelkasten method to Obsidian workflows today."
+      },
+      {
+        "q": "Is Zettelkasten better than PARA for Obsidian?",
+        "a": "The Zettelkasten vs. PARA comparison comes up often, but they solve different problems. PARA is designed for organization and execution Zettelkasten is designed for idea development and connection PARA relies on folders and structure. Zettelkasten relies on links and emergence. In practice: Use PARA for projects and task management. Use Zettelkasten for building a knowledge management system focused on long-term thinking. Many people run both side by side."
+      },
+      {
+        "q": "How do I find and fix orphaned notes in Obsidian?",
+        "a": "Orphaned notes are notes with no incoming or outgoing links. They don't connect to the rest of your vault. You can find them using Obsidian's built-in search (filter for notes with no links) or plugins like Dataview. To fix them, connect them to existing ideas. Tools like Desktop Commander can scan your vault, list unlinked notes, and help you decide where they belong."
+      },
+      {
+        "q": "Do I need plugins to run Zettelkasten in Obsidian?",
+        "a": "No. The core workflow works out of the box: create notes, link them with [[links]], explore connections via graph view. Plugins can help but are optional: Templater (for templates), Dataview (for querying notes), Calendar (for daily tracking). Start simple and add tools only when you need them."
+      },
+      {
+        "q": "Can AI help maintain a Zettelkasten in Obsidian?",
+        "a": "Yes, particularly for maintenance and linking. With the right setup, AI can suggest connections between notes, identify duplicates, surface orphaned notes, and help keep your knowledge management system coherent as it grows. The key is that AI supports the system — it doesn't replace the thinking behind it."
+      },
+      {
+        "q": "How do Maps of Content work?",
+        "a": "A Map of Content (MOC) is a navigation layer — a list of links to related notes around a theme. You don't need to create them upfront. They become useful when your vault grows and clusters of notes are harder to navigate."
+      }
+    ]
+  },
+  {
+    "id": 830,
+    "slug": "obsidian-bulk-rename-files",
+    "title": "How to Bulk Rename Obsidian Files Without Breaking Every Link",
+    "date": "2026-03-23T16:02:39+02:00",
+    "modified": "2026-03-23T16:13:45+02:00",
+    "author_login": "rafaelpinheiro",
+    "author_id": 272016983,
+    "author_name": "Rafael Pinheiro",
+    "categories": [
+      "how-to",
+      "tutorials",
+      "uncategorized"
+    ],
+    "category_names": [
+      "How-to",
+      "Tutorials",
+      "Uncategorized"
+    ],
+    "tags": [],
+    "description": "Learn how to bulk rename Obsidian files without breaking wikilinks. Compare the Bulk Rename plugin, VS Code workarounds, and AI-powered renaming.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2026/03/obsidian-rename-featured.jpg",
+    "featured_image_w": 1200,
+    "featured_image_h": 675,
+    "toc": [
+      {
+        "id": "key-takeaways",
+        "text": "Key Takeaways",
+        "level": 2
+      },
+      {
+        "id": "why-renaming-outside-obsidian-breaks-everything",
+        "text": "Why Renaming Outside Obsidian Breaks Everything",
+        "level": 2
+      },
+      {
+        "id": "the-bulk-rename-plugin",
+        "text": "The Bulk Rename Plugin",
+        "level": 2
+      },
+      {
+        "id": "the-multi-tool-workaround",
+        "text": "The Multi-Tool Workaround",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "the-scenarios-that-bring-people-here",
+        "text": "The Scenarios That Bring People Here",
+        "level": 2
+      },
+      {
+        "id": "letting-ai-bulk-rename-obsidian-files",
+        "text": "Letting AI Bulk Rename Obsidian Files",
+        "level": 2
+      },
+      {
+        "id": "desktop-commander-for-bulk-renaming-obsidian-files",
+        "text": "Desktop Commander for Bulk renaming Obsidian Files",
+        "level": 3
+      },
+      {
+        "id": "getting-started",
+        "text": "Getting started",
+        "level": 3
+      },
+      {
+        "id": "try-desktop-commander-app-1",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "before-you-rename-anything-a-safety-checklist",
+        "text": "Before You Rename Anything: A Safety Checklist",
+        "level": 2
+      },
+      {
+        "id": "community-discussions",
+        "text": "Community Discussions",
+        "level": 2
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions",
+        "level": 2
+      }
+    ],
+    "faq": [
+      {
+        "q": "Can I rename a file in Finder or File Explorer without breaking links?",
+        "a": "No. Obsidian only updates links when the rename happens through its own interface. Rename a file externally, and every [[link]] pointing to the old filename breaks."
+      },
+      {
+        "q": "How many files can the Bulk Rename plugin handle?",
+        "a": "No hard limit, but it slows down on very large vaults. A few hundred files with a simple pattern works fine. Thousands of files with complex regex may cause Obsidian to hang."
+      },
+      {
+        "q": "What happens to aliases when I rename a file?",
+        "a": "Obsidian updates the link target but keeps your display text. [[old name|My Custom Text]] becomes [[new name|My Custom Text]]. External tools won’t handle aliases at all."
+      },
+      {
+        "q": "I already renamed files externally and my links are broken. How do I fix them?",
+        "a": "Open your vault folder in VS Code and use “Find and Replace in Files” to update every [[old name]] to [[new name]]. Desktop Commander can also scan your vault, identify broken references, and fix them based on your description."
+      },
+      {
+        "q": "Do I need to know regex to use the Bulk Rename plugin?",
+        "a": "For simple renames (swap one word for another, add a prefix), no. For patterns involving dates, IDs, or variable-length strings, yes. Desktop Commander lets you describe the pattern in normal sentences instead."
+      },
+      {
+        "q": "Can Desktop Commander help with other Obsidian vault tasks beyond renaming?",
+        "a": "Yes. Anything you can describe, it can do — reorganizing folders, building an AI knowledge base from your notes, bulk-editing frontmatter, or cleaning up orphaned attachments. It works on any local files, not just Obsidian."
+      }
+    ]
+  },
+  {
+    "id": 815,
+    "slug": "obsidian-find-replace-vault",
+    "title": "Obsidian Find and Replace Across All Files: How to Make it Work",
+    "date": "2026-03-19T09:01:13+02:00",
+    "modified": "2026-03-19T09:01:13+02:00",
+    "author_login": "rafaelpinheiro",
+    "author_id": 272016983,
+    "author_name": "Rafael Pinheiro",
+    "categories": [
+      "how-to",
+      "knowledge-base"
+    ],
+    "category_names": [
+      "How-to",
+      "Knowledge base"
+    ],
+    "tags": [],
+    "description": "Learn how to find and replace text across all files in your Obsidian vault using built-in tools, plugins, VS Code, and Desktop Commander AI.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2026/03/obsidian-search-replace-featured.png",
+    "featured_image_w": 1200,
+    "featured_image_h": 675,
+    "toc": [
+      {
+        "id": "key-takeaways",
+        "text": "Key Takeaways",
+        "level": 2
+      },
+      {
+        "id": "quick-reference-which-tool-for-which-job",
+        "text": "Quick Reference: Which Tool for Which Job",
+        "level": 2
+      },
+      {
+        "id": "the-built-in-replace-what-it-does-and-where-it-stops",
+        "text": "The Built-in Replace: What It Does and Where It Stops",
+        "level": 2
+      },
+      {
+        "id": "vault-wide-plugins-two-options-different-tradeoffs",
+        "text": "Vault-wide Plugins: Two Options, Different Tradeoffs",
+        "level": 2
+      },
+      {
+        "id": "global-search-and-replace",
+        "text": "Global Search and Replace",
+        "level": 3
+      },
+      {
+        "id": "find-n-replace",
+        "text": "Find-n-Replace",
+        "level": 3
+      },
+      {
+        "id": "when-tags-are-the-problem-tag-wrangler",
+        "text": "When Tags Are the Problem: Tag Wrangler",
+        "level": 2
+      },
+      {
+        "id": "the-vs-code-workaround-and-why-its-risky",
+        "text": "The VS Code Workaround (and Why It's Risky)",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "desktop-commander-ai-approach-to-search-and-replace-in-obsidian",
+        "text": "Desktop Commander AI Approach to Search and Replace in Obsidian",
+        "level": 2
+      },
+      {
+        "id": "what-conditional-replacement-looks-like",
+        "text": "What conditional replacement looks like",
+        "level": 3
+      },
+      {
+        "id": "getting-started",
+        "text": "Getting started",
+        "level": 3
+      },
+      {
+        "id": "protecting-your-vault-before-bulk-changes",
+        "text": "Protecting Your Vault Before Bulk Changes",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app-1",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "community-discussions-worth-reading",
+        "text": "Community Discussions Worth Reading",
+        "level": 2
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions",
+        "level": 2
+      }
+    ],
+    "faq": [
+      {
+        "q": "Will replacing text break my Obsidian links?",
+        "a": "It depends on the tool. Obsidian automatically updates [[wikilinks]] when you rename a file through its own interface, but plugins and external editors don't trigger that update. If your replacement touches text inside links, you'll either need Tag Wrangler (for tag changes), careful regex that avoids link syntax, or Desktop Commander, which can update both the text and the references in a single operation."
+      },
+      {
+        "q": "Can I undo a vault-wide replacement?",
+        "a": "There's no global \"undo\" button. Obsidian's File Recovery plugin saves snapshots of individual files, which helps for small mistakes. For full peace of mind, use git or copy your vault folder before any bulk operation. A single git checkout . command brings everything back."
+      },
+      {
+        "q": "Can I replace text only in files with a specific tag or property?",
+        "a": "Plugins can't filter replacements by file content — they work across everything. VS Code can filter by filename pattern but not by what's inside the file. Desktop Commander handles this natively. Describe the condition (\"only files tagged #work\" or \"only files with status: draft\") and it targets just those files. For more on how AI tools bridge this gap, see our overview of the best MCP servers for knowledge bases."
+      },
+      {
+        "q": "What about regex — do any Obsidian plugins support it?",
+        "a": "Yes. Global Search and Replace supports JavaScript regex with capture groups. Find-n-Replace supports regex with multiline matching. For single-file regex, the Regex Find/Replace plugin offers a focused interface. None of these match VS Code's regex power, but they keep you inside Obsidian."
+      },
+      {
+        "q": "My vault has thousands of notes — will plugins slow down?",
+        "a": "Plugins run inside Obsidian's interface, so large vaults (5,000+ notes) can cause noticeable lag. VS Code and Desktop Commander work outside Obsidian, accessing files directly on disk, so vault size isn't a bottleneck. Desktop Commander in particular uses streaming-based file operations designed to handle large volumes of files efficiently."
+      }
+    ]
+  },
+  {
+    "id": 810,
+    "slug": "notion-mcp-server",
+    "title": "Notion MCP Server: How to Give Your AI Full Access to Your Workspace",
+    "date": "2026-03-04T09:12:23+02:00",
+    "modified": "2026-03-04T09:12:23+02:00",
+    "author_login": "rafaelpinheiro",
+    "author_id": 272016983,
+    "author_name": "Rafael Pinheiro",
+    "categories": [
+      "mcp",
+      "tutorials"
+    ],
+    "category_names": [
+      "MCP",
+      "Tutorials"
+    ],
+    "tags": [
+      "ai",
+      "desktop-commander",
+      "developer-tools",
+      "mcp"
+    ],
+    "description": "Set up Notion MCP to give Claude, ChatGPT, or Cursor direct access to your Notion workspace. Covers hosted and open-source options, 17 tools, and troubleshooting.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2026/03/notion-mcp-featured.png",
+    "featured_image_w": 1200,
+    "featured_image_h": 675,
+    "toc": [
+      {
+        "id": "key-takeaways",
+        "text": "Key Takeaways",
+        "level": 2
+      },
+      {
+        "id": "your-notion-workspace-has-an-api-problem",
+        "text": "Your Notion Workspace Has an API Problem",
+        "level": 2
+      },
+      {
+        "id": "hosted-vs-open-source-which-notion-mcp-server-to-use",
+        "text": "Hosted vs. Open-Source: Which Notion MCP Server to Use",
+        "level": 2
+      },
+      {
+        "id": "setting-up-the-hosted-notion-mcp-the-fast-path",
+        "text": "Setting Up the Hosted Notion MCP (The Fast Path)",
+        "level": 2
+      },
+      {
+        "id": "setting-up-the-open-source-server-more-control",
+        "text": "Setting Up the Open-Source Server (More Control)",
+        "level": 2
+      },
+      {
+        "id": "step-1-create-a-notion-integration",
+        "text": "Step 1: Create a Notion integration",
+        "level": 3
+      },
+      {
+        "id": "step-2-grant-page-access",
+        "text": "Step 2: Grant page access",
+        "level": 3
+      },
+      {
+        "id": "step-3-configure-your-ai-client",
+        "text": "Step 3: Configure your AI client",
+        "level": 3
+      },
+      {
+        "id": "install-desktop-commander-mcp",
+        "text": "Install Desktop Commander MCP",
+        "level": 3
+      },
+      {
+        "id": "what-notion-mcp-can-actually-do",
+        "text": "What Notion MCP Can Actually Do",
+        "level": 2
+      },
+      {
+        "id": "search-and-retrieve",
+        "text": "Search and retrieve",
+        "level": 3
+      },
+      {
+        "id": "create-and-modify",
+        "text": "Create and modify",
+        "level": 3
+      },
+      {
+        "id": "database-operations",
+        "text": "Database operations",
+        "level": 3
+      },
+      {
+        "id": "collaboration",
+        "text": "Collaboration",
+        "level": 3
+      },
+      {
+        "id": "four-workflows-that-justify-the-setup",
+        "text": "Four Workflows That Justify the Setup",
+        "level": 2
+      },
+      {
+        "id": "automated-release-notes-from-git-history",
+        "text": "Automated release notes from Git history",
+        "level": 3
+      },
+      {
+        "id": "meeting-notes-that-update-project-boards",
+        "text": "Meeting notes that update project boards",
+        "level": 3
+      },
+      {
+        "id": "knowledge-base-maintenance",
+        "text": "Knowledge base maintenance",
+        "level": 3
+      },
+      {
+        "id": "spec-to-implementation-bridge",
+        "text": "Spec-to-implementation bridge",
+        "level": 3
+      },
+      {
+        "id": "combining-desktop-commander-with-notion-mcp",
+        "text": "Combining Desktop Commander with Notion MCP",
+        "level": 2
+      },
+      {
+        "id": "documentation-generation-from-code",
+        "text": "Documentation generation from code",
+        "level": 3
+      },
+      {
+        "id": "project-scaffolding-from-specs",
+        "text": "Project scaffolding from specs",
+        "level": 3
+      },
+      {
+        "id": "syncing-local-context-with-remote-docs",
+        "text": "Syncing local context with remote docs",
+        "level": 3
+      },
+      {
+        "id": "install-desktop-commander-mcp-1",
+        "text": "Install Desktop Commander MCP",
+        "level": 3
+      },
+      {
+        "id": "troubleshooting-the-setup",
+        "text": "Troubleshooting the Setup",
+        "level": 2
+      },
+      {
+        "id": "mcp-error-32000-connection-closed",
+        "text": "\"MCP error -32000: Connection closed\"",
+        "level": 3
+      },
+      {
+        "id": "401-unauthorized-errors",
+        "text": "401 Unauthorized errors",
+        "level": 3
+      },
+      {
+        "id": "empty-results-when-querying-pages",
+        "text": "Empty results when querying pages",
+        "level": 3
+      },
+      {
+        "id": "nodejs-compatibility-issues",
+        "text": "Node.js compatibility issues",
+        "level": 3
+      },
+      {
+        "id": "parameter-serialization-bugs",
+        "text": "Parameter serialization bugs",
+        "level": 3
+      },
+      {
+        "id": "community-discussions",
+        "text": "Community Discussions",
+        "level": 2
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions",
+        "level": 2
+      }
+    ],
+    "faq": [
+      {
+        "q": "Can I use Notion MCP with the free Notion plan?",
+        "a": "Yes. MCP access works through the Notion API, which is available on all plans including free. You just need to create an integration and connect it to your pages."
+      },
+      {
+        "q": "Does Notion MCP work with ChatGPT?",
+        "a": "Yes. Notion's hosted MCP server supports ChatGPT, Claude Desktop, Claude Code, Cursor, and VS Code. The open-source server works with any client that supports the MCP standard."
+      },
+      {
+        "q": "Is it safe to give AI write access to my Notion workspace?",
+        "a": "You control permissions at two levels: the integration settings (where you can set read-only access) and the page connections (which pages the integration can see). Start with read-only access to a test page, verify the behavior, then expand permissions as you get comfortable."
+      },
+      {
+        "q": "Can I run Notion MCP alongside other MCP servers like Desktop Commander?",
+        "a": "Absolutely. Each MCP server gets its own entry in your client's configuration file. Your AI automatically routes operations to the right server based on the task. This is how you build workflows that span your filesystem, terminal, and Notion workspace in a single conversation. You can even build a personal AI knowledge base with local files and sync it with Notion for the best of both worlds."
+      },
+      {
+        "q": "Will Notion sunset the open-source MCP server?",
+        "a": "Notion has stated in the repository that they may sunset the local MCP server repository in the future as they prioritize the hosted version. Issues and pull requests on the open-source repo are not being actively monitored. If long-term maintenance matters to you, the hosted server is the safer bet."
+      }
+    ]
+  },
+  {
+    "id": 795,
+    "slug": "personal-management-system",
+    "title": "The Personal Management System Guide: What Works, What Fails, and How to Build Your Own",
+    "date": "2026-03-02T10:49:26+02:00",
+    "modified": "2026-03-02T10:52:27+02:00",
+    "author_login": "rafaelpinheiro",
+    "author_id": 272016983,
+    "author_name": "Rafael Pinheiro",
+    "categories": [
+      "knowledge-base",
+      "use-cases"
+    ],
+    "category_names": [
+      "Knowledge base",
+      "Use Cases"
+    ],
+    "tags": [],
+    "description": "Build a personal management system that works across all your files and tools using AI-powered local file access — no app switching required.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2026/03/featured-image-final.jpg",
+    "featured_image_w": 1200,
+    "featured_image_h": 675,
+    "toc": [
+      {
+        "id": "key-takeaways",
+        "text": "Key Takeaways",
+        "level": 2
+      },
+      {
+        "id": "the-five-app-trap",
+        "text": "The Five-App Trap",
+        "level": 2
+      },
+      {
+        "id": "what-a-personal-management-system-actually-needs",
+        "text": "What a Personal Management System Actually Needs",
+        "level": 2
+      },
+      {
+        "id": "how-people-actually-manage-their-knowledge-a-comparison",
+        "text": "How People Actually Manage Their Knowledge (A Comparison)",
+        "level": 2
+      },
+      {
+        "id": "connecting-instead-of-replacing",
+        "text": "Connecting Instead of Replacing",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "try-desktop-commander-app-1",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "building-your-system-on-files-you-already-have",
+        "text": "Building Your System on Files You Already Have",
+        "level": 2
+      },
+      {
+        "id": "leveling-up-connecting-external-tools-through-mcp",
+        "text": "Leveling Up: Connecting External Tools Through MCP",
+        "level": 2
+      },
+      {
+        "id": "where-this-approach-has-limits",
+        "text": "Where This Approach Has Limits",
+        "level": 2
+      },
+      {
+        "id": "getting-started",
+        "text": "Getting Started",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app-2",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "community-discussions",
+        "text": "Community Discussions",
+        "level": 2
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions",
+        "level": 2
+      }
+    ],
+    "faq": [
+      {
+        "q": "Do I need to be technical to use this approach?",
+        "a": "No. Desktop Commander works through natural language — you describe what you want in plain English, and the AI handles the file operations for you. There's a native app for macOS and Windows, so setup is straightforward."
+      },
+      {
+        "q": "Will this replace my existing productivity apps?",
+        "a": "It doesn't have to. Think of AI-assisted file management as a layer that connects your existing tools, not a replacement. You can keep using your calendar, your note app, and your task manager. The AI just helps you work across all of them through your filesystem."
+      },
+      {
+        "q": "Is my data safe? Does it get uploaded anywhere?",
+        "a": "Desktop Commander runs locally. Your files stay on your machine. The AI accesses them directly through the filesystem — nothing gets uploaded to external servers for processing."
+      },
+      {
+        "q": "What file formats work best?",
+        "a": "Markdown (.md) and plain text (.txt) give AI the most flexibility since it can read and edit them directly. PDFs and images can be searched and organized but not directly edited. Proprietary formats (like .docx) work with varying levels of support. If you need to share formatted documents, you can always convert markdown to PDF."
+      },
+      {
+        "q": "How is this different from just using ChatGPT or Claude in the browser?",
+        "a": "Browser-based AI can't see your local files. You'd need to copy-paste content into the chat, losing all file structure and context. Desktop Commander gives the AI direct filesystem access, so it can search across folders, read multiple files, and make changes — all in one interaction."
+      },
+      {
+        "q": "Can I use Obsidian as the base for this system?",
+        "a": "Absolutely. Obsidian stores everything as local markdown files, which makes it a natural fit. Desktop Commander can read and modify your vault directly, and you can build an AI-powered knowledge base on top of your existing notes. For a deeper dive into how this connects to broader organizational strategies, see our guide on knowledge management systems."
+      }
+    ]
+  },
+  {
+    "id": 775,
+    "slug": "ai-knowledge-management-system",
+    "title": "Knowledge Management System: Why Most Fail and What Actually Works",
+    "date": "2026-02-25T17:14:20+02:00",
+    "modified": "2026-02-25T18:29:43+02:00",
+    "author_login": "rafaelpinheiro",
+    "author_id": 272016983,
+    "author_name": "Rafael Pinheiro",
+    "categories": [
+      "insights",
+      "knowledge-base"
+    ],
+    "category_names": [
+      "Insights",
+      "Knowledge base"
+    ],
+    "tags": [
+      "ai",
+      "ai-knowledge-management",
+      "desktop-commander",
+      "knowledge-management-system",
+      "local-first",
+      "mcp",
+      "personal-knowledge-management",
+      "productivity",
+      "semantic-search"
+    ],
+    "description": "Most knowledge management systems fail from maintenance overhead. Use an AI-native local approach to retrieve answers from your existing files.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2026/02/km-featured-final.jpg",
+    "featured_image_w": 1200,
+    "featured_image_h": 675,
+    "toc": [
+      {
+        "id": "key-takeaways",
+        "text": "Key Takeaways",
+        "level": 2
+      },
+      {
+        "id": "the-system-that-eats-itself",
+        "text": "The System That Eats Itself",
+        "level": 2
+      },
+      {
+        "id": "where-the-breakdown-actually-happens",
+        "text": "Where the Breakdown Actually Happens",
+        "level": 2
+      },
+      {
+        "id": "different-approaches-for-knowledge-management",
+        "text": "Different Approaches for Knowledge Management",
+        "level": 2
+      },
+      {
+        "id": "your-filesystem-already-is-a-knowledge-base",
+        "text": "Your Filesystem Already Is a Knowledge Base",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "practical-knowledge-workflows",
+        "text": "Practical Knowledge Workflows",
+        "level": 2
+      },
+      {
+        "id": "consolidating-scattered-research",
+        "text": "Consolidating Scattered Research",
+        "level": 3
+      },
+      {
+        "id": "building-living-documentation",
+        "text": "Building Living Documentation",
+        "level": 3
+      },
+      {
+        "id": "finding-stuff-without-exact-keywords",
+        "text": "Finding Stuff Without Exact Keywords",
+        "level": 3
+      },
+      {
+        "id": "try-desktop-commander-app-1",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "limitations-of-ai-native-local-knowledge-management",
+        "text": "Limitations of AI-native Local Knowledge Management",
+        "level": 2
+      },
+      {
+        "id": "large-scale-retrieval",
+        "text": "Large-scale retrieval",
+        "level": 3
+      },
+      {
+        "id": "binary-files",
+        "text": "Binary files",
+        "level": 3
+      },
+      {
+        "id": "collaboration",
+        "text": "Collaboration",
+        "level": 3
+      },
+      {
+        "id": "community-discussions",
+        "text": "Community Discussions",
+        "level": 2
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app-2",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      }
+    ],
+    "faq": [
+      {
+        "q": "What is a knowledge management system?",
+        "a": "A knowledge management system is any method or tool for capturing, organizing, and retrieving information. This ranges from simple folder structures and note-taking apps to enterprise platforms with semantic search and AI integration. The goal is to make the knowledge you’ve collected findable and useful when you need it."
+      },
+      {
+        "q": "Do I need to migrate my existing notes to use an AI-powered knowledge management system?",
+        "a": "Not with a local-first approach. Tools like Desktop Commander work with your existing files wherever they are on your machine. There’s no import step, no format conversion, and no new platform to learn. Your files stay exactly where they are."
+      },
+      {
+        "q": "How is AI knowledge management different from regular search?",
+        "a": "Traditional search matches exact keywords — if you search for “migration” you won’t find a file titled “database upgrade plan.” AI-powered search understands meaning and context, so it can connect your query to relevant files even when the exact words don’t match. It can also synthesize information across multiple files into a single answer."
+      },
+      {
+        "q": "Is my data safe with a local AI knowledge management system?",
+        "a": "With local-first tools, your files never leave your machine. Desktop Commander runs as a local MCP server — it gives AI access to read and organize your files directly on your filesystem. No data gets uploaded to external servers, which makes it a strong choice for sensitive projects or private documentation."
+      },
+      {
+        "q": "Can a knowledge management system work for a team, not just individuals?",
+        "a": "It depends on the approach. Cloud platforms like Notion and Confluence are designed for team collaboration. Local AI tools work best for individual knowledge management or small teams where each person manages their own knowledge base. For team-wide knowledge, you might combine both: individual local systems for personal notes and a shared cloud platform for team documentation."
+      }
+    ]
+  },
+  {
+    "id": 764,
+    "slug": "best-obsidian-plugins",
+    "title": "14 Best Obsidian Plugins in 2026: Must-Haves, Nice-to-Haves, and Power Tools",
+    "date": "2026-02-23T18:02:19+02:00",
+    "modified": "2026-02-24T12:00:15+02:00",
+    "author_login": "karlina",
+    "author_id": 272016979,
+    "author_name": "Karlina Sara Rozkalne",
+    "categories": [
+      "deep-dives",
+      "use-cases"
+    ],
+    "category_names": [
+      "Deep Dives",
+      "Use Cases"
+    ],
+    "tags": [
+      "ai",
+      "desktop-commander",
+      "obsidian"
+    ],
+    "description": "Discover the 14 best Obsidian plugins in 2026 for beginners to power users. Clear verdicts, use-cases, and tips for each plugin.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2026/02/featured-image-1.png",
+    "featured_image_w": 1260,
+    "featured_image_h": 755,
+    "toc": [
+      {
+        "id": "must-have-obsidian-plugins",
+        "text": "Must-have Obsidian plugins",
+        "level": 2
+      },
+      {
+        "id": "settings-search",
+        "text": "Settings Search",
+        "level": 3
+      },
+      {
+        "id": "commander",
+        "text": "Commander",
+        "level": 3
+      },
+      {
+        "id": "best-obsidian-plugins-for-writing-and-editing",
+        "text": "Best Obsidian plugins for writing and editing",
+        "level": 2
+      },
+      {
+        "id": "languagetool-integration",
+        "text": "LanguageTool Integration",
+        "level": 3
+      },
+      {
+        "id": "better-word-count",
+        "text": "Better Word Count",
+        "level": 3
+      },
+      {
+        "id": "longform",
+        "text": "Longform",
+        "level": 3
+      },
+      {
+        "id": "best-obsidian-plugins-for-organization-and-navigation",
+        "text": "Best Obsidian plugins for organization and navigation",
+        "level": 2
+      },
+      {
+        "id": "tag-wrangler",
+        "text": "Tag Wrangler",
+        "level": 3
+      },
+      {
+        "id": "omnisearch",
+        "text": "Omnisearch",
+        "level": 3
+      },
+      {
+        "id": "breadcrumbs",
+        "text": "Breadcrumbs",
+        "level": 3
+      },
+      {
+        "id": "best-visual-and-ui-enhancement-plugins",
+        "text": "Best visual and UI enhancement plugins",
+        "level": 2
+      },
+      {
+        "id": "style-settings",
+        "text": "Style Settings",
+        "level": 3
+      },
+      {
+        "id": "iconic",
+        "text": "Iconic",
+        "level": 3
+      },
+      {
+        "id": "best-obsidian-plugins-for-productivity-and-task-management",
+        "text": "Best Obsidian plugins for productivity and task management",
+        "level": 2
+      },
+      {
+        "id": "calendar",
+        "text": "Calendar",
+        "level": 3
+      },
+      {
+        "id": "kanban",
+        "text": "Kanban",
+        "level": 3
+      },
+      {
+        "id": "best-obsidian-plugins-for-developers",
+        "text": "Best Obsidian plugins for developers",
+        "level": 2
+      },
+      {
+        "id": "templater",
+        "text": "Templater",
+        "level": 3
+      },
+      {
+        "id": "dataview",
+        "text": "Dataview",
+        "level": 3
+      },
+      {
+        "id": "comparison-table",
+        "text": "Comparison table",
+        "level": 2
+      },
+      {
+        "id": "how-we-picked-the-best-obsidian-plugins",
+        "text": "How we picked the best Obsidian plugins",
+        "level": 2
+      },
+      {
+        "id": "bonus-supercharging-obsidian-with-ai",
+        "text": "Bonus: Supercharging Obsidian with AI",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions",
+        "level": 2
+      }
+    ],
+    "faq": [
+      {
+        "q": "How do I install Obsidian plugins?",
+        "a": "Follow the official installation instructions: Open Settings (gear icon in the bottom-left corner), go to Community plugins, disable Restricted mode (confirm and reload), click Browse to open the community plugin marketplace, search for the plugin you want, click Install, then click Enable to activate it."
+      },
+      {
+        "q": "Are Obsidian community plugins safe?",
+        "a": "Yes, plugins listed in the official Obsidian Community Plugins marketplace are reviewed before being added."
+      },
+      {
+        "q": "What are the best Obsidian plugins for beginners?",
+        "a": "The best Obsidian plugins for complete beginners are Settings Search, Calendar, and Commander. Settings Search makes plugin configuration manageable early on. Calendar simplifies navigating daily notes. Commander reduces repetitive command-palette clicks. Together, they remove common early friction without adding technical complexity."
+      },
+      {
+        "q": "Can AI help manage my Obsidian vault?",
+        "a": "Yes, there are 2 ways you can use AI: an Obsidian AI plugin or a desktop AI tool with access to your vault. AI plugins are best for note-level assistance, while desktop AI tools are best for vault-wide automation. Learn more about managing your Obsidian vault with AI."
+      }
+    ]
+  },
+  {
+    "id": 666,
+    "slug": "knowledge-management-system",
+    "title": "Knowledge Management System: Why Most Fail and What Actually Works",
+    "date": "2026-02-18T14:15:50+02:00",
+    "modified": "2026-02-20T10:57:10+02:00",
+    "author_login": "rafaelpinheiro",
+    "author_id": 272016983,
+    "author_name": "Rafael Pinheiro",
+    "categories": [
+      "uncategorized"
+    ],
+    "category_names": [
+      "Uncategorized"
+    ],
+    "tags": [],
+    "description": "Most knowledge management systems fail because they demand constant upkeep. Learn how AI-native local tools like Desktop Commander turn your existing files into a searchable knowledge base — no migration, no new platform required.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2026/02/Screenshot-2026-02-18-at-14.15.24.png",
+    "featured_image_w": 1460,
+    "featured_image_h": 814,
+    "toc": [
+      {
+        "id": "key-takeaways",
+        "text": "Key Takeaways",
+        "level": 2
+      },
+      {
+        "id": "the-system-that-eats-itself",
+        "text": "The System That Eats Itself",
+        "level": 2
+      },
+      {
+        "id": "where-the-breakdown-actually-happens",
+        "text": "Where the Breakdown Actually Happens",
+        "level": 2
+      },
+      {
+        "id": "different-approaches-for-knowledge-management",
+        "text": "Different Approaches for Knowledge Management",
+        "level": 2
+      },
+      {
+        "id": "your-filesystem-already-is-a-knowledge-base",
+        "text": "Your Filesystem Already Is a Knowledge Base",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "practical-knowledge-workflows",
+        "text": "Practical Knowledge Workflows",
+        "level": 2
+      },
+      {
+        "id": "consolidating-scattered-research",
+        "text": "Consolidating Scattered Research",
+        "level": 3
+      },
+      {
+        "id": "building-living-documentation",
+        "text": "Building Living Documentation",
+        "level": 3
+      },
+      {
+        "id": "finding-stuff-without-exact-keywords",
+        "text": "Finding Stuff Without Exact Keywords",
+        "level": 3
+      },
+      {
+        "id": "limitations-of-ai-native-local-knowledge-management",
+        "text": "Limitations of AI-Native Local Knowledge Management",
+        "level": 2
+      },
+      {
+        "id": "large-scale-retrieval",
+        "text": "Large-Scale Retrieval",
+        "level": 3
+      },
+      {
+        "id": "binary-files",
+        "text": "Binary Files",
+        "level": 3
+      },
+      {
+        "id": "collaboration",
+        "text": "Collaboration",
+        "level": 3
+      },
+      {
+        "id": "community-discussions",
+        "text": "Community Discussions",
+        "level": 2
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app-1",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      }
+    ],
+    "faq": [
+      {
+        "q": "What is a knowledge management system?",
+        "a": "A knowledge management system is any method or tool for capturing, organizing, and retrieving information. This ranges from simple folder structures and note-taking apps to enterprise platforms with semantic search and AI integration. The goal is to make the knowledge you've collected findable and useful when you need it."
+      },
+      {
+        "q": "Do I need to migrate my existing notes to use an AI-powered knowledge management system?",
+        "a": "Not with a local-first approach. Tools like Desktop Commander work with your existing files wherever they are on your machine. There's no import step, no format conversion, and no new platform to learn. Your files stay exactly where they are."
+      },
+      {
+        "q": "How is AI knowledge management different from regular search?",
+        "a": "Traditional search matches exact keywords — if you search for \"migration\" you won't find a file titled \"database upgrade plan.\" AI-powered search understands meaning and context, so it can connect your query to relevant files even when the exact words don't match. It can also synthesize information across multiple files into a single answer."
+      },
+      {
+        "q": "Is my data safe with a local AI knowledge management system?",
+        "a": "With local-first tools, your files never leave your machine. Desktop Commander runs as a local MCP server — it gives AI access to read and organize your files directly on your filesystem. No data gets uploaded to external servers, which makes it a strong choice for sensitive projects or private documentation."
+      },
+      {
+        "q": "Can a knowledge management system work for a team, not just individuals?",
+        "a": "It depends on the approach. Cloud platforms like Notion and Confluence are designed for team collaboration. Local AI tools work best for individual knowledge management or small teams where each person manages their own knowledge base. For team-wide knowledge, you might combine both: individual local systems for personal notes and a shared cloud platform for team documentation."
+      },
+      {
+        "q": "What is the best knowledge management system for developers?",
+        "a": "For developers who want privacy and AI-powered search without cloud dependencies, Desktop Commander combined with an AI client like Claude or ChatGPT is the strongest option. It works directly with your local files — markdown notes, code repositories, PDFs, and project folders — so there's no migration or new platform to learn. With 5,300+ GitHub stars and ranked #2 in Claude Desktop Connectors, it's one of the most widely adopted tools in this category."
+      }
+    ]
+  },
+  {
+    "id": 631,
+    "slug": "desktop-commander-vs-cowork",
+    "title": "I’m biased, but here’s my comparison of Desktop Commander vs Cowork",
+    "date": "2026-02-13T10:28:26+02:00",
+    "modified": "2026-02-20T10:57:12+02:00",
+    "author_login": "rk7f8a7274b9330",
+    "author_id": 272016976,
+    "author_name": "Ricards Krizanovskis",
+    "categories": [
+      "insights",
+      "use-cases"
+    ],
+    "category_names": [
+      "Insights",
+      "Use Cases"
+    ],
+    "tags": [],
+    "description": "An honest comparison of Desktop Commander and Claude Cowork from someone on the DC team. See where each tool excels — terminal access, file editing, deployment, and security tradeoffs.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2026/02/Screenshot-2026-02-13-at-11.05.48.png",
+    "featured_image_w": 1646,
+    "featured_image_h": 934,
+    "toc": [
+      {
+        "id": "the-surface-level-similarities-and-where-they-diverge",
+        "text": "The surface-level similarities and where they diverge",
+        "level": 2
+      },
+      {
+        "id": "filesystem-access-the-first-tradeoff",
+        "text": "Filesystem access: the first tradeoff",
+        "level": 2
+      },
+      {
+        "id": "file-editing-where-design-philosophy-shows",
+        "text": "File editing: where design philosophy shows",
+        "level": 2
+      },
+      {
+        "id": "the-terminal-access-difference",
+        "text": "The terminal access difference",
+        "level": 2
+      },
+      {
+        "id": "an-example-building-and-deploying-a-landing-page",
+        "text": "An example: building and deploying a landing page",
+        "level": 2
+      },
+      {
+        "id": "what-this-means-for-my-actual-work",
+        "text": "What this means for my actual work",
+        "level": 2
+      },
+      {
+        "id": "what-were-building-toward",
+        "text": "What we're building toward",
+        "level": 2
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions",
+        "level": 2
+      }
+    ],
+    "faq": [
+      {
+        "q": "What is the difference between Desktop Commander and Cowork?",
+        "a": "Both are AI desktop assistants that do work on your computer rather than just advising. Desktop Commander gives full filesystem and terminal access with support for any AI model (Claude, GPT, Gemini, DeepSeek). Cowork runs in a contained VM environment using Anthropic’s models, with access limited to designated folders and no file deletion capability. Desktop Commander excels at workflow automation and system-level tasks; Cowork excels at document and file-based work."
+      },
+      {
+        "q": "Is Desktop Commander or Cowork better for developers?",
+        "a": "Desktop Commander is generally better for developers because it provides terminal access for launching dev servers, deploying applications, running CLI tools, and chaining complex operations. Cowork’s contained environment is safer but more limited — it can’t run arbitrary commands, install packages, or interact with system-level tools like Docker, WP-CLI, or database CLIs."
+      },
+      {
+        "q": "Can Desktop Commander work with AI models other than Claude?",
+        "a": "Yes. Desktop Commander lets you bring your own models — Claude Opus, GPT-5, Gemini, DeepSeek, or any other model that supports MCP. You use your own API keys and control costs. Cowork only works with Anthropic’s Claude models."
+      },
+      {
+        "q": "Is Cowork safer than Desktop Commander for file access?",
+        "a": "Yes, in terms of containment. Cowork runs in a virtual machine with access restricted to designated folders, and it cannot delete files. Desktop Commander gives broader filesystem access — from a single folder to the entire system — which provides more flexibility but requires more trust. The tradeoff is less friction (Desktop Commander) versus more security (Cowork)."
+      },
+      {
+        "q": "Which AI desktop assistant is best for workflow automation?",
+        "a": "Desktop Commander is the best AI desktop assistant for workflow automation. Its terminal access and full filesystem permissions let it launch servers, deploy applications, install tools, work with command-line applications, and chain complex multi-step operations. Cowork is better suited for isolated document work, spreadsheets, and presentations."
+      }
+    ]
+  },
+  {
+    "id": 616,
+    "slug": "markdown-to-pdf",
+    "title": "Markdown to PDF: An Approach to Sharing Your Documents",
+    "date": "2026-02-09T13:45:40+02:00",
+    "modified": "2026-02-20T10:57:14+02:00",
+    "author_login": "rafaelpinheiro",
+    "author_id": 272016983,
+    "author_name": "Rafael Pinheiro",
+    "categories": [
+      "how-to",
+      "markdown",
+      "tutorials"
+    ],
+    "category_names": [
+      "How-to",
+      "Markdown",
+      "Tutorials"
+    ],
+    "tags": [],
+    "description": "Convert Markdown to styled PDF with custom formatting, headers, and code blocks. Compare CLI tools, VS Code extensions, and AI-powered conversion methods.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2026/02/Screenshot-2026-02-09-at-13.46.19.png",
+    "featured_image_w": 1726,
+    "featured_image_h": 918,
+    "toc": [
+      {
+        "id": "key-takeaways",
+        "text": "Key Takeaways",
+        "level": 2
+      },
+      {
+        "id": "why-turn-markdown-into-pdf",
+        "text": "Why Turn Markdown into PDF?",
+        "level": 2
+      },
+      {
+        "id": "the-simplest-options-to-convert-markdown-to-pdf-are-not-always-the-best",
+        "text": "The Simplest Options to Convert Markdown to PDF Are Not Always the Best",
+        "level": 2
+      },
+      {
+        "id": "online-converters",
+        "text": "Online Converters",
+        "level": 3
+      },
+      {
+        "id": "the-browser-print-trick-to-convert-markdown-to-pdf",
+        "text": "The Browser Print Trick to Convert Markdown to PDF",
+        "level": 3
+      },
+      {
+        "id": "using-desktop-commander-to-convert-markdown-to-pdf",
+        "text": "Using Desktop Commander to Convert Markdown to PDF",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "vs-code-for-writers-who-use-it-already",
+        "text": "VS Code: For Writers Who Use It Already",
+        "level": 2
+      },
+      {
+        "id": "making-your-pdfs-look-better",
+        "text": "Making Your PDFs Look Better",
+        "level": 2
+      },
+      {
+        "id": "quick-fixes-that-dont-require-code",
+        "text": "Quick Fixes That Don't Require Code",
+        "level": 3
+      },
+      {
+        "id": "when-you-want-custom-styling",
+        "text": "When You Want Custom Styling",
+        "level": 3
+      },
+      {
+        "id": "converting-multiple-documents",
+        "text": "Converting Multiple Documents",
+        "level": 2
+      },
+      {
+        "id": "choosing-the-right-method",
+        "text": "Choosing the Right Method",
+        "level": 2
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions",
+        "level": 2
+      },
+      {
+        "id": "what-to-try-first",
+        "text": "What to Try First",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app-1",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      }
+    ],
+    "faq": [
+      {
+        "q": "What if my PDF looks different from my Markdown preview?",
+        "a": "This usually happens because different tools interpret Markdown slightly differently. Try a different converter, or use Desktop Commander and describe exactly how you want the output to look."
+      },
+      {
+        "q": "Can I include images in my PDF?",
+        "a": "Yes, but make sure your images are in the same folder as your Markdown file (or use the full path to them). Some online tools struggle with images—local solutions like Desktop Commander or VS Code extensions handle them more reliably."
+      },
+      {
+        "q": "What about documents with tables or code?",
+        "a": "Both work fine with most modern converters. For code, look for tools that support \"syntax highlighting\" if you want your code blocks color-coded by language."
+      },
+      {
+        "q": "Is my data safe with online converters?",
+        "a": "Your document passes through their servers. For sensitive material (contracts, internal documentation, anything with personal data), use a local solution instead."
+      },
+      {
+        "q": "Can I convert PDF back to Markdown?",
+        "a": "That's a much harder problem. PDFs don't store structure the same way—they're designed for display, not editing. Tools exist that attempt this, but results vary widely. Keep your Markdown source files whenever possible."
+      }
+    ]
+  },
+  {
+    "id": 611,
+    "slug": "best-mcp-servers-for-knowledge-bases-in-2026",
+    "title": "Best MCP Servers for Knowledge Bases in 2026",
+    "date": "2026-02-06T11:33:13+02:00",
+    "modified": "2026-02-20T10:57:17+02:00",
+    "author_login": "rafaelpinheiro",
+    "author_id": 272016983,
+    "author_name": "Rafael Pinheiro",
+    "categories": [
+      "deep-dives",
+      "knowledge-base",
+      "mcp"
+    ],
+    "category_names": [
+      "Deep Dives",
+      "Knowledge base",
+      "MCP"
+    ],
+    "tags": [],
+    "description": "Compare the best MCP servers for building AI-powered knowledge bases in 2026. From Notion and Obsidian to vector search and knowledge graphs.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2026/02/Screenshot-2026-02-06-at-11.32.32.png",
+    "featured_image_w": 1666,
+    "featured_image_h": 906,
+    "toc": [
+      {
+        "id": "key-takeaways",
+        "text": "Key Takeaways",
+        "level": 2
+      },
+      {
+        "id": "mcp-knowledge-base-servers-at-a-glance",
+        "text": "MCP Knowledge Base Servers at a Glance",
+        "level": 2
+      },
+      {
+        "id": "local-first-knowledge-your-files-are-already-a-knowledge-base",
+        "text": "Local-First Knowledge: Your Files Are Already a Knowledge Base",
+        "level": 2
+      },
+      {
+        "id": "desktop-commander",
+        "text": "Desktop Commander",
+        "level": 3
+      },
+      {
+        "id": "install-desktop-commander-mcp",
+        "text": "Install Desktop Commander MCP",
+        "level": 3
+      },
+      {
+        "id": "obsidian-mcp-servers",
+        "text": "Obsidian MCP Servers",
+        "level": 3
+      },
+      {
+        "id": "cloud-connected-knowledge-notion-google-drive-slack",
+        "text": "Cloud-Connected Knowledge: Notion, Google Drive, Slack",
+        "level": 2
+      },
+      {
+        "id": "notion-mcp-official",
+        "text": "Notion MCP (Official)",
+        "level": 3
+      },
+      {
+        "id": "google-drive-mcp",
+        "text": "Google Drive MCP",
+        "level": 3
+      },
+      {
+        "id": "slack-mcp",
+        "text": "Slack MCP",
+        "level": 3
+      },
+      {
+        "id": "knowledge-graphs-and-memory-when-relationships-matter",
+        "text": "Knowledge Graphs and Memory: When Relationships Matter",
+        "level": 2
+      },
+      {
+        "id": "memory-mcp-server-official",
+        "text": "Memory MCP Server (Official)",
+        "level": 3
+      },
+      {
+        "id": "cognee-mcp",
+        "text": "Cognee MCP",
+        "level": 3
+      },
+      {
+        "id": "lightrag-mcp-knowledge-mcp",
+        "text": "LightRAG MCP (knowledge-mcp)",
+        "level": 3
+      },
+      {
+        "id": "vector-search-for-large-scale-document-collections",
+        "text": "Vector Search: For Large-Scale Document Collections",
+        "level": 2
+      },
+      {
+        "id": "qdrant-mcp",
+        "text": "Qdrant MCP",
+        "level": 3
+      },
+      {
+        "id": "vectara-mcp",
+        "text": "Vectara MCP",
+        "level": 3
+      },
+      {
+        "id": "how-to-choose-your-knowledge-base-stack",
+        "text": "How to Choose Your Knowledge Base Stack",
+        "level": 2
+      },
+      {
+        "id": "install-desktop-commander-mcp-1",
+        "text": "Install Desktop Commander MCP",
+        "level": 3
+      },
+      {
+        "id": "community-discussions",
+        "text": "Community Discussions",
+        "level": 2
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions",
+        "level": 2
+      }
+    ],
+    "faq": [
+      {
+        "q": "Do I need a vector database for my knowledge base?",
+        "a": "Not for most personal or small-team use cases. Vector databases (Qdrant, Vectara) are valuable when you have hundreds of documents and need semantic search — finding content by meaning rather than exact keywords. For smaller collections, file-based search through Desktop Commander or Obsidian MCP is simpler and faster to set up."
+      },
+      {
+        "q": "Can I use multiple MCP servers at the same time?",
+        "a": "Yes — this is MCP's core design principle. You can connect Desktop Commander for file access, Notion MCP for your wiki, and Memory MCP for persistent context, all simultaneously. Your AI client (Claude Desktop, Cursor, etc.) treats them as a unified toolkit."
+      },
+      {
+        "q": "Are my files safe with knowledge base MCP servers?",
+        "a": "Local-first servers like Desktop Commander and Obsidian MCP keep everything on your machine — nothing is uploaded. Cloud servers (Notion, Google Drive, Slack) use OAuth and API tokens with scoped permissions. Notion's MCP documentation recommends creating read-only integration tokens for security-conscious setups."
+      },
+      {
+        "q": "What's the difference between Memory MCP and a knowledge graph server like Cognee?",
+        "a": "Memory MCP tracks entities and relationships that your AI builds over time through conversation — it learns as you work. Cognee ingests documents and automatically extracts a knowledge graph from their content. Memory MCP is about persistent AI context; Cognee is about document analysis and connection discovery."
+      },
+      {
+        "q": "How does Desktop Commander compare to Obsidian MCP for knowledge management?",
+        "a": "They solve different problems. Desktop Commander works with any file on your computer — PDFs, code, Markdown, spreadsheets — and can create, move, and organize files. Obsidian MCP is specialized for Obsidian vaults, with tag-aware search and frontmatter editing. If your knowledge is all in Obsidian, use the Obsidian MCP. If it's spread across your filesystem, Desktop Commander is more versatile."
+      }
+    ]
+  },
+  {
+    "id": 604,
+    "slug": "obsidian-markdown-cheatsheet-every-syntax-you-actually-need",
+    "title": "Obsidian Markdown Cheatsheet: Every Syntax You Actually Need",
+    "date": "2026-02-03T11:04:40+02:00",
+    "modified": "2026-02-20T10:57:19+02:00",
+    "author_login": "rafaelpinheiro",
+    "author_id": 272016983,
+    "author_name": "Rafael Pinheiro",
+    "categories": [
+      "how-to",
+      "markdown",
+      "tutorials"
+    ],
+    "category_names": [
+      "How-to",
+      "Markdown",
+      "Tutorials"
+    ],
+    "tags": [],
+    "description": "Complete Obsidian Markdown cheatsheet with formatting, links, callouts, embeds, and tables. Copy-paste examples for all the syntax you'll use daily.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2026/02/Screenshot-2026-02-03-at-10.54.33.png",
+    "featured_image_w": 2664,
+    "featured_image_h": 1454,
+    "toc": [
+      {
+        "id": "key-takeaways",
+        "text": "Key Takeaways",
+        "level": 2
+      },
+      {
+        "id": "obsidian-markdown-basics-text-formatting",
+        "text": "Obsidian Markdown Basics: Text Formatting",
+        "level": 2
+      },
+      {
+        "id": "headings-in-obsidian-markdown",
+        "text": "Headings in Obsidian Markdown",
+        "level": 2
+      },
+      {
+        "id": "lists-ordered-and-unordered",
+        "text": "Lists: Ordered and Unordered",
+        "level": 2
+      },
+      {
+        "id": "obsidian-markdown-links-the-core-feature",
+        "text": "Obsidian Markdown Links: The Core Feature",
+        "level": 2
+      },
+      {
+        "id": "wikilinks-obsidian-default",
+        "text": "Wikilinks (Obsidian Default)",
+        "level": 3
+      },
+      {
+        "id": "standard-markdown-links",
+        "text": "Standard Markdown Links",
+        "level": 3
+      },
+      {
+        "id": "external-links",
+        "text": "External Links",
+        "level": 3
+      },
+      {
+        "id": "linking-to-headings",
+        "text": "Linking to Headings",
+        "level": 3
+      },
+      {
+        "id": "linking-to-blocks",
+        "text": "Linking to Blocks",
+        "level": 3
+      },
+      {
+        "id": "obsidian-markdown-embeds",
+        "text": "Obsidian Markdown Embeds",
+        "level": 2
+      },
+      {
+        "id": "obsidian-callouts-visual-highlights",
+        "text": "Obsidian Callouts: Visual Highlights",
+        "level": 2
+      },
+      {
+        "id": "available-callout-types",
+        "text": "Available Callout Types",
+        "level": 3
+      },
+      {
+        "id": "foldable-callouts",
+        "text": "Foldable Callouts",
+        "level": 3
+      },
+      {
+        "id": "code-blocks-in-obsidian-markdown",
+        "text": "Code Blocks in Obsidian Markdown",
+        "level": 2
+      },
+      {
+        "id": "tables-in-obsidian-markdown",
+        "text": "Tables in Obsidian Markdown",
+        "level": 2
+      },
+      {
+        "id": "task-lists-and-checkboxes",
+        "text": "Task Lists and Checkboxes",
+        "level": 2
+      },
+      {
+        "id": "blockquotes",
+        "text": "Blockquotes",
+        "level": 2
+      },
+      {
+        "id": "horizontal-rules",
+        "text": "Horizontal Rules",
+        "level": 2
+      },
+      {
+        "id": "footnotes",
+        "text": "Footnotes",
+        "level": 2
+      },
+      {
+        "id": "comments-hidden-text",
+        "text": "Comments (Hidden Text)",
+        "level": 2
+      },
+      {
+        "id": "tags",
+        "text": "Tags",
+        "level": 2
+      },
+      {
+        "id": "yaml-frontmatter-properties",
+        "text": "YAML Frontmatter (Properties)",
+        "level": 2
+      },
+      {
+        "id": "math-notation-latex",
+        "text": "Math Notation (LaTeX)",
+        "level": 2
+      },
+      {
+        "id": "diagrams-with-mermaid",
+        "text": "Diagrams with Mermaid",
+        "level": 2
+      },
+      {
+        "id": "obsidian-markdown-vs-standard-markdown-whats-different",
+        "text": "Obsidian Markdown vs Standard Markdown: What's Different",
+        "level": 2
+      },
+      {
+        "id": "managing-your-obsidian-vault-with-desktop-commander",
+        "text": "Managing Your Obsidian Vault with Desktop Commander",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "most-used-obsidian-markdown-quick-reference-guide",
+        "text": "Most-Used Obsidian Markdown: Quick Reference Guide",
+        "level": 2
+      },
+      {
+        "id": "community-resources",
+        "text": "Community Resources",
+        "level": 2
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions",
+        "level": 2
+      },
+      {
+        "id": "what-to-learn-next",
+        "text": "What to Learn Next",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app-1",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      }
+    ],
+    "faq": [
+      {
+        "q": "What Markdown flavor does Obsidian use?",
+        "a": "Obsidian combines CommonMark, GitHub Flavored Markdown, and its own extensions (wikilinks, callouts, embeds). Most standard Markdown works, plus Obsidian-specific features."
+      },
+      {
+        "q": "Should I use wikilinks or standard Markdown links?",
+        "a": "Wikilinks ([[Note]]) integrate better with Obsidian's backlinks and graph view. Standard Markdown links ([text](file.md)) offer better portability if you use other editors. You can configure your default in Settings."
+      },
+      {
+        "q": "How do I create a table quickly?",
+        "a": "Type the header row with pipes, then use Tab to auto-generate formatting. Or describe your table to an AI assistant and paste the generated Markdown."
+      },
+      {
+        "q": "Can I use HTML in Obsidian?",
+        "a": "Yes—basic HTML tags work for things Markdown doesn't support natively, like subscript (<sub>) or colored text. However, HTML reduces portability to other Markdown apps."
+      },
+      {
+        "q": "Why aren't my callouts showing?",
+        "a": "Make sure there's no space between > and [!type]. The syntax must be exactly > [!note] at the start of a line."
+      }
+    ]
+  },
+  {
+    "id": 569,
+    "slug": "how-to-use-tags-in-obsidian-markdown",
+    "title": "How to Use Tags in Obsidian Markdown",
+    "date": "2026-01-29T16:14:41+02:00",
+    "modified": "2026-02-20T10:57:21+02:00",
+    "author_login": "rafaelpinheiro",
+    "author_id": 272016983,
+    "author_name": "Rafael Pinheiro",
+    "categories": [
+      "how-to"
+    ],
+    "category_names": [
+      "How-to"
+    ],
+    "tags": [],
+    "description": "Learn how to use tags in Obsidian markdown effectively. Master nested tags, best practices, and discover how AI can automate tag management across your vault.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2026/01/Screenshot-2026-01-29-at-14.51.29.png",
+    "featured_image_w": 1628,
+    "featured_image_h": 924,
+    "toc": [
+      {
+        "id": "key-takeaways",
+        "text": "Key Takeaways",
+        "level": 2
+      },
+      {
+        "id": "the-2-ways-to-tag-in-obsidian-markdown",
+        "text": "The 2 Ways to Tag in Obsidian Markdown",
+        "level": 2
+      },
+      {
+        "id": "inline-tags",
+        "text": "Inline Tags",
+        "level": 3
+      },
+      {
+        "id": "property-tags-yaml-frontmatter-tags",
+        "text": "Property Tags (YAML Frontmatter Tags)",
+        "level": 3
+      },
+      {
+        "id": "nested-tags-building-hierarchies-in-obsidian",
+        "text": "Nested Tags: building hierarchies in Obsidian",
+        "level": 2
+      },
+      {
+        "id": "when-nesting-makes-sense",
+        "text": "When nesting makes sense",
+        "level": 3
+      },
+      {
+        "id": "tag-syntax-rules-for-obsidian",
+        "text": "Tag Syntax Rules for Obsidian",
+        "level": 2
+      },
+      {
+        "id": "the-consistency-problem-of-obsidian-tags",
+        "text": "The consistency problem of Obsidian tags",
+        "level": 2
+      },
+      {
+        "id": "limitations-of-plugins-for-tag-management-in-obsidian",
+        "text": "Limitations of plugins for tag management in Obsidian",
+        "level": 3
+      },
+      {
+        "id": "organizing-markdown-tags-in-obsidian-with-desktop-commander",
+        "text": "Organizing markdown tags in Obsidian with Desktop Commander",
+        "level": 2
+      },
+      {
+        "id": "most-common-tag-management-scenarios-in-obsidian-with-desktop-commander",
+        "text": "Most common tag management scenarios in Obsidian with Desktop Commander",
+        "level": 3
+      },
+      {
+        "id": "try-desktop-commander-app",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "principles-for-building-a-tag-system-in-obsidian",
+        "text": "Principles for Building a Tag System in Obsidian",
+        "level": 2
+      },
+      {
+        "id": "start-with-purpose-not-structure",
+        "text": "Start with purpose, not structure",
+        "level": 3
+      },
+      {
+        "id": "use-three-tag-categories",
+        "text": "Use three tag categories",
+        "level": 3
+      },
+      {
+        "id": "enforce-conventions-ruthlessly",
+        "text": "Enforce conventions ruthlessly",
+        "level": 3
+      },
+      {
+        "id": "let-ai-handle-the-tedious-work",
+        "text": "Let AI handle the tedious work",
+        "level": 3
+      },
+      {
+        "id": "frequently-asked-questions-about-tags-in-obsidian-markdown",
+        "text": "Frequently Asked Questions about tags in Obsidian Markdown",
+        "level": 2
+      },
+      {
+        "id": "moving-forward",
+        "text": "Moving Forward",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app-1",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      }
+    ],
+    "faq": [
+      {
+        "q": "Can I use emojis in Obsidian tags?",
+        "a": "No. Obsidian tags only support letters, numbers, underscores, hyphens, and forward slashes. Emojis will break the tag."
+      },
+      {
+        "q": "What's the difference between tags and links for organization?",
+        "a": "Links create explicit connections between specific notes. Tags add broad categorization. Use links when two notes are directly related; use tags when notes share a category but aren't necessarily connected to each other."
+      },
+      {
+        "q": "How many tags should a note have?",
+        "a": "There's no magic number, but restraint helps. If every note has 10+ tags, your tags lose meaning. Aim for 2-5 tags per note, focusing on what genuinely aids retrieval."
+      },
+      {
+        "q": "Can Desktop Commander accidentally mess up my vault?",
+        "a": "Desktop Commander shows you what it plans to do before executing changes. You can review file modifications and approve or adjust them. For major operations, keeping Obsidian's file recovery or a git backup provides additional safety."
+      },
+      {
+        "q": "Do tags work with Obsidian Publish and Sync?",
+        "a": "Yes. Tags are stored in your markdown files, so they sync and publish like any other content."
+      }
+    ]
+  },
+  {
+    "id": 560,
+    "slug": "i-can-tell-when-youre-using-ai-in-my-interviews-heres-how",
+    "title": "I Can Tell When You’re Using AI in My Interviews. Here’s How.",
+    "date": "2026-01-27T10:50:29+02:00",
+    "modified": "2026-02-20T10:57:24+02:00",
+    "author_login": "eduardruzga",
+    "author_id": 272016977,
+    "author_name": "Eduard Ruzga",
+    "categories": [
+      "insights"
+    ],
+    "category_names": [
+      "Insights"
+    ],
+    "tags": [
+      "ai",
+      "authenticity",
+      "hiring",
+      "interviews"
+    ],
+    "description": "A hiring manager shares how to spot candidates using real-time AI during interviews — and why saying I dont know is now the most impressive answer.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2026/01/Screenshot-2026-01-27-at-10.42.52.png",
+    "featured_image_w": 1648,
+    "featured_image_h": 914,
+    "toc": [
+      {
+        "id": "the-pattern-i-keep-seeing",
+        "text": "The Pattern I Keep Seeing",
+        "level": 2
+      },
+      {
+        "id": "why-real-time-ai-fails-in-interviews",
+        "text": "Why Real-Time AI Fails in Interviews",
+        "level": 2
+      },
+      {
+        "id": "how-i-test-for-it",
+        "text": "How I Test For It",
+        "level": 2
+      },
+      {
+        "id": "im-not-anti-ai-i-run-an-ai-company",
+        "text": "I'm Not Anti-AI. I Run an AI Company.",
+        "level": 2
+      },
+      {
+        "id": "the-irony",
+        "text": "The Irony",
+        "level": 2
+      },
+      {
+        "id": "dont-be-that-candidate",
+        "text": "Don't Be That Candidate",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander",
+        "text": "Try Desktop Commander",
+        "level": 3
+      }
+    ],
+    "faq": []
+  },
+  {
+    "id": 543,
+    "slug": "markdown-tables-complete-syntax-guide",
+    "title": "Markdown Tables: Complete Syntax Guide",
+    "date": "2026-01-23T14:44:47+02:00",
+    "modified": "2026-02-20T10:57:26+02:00",
+    "author_login": "rafaelpinheiro",
+    "author_id": 272016983,
+    "author_name": "Rafael Pinheiro",
+    "categories": [
+      "markdown",
+      "tutorials"
+    ],
+    "category_names": [
+      "Markdown",
+      "Tutorials"
+    ],
+    "tags": [],
+    "description": "Master Markdown table syntax with this complete guide. Learn alignment, formatting, and tools to create perfect tables every time.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2026/01/Screenshot-2026-01-23-at-14.41.51.png",
+    "featured_image_w": 1624,
+    "featured_image_h": 910,
+    "toc": [
+      {
+        "id": "key-takeaways",
+        "text": "Key Takeaways",
+        "level": 2
+      },
+      {
+        "id": "anatomy-of-a-markdown-table",
+        "text": "Anatomy of a Markdown Table",
+        "level": 2
+      },
+      {
+        "id": "building-your-first-table",
+        "text": "Building Your First Table",
+        "level": 2
+      },
+      {
+        "id": "column-alignment",
+        "text": "Column Alignment",
+        "level": 2
+      },
+      {
+        "id": "formatting-inside-table-cells",
+        "text": "Formatting Inside Table Cells",
+        "level": 2
+      },
+      {
+        "id": "what-you-cannot-put-in-tables",
+        "text": "What You Cannot Put in Tables",
+        "level": 2
+      },
+      {
+        "id": "escaping-special-characters",
+        "text": "Escaping Special Characters",
+        "level": 2
+      },
+      {
+        "id": "when-tables-break-common-errors",
+        "text": "When Tables Break: Common Errors",
+        "level": 2
+      },
+      {
+        "id": "tools-that-eliminate-table-frustration",
+        "text": "Tools That Eliminate Table Frustration",
+        "level": 2
+      },
+      {
+        "id": "online-generators",
+        "text": "Online Generators",
+        "level": 3
+      },
+      {
+        "id": "vs-code-extensions",
+        "text": "VS Code Extensions",
+        "level": 3
+      },
+      {
+        "id": "creating-markdown-tables-with-desktop-commander",
+        "text": "Creating Markdown Tables with Desktop Commander",
+        "level": 2
+      },
+      {
+        "id": "platform-specific-quirks",
+        "text": "Platform-Specific Quirks",
+        "level": 2
+      },
+      {
+        "id": "quick-reference-cheatsheet",
+        "text": "Quick Reference Cheatsheet",
+        "level": 2
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "faq",
+        "text": "FAQ",
+        "level": 2
+      },
+      {
+        "id": "do-columns-need-to-be-aligned-in-the-source",
+        "text": "Do columns need to be aligned in the source?",
+        "level": 3
+      },
+      {
+        "id": "can-i-merge-cells-like-in-html",
+        "text": "Can I merge cells like in HTML?",
+        "level": 3
+      },
+      {
+        "id": "why-wont-my-table-render",
+        "text": "Why won't my table render?",
+        "level": 3
+      },
+      {
+        "id": "can-i-use-tables-in-comments-or-readmes",
+        "text": "Can I use tables in comments or READMEs?",
+        "level": 3
+      },
+      {
+        "id": "whats-the-maximum-number-of-columns",
+        "text": "What's the maximum number of columns?",
+        "level": 3
+      },
+      {
+        "id": "how-do-i-create-a-table-from-existing-data",
+        "text": "How do I create a table from existing data?",
+        "level": 3
+      }
+    ],
+    "faq": [
+      {
+        "q": "How do I create a table in Markdown?",
+        "a": "Use pipes (|) for columns and hyphens (-) for the header separator. Every table needs three parts: a header row, a separator row, and data rows. The separator row is required — without it, Markdown won’t recognize the content as a table. Columns don’t need to be perfectly aligned in the source; the renderer handles alignment."
+      },
+      {
+        "q": "How do I align columns in a Markdown table?",
+        "a": "Use colons in the separator row. Left-align with :---, center with :---:, and right-align with ---:. Without colons, most renderers default to left alignment."
+      },
+      {
+        "q": "Can I use bold or links inside Markdown table cells?",
+        "a": "Yes. You can format text inside cells with bold, italic, inline code, and links. These all work normally within table cells."
+      },
+      {
+        "q": "What can’t you put inside a Markdown table?",
+        "a": "You cannot use headings, images, lists, or code blocks inside Markdown table cells. Tables only support inline formatting — bold, italic, code, and links. For complex content, consider using HTML tables instead."
+      },
+      {
+        "q": "What is the best tool for creating Markdown tables?",
+        "a": "Table generators and VS Code extensions handle formatting automatically, eliminating manual pipe alignment. Desktop Commander can also create and format Markdown tables through natural language — just describe the table you want and it generates the properly formatted syntax."
+      }
+    ]
+  },
+  {
+    "id": 513,
+    "slug": "supabase-mcp-how-to-connect-ai-to-your-database",
+    "title": "Supabase MCP: How to Connect AI to Your Database",
+    "date": "2026-01-21T13:57:35+02:00",
+    "modified": "2026-02-20T10:57:28+02:00",
+    "author_login": "rafaelpinheiro",
+    "author_id": 272016983,
+    "author_name": "Rafael Pinheiro",
+    "categories": [
+      "mcp",
+      "uncategorized"
+    ],
+    "category_names": [
+      "MCP",
+      "Uncategorized"
+    ],
+    "tags": [],
+    "description": "Learn how to connect Claude and Cursor to your Supabase database using MCP. Complete setup guide with security best practices and real SQL examples.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2026/01/Screenshot-2026-01-21-at-13.56.59.png",
+    "featured_image_w": 1672,
+    "featured_image_h": 798,
+    "toc": [
+      {
+        "id": "key-takeaways",
+        "text": "Key Takeaways",
+        "level": 2
+      },
+      {
+        "id": "the-frustrating-reality-of-database-work",
+        "text": "The Frustrating Reality of Database Work",
+        "level": 2
+      },
+      {
+        "id": "what-supabase-mcp-actually-does",
+        "text": "What Supabase MCP Actually Does",
+        "level": 2
+      },
+      {
+        "id": "two-connection-methods-compared",
+        "text": "Two Connection Methods Compared",
+        "level": 2
+      },
+      {
+        "id": "setting-up-supabase-mcp-with-cursor",
+        "text": "Setting Up Supabase MCP with Cursor",
+        "level": 2
+      },
+      {
+        "id": "setting-up-supabase-mcp-with-claude-desktop",
+        "text": "Setting Up Supabase MCP with Claude Desktop",
+        "level": 2
+      },
+      {
+        "id": "setting-up-supabase-mcp-with-desktop-commander",
+        "text": "Setting Up Supabase MCP with Desktop Commander",
+        "level": 2
+      },
+      {
+        "id": "sql-through-natural-language",
+        "text": "SQL Through Natural Language",
+        "level": 2
+      },
+      {
+        "id": "security-the-non-negotiables",
+        "text": "Security: The Non-Negotiables",
+        "level": 2
+      },
+      {
+        "id": "feature-groups-enable-only-what-you-need",
+        "text": "Feature Groups: Enable Only What You Need",
+        "level": 2
+      },
+      {
+        "id": "combining-supabase-mcp-with-desktop-commander",
+        "text": "Combining Supabase MCP with Desktop Commander",
+        "level": 2
+      },
+      {
+        "id": "install-desktop-commander-mcp",
+        "text": "Install Desktop Commander MCP",
+        "level": 3
+      },
+      {
+        "id": "troubleshooting-common-issues",
+        "text": "Troubleshooting Common Issues",
+        "level": 2
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions",
+        "level": 2
+      },
+      {
+        "id": "install-desktop-commander-mcp-1",
+        "text": "Install Desktop Commander MCP",
+        "level": 3
+      }
+    ],
+    "faq": [
+      {
+        "q": "Can I use Supabase MCP with production databases?",
+        "a": "Technically yes, but Supabase strongly advises against it. Use development projects with test data. If you must access real data, enable read-only mode and review every operation manually."
+      },
+      {
+        "q": "Does Supabase MCP work with self-hosted Supabase?",
+        "a": "The remote MCP server connects to Supabase Cloud. For self-hosted instances, you can enable the local MCP server, though it has reduced functionality."
+      },
+      {
+        "q": "What's the difference between Supabase MCP and just using the SQL editor?",
+        "a": "Context. With MCP, your AI assistant can see your codebase and your database simultaneously, suggesting queries that match your application's data model and catching mismatches between code and schema."
+      },
+      {
+        "q": "Can I use multiple MCP servers at once?",
+        "a": "Yes. Many developers run Desktop Commander alongside Supabase MCP and other specialized servers. Each handles different capabilities."
+      },
+      {
+        "q": "Is there a cost to using Supabase MCP?",
+        "a": "The MCP server itself is free. Standard Supabase pricing applies to your projects and any resources consumed."
+      }
+    ]
+  },
+  {
+    "id": 497,
+    "slug": "claude-mcp-how-to-use-mcp-with-claude-ai",
+    "title": "Claude and MCPs: How to Use MCP with Claude AI",
+    "date": "2026-01-19T10:58:28+02:00",
+    "modified": "2026-02-20T10:57:30+02:00",
+    "author_login": "rafaelpinheiro",
+    "author_id": 272016983,
+    "author_name": "Rafael Pinheiro",
+    "categories": [
+      "how-to",
+      "mcp"
+    ],
+    "category_names": [
+      "How-to",
+      "MCP"
+    ],
+    "tags": [],
+    "description": "Learn how to use Claude MCP (Model Context Protocol) to connect Claude AI to your files, terminal, and tools. Complete setup guide with practical examples.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2026/01/Screenshot-2026-01-19-at-11.07.06.png",
+    "featured_image_w": 1454,
+    "featured_image_h": 806,
+    "toc": [
+      {
+        "id": "key-takeaways",
+        "text": "Key Takeaways",
+        "level": 2
+      },
+      {
+        "id": "what-makes-mcp-different-from-regular-claude",
+        "text": "What Makes MCP Different from Regular Claude",
+        "level": 2
+      },
+      {
+        "id": "understanding-the-architecture-of-mcp",
+        "text": "Understanding the Architecture of MCP",
+        "level": 2
+      },
+      {
+        "id": "setting-up-mcp-with-claude-desktop",
+        "text": "Setting Up MCP with Claude Desktop",
+        "level": 2
+      },
+      {
+        "id": "popular-mcp-servers-compared",
+        "text": "Popular MCP Servers Compared",
+        "level": 2
+      },
+      {
+        "id": "install-desktop-commander-mcp",
+        "text": "Install Desktop Commander MCP",
+        "level": 3
+      },
+      {
+        "id": "desktop-commander-mcp-for-your-entire-machine",
+        "text": "Desktop Commander: MCP for Your Entire Machine",
+        "level": 2
+      },
+      {
+        "id": "practical-prompts-you-can-try",
+        "text": "Practical Prompts You Can Try",
+        "level": 2
+      },
+      {
+        "id": "exploring-a-new-codebase",
+        "text": "Exploring a new codebase",
+        "level": 3
+      },
+      {
+        "id": "organizing-files",
+        "text": "Organizing files",
+        "level": 3
+      },
+      {
+        "id": "setting-up-a-project",
+        "text": "Setting up a project",
+        "level": 3
+      },
+      {
+        "id": "debugging-an-error",
+        "text": "Debugging an error",
+        "level": 3
+      },
+      {
+        "id": "when-mcp-can-fail-silently",
+        "text": "When MCP Can Fail Silently",
+        "level": 2
+      },
+      {
+        "id": "beyond-the-basics-of-claude-and-mcps",
+        "text": "Beyond the Basics of Claude and MCPs",
+        "level": 2
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions",
+        "level": 2
+      },
+      {
+        "id": "install-desktop-commander-mcp-1",
+        "text": "Install Desktop Commander MCP",
+        "level": 3
+      }
+    ],
+    "faq": [
+      {
+        "q": "Do I need Claude Pro to use MCP?",
+        "a": "No. MCP works with the free Claude Desktop application. However, Pro and higher tiers get additional features like remote MCP connections and higher usage limits."
+      },
+      {
+        "q": "Is MCP secure?",
+        "a": "MCP servers only have access to what you explicitly configure. The filesystem server only sees folders you specify. Desktop Commander only runs in directories you allow. That said, be cautious with third-party servers—Anthropic hasn't verified all community-created servers."
+      },
+      {
+        "q": "Can I use MCP with ChatGPT?",
+        "a": "MCP is an open standard, so technically yes. However, Claude Desktop has the most mature MCP support since Anthropic created the protocol. Other applications are adding support gradually."
+      },
+      {
+        "q": "Why isn't Claude using my MCP tools?",
+        "a": "Check your config file syntax, ensure paths are correct, and restart Claude Desktop. If issues persist, launch with --mcp-debug to see detailed logs."
+      },
+      {
+        "q": "What's the difference between MCP and Claude Code?",
+        "a": "Claude Code is Anthropic's CLI tool for developers. It supports MCP but is a separate product from Claude Desktop. Both can use MCP servers, but they're different interfaces for working with Claude."
+      }
+    ]
+  },
+  {
+    "id": 484,
+    "slug": "create-and-manage-your-obsidian-knowledge-base-with-ai",
+    "title": "Create and Manage Your Obsidian Knowledge Base with AI",
+    "date": "2026-01-14T09:45:31+02:00",
+    "modified": "2026-02-20T10:57:33+02:00",
+    "author_login": "rafaelpinheiro",
+    "author_id": 272016983,
+    "author_name": "Rafael Pinheiro",
+    "categories": [
+      "how-to",
+      "knowledge-base",
+      "markdown"
+    ],
+    "category_names": [
+      "How-to",
+      "Knowledge base",
+      "Markdown"
+    ],
+    "tags": [],
+    "description": "Learn how to manage your Obsidian vault with AI using Desktop Commander. Organize attachments, rename notes, and clean up your knowledge base with natural language commands.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2026/01/Screenshot-2026-01-14-at-09.44.42.png",
+    "featured_image_w": 1648,
+    "featured_image_h": 836,
+    "toc": [
+      {
+        "id": "key-takeaways",
+        "text": "Key Takeaways",
+        "level": 2
+      },
+      {
+        "id": "why-obsidian-ai-file-management-gets-messy",
+        "text": "Why Obsidian AI File Management Gets Messy",
+        "level": 2
+      },
+      {
+        "id": "current-solutions-for-obsidian-organization",
+        "text": "Current Solutions for Obsidian Organization",
+        "level": 2
+      },
+      {
+        "id": "obsidian-plugins",
+        "text": "Obsidian Plugins",
+        "level": 3
+      },
+      {
+        "id": "scripting-automation",
+        "text": "Scripting &amp; Automation",
+        "level": 3
+      },
+      {
+        "id": "the-gap",
+        "text": "The Gap",
+        "level": 3
+      },
+      {
+        "id": "desktop-commander-natural-language-knowledge-base-management",
+        "text": "Desktop Commander: Natural Language Knowledge Base Management",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "how-desktop-commander-works-with-obsidian-ai",
+        "text": "How Desktop Commander Works with Obsidian AI",
+        "level": 2
+      },
+      {
+        "id": "comparison-traditional-vs-ai-powered-vault-management",
+        "text": "Comparison: Traditional vs AI-Powered Vault Management",
+        "level": 3
+      },
+      {
+        "id": "using-the-zettelkasten-method-in-obsidian",
+        "text": "Using the Zettelkasten Method in Obsidian",
+        "level": 2
+      },
+      {
+        "id": "the-basic-zettelkasten-structure",
+        "text": "The Basic Zettelkasten Structure",
+        "level": 3
+      },
+      {
+        "id": "zettelkasten-workflows-with-desktop-commander",
+        "text": "Zettelkasten Workflows with Desktop Commander",
+        "level": 3
+      },
+      {
+        "id": "getting-started",
+        "text": "Getting Started",
+        "level": 2
+      },
+      {
+        "id": "step-1-install-desktop-commander",
+        "text": "Step 1: Install Desktop Commander",
+        "level": 3
+      },
+      {
+        "id": "step-2-launch-the-app",
+        "text": "Step 2: Launch the App",
+        "level": 3
+      },
+      {
+        "id": "step-3-point-to-your-vault",
+        "text": "Step 3: Point to Your Vault",
+        "level": 3
+      },
+      {
+        "id": "more-practical-workflows-with-desktop-commander-in-obsidian",
+        "text": "More Practical Workflows with Desktop Commander in Obsidian",
+        "level": 2
+      },
+      {
+        "id": "build-a-knowledge-base-from-scratch",
+        "text": "Build a Knowledge Base from Scratch",
+        "level": 3
+      },
+      {
+        "id": "add-new-knowledge-to-your-vault",
+        "text": "Add New Knowledge to Your Vault",
+        "level": 3
+      },
+      {
+        "id": "organize-attachments-by-type",
+        "text": "Organize Attachments by Type",
+        "level": 3
+      },
+      {
+        "id": "standardize-note-naming",
+        "text": "Standardize Note Naming",
+        "level": 3
+      },
+      {
+        "id": "find-and-remove-orphaned-attachments",
+        "text": "Find and Remove Orphaned Attachments",
+        "level": 3
+      },
+      {
+        "id": "generate-a-vault-summary",
+        "text": "Generate a Vault Summary",
+        "level": 3
+      },
+      {
+        "id": "bulk-frontmatter-updates",
+        "text": "Bulk Frontmatter Updates",
+        "level": 3
+      },
+      {
+        "id": "create-a-daily-notes-archive",
+        "text": "Create a Daily Notes Archive",
+        "level": 3
+      },
+      {
+        "id": "best-practices-to-manage-your-knowledge-base-with-ai",
+        "text": "Best Practices to Manage Your Knowledge Base with AI",
+        "level": 2
+      },
+      {
+        "id": "what-desktop-commander-can-and-cant-do",
+        "text": "What Desktop Commander Can and Can't Do",
+        "level": 2
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions",
+        "level": 2
+      },
+      {
+        "id": "conclusion",
+        "text": "Conclusion",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app-1",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      }
+    ],
+    "faq": []
+  },
+  {
+    "id": 469,
+    "slug": "markdown-file-the-complete-reference-guide-for-2026-with-cheatsheet",
+    "title": "Markdown File: The Complete Reference Guide for 2026 (with cheatsheet)",
+    "date": "2026-01-09T11:30:00+02:00",
+    "modified": "2026-02-20T10:57:35+02:00",
+    "author_login": "rafaelpinheiro",
+    "author_id": 272016983,
+    "author_name": "Rafael Pinheiro",
+    "categories": [
+      "knowledge-base",
+      "markdown"
+    ],
+    "category_names": [
+      "Knowledge base",
+      "Markdown"
+    ],
+    "tags": [],
+    "description": "Markdown files are plain text documents with simple formatting. Learn why .md files are the foundation for AI-powered file management and modern documentation workflows.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2026/01/Screenshot-2026-01-09-at-11.29.25.png",
+    "featured_image_w": 1746,
+    "featured_image_h": 916,
+    "toc": [
+      {
+        "id": "key-takeaways",
+        "text": "Key Takeaways",
+        "level": 2
+      },
+      {
+        "id": "why-markdown-matters-in-2026",
+        "text": "Why Markdown Matters in 2026",
+        "level": 2
+      },
+      {
+        "id": "where-youll-see-markdown-files",
+        "text": "Where You'll See Markdown Files",
+        "level": 2
+      },
+      {
+        "id": "why-markdown-over-word-documents",
+        "text": "Why Markdown Over Word Documents?",
+        "level": 2
+      },
+      {
+        "id": "markdown-files-and-ai",
+        "text": "Markdown Files and AI",
+        "level": 2
+      },
+      {
+        "id": "managing-markdown-files-with-desktop-commander",
+        "text": "Managing Markdown Files with Desktop Commander",
+        "level": 2
+      },
+      {
+        "id": "getting-started",
+        "text": "Getting Started",
+        "level": 3
+      },
+      {
+        "id": "try-desktop-commander-app",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "markdown-cheat-sheet",
+        "text": "Markdown Cheat Sheet",
+        "level": 2
+      },
+      {
+        "id": "markdown-syntax-at-a-glance",
+        "text": "Markdown Syntax at a Glance",
+        "level": 3
+      },
+      {
+        "id": "text-formatting",
+        "text": "Text Formatting",
+        "level": 3
+      },
+      {
+        "id": "headings",
+        "text": "Headings",
+        "level": 3
+      },
+      {
+        "id": "paragraphs-and-line-breaks",
+        "text": "Paragraphs and Line Breaks",
+        "level": 3
+      },
+      {
+        "id": "links",
+        "text": "Links",
+        "level": 3
+      },
+      {
+        "id": "images",
+        "text": "Images",
+        "level": 3
+      },
+      {
+        "id": "lists",
+        "text": "Lists",
+        "level": 3
+      },
+      {
+        "id": "blockquotes",
+        "text": "Blockquotes",
+        "level": 3
+      },
+      {
+        "id": "code",
+        "text": "Code",
+        "level": 3
+      },
+      {
+        "id": "tables",
+        "text": "Tables",
+        "level": 3
+      },
+      {
+        "id": "horizontal-rules",
+        "text": "Horizontal Rules",
+        "level": 3
+      },
+      {
+        "id": "escaping-characters",
+        "text": "Escaping Characters",
+        "level": 3
+      },
+      {
+        "id": "extended-syntax",
+        "text": "Extended Syntax",
+        "level": 3
+      },
+      {
+        "id": "common-gotchas",
+        "text": "Common Gotchas",
+        "level": 3
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app-1",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      }
+    ],
+    "faq": [
+      {
+        "q": "The line breaks don't work like I expect. What's happening?",
+        "a": "Markdown ignores single line breaks—you need a blank line between paragraphs. This confuses everyone at first. Two spaces at the end of a line create a line break within a paragraph."
+      },
+      {
+        "q": "There are different \"flavors\" of markdown?",
+        "a": "Yes. GitHub Flavored Markdown adds tables, task lists, and strikethrough. CommonMark is a standardized specification. The core syntax works everywhere, but advanced features vary by platform."
+      },
+      {
+        "q": "What about images?",
+        "a": "Use ![description](path/to/image.png). The path is relative to the markdown file's location."
+      },
+      {
+        "q": "Is markdown only for developers?",
+        "a": "No. Writers, researchers, students, and anyone who takes notes can use markdown. The syntax takes minutes to learn, and note-taking apps like Obsidian make it accessible without touching code."
+      }
+    ]
+  },
+  {
+    "id": 461,
+    "slug": "build-a-personal-ai-knowledge-base-with-local-files",
+    "title": "Build a Personal AI Knowledge Base with Local Files",
+    "date": "2026-01-07T09:51:42+02:00",
+    "modified": "2026-02-20T10:57:38+02:00",
+    "author_login": "rafaelpinheiro",
+    "author_id": 272016983,
+    "author_name": "Rafael Pinheiro",
+    "categories": [
+      "how-to",
+      "tutorials",
+      "use-cases"
+    ],
+    "category_names": [
+      "How-to",
+      "Tutorials",
+      "Use Cases"
+    ],
+    "tags": [],
+    "description": "Learn how to build a personal AI knowledge base using local files. Skip the complex RAG pipelines—manage your notes and documents with natural language through Desktop Commander.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2026/01/Screenshot-2026-01-07-at-09.45.54.png",
+    "featured_image_w": 1600,
+    "featured_image_h": 770,
+    "toc": [
+      {
+        "id": "key-takeaways",
+        "text": "Key Takeaways",
+        "level": 2
+      },
+      {
+        "id": "what-makes-a-knowledge-base-ai-powered",
+        "text": "What Makes a Knowledge Base \"AI-Powered\"",
+        "level": 2
+      },
+      {
+        "id": "the-current-landscape",
+        "text": "The Current Landscape",
+        "level": 2
+      },
+      {
+        "id": "a-simpler-approach-local-first-file-management",
+        "text": "A Simpler Approach: Local-First File Management",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "building-your-local-knowledge-base",
+        "text": "Building Your Local Knowledge Base",
+        "level": 2
+      },
+      {
+        "id": "the-foundation-plain-text-files",
+        "text": "The Foundation: Plain Text Files",
+        "level": 3
+      },
+      {
+        "id": "connect-ai-to-your-files",
+        "text": "Connect AI to Your Files",
+        "level": 3
+      },
+      {
+        "id": "working-locally-with-your-knowledge-base",
+        "text": "Working Locally with Your Knowledge Base",
+        "level": 3
+      },
+      {
+        "id": "organizing-and-maintaining",
+        "text": "Organizing and Maintaining",
+        "level": 3
+      },
+      {
+        "id": "practical-workflows",
+        "text": "Practical Workflows",
+        "level": 2
+      },
+      {
+        "id": "research-and-synthesis",
+        "text": "Research and Synthesis",
+        "level": 3
+      },
+      {
+        "id": "daily-capture-and-connection",
+        "text": "Daily Capture and Connection",
+        "level": 3
+      },
+      {
+        "id": "knowledge-base-maintenance",
+        "text": "Knowledge Base Maintenance",
+        "level": 3
+      },
+      {
+        "id": "why-local-first-approach-to-knowledge-management-works-well",
+        "text": "Why Local-First Approach to Knowledge Management Works Well",
+        "level": 2
+      },
+      {
+        "id": "where-it-has-limits",
+        "text": "Where It Has Limits",
+        "level": 2
+      },
+      {
+        "id": "getting-started",
+        "text": "Getting Started",
+        "level": 2
+      },
+      {
+        "id": "the-bigger-picture",
+        "text": "The Bigger Picture",
+        "level": 2
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app-1",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      }
+    ],
+    "faq": [
+      {
+        "q": "How do I build a personal AI knowledge base with local files?",
+        "a": "Give an AI assistant direct access to your local filesystem instead of building infrastructure. Tools like Desktop Commander connect AI to your files so it can read markdown notes, search documents, and help organize information — all without uploading anything to the cloud or setting up databases."
+      },
+      {
+        "q": "Do I need a vector database for a personal knowledge base?",
+        "a": "No. While enterprise solutions often involve vector databases, embeddings, and RAG pipelines, basic personal knowledge management doesn’t require this complexity. A local-first approach where AI reads your files directly works well for personal use without any database setup."
+      },
+      {
+        "q": "What file format works best for AI knowledge bases?",
+        "a": "Plain text formats like Markdown work best. AI can read and modify Markdown files directly, and they’re lightweight, portable, and future-proof. Binary formats like Word or PDF add friction because they require conversion before AI can work with the content effectively."
+      },
+      {
+        "q": "Can AI search my local files without uploading them to the cloud?",
+        "a": "Yes. Local-first tools like Desktop Commander give AI direct access to your filesystem. Your files stay on your machine — nothing is uploaded to third-party servers. The AI reads, searches, and organizes your documents locally."
+      },
+      {
+        "q": "What is the best tool for a local AI knowledge base?",
+        "a": "Desktop Commander is the best tool for building a local AI knowledge base. It connects Claude (or other AI models) to your local files, enabling natural language knowledge management. It requires no vector databases, no cloud uploads, and no complex setup — just point it at your files and start querying."
+      }
+    ]
+  },
+  {
+    "id": 451,
+    "slug": "convert-heic-to-jpg-locally-with-desktop-commander",
+    "title": "Convert HEIC to JPG Locally with Desktop Commander",
+    "date": "2026-01-06T11:25:30+02:00",
+    "modified": "2026-02-20T10:57:41+02:00",
+    "author_login": "rafaelpinheiro",
+    "author_id": 272016983,
+    "author_name": "Rafael Pinheiro",
+    "categories": [
+      "how-to",
+      "tutorials"
+    ],
+    "category_names": [
+      "How-to",
+      "Tutorials"
+    ],
+    "tags": [],
+    "description": "Learn how to convert HEIC to JPG locally without uploading photos anywhere. Covers Mac, Windows, and how AI tools like Desktop Commander simplify batch conversion.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2026/01/Screenshot-2026-01-06-at-11.25.02.png",
+    "featured_image_w": 1596,
+    "featured_image_h": 814,
+    "toc": [
+      {
+        "id": "key-takeaways",
+        "text": "Key Takeaways",
+        "level": 2
+      },
+      {
+        "id": "the-heic-problem",
+        "text": "The HEIC Problem",
+        "level": 2
+      },
+      {
+        "id": "why-convert-locally",
+        "text": "Why Convert Locally?",
+        "level": 2
+      },
+      {
+        "id": "using-desktop-commander-for-heic-batch-conversion",
+        "text": "Using Desktop Commander for HEIC Batch Conversion",
+        "level": 2
+      },
+      {
+        "id": "setting-it-up",
+        "text": "Setting It Up",
+        "level": 3
+      },
+      {
+        "id": "basic-batch-conversion",
+        "text": "Basic Batch Conversion",
+        "level": 3
+      },
+      {
+        "id": "combining-batch-conversion-with-organization",
+        "text": "Combining Batch Conversion with Organization",
+        "level": 3
+      },
+      {
+        "id": "try-desktop-commander-app",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "a-complete-workflow-example",
+        "text": "A Complete Workflow Example",
+        "level": 3
+      },
+      {
+        "id": "working-with-large-photo-libraries",
+        "text": "Working with Large Photo Libraries",
+        "level": 2
+      },
+      {
+        "id": "quality-considerations",
+        "text": "Quality Considerations",
+        "level": 2
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions",
+        "level": 2
+      },
+      {
+        "id": "beyond-conversion",
+        "text": "Beyond Conversion",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app-1",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "getting-started",
+        "text": "Getting Started",
+        "level": 2
+      }
+    ],
+    "faq": [
+      {
+        "q": "Do my photos get uploaded anywhere?",
+        "a": "No. With Desktop Commander, file conversion happens on your machine. While model providers process prompts, your actual photos and files are not uploaded or transmitted."
+      },
+      {
+        "q": "What happens to photo metadata (EXIF)?",
+        "a": "Date, location, and camera settings transfer to the converted files by default. If you want to strip metadata for privacy, you can ask: Convert to JPG and remove all EXIF data"
+      },
+      {
+        "q": "Can I convert to other formats?",
+        "a": "Yes—PNG, TIFF, WebP, whatever your system supports. For example: Convert HEIC files to WebP format"
+      },
+      {
+        "q": "How fast is conversion?",
+        "a": "It varies by hardware, but expect roughly 100 files per minute on a modern Mac. Larger batches run in the background while you continue working."
+      },
+      {
+        "q": "Can I undo if something goes wrong?",
+        "a": "Desktop Commander doesn't have built-in undo, which is why preserving originals until you verify the results is important. If you use Git with your photo folders (some people do), you have version control as a safety net."
+      }
+    ]
+  },
+  {
+    "id": 435,
+    "slug": "automate-docker-workflows-with-ai",
+    "title": "Automate Docker Workflows with AI: From Container Logs to Compose Files",
+    "date": "2025-12-30T15:17:43+02:00",
+    "modified": "2026-02-20T10:57:43+02:00",
+    "author_login": "eduardruzga",
+    "author_id": 272016977,
+    "author_name": "Eduard Ruzga",
+    "categories": [
+      "deep-dives",
+      "how-to",
+      "tutorials"
+    ],
+    "category_names": [
+      "Deep Dives",
+      "How-to",
+      "Tutorials"
+    ],
+    "tags": [],
+    "description": "Use AI to manage Docker containers, debug errors, and automate compose workflows locally. No memorizing commands—describe what you need in plain English.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2025/12/Screenshot-2025-12-30-at-15.16.49.png",
+    "featured_image_w": 1348,
+    "featured_image_h": 676,
+    "toc": [
+      {
+        "id": "the-old-way-manual-debugging",
+        "text": "The Old Way: Manual Debugging",
+        "level": 2
+      },
+      {
+        "id": "the-new-way-ai-powered-troubleshooting",
+        "text": "The New Way: AI-Powered Troubleshooting",
+        "level": 2
+      },
+      {
+        "id": "what-youll-need",
+        "text": "What You’ll Need",
+        "level": 2
+      },
+      {
+        "id": "1-claude-desktop",
+        "text": "1. Claude Desktop",
+        "level": 3
+      },
+      {
+        "id": "2-desktop-commander-mcp",
+        "text": "2. Desktop Commander MCP",
+        "level": 3
+      },
+      {
+        "id": "investigating-the-issue-with-desktop-commander",
+        "text": "Investigating the Issue with Desktop Commander",
+        "level": 2
+      },
+      {
+        "id": "the-prompt",
+        "text": "The Prompt",
+        "level": 3
+      },
+      {
+        "id": "what-desktop-commander-does",
+        "text": "What Desktop Commander Does",
+        "level": 3
+      },
+      {
+        "id": "the-diagnosis",
+        "text": "The Diagnosis",
+        "level": 3
+      },
+      {
+        "id": "the-solution",
+        "text": "The Solution",
+        "level": 3
+      },
+      {
+        "id": "time-comparison",
+        "text": "Time Comparison",
+        "level": 3
+      },
+      {
+        "id": "try-it-yourself",
+        "text": "Try It Yourself",
+        "level": 3
+      },
+      {
+        "id": "its-working-but-is-it-production-ready",
+        "text": "It’s Working — But Is It Production-Ready?",
+        "level": 2
+      },
+      {
+        "id": "the-prompt-1",
+        "text": "The Prompt",
+        "level": 3
+      },
+      {
+        "id": "the-analysis",
+        "text": "The Analysis",
+        "level": 3
+      },
+      {
+        "id": "applying-and-testing-the-fixes",
+        "text": "Applying and Testing the Fixes",
+        "level": 3
+      },
+      {
+        "id": "creating-a-pull-request",
+        "text": "Creating a Pull Request",
+        "level": 3
+      },
+      {
+        "id": "lessons-learned",
+        "text": "Lessons Learned",
+        "level": 2
+      },
+      {
+        "id": "learn-more",
+        "text": "Learn More",
+        "level": 2
+      }
+    ],
+    "faq": []
+  },
+  {
+    "id": 378,
+    "slug": "markdown-best-practices-technical-documentation",
+    "title": "Technical Documentation with Markdown: Best Practices & Tools",
+    "date": "2025-12-08T11:01:06+02:00",
+    "modified": "2026-02-20T10:57:46+02:00",
+    "author_login": "romanmakarenko",
+    "author_id": 272016981,
+    "author_name": "Roman Makarenko",
+    "categories": [
+      "deep-dives",
+      "how-to",
+      "tutorials",
+      "use-cases"
+    ],
+    "category_names": [
+      "Deep Dives",
+      "How-to",
+      "Tutorials",
+      "Use Cases"
+    ],
+    "tags": [
+      "desktop-commander",
+      "developer-tools",
+      "documentation",
+      "markdown",
+      "markdown-best-practices",
+      "technical-documentation"
+    ],
+    "description": "Master markdown best practices for technical documentation. Learn formatting, version control, error checking tools, and how Desktop Commander automates documentation with AI.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2025/12/markdown-documentation-featured-e1765184673758.jpg",
+    "featured_image_w": 1122,
+    "featured_image_h": 600,
+    "toc": [
+      {
+        "id": "key-takeaways",
+        "text": "Key Takeaways",
+        "level": 2
+      },
+      {
+        "id": "introduction-to-technical-documentation-in-markdown",
+        "text": "Introduction to Technical Documentation in Markdown",
+        "level": 2
+      },
+      {
+        "id": "why-technical-documentation-matters",
+        "text": "Why Technical Documentation Matters",
+        "level": 2
+      },
+      {
+        "id": "common-challenges-in-managing-markdown-documentation",
+        "text": "Common Challenges in Managing Markdown Documentation",
+        "level": 2
+      },
+      {
+        "id": "time-consuming-updates",
+        "text": "Time-Consuming Updates",
+        "level": 3
+      },
+      {
+        "id": "consistency-problems",
+        "text": "Consistency Problems",
+        "level": 3
+      },
+      {
+        "id": "formatting-issues",
+        "text": "Formatting Issues",
+        "level": 3
+      },
+      {
+        "id": "why-markdown-remains-essential-despite-challenges",
+        "text": "Why Markdown Remains Essential Despite Challenges",
+        "level": 2
+      },
+      {
+        "id": "best-practices-for-working-with-markdown",
+        "text": "Best Practices for Working with Markdown",
+        "level": 2
+      },
+      {
+        "id": "using-headers-and-bullet-points-effectively",
+        "text": "Using Headers and Bullet Points Effectively",
+        "level": 3
+      },
+      {
+        "id": "version-control-with-git",
+        "text": "Version Control with Git",
+        "level": 3
+      },
+      {
+        "id": "error-checking-tools",
+        "text": "Error Checking Tools",
+        "level": 3
+      },
+      {
+        "id": "new-approach-how-desktop-commander-changes-markdown-workflows",
+        "text": "New Approach: How Desktop Commander Changes Markdown Workflows",
+        "level": 2
+      },
+      {
+        "id": "ai-powered-documentation-automation",
+        "text": "AI-Powered Documentation Automation",
+        "level": 3
+      },
+      {
+        "id": "how-it-works",
+        "text": "How It Works",
+        "level": 3
+      },
+      {
+        "id": "try-desktop-commander-app",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "improving-documentation-with-desktop-commander-video-demonstration",
+        "text": "Improving Documentation with Desktop Commander: Video Demonstration",
+        "level": 2
+      },
+      {
+        "id": "practical-benefits-of-desktop-commander",
+        "text": "Practical Benefits of Desktop Commander",
+        "level": 2
+      },
+      {
+        "id": "comparing-documentation-approaches",
+        "text": "Comparing Documentation Approaches",
+        "level": 2
+      },
+      {
+        "id": "closing-insights",
+        "text": "Closing Insights",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app-1",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions",
+        "level": 2
+      }
+    ],
+    "faq": [
+      {
+        "q": "What are the most important markdown best practices for technical documentation?",
+        "a": "Use consistent heading hierarchies (one H1, don't skip levels), stick with one bullet point style, maintain blank lines around code blocks, use descriptive link text, and store Markdown files in version control alongside your code."
+      },
+      {
+        "q": "How can I ensure consistent formatting across multiple Markdown files?",
+        "a": "Use markdown linters like markdownlint in your CI/CD pipeline, establish a style guide, and consider AI tools like Desktop Commander for automated consistency across your documentation set."
+      },
+      {
+        "q": "What's the difference between technical documentation and technical writing?",
+        "a": "Technical documentation is the complete set of materials explaining how software works, while technical writing is the skill and process of creating that documentation."
+      },
+      {
+        "q": "How does AI improve technical documentation workflows?",
+        "a": "AI automates generating documentation from code, maintains consistency across files, updates docs when code changes, and creates supplementary materials like diagrams—eliminating documentation debt and maintenance burden."
+      },
+      {
+        "q": "Should I use Markdown or a documentation platform for my project?",
+        "a": "Use Markdown for developer docs in code repositories with version control; choose documentation platforms like Document360 or GitBook for customer-facing documentation with robust search and permissions."
+      },
+      {
+        "q": "What markdown formatting issues are most common?",
+        "a": "Inconsistent heading hierarchies, mixed bullet point styles, missing blank lines around code blocks, incorrect table alignment, unescaped special characters, and broken internal links."
+      },
+      {
+        "q": "How do I maintain markdown documentation as my codebase grows?",
+        "a": "Store docs in the same repository as code, use Git branches for updates, require pull request reviews, and integrate automated checks in CI/CD pipelines."
+      },
+      {
+        "q": "Can AI-generated documentation replace technical writers?",
+        "a": "AI handles repetitive documentation tasks effectively but works best supplementing human expertise—technical writers still provide essential value in strategic documentation, information architecture, and content for non-technical audiences."
+      }
+    ]
+  },
+  {
+    "id": 367,
+    "slug": "ai-code-review-with-desktop-commander-a-practical-guide",
+    "title": "AI Code Review with Desktop Commander: A Practical Guide",
+    "date": "2025-12-04T09:09:49+02:00",
+    "modified": "2026-02-20T10:57:48+02:00",
+    "author_login": "rk7f8a7274b9330",
+    "author_id": 272016976,
+    "author_name": "Ricards Krizanovskis",
+    "categories": [
+      "deep-dives",
+      "use-cases"
+    ],
+    "category_names": [
+      "Deep Dives",
+      "Use Cases"
+    ],
+    "tags": [
+      "ai-code-review",
+      "code-review",
+      "desktop-commander",
+      "developer-tools",
+      "mcp"
+    ],
+    "description": "Learn how to review code with AI using Desktop Commander. Analyze codebases, find bugs, and get recommendations through natural language—no complex setup.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2025/12/ai-code-review-featured.png",
+    "featured_image_w": 1200,
+    "featured_image_h": 675,
+    "toc": [
+      {
+        "id": "key-takeaways",
+        "text": "Key Takeaways",
+        "level": 2
+      },
+      {
+        "id": "the-code-review-problem",
+        "text": "The Code Review Problem",
+        "level": 2
+      },
+      {
+        "id": "how-ai-code-review-tools-work-today",
+        "text": "How AI Code Review Tools Work Today",
+        "level": 2
+      },
+      {
+        "id": "ai-code-review-with-desktop-commander",
+        "text": "AI Code Review with Desktop Commander",
+        "level": 2
+      },
+      {
+        "id": "setting-up-desktop-commander-for-ai-code-review",
+        "text": "Setting Up Desktop Commander for AI Code Review",
+        "level": 2
+      },
+      {
+        "id": "try-desktop-commander-app",
+        "text": "Try Desktop Commander App",
+        "level": 3
+      },
+      {
+        "id": "quick-installation",
+        "text": "Quick Installation",
+        "level": 3
+      },
+      {
+        "id": "manual-configuration-alternative",
+        "text": "Manual Configuration (Alternative)",
+        "level": 3
+      },
+      {
+        "id": "verify-installation",
+        "text": "Verify Installation",
+        "level": 3
+      },
+      {
+        "id": "code-review-workflows-with-desktop-commander",
+        "text": "Code Review Workflows with Desktop Commander",
+        "level": 2
+      },
+      {
+        "id": "workflow-1-understand-an-unfamiliar-codebase",
+        "text": "Workflow 1: Understand an Unfamiliar Codebase",
+        "level": 3
+      },
+      {
+        "id": "workflow-2-review-specific-files-or-changes",
+        "text": "Workflow 2: Review Specific Files or Changes",
+        "level": 3
+      },
+      {
+        "id": "workflow-3-run-tests-and-linters-as-part-of-review",
+        "text": "Workflow 3: Run Tests and Linters as Part of Review",
+        "level": 3
+      },
+      {
+        "id": "workflow-4-apply-fixes-directly",
+        "text": "Workflow 4: Apply Fixes Directly",
+        "level": 3
+      },
+      {
+        "id": "best-practices-for-ai-code-review",
+        "text": "Best Practices for AI Code Review",
+        "level": 2
+      },
+      {
+        "id": "do",
+        "text": "Do:",
+        "level": 3
+      },
+      {
+        "id": "dont",
+        "text": "Don't:",
+        "level": 3
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions",
+        "level": 2
+      },
+      {
+        "id": "getting-started",
+        "text": "Getting Started",
+        "level": 2
+      },
+      {
+        "id": "resources",
+        "text": "Resources",
+        "level": 2
+      }
+    ],
+    "faq": [
+      {
+        "q": "How is Desktop Commander different from Cursor or Copilot?",
+        "a": "Desktop Commander operates at the OS level, not within an IDE. It can access any file on your machine, run terminal commands, and work across multiple projects simultaneously. IDE tools are limited to the currently open project or file."
+      },
+      {
+        "q": "Is it safe to let AI edit my files?",
+        "a": "Desktop Commander uses diff-based editing and logs all operations to .mcp-server-log.jsonl. You can review every change before committing and roll back if needed.However, you should always be careful when working with sensitive or important data. Keep backups of critical files—Desktop Commander can create backup copies for you on request. Always verify suggestions before applying them, especially for high-stakes edits."
+      },
+      {
+        "q": "What programming languages are supported?",
+        "a": "Any language Claude or your LLM understands. Desktop Commander itself is language-agnostic—it reads files and runs commands. Claude handles the language-specific analysis."
+      },
+      {
+        "q": "Where can I find ready-made prompts for code review?",
+        "a": "The Desktop Commander Prompt Library includes prompts for codebase analysis, documentation generation, debugging, and more. Relevant ones for code review: Explain Codebase or Repository Clean Up Unused Code Assess Technical Debt Analyze Error Handling Strategy"
+      },
+      {
+        "q": "Can I use Desktop Commander with other AI clients?",
+        "a": "Yes. Desktop Commander works with Claude Desktop, Claude Code, Cursor, and other MCP-compatible clients. This also means that you can use Desktop Commander with any LLM model — it supports 8 model providers including Anthropic, OpenAI, Google, xAI, Mistral, and others across 6+ MCP-compatible clients."
+      }
+    ]
+  },
+  {
+    "id": 343,
+    "slug": "how-to-read-and-process-csv-files-in-python-complete-guide",
+    "title": "How to Read and Process CSV Files in Python: Complete Guide",
+    "date": "2025-11-28T09:58:29+02:00",
+    "modified": "2026-02-20T10:57:50+02:00",
+    "author_login": "sidraarif",
+    "author_id": 272016978,
+    "author_name": "Sidra Arif",
+    "categories": [
+      "deep-dives",
+      "how-to",
+      "use-cases"
+    ],
+    "category_names": [
+      "Deep Dives",
+      "How-to",
+      "Use Cases"
+    ],
+    "tags": [],
+    "description": "Learn how to read and process CSV files using the built-in Python csv module and Pandas. Discover how Desktop Commander can automate the entire workflow.",
+    "description_source": "excerpt",
+    "featured_image": "/blog/media/2025/11/hero-python-csv.png",
+    "featured_image_w": 1200,
+    "featured_image_h": 675,
+    "toc": [
+      {
+        "id": "processing-csv-files-in-python",
+        "text": "Processing CSV Files in Python",
+        "level": 2
+      },
+      {
+        "id": "reading-and-processing-csv-files-in-python-step-by-step",
+        "text": "Reading and Processing CSV Files in Python (Step-by-Step)",
+        "level": 2
+      },
+      {
+        "id": "using-built-in-python-csv-module",
+        "text": "Using Built-In Python CSV Module",
+        "level": 3
+      },
+      {
+        "id": "reading-and-processing-csv-files-with-pandas",
+        "text": "Reading and Processing CSV Files with pandas",
+        "level": 3
+      },
+      {
+        "id": "common-errors",
+        "text": "Common Errors",
+        "level": 2
+      },
+      {
+        "id": "best-practices-for-working-with-csvs",
+        "text": "Best Practices for Working with CSVs",
+        "level": 3
+      },
+      {
+        "id": "reading-and-processing-csv-files-with-desktop-commander",
+        "text": "Reading and Processing CSV Files with Desktop Commander",
+        "level": 2
+      },
+      {
+        "id": "install-desktop-commander-mcp",
+        "text": "Install Desktop Commander MCP",
+        "level": 3
+      },
+      {
+        "id": "conclusion",
+        "text": "Conclusion",
+        "level": 2
+      },
+      {
+        "id": "install-desktop-commander-mcp-1",
+        "text": "Install Desktop Commander MCP",
+        "level": 3
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions",
+        "level": 2
+      }
+    ],
+    "faq": [
+      {
+        "q": "What is the difference between Python's built-in csv module and pandas for reading CSV files?",
+        "a": "Python's built-in csv module is lightweight and great for simple tasks. It reads each row as a list of strings. Pandas, on the other hand, provides powerful tools like pandas.read_csv() that load data into a DataFrame. This allows for advanced operations like filtering, grouping, and data type conversion."
+      },
+      {
+        "q": "How do I fix UnicodeDecodeError when reading a CSV file in Python?",
+        "a": "This error occurs when your CSV file uses a different encoding than the standard UTF-8. To fix it, specify the correct encoding when opening the file. For example, use encoding='latin-1' or encoding='cp1252' in your open() function or pd.read_csv() call."
+      },
+      {
+        "q": "What are the most common errors when processing CSV files in Python?",
+        "a": "The most common errors include: FileNotFoundError: The file path is incorrect UnicodeDecodeError: Wrong encoding specified ParserError: Inconsistent row structure (mismatched columns) MemoryError: File too large to load entirely—use chunksize or nrows to process in batches"
+      },
+      {
+        "q": "When should I use pandas instead of the built-in csv module?",
+        "a": "Use Pandas when you need to filter rows, group data, handle missing values, merge multiple datasets, or perform statistical analysis. The built-in csv module is better suited for simple read/write operations or when you want to avoid external dependencies."
+      },
+      {
+        "q": "How can I automate CSV file processing without writing code?",
+        "a": "You can use AI-powered tools, like Desktop Commander, that can connect to AI clients like Claude Desktop. You can then use natural language commands like \"analyze this CSV file\" or \"make a dashboard with top insights from this CSV file,\" and Claude will automatically provide you analysis through Desktop Commander."
+      }
+    ]
+  },
+  {
+    "id": 325,
+    "slug": "best-mcp-servers",
+    "title": "The 22 best MCP servers (2025 and 2026)",
+    "date": "2025-11-25T17:56:08+02:00",
+    "modified": "2026-02-20T10:57:53+02:00",
+    "author_login": "karlina",
+    "author_id": 272016979,
+    "author_name": "Karlina Sara Rozkalne",
+    "categories": [
+      "mcp"
+    ],
+    "category_names": [
+      "MCP"
+    ],
+    "tags": [],
+    "description": "Discover the 22 best MCP servers for Claude, Cursor, and AI coding assistants. Complete guide with installation, features, and real use cases for 2025-2026.",
+    "description_source": "custom",
+    "featured_image": "/blog/media/2025/11/blog-hero-mcp-servers.png",
+    "featured_image_w": 1200,
+    "featured_image_h": 675,
+    "toc": [
+      {
+        "id": "top-mcp-servers-by-category",
+        "text": "Top MCP servers by category",
+        "level": 2
+      },
+      {
+        "id": "development-version-control",
+        "text": "Development &amp; version control",
+        "level": 3
+      },
+      {
+        "id": "productivity-communication",
+        "text": "Productivity &amp; communication",
+        "level": 3
+      },
+      {
+        "id": "data-database",
+        "text": "Data &amp; database",
+        "level": 3
+      },
+      {
+        "id": "file-system-operations",
+        "text": "File &amp; system operations",
+        "level": 3
+      },
+      {
+        "id": "install-desktop-commander-mcp",
+        "text": "Install Desktop Commander MCP",
+        "level": 3
+      },
+      {
+        "id": "search-research",
+        "text": "Search &amp; research",
+        "level": 3
+      },
+      {
+        "id": "maps-location",
+        "text": "Maps &amp; location",
+        "level": 3
+      },
+      {
+        "id": "cloud-infrastructure",
+        "text": "Cloud &amp; infrastructure",
+        "level": 3
+      },
+      {
+        "id": "awesome-mcp-servers-for-specific-roles",
+        "text": "Awesome MCP servers for specific roles",
+        "level": 2
+      },
+      {
+        "id": "developers",
+        "text": "Developers",
+        "level": 3
+      },
+      {
+        "id": "data-analysts",
+        "text": "Data analysts",
+        "level": 3
+      },
+      {
+        "id": "devops",
+        "text": "DevOps",
+        "level": 3
+      },
+      {
+        "id": "knowledge-workers",
+        "text": "Knowledge workers",
+        "level": 3
+      },
+      {
+        "id": "best-mcp-servers-for-different-clients",
+        "text": "Best MCP servers for different clients",
+        "level": 2
+      },
+      {
+        "id": "claude-desktop",
+        "text": "Claude Desktop",
+        "level": 3
+      },
+      {
+        "id": "cursor",
+        "text": "Cursor",
+        "level": 3
+      },
+      {
+        "id": "claude-code-vs-code-agents",
+        "text": "Claude Code / VS Code Agents",
+        "level": 3
+      },
+      {
+        "id": "conclusion",
+        "text": "Conclusion",
+        "level": 2
+      },
+      {
+        "id": "install-desktop-commander-mcp-1",
+        "text": "Install Desktop Commander MCP",
+        "level": 3
+      },
+      {
+        "id": "faq",
+        "text": "FAQ",
+        "level": 2
+      }
+    ],
+    "faq": [
+      {
+        "q": "Which MCP servers work with Claude?",
+        "a": "All MCP servers work with Claude Desktop through local configuration or one-click desktop extensions (.mcpb files). Claude on the web (claude.ai) requires a paid plan (Pro, Max, Team, or Enterprise) to connect to remote MCP servers through the Integrations feature. Some of the best Claude MCP servers include GitHub, Filesystem, Desktop Commander, Notion, Supabase, and Brave Search, depending on whether you're coding, researching, or writing."
+      },
+      {
+        "q": "What are the most popular MCP servers?",
+        "a": "According to the MCP servers' GitHub rankings (stars and community usage), here are the most popular ones: Playwright MCP Server GitHub MCP Server Filesystem MCP Server Notion MCP Server PostgreSQL MCP Server Brave Search MCP Server Slack MCP Server Google Drive MCP Server Docker MCP Server Supabase MCP Server"
+      },
+      {
+        "q": "Where can I find reviews of the best MCP server hosts?",
+        "a": "Find reviews of the best MCP server hosts on MCP server registries: MCP.so: Comprehensive server index with over 3,000 MCP servers and quality ratings. Smithery: Resource listing over 2,200 servers with automated installation guides. ClaudeMCP.com: Curated directory of the best and most popular Claude MCP servers. MCP Market: Top 100 MCP servers leaderboard ranked by GitHub stars. Official GitHub: The official MCP servers repository with community feedback. These platforms provide: Server descriptions and use cases Installation instructions Community ratings and reviews GitHub star counts and activity metrics Compatibility information For hosting provider reviews, check specialized sites like mcpevals.io and HostAdvice that evaluate MCP's hosting infrastructure."
+      },
+      {
+        "q": "Which MCP server providers offer free trials or money-back guarantees?",
+        "a": "Unlike traditional software, most MCP hosting providers don't offer money-back guarantees. However, most official MCP servers are open-source and free to use locally. The best risk-free option is to start with open-source servers hosted locally or use free remote endpoints before investing in hosting infrastructure."
+      }
+    ]
+  },
+  {
+    "id": 282,
+    "slug": "what-is-an-mcp-server-and-how-it-works-in-plain-english",
+    "title": "What is an MCP server and how it works (in plain English)",
+    "date": "2025-10-28T09:55:44+02:00",
+    "modified": "2026-02-20T10:57:55+02:00",
+    "author_login": "karlina",
+    "author_id": 272016979,
+    "author_name": "Karlina Sara Rozkalne",
+    "categories": [
+      "mcp"
+    ],
+    "category_names": [
+      "MCP"
+    ],
+    "tags": [],
+    "description": "Discover what an MCP server is, how it works, and best MCP servers and clients you should use in 2025/2026.",
+    "description_source": "excerpt",
+    "featured_image": "/blog/media/2025/11/blog-what-is-mcp.png",
+    "featured_image_w": 1200,
+    "featured_image_h": 675,
+    "toc": [
+      {
+        "id": "key-takeaways",
+        "text": "Key takeaways",
+        "level": 2
+      },
+      {
+        "id": "what-does-an-mcp-server-actually-do",
+        "text": "What does an MCP server actually do?",
+        "level": 2
+      },
+      {
+        "id": "how-does-an-mcp-server-work-example-included",
+        "text": "How does an MCP server work (example included)",
+        "level": 2
+      },
+      {
+        "id": "the-client-server-protocol-distinction",
+        "text": "The client-server-protocol distinction",
+        "level": 3
+      },
+      {
+        "id": "local-vs-remote-mcp-servers",
+        "text": "Local vs remote MCP servers",
+        "level": 3
+      },
+      {
+        "id": "what-this-means-for-you",
+        "text": "What this means for you",
+        "level": 3
+      },
+      {
+        "id": "install-desktop-commander-mcp",
+        "text": "Install Desktop Commander MCP",
+        "level": 3
+      },
+      {
+        "id": "12-mcp-marketplaces-and-directories-to-find-mcp-servers",
+        "text": "12 MCP marketplaces and directories to find MCP servers",
+        "level": 3
+      },
+      {
+        "id": "best-mcp-servers-and-clients",
+        "text": "Best MCP servers and clients",
+        "level": 2
+      },
+      {
+        "id": "best-mcp-servers-2025-and-2026",
+        "text": "Best MCP servers (2025 and 2026)",
+        "level": 3
+      },
+      {
+        "id": "best-mcp-clients-for-developers",
+        "text": "Best MCP clients for developers",
+        "level": 3
+      },
+      {
+        "id": "easy-mcp-server-setup-guide-for-devs-and-general-users-quick-start",
+        "text": "Easy MCP server setup guide for devs and general users (quick start)",
+        "level": 2
+      },
+      {
+        "id": "how-is-desktop-commander-different-than-most-mcp-servers",
+        "text": "How is Desktop Commander different than most MCP servers",
+        "level": 2
+      },
+      {
+        "id": "final-thoughts",
+        "text": "Final thoughts",
+        "level": 2
+      },
+      {
+        "id": "faq",
+        "text": "FAQ",
+        "level": 2
+      },
+      {
+        "id": "further-resources",
+        "text": "Further resources",
+        "level": 2
+      },
+      {
+        "id": "install-desktop-commander-mcp-1",
+        "text": "Install Desktop Commander MCP",
+        "level": 3
+      }
+    ],
+    "faq": []
+  },
+  {
+    "id": 236,
+    "slug": "how-to-set-up-local-development-environment-with-ease",
+    "title": "How to Set Up Local Development Environment with Ease",
+    "date": "2025-10-22T11:23:55+03:00",
+    "modified": "2026-02-20T10:57:57+02:00",
+    "author_login": "sidraarif",
+    "author_id": 272016978,
+    "author_name": "Sidra Arif",
+    "categories": [
+      "how-to"
+    ],
+    "category_names": [
+      "How-to"
+    ],
+    "tags": [
+      "local-dev-environment",
+      "set-up-local-development-environment"
+    ],
+    "description": "Learn how to automatically set up local development environment with an MCP server using natural language prompts and how it solves common challenges.",
+    "description_source": "excerpt",
+    "featured_image": "/blog/media/2025/11/blog-local-dev-setup.png",
+    "featured_image_w": 1200,
+    "featured_image_h": 675,
+    "toc": [
+      {
+        "id": "why-set-up-local-development-environment",
+        "text": "Why Set Up Local Development Environment?",
+        "level": 2
+      },
+      {
+        "id": "different-ways-to-set-up-a-dev-environment",
+        "text": "Different Ways to Set Up a Dev Environment",
+        "level": 2
+      },
+      {
+        "id": "manual-setup-and-package-managers",
+        "text": "Manual Setup and Package Managers&nbsp;",
+        "level": 3
+      },
+      {
+        "id": "containerization-and-docker",
+        "text": "Containerization and Docker",
+        "level": 3
+      },
+      {
+        "id": "using-an-mcp-server",
+        "text": "Using an MCP Server",
+        "level": 3
+      },
+      {
+        "id": "install-desktop-commander-mcp",
+        "text": "Install Desktop Commander MCP",
+        "level": 3
+      },
+      {
+        "id": "why-local-dev-environment-setup-is-still-a-struggle",
+        "text": "Why Local Dev Environment Setup is Still a Struggle?",
+        "level": 2
+      },
+      {
+        "id": "dependency-hell-and-version-mismatch",
+        "text": "Dependency Hell and Version Mismatch",
+        "level": 3
+      },
+      {
+        "id": "complex-configuration",
+        "text": "Complex Configuration",
+        "level": 3
+      },
+      {
+        "id": "platform-inconsistencies",
+        "text": "Platform Inconsistencies",
+        "level": 3
+      },
+      {
+        "id": "learning-cli-commands",
+        "text": "Learning CLI Commands",
+        "level": 3
+      },
+      {
+        "id": "why-i-prefer-automated-dev-environment-setup-with-an-mcp-server",
+        "text": "Why I Prefer Automated Dev Environment Setup with an MCP Server",
+        "level": 2
+      },
+      {
+        "id": "conclusion",
+        "text": "Conclusion",
+        "level": 2
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently Asked Questions",
+        "level": 2
+      },
+      {
+        "id": "install-desktop-commander-mcp-1",
+        "text": "Install Desktop Commander MCP",
+        "level": 3
+      }
+    ],
+    "faq": [
+      {
+        "q": "What is the easiest way to set up a local development environment?",
+        "a": "Use an AI-powered MCP server like Desktop Commander to automate the process. Instead of manually installing runtimes, databases, and dependencies, you describe what your project needs and the AI handles configuration. This saves 3+ hours of troubleshooting missing packages and misconfigurations."
+      },
+      {
+        "q": "Can AI set up my development environment automatically?",
+        "a": "Yes. Using an MCP server like Desktop Commander, AI can read your project requirements, install dependencies, configure services, and set up your environment through natural language instructions. What used to take hours of manual setup can be done in a single chat session."
+      },
+      {
+        "q": "What should a local development environment include?",
+        "a": "A typical local dev environment includes: a runtime (Node.js, Python, Ruby, or Java), databases (PostgreSQL, MongoDB), tools and CLI dependencies, configuration files (environment variables, ports, local config), and any required services like local web servers."
+      },
+      {
+        "q": "How do I set up a dev environment that works on both Mac and Windows?",
+        "a": "Cross-platform consistency is one of the biggest challenges in development environment setup. Containerization with Docker helps, but configuration differences still cause issues. Using an AI assistant like Desktop Commander that understands your OS and adjusts commands accordingly eliminates most platform-specific problems — it detects your system and configures everything appropriately."
+      },
+      {
+        "q": "What is the best tool for automating development environment setup?",
+        "a": "Desktop Commander is the best tool for automating dev environment setup. It gives AI terminal access to install packages, configure services, set environment variables, and verify everything works — all through natural language. It saved 3+ hours of manual work compared to traditional setup — 40% of users report saving 6+ hours every week."
+      }
+    ]
+  }
+]

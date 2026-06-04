@@ -1,0 +1,937 @@
+
+<p>You opened Obsidian, created your first note, and typed some text. It looks… plain. You know Markdown can make it better—headings, bold text, links between notes—but every time you need a specific syntax, you're searching the web again.</p>
+
+
+
+<p>This Obsidian cheatsheet exists so you don't have to.</p>
+
+
+
+<p>Bookmark it, and you'll have every Obsidian Markdown syntax in one place: the basics you'll use constantly, the Obsidian-specific features that make linking powerful, and the formatting tricks that keep notes readable.</p>
+
+
+
+<h2 class="wp-block-heading" id="key-takeaways">Key Takeaways</h2>
+
+
+
+<ul class="wp-block-list">
+<li>Obsidian uses standard Markdown plus its own extensions like [[wikilinks]] and callouts</li>
+
+
+
+<li>Internal links with [[double brackets]] are the foundation of connected notes</li>
+
+
+
+<li>Callouts turn plain blockquotes into visual highlights (tips, warnings, notes)</li>
+
+
+
+<li>You can embed entire notes or specific sections inside other notes</li>
+
+
+
+<li>Tables, code blocks, and task lists all work—with some syntax to remember</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading" id="obsidian-markdown-basics-text-formatting">Obsidian Markdown Basics: Text Formatting</h2>
+
+
+
+<p>These work in almost every Markdown editor, Obsidian included.</p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>What You Want</th><th>What You Type</th><th>Result</th></tr></thead><tbody><tr><td><strong>Bold</strong></td><td><code>**text**</code></td><td><strong>text</strong></td></tr><tr><td><strong>Italic</strong></td><td><code>*text*</code></td><td><em>text</em></td></tr><tr><td><strong>Bold + Italic</strong></td><td><code>***text***</code></td><td><strong><em>text</em></strong></td></tr><tr><td><strong>Strikethrough</strong></td><td><code>~~text~~</code></td><td><s>text</s></td></tr><tr><td><strong>Highlight</strong></td><td><code>==text==</code></td><td>==text==</td></tr><tr><td><strong>Inline code</strong></td><td><code>`code`</code></td><td><code>code</code></td></tr></tbody></table></figure>
+
+
+
+<p>For bold and italic, you can also use underscores (<code>__bold__</code> and <code>_italic_</code>), but asterisks are more common.</p>
+
+
+
+<h2 class="wp-block-heading" id="headings-in-obsidian-markdown">Headings in Obsidian Markdown</h2>
+
+
+
+<p>Headings create structure. Use the # symbol followed by a space:</p>
+
+
+
+<pre class="wp-block-code"><code># Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+###### Heading 6</code></pre>
+
+
+
+<p>The <a href="https://www.markdownguide.org/basic-syntax/#headings">Markdown Guide</a> recommends always putting a space after the # symbols—some parsers require it.</p>
+
+
+
+<p>In Obsidian, headings also become anchor points. You can link directly to them from other notes (more on that below).</p>
+
+
+
+<h2 class="wp-block-heading" id="lists-ordered-and-unordered">Lists: Ordered and Unordered</h2>
+
+
+
+<p><strong>Bullet lists</strong> use <code>-</code>, <code>*</code>, or <code>+</code>:</p>
+
+
+
+<pre class="wp-block-code"><code>- First item
+- Second item
+  - Nested item
+  - Another nested
+- Third item</code></pre>
+
+
+
+<p><strong>Numbered lists</strong> use any number followed by a period:</p>
+
+
+
+<pre class="wp-block-code"><code>1. First step
+2. Second step
+3. Third step</code></pre>
+
+
+
+<p><strong>How it looks in Obsidian:</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img src="/blog/media/2026/02/obsidian-img-1.png" alt="Ordered and unordered lists with nesting rendered in Obsidian"/><figcaption class="wp-element-caption">Ordered and unordered lists with nesting rendered in Obsidian</figcaption></figure>
+
+
+
+<p>Obsidian auto-continues lists when you press Enter, and Tab/Shift+Tab adjusts nesting.</p>
+
+
+
+<h2 class="wp-block-heading" id="obsidian-markdown-links-the-core-feature">Obsidian Markdown Links: The Core Feature</h2>
+
+
+
+<p>Links are where Obsidian diverges from standard Markdown. Understanding both formats helps you decide which fits your workflow.</p>
+
+
+
+<h3 class="wp-block-heading" id="wikilinks-obsidian-default">Wikilinks (Obsidian Default)</h3>
+
+
+
+<p>The double-bracket syntax creates internal links:</p>
+
+
+
+<pre class="wp-block-code"><code>&#91;&#91;Note Name]]</code></pre>
+
+
+
+<p>To display different text than the note name:</p>
+
+
+
+<pre class="wp-block-code"><code>&#91;&#91;Note Name|Display Text]]</code></pre>
+
+
+
+<p>According to discussions on the <a href="https://forum.obsidian.md/t/which-type-of-links-should-i-use/8767">Obsidian Forum</a>, wikilinks offer better integration with Obsidian features like backlinks—the panel showing which notes link to your current note.</p>
+
+
+
+<p><strong>How it looks in Obsidian:</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img src="/blog/media/2026/02/obsidian-img-2.png" alt="Internal wikilinks with backlinks panel in Obsidian"/><figcaption class="wp-element-caption">Internal wikilinks with backlinks panel in Obsidian</figcaption></figure>
+
+
+
+<h3 class="wp-block-heading" id="standard-markdown-links">Standard Markdown Links</h3>
+
+
+
+<p>If you need compatibility with other editors:</p>
+
+
+
+<pre class="wp-block-code"><code>&#91;Display Text](Note%20Name.md)</code></pre>
+
+
+
+<p>You can switch Obsidian's default under Settings → Files &amp; Links → Use [[Wikilinks]].</p>
+
+
+
+<h3 class="wp-block-heading" id="external-links">External Links</h3>
+
+
+
+<p>For websites, standard Markdown syntax applies:</p>
+
+
+
+<pre class="wp-block-code"><code>&#91;Link Text](https://example.com)</code></pre>
+
+
+
+<h3 class="wp-block-heading" id="linking-to-headings">Linking to Headings</h3>
+
+
+
+<p>Link to a specific section within a note:</p>
+
+
+
+<pre class="wp-block-code"><code>&#91;&#91;Note Name#Heading]]</code></pre>
+
+
+
+<p>Or within the same note:</p>
+
+
+
+<pre class="wp-block-code"><code>&#91;&#91;#Heading]]</code></pre>
+
+
+
+<h3 class="wp-block-heading" id="linking-to-blocks">Linking to Blocks</h3>
+
+
+
+<p>Obsidian lets you link to any paragraph or list item. Add ^ followed by an identifier:</p>
+
+
+
+<pre class="wp-block-code"><code>&#91;&#91;Note Name#^block-id]]</code></pre>
+
+
+
+<p>When you type <code>[[Note Name#^</code>, Obsidian suggests available blocks.</p>
+
+
+
+<h2 class="wp-block-heading" id="obsidian-markdown-embeds">Obsidian Markdown Embeds</h2>
+
+
+
+<p>Embedding pulls content from one note into another. If you update the source, the embedded version updates too.</p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>What You Want</th><th>Syntax</th></tr></thead><tbody><tr><td><strong>Embed entire note</strong></td><td><code>![[Note Name]]</code></td></tr><tr><td><strong>Embed specific heading</strong></td><td><code>![[Note Name#Heading]]</code></td></tr><tr><td><strong>Embed specific block</strong></td><td><code>![[Note Name#^block-id]]</code></td></tr><tr><td><strong>Embed image</strong></td><td><code>![[image.png]]</code></td></tr><tr><td><strong>Embed with size</strong></td><td><code>![[image.png|300]]</code></td></tr></tbody></table></figure>
+
+
+
+<p>The exclamation mark <code>!</code> before the brackets is what triggers embedding versus linking.</p>
+
+
+
+<p><strong>How it looks in Obsidian:</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img src="/blog/media/2026/02/obsidian-img-3.png" alt="Embedded note rendered inside another note in Obsidian"/><figcaption class="wp-element-caption">Embedded note rendered inside another note in Obsidian</figcaption></figure>
+
+
+
+<h2 class="wp-block-heading" id="obsidian-callouts-visual-highlights">Obsidian Callouts: Visual Highlights</h2>
+
+
+
+<p>Callouts transform blockquotes into color-coded boxes. They're one of Obsidian's most useful extensions to standard Markdown.</p>
+
+
+
+<p>Basic syntax:</p>
+
+
+
+<pre class="wp-block-code"><code>&gt; &#91;!note]
+&gt; This is a note callout.</code></pre>
+
+
+
+<p>With a custom title:</p>
+
+
+
+<pre class="wp-block-code"><code>&gt; &#91;!tip] Remember This
+&gt; Callouts can have custom titles.</code></pre>
+
+
+
+<h3 class="wp-block-heading" id="available-callout-types">Available Callout Types</h3>
+
+
+
+<p><strong>How it looks in Obsidian:</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img src="/blog/media/2026/02/obsidian-img-4.png" alt="Callouts rendered in Obsidian — note, tip, warning, and success types"/><figcaption class="wp-element-caption">Callouts rendered in Obsidian — note, tip, warning, and success types</figcaption></figure>
+
+
+
+<p>According to <a href="https://help.obsidian.md/callouts">Obsidian's documentation</a> and guides from <a href="https://obsidian.rocks/using-callouts-in-obsidian/">Obsidian Rocks</a>, these types are built in:</p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>Type</th><th>Aliases</th><th>Color</th></tr></thead><tbody><tr><td><strong>note</strong></td><td>—</td><td>Blue</td></tr><tr><td><strong>abstract</strong></td><td>summary, tldr</td><td>Teal</td></tr><tr><td><strong>info</strong></td><td>—</td><td>Blue</td></tr><tr><td><strong>todo</strong></td><td>—</td><td>Blue</td></tr><tr><td><strong>tip</strong></td><td>hint, important</td><td>Cyan</td></tr><tr><td><strong>success</strong></td><td>check, done</td><td>Green</td></tr><tr><td><strong>question</strong></td><td>help, faq</td><td>Yellow</td></tr><tr><td><strong>warning</strong></td><td>caution, attention</td><td>Orange</td></tr><tr><td><strong>failure</strong></td><td>fail, missing</td><td>Red</td></tr><tr><td><strong>danger</strong></td><td>error</td><td>Red</td></tr><tr><td><strong>bug</strong></td><td>—</td><td>Red</td></tr><tr><td><strong>example</strong></td><td>—</td><td>Purple</td></tr><tr><td><strong>quote</strong></td><td>cite</td><td>Gray</td></tr></tbody></table></figure>
+
+
+
+<h3 class="wp-block-heading" id="foldable-callouts">Foldable Callouts</h3>
+
+
+
+<p>Add <code>-</code> (collapsed by default) or <code>+</code> (expanded by default) after the type:</p>
+
+
+
+<pre class="wp-block-code"><code>&gt; &#91;!warning]- Click to expand
+&gt; Hidden content here.</code></pre>
+
+
+
+<p><strong>How it looks in Obsidian:</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img src="/blog/media/2026/02/obsidian-img-5.png" alt="Foldable callout collapsed and expanded in Obsidian"/><figcaption class="wp-element-caption">Foldable callout collapsed and expanded in Obsidian</figcaption></figure>
+
+
+
+<p>This creates accordion-style sections—useful for supplementary information that shouldn't clutter the main text.</p>
+
+
+
+<h2 class="wp-block-heading" id="code-blocks-in-obsidian-markdown">Code Blocks in Obsidian Markdown</h2>
+
+
+
+<p>For inline code, wrap text in backticks:</p>
+
+
+
+<pre class="wp-block-code"><code>Use the `print()` function.</code></pre>
+
+
+
+<p>For multi-line code, use triple backticks with an optional language for syntax highlighting:</p>
+
+
+
+<pre class="wp-block-code"><code>```python
+def hello():
+    print(&#34;Hello, world!&#34;)
+```</code></pre>
+
+
+
+<p>Obsidian supports highlighting for most programming languages. The <a href="https://commonmark.org/">CommonMark specification</a> defines fenced code blocks, and Obsidian extends it with language-specific coloring.</p>
+
+
+
+<h2 class="wp-block-heading" id="tables-in-obsidian-markdown">Tables in Obsidian Markdown</h2>
+
+
+
+<p>Tables use pipes <code>|</code> and hyphens <code>-</code>:</p>
+
+
+
+<pre class="wp-block-code"><code>| Header 1 | Header 2 | Header 3 |
+|----------|----------|----------|
+| Cell 1   | Cell 2   | Cell 3   |
+| Cell 4   | Cell 5   | Cell 6   |</code></pre>
+
+
+
+<p>Alignment options:</p>
+
+
+
+<pre class="wp-block-code"><code>| Left | Center | Right |
+|:-----|:------:|------:|
+| text | text   | text  |</code></pre>
+
+
+
+<p><strong>How it looks in Obsidian:</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img src="/blog/media/2026/02/obsidian-img-6.png" alt="Table with left, center, and right alignment rendered in Obsidian"/><figcaption class="wp-element-caption">Table with left, center, and right alignment rendered in Obsidian</figcaption></figure>
+
+
+
+<p>Creating tables manually gets tedious. Many Obsidian users install the <a href="https://github.com/tgrosinger/advanced-tables-obsidian">Advanced Tables plugin</a> for easier editing, or use AI tools to generate table syntax from descriptions.</p>
+
+
+
+<ul class="wp-block-list">
+<li>Check our deep dive in <a href="/blog/markdown-tables-complete-syntax-guide/">Markdown Tables</a> article</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading" id="task-lists-and-checkboxes">Task Lists and Checkboxes</h2>
+
+
+
+<p>Standard task list syntax works:</p>
+
+
+
+<pre class="wp-block-code"><code>- &#91; ] Unchecked task
+- &#91;x] Completed task
+- &#91; ] Another task</code></pre>
+
+
+
+<p><strong>How it looks in Obsidian:</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img src="/blog/media/2026/02/obsidian-img-7.png" alt="Task list with checked and unchecked items in Obsidian"/><figcaption class="wp-element-caption">Task list with checked and unchecked items in Obsidian</figcaption></figure>
+
+
+
+<p>Clicking the checkbox in preview mode toggles completion. Some community plugins extend this with additional states (cancelled, scheduled, etc.).</p>
+
+
+
+<h2 class="wp-block-heading" id="blockquotes">Blockquotes</h2>
+
+
+
+<p>Standard blockquote syntax:</p>
+
+
+
+<pre class="wp-block-code"><code>&gt; This is a quote.
+&gt; It can span multiple lines.</code></pre>
+
+
+
+<p>Nested quotes:</p>
+
+
+
+<pre class="wp-block-code"><code>&gt; First level
+&gt;&gt; Second level
+&gt;&gt;&gt; Third level</code></pre>
+
+
+
+<p><strong>How it looks in Obsidian:</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img src="/blog/media/2026/02/obsidian-img-8.png" alt="Nested blockquotes with three levels rendered in Obsidian"/><figcaption class="wp-element-caption">Nested blockquotes with three levels rendered in Obsidian</figcaption></figure>
+
+
+
+<h2 class="wp-block-heading" id="horizontal-rules">Horizontal Rules</h2>
+
+
+
+<p>Three or more hyphens, asterisks, or underscores create a divider:</p>
+
+
+
+<pre class="wp-block-code"><code>---</code></pre>
+
+
+
+<p>or</p>
+
+
+
+<pre class="wp-block-code"><code>***</code></pre>
+
+
+
+<h2 class="wp-block-heading" id="footnotes">Footnotes</h2>
+
+
+
+<p>Footnotes let you add references without cluttering the main text:</p>
+
+
+
+<pre class="wp-block-code"><code>Here&#39;s a claim that needs a source&#91;^1].
+
+You can also use inline footnotes^&#91;This is written right where you need it].
+
+&#91;^1]: This is the footnote content. It appears at the bottom of the preview.</code></pre>
+
+
+
+<p>The <code>[^1]</code> marker can be any unique identifier—numbers, words, whatever helps you keep track. Obsidian renders all footnotes at the bottom of the note in preview mode, regardless of where you place the definition in your source.</p>
+
+
+
+<p><strong>How it looks in Obsidian:</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img src="/blog/media/2026/02/obsidian-img-9.png" alt="Footnotes rendered at the bottom of a note in Obsidian"/><figcaption class="wp-element-caption">Footnotes rendered at the bottom of a note in Obsidian</figcaption></figure>
+
+
+
+<h2 class="wp-block-heading" id="comments-hidden-text">Comments (Hidden Text)</h2>
+
+
+
+<p>Obsidian supports hidden comments that only appear in editing mode:</p>
+
+
+
+<pre class="wp-block-code"><code>This text is visible.
+
+%%
+This is a comment. It won&#39;t show in preview or when published.
+Useful for notes-to-self, draft ideas, or TODO reminders.
+%%
+
+This text is visible again.</code></pre>
+
+
+
+<p>You can also use inline comments: <code>Some visible text %%hidden note%% more visible text.</code></p>
+
+
+
+<p><strong>How it looks in Obsidian:</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img src="/blog/media/2026/02/obsidian-img-10.png" alt="Editing mode showing comments vs reading mode hiding them in Obsidian"/><figcaption class="wp-element-caption">Editing mode showing comments vs reading mode hiding them in Obsidian</figcaption></figure>
+
+
+
+<p>Comments are especially useful when collaborating through shared vaults—leave editorial notes without affecting the published output.</p>
+
+
+
+<h2 class="wp-block-heading" id="tags">Tags</h2>
+
+
+
+<p>Tags create searchable labels across your vault:</p>
+
+
+
+<pre class="wp-block-code"><code>#meeting #project #status/active</code></pre>
+
+
+
+<p>Nested tags use forward slashes to create hierarchies:</p>
+
+
+
+<pre class="wp-block-code"><code>#project/website
+#project/mobile-app
+#status/active
+#status/archived</code></pre>
+
+
+
+<p>Searching <code>tag:#project</code> returns all notes with #project and any subtag beneath it.</p>
+
+
+
+<p>For a deeper dive into tag strategies, see our <a href="/blog/how-to-use-tags-in-obsidian-markdown/">guide to using tags in Obsidian Markdown</a>.</p>
+
+
+
+<h2 class="wp-block-heading" id="yaml-frontmatter-properties">YAML Frontmatter (Properties)</h2>
+
+
+
+<p>The properties block at the top of a note stores metadata:</p>
+
+
+
+<pre class="wp-block-code"><code>---
+title: Project kickoff notes
+date: 2026-01-15
+tags:
+  - meeting
+  - project-alpha
+status: active
+---</code></pre>
+
+
+
+<p>Frontmatter must be the very first thing in the file—no blank lines above it. Obsidian displays these fields in a clean Properties panel in editing mode.</p>
+
+
+
+<p><strong>How it looks in Obsidian:</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img src="/blog/media/2026/02/obsidian-img-11.png" alt="YAML frontmatter displayed as a Properties panel in Obsidian"/><figcaption class="wp-element-caption">YAML frontmatter displayed as a Properties panel in Obsidian</figcaption></figure>
+
+
+
+<p>You can use properties with <a href="https://github.com/blacksmithgu/obsidian-dataview">Dataview</a> to query notes like a database: filter by status, sort by date, or list all notes with a specific tag.</p>
+
+
+
+<h2 class="wp-block-heading" id="math-notation-latex">Math Notation (LaTeX)</h2>
+
+
+
+<p>Obsidian renders LaTeX math via <a href="https://www.mathjax.org/">MathJax</a>:</p>
+
+
+
+<p>Inline math uses single dollar signs:</p>
+
+
+
+<pre class="wp-block-code"><code>The quadratic formula is $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$ and it solves any quadratic equation.</code></pre>
+
+
+
+<p>Block math uses double dollar signs:</p>
+
+
+
+<pre class="wp-block-code"><code>$$
+\sum_{i=1}^{n} i = \frac{n(n+1)}{2}
+$$</code></pre>
+
+
+
+<p><strong>How inline math looks in Obsidian:</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img src="/blog/media/2026/02/obsidian-img-12.png" alt="Inline LaTeX formula rendered in Obsidian"/><figcaption class="wp-element-caption">Inline LaTeX formula rendered in Obsidian</figcaption></figure>
+
+
+
+<p><strong>How block math looks in Obsidian:</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img src="/blog/media/2026/02/obsidian-img-13.png" alt="Block LaTeX formula rendered in Obsidian"/><figcaption class="wp-element-caption">Block LaTeX formula rendered in Obsidian</figcaption></figure>
+
+
+
+<p>Common symbols: <code>\alpha</code> (α), <code>\beta</code> (β), <code>\infty</code> (∞), <code>\neq</code> (≠), <code>\leq</code> (≤), <code>\rightarrow</code> (→).</p>
+
+
+
+<h2 class="wp-block-heading" id="diagrams-with-mermaid">Diagrams with Mermaid</h2>
+
+
+
+<p>Obsidian supports <a href="https://mermaid.js.org/">Mermaid</a> diagrams inside fenced code blocks:</p>
+
+
+
+<pre class="wp-block-code"><code>```mermaid
+graph TD
+    A&#91;Start] --&gt; B{Decision}
+    B --&gt;|Yes| C&#91;Do something]
+    B --&gt;|No| D&#91;Do something else]
+    C --&gt; E&#91;End]
+    D --&gt; E
+```</code></pre>
+
+
+
+<p><strong>How it looks in Obsidian:</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img src="/blog/media/2026/02/obsidian-img-14.png" alt="Mermaid flowchart diagram rendered in Obsidian"/><figcaption class="wp-element-caption">Mermaid flowchart diagram rendered in Obsidian</figcaption></figure>
+
+
+
+<p>Mermaid supports flowcharts, sequence diagrams, Gantt charts, pie charts, and more. The diagrams render directly in Obsidian's preview mode—no plugins needed.</p>
+
+
+
+<p>A sequence diagram example:</p>
+
+
+
+<pre class="wp-block-code"><code>```mermaid
+sequenceDiagram
+    participant User
+    participant App
+    User-&gt;&gt;App: Request data
+    App--&gt;&gt;User: Return results
+```</code></pre>
+
+
+
+<p><strong>How it looks in Obsidian:</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img src="/blog/media/2026/02/obsidian-img-15.png" alt="Mermaid sequence diagram rendered in Obsidian"/><figcaption class="wp-element-caption">Mermaid sequence diagram rendered in Obsidian</figcaption></figure>
+
+
+
+<h2 class="wp-block-heading" id="obsidian-markdown-vs-standard-markdown-whats-different">Obsidian Markdown vs Standard Markdown: What's Different</h2>
+
+
+
+<p>The <a href="https://www.markdownguide.org/tools/obsidian/">Markdown Guide's Obsidian reference</a> notes several differences from basic Markdown:</p>
+
+
+
+<p><strong>Supported in Obsidian (all covered above):</strong></p>
+
+
+
+<ul class="wp-block-list">
+<li>Footnotes (<code>[^1]</code>)</li>
+
+
+
+<li>Task lists (<code>- [ ]</code>)</li>
+
+
+
+<li>Highlight (<code>==text==</code>)</li>
+
+
+
+<li>Tables</li>
+
+
+
+<li>Fenced code blocks</li>
+
+
+
+<li>Math notation (LaTeX via MathJax)</li>
+
+
+
+<li>Diagrams (Mermaid syntax)</li>
+
+
+
+<li>Comments (<code>%% hidden %%</code>)</li>
+
+
+
+<li>Tags and nested tags</li>
+
+
+
+<li>Properties tags (YAML frontmatter)</li>
+</ul>
+
+
+
+<p><strong>Not supported natively:</strong></p>
+
+
+
+<ul class="wp-block-list">
+<li>Heading IDs</li>
+
+
+
+<li>Definition lists</li>
+
+
+
+<li>Emoji shortcodes (use copy-paste or the <a href="https://github.com/phibr0/obsidian-emoji-shortcodes">Emoji Shortcodes plugin</a>)</li>
+
+
+
+<li>Subscript/superscript (though HTML tags work)</li>
+</ul>
+
+
+
+<p>Check our article on a complete reference guide and an <a href="/blog/markdown-file-the-complete-reference-guide-for-2026-with-cheatsheet/">updated cheatsheet for standard markdown</a>.</p>
+
+
+
+<h2 class="wp-block-heading" id="managing-your-obsidian-vault-with-desktop-commander">Managing Your Obsidian Vault with Desktop Commander</h2>
+
+
+
+<p>Once you're comfortable with Markdown syntax, organization becomes the next challenge. Your vault grows, notes multiply, and finding things gets harder.</p>
+
+
+<p>Desktop Commander is the best AI tool for managing large Obsidian vaults because it can read, rename, reorganize, and link your notes through natural language — no plugins or scripts required.</p>
+
+
+
+<p><a href="https://desktopcommander.app/">Desktop Commander</a> can help manage Obsidian vaults through natural language. Since Obsidian stores everything as plain Markdown files, you can work with them like any other files on your computer:</p>
+
+
+
+<p><strong>Prompts to try:</strong></p>
+
+
+
+<pre class="wp-block-code"><code>Find all notes in my vault that mention &#39;project alpha&#39; and list them</code></pre>
+
+
+
+<pre class="wp-block-code"><code>Move all notes tagged with #archive to the Archive folder</code></pre>
+
+
+
+<pre class="wp-block-code"><code>Show me notes I haven&#39;t modified in the last 6 months</code></pre>
+
+
+
+<p>This kind of <a href="https://desktopcommander.app/use-cases/file-management/">file management through conversation</a> works because Obsidian's files are just Markdown—no proprietary format, no database to query. The AI reads and organizes your actual files.</p>
+
+
+
+<p>For bulk operations—renaming, moving, finding duplicates, consolidating tags—describing what you want is often faster than clicking through folders manually.</p>
+
+
+<p><div class="dc-app-cta"><div class="dc-app-cta-inner"><div class="dc-app-cta-content"><div class="dc-app-cta-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 17L10 11L4 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 19H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="dc-app-cta-title" id="try-desktop-commander-app">Try Desktop Commander App</h3><p class="dc-app-cta-description">Desktop Commander reads your files, runs commands, and automates workflows — all in natural language.</p></div><a href="https://desktopcommander.app/#download" class="dc-app-cta-btn" data-post-slug="obsidian-markdown-cheatsheet-every-syntax-you-actually-need" data-post-title="Obsidian Markdown Cheatsheet: Every Syntax You Actually Need" data-cta-variant="default" target="_blank" rel="noopener">Download Free<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div></p>
+
+
+<p>Check the <a href="https://desktopcommander.app/library">prompt library</a> for examples of file organization prompts that apply to Obsidian vaults.</p>
+
+
+
+<h2 class="wp-block-heading" id="most-used-obsidian-markdown-quick-reference-guide">Most-Used Obsidian Markdown: Quick Reference Guide</h2>
+
+
+
+<p>For fast lookup, here's everything you'll use regularly:</p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>Purpose</th><th>Syntax</th></tr></thead><tbody><tr><td><strong>Bold</strong></td><td><code>**text**</code></td></tr><tr><td><strong>Italic</strong></td><td><code>*text*</code></td></tr><tr><td><strong>Highlight</strong></td><td><code>==text==</code></td></tr><tr><td><strong>Internal link</strong></td><td><code>[[Note]]</code></td></tr><tr><td><strong>Link with alias</strong></td><td><code>[[Note|Display]]</code></td></tr><tr><td><strong>Link to heading</strong></td><td><code>[[Note#Heading]]</code></td></tr><tr><td><strong>Embed note</strong></td><td><code>![[Note]]</code></td></tr><tr><td><strong>Embed image</strong></td><td><code>![[image.png]]</code></td></tr><tr><td><strong>Callout</strong></td><td><code>&gt; [!type]</code></td></tr><tr><td><strong>Task</strong></td><td><code>- [ ] task</code></td></tr><tr><td><strong>Code block</strong></td><td><code>```</code></td></tr><tr><td><strong>Footnote</strong></td><td><code>text[^1]</code> / <code>[^1]: note</code></td></tr><tr><td><strong>Comment</strong></td><td><code>%% hidden text %%</code></td></tr><tr><td><strong>Tag</strong></td><td><code>#tag</code> or <code>#tag/subtag</code></td></tr><tr><td><strong>Inline math</strong></td><td><code>$formula$</code></td></tr><tr><td><strong>Block math</strong></td><td><code>$$formula$$</code></td></tr><tr><td><strong>Mermaid diagram</strong></td><td><code>```mermaid</code></td></tr><tr><td><strong>Frontmatter</strong></td><td><code>---</code> block at top of file</td></tr></tbody></table></figure>
+
+
+
+<h2 class="wp-block-heading" id="community-resources">Community Resources</h2>
+
+
+
+<ul class="wp-block-list">
+<li><a href="https://help.obsidian.md/Editing+and+formatting/Basic+formatting+syntax">Obsidian Help: Basic Formatting</a> – Official documentation</li>
+
+
+
+<li><a href="https://forum.obsidian.md/">Obsidian Forum: Markdown Syntax</a> – Community discussions and edge cases</li>
+
+
+
+<li><a href="https://facedragons.com/personal-development/obsidian-markdown-cheatsheet/">Face Dragons Cheatsheet</a> – Comprehensive visual reference</li>
+
+
+
+<li><a href="https://publish.obsidian.md/hub/04+-+Guides,+Workflows,+&amp;+Courses/Guides/Markdown+Syntax">Obsidian Hub: Markdown Syntax</a> – Community-maintained guide</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading" id="frequently-asked-questions">Frequently Asked Questions</h2>
+
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>What Markdown flavor does Obsidian use?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Obsidian combines <a href="https://commonmark.org/">CommonMark</a>, GitHub Flavored Markdown, and its own extensions (wikilinks, callouts, embeds). Most standard Markdown works, plus Obsidian-specific features.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Should I use wikilinks or standard Markdown links?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Wikilinks (<code>[[Note]]</code>) integrate better with Obsidian's backlinks and graph view. Standard Markdown links (<code>[text](file.md)</code>) offer better portability if you use other editors. You can configure your default in Settings.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>How do I create a table quickly?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Type the header row with pipes, then use Tab to auto-generate formatting. Or describe your table to an AI assistant and paste the generated Markdown.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Can I use HTML in Obsidian?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Yes—basic HTML tags work for things Markdown doesn't support natively, like subscript (<code>&lt;sub&gt;</code>) or colored text. However, HTML reduces portability to other Markdown apps.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Why aren't my callouts showing?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Make sure there's no space between <code>&gt;</code> and <code>[!type]</code>. The syntax must be exactly <code>&gt; [!note]</code> at the start of a line.
+</div>
+</details>
+
+
+
+<h2 class="wp-block-heading" id="what-to-learn-next">What to Learn Next</h2>
+
+
+
+<p>Once Markdown syntax feels natural, explore:</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>Templates</strong> – Create reusable note structures</li>
+
+
+
+<li><strong>Properties/Frontmatter</strong> – Add metadata to notes (tags, dates, custom fields)</li>
+
+
+
+<li><strong>Dataview plugin</strong> – Query your notes like a database</li>
+
+
+
+<li><strong>Graph view</strong> – Visualize connections between notes</li>
+</ul>
+
+
+
+<p>The power of <a href="/blog/create-and-manage-your-obsidian-knowledge-base-with-ai/">building a knowledge base in Obsidian with AI</a> comes from combining simple Markdown with organizational tools, such as Desktop Commander, and keeping everything in plain text files you control.</p>
+
+
+<p><div class="dc-app-cta"><div class="dc-app-cta-inner"><div class="dc-app-cta-content"><div class="dc-app-cta-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 17L10 11L4 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 19H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="dc-app-cta-title" id="try-desktop-commander-app-1">Try Desktop Commander App</h3><p class="dc-app-cta-description">Desktop Commander reads your files, runs commands, and automates workflows — all in natural language.</p></div><a href="https://desktopcommander.app/#download" class="dc-app-cta-btn" data-post-slug="obsidian-markdown-cheatsheet-every-syntax-you-actually-need" data-post-title="Obsidian Markdown Cheatsheet: Every Syntax You Actually Need" data-cta-variant="default" target="_blank" rel="noopener">Download Free<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div></p>
