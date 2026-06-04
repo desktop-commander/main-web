@@ -5,6 +5,7 @@
 import postsMeta from './posts.json';
 import authorsData from './authors.json';
 import categoriesData from './categories.json';
+import pagesData from './pages.json';
 import siteData from './site.json';
 
 export interface TocItem { id: string; text: string; level: number }
@@ -36,8 +37,12 @@ export const posts: BlogPost[] = (postsMeta as Omit<BlogPost, 'body'>[]).map((p)
   body: bodyBySlug[p.slug] || '',
 }));
 
+export interface BlogPage { id: number; slug: string; title: string; date: string; modified: string; meta_description: string; template: string }
+
 export const authors = authorsData as Author[];
 export const categories = categoriesData as Category[];
+export const pages = pagesData as BlogPage[];
+export const pageBySlug = (slug: string) => pages.find((p) => p.slug === slug);
 export const site = siteData as { name: string; description: string; home_url: string };
 
 // Fallback OG image (WP attachment 682), self-hosted.

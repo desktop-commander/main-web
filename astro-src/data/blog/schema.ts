@@ -90,6 +90,19 @@ export function siteGraph() {
   return { '@context': 'https://schema.org', '@graph': [websiteNode()] };
 }
 
+export function pageGraph(name: string, url: string, datePublished: string, dateModified: string) {
+  const webpage = {
+    '@type': 'WebPage',
+    '@id': `${url}#webpage`,
+    url,
+    name,
+    isPartOf: { '@id': `${HOME}#website` },
+    datePublished,
+    dateModified,
+  };
+  return { '@context': 'https://schema.org', '@graph': [websiteNode(), webpage] };
+}
+
 export function profileGraph(author: Author) {
   const url = `${HOME}author/${author.login}/`;
   const profile = {
