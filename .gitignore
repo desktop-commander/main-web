@@ -9,3 +9,7 @@ daemon.log
 /.idea/modules.xml
 /.idea/inspectionProfiles/Project_Default.xml
 .DS_Store
+
+# Blog migration: heavy export bundle is reproducible via _migration/export.php — don't commit it
+_migration/wp-export/
+_migration/*.tar.gz
