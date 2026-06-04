@@ -23,6 +23,7 @@ interface Props {
   jsonLd?: Record<string, unknown>[];
   isPost?: boolean;
   bodyClass?: string;
+  robots?: string;
   articlePublished?: string;
   articleModified?: string;
   articleAuthor?: string;
@@ -32,7 +33,7 @@ const ORIGIN = 'https://desktopcommander.app';
 const {
   title, description, canonical,
   ogTitle, ogType = 'website', ogUrl, ogImage,
-  jsonLd = [], isPost = false, bodyClass = '',
+  jsonLd = [], isPost = false, bodyClass = '', robots,
   articlePublished, articleModified, articleAuthor,
 } = Astro.props;
 
@@ -60,6 +61,7 @@ const ogU = ogUrl || canonical;
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    {robots && <meta name="robots" content={robots} />}
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={ogType} />

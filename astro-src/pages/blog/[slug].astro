@@ -57,7 +57,7 @@ const authorBio = author?.bio || 'Writer and contributor to Desktop Commander Bl
       </button>
     </div>
 
-    <article class="post single-post">
+    <article class="post single-post" data-pagefind-body>
       <header class="single-post-header">
         <nav class="breadcrumbs">
           <a href="/blog/">Blog</a>
@@ -85,7 +85,7 @@ const authorBio = author?.bio || 'Writer and contributor to Desktop Commander Bl
         )}
       </header>
 
-      <div class="author-bio-section">
+      <div class="author-bio-section" data-pagefind-ignore>
         <div class="author-bio-card">
           <div class="author-bio-avatar">
             {author?.avatar_url && <img src={author.avatar_url} alt={post.author_name} width="80" height="80" loading="lazy" />}
