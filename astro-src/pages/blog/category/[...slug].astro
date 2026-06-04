@@ -1,0 +1,57 @@
+---
+import BlogLayout from '../../../layouts/BlogLayout.astro';
+import CategoryFilter from '../../../components/blog/CategoryFilter.astro';
+import PostCard from '../../../components/blog/PostCard.astro';
+import Pagination from '../../../components/blog/Pagination.astro';
+import { categories, postsByCategory, site, OG_FALLBACK } from '../../../data/blog/posts';
+import { siteGraph } from '../../../data/blog/schema';
+
+export function getStaticPaths() {
+  const PER = 10;
+  const out = [];
+  for (const cat of categories.filter((c) => c.count > 0)) {
+    const cp = postsByCategory(cat.slug);
+    const totalPages = Math.max(1, Math.ceil(cp.length / PER));
+    for (let p = 1; p <= totalPages; p++) {
+      const slug = p === 1 ? cat.slug : `${cat.slug}/page/${p}`;
+      out.push({ params: { slug }, props: { cat, pagePosts: cp.slice((p - 1) * PER, p * PER), current: p, totalPages } });
+    }
+  }
+  return out;
+}
+
+const { cat, pagePosts, current, totalPages } = Astro.props;
+const basePath = `/blog/category/${cat.slug}/`;
+const canonical = `https://desktopcommander.app${current === 1 ? basePath : `${basePath}page/${current}/`}`;
+const description = (cat.description && cat.description.trim())
+  ? cat.description.replace(/<[^>]+>/g, '').trim()
+  : `Browse articles about ${cat.name} on Desktop Commander Blog.`;
+---
+<BlogLayout
+  title={`${cat.name} | ${site.name}`}
+  description={description}
+  canonical={canonical}
+  ogTitle={cat.name}
+  ogType="website"
+  ogUrl={canonical}
+  ogImage={OG_FALLBACK}
+  jsonLd={[siteGraph()]}
+  bodyClass="archive category"
+>
+  <main class="site-content">
+    <header class="single-post-header">
+      <h1 class="single-post-title">{cat.name}</h1>
+      {cat.description && (
+        <div style="color: var(--dc-text-secondary); max-width: 800px; margin: 1rem auto;" set:html={cat.description} />
+      )}
+    </header>
+
+    <CategoryFilter activeSlug={cat.slug} />
+
+    <div class="posts-grid">
+      {pagePosts.map((post) => <PostCard post={post} />)}
+    </div>
+
+    <Pagination current={current} total={totalPages} basePath={basePath} />
+  </main>
+</BlogLayout>

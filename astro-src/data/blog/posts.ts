@@ -40,6 +40,23 @@ export const authors = authorsData as Author[];
 export const categories = categoriesData as Category[];
 export const site = siteData as { name: string; description: string; home_url: string };
 
+// Fallback OG image (WP attachment 682), self-hosted.
+export const OG_FALLBACK = '/blog/media/2026/02/dc-blog-og.png';
+
+// Card/featured excerpt — mirrors get_the_excerpt() + wp_trim_words(). Strips the body
+// to text and returns the first `words` words with an ellipsis when truncated.
+export function excerptText(post: BlogPost, words = 20): string {
+  const text = post.body
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&[^;]+;/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  const parts = text.split(' ');
+  return parts.length > words ? parts.slice(0, words).join(' ') + '…' : text;
+}
+
 export const postBySlug = (slug: string) => posts.find((p) => p.slug === slug);
 export const authorById = (id: number) => authors.find((a) => a.id === id);
 export const authorByLogin = (login: string) => authors.find((a) => a.login === login);

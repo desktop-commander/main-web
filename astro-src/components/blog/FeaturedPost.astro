@@ -1,0 +1,32 @@
+---
+import { excerptText, type BlogPost } from '../../data/blog/posts';
+interface Props { post: BlogPost }
+const { post } = Astro.props;
+const href = `/blog/${post.slug}/`;
+const dateStr = new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<article class="featured-post">
+  <a href={href} class="featured-post-link">
+    {post.featured_image && (
+      <div class="featured-post-image-wrapper">
+        <img src={post.featured_image} alt={post.title} class="featured-post-image" />
+      </div>
+    )}
+    <div class="featured-post-content">
+      <span class="featured-badge">New</span>
+      <h2 class="featured-post-title">{post.title}</h2>
+      <div class="featured-post-excerpt">{excerptText(post, 40)}</div>
+      <div class="featured-post-meta">
+        <span>{dateStr}</span>
+        <span>By {post.author_name}</span>
+      </div>
+      {post.categories.length > 0 && (
+        <div class="featured-post-categories">
+          {post.category_names.map((name) => (
+            <span class="post-category-tag featured-category-tag">{name}</span>
+          ))}
+        </div>
+      )}
+    </div>
+  </a>
+</article>

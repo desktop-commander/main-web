@@ -1,0 +1,63 @@
+---
+import BlogLayout from '../../../layouts/BlogLayout.astro';
+import PostCard from '../../../components/blog/PostCard.astro';
+import Pagination from '../../../components/blog/Pagination.astro';
+import AuthorSocials from '../../../components/blog/AuthorSocials.astro';
+import { authors, postsByAuthor, site, OG_FALLBACK } from '../../../data/blog/posts';
+import { profileGraph } from '../../../data/blog/schema';
+
+export function getStaticPaths() {
+  const PER = 10;
+  const out = [];
+  for (const author of authors.filter((a) => a.post_count > 0)) {
+    const ap = postsByAuthor(author.login);
+    const totalPages = Math.max(1, Math.ceil(ap.length / PER));
+    for (let p = 1; p <= totalPages; p++) {
+      const slug = p === 1 ? author.login : `${author.login}/page/${p}`;
+      out.push({ params: { slug }, props: { author, pagePosts: ap.slice((p - 1) * PER, p * PER), current: p, totalPages } });
+    }
+  }
+  return out;
+}
+
+const { author, pagePosts, current, totalPages } = Astro.props;
+const basePath = `/blog/author/${author.login}/`;
+const canonical = `https://desktopcommander.app${current === 1 ? basePath : `${basePath}page/${current}/`}`;
+const description = (author.bio && author.bio.trim())
+  ? author.bio.trim()
+  : `Articles by ${author.display_name} on Desktop Commander Blog.`;
+const postCount = author.post_count;
+---
+<BlogLayout
+  title={`${author.display_name} | ${site.name}`}
+  description={description}
+  canonical={canonical}
+  ogTitle={`Articles by ${author.display_name}`}
+  ogType="website"
+  ogUrl={canonical}
+  ogImage={OG_FALLBACK}
+  jsonLd={[profileGraph(author)]}
+  bodyClass="archive author"
+>
+  <main class="site-content">
+    <div class="author-archive-header">
+      <div class="author-archive-avatar">
+        {author.avatar_url && <img src={author.avatar_url} alt={author.display_name} width="120" height="120" />}
+      </div>
+      <div class="author-archive-info">
+        <h1 class="author-archive-name">{author.display_name}</h1>
+        {author.bio && <p class="author-archive-bio">{author.bio}</p>}
+        <AuthorSocials author={author} variant="default" />
+        <div class="author-archive-stats">
+          <span class="author-post-count">{postCount} {postCount === 1 ? 'Article' : 'Articles'}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="posts-grid">
+      {pagePosts.map((post) => <PostCard post={post} showCategories={false} showAuthor={false} />)}
+    </div>
+
+    <Pagination current={current} total={totalPages} basePath={basePath} />
+  </main>
+</BlogLayout>

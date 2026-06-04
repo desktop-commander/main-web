@@ -1,0 +1,25 @@
+---
+import CategoryFilter from './CategoryFilter.astro';
+import FeaturedPost from './FeaturedPost.astro';
+import PostCard from './PostCard.astro';
+import Pagination from './Pagination.astro';
+import { site, type BlogPost } from '../../data/blog/posts';
+interface Props { featured: BlogPost; gridPosts: BlogPost[]; current: number; totalPages: number }
+const { featured, gridPosts, current, totalPages } = Astro.props;
+---
+<main class="site-content">
+  <div class="blog-header">
+    <h1 class="blog-title">{site.name}</h1>
+    <p class="blog-description">{site.description}</p>
+  </div>
+
+  <CategoryFilter activeSlug={null} />
+
+  <FeaturedPost post={featured} />
+
+  <div class="posts-grid">
+    {gridPosts.map((post) => <PostCard post={post} />)}
+  </div>
+
+  <Pagination current={current} total={totalPages} basePath="/blog/" />
+</main>

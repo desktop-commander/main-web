@@ -1,0 +1,38 @@
+---
+import BlogLayout from '../../../layouts/BlogLayout.astro';
+import HomeListing from '../../../components/blog/HomeListing.astro';
+import { posts, site, OG_FALLBACK } from '../../../data/blog/posts';
+import { siteGraph } from '../../../data/blog/schema';
+
+export function getStaticPaths() {
+  const PER = 9;
+  const remaining = posts.slice(1);
+  const totalPages = Math.max(1, Math.ceil(remaining.length / PER));
+  const paths = [];
+  for (let p = 2; p <= totalPages; p++) {
+    paths.push({
+      params: { page: String(p) },
+      props: { gridPosts: remaining.slice((p - 1) * PER, p * PER), current: p, totalPages },
+    });
+  }
+  return paths;
+}
+
+const { gridPosts, current, totalPages } = Astro.props;
+const featured = posts[0];
+const description = 'Discover guides on MCP servers, AI automations, and local development. Expert tutorials from the Desktop Commander team to supercharge your AI workflow.';
+const canonical = `https://desktopcommander.app/blog/page/${current}/`;
+---
+<BlogLayout
+  title={`${site.name} | ${site.description}`}
+  description={description}
+  canonical={canonical}
+  ogTitle={site.name}
+  ogType="website"
+  ogUrl={canonical}
+  ogImage={OG_FALLBACK}
+  jsonLd={[siteGraph()]}
+  bodyClass="blog home paged"
+>
+  <HomeListing featured={featured} gridPosts={gridPosts} current={current} totalPages={totalPages} />
+</BlogLayout>

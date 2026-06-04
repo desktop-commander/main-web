@@ -1,0 +1,13 @@
+---
+import { categories } from '../../data/blog/posts';
+interface Props { activeSlug?: string | null }
+const { activeSlug = null } = Astro.props;
+// get_categories: orderby name ASC, hide_empty (count > 0)
+const list = categories.filter((c) => c.count > 0).sort((a, b) => a.name.localeCompare(b.name));
+---
+<div class="category-filter-section">
+  <a href="/blog/" class={`category-filter-link ${activeSlug ? '' : 'active'}`}>For all</a>
+  {list.map((c) => (
+    <a href={`/blog/category/${c.slug}/`} class={`category-filter-link ${activeSlug === c.slug ? 'active' : ''}`}>{c.name}</a>
+  ))}
+</div>

@@ -1,0 +1,19 @@
+---
+// Mirrors WP paginate_links output (.pagination > .page-numbers) so the theme CSS applies.
+// basePath ends with '/'; page 1 = basePath, page n = `${basePath}page/n/`.
+interface Props { current: number; total: number; basePath: string }
+const { current, total, basePath } = Astro.props;
+const url = (n: number) => (n === 1 ? basePath : `${basePath}page/${n}/`);
+const pages = Array.from({ length: total }, (_, i) => i + 1);
+---
+{total > 1 && (
+  <div class="pagination">
+    {current > 1 && <a class="prev page-numbers" href={url(current - 1)}>← Previous</a>}
+    {pages.map((n) =>
+      n === current
+        ? <span aria-current="page" class="page-numbers current">{n}</span>
+        : <a class="page-numbers" href={url(n)}>{n}</a>
+    )}
+    {current < total && <a class="next page-numbers" href={url(current + 1)}>Next →</a>}
+  </div>
+)}

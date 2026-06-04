@@ -1,0 +1,21 @@
+---
+import type { Author } from '../../data/blog/posts';
+interface Props { author: Author; variant?: string }
+const { author, variant = 'default' } = Astro.props;
+const icons: Record<string, string> = {
+  linkedin: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.32V9h3.42v1.56h.05c.48-.9 1.64-1.86 3.37-1.86 3.6 0 4.27 2.37 4.27 5.46v6.29zM5.34 7.44a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>',
+  x_url: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.836L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
+  github: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M12 .5C5.73.5.67 5.56.67 11.83c0 5.02 3.25 9.27 7.77 10.78.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.16.69-3.83-1.34-3.83-1.34-.52-1.32-1.26-1.67-1.26-1.67-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.74 2.66 1.24 3.31.95.1-.74.4-1.24.72-1.53-2.52-.29-5.17-1.26-5.17-5.6 0-1.24.44-2.25 1.17-3.04-.12-.29-.51-1.44.11-3.01 0 0 .95-.3 3.12 1.16a10.8 10.8 0 0 1 5.68 0c2.17-1.46 3.12-1.16 3.12-1.16.62 1.57.23 2.72.11 3.01.73.79 1.17 1.8 1.17 3.04 0 4.35-2.66 5.31-5.19 5.59.41.35.78 1.05.78 2.11 0 1.52-.01 2.75-.01 3.12 0 .3.21.66.79.55 4.52-1.51 7.77-5.76 7.77-10.78C23.33 5.56 18.27.5 12 .5z"/></svg>',
+};
+const labels: Record<string, string> = { linkedin: 'LinkedIn', x_url: 'X', github: 'GitHub' };
+const items = (['linkedin', 'x_url', 'github'] as const)
+  .filter((k) => (author as any)[k])
+  .map((k) => ({ k, url: (author as any)[k] as string, label: labels[k] }));
+---
+{items.length > 0 && (
+  <div class={`author-socials author-socials--${variant}`}>
+    {items.map((s) => (
+      <a class={`author-social-link author-social-${s.k}`} href={s.url} target="_blank" rel="noopener noreferrer me" aria-label={s.label} set:html={icons[s.k]} />
+    ))}
+  </div>
+)}

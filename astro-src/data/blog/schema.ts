@@ -86,6 +86,10 @@ export function faqPage(faq: { q: string; a: string }[]) {
   };
 }
 
+export function siteGraph() {
+  return { '@context': 'https://schema.org', '@graph': [websiteNode()] };
+}
+
 export function profileGraph(author: Author) {
   const url = `${HOME}author/${author.login}/`;
   const profile = {
