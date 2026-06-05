@@ -1,6 +1,7 @@
 ---
 import BlogLayout from '../../layouts/BlogLayout.astro';
-import { site } from '../../data/blog/posts';
+import { site, OG_FALLBACK } from '../../data/blog/posts';
+import { siteGraph } from '../../data/blog/schema';
 const canonical = 'https://desktopcommander.app/blog/search/';
 ---
 <BlogLayout
@@ -10,6 +11,8 @@ const canonical = 'https://desktopcommander.app/blog/search/';
   ogTitle="Search"
   ogType="website"
   ogUrl={canonical}
+  ogImage={OG_FALLBACK}
+  jsonLd={[siteGraph()]}
   robots="noindex, follow"
   bodyClass="search-page"
 >

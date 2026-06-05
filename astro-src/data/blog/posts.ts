@@ -48,6 +48,15 @@ export const site = siteData as { name: string; description: string; home_url: s
 // Fallback OG image (WP attachment 682), self-hosted.
 export const OG_FALLBACK = '/blog/media/2026/02/dc-blog-og.png';
 
+// WP desktopcommander_get_meta_description() output transform — strip tags, collapse
+// whitespace, truncate to 157 + "..." over 160. Used for <meta description> on all
+// page types (the visible text, e.g. author bios, stays full-length).
+export function metaDescription(s: string): string {
+  let d = String(s || '').replace(/<[^>]+>/g, '');
+  d = d.replace(/[\r\n\t]/g, ' ').replace(/\s+/g, ' ').trim();
+  return d.length > 160 ? d.slice(0, 157) + '...' : d;
+}
+
 // Card/featured excerpt — mirrors get_the_excerpt() + wp_trim_words(). Strips the body
 // to text and returns the first `words` words with an ellipsis when truncated.
 export function excerptText(post: BlogPost, words = 20): string {

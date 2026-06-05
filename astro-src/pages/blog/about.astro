@@ -1,6 +1,6 @@
 ---
 import BlogLayout from '../../layouts/BlogLayout.astro';
-import { pageBySlug, site } from '../../data/blog/posts';
+import { pageBySlug, site, OG_FALLBACK } from '../../data/blog/posts';
 import { pageGraph } from '../../data/blog/schema';
 
 const page = pageBySlug('about');
@@ -9,7 +9,7 @@ const title = `About Desktop Commander | ${site.name}`;
 const description = 'Desktop Commander combines local filesystem access with full terminal control, letting you handle complex technical tasks through natural language.';
 const jsonLd = page ? [pageGraph('About Desktop Commander', canonical, page.date, page.modified)] : [];
 ---
-<BlogLayout title={title} description={description} canonical={canonical} ogTitle="About Desktop Commander" ogType="website" ogUrl={canonical} jsonLd={jsonLd} bodyClass="page page-about">
+<BlogLayout title={title} description={description} canonical={canonical} ogTitle="About Desktop Commander" ogType="website" ogUrl={canonical} ogImage={OG_FALLBACK} jsonLd={jsonLd} bodyClass="page page-about">
   <main class="site-content">
     <article class="about-page">
       <section class="about-hero">

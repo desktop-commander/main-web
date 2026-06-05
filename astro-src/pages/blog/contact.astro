@@ -1,6 +1,6 @@
 ---
 import BlogLayout from '../../layouts/BlogLayout.astro';
-import { pageBySlug, site } from '../../data/blog/posts';
+import { pageBySlug, site, OG_FALLBACK } from '../../data/blog/posts';
 import { pageGraph } from '../../data/blog/schema';
 import contactBody from '../../blog-content/page-contact.html?raw';
 
@@ -11,7 +11,7 @@ const title = `${pageTitle} | ${site.name}`;
 const description = 'Get in touch with the Desktop Commander team — join our Discord community, open a GitHub issue, or follow us on X for updates.';
 const jsonLd = page ? [pageGraph(pageTitle, canonical, page.date, page.modified)] : [];
 ---
-<BlogLayout title={title} description={description} canonical={canonical} ogTitle={pageTitle} ogType="website" ogUrl={canonical} jsonLd={jsonLd} bodyClass="page page-contact">
+<BlogLayout title={title} description={description} canonical={canonical} ogTitle={pageTitle} ogType="website" ogUrl={canonical} ogImage={OG_FALLBACK} jsonLd={jsonLd} bodyClass="page page-contact">
   <main class="site-content">
     <article class="contact-page">
       <section class="contact-hero">

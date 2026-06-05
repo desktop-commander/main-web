@@ -3,7 +3,7 @@ import BlogLayout from '../../../layouts/BlogLayout.astro';
 import PostCard from '../../../components/blog/PostCard.astro';
 import Pagination from '../../../components/blog/Pagination.astro';
 import AuthorSocials from '../../../components/blog/AuthorSocials.astro';
-import { authors, postsByAuthor, site, OG_FALLBACK } from '../../../data/blog/posts';
+import { authors, postsByAuthor, site, OG_FALLBACK, metaDescription } from '../../../data/blog/posts';
 import { profileGraph } from '../../../data/blog/schema';
 
 export function getStaticPaths() {
@@ -23,9 +23,9 @@ export function getStaticPaths() {
 const { author, pagePosts, current, totalPages } = Astro.props;
 const basePath = `/blog/author/${author.login}/`;
 const canonical = `https://desktopcommander.app${current === 1 ? basePath : `${basePath}page/${current}/`}`;
-const description = (author.bio && author.bio.trim())
-  ? author.bio.trim()
-  : `Articles by ${author.display_name} on Desktop Commander Blog.`;
+const description = metaDescription(
+  (author.bio && author.bio.trim()) ? author.bio : `Articles by ${author.display_name} on Desktop Commander Blog.`
+);
 const postCount = author.post_count;
 ---
 <BlogLayout

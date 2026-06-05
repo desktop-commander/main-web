@@ -3,7 +3,7 @@ import BlogLayout from '../../../layouts/BlogLayout.astro';
 import CategoryFilter from '../../../components/blog/CategoryFilter.astro';
 import PostCard from '../../../components/blog/PostCard.astro';
 import Pagination from '../../../components/blog/Pagination.astro';
-import { categories, postsByCategory, site, OG_FALLBACK } from '../../../data/blog/posts';
+import { categories, postsByCategory, site, OG_FALLBACK, metaDescription } from '../../../data/blog/posts';
 import { siteGraph } from '../../../data/blog/schema';
 
 export function getStaticPaths() {
@@ -23,9 +23,9 @@ export function getStaticPaths() {
 const { cat, pagePosts, current, totalPages } = Astro.props;
 const basePath = `/blog/category/${cat.slug}/`;
 const canonical = `https://desktopcommander.app${current === 1 ? basePath : `${basePath}page/${current}/`}`;
-const description = (cat.description && cat.description.trim())
-  ? cat.description.replace(/<[^>]+>/g, '').trim()
-  : `Browse articles about ${cat.name} on Desktop Commander Blog.`;
+const description = metaDescription(
+  (cat.description && cat.description.trim()) ? cat.description : `Browse articles about ${cat.name} on Desktop Commander Blog.`
+);
 ---
 <BlogLayout
   title={`${cat.name} | ${site.name}`}
