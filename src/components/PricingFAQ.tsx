@@ -28,7 +28,7 @@ const PricingFAQ = () => {
     },
     {
       question: "What's the difference between messages and AI credits?",
-      answer: "They're two separate things. Your plan controls how many messages you can send per week (200 on Free, no cap on the paid plan). AI credits cover the cost of running cloud models like Claude, GPT, and Gemini. You can send messages without credits if you use local models or your own API keys. The weekly message limit applies to all messages regardless of which AI provider you use."
+      answer: "They're two separate things. Your plan controls how many messages you can send per week (200 on Free, no cap on Pro or Pro + Credits). AI credits cover the cost of running cloud models like Claude, GPT, and Gemini. You can send messages without credits if you use local models or your own API keys. The weekly message limit applies to all messages regardless of which AI provider you use."
     },
     {
       question: "What are DC credits and how do they work?",
@@ -36,7 +36,7 @@ const PricingFAQ = () => {
     },
     {
       question: "Does the weekly message limit apply to my own API keys or ChatGPT subscription?",
-      answer: "Yes. The weekly message limit applies to all messages you send, regardless of how the AI is powered — DC credits, your own API keys, a ChatGPT subscription, or local models. To remove the limit, upgrade to the No Cap plan."
+      answer: "Yes. The weekly message limit applies to all messages you send, regardless of how the AI is powered — DC credits, your own API keys, a ChatGPT subscription, or local models. To remove the limit, upgrade to Pro or Pro + Credits."
     },
     {
       question: "What models are available?",
@@ -72,7 +72,7 @@ const PricingFAQ = () => {
     },
     {
       question: "What happens if I hit the message limit?",
-      answer: "You'll see a notification in chat. You can wait for the weekly reset on Monday, or upgrade to the No Cap plan to remove the message limit entirely."
+      answer: "You'll see a notification in chat. You can wait for the weekly reset on Monday, or upgrade to Pro or Pro + Credits to remove the message limit entirely."
     },
     {
       question: "Can I cancel anytime?",

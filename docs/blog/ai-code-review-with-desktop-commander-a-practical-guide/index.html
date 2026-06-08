@@ -1,0 +1,595 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Analytics (PostHog + GA4) — wp_head priority 0 --><script>
+      !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+      posthog.init('phc_SmlF1mKK199Blt4hUNL6V19IWydNNJ9o7Qbym2Y4zQa', { api_host: 'https://eu.i.posthog.com', cross_subdomain_cookie: true, capture_pageview: true, capture_pageleave: true });
+    </script><script async src="https://www.googletagmanager.com/gtag/js?id=G-HXL4Y3Y62N"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HXL4Y3Y62N', { linker: { domains: ['desktopcommander.app', 'blog.desktopcommander.app'] } });
+    </script><title>AI Code Review with Desktop Commander: A Practical Guide | Desktop Commander Blog</title><meta name="description" content="Learn how to review code with AI using Desktop Commander. Analyze codebases, find bugs, and get recommendations through natural language—no complex setup."><!-- Open Graph / Facebook --><meta property="og:type" content="article"><meta property="og:site_name" content="Desktop Commander Blog"><meta property="og:title" content="AI Code Review with Desktop Commander: A Practical Guide"><meta property="og:description" content="Learn how to review code with AI using Desktop Commander. Analyze codebases, find bugs, and get recommendations through natural language—no complex setup."><meta property="og:url" content="https://desktopcommander.app/blog/ai-code-review-with-desktop-commander-a-practical-guide/"><meta property="og:image" content="https://desktopcommander.app/blog/media/2025/12/ai-code-review-featured.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="article:published_time" content="2025-12-04T09:09:49+02:00"><meta property="article:modified_time" content="2026-02-20T10:57:48+02:00"><meta property="article:author" content="Ricards Krizanovskis"><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="AI Code Review with Desktop Commander: A Practical Guide"><meta name="twitter:description" content="Learn how to review code with AI using Desktop Commander. Analyze codebases, find bugs, and get recommendations through natural language—no complex setup."><meta name="twitter:image" content="https://desktopcommander.app/blog/media/2025/12/ai-code-review-featured.png"><link rel="canonical" href="https://desktopcommander.app/blog/ai-code-review-with-desktop-commander-a-practical-guide/"><!-- Favicons (shared with main site) --><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><!-- Ported theme stylesheet, served verbatim (no PostCSS) --><link rel="stylesheet" href="/blog/blog.css"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://desktopcommander.app/blog/#website","url":"https://desktopcommander.app/blog/","name":"Desktop Commander Blog","description":"AI that works on your computer. Guides on AI automation, file management, and local development workflows.","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://desktopcommander.app/blog/?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@type":"WebPage","@id":"https://desktopcommander.app/blog/ai-code-review-with-desktop-commander-a-practical-guide/#webpage","url":"https://desktopcommander.app/blog/ai-code-review-with-desktop-commander-a-practical-guide/","name":"AI Code Review with Desktop Commander: A Practical Guide","isPartOf":{"@id":"https://desktopcommander.app/blog/#website"},"datePublished":"2025-12-04T09:09:49+02:00","dateModified":"2026-02-20T10:57:48+02:00"},{"@type":"Article","@id":"https://desktopcommander.app/blog/ai-code-review-with-desktop-commander-a-practical-guide/#article","isPartOf":{"@id":"https://desktopcommander.app/blog/ai-code-review-with-desktop-commander-a-practical-guide/#webpage"},"headline":"AI Code Review with Desktop Commander: A Practical Guide","description":"Learn how to review code with AI using Desktop Commander. Analyze codebases, find bugs, and get recommendations through natural language—no complex setup.","datePublished":"2025-12-04T09:09:49+02:00","dateModified":"2026-02-20T10:57:48+02:00","mainEntityOfPage":"https://desktopcommander.app/blog/ai-code-review-with-desktop-commander-a-practical-guide/","author":{"@type":"Person","@id":"https://desktopcommander.app/blog/author/rk7f8a7274b9330/#person","name":"Ricards Krizanovskis","url":"https://desktopcommander.app/blog/author/rk7f8a7274b9330/","image":{"@type":"ImageObject","url":"https://rk7f8a7274b9330-haqfg.wpcomstaging.com/wp-content/uploads/2026/04/ricards-400x400.jpeg","width":400,"height":400},"description":"Ricards is an AI enthusiast and startup founder who thrives in the messy middle where product meets growth. He loves to take deep dives with customers, uncover real problems, design solutions that work, and focus on the metrics that matter. At Desktop Commander, Ricards bridges the gap between cutting-edge AI technology and practical developer workflows.","sameAs":["https://www.linkedin.com/in/ricardskrizanovskis/"]},"publisher":{"@type":"Organization","name":"Desktop Commander Blog","url":"https://desktopcommander.app/blog/"},"wordCount":1497,"image":{"@type":"ImageObject","url":"https://desktopcommander.app/blog/media/2025/12/ai-code-review-featured.png","width":1200,"height":675}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is Desktop Commander different from Cursor or Copilot?","acceptedAnswer":{"@type":"Answer","text":"Desktop Commander operates at the OS level, not within an IDE. It can access any file on your machine, run terminal commands, and work across multiple projects simultaneously. IDE tools are limited to the currently open project or file."}},{"@type":"Question","name":"Is it safe to let AI edit my files?","acceptedAnswer":{"@type":"Answer","text":"Desktop Commander uses diff-based editing and logs all operations to .mcp-server-log.jsonl. You can review every change before committing and roll back if needed.However, you should always be careful when working with sensitive or important data. Keep backups of critical files—Desktop Commander can create backup copies for you on request. Always verify suggestions before applying them, especially for high-stakes edits."}},{"@type":"Question","name":"What programming languages are supported?","acceptedAnswer":{"@type":"Answer","text":"Any language Claude or your LLM understands. Desktop Commander itself is language-agnostic—it reads files and runs commands. Claude handles the language-specific analysis."}},{"@type":"Question","name":"Where can I find ready-made prompts for code review?","acceptedAnswer":{"@type":"Answer","text":"The Desktop Commander Prompt Library includes prompts for codebase analysis, documentation generation, debugging, and more. Relevant ones for code review: Explain Codebase or Repository Clean Up Unused Code Assess Technical Debt Analyze Error Handling Strategy"}},{"@type":"Question","name":"Can I use Desktop Commander with other AI clients?","acceptedAnswer":{"@type":"Answer","text":"Yes. Desktop Commander works with Claude Desktop, Claude Code, Cursor, and other MCP-compatible clients. This also means that you can use Desktop Commander with any LLM model — it supports 8 model providers including Anthropic, OpenAI, Google, xAI, Mistral, and others across 6+ MCP-compatible clients."}}]}</script></head> <body class="single single-post"> <nav class="dc-nav" role="navigation" aria-label="Primary"> <div class="dc-nav-container"> <div class="dc-nav-left"> <a href="https://desktopcommander.app" class="dc-logo-link"> <img src="/blog/assets/dc-logo-light.png" alt="Desktop Commander" class="dc-logo" width="200" height="32"> </a> <ul class="dc-nav-links" role="menubar"> <!-- Use Cases mega --> <li class="dc-nav-item dc-has-mega" role="none"> <button type="button" class="dc-nav-link dc-mega-trigger" role="menuitem" aria-haspopup="true" aria-expanded="false">
+Use Cases
+<svg class="dc-mega-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg> </button> <div class="dc-mega dc-mega-use-cases" role="menu"> <div class="dc-mega-inner"> <div class="dc-mega-col"> <h4 class="dc-mega-heading">By role</h4> <ul> <li><a href="https://desktopcommander.app/use-cases/build-prototype/" class="dc-mega-link"><span class="dc-mega-link-label">For builders</span><span class="dc-mega-link-desc">Prototype, scripts, dev workflows</span></a></li> <li><a href="https://desktopcommander.app/use-cases/knowledge-management/" class="dc-mega-link"><span class="dc-mega-link-label">For knowledge workers</span><span class="dc-mega-link-desc">Notes, research, second brain</span></a></li> <li><a href="https://desktopcommander.app/use-cases/analyze-data/" class="dc-mega-link"><span class="dc-mega-link-label">For data analysts</span><span class="dc-mega-link-desc">CSVs, logs, ad-hoc analysis</span></a></li> </ul> </div> <div class="dc-mega-col"> <h4 class="dc-mega-heading">All use cases</h4> <ul> <li><a href="https://desktopcommander.app/use-cases/file-management/" class="dc-mega-link"><span class="dc-mega-link-label">File Management</span></a></li> <li><a href="https://desktopcommander.app/use-cases/knowledge-management/" class="dc-mega-link"><span class="dc-mega-link-label">Knowledge Management</span></a></li> <li><a href="https://desktopcommander.app/use-cases/analyze-data/" class="dc-mega-link"><span class="dc-mega-link-label">Analyze Data</span></a></li> <li><a href="https://desktopcommander.app/use-cases/build-prototype/" class="dc-mega-link"><span class="dc-mega-link-label">Build Prototypes</span></a></li> <li><a href="https://desktopcommander.app/use-cases/connect-apps/" class="dc-mega-link"><span class="dc-mega-link-label">Connect Apps</span></a></li> </ul> </div> <div class="dc-mega-col"> <h4 class="dc-mega-heading">Time savers</h4> <ul> <li><a href="https://desktopcommander.app/use-cases/file-management/heic-to-jpg/" class="dc-mega-link"><span class="dc-mega-link-label">HEIC → JPG</span></a></li> <li><a href="https://desktopcommander.app/use-cases/file-management/pdf-to-png/" class="dc-mega-link"><span class="dc-mega-link-label">PDF → PNG</span></a></li> <li><a href="https://desktopcommander.app/use-cases/file-management/webp-to-jpg/" class="dc-mega-link"><span class="dc-mega-link-label">WebP → JPG</span></a></li> <li><a href="https://desktopcommander.app/use-cases/file-management/png-to-jpg/" class="dc-mega-link"><span class="dc-mega-link-label">PNG → JPG</span></a></li> </ul> </div> </div> <a href="https://desktopcommander.app/use-cases/" class="dc-mega-footer-link">View all use cases →</a> </div> </li> <!-- Prompts mega --> <li class="dc-nav-item dc-has-mega" role="none"> <button type="button" class="dc-nav-link dc-mega-trigger" role="menuitem" aria-haspopup="true" aria-expanded="false">
+Prompts
+<svg class="dc-mega-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg> </button> <div class="dc-mega dc-mega-prompts" role="menu"> <div class="dc-mega-inner"> <div class="dc-mega-col"> <h4 class="dc-mega-heading">Popular prompts</h4> <ul> <li><a href="https://desktopcommander.app/library/prompts/organise-my-downloads-folder/" class="dc-mega-link"><span class="dc-mega-link-label">Organise my Downloads</span></a></li> <li><a href="https://desktopcommander.app/library/prompts/explain-codebase-or-repository/" class="dc-mega-link"><span class="dc-mega-link-label">Explain a codebase</span></a></li> <li><a href="https://desktopcommander.app/library/prompts/create-knowledge-base-folder/" class="dc-mega-link"><span class="dc-mega-link-label">Create knowledge base</span></a></li> <li><a href="https://desktopcommander.app/library/prompts/extract-data-from-pdfs/" class="dc-mega-link"><span class="dc-mega-link-label">Extract data from PDFs</span></a></li> </ul> </div> </div> <a href="https://desktopcommander.app/library/prompts/" class="dc-mega-footer-link">Browse all prompts →</a> </div> </li> <li class="dc-nav-item"><a href="https://desktopcommander.app/mcp/" class="dc-nav-link" role="menuitem">MCP</a></li> <li class="dc-nav-item"><a href="https://desktopcommander.app/pricing/" class="dc-nav-link" role="menuitem">Pricing</a></li> <!-- Resources mega --> <li class="dc-nav-item dc-has-mega" role="none"> <button type="button" class="dc-nav-link dc-mega-trigger" role="menuitem" aria-haspopup="true" aria-expanded="false">
+Resources
+<svg class="dc-mega-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg> </button> <div class="dc-mega dc-mega-resources" role="menu"> <div class="dc-mega-inner"> <div class="dc-mega-col"> <h4 class="dc-mega-heading">Resources</h4> <ul> <li><a href="/blog/" class="dc-mega-link"><span class="dc-mega-link-label">All articles</span></a></li> <li><a href="https://desktopcommander.app/library/prompts/" class="dc-mega-link"><span class="dc-mega-link-label">Prompt Library</span></a></li> <li><a href="https://desktopcommander.app/mcp/" class="dc-mega-link"><span class="dc-mega-link-label">MCP server</span></a></li> <li><a href="https://desktopcommander.app/best-value-ai/" class="dc-mega-link"><span class="dc-mega-link-label">AI value comparison</span><span class="dc-mega-link-desc">Which AI models and providers are best value?</span></a></li> </ul> </div> <div class="dc-mega-col"> <h4 class="dc-mega-heading">Popular guides</h4> <ul> <li><a href="/blog/best-mcp-servers/" class="dc-mega-link"><span class="dc-mega-link-label">Best MCP servers</span></a></li> <li><a href="/blog/what-is-an-mcp-server-and-how-it-works-in-plain-english/" class="dc-mega-link"><span class="dc-mega-link-label">What is an MCP server?</span></a></li> <li><a href="/blog/zettelkasten-obsidian/" class="dc-mega-link"><span class="dc-mega-link-label">Zettelkasten in Obsidian</span></a></li> <li><a href="/blog/best-obsidian-plugins/" class="dc-mega-link"><span class="dc-mega-link-label">Best Obsidian plugins</span></a></li> <li><a href="/blog/obsidian-markdown-cheatsheet-every-syntax-you-actually-need/" class="dc-mega-link"><span class="dc-mega-link-label">Obsidian Markdown cheatsheet</span></a></li> </ul> </div> <div class="dc-mega-col"> <h4 class="dc-mega-heading">Community &amp; dev</h4> <ul> <li><a href="https://discord.gg/eHZeUKRQG" target="_blank" rel="noopener noreferrer" class="dc-mega-link"><span class="dc-mega-link-label">Discord</span></a></li> <li><a href="https://github.com/wonderwhy-er/DesktopCommanderMCP" target="_blank" rel="noopener noreferrer" class="dc-mega-link"><span class="dc-mega-link-label">GitHub <span class="dc-mega-badge">MCP</span></span></a></li> <li><a href="https://desktopcommander.app/careers/" class="dc-mega-link"><span class="dc-mega-link-label">Careers</span></a></li> <li><a href="/blog/about/" class="dc-mega-link"><span class="dc-mega-link-label">About</span></a></li> </ul> </div> </div> <a href="/blog/" class="dc-mega-footer-link">View all guides →</a> </div> </li> </ul> </div> <div class="dc-nav-right"> <a href="https://desktopcommander.app/#download" class="dc-download-btn dc-download-desktop"> <svg class="dc-download-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"> <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line> </svg>
+Download App
+</a> <button class="dc-mobile-menu-btn" id="dc-mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="dc-mobile-menu" aria-label="Toggle navigation"> <svg class="dc-menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg> </button> </div> </div> <div class="dc-mobile-overlay" id="dc-mobile-overlay"></div> <div class="dc-mobile-menu" id="dc-mobile-menu" aria-hidden="true"> <div class="dc-mobile-menu-header"> <button class="dc-mobile-menu-close" id="dc-mobile-menu-close" type="button" aria-label="Close navigation"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> </button> </div> <div class="dc-mobile-menu-content"> <details class="dc-mobile-group"> <summary class="dc-mobile-group-summary">Use Cases
+<svg class="dc-mobile-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg> </summary> <div class="dc-mobile-group-links"> <div class="dc-mobile-menu-label">By role</div> <a href="https://desktopcommander.app/use-cases/build-prototype/" class="dc-mobile-menu-link" data-close-mobile>For builders</a> <a href="https://desktopcommander.app/use-cases/knowledge-management/" class="dc-mobile-menu-link" data-close-mobile>For knowledge workers</a> <a href="https://desktopcommander.app/use-cases/analyze-data/" class="dc-mobile-menu-link" data-close-mobile>For data analysts</a> <div class="dc-mobile-menu-label">All use cases</div> <a href="https://desktopcommander.app/use-cases/file-management/" class="dc-mobile-menu-link" data-close-mobile>File Management</a> <a href="https://desktopcommander.app/use-cases/connect-apps/" class="dc-mobile-menu-link" data-close-mobile>Connect Apps</a> <a href="https://desktopcommander.app/use-cases/" class="dc-mobile-menu-link" data-close-mobile>View all use cases →</a> </div> </details> <details class="dc-mobile-group"> <summary class="dc-mobile-group-summary">Prompts
+<svg class="dc-mobile-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg> </summary> <div class="dc-mobile-group-links"> <div class="dc-mobile-menu-label">Popular prompts</div> <a href="https://desktopcommander.app/library/prompts/organise-my-downloads-folder/" class="dc-mobile-menu-link" data-close-mobile>Organise my Downloads</a> <a href="https://desktopcommander.app/library/prompts/explain-codebase-or-repository/" class="dc-mobile-menu-link" data-close-mobile>Explain a codebase</a> <a href="https://desktopcommander.app/library/prompts/create-knowledge-base-folder/" class="dc-mobile-menu-link" data-close-mobile>Create knowledge base</a> <a href="https://desktopcommander.app/library/prompts/extract-data-from-pdfs/" class="dc-mobile-menu-link" data-close-mobile>Extract data from PDFs</a> <a href="https://desktopcommander.app/library/prompts/" class="dc-mobile-menu-link" data-close-mobile>Browse all prompts →</a> </div> </details> <a href="https://desktopcommander.app/mcp/" class="dc-mobile-menu-link" data-close-mobile>MCP</a> <a href="https://desktopcommander.app/pricing/" class="dc-mobile-menu-link" data-close-mobile>Pricing</a> <details class="dc-mobile-group"> <summary class="dc-mobile-group-summary">Resources
+<svg class="dc-mobile-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg> </summary> <div class="dc-mobile-group-links"> <a href="/blog/" class="dc-mobile-menu-link" data-close-mobile>All articles</a> <a href="https://desktopcommander.app/library/prompts/" class="dc-mobile-menu-link" data-close-mobile>Prompt Library</a> <a href="https://desktopcommander.app/mcp/" class="dc-mobile-menu-link" data-close-mobile>MCP server</a> <a href="https://desktopcommander.app/best-value-ai/" class="dc-mobile-menu-link" data-close-mobile>AI value comparison</a> <div class="dc-mobile-menu-label">Community &amp; dev</div> <a href="https://discord.gg/eHZeUKRQG" target="_blank" rel="noopener noreferrer" class="dc-mobile-menu-link" data-close-mobile>Discord</a> <a href="https://github.com/wonderwhy-er/DesktopCommanderMCP" target="_blank" rel="noopener noreferrer" class="dc-mobile-menu-link" data-close-mobile>GitHub</a> <a href="https://desktopcommander.app/careers/" class="dc-mobile-menu-link" data-close-mobile>Careers</a> <a href="/blog/about/" class="dc-mobile-menu-link" data-close-mobile>About</a> </div> </details> <div class="dc-mobile-menu-divider"></div> <a href="https://desktopcommander.app/#download" class="dc-mobile-download-btn" data-close-mobile> <svg class="dc-download-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+Download App
+</a> </div> </div> </nav> <script>
+(function () {
+  const menuToggle = document.getElementById('dc-mobile-menu-toggle');
+  const mobileMenu = document.getElementById('dc-mobile-menu');
+  const overlay = document.getElementById('dc-mobile-overlay');
+  const menuClose = document.getElementById('dc-mobile-menu-close');
+  const closeOnClickItems = document.querySelectorAll('[data-close-mobile]');
+  const focusableSelectors = 'a[href], button:not([disabled]), summary, [tabindex]:not([tabindex="-1"])';
+  let lastFocusedElement = null;
+  function trapFocus(container) {
+    const f = Array.from(container.querySelectorAll(focusableSelectors));
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    container.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab') return;
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+    first.focus();
+  }
+  function openMobileMenu() {
+    if (!mobileMenu) return;
+    lastFocusedElement = document.activeElement;
+    mobileMenu.classList.add('active'); mobileMenu.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden'; menuToggle && menuToggle.setAttribute('aria-expanded', 'true');
+    overlay && overlay.classList.add('active'); trapFocus(mobileMenu);
+  }
+  function closeMobileMenu() {
+    if (!mobileMenu) return;
+    mobileMenu.classList.remove('active'); mobileMenu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = ''; menuToggle && menuToggle.setAttribute('aria-expanded', 'false');
+    overlay && overlay.classList.remove('active'); lastFocusedElement && lastFocusedElement.focus();
+  }
+  menuToggle && menuToggle.addEventListener('click', openMobileMenu);
+  menuClose && menuClose.addEventListener('click', closeMobileMenu);
+  overlay && overlay.addEventListener('click', closeMobileMenu);
+  mobileMenu && mobileMenu.addEventListener('click', function (e) { if (e.target === mobileMenu) closeMobileMenu(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('active')) closeMobileMenu(); });
+  closeOnClickItems.forEach(function (item) { item.addEventListener('click', closeMobileMenu); });
+  document.querySelectorAll('.dc-has-mega').forEach(function (item) {
+    const trigger = item.querySelector('.dc-mega-trigger');
+    if (!trigger) return;
+    trigger.addEventListener('click', function (e) {
+      e.preventDefault();
+      const isOpen = item.classList.toggle('dc-mega-open');
+      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  });
+  document.addEventListener('click', function (e) {
+    document.querySelectorAll('.dc-has-mega.dc-mega-open').forEach(function (item) {
+      if (!item.contains(e.target)) { item.classList.remove('dc-mega-open'); const t = item.querySelector('.dc-mega-trigger'); t && t.setAttribute('aria-expanded', 'false'); }
+    });
+  });
+})();
+</script>  <main class="site-content"> <div class="back-button-container"> <button onclick="window.history.back();" class="back-to-blog"> <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+Back
+</button> </div> <article class="post single-post" data-pagefind-body> <header class="single-post-header"> <nav class="breadcrumbs"> <a href="/blog/">Blog</a> <span class="breadcrumb-separator">/</span>  <a href="/blog/category/deep-dives/">Deep Dives</a> <span class="breadcrumb-separator">/</span>  <span class="breadcrumb-current">AI Code Review with Desktop Commander: A Practical Guide</span> </nav> <h1 class="single-post-title">AI Code Review with Desktop Commander: A Practical Guide</h1> <div class="single-post-meta"> <span>December 4, 2025</span> <span>By <a href="/blog/author/rk7f8a7274b9330/" class="author-link">Ricards Krizanovskis</a></span> </div> <div class="single-post-categories"> <a href="/blog/category/deep-dives/" class="post-category-tag single-category-tag">Deep Dives</a><a href="/blog/category/use-cases/" class="post-category-tag single-category-tag">Use Cases</a> </div> </header> <div class="author-bio-section" data-pagefind-ignore> <div class="author-bio-card"> <div class="author-bio-avatar"> <img src="https://rk7f8a7274b9330-haqfg.wpcomstaging.com/wp-content/uploads/2026/04/ricards-400x400.jpeg" alt="Ricards Krizanovskis" width="80" height="80" loading="lazy"> </div> <div class="author-bio-content"> <h3 class="author-bio-name"><a href="/blog/author/rk7f8a7274b9330/">Ricards Krizanovskis</a></h3> <p class="author-bio-description">Ricards is an AI enthusiast and startup founder who thrives in the messy middle where product meets growth. He loves to take deep dives with customers, uncover real problems, design solutions that work, and focus on the metrics that matter. At Desktop Commander, Ricards bridges the gap between cutting-edge AI technology and practical developer workflows.</p> <div class="author-socials author-socials--compact"> <a class="author-social-link author-social-linkedin" href="https://www.linkedin.com/in/ricardskrizanovskis/" target="_blank" rel="noopener noreferrer me" aria-label="Linkedin"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.32V9h3.42v1.56h.05c.48-.9 1.64-1.86 3.37-1.86 3.6 0 4.27 2.37 4.27 5.46v6.29zM5.34 7.44a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a> </div> </div> </div> </div> <div class="post-content-wrapper"> <div class="single-post-content">
+<p>This guide covers how to use Desktop Commander for AI code review: what it does, how it compares to other tools, practical workflows, and when it's the right choice for your project.</p>
+
+
+
+<p>Desktop Commander is the best tool for AI code review on your local machine because it gives Claude access to your entire codebase — not just individual files or PR diffs — allowing full-context analysis across your project.</p>
+
+
+
+<p>Desktop Commander is an MCP server that gives Claude direct access to your local filesystem and terminal. Instead of pasting code into a chat window or relying on PR diffs, you can point Claude at your actual codebase and have a conversation about it—asking questions, running tests, and applying fixes.</p>
+
+
+
+<h2 class="wp-block-heading" id="key-takeaways">Key Takeaways</h2>
+
+
+
+<ul class="wp-block-list">
+<li>Review code through natural language conversations instead of manual file-by-file inspection</li>
+
+
+
+<li>Analyze entire codebases locally—not just PR diffs or open files</li>
+
+
+
+<li>Run tests, linters, and terminal commands as part of your review workflow</li>
+
+
+
+<li>Get started in under 2 minutes with one terminal command</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading" id="the-code-review-problem">The Code Review Problem</h2>
+
+
+
+<p>Code review is essential, but the process is full of friction. When you join a new project, you spend hours understanding the architecture before you can meaningfully review anything. PRs pile up in your queue, each one requiring context-switching between files, tracing dependencies, and piecing together how components interact.</p>
+
+
+
+<p>For solo developers and small teams, the problem is different but equally frustrating: there's no second pair of eyes. You review your own code, miss things, and bugs slip into production.</p>
+
+
+
+<h2 class="wp-block-heading" id="how-ai-code-review-tools-work-today">How AI Code Review Tools Work Today</h2>
+
+
+
+<p>The AI code review landscape has grown rapidly. Most tools fall into a few categories:</p>
+
+
+
+<p><strong>PR-focused tools</strong> like CodeRabbit and Qodo integrate with GitHub or GitLab, analyze pull request diffs, and leave automated comments. They're useful for catching issues before merge, but they only see the diff—not the full context of your codebase.</p>
+
+
+
+<p><strong>IDE assistants</strong> like Cursor and Windsurf bring AI into your editor. They can answer questions about your code and suggest changes, but they're limited to the currently open project.</p>
+
+
+
+<p><strong>Static analyzers</strong> like SonarQube and Snyk scan for security vulnerabilities and code smells using predefined rules. They're thorough but not conversational—you can't ask follow-up questions or explore issues interactively.</p>
+
+
+
+<figure class="wp-block-image size-full"><img src="/blog/media/2025/12/Screenshot-2025-12-04-at-08.47.27.png" alt="AI Code Review Tools 2025" class="wp-image-368"/><figcaption class="wp-element-caption">AI Code Review Tools 2025</figcaption></figure>
+
+
+
+<h2 class="wp-block-heading" id="ai-code-review-with-desktop-commander">AI Code Review with Desktop Commander</h2>
+
+
+
+<p>Desktop Commander is an MCP (Model Context Protocol) server that connects Claude to your local filesystem and terminal. Instead of being limited to a single IDE or PR diff, it gives Claude access to your entire machine.</p>
+
+
+
+<p>For code review, this means you can:</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>Read any file</strong> across your machine, not just the currently open project</li>
+
+
+
+<li><strong>Search across repositories</strong> using ripgrep-powered pattern matching</li>
+
+
+
+<li><strong>Run terminal commands</strong> like tests, linters, and git operations as part of your review</li>
+
+
+
+<li><strong>Apply fixes directly</strong> with diff-based editing that makes surgical changes without rewriting entire files</li>
+
+
+
+<li><strong>Track all operations</strong> in an audit log (.mcp-server-log.jsonl)</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading" id="setting-up-desktop-commander-for-ai-code-review">Setting Up Desktop Commander for AI Code Review</h2>
+
+
+
+<div class="dc-app-cta"><div class="dc-app-cta-inner"><div class="dc-app-cta-content"><div class="dc-app-cta-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 17L10 11L4 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 19H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="dc-app-cta-title" id="try-desktop-commander-app">Try Desktop Commander App</h3><p class="dc-app-cta-description">Desktop Commander reads your files, runs commands, and automates workflows — all in natural language.</p></div><a href="https://desktopcommander.app/#download" class="dc-app-cta-btn" data-post-slug="ai-code-review-with-desktop-commander-a-practical-guide" data-post-title="AI Code Review with Desktop Commander: A Practical Guide" data-cta-variant="default" target="_blank" rel="noopener">Download Free<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+
+
+
+<h3 class="wp-block-heading" id="quick-installation">Quick Installation</h3>
+
+
+
+<p>Open your terminal and run:</p>
+
+
+
+<pre class="wp-block-code"><code>npx @wonderwhy-er/desktop-commander@latest setup</code></pre>
+
+
+
+<p>This automatically configures Claude Desktop to work with Desktop Commander. Restart Claude Desktop to enable the new capabilities.</p>
+
+
+
+<h3 class="wp-block-heading" id="manual-configuration-alternative">Manual Configuration (Alternative)</h3>
+
+
+
+<p>If you prefer manual setup, add this to your claude_desktop_config.json:</p>
+
+
+
+<pre class="wp-block-code"><code>{
+  "mcpServers": {
+    "desktop-commander": {
+      "command": "npx",
+      "args": &#91;"-y", "@wonderwhy-er/desktop-commander"]
+    }
+  }
+}</code></pre>
+
+
+
+<p><strong>Config file location:</strong></p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>Mac:</strong> ~/Library/Application Support/Claude/claude_desktop_config.json</li>
+
+
+
+<li><strong>Windows:</strong> %APPDATA%\Claude\claude_desktop_config.json</li>
+</ul>
+
+
+
+<h3 class="wp-block-heading" id="verify-installation">Verify Installation</h3>
+
+
+
+<p>After restarting Claude Desktop, ask: "What tools do you have access to?"</p>
+
+
+
+<p>Claude should list file operations, terminal commands, and search capabilities.</p>
+
+
+
+<p>For more installation options (Docker, Smithery, Cursor), see the <a href="https://desktopcommander.app/#installation">official installation guide</a>.</p>
+
+
+
+<h2 class="wp-block-heading" id="code-review-workflows-with-desktop-commander">Code Review Workflows with Desktop Commander</h2>
+
+
+
+<p>Once set up, code review becomes a conversation. Here are four practical workflows:</p>
+
+
+
+<h3 class="wp-block-heading" id="workflow-1-understand-an-unfamiliar-codebase">Workflow 1: Understand an Unfamiliar Codebase</h3>
+
+
+
+<p><strong>Scenario:</strong> You just cloned a repo or joined a project with minimal documentation.</p>
+
+
+
+<p><strong>Prompts to try:</strong></p>
+
+
+
+<pre class="wp-block-code"><code>Analyze the directory structure of /path/to/project and explain the architecture</code></pre>
+
+
+
+<pre class="wp-block-code"><code>What are the main entry points in this codebase?</code></pre>
+
+
+
+<pre class="wp-block-code"><code>How does authentication work in this project? Trace the flow from login to session creation.</code></pre>
+
+
+
+<p>Desktop Commander traverses your filesystem, reads relevant files, and provides a structural overview. This is especially useful when documentation is outdated or nonexistent.</p>
+
+
+
+<p>Check this related prompt from our library: <a href="https://desktopcommander.app/library">Explain Codebase or Repository</a></p>
+
+
+
+<h3 class="wp-block-heading" id="workflow-2-review-specific-files-or-changes">Workflow 2: Review Specific Files or Changes</h3>
+
+
+
+<p><strong>Scenario:</strong> You need to review a component, a recent commit, or a set of changes.</p>
+
+
+
+<p><strong>Prompts to try:</strong></p>
+
+
+
+<pre class="wp-block-code"><code>Review src/components/UserAuth.tsx for security vulnerabilities and performance issues</code></pre>
+
+
+
+<pre class="wp-block-code"><code>Find all TODO comments in this project and list them by priority</code></pre>
+
+
+
+<pre class="wp-block-code"><code>Look for unused imports and dead code in the /lib directory</code></pre>
+
+
+
+<p>Claude reads the files, identifies potential issues, and provides specific recommendations with line numbers.</p>
+
+
+
+<p>Check these related prompts from our library:</p>
+
+
+
+<ul class="wp-block-list">
+<li><a href="https://desktopcommander.app/library">Find All TODO Comments</a></li>
+
+
+
+<li><a href="https://desktopcommander.app/library">Clean Up Unused Code</a></li>
+
+
+
+<li><a href="https://desktopcommander.app/library">Analyze Error Handling Strategy</a></li>
+</ul>
+
+
+
+<h3 class="wp-block-heading" id="workflow-3-run-tests-and-linters-as-part-of-review">Workflow 3: Run Tests and Linters as Part of Review</h3>
+
+
+
+<p><strong>Scenario:</strong> You want automated checks integrated into your review conversation.</p>
+
+
+
+<p><strong>Prompts to try:</strong></p>
+
+
+
+<pre class="wp-block-code"><code>Run npm test and summarize any failures</code></pre>
+
+
+
+<pre class="wp-block-code"><code>Run eslint on the src directory and list critical issues</code></pre>
+
+
+
+<pre class="wp-block-code"><code>Check if the TypeScript build passes. If there are errors, explain each one.</code></pre>
+
+
+
+<p>Desktop Commander executes commands in your terminal and returns the results. You can then ask follow-up questions about specific failures or have Claude suggest fixes.</p>
+
+
+
+<p>This integrates your existing tooling into the review process—no need to switch between Claude and your terminal.</p>
+
+
+
+<h3 class="wp-block-heading" id="workflow-4-apply-fixes-directly">Workflow 4: Apply Fixes Directly</h3>
+
+
+
+<p><strong>Scenario:</strong> Claude identified an issue, and you want it fixed.</p>
+
+
+
+<p><strong>Prompts to try:</strong></p>
+
+
+
+<pre class="wp-block-code"><code>Fix the SQL injection vulnerability you found in line 47</code></pre>
+
+
+
+<pre class="wp-block-code"><code>Refactor this function to handle the null case you mentioned</code></pre>
+
+
+
+<pre class="wp-block-code"><code>Apply the suggested changes to all files that have this pattern</code></pre>
+
+
+
+<p>Desktop Commander uses diff-based editing to make precise changes without touching unrelated code. This avoids the common LLM problem of rewriting entire files for small modifications.</p>
+
+
+
+<blockquote class="wp-block-quote">
+<p>"I had 76 errors in 23 files in my Svelte 5 project. Used desktop-commander, sequentialthinking, and tree-sitter to fix them all. Never resolved type errors this quickly with AI before!"<br>— @dependablecalls</p>
+</blockquote>
+
+
+
+<h2 class="wp-block-heading" id="best-practices-for-ai-code-review">Best Practices for AI Code Review</h2>
+
+
+
+<h3 class="wp-block-heading" id="do">Do:</h3>
+
+
+
+<p><strong>Provide context.</strong> Tell Claude about your project's conventions. Like in this prompt:</p>
+
+
+
+<pre class="wp-block-code"><code>This project uses React with TypeScript. We follow the Airbnb style guide. Review this component for adherence to our patterns</code></pre>
+
+
+
+<p><strong>Be specific.</strong> Narrow reviews are more useful than broad ones. Here is prompt example:</p>
+
+
+
+<pre class="wp-block-code"><code>Check this authentication module specifically for: 1) OWASP Top 10 vulnerabilities, 2) proper error handling, 3) edge cases in token refresh logic</code></pre>
+
+
+
+<p><strong>Prompt your AI to ask follow-up questions.</strong> The more context you provide, the better the results—so let the model guide you by requesting the details it needs.</p>
+
+
+
+<p><strong>Use the prompt library.</strong> The <a href="https://desktopcommander.app/library">Desktop Commander Prompt Library</a> has 60+ ready-made prompts for development workflows—no need to craft every prompt from scratch.</p>
+
+
+
+<h3 class="wp-block-heading" id="dont">Don't:</h3>
+
+
+
+<p><strong>Skip human verification.</strong> AI code review augments human judgment; it doesn't replace it. Always verify suggestions for:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Security-sensitive code</li>
+
+
+
+<li>Business logic requiring domain knowledge</li>
+
+
+
+<li>Architectural decisions with long-term implications</li>
+</ul>
+
+
+
+<p><strong>Accept changes blindly.</strong> Understand what Claude suggests before applying it. Ask follow-up questions if something isn't clear.</p>
+
+
+
+<p><strong>Ignore the audit log.</strong> Desktop Commander logs all operations to .mcp-server-log.jsonl. Review this if you need to track what was changed.</p>
+
+
+
+<h2 class="wp-block-heading" id="frequently-asked-questions">Frequently Asked Questions</h2>
+
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>How is Desktop Commander different from Cursor or Copilot?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Desktop Commander operates at the OS level, not within an IDE. It can access any file on your machine, run terminal commands, and work across multiple projects simultaneously. IDE tools are limited to the currently open project or file.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Is it safe to let AI edit my files?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Desktop Commander uses diff-based editing and logs all operations to <code>.mcp-server-log.jsonl</code>. You can review every change before committing and roll back if needed.<br><br>However, you should always be careful when working with sensitive or important data. Keep backups of critical files—Desktop Commander can create backup copies for you on request. Always verify suggestions before applying them, especially for high-stakes edits.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>What programming languages are supported?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Any language Claude or your LLM understands. Desktop Commander itself is language-agnostic—it reads files and runs commands. Claude handles the language-specific analysis.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Where can I find ready-made prompts for code review?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+The <a href="https://desktopcommander.app/library" style="color: #60a5fa;">Desktop Commander Prompt Library</a> includes prompts for codebase analysis, documentation generation, debugging, and more. Relevant ones for code review:
+<ul style="margin-top: 12px; padding-left: 20px;">
+<li>Explain Codebase or Repository</li>
+<li>Clean Up Unused Code</li>
+<li>Assess Technical Debt</li>
+<li>Analyze Error Handling Strategy</li>
+</ul>
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Can I use Desktop Commander with other AI clients?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Yes. Desktop Commander works with Claude Desktop, Claude Code, Cursor, and other MCP-compatible clients. This also means that you can use Desktop Commander with any LLM model — it supports 8 model providers including Anthropic, OpenAI, Google, xAI, Mistral, and others across 6+ MCP-compatible clients.
+</div>
+</details>
+
+
+
+<h2 class="wp-block-heading" id="getting-started">Getting Started</h2>
+
+
+
+<p>Ready to try AI-powered code review? Here's how to start:</p>
+
+
+
+<ol class="wp-block-list">
+<li><strong>Install:</strong> <code>npx @wonderwhy-er/desktop-commander@latest setup</code></li>
+
+
+
+<li><strong>Restart</strong> Claude Desktop</li>
+
+
+
+<li><strong>Try:</strong> "Analyze the directory structure of [your project path] and explain the architecture"</li>
+</ol>
+
+
+
+<h2 class="wp-block-heading" id="resources">Resources</h2>
+
+
+
+<ul class="wp-block-list">
+<li><a href="https://desktopcommander.app/">Desktop Commander Website</a></li>
+
+
+
+<li><a href="https://github.com/wonderwhy-er/DesktopCommanderMCP">GitHub Repository</a></li>
+
+
+
+<li><a href="https://desktopcommander.app/library">Prompt Library</a></li>
+
+
+
+<li><a href="https://www.youtube.com/@EduardsRuzga">Eduard Ruzga's YouTube</a></li>
+
+
+
+<li><a href="https://smithery.ai/server/@wonderwhy-er/desktop-commander">Smithery Listing</a></li>
+
+
+
+<li><a href="https://www.producthunt.com/products/desktop-commander-mcp/reviews">Product Hunt Reviews</a></li>
+</ul>
+</div> <aside class="toc-sidebar" id="toc-sidebar"></aside> </div> </article> </main>  <footer class="dc-footer"> <div class="dc-footer-container"> <div class="dc-footer-brand"> <div class="dc-footer-logo-section"> <img src="/blog/assets/dc-logo-dark.png" alt="Desktop Commander" class="dc-footer-logo" loading="lazy"> <h3 class="dc-footer-brand-title">Desktop Commander</h3> </div> <p class="dc-footer-description">
+AI that executes. Read files, run commands, and automate workflows — all in natural language.
+</p> <div class="dc-footer-socials"> <a href="https://github.com/wonderwhy-er/DesktopCommanderMCP" target="_blank" rel="noopener noreferrer" class="dc-footer-social-btn" title="GitHub"> <svg class="dc-footer-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg> </a> <a href="https://discord.gg/eHZeUKRQG" target="_blank" rel="noopener noreferrer" class="dc-footer-social-btn" title="Discord"> <svg class="dc-footer-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"></path></svg> </a> <a href="https://www.youtube.com/@EduardsRuzga" target="_blank" rel="noopener noreferrer" class="dc-footer-social-btn" title="YouTube"> <svg class="dc-footer-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg> </a> <a href="https://x.com/desktopcommandr" target="_blank" rel="noopener noreferrer" class="dc-footer-social-btn" title="X (Twitter)"> <svg class="dc-footer-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg> </a> <a href="https://www.npmjs.com/package/@wonderwhy-er/desktop-commander" target="_blank" rel="noopener noreferrer" class="dc-footer-social-btn" title="NPM"> <svg class="dc-footer-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 7.334v8h6.666v1.332H12v-1.332h12v-8H0zm6.666 6.664H5.334v-4H3.999v4H1.335V8.667h5.331v5.331zm4 0v1.336H8.001V8.667h5.334v5.332h-2.669v-.001zm12.001 0h-1.33v-4h-1.336v4h-1.335v-4h-1.33v4h-2.671V8.667h8.002v5.331zM10.665 10H12v2.667h-1.335V10z"></path></svg> </a> </div> </div> <div class="dc-footer-grid"> <div class="dc-footer-column"> <h4 class="dc-footer-column-title">Product</h4> <ul class="dc-footer-links"> <li><a href="https://desktopcommander.app/#download" class="dc-footer-link">Download App</a></li> <li><a href="https://desktopcommander.app/mcp/" class="dc-footer-link">MCP Server</a></li> <li><a href="https://desktopcommander.app/library/" class="dc-footer-link">Prompt Library</a></li> <li><a href="https://desktopcommander.app/pricing/" class="dc-footer-link">Pricing</a></li> </ul> </div> <div class="dc-footer-column"> <h4 class="dc-footer-column-title">Use Cases</h4> <ul class="dc-footer-links"> <li><a href="https://desktopcommander.app/use-cases/build-prototype/" class="dc-footer-link">For builders</a></li> <li><a href="https://desktopcommander.app/use-cases/knowledge-management/" class="dc-footer-link">For knowledge workers</a></li> <li><a href="https://desktopcommander.app/use-cases/analyze-data/" class="dc-footer-link">For data analysts</a></li> <li><a href="https://desktopcommander.app/use-cases/file-management/" class="dc-footer-link">File Management</a></li> <li><a href="https://desktopcommander.app/use-cases/" class="dc-footer-link">All use cases</a></li> </ul> </div> <div class="dc-footer-column"> <h4 class="dc-footer-column-title">Resources</h4> <ul class="dc-footer-links"> <li><a href="/blog/" class="dc-footer-link">Blog</a></li> <li><a href="https://discord.gg/eHZeUKRQG" target="_blank" rel="noopener noreferrer" class="dc-footer-link">Discord</a></li> <li><a href="https://github.com/wonderwhy-er/DesktopCommanderMCP" target="_blank" rel="noopener noreferrer" class="dc-footer-link">GitHub</a></li> <li><a href="https://desktopcommander.app/careers/" class="dc-footer-link">Careers</a></li> </ul> </div> </div> <div class="dc-footer-bottom"> <div class="dc-footer-bottom-content"> <p class="dc-footer-copyright">© 2026 Desktop Commander.</p> <div class="dc-footer-legal"> <a href="https://legal.desktopcommander.app" target="_blank" rel="noopener noreferrer" class="dc-footer-legal-link">Terms</a> <a href="https://legal.desktopcommander.app" target="_blank" rel="noopener noreferrer" class="dc-footer-legal-link">Privacy</a> </div> </div> </div> </div> </footer>  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script> <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('pre code:not([class*="language-"])').forEach(function (codeBlock) {
+              var code = codeBlock.textContent;
+              if (code.match(/^\s*(import |from |def |class |print\(|if __name__|pandas|numpy)/m)) codeBlock.classList.add('language-python');
+              else if (code.match(/^\s*(npm |npx |yarn |node |const |let |var |function\s|=>|require\()/m)) codeBlock.classList.add('language-javascript');
+              else if (code.match(/^\s*(\$|curl |wget |chmod |sudo |apt |brew |pip |cd |ls |mkdir )/m)) codeBlock.classList.add('language-bash');
+              else if (code.match(/<[a-zA-Z][^>]*>/)) codeBlock.classList.add('language-markup');
+              else codeBlock.classList.add('language-python');
+            });
+            if (typeof Prism !== 'undefined') Prism.highlightAll();
+          });
+        </script> <script src="/blog/js/floating-toc.js"></script> <script src="/blog/js/blog-cta-tracking.js"></script>  </body> </html>

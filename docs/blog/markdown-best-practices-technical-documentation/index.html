@@ -1,0 +1,1004 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Analytics (PostHog + GA4) — wp_head priority 0 --><script>
+      !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+      posthog.init('phc_SmlF1mKK199Blt4hUNL6V19IWydNNJ9o7Qbym2Y4zQa', { api_host: 'https://eu.i.posthog.com', cross_subdomain_cookie: true, capture_pageview: true, capture_pageleave: true });
+    </script><script async src="https://www.googletagmanager.com/gtag/js?id=G-HXL4Y3Y62N"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HXL4Y3Y62N', { linker: { domains: ['desktopcommander.app', 'blog.desktopcommander.app'] } });
+    </script><title>Technical Documentation with Markdown: Best Practices &amp; Tools | Desktop Commander Blog</title><meta name="description" content="Master markdown best practices for technical documentation. Learn formatting, version control, error checking tools, and how Desktop Commander automates docu..."><!-- Open Graph / Facebook --><meta property="og:type" content="article"><meta property="og:site_name" content="Desktop Commander Blog"><meta property="og:title" content="Technical Documentation with Markdown: Best Practices &#38; Tools"><meta property="og:description" content="Master markdown best practices for technical documentation. Learn formatting, version control, error checking tools, and how Desktop Commander automates docu..."><meta property="og:url" content="https://desktopcommander.app/blog/markdown-best-practices-technical-documentation/"><meta property="og:image" content="https://desktopcommander.app/blog/media/2025/12/markdown-documentation-featured-e1765184673758.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="article:published_time" content="2025-12-08T11:01:06+02:00"><meta property="article:modified_time" content="2026-02-20T10:57:46+02:00"><meta property="article:author" content="Roman Makarenko"><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Technical Documentation with Markdown: Best Practices &#38; Tools"><meta name="twitter:description" content="Master markdown best practices for technical documentation. Learn formatting, version control, error checking tools, and how Desktop Commander automates docu..."><meta name="twitter:image" content="https://desktopcommander.app/blog/media/2025/12/markdown-documentation-featured-e1765184673758.jpg"><link rel="canonical" href="https://desktopcommander.app/blog/markdown-best-practices-technical-documentation/"><!-- Favicons (shared with main site) --><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><!-- Ported theme stylesheet, served verbatim (no PostCSS) --><link rel="stylesheet" href="/blog/blog.css"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://desktopcommander.app/blog/#website","url":"https://desktopcommander.app/blog/","name":"Desktop Commander Blog","description":"AI that works on your computer. Guides on AI automation, file management, and local development workflows.","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://desktopcommander.app/blog/?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@type":"WebPage","@id":"https://desktopcommander.app/blog/markdown-best-practices-technical-documentation/#webpage","url":"https://desktopcommander.app/blog/markdown-best-practices-technical-documentation/","name":"Technical Documentation with Markdown: Best Practices & Tools","isPartOf":{"@id":"https://desktopcommander.app/blog/#website"},"datePublished":"2025-12-08T11:01:06+02:00","dateModified":"2026-02-20T10:57:46+02:00"},{"@type":"Article","@id":"https://desktopcommander.app/blog/markdown-best-practices-technical-documentation/#article","isPartOf":{"@id":"https://desktopcommander.app/blog/markdown-best-practices-technical-documentation/#webpage"},"headline":"Technical Documentation with Markdown: Best Practices & Tools","description":"Master markdown best practices for technical documentation. Learn formatting, version control, error checking tools, and how Desktop Commander automates docu...","datePublished":"2025-12-08T11:01:06+02:00","dateModified":"2026-02-20T10:57:46+02:00","mainEntityOfPage":"https://desktopcommander.app/blog/markdown-best-practices-technical-documentation/","author":{"@type":"Person","@id":"https://desktopcommander.app/blog/author/romanmakarenko/#person","name":"Roman Makarenko","url":"https://desktopcommander.app/blog/author/romanmakarenko/","image":{"@type":"ImageObject","url":"https://rk7f8a7274b9330-haqfg.wpcomstaging.com/wp-content/uploads/2025/12/roman-avatar.jpg","width":400,"height":400},"description":"Roman specialises in technical analysis and data-driven optimization, leveraging 8+ years of digital marketing experience to help businesses achieve sustainable organic growth across industries."},"publisher":{"@type":"Organization","name":"Desktop Commander Blog","url":"https://desktopcommander.app/blog/"},"wordCount":3090,"image":{"@type":"ImageObject","url":"https://desktopcommander.app/blog/media/2025/12/markdown-documentation-featured-e1765184673758.jpg","width":1122,"height":600}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What are the most important markdown best practices for technical documentation?","acceptedAnswer":{"@type":"Answer","text":"Use consistent heading hierarchies (one H1, don't skip levels), stick with one bullet point style, maintain blank lines around code blocks, use descriptive link text, and store Markdown files in version control alongside your code."}},{"@type":"Question","name":"How can I ensure consistent formatting across multiple Markdown files?","acceptedAnswer":{"@type":"Answer","text":"Use markdown linters like markdownlint in your CI/CD pipeline, establish a style guide, and consider AI tools like Desktop Commander for automated consistency across your documentation set."}},{"@type":"Question","name":"What's the difference between technical documentation and technical writing?","acceptedAnswer":{"@type":"Answer","text":"Technical documentation is the complete set of materials explaining how software works, while technical writing is the skill and process of creating that documentation."}},{"@type":"Question","name":"How does AI improve technical documentation workflows?","acceptedAnswer":{"@type":"Answer","text":"AI automates generating documentation from code, maintains consistency across files, updates docs when code changes, and creates supplementary materials like diagrams—eliminating documentation debt and maintenance burden."}},{"@type":"Question","name":"Should I use Markdown or a documentation platform for my project?","acceptedAnswer":{"@type":"Answer","text":"Use Markdown for developer docs in code repositories with version control; choose documentation platforms like Document360 or GitBook for customer-facing documentation with robust search and permissions."}},{"@type":"Question","name":"What markdown formatting issues are most common?","acceptedAnswer":{"@type":"Answer","text":"Inconsistent heading hierarchies, mixed bullet point styles, missing blank lines around code blocks, incorrect table alignment, unescaped special characters, and broken internal links."}},{"@type":"Question","name":"How do I maintain markdown documentation as my codebase grows?","acceptedAnswer":{"@type":"Answer","text":"Store docs in the same repository as code, use Git branches for updates, require pull request reviews, and integrate automated checks in CI/CD pipelines."}},{"@type":"Question","name":"Can AI-generated documentation replace technical writers?","acceptedAnswer":{"@type":"Answer","text":"AI handles repetitive documentation tasks effectively but works best supplementing human expertise—technical writers still provide essential value in strategic documentation, information architecture, and content for non-technical audiences."}}]}</script></head> <body class="single single-post"> <nav class="dc-nav" role="navigation" aria-label="Primary"> <div class="dc-nav-container"> <div class="dc-nav-left"> <a href="https://desktopcommander.app" class="dc-logo-link"> <img src="/blog/assets/dc-logo-light.png" alt="Desktop Commander" class="dc-logo" width="200" height="32"> </a> <ul class="dc-nav-links" role="menubar"> <!-- Use Cases mega --> <li class="dc-nav-item dc-has-mega" role="none"> <button type="button" class="dc-nav-link dc-mega-trigger" role="menuitem" aria-haspopup="true" aria-expanded="false">
+Use Cases
+<svg class="dc-mega-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg> </button> <div class="dc-mega dc-mega-use-cases" role="menu"> <div class="dc-mega-inner"> <div class="dc-mega-col"> <h4 class="dc-mega-heading">By role</h4> <ul> <li><a href="https://desktopcommander.app/use-cases/build-prototype/" class="dc-mega-link"><span class="dc-mega-link-label">For builders</span><span class="dc-mega-link-desc">Prototype, scripts, dev workflows</span></a></li> <li><a href="https://desktopcommander.app/use-cases/knowledge-management/" class="dc-mega-link"><span class="dc-mega-link-label">For knowledge workers</span><span class="dc-mega-link-desc">Notes, research, second brain</span></a></li> <li><a href="https://desktopcommander.app/use-cases/analyze-data/" class="dc-mega-link"><span class="dc-mega-link-label">For data analysts</span><span class="dc-mega-link-desc">CSVs, logs, ad-hoc analysis</span></a></li> </ul> </div> <div class="dc-mega-col"> <h4 class="dc-mega-heading">All use cases</h4> <ul> <li><a href="https://desktopcommander.app/use-cases/file-management/" class="dc-mega-link"><span class="dc-mega-link-label">File Management</span></a></li> <li><a href="https://desktopcommander.app/use-cases/knowledge-management/" class="dc-mega-link"><span class="dc-mega-link-label">Knowledge Management</span></a></li> <li><a href="https://desktopcommander.app/use-cases/analyze-data/" class="dc-mega-link"><span class="dc-mega-link-label">Analyze Data</span></a></li> <li><a href="https://desktopcommander.app/use-cases/build-prototype/" class="dc-mega-link"><span class="dc-mega-link-label">Build Prototypes</span></a></li> <li><a href="https://desktopcommander.app/use-cases/connect-apps/" class="dc-mega-link"><span class="dc-mega-link-label">Connect Apps</span></a></li> </ul> </div> <div class="dc-mega-col"> <h4 class="dc-mega-heading">Time savers</h4> <ul> <li><a href="https://desktopcommander.app/use-cases/file-management/heic-to-jpg/" class="dc-mega-link"><span class="dc-mega-link-label">HEIC → JPG</span></a></li> <li><a href="https://desktopcommander.app/use-cases/file-management/pdf-to-png/" class="dc-mega-link"><span class="dc-mega-link-label">PDF → PNG</span></a></li> <li><a href="https://desktopcommander.app/use-cases/file-management/webp-to-jpg/" class="dc-mega-link"><span class="dc-mega-link-label">WebP → JPG</span></a></li> <li><a href="https://desktopcommander.app/use-cases/file-management/png-to-jpg/" class="dc-mega-link"><span class="dc-mega-link-label">PNG → JPG</span></a></li> </ul> </div> </div> <a href="https://desktopcommander.app/use-cases/" class="dc-mega-footer-link">View all use cases →</a> </div> </li> <!-- Prompts mega --> <li class="dc-nav-item dc-has-mega" role="none"> <button type="button" class="dc-nav-link dc-mega-trigger" role="menuitem" aria-haspopup="true" aria-expanded="false">
+Prompts
+<svg class="dc-mega-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg> </button> <div class="dc-mega dc-mega-prompts" role="menu"> <div class="dc-mega-inner"> <div class="dc-mega-col"> <h4 class="dc-mega-heading">Popular prompts</h4> <ul> <li><a href="https://desktopcommander.app/library/prompts/organise-my-downloads-folder/" class="dc-mega-link"><span class="dc-mega-link-label">Organise my Downloads</span></a></li> <li><a href="https://desktopcommander.app/library/prompts/explain-codebase-or-repository/" class="dc-mega-link"><span class="dc-mega-link-label">Explain a codebase</span></a></li> <li><a href="https://desktopcommander.app/library/prompts/create-knowledge-base-folder/" class="dc-mega-link"><span class="dc-mega-link-label">Create knowledge base</span></a></li> <li><a href="https://desktopcommander.app/library/prompts/extract-data-from-pdfs/" class="dc-mega-link"><span class="dc-mega-link-label">Extract data from PDFs</span></a></li> </ul> </div> </div> <a href="https://desktopcommander.app/library/prompts/" class="dc-mega-footer-link">Browse all prompts →</a> </div> </li> <li class="dc-nav-item"><a href="https://desktopcommander.app/mcp/" class="dc-nav-link" role="menuitem">MCP</a></li> <li class="dc-nav-item"><a href="https://desktopcommander.app/pricing/" class="dc-nav-link" role="menuitem">Pricing</a></li> <!-- Resources mega --> <li class="dc-nav-item dc-has-mega" role="none"> <button type="button" class="dc-nav-link dc-mega-trigger" role="menuitem" aria-haspopup="true" aria-expanded="false">
+Resources
+<svg class="dc-mega-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg> </button> <div class="dc-mega dc-mega-resources" role="menu"> <div class="dc-mega-inner"> <div class="dc-mega-col"> <h4 class="dc-mega-heading">Resources</h4> <ul> <li><a href="/blog/" class="dc-mega-link"><span class="dc-mega-link-label">All articles</span></a></li> <li><a href="https://desktopcommander.app/library/prompts/" class="dc-mega-link"><span class="dc-mega-link-label">Prompt Library</span></a></li> <li><a href="https://desktopcommander.app/mcp/" class="dc-mega-link"><span class="dc-mega-link-label">MCP server</span></a></li> <li><a href="https://desktopcommander.app/best-value-ai/" class="dc-mega-link"><span class="dc-mega-link-label">AI value comparison</span><span class="dc-mega-link-desc">Which AI models and providers are best value?</span></a></li> </ul> </div> <div class="dc-mega-col"> <h4 class="dc-mega-heading">Popular guides</h4> <ul> <li><a href="/blog/best-mcp-servers/" class="dc-mega-link"><span class="dc-mega-link-label">Best MCP servers</span></a></li> <li><a href="/blog/what-is-an-mcp-server-and-how-it-works-in-plain-english/" class="dc-mega-link"><span class="dc-mega-link-label">What is an MCP server?</span></a></li> <li><a href="/blog/zettelkasten-obsidian/" class="dc-mega-link"><span class="dc-mega-link-label">Zettelkasten in Obsidian</span></a></li> <li><a href="/blog/best-obsidian-plugins/" class="dc-mega-link"><span class="dc-mega-link-label">Best Obsidian plugins</span></a></li> <li><a href="/blog/obsidian-markdown-cheatsheet-every-syntax-you-actually-need/" class="dc-mega-link"><span class="dc-mega-link-label">Obsidian Markdown cheatsheet</span></a></li> </ul> </div> <div class="dc-mega-col"> <h4 class="dc-mega-heading">Community &amp; dev</h4> <ul> <li><a href="https://discord.gg/eHZeUKRQG" target="_blank" rel="noopener noreferrer" class="dc-mega-link"><span class="dc-mega-link-label">Discord</span></a></li> <li><a href="https://github.com/wonderwhy-er/DesktopCommanderMCP" target="_blank" rel="noopener noreferrer" class="dc-mega-link"><span class="dc-mega-link-label">GitHub <span class="dc-mega-badge">MCP</span></span></a></li> <li><a href="https://desktopcommander.app/careers/" class="dc-mega-link"><span class="dc-mega-link-label">Careers</span></a></li> <li><a href="/blog/about/" class="dc-mega-link"><span class="dc-mega-link-label">About</span></a></li> </ul> </div> </div> <a href="/blog/" class="dc-mega-footer-link">View all guides →</a> </div> </li> </ul> </div> <div class="dc-nav-right"> <a href="https://desktopcommander.app/#download" class="dc-download-btn dc-download-desktop"> <svg class="dc-download-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"> <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line> </svg>
+Download App
+</a> <button class="dc-mobile-menu-btn" id="dc-mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="dc-mobile-menu" aria-label="Toggle navigation"> <svg class="dc-menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg> </button> </div> </div> <div class="dc-mobile-overlay" id="dc-mobile-overlay"></div> <div class="dc-mobile-menu" id="dc-mobile-menu" aria-hidden="true"> <div class="dc-mobile-menu-header"> <button class="dc-mobile-menu-close" id="dc-mobile-menu-close" type="button" aria-label="Close navigation"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> </button> </div> <div class="dc-mobile-menu-content"> <details class="dc-mobile-group"> <summary class="dc-mobile-group-summary">Use Cases
+<svg class="dc-mobile-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg> </summary> <div class="dc-mobile-group-links"> <div class="dc-mobile-menu-label">By role</div> <a href="https://desktopcommander.app/use-cases/build-prototype/" class="dc-mobile-menu-link" data-close-mobile>For builders</a> <a href="https://desktopcommander.app/use-cases/knowledge-management/" class="dc-mobile-menu-link" data-close-mobile>For knowledge workers</a> <a href="https://desktopcommander.app/use-cases/analyze-data/" class="dc-mobile-menu-link" data-close-mobile>For data analysts</a> <div class="dc-mobile-menu-label">All use cases</div> <a href="https://desktopcommander.app/use-cases/file-management/" class="dc-mobile-menu-link" data-close-mobile>File Management</a> <a href="https://desktopcommander.app/use-cases/connect-apps/" class="dc-mobile-menu-link" data-close-mobile>Connect Apps</a> <a href="https://desktopcommander.app/use-cases/" class="dc-mobile-menu-link" data-close-mobile>View all use cases →</a> </div> </details> <details class="dc-mobile-group"> <summary class="dc-mobile-group-summary">Prompts
+<svg class="dc-mobile-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg> </summary> <div class="dc-mobile-group-links"> <div class="dc-mobile-menu-label">Popular prompts</div> <a href="https://desktopcommander.app/library/prompts/organise-my-downloads-folder/" class="dc-mobile-menu-link" data-close-mobile>Organise my Downloads</a> <a href="https://desktopcommander.app/library/prompts/explain-codebase-or-repository/" class="dc-mobile-menu-link" data-close-mobile>Explain a codebase</a> <a href="https://desktopcommander.app/library/prompts/create-knowledge-base-folder/" class="dc-mobile-menu-link" data-close-mobile>Create knowledge base</a> <a href="https://desktopcommander.app/library/prompts/extract-data-from-pdfs/" class="dc-mobile-menu-link" data-close-mobile>Extract data from PDFs</a> <a href="https://desktopcommander.app/library/prompts/" class="dc-mobile-menu-link" data-close-mobile>Browse all prompts →</a> </div> </details> <a href="https://desktopcommander.app/mcp/" class="dc-mobile-menu-link" data-close-mobile>MCP</a> <a href="https://desktopcommander.app/pricing/" class="dc-mobile-menu-link" data-close-mobile>Pricing</a> <details class="dc-mobile-group"> <summary class="dc-mobile-group-summary">Resources
+<svg class="dc-mobile-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg> </summary> <div class="dc-mobile-group-links"> <a href="/blog/" class="dc-mobile-menu-link" data-close-mobile>All articles</a> <a href="https://desktopcommander.app/library/prompts/" class="dc-mobile-menu-link" data-close-mobile>Prompt Library</a> <a href="https://desktopcommander.app/mcp/" class="dc-mobile-menu-link" data-close-mobile>MCP server</a> <a href="https://desktopcommander.app/best-value-ai/" class="dc-mobile-menu-link" data-close-mobile>AI value comparison</a> <div class="dc-mobile-menu-label">Community &amp; dev</div> <a href="https://discord.gg/eHZeUKRQG" target="_blank" rel="noopener noreferrer" class="dc-mobile-menu-link" data-close-mobile>Discord</a> <a href="https://github.com/wonderwhy-er/DesktopCommanderMCP" target="_blank" rel="noopener noreferrer" class="dc-mobile-menu-link" data-close-mobile>GitHub</a> <a href="https://desktopcommander.app/careers/" class="dc-mobile-menu-link" data-close-mobile>Careers</a> <a href="/blog/about/" class="dc-mobile-menu-link" data-close-mobile>About</a> </div> </details> <div class="dc-mobile-menu-divider"></div> <a href="https://desktopcommander.app/#download" class="dc-mobile-download-btn" data-close-mobile> <svg class="dc-download-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+Download App
+</a> </div> </div> </nav> <script>
+(function () {
+  const menuToggle = document.getElementById('dc-mobile-menu-toggle');
+  const mobileMenu = document.getElementById('dc-mobile-menu');
+  const overlay = document.getElementById('dc-mobile-overlay');
+  const menuClose = document.getElementById('dc-mobile-menu-close');
+  const closeOnClickItems = document.querySelectorAll('[data-close-mobile]');
+  const focusableSelectors = 'a[href], button:not([disabled]), summary, [tabindex]:not([tabindex="-1"])';
+  let lastFocusedElement = null;
+  function trapFocus(container) {
+    const f = Array.from(container.querySelectorAll(focusableSelectors));
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    container.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab') return;
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+    first.focus();
+  }
+  function openMobileMenu() {
+    if (!mobileMenu) return;
+    lastFocusedElement = document.activeElement;
+    mobileMenu.classList.add('active'); mobileMenu.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden'; menuToggle && menuToggle.setAttribute('aria-expanded', 'true');
+    overlay && overlay.classList.add('active'); trapFocus(mobileMenu);
+  }
+  function closeMobileMenu() {
+    if (!mobileMenu) return;
+    mobileMenu.classList.remove('active'); mobileMenu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = ''; menuToggle && menuToggle.setAttribute('aria-expanded', 'false');
+    overlay && overlay.classList.remove('active'); lastFocusedElement && lastFocusedElement.focus();
+  }
+  menuToggle && menuToggle.addEventListener('click', openMobileMenu);
+  menuClose && menuClose.addEventListener('click', closeMobileMenu);
+  overlay && overlay.addEventListener('click', closeMobileMenu);
+  mobileMenu && mobileMenu.addEventListener('click', function (e) { if (e.target === mobileMenu) closeMobileMenu(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('active')) closeMobileMenu(); });
+  closeOnClickItems.forEach(function (item) { item.addEventListener('click', closeMobileMenu); });
+  document.querySelectorAll('.dc-has-mega').forEach(function (item) {
+    const trigger = item.querySelector('.dc-mega-trigger');
+    if (!trigger) return;
+    trigger.addEventListener('click', function (e) {
+      e.preventDefault();
+      const isOpen = item.classList.toggle('dc-mega-open');
+      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  });
+  document.addEventListener('click', function (e) {
+    document.querySelectorAll('.dc-has-mega.dc-mega-open').forEach(function (item) {
+      if (!item.contains(e.target)) { item.classList.remove('dc-mega-open'); const t = item.querySelector('.dc-mega-trigger'); t && t.setAttribute('aria-expanded', 'false'); }
+    });
+  });
+})();
+</script>  <main class="site-content"> <div class="back-button-container"> <button onclick="window.history.back();" class="back-to-blog"> <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+Back
+</button> </div> <article class="post single-post" data-pagefind-body> <header class="single-post-header"> <nav class="breadcrumbs"> <a href="/blog/">Blog</a> <span class="breadcrumb-separator">/</span>  <a href="/blog/category/deep-dives/">Deep Dives</a> <span class="breadcrumb-separator">/</span>  <span class="breadcrumb-current">Technical Documentation with Markdown: Best Practices &amp; Tools</span> </nav> <h1 class="single-post-title">Technical Documentation with Markdown: Best Practices &amp; Tools</h1> <div class="single-post-meta"> <span>December 8, 2025</span> <span>By <a href="/blog/author/romanmakarenko/" class="author-link">Roman Makarenko</a></span> </div> <div class="single-post-categories"> <a href="/blog/category/deep-dives/" class="post-category-tag single-category-tag">Deep Dives</a><a href="/blog/category/how-to/" class="post-category-tag single-category-tag">How-to</a><a href="/blog/category/tutorials/" class="post-category-tag single-category-tag">Tutorials</a><a href="/blog/category/use-cases/" class="post-category-tag single-category-tag">Use Cases</a> </div> </header> <div class="author-bio-section" data-pagefind-ignore> <div class="author-bio-card"> <div class="author-bio-avatar"> <img src="https://rk7f8a7274b9330-haqfg.wpcomstaging.com/wp-content/uploads/2025/12/roman-avatar.jpg" alt="Roman Makarenko" width="80" height="80" loading="lazy"> </div> <div class="author-bio-content"> <h3 class="author-bio-name"><a href="/blog/author/romanmakarenko/">Roman Makarenko</a></h3> <p class="author-bio-description">Roman specialises in technical analysis and data-driven optimization, leveraging 8+ years of digital marketing experience to help businesses achieve sustainable organic growth across industries.</p>  </div> </div> </div> <div class="post-content-wrapper"> <div class="single-post-content">
+<p>Managing technical documentation can feel like an uphill battle. You're juggling multiple Markdown files, catching formatting errors, and racing to keep everything current as your project evolves. Sound familiar?</p>
+
+
+
+<p>Many developers find themselves stuck between knowing they need proper documentation and actually maintaining it. The syntax is straightforward enough, but keeping docs synchronized with code changes across an entire project is where things get complicated.</p>
+
+
+
+<p>This guide walks you through practical markdown best practices, common pain points you'll face, and how modern AI tools can handle the repetitive work that eats up your time—so you can focus on building instead of documenting.</p>
+
+
+
+<h2 class="wp-block-heading" id="key-takeaways">Key Takeaways</h2>
+
+
+
+<ul class="wp-block-list">
+<li>Markdown remains the standard for technical documentation due to its simplicity, version control compatibility, and readability by both humans and AI systems</li>
+
+
+
+<li>Manual documentation consumes significant development time through repetitive updates, consistency management, and formatting fixes across multiple files</li>
+
+
+
+<li>Git-based workflows and linters provide foundational documentation quality but don't reduce the core workload of writing and maintaining docs</li>
+
+
+
+<li>AI automation eliminates documentation debt by generating, updating, and synchronizing documentation automatically as code changes</li>
+
+
+
+<li>Desktop Commander saves 15-20 hours per project on initial documentation and eliminates ongoing maintenance burden through continuous automated updates</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading" id="introduction-to-technical-documentation-in-markdown">Introduction to Technical Documentation in Markdown</h2>
+
+
+
+<p>Markdown has become the documentation format of choice for technical teams. Created by John Gruber in 2004, this lightweight markup language lets you write formatted documents using plain text syntax. No complicated WYSIWYG editors, no proprietary file formats—just readable text that converts cleanly to HTML.</p>
+
+
+
+<p><strong>Why developers choose Markdown:</strong></p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>Human-readable syntax</strong> - Files remain understandable even without rendering</li>
+
+
+
+<li><strong>Version control friendly</strong> - Plain text works seamlessly with Git</li>
+
+
+
+<li><strong>Platform independent</strong> - Works across all operating systems and tools</li>
+
+
+
+<li><strong>Fast to write</strong> - Simple syntax means less time formatting, more time documenting</li>
+
+
+
+<li><strong>Universal compatibility</strong> - Supported by GitHub, GitLab, documentation generators, and countless other tools</li>
+</ul>
+
+
+
+<p>The simplicity is deceptive, though. While writing a single Markdown file is straightforward, maintaining documentation across a growing codebase introduces real complexity.</p>
+
+
+
+<h2 class="wp-block-heading" id="why-technical-documentation-matters">Why Technical Documentation Matters</h2>
+
+
+
+<figure class="wp-block-image size-full"><img src="/blog/media/2025/12/Screenshot-2025-12-08-at-10.48.32.png" alt="Technical documentation in markdown" class="wp-image-398"/><figcaption class="wp-element-caption">Technical documentation in markdown</figcaption></figure>
+
+
+
+<p>Documentation isn't just nice to have—it's infrastructure. Proper technical documentation serves multiple critical functions:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Reduces onboarding time for new team members joining projects</li>
+
+
+
+<li>Decreases support tickets by providing self-service resources</li>
+
+
+
+<li>Improves code maintainability by explaining architectural decisions</li>
+
+
+
+<li>Facilitates collaboration across distributed teams</li>
+
+
+
+<li>Preserves institutional knowledge when team members leave</li>
+</ul>
+
+
+
+<p>For solo developers and small teams, documentation becomes even more critical. You're wearing multiple hats, and six months from now, you won't remember why you made certain technical choices. Clear documentation bridges that gap.</p>
+
+
+
+<h2 class="wp-block-heading" id="common-challenges-in-managing-markdown-documentation">Common Challenges in Managing Markdown Documentation</h2>
+
+
+
+<p>Let's talk about what actually happens when you're maintaining real-world documentation. These aren't theoretical problems—they're frustrations that slow you down every day.</p>
+
+
+
+<h3 class="wp-block-heading" id="time-consuming-updates">Time-Consuming Updates</h3>
+
+
+
+<p>Every code change can trigger documentation updates across multiple files. API endpoints change? That's your README, API documentation, and integration guides all needing updates. Refactor a function? Better update the technical specs, code comments, and usage examples.</p>
+
+
+
+<p>Documentation maintenance creates a real time burden. For small teams, developers often spend significant hours weekly on documentation tasks—time that could be spent on feature development or bug fixes.</p>
+
+
+
+<p>Here's what this looks like in practice:</p>
+
+
+
+<ol class="wp-block-list">
+<li>You ship a feature on Friday. Documentation? "I'll do it Monday."</li>
+
+
+
+<li>Monday comes. Three new issues need fixes. Documentation waits.</li>
+
+
+
+<li>Two weeks pass. You don't remember the implementation details anymore.</li>
+
+
+
+<li>Someone asks how it works. You write incomplete docs from memory.</li>
+</ol>
+
+
+
+<p>This cycle repeats until documentation falls permanently behind reality.</p>
+
+
+
+<h3 class="wp-block-heading" id="consistency-problems">Consistency Problems</h3>
+
+
+
+<p>Keeping documentation consistent across contributors gets harder as projects grow. Active projects face constant documentation drift—terminology inconsistencies, formatting differences, and contradictory instructions appear as different people update different files.</p>
+
+
+
+<p><strong>Common consistency issues include:</strong></p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>Challenge</th><th>Example</th><th>Impact</th></tr></thead><tbody><tr><td><strong>Terminology drift</strong></td><td>Same concept called "user profile," "account settings," and "preferences"</td><td>Confusion, support tickets</td></tr><tr><td><strong>Style variations</strong></td><td>Mixing first person ("I'll show you...") with imperative ("Click the button...")</td><td>Unprofessional appearance</td></tr><tr><td><strong>Structural differences</strong></td><td>Some pages use H2 for sections, others use H3</td><td>Difficult navigation</td></tr><tr><td><strong>Code block formatting</strong></td><td>Inconsistent language tags, indentation styles</td><td>Harder to read, copy</td></tr><tr><td><strong>Link rot</strong></td><td>Outdated internal references, broken external links</td><td>User frustration, lost time</td></tr></tbody></table></figure>
+
+
+
+<p>These problems compound across large codebases. A project with 50+ Markdown files essentially becomes impossible to keep perfectly synchronized without automated tools or strict review processes—neither of which small teams have bandwidth for.</p>
+
+
+
+<h3 class="wp-block-heading" id="formatting-issues">Formatting Issues</h3>
+
+
+
+<p>Markdown syntax is simple until it isn't. Small mistakes create rendering problems that aren't always obvious in your editor.</p>
+
+
+
+<p><strong>Common formatting errors:</strong></p>
+
+
+
+<ul class="wp-block-list">
+<li>Inconsistent heading hierarchies (jumping from H2 to H4)</li>
+
+
+
+<li>Mixed bullet point styles (*, -, + used interchangeably)</li>
+
+
+
+<li>Broken table alignment</li>
+
+
+
+<li>Unescaped special characters breaking lists</li>
+
+
+
+<li>Incorrect code fence syntax</li>
+
+
+
+<li>Missing blank lines before/after code blocks</li>
+</ul>
+
+
+
+<p>These errors typically surface when you publish or when someone views your documentation in a different tool. By then, you're fixing formatting instead of writing content.</p>
+
+
+
+<p>According to the <a href="https://www.markdownguide.org/">Markdown Guide</a>, whitespace handling remains one of the top three confusion points for Markdown users. Different parsers interpret edge cases differently, leading to documentation that looks perfect locally but breaks in production.</p>
+
+
+
+<h2 class="wp-block-heading" id="why-markdown-remains-essential-despite-challenges">Why Markdown Remains Essential Despite Challenges</h2>
+
+
+
+<p>Although Markdown has its challenges, it remains one of the most convenient formats for documentation: it is easily readable by both humans and AI models, which understand and generate Markdown with high accuracy.</p>
+
+
+
+<p>This dual readability creates unique advantages. Humans can edit files in any text editor and review changes in Git diffs, while AI systems can parse Markdown structure reliably for automated documentation generation and intelligent updates. No other format strikes this balance—WYSIWYG editors produce opaque file formats, raw HTML is too verbose, and other markup languages lack universal tool support.</p>
+
+
+
+<h2 class="wp-block-heading" id="best-practices-for-working-with-markdown">Best Practices for Working with Markdown</h2>
+
+
+
+<p>Let's cover the practical approaches that help you maintain cleaner, more consistent documentation—even before AI tools enter the picture.</p>
+
+
+
+<h3 class="wp-block-heading" id="using-headers-and-bullet-points-effectively">Using Headers and Bullet Points Effectively</h3>
+
+
+
+<p>Well-structured documents make information discoverable. Here's how to organize your Markdown for maximum clarity:</p>
+
+
+
+<p><strong>Heading hierarchy rules:</strong></p>
+
+
+
+<pre class="wp-block-code"><code># H1: Document Title (Use once per file)
+## H2: Main Sections - Your primary organization layer
+### H3: Subsections - Break down main topics
+#### H4: Detailed Points - Use sparingly</code></pre>
+
+
+
+<p><strong>Best practices for headers:</strong></p>
+
+
+
+<ul class="wp-block-list">
+<li>Use only one H1 per document (typically the page title)</li>
+
+
+
+<li>Don't skip heading levels (e.g., H2 → H4)</li>
+
+
+
+<li>Make headings descriptive and scannable</li>
+
+
+
+<li>Keep heading text concise (under 60 characters)</li>
+
+
+
+<li>Use parallel structure (all start with verb, all questions, etc.)</li>
+</ul>
+
+
+
+<p><strong>Effective bullet point usage:</strong></p>
+
+
+
+<p>Choose unordered lists for items without hierarchy or sequence:</p>
+
+
+
+<pre class="wp-block-code"><code>- First point
+- Second point
+  - Nested detail
+  - Another nested detail
+- Third point</code></pre>
+
+
+
+<p>Use ordered lists for sequential steps or ranked items:</p>
+
+
+
+<pre class="wp-block-code"><code>1. Install dependencies
+2. Configure environment variables
+3. Run database migrations
+4. Start the development server</code></pre>
+
+
+
+<p><strong>Consistency tip:</strong> Pick one bullet style (-, *, or +) and stick with it throughout your entire documentation set. Most style guides recommend hyphens (-) as the standard.</p>
+
+
+
+<h3 class="wp-block-heading" id="version-control-with-git">Version Control with Git</h3>
+
+
+
+<p>You can use Git to track changes and different versions of your documentation, so every edit is recorded, you can recover any previous version, and multiple team members can work on documentation simultaneously without overwriting each other's work.</p>
+
+
+
+<p><strong>Essential Git practices for documentation:</strong></p>
+
+
+
+<p><strong>1. Treat documentation like code</strong></p>
+
+
+
+<p>Store Markdown files in the same repository as your code. Documentation should live where developers actually work, not in a separate wiki that everyone forgets to update.</p>
+
+
+
+<pre class="wp-block-code"><code>your-project/
+├── src/
+├── docs/
+│   ├── README.md
+│   ├── api/
+│   ├── guides/
+│   └── reference/
+└── README.md</code></pre>
+
+
+
+<p><strong>2. Write meaningful commit messages</strong></p>
+
+
+
+<p>Use consistent commit message formats for documentation changes:</p>
+
+
+
+<pre class="wp-block-code"><code># Good commit messages
+docs: add installation guide for Windows users
+docs: update API authentication examples
+docs: fix broken links in contributing guide
+
+# Poor commit messages
+update docs
+fix typo
+changes</code></pre>
+
+
+
+<p>Following conventions like <a href="https://www.conventionalcommits.org/">Conventional Commits</a> makes your documentation history searchable and understandable.</p>
+
+
+
+<p><strong>3. Use branches for substantial updates</strong></p>
+
+
+
+<p>Create feature branches for major documentation work, just like you would for code:</p>
+
+
+
+<pre class="wp-block-code"><code>git checkout -b docs/api-v2-migration-guide
+# Make your documentation updates
+git add docs/
+git commit -m "docs: add migration guide for API v2"
+git push origin docs/api-v2-migration-guide</code></pre>
+
+
+
+<p>This approach enables documentation reviews before merging changes.</p>
+
+
+
+<p><strong>4. Leverage pull request reviews</strong></p>
+
+
+
+<p>Documentation pull requests should receive the same scrutiny as code. Reviewers can catch factual errors, unclear explanations, missing context, formatting inconsistencies, and broken links or images.</p>
+
+
+
+<p>Tools like GitHub, GitLab, and Bitbucket provide line-by-line commenting, making documentation review as precise as code review.</p>
+
+
+
+<h3 class="wp-block-heading" id="error-checking-tools">Error Checking Tools</h3>
+
+
+
+<p>Catching formatting and style issues early saves frustration later. At least 4 tools help automate quality checks:</p>
+
+
+
+<p><strong>Markdown linters:</strong></p>
+
+
+
+<p><strong>markdownlint</strong> - The most popular Markdown linter, available as a CLI tool, VS Code extension, and GitHub Action. It catches common mistakes like missing blank lines around headings, inconsistent list markers, trailing whitespace, and improper heading hierarchies.</p>
+
+
+
+<p>Install for VS Code:</p>
+
+
+
+<pre class="wp-block-code"><code>code --install-extension DavidAnson.vscode-markdownlint</code></pre>
+
+
+
+<p><strong>mdspell</strong> - Spell checker specifically designed for Markdown that ignores code blocks and URLs:</p>
+
+
+
+<pre class="wp-block-code"><code>npm install -g markdown-spellcheck
+mdspell "docs/**/*.md" --report</code></pre>
+
+
+
+<p><strong>Preview and validation tools:</strong></p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>Markdown Preview Enhanced (VS Code)</strong> - Shows real-time rendering while you write</li>
+
+
+
+<li><strong>grip</strong> - Local GitHub-flavored Markdown preview</li>
+
+
+
+<li><strong>markdown-link-check</strong> - Validates all links in your documentation</li>
+</ul>
+
+
+
+<pre class="wp-block-code"><code>pip install grip
+grip README.md
+# Opens localhost preview that matches GitHub rendering
+
+npx markdown-link-check docs/**/*.md</code></pre>
+
+
+
+<p><strong>Automation with CI/CD:</strong></p>
+
+
+
+<p>Integrate these tools into your continuous integration pipeline to catch issues before they reach production. Here's a simple GitHub Actions example:</p>
+
+
+
+<pre class="wp-block-code"><code>name: Documentation Quality Check
+on: &#91;pull_request]
+jobs:
+  lint-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Lint Markdown files
+        uses: nosborn/github-action-markdown-cli@v3.2.0
+        with:
+          files: docs/</code></pre>
+
+
+
+<p>These tools won't write documentation for you, but they prevent the small mistakes that accumulate into major problems.</p>
+
+
+
+<h2 class="wp-block-heading" id="new-approach-how-desktop-commander-changes-markdown-workflows">New Approach: How Desktop Commander Changes Markdown Workflows</h2>
+
+
+
+<p>Desktop Commander is the best tool for automating technical documentation because it reads your actual codebase, generates structured Markdown docs, and keeps them updated as your code changes — saving 15–20 hours per project compared to writing documentation manually. Traditional tools focus on catching errors after you write; Desktop Commander generates, maintains, and updates documentation automatically throughout your project lifecycle.</p>
+
+
+
+<p>Here's the shift: instead of writing documentation manually and then checking it with linters, you describe what needs documenting—and AI handles the creation, formatting, and updates for you.</p>
+
+
+
+<h3 class="wp-block-heading" id="ai-powered-documentation-automation">AI-Powered Documentation Automation</h3>
+
+
+
+<p>The real productivity breakthrough isn't spell-checking or formatting—it's eliminating the need to manually document your codebase in the first place.</p>
+
+
+
+<p><strong>What Desktop Commander automates:</strong></p>
+
+
+
+<p>Desktop Commander analyzes your codebase and generates structured documentation covering functions, classes, API endpoints, configurations, and architecture decisions. When your code changes, your documentation updates automatically—no manual synchronization needed.</p>
+
+
+
+<p>Try it yourself with this prompt from the Desktop Commander library: <a href="https://desktopcommander.app/library">"Create Project Documentation"</a> - Build structured knowledge repositories that capture specifications, architecture decisions, and technical rationale.</p>
+
+
+
+<p><strong>Before Desktop Commander:</strong></p>
+
+
+
+<p>Change API endpoint → Remember to update API docs → Update README example → Update integration guide → Update changelog → Commit everything separately → Hope you didn't miss anything</p>
+
+
+
+<p><strong>With Desktop Commander:</strong></p>
+
+
+
+<p>Change API endpoint → Desktop Commander updates all related documentation automatically</p>
+
+
+
+<p><strong>More practical prompts:</strong></p>
+
+
+
+<ul class="wp-block-list">
+<li><a href="https://desktopcommander.app/library/prompts/explain-codebase-or-repository/"><strong>Explain Codebase or Repository</strong></a> - Document legacy code or unfamiliar projects</li>
+
+
+
+<li><a href="https://desktopcommander.app/library/prompts/generate-architecture-diagram/"><strong>Generate Architecture Diagram</strong></a> - Create Mermaid diagrams from your codebase</li>
+
+
+
+<li><a href="https://desktopcommander.app/library/prompts/document-rest-api-endpoints/"><strong>Document REST API Endpoints</strong></a> - Extract and document all endpoints with parameters and examples</li>
+
+
+
+<li><a href="https://desktopcommander.app/library/prompts/create-team-onboarding-documentation/"><strong>Create Team Onboarding Documentation</strong></a> - Generate detailed guides for new developers</li>
+
+
+
+<li><a href="https://desktopcommander.app/library/prompts/assess-technical-debt/"><strong>Assess Technical Debt</strong></a> - Document areas needing improvement</li>
+</ul>
+
+
+
+<p>As a result, your documentation stays accurate and current—without consuming hours of developer time each week.</p>
+
+
+
+<h3 class="wp-block-heading" id="how-it-works">How It Works</h3>
+
+
+
+<p>Desktop Commander is a standalone app that runs locally on your machine. No complex setup, no external dependencies—just download, install, and start documenting.</p>
+
+
+
+<p>The workflow is simple: paste a prompt describing what you need, and Desktop Commander handles everything else. It reads your codebase, generates properly formatted Markdown files, and saves them directly to your repository.</p>
+
+
+
+<p><strong>What Desktop Commander does automatically:</strong></p>
+
+
+
+<ul class="wp-block-list">
+<li>Scans your project structure and code</li>
+
+
+
+<li>Generates complete documentation in Markdown format</li>
+
+
+
+<li>Creates architecture diagrams and API references</li>
+
+
+
+<li>Saves files directly to your local filesystem</li>
+</ul>
+
+
+
+<p>You interact through natural language. No complex configuration, no documentation syntax to learn. Just describe what you need documented, and Desktop Commander handles the implementation. Download the app from the <a href="https://desktopcommander.app/">Desktop Commander website</a> to get started.</p>
+
+
+
+<div class="dc-app-cta"><div class="dc-app-cta-inner"><div class="dc-app-cta-content"><div class="dc-app-cta-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 17L10 11L4 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 19H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="dc-app-cta-title" id="try-desktop-commander-app">Try Desktop Commander App</h3><p class="dc-app-cta-description">Desktop Commander reads your files, runs commands, and automates workflows — all in natural language.</p></div><a href="https://desktopcommander.app/#download" class="dc-app-cta-btn" data-post-slug="markdown-best-practices-technical-documentation" data-post-title="Technical Documentation with Markdown: Best Practices &amp; Tools" data-cta-variant="default" target="_blank" rel="noopener">Download Free<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+
+
+<h2 class="wp-block-heading" id="improving-documentation-with-desktop-commander-video-demonstration"><strong>Improving Documentation with Desktop Commander: Video Demonstration</strong></h2>
+
+
+
+<p>Seeing concrete examples makes the difference clear. Watch how Desktop Commander handles real-world documentation tasks:</p>
+
+
+
+<figure class="wp-block-video wp-block-embed is-type-video is-provider-videopress"><div class="wp-block-embed__wrapper">
+https://videopress.com/v/GRtR2ij8?resizeToParent=true&amp;cover=true&amp;preloadContent=metadata&amp;useAverageColor=true
+</div></figure>
+
+
+
+<p>The video shows the actual speed and accuracy of AI-powered documentation—not a theoretical demo, but real workflows from the<a href="https://github.com/wonderwhy-er/DesktopCommanderMCP"> Desktop Commander community</a>.</p>
+
+
+
+<h2 class="wp-block-heading" id="practical-benefits-of-desktop-commander">Practical Benefits of Desktop Commander</h2>
+
+
+
+<p>According to user research, 70% of Desktop Commander users save at least 3 hours weekly on documentation tasks. Here's where that time comes from:</p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>Documentation Task</th><th>Manual Time</th><th>With Desktop Commander</th><th>Time Saved</th></tr></thead><tbody><tr><td><strong>Initial project documentation</strong></td><td>8-12 hours</td><td>10-15 minutes</td><td>95%+</td></tr><tr><td><strong>API endpoint documentation</strong></td><td>4-6 hours</td><td>5-10 minutes</td><td>95%+</td></tr><tr><td><strong>Update docs after refactoring</strong></td><td>2-4 hours</td><td>Automatic</td><td>100%</td></tr><tr><td><strong>Generate architecture diagrams</strong></td><td>1-3 hours</td><td>2-5 minutes</td><td>95%+</td></tr><tr><td><strong>Create onboarding guides</strong></td><td>4-6 hours</td><td>10-15 minutes</td><td>95%+</td></tr><tr><td><strong>Fix formatting inconsistencies</strong></td><td>30-60 min</td><td>Automatic</td><td>100%</td></tr></tbody></table></figure>
+
+
+
+<p>These reflect typical usage patterns reported by Desktop Commander users. The tool particularly works well at:</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>Eliminating documentation debt:</strong> Catch up on months or years of missing documentation in days rather than weeks.</li>
+
+
+
+<li><strong>Maintaining documentation currency:</strong> Updates happen automatically as you code, not as a separate task you postpone.</li>
+
+
+
+<li><strong>Onboarding acceleration:</strong> New team members get detailed, accurate documentation instead of incomplete guides and tribal knowledge.</li>
+
+
+
+<li><strong>Reduced context switching:</strong> Stay in your coding workflow instead of switching to documentation mode.</li>
+</ul>
+
+
+
+<p><strong>User feedback from the community:</strong></p>
+
+
+
+<blockquote class="wp-block-quote">
+<p>"I had 76 errors in 23 files in my Svelte 5 project. Used desktop-commander, sequentialthinking, and tree-sitter to fix them all. Never resolved type errors this quickly with AI before!"</p>
+</blockquote>
+
+
+
+<blockquote class="wp-block-quote">
+<p>"Life saver! I was paying for both Claude + Cursor which felt duplicated. This solves that perfectly. With MCP + web search, it writes code with the latest updates."</p>
+</blockquote>
+
+
+
+<p>Read more user experiences from <a href="https://medium.com/@AiWithEduard">Eduard Ruzga</a>, Desktop Commander's creator. You can also find community discussions on <a href="https://www.reddit.com/search/?q=desktop%20commander">Reddit</a> about Desktop Commander's capabilities and use cases.</p>
+
+
+
+<h2 class="wp-block-heading" id="comparing-documentation-approaches">Comparing Documentation Approaches</h2>
+
+
+
+<p>Understanding which approach fits your situation helps you make better tooling decisions. Here's how different documentation strategies compare:</p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>Approach</th><th>Best For</th><th>Time Investment</th><th>Maintenance Burden</th><th>Consistency</th></tr></thead><tbody><tr><td><strong>Manual Markdown</strong></td><td>Very small projects (1-2 files)</td><td>High (hours per week)</td><td>Very High</td><td>Depends on discipline</td></tr><tr><td><strong>Markdown + Linters</strong></td><td>Small teams with documentation focus</td><td>Medium-High</td><td>High</td><td>Medium</td></tr><tr><td><strong>Documentation Platforms</strong></td><td>Customer-facing documentation</td><td>Medium</td><td>Medium</td><td>Medium</td></tr><tr><td><strong>AI Documentation Generators</strong></td><td>Specific documentation types</td><td>Medium</td><td>Medium</td><td>High</td></tr><tr><td><strong>Desktop Commander</strong></td><td>Full-stack documentation automation</td><td>Low (minutes per week)</td><td>Very Low</td><td>Very High</td></tr></tbody></table></figure>
+
+
+
+<p><strong>Key differentiators:</strong></p>
+
+
+
+<p>Traditional markdown tools help you catch mistakes but don't reduce the work of writing documentation. AI documentation generators work well for specific tasks (API docs, process documentation) but require separate tools for different needs.</p>
+
+
+
+<p>Desktop Commander offers full automation: it generates documentation, maintains consistency, handles updates, and works across your entire codebase—all through natural language interaction. With a Claude Pro subscription, you get unlimited documentation generation without per-document or per-user restrictions.</p>
+
+
+
+<p><strong>When to use Desktop Commander:</strong></p>
+
+
+
+<ul class="wp-block-list">
+<li>✅ You have documentation debt (months or years of undocumented code)</li>
+
+
+
+<li>✅ Your team lacks time for manual documentation maintenance</li>
+
+
+
+<li>✅ Documentation falls behind code changes consistently</li>
+
+
+
+<li>✅ You work on multiple projects needing similar documentation</li>
+
+
+
+<li>✅ Onboarding new developers happens regularly</li>
+
+
+
+<li>✅ You prefer working locally rather than in cloud platforms</li>
+</ul>
+
+
+
+<p><strong>When manual approaches might suffice:</strong></p>
+
+
+
+<ul class="wp-block-list">
+<li>Single-person projects with 2-3 documentation files</li>
+
+
+
+<li>Static documentation that rarely changes</li>
+
+
+
+<li>Projects nearing end-of-life</li>
+
+
+
+<li>Situations requiring highly specialized domain knowledge AI can't replicate</li>
+</ul>
+
+
+
+<p>For most development teams, the time savings from automation justify the investment within the first month.</p>
+
+
+
+<h2 class="wp-block-heading" id="closing-insights">Closing Insights</h2>
+
+
+
+<p>Documentation maintenance consumes time you don't have. Traditional tools catch errors but don't reduce the workload—linters find problems, they don't write documentation.</p>
+
+
+
+<p>Desktop Commander changes this by automating generation and maintenance: it creates documentation from your codebase, maintains consistency automatically, and updates docs when code changes. Instead of documentation being a task you perform, it becomes a continuous process running alongside your development work.</p>
+
+
+
+<p><strong>Getting started with Desktop Commander:</strong></p>
+
+
+
+<ol class="wp-block-list">
+<li>Download <a href="https://desktopcommander.app/">Desktop Commander</a> for your platform (Mac, Windows, or Linux)</li>
+
+
+
+<li>Install and launch the app—no additional configuration needed</li>
+
+
+
+<li>Explore the <a href="https://desktopcommander.app/library">prompt library</a> to find workflows that fit your needs</li>
+
+
+
+<li>Start small: Try documenting a single file or feature, then expand</li>
+</ol>
+
+
+
+<p>The barrier to better documentation isn't knowledge or discipline—it's time. AI tools remove that barrier. You can document your entire codebase without sacrificing development velocity.</p>
+
+
+
+<div class="dc-app-cta"><div class="dc-app-cta-inner"><div class="dc-app-cta-content"><div class="dc-app-cta-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 17L10 11L4 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 19H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="dc-app-cta-title" id="try-desktop-commander-app-1">Try Desktop Commander App</h3><p class="dc-app-cta-description">Desktop Commander reads your files, runs commands, and automates workflows — all in natural language.</p></div><a href="https://desktopcommander.app/#download" class="dc-app-cta-btn" data-post-slug="markdown-best-practices-technical-documentation" data-post-title="Technical Documentation with Markdown: Best Practices &amp; Tools" data-cta-variant="default" target="_blank" rel="noopener">Download Free<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+
+
+<p><strong>Additional resources:</strong></p>
+
+
+
+<ul class="wp-block-list">
+<li><a href="https://github.com/wonderwhy-er/DesktopCommanderMCP">Desktop Commander GitHub repository</a> - Source code, issues, and community discussions</li>
+
+
+
+<li><a href="https://medium.com/@AiWithEduard">Eduard Ruzga's Medium articles</a> - Deep dives on AI-powered development and automation workflows</li>
+
+
+
+<li><a href="https://www.youtube.com/@DesktopCommander">Desktop Commander YouTube channel</a> - Video tutorials and demonstrations</li>
+
+
+
+<li><a href="https://modelcontextprotocol.io/">Model Context Protocol documentation</a> - Technical background on the underlying protocol</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading" id="frequently-asked-questions">Frequently Asked Questions</h2>
+
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>What are the most important markdown best practices for technical documentation?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Use consistent heading hierarchies (one H1, don't skip levels), stick with one bullet point style, maintain blank lines around code blocks, use descriptive link text, and store Markdown files in version control alongside your code.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>How can I ensure consistent formatting across multiple Markdown files?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Use markdown linters like markdownlint in your CI/CD pipeline, establish a style guide, and consider AI tools like Desktop Commander for automated consistency across your documentation set.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>What's the difference between technical documentation and technical writing?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Technical documentation is the complete set of materials explaining how software works, while technical writing is the skill and process of creating that documentation.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>How does AI improve technical documentation workflows?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+AI automates generating documentation from code, maintains consistency across files, updates docs when code changes, and creates supplementary materials like diagrams—eliminating documentation debt and maintenance burden.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Should I use Markdown or a documentation platform for my project?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Use Markdown for developer docs in code repositories with version control; choose documentation platforms like Document360 or GitBook for customer-facing documentation with robust search and permissions.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>What markdown formatting issues are most common?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Inconsistent heading hierarchies, mixed bullet point styles, missing blank lines around code blocks, incorrect table alignment, unescaped special characters, and broken internal links.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>How do I maintain markdown documentation as my codebase grows?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Store docs in the same repository as code, use Git branches for updates, require pull request reviews, and integrate automated checks in CI/CD pipelines.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Can AI-generated documentation replace technical writers?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+AI handles repetitive documentation tasks effectively but works best supplementing human expertise—technical writers still provide essential value in strategic documentation, information architecture, and content for non-technical audiences.
+</div>
+</details>
+</div> <aside class="toc-sidebar" id="toc-sidebar"></aside> </div> </article> </main>  <footer class="dc-footer"> <div class="dc-footer-container"> <div class="dc-footer-brand"> <div class="dc-footer-logo-section"> <img src="/blog/assets/dc-logo-dark.png" alt="Desktop Commander" class="dc-footer-logo" loading="lazy"> <h3 class="dc-footer-brand-title">Desktop Commander</h3> </div> <p class="dc-footer-description">
+AI that executes. Read files, run commands, and automate workflows — all in natural language.
+</p> <div class="dc-footer-socials"> <a href="https://github.com/wonderwhy-er/DesktopCommanderMCP" target="_blank" rel="noopener noreferrer" class="dc-footer-social-btn" title="GitHub"> <svg class="dc-footer-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg> </a> <a href="https://discord.gg/eHZeUKRQG" target="_blank" rel="noopener noreferrer" class="dc-footer-social-btn" title="Discord"> <svg class="dc-footer-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"></path></svg> </a> <a href="https://www.youtube.com/@EduardsRuzga" target="_blank" rel="noopener noreferrer" class="dc-footer-social-btn" title="YouTube"> <svg class="dc-footer-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg> </a> <a href="https://x.com/desktopcommandr" target="_blank" rel="noopener noreferrer" class="dc-footer-social-btn" title="X (Twitter)"> <svg class="dc-footer-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg> </a> <a href="https://www.npmjs.com/package/@wonderwhy-er/desktop-commander" target="_blank" rel="noopener noreferrer" class="dc-footer-social-btn" title="NPM"> <svg class="dc-footer-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 7.334v8h6.666v1.332H12v-1.332h12v-8H0zm6.666 6.664H5.334v-4H3.999v4H1.335V8.667h5.331v5.331zm4 0v1.336H8.001V8.667h5.334v5.332h-2.669v-.001zm12.001 0h-1.33v-4h-1.336v4h-1.335v-4h-1.33v4h-2.671V8.667h8.002v5.331zM10.665 10H12v2.667h-1.335V10z"></path></svg> </a> </div> </div> <div class="dc-footer-grid"> <div class="dc-footer-column"> <h4 class="dc-footer-column-title">Product</h4> <ul class="dc-footer-links"> <li><a href="https://desktopcommander.app/#download" class="dc-footer-link">Download App</a></li> <li><a href="https://desktopcommander.app/mcp/" class="dc-footer-link">MCP Server</a></li> <li><a href="https://desktopcommander.app/library/" class="dc-footer-link">Prompt Library</a></li> <li><a href="https://desktopcommander.app/pricing/" class="dc-footer-link">Pricing</a></li> </ul> </div> <div class="dc-footer-column"> <h4 class="dc-footer-column-title">Use Cases</h4> <ul class="dc-footer-links"> <li><a href="https://desktopcommander.app/use-cases/build-prototype/" class="dc-footer-link">For builders</a></li> <li><a href="https://desktopcommander.app/use-cases/knowledge-management/" class="dc-footer-link">For knowledge workers</a></li> <li><a href="https://desktopcommander.app/use-cases/analyze-data/" class="dc-footer-link">For data analysts</a></li> <li><a href="https://desktopcommander.app/use-cases/file-management/" class="dc-footer-link">File Management</a></li> <li><a href="https://desktopcommander.app/use-cases/" class="dc-footer-link">All use cases</a></li> </ul> </div> <div class="dc-footer-column"> <h4 class="dc-footer-column-title">Resources</h4> <ul class="dc-footer-links"> <li><a href="/blog/" class="dc-footer-link">Blog</a></li> <li><a href="https://discord.gg/eHZeUKRQG" target="_blank" rel="noopener noreferrer" class="dc-footer-link">Discord</a></li> <li><a href="https://github.com/wonderwhy-er/DesktopCommanderMCP" target="_blank" rel="noopener noreferrer" class="dc-footer-link">GitHub</a></li> <li><a href="https://desktopcommander.app/careers/" class="dc-footer-link">Careers</a></li> </ul> </div> </div> <div class="dc-footer-bottom"> <div class="dc-footer-bottom-content"> <p class="dc-footer-copyright">© 2026 Desktop Commander.</p> <div class="dc-footer-legal"> <a href="https://legal.desktopcommander.app" target="_blank" rel="noopener noreferrer" class="dc-footer-legal-link">Terms</a> <a href="https://legal.desktopcommander.app" target="_blank" rel="noopener noreferrer" class="dc-footer-legal-link">Privacy</a> </div> </div> </div> </div> </footer>  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script> <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('pre code:not([class*="language-"])').forEach(function (codeBlock) {
+              var code = codeBlock.textContent;
+              if (code.match(/^\s*(import |from |def |class |print\(|if __name__|pandas|numpy)/m)) codeBlock.classList.add('language-python');
+              else if (code.match(/^\s*(npm |npx |yarn |node |const |let |var |function\s|=>|require\()/m)) codeBlock.classList.add('language-javascript');
+              else if (code.match(/^\s*(\$|curl |wget |chmod |sudo |apt |brew |pip |cd |ls |mkdir )/m)) codeBlock.classList.add('language-bash');
+              else if (code.match(/<[a-zA-Z][^>]*>/)) codeBlock.classList.add('language-markup');
+              else codeBlock.classList.add('language-python');
+            });
+            if (typeof Prism !== 'undefined') Prism.highlightAll();
+          });
+        </script> <script src="/blog/js/floating-toc.js"></script> <script src="/blog/js/blog-cta-tracking.js"></script>  </body> </html>

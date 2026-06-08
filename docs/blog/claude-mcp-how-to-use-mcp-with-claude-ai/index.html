@@ -1,0 +1,482 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Analytics (PostHog + GA4) — wp_head priority 0 --><script>
+      !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+      posthog.init('phc_SmlF1mKK199Blt4hUNL6V19IWydNNJ9o7Qbym2Y4zQa', { api_host: 'https://eu.i.posthog.com', cross_subdomain_cookie: true, capture_pageview: true, capture_pageleave: true });
+    </script><script async src="https://www.googletagmanager.com/gtag/js?id=G-HXL4Y3Y62N"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HXL4Y3Y62N', { linker: { domains: ['desktopcommander.app', 'blog.desktopcommander.app'] } });
+    </script><title>Claude and MCPs: How to Use MCP with Claude AI | Desktop Commander Blog</title><meta name="description" content="Learn how to use Claude MCP (Model Context Protocol) to connect Claude AI to your files, terminal, and tools. Complete setup guide with practical examples."><!-- Open Graph / Facebook --><meta property="og:type" content="article"><meta property="og:site_name" content="Desktop Commander Blog"><meta property="og:title" content="Claude and MCPs: How to Use MCP with Claude AI"><meta property="og:description" content="Learn how to use Claude MCP (Model Context Protocol) to connect Claude AI to your files, terminal, and tools. Complete setup guide with practical examples."><meta property="og:url" content="https://desktopcommander.app/blog/claude-mcp-how-to-use-mcp-with-claude-ai/"><meta property="og:image" content="https://desktopcommander.app/blog/media/2026/01/Screenshot-2026-01-19-at-11.07.06.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="article:published_time" content="2026-01-19T10:58:28+02:00"><meta property="article:modified_time" content="2026-02-20T10:57:30+02:00"><meta property="article:author" content="Rafael Pinheiro"><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Claude and MCPs: How to Use MCP with Claude AI"><meta name="twitter:description" content="Learn how to use Claude MCP (Model Context Protocol) to connect Claude AI to your files, terminal, and tools. Complete setup guide with practical examples."><meta name="twitter:image" content="https://desktopcommander.app/blog/media/2026/01/Screenshot-2026-01-19-at-11.07.06.png"><link rel="canonical" href="https://desktopcommander.app/blog/claude-mcp-how-to-use-mcp-with-claude-ai/"><!-- Favicons (shared with main site) --><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><!-- Ported theme stylesheet, served verbatim (no PostCSS) --><link rel="stylesheet" href="/blog/blog.css"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://desktopcommander.app/blog/#website","url":"https://desktopcommander.app/blog/","name":"Desktop Commander Blog","description":"AI that works on your computer. Guides on AI automation, file management, and local development workflows.","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://desktopcommander.app/blog/?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@type":"WebPage","@id":"https://desktopcommander.app/blog/claude-mcp-how-to-use-mcp-with-claude-ai/#webpage","url":"https://desktopcommander.app/blog/claude-mcp-how-to-use-mcp-with-claude-ai/","name":"Claude and MCPs: How to Use MCP with Claude AI","isPartOf":{"@id":"https://desktopcommander.app/blog/#website"},"datePublished":"2026-01-19T10:58:28+02:00","dateModified":"2026-02-20T10:57:30+02:00"},{"@type":"Article","@id":"https://desktopcommander.app/blog/claude-mcp-how-to-use-mcp-with-claude-ai/#article","isPartOf":{"@id":"https://desktopcommander.app/blog/claude-mcp-how-to-use-mcp-with-claude-ai/#webpage"},"headline":"Claude and MCPs: How to Use MCP with Claude AI","description":"Learn how to use Claude MCP (Model Context Protocol) to connect Claude AI to your files, terminal, and tools. Complete setup guide with practical examples.","datePublished":"2026-01-19T10:58:28+02:00","dateModified":"2026-02-20T10:57:30+02:00","mainEntityOfPage":"https://desktopcommander.app/blog/claude-mcp-how-to-use-mcp-with-claude-ai/","author":{"@type":"Person","@id":"https://desktopcommander.app/blog/author/rafaelpinheiro/#person","name":"Rafael Pinheiro","url":"https://desktopcommander.app/blog/author/rafaelpinheiro/","image":{"@type":"ImageObject","url":"https://i0.wp.com/rk7f8a7274b9330-haqfg.wpcomstaging.com/wp-content/uploads/2026/04/rafael.jpeg?fit=200%2C200&#038;ssl=1","width":400,"height":400},"description":"Rafael Pinheiro is founder of Ottic, building AI-native editorial infrastructure that helps companies turn expertise into scalable, high-quality content engines optimized for Google and AI search. Previously, he was founder of Clipping, an education platform focused on high-performance learning, where he led growth, product, and content at scale.","sameAs":["https://www.linkedin.com/in/rafaelpinheirocosta/"]},"publisher":{"@type":"Organization","name":"Desktop Commander Blog","url":"https://desktopcommander.app/blog/"},"wordCount":1583,"image":{"@type":"ImageObject","url":"https://desktopcommander.app/blog/media/2026/01/Screenshot-2026-01-19-at-11.07.06.png","width":1454,"height":806}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do I need Claude Pro to use MCP?","acceptedAnswer":{"@type":"Answer","text":"No. MCP works with the free Claude Desktop application. However, Pro and higher tiers get additional features like remote MCP connections and higher usage limits."}},{"@type":"Question","name":"Is MCP secure?","acceptedAnswer":{"@type":"Answer","text":"MCP servers only have access to what you explicitly configure. The filesystem server only sees folders you specify. Desktop Commander only runs in directories you allow. That said, be cautious with third-party servers—Anthropic hasn't verified all community-created servers."}},{"@type":"Question","name":"Can I use MCP with ChatGPT?","acceptedAnswer":{"@type":"Answer","text":"MCP is an open standard, so technically yes. However, Claude Desktop has the most mature MCP support since Anthropic created the protocol. Other applications are adding support gradually."}},{"@type":"Question","name":"Why isn't Claude using my MCP tools?","acceptedAnswer":{"@type":"Answer","text":"Check your config file syntax, ensure paths are correct, and restart Claude Desktop. If issues persist, launch with --mcp-debug to see detailed logs."}},{"@type":"Question","name":"What's the difference between MCP and Claude Code?","acceptedAnswer":{"@type":"Answer","text":"Claude Code is Anthropic's CLI tool for developers. It supports MCP but is a separate product from Claude Desktop. Both can use MCP servers, but they're different interfaces for working with Claude."}}]}</script></head> <body class="single single-post"> <nav class="dc-nav" role="navigation" aria-label="Primary"> <div class="dc-nav-container"> <div class="dc-nav-left"> <a href="https://desktopcommander.app" class="dc-logo-link"> <img src="/blog/assets/dc-logo-light.png" alt="Desktop Commander" class="dc-logo" width="200" height="32"> </a> <ul class="dc-nav-links" role="menubar"> <!-- Use Cases mega --> <li class="dc-nav-item dc-has-mega" role="none"> <button type="button" class="dc-nav-link dc-mega-trigger" role="menuitem" aria-haspopup="true" aria-expanded="false">
+Use Cases
+<svg class="dc-mega-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg> </button> <div class="dc-mega dc-mega-use-cases" role="menu"> <div class="dc-mega-inner"> <div class="dc-mega-col"> <h4 class="dc-mega-heading">By role</h4> <ul> <li><a href="https://desktopcommander.app/use-cases/build-prototype/" class="dc-mega-link"><span class="dc-mega-link-label">For builders</span><span class="dc-mega-link-desc">Prototype, scripts, dev workflows</span></a></li> <li><a href="https://desktopcommander.app/use-cases/knowledge-management/" class="dc-mega-link"><span class="dc-mega-link-label">For knowledge workers</span><span class="dc-mega-link-desc">Notes, research, second brain</span></a></li> <li><a href="https://desktopcommander.app/use-cases/analyze-data/" class="dc-mega-link"><span class="dc-mega-link-label">For data analysts</span><span class="dc-mega-link-desc">CSVs, logs, ad-hoc analysis</span></a></li> </ul> </div> <div class="dc-mega-col"> <h4 class="dc-mega-heading">All use cases</h4> <ul> <li><a href="https://desktopcommander.app/use-cases/file-management/" class="dc-mega-link"><span class="dc-mega-link-label">File Management</span></a></li> <li><a href="https://desktopcommander.app/use-cases/knowledge-management/" class="dc-mega-link"><span class="dc-mega-link-label">Knowledge Management</span></a></li> <li><a href="https://desktopcommander.app/use-cases/analyze-data/" class="dc-mega-link"><span class="dc-mega-link-label">Analyze Data</span></a></li> <li><a href="https://desktopcommander.app/use-cases/build-prototype/" class="dc-mega-link"><span class="dc-mega-link-label">Build Prototypes</span></a></li> <li><a href="https://desktopcommander.app/use-cases/connect-apps/" class="dc-mega-link"><span class="dc-mega-link-label">Connect Apps</span></a></li> </ul> </div> <div class="dc-mega-col"> <h4 class="dc-mega-heading">Time savers</h4> <ul> <li><a href="https://desktopcommander.app/use-cases/file-management/heic-to-jpg/" class="dc-mega-link"><span class="dc-mega-link-label">HEIC → JPG</span></a></li> <li><a href="https://desktopcommander.app/use-cases/file-management/pdf-to-png/" class="dc-mega-link"><span class="dc-mega-link-label">PDF → PNG</span></a></li> <li><a href="https://desktopcommander.app/use-cases/file-management/webp-to-jpg/" class="dc-mega-link"><span class="dc-mega-link-label">WebP → JPG</span></a></li> <li><a href="https://desktopcommander.app/use-cases/file-management/png-to-jpg/" class="dc-mega-link"><span class="dc-mega-link-label">PNG → JPG</span></a></li> </ul> </div> </div> <a href="https://desktopcommander.app/use-cases/" class="dc-mega-footer-link">View all use cases →</a> </div> </li> <!-- Prompts mega --> <li class="dc-nav-item dc-has-mega" role="none"> <button type="button" class="dc-nav-link dc-mega-trigger" role="menuitem" aria-haspopup="true" aria-expanded="false">
+Prompts
+<svg class="dc-mega-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg> </button> <div class="dc-mega dc-mega-prompts" role="menu"> <div class="dc-mega-inner"> <div class="dc-mega-col"> <h4 class="dc-mega-heading">Popular prompts</h4> <ul> <li><a href="https://desktopcommander.app/library/prompts/organise-my-downloads-folder/" class="dc-mega-link"><span class="dc-mega-link-label">Organise my Downloads</span></a></li> <li><a href="https://desktopcommander.app/library/prompts/explain-codebase-or-repository/" class="dc-mega-link"><span class="dc-mega-link-label">Explain a codebase</span></a></li> <li><a href="https://desktopcommander.app/library/prompts/create-knowledge-base-folder/" class="dc-mega-link"><span class="dc-mega-link-label">Create knowledge base</span></a></li> <li><a href="https://desktopcommander.app/library/prompts/extract-data-from-pdfs/" class="dc-mega-link"><span class="dc-mega-link-label">Extract data from PDFs</span></a></li> </ul> </div> </div> <a href="https://desktopcommander.app/library/prompts/" class="dc-mega-footer-link">Browse all prompts →</a> </div> </li> <li class="dc-nav-item"><a href="https://desktopcommander.app/mcp/" class="dc-nav-link" role="menuitem">MCP</a></li> <li class="dc-nav-item"><a href="https://desktopcommander.app/pricing/" class="dc-nav-link" role="menuitem">Pricing</a></li> <!-- Resources mega --> <li class="dc-nav-item dc-has-mega" role="none"> <button type="button" class="dc-nav-link dc-mega-trigger" role="menuitem" aria-haspopup="true" aria-expanded="false">
+Resources
+<svg class="dc-mega-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg> </button> <div class="dc-mega dc-mega-resources" role="menu"> <div class="dc-mega-inner"> <div class="dc-mega-col"> <h4 class="dc-mega-heading">Resources</h4> <ul> <li><a href="/blog/" class="dc-mega-link"><span class="dc-mega-link-label">All articles</span></a></li> <li><a href="https://desktopcommander.app/library/prompts/" class="dc-mega-link"><span class="dc-mega-link-label">Prompt Library</span></a></li> <li><a href="https://desktopcommander.app/mcp/" class="dc-mega-link"><span class="dc-mega-link-label">MCP server</span></a></li> <li><a href="https://desktopcommander.app/best-value-ai/" class="dc-mega-link"><span class="dc-mega-link-label">AI value comparison</span><span class="dc-mega-link-desc">Which AI models and providers are best value?</span></a></li> </ul> </div> <div class="dc-mega-col"> <h4 class="dc-mega-heading">Popular guides</h4> <ul> <li><a href="/blog/best-mcp-servers/" class="dc-mega-link"><span class="dc-mega-link-label">Best MCP servers</span></a></li> <li><a href="/blog/what-is-an-mcp-server-and-how-it-works-in-plain-english/" class="dc-mega-link"><span class="dc-mega-link-label">What is an MCP server?</span></a></li> <li><a href="/blog/zettelkasten-obsidian/" class="dc-mega-link"><span class="dc-mega-link-label">Zettelkasten in Obsidian</span></a></li> <li><a href="/blog/best-obsidian-plugins/" class="dc-mega-link"><span class="dc-mega-link-label">Best Obsidian plugins</span></a></li> <li><a href="/blog/obsidian-markdown-cheatsheet-every-syntax-you-actually-need/" class="dc-mega-link"><span class="dc-mega-link-label">Obsidian Markdown cheatsheet</span></a></li> </ul> </div> <div class="dc-mega-col"> <h4 class="dc-mega-heading">Community &amp; dev</h4> <ul> <li><a href="https://discord.gg/eHZeUKRQG" target="_blank" rel="noopener noreferrer" class="dc-mega-link"><span class="dc-mega-link-label">Discord</span></a></li> <li><a href="https://github.com/wonderwhy-er/DesktopCommanderMCP" target="_blank" rel="noopener noreferrer" class="dc-mega-link"><span class="dc-mega-link-label">GitHub <span class="dc-mega-badge">MCP</span></span></a></li> <li><a href="https://desktopcommander.app/careers/" class="dc-mega-link"><span class="dc-mega-link-label">Careers</span></a></li> <li><a href="/blog/about/" class="dc-mega-link"><span class="dc-mega-link-label">About</span></a></li> </ul> </div> </div> <a href="/blog/" class="dc-mega-footer-link">View all guides →</a> </div> </li> </ul> </div> <div class="dc-nav-right"> <a href="https://desktopcommander.app/#download" class="dc-download-btn dc-download-desktop"> <svg class="dc-download-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"> <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line> </svg>
+Download App
+</a> <button class="dc-mobile-menu-btn" id="dc-mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="dc-mobile-menu" aria-label="Toggle navigation"> <svg class="dc-menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg> </button> </div> </div> <div class="dc-mobile-overlay" id="dc-mobile-overlay"></div> <div class="dc-mobile-menu" id="dc-mobile-menu" aria-hidden="true"> <div class="dc-mobile-menu-header"> <button class="dc-mobile-menu-close" id="dc-mobile-menu-close" type="button" aria-label="Close navigation"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> </button> </div> <div class="dc-mobile-menu-content"> <details class="dc-mobile-group"> <summary class="dc-mobile-group-summary">Use Cases
+<svg class="dc-mobile-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg> </summary> <div class="dc-mobile-group-links"> <div class="dc-mobile-menu-label">By role</div> <a href="https://desktopcommander.app/use-cases/build-prototype/" class="dc-mobile-menu-link" data-close-mobile>For builders</a> <a href="https://desktopcommander.app/use-cases/knowledge-management/" class="dc-mobile-menu-link" data-close-mobile>For knowledge workers</a> <a href="https://desktopcommander.app/use-cases/analyze-data/" class="dc-mobile-menu-link" data-close-mobile>For data analysts</a> <div class="dc-mobile-menu-label">All use cases</div> <a href="https://desktopcommander.app/use-cases/file-management/" class="dc-mobile-menu-link" data-close-mobile>File Management</a> <a href="https://desktopcommander.app/use-cases/connect-apps/" class="dc-mobile-menu-link" data-close-mobile>Connect Apps</a> <a href="https://desktopcommander.app/use-cases/" class="dc-mobile-menu-link" data-close-mobile>View all use cases →</a> </div> </details> <details class="dc-mobile-group"> <summary class="dc-mobile-group-summary">Prompts
+<svg class="dc-mobile-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg> </summary> <div class="dc-mobile-group-links"> <div class="dc-mobile-menu-label">Popular prompts</div> <a href="https://desktopcommander.app/library/prompts/organise-my-downloads-folder/" class="dc-mobile-menu-link" data-close-mobile>Organise my Downloads</a> <a href="https://desktopcommander.app/library/prompts/explain-codebase-or-repository/" class="dc-mobile-menu-link" data-close-mobile>Explain a codebase</a> <a href="https://desktopcommander.app/library/prompts/create-knowledge-base-folder/" class="dc-mobile-menu-link" data-close-mobile>Create knowledge base</a> <a href="https://desktopcommander.app/library/prompts/extract-data-from-pdfs/" class="dc-mobile-menu-link" data-close-mobile>Extract data from PDFs</a> <a href="https://desktopcommander.app/library/prompts/" class="dc-mobile-menu-link" data-close-mobile>Browse all prompts →</a> </div> </details> <a href="https://desktopcommander.app/mcp/" class="dc-mobile-menu-link" data-close-mobile>MCP</a> <a href="https://desktopcommander.app/pricing/" class="dc-mobile-menu-link" data-close-mobile>Pricing</a> <details class="dc-mobile-group"> <summary class="dc-mobile-group-summary">Resources
+<svg class="dc-mobile-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg> </summary> <div class="dc-mobile-group-links"> <a href="/blog/" class="dc-mobile-menu-link" data-close-mobile>All articles</a> <a href="https://desktopcommander.app/library/prompts/" class="dc-mobile-menu-link" data-close-mobile>Prompt Library</a> <a href="https://desktopcommander.app/mcp/" class="dc-mobile-menu-link" data-close-mobile>MCP server</a> <a href="https://desktopcommander.app/best-value-ai/" class="dc-mobile-menu-link" data-close-mobile>AI value comparison</a> <div class="dc-mobile-menu-label">Community &amp; dev</div> <a href="https://discord.gg/eHZeUKRQG" target="_blank" rel="noopener noreferrer" class="dc-mobile-menu-link" data-close-mobile>Discord</a> <a href="https://github.com/wonderwhy-er/DesktopCommanderMCP" target="_blank" rel="noopener noreferrer" class="dc-mobile-menu-link" data-close-mobile>GitHub</a> <a href="https://desktopcommander.app/careers/" class="dc-mobile-menu-link" data-close-mobile>Careers</a> <a href="/blog/about/" class="dc-mobile-menu-link" data-close-mobile>About</a> </div> </details> <div class="dc-mobile-menu-divider"></div> <a href="https://desktopcommander.app/#download" class="dc-mobile-download-btn" data-close-mobile> <svg class="dc-download-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+Download App
+</a> </div> </div> </nav> <script>
+(function () {
+  const menuToggle = document.getElementById('dc-mobile-menu-toggle');
+  const mobileMenu = document.getElementById('dc-mobile-menu');
+  const overlay = document.getElementById('dc-mobile-overlay');
+  const menuClose = document.getElementById('dc-mobile-menu-close');
+  const closeOnClickItems = document.querySelectorAll('[data-close-mobile]');
+  const focusableSelectors = 'a[href], button:not([disabled]), summary, [tabindex]:not([tabindex="-1"])';
+  let lastFocusedElement = null;
+  function trapFocus(container) {
+    const f = Array.from(container.querySelectorAll(focusableSelectors));
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    container.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab') return;
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+    first.focus();
+  }
+  function openMobileMenu() {
+    if (!mobileMenu) return;
+    lastFocusedElement = document.activeElement;
+    mobileMenu.classList.add('active'); mobileMenu.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden'; menuToggle && menuToggle.setAttribute('aria-expanded', 'true');
+    overlay && overlay.classList.add('active'); trapFocus(mobileMenu);
+  }
+  function closeMobileMenu() {
+    if (!mobileMenu) return;
+    mobileMenu.classList.remove('active'); mobileMenu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = ''; menuToggle && menuToggle.setAttribute('aria-expanded', 'false');
+    overlay && overlay.classList.remove('active'); lastFocusedElement && lastFocusedElement.focus();
+  }
+  menuToggle && menuToggle.addEventListener('click', openMobileMenu);
+  menuClose && menuClose.addEventListener('click', closeMobileMenu);
+  overlay && overlay.addEventListener('click', closeMobileMenu);
+  mobileMenu && mobileMenu.addEventListener('click', function (e) { if (e.target === mobileMenu) closeMobileMenu(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('active')) closeMobileMenu(); });
+  closeOnClickItems.forEach(function (item) { item.addEventListener('click', closeMobileMenu); });
+  document.querySelectorAll('.dc-has-mega').forEach(function (item) {
+    const trigger = item.querySelector('.dc-mega-trigger');
+    if (!trigger) return;
+    trigger.addEventListener('click', function (e) {
+      e.preventDefault();
+      const isOpen = item.classList.toggle('dc-mega-open');
+      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  });
+  document.addEventListener('click', function (e) {
+    document.querySelectorAll('.dc-has-mega.dc-mega-open').forEach(function (item) {
+      if (!item.contains(e.target)) { item.classList.remove('dc-mega-open'); const t = item.querySelector('.dc-mega-trigger'); t && t.setAttribute('aria-expanded', 'false'); }
+    });
+  });
+})();
+</script>  <main class="site-content"> <div class="back-button-container"> <button onclick="window.history.back();" class="back-to-blog"> <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+Back
+</button> </div> <article class="post single-post" data-pagefind-body> <header class="single-post-header"> <nav class="breadcrumbs"> <a href="/blog/">Blog</a> <span class="breadcrumb-separator">/</span>  <a href="/blog/category/how-to/">How-to</a> <span class="breadcrumb-separator">/</span>  <span class="breadcrumb-current">Claude and MCPs: How to Use MCP with Claude AI</span> </nav> <h1 class="single-post-title">Claude and MCPs: How to Use MCP with Claude AI</h1> <div class="single-post-meta"> <span>January 19, 2026</span> <span>By <a href="/blog/author/rafaelpinheiro/" class="author-link">Rafael Pinheiro</a></span> </div> <div class="single-post-categories"> <a href="/blog/category/how-to/" class="post-category-tag single-category-tag">How-to</a><a href="/blog/category/mcp/" class="post-category-tag single-category-tag">MCP</a> </div> </header> <div class="author-bio-section" data-pagefind-ignore> <div class="author-bio-card"> <div class="author-bio-avatar"> <img src="https://i0.wp.com/rk7f8a7274b9330-haqfg.wpcomstaging.com/wp-content/uploads/2026/04/rafael.jpeg?fit=200%2C200&#038;ssl=1" alt="Rafael Pinheiro" width="80" height="80" loading="lazy"> </div> <div class="author-bio-content"> <h3 class="author-bio-name"><a href="/blog/author/rafaelpinheiro/">Rafael Pinheiro</a></h3> <p class="author-bio-description">Rafael Pinheiro is founder of Ottic, building AI-native editorial infrastructure that helps companies turn expertise into scalable, high-quality content engines optimized for Google and AI search. Previously, he was founder of Clipping, an education platform focused on high-performance learning, where he led growth, product, and content at scale.</p> <div class="author-socials author-socials--compact"> <a class="author-social-link author-social-linkedin" href="https://www.linkedin.com/in/rafaelpinheirocosta/" target="_blank" rel="noopener noreferrer me" aria-label="Linkedin"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.32V9h3.42v1.56h.05c.48-.9 1.64-1.86 3.37-1.86 3.6 0 4.27 2.37 4.27 5.46v6.29zM5.34 7.44a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a> </div> </div> </div> </div> <div class="post-content-wrapper"> <div class="single-post-content">
+<p>Think of <a href="/blog/what-is-an-mcp-server-and-how-it-works-in-plain-english/">MCP</a> as the USB-C port for AI. Just as USB-C gives your laptop a universal way to connect to monitors, drives, and peripherals, the Model Context Protocol gives Claude a universal way to connect to your files, databases, terminals, and tools. One standard. Endless possibilities.</p>
+
+
+
+<p>If you've ever wished Claude Desktop could just <em>do things</em> on your computer instead of only talking about them, MCP is how you make that happen.</p>
+
+
+
+<h2 class="wp-block-heading" id="key-takeaways">Key Takeaways</h2>
+
+
+
+<ul class="wp-block-list">
+<li><strong>MCP (Model Context Protocol)</strong> is Anthropic's open standard for connecting Claude to external systems like your filesystem, terminal, and APIs</li>
+
+
+
+<li><strong>Claude Desktop</strong> is the primary way to use MCP—it acts as the host that connects to MCP servers</li>
+
+
+
+<li><strong>MCP servers</strong> are lightweight programs that give Claude specific capabilities (file access, terminal commands, database queries)</li>
+
+
+
+<li><strong>Setup takes minutes</strong>, not hours—once you understand the config file structure</li>
+
+
+
+<li><a href="https://desktopcommander.app/mcp/"><strong>Desktop Commander</strong></a> is one of the most popular MCP servers — ranked #2 in Claude Desktop Connectors, top 10 in GitHub’s official MCP registry, and #5 on Docker Hub, with 5,300+ GitHub stars — giving Claude full access to your local machine</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading" id="what-makes-mcp-different-from-regular-claude">What Makes MCP Different from Regular Claude</h2>
+
+
+
+<p>Without MCP, Claude lives in a sandbox. You paste code, Claude responds with suggestions, you copy those suggestions back into your editor. It's a constant loop of copy-paste-copy-paste.</p>
+
+
+
+<p>With MCP, Claude becomes an active participant in your workflow. Ask it to organize your Downloads folder—it actually moves the files. Ask it to set up a new React project—it runs the commands and creates the files. Ask it to find that function buried somewhere in your codebase—it searches and reads the actual files.</p>
+
+
+
+<p>The shift isn't just convenience. It's a fundamentally different way of working with AI.</p>
+
+
+
+<blockquote class="wp-block-quote">
+<p>One developer <a href="https://robertmarshall.dev/blog/turning-claude-code-into-a-development-powerhouse/">described the transformation</a>: "I kept hitting the same frustration: context switching hell. Claude would write decent code, but it was like working with a brilliant intern who'd never seen your codebase before. Then I discovered MCPs and everything changed."</p>
+</blockquote>
+
+
+
+<h2 class="wp-block-heading" id="understanding-the-architecture-of-mcp">Understanding the Architecture of MCP</h2>
+
+
+
+<p>MCP uses a simple client-server model. Here's what each piece does:</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>Hosts</strong> are applications like Claude Desktop or VS Code that initiate connections. When you open Claude Desktop and it loads your MCP configuration, it's acting as the host.</li>
+
+
+
+<li><strong>MCP Clients</strong> maintain the actual connections to servers. Each client talks to one server at a time, keeping communications clean and isolated.</li>
+
+
+
+<li><strong>MCP Servers</strong> are lightweight programs that expose specific capabilities. A filesystem server lets Claude read and write files. A terminal server lets Claude run commands. A GitHub server lets Claude interact with repositories. Check out our <a href="/blog/what-is-an-mcp-server-and-how-it-works-in-plain-english/">full article on MCP Servers.</a></li>
+</ul>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>Component</th><th>Role</th><th>Examples</th></tr></thead><tbody><tr><td><strong>Host</strong></td><td>Initiates connections, runs the AI interface</td><td>Claude Desktop, Cursor, VS Code</td></tr><tr><td><strong>Client</strong></td><td>Manages 1:1 server connections</td><td>Built into the host application</td></tr><tr><td><strong>Server</strong></td><td>Provides specific capabilities</td><td>Desktop Commander, GitHub MCP, Postgres MCP</td></tr></tbody></table></figure>
+
+
+
+<p>The beauty of this architecture is modularity. You only enable the servers you need, and each server only has access to what you configure.</p>
+
+
+
+<h2 class="wp-block-heading" id="setting-up-mcp-with-claude-desktop">Setting Up MCP with Claude Desktop</h2>
+
+
+
+<p>Getting MCP working with Claude Desktop is straightforward once you know where to look. Just go to "Connectors" menu (can be found in the chat pressing "+" then "Connectors" then "Browse Connectors").</p>
+
+
+
+<figure class="wp-block-image size-full"><img src="/blog/media/2026/01/mcp-connectors-menu.png" alt="Claude Desktop Settings showing the Connectors menu with Browse connectors button highlighted"/><figcaption class="wp-element-caption">Access the Connectors menu in Claude Desktop Settings to browse available MCP servers</figcaption></figure>
+
+
+
+<p>Say you are looking for Desktop Commander: under search, type "Desktop" and you will find Desktop Commander (with more than 139,000 installs!). You can install it there with one click.</p>
+
+
+
+<figure class="wp-block-image size-full"><img src="/blog/media/2026/01/mcp-desktop-commander-install.png" alt="Claude Connectors browser showing Desktop Commander MCP server with 139K installs"/><figcaption class="wp-element-caption">Desktop Commander appears in the Connectors browser with one-click installation</figcaption></figure>
+
+
+
+<h2 class="wp-block-heading" id="popular-mcp-servers-compared">Popular MCP Servers Compared</h2>
+
+
+
+<p>Anthropic provides several <a href="https://github.com/AxiMinds/Anthropic-mcp-servers/blob/main/README.md">pre-built MCP servers</a> for common integrations. Here's how they compare:</p>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>MCP Server</th><th>What It Does</th><th>Best For</th></tr></thead><tbody><tr><td><strong>Filesystem</strong></td><td>Read/write files in specified directories</td><td>Basic file operations</td></tr><tr><td><strong>GitHub</strong></td><td>Interact with repositories, issues, PRs</td><td>Open source contributors</td></tr><tr><td><strong>Postgres</strong></td><td>Query databases directly</td><td>Data analysis, backend work</td></tr><tr><td><strong>Puppeteer</strong></td><td>Browser automation and scraping</td><td>Testing, web data extraction</td></tr><tr><td><strong><a href="https://desktopcommander.app/mcp/">Desktop Commander</a></strong></td><td>Full filesystem + terminal access</td><td>Complete local development</td></tr></tbody></table></figure>
+
+
+
+<p>Desktop Commander stands out because it combines multiple capabilities into one server and in the beginning of 2026 it overtook Figma Official MCP reaching 5th position on <a href="https://claude.com/connectors">Claude Connectors's</a> list.</p>
+
+
+
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7414289990320447488?collapsed=1" height="581" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p></p>
+
+
+
+<p>Instead of configuring separate servers for files and terminal access, Desktop Commander gets everything in one package—plus features like diff-based code editing that make it behave more like a human developer.</p>
+
+
+
+<p>But most of the best MCPs are not pre-built. Here is a list with the <a href="/blog/best-mcp-servers/">best 22 MCPs by category</a>.</p>
+
+
+
+<div class="dc-mcp-cta"><div class="dc-mcp-cta-inner"><div class="dc-mcp-cta-content"><div class="dc-mcp-cta-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="dc-mcp-cta-title" id="install-desktop-commander-mcp">Install Desktop Commander MCP</h3><p class="dc-mcp-cta-description">Connect Claude to your local files and terminal. One-click install for Claude Desktop.</p></div><a href="https://desktopcommander.app/mcp" class="dc-mcp-cta-btn" data-post-slug="claude-mcp-how-to-use-mcp-with-claude-ai" data-post-title="Claude and MCPs: How to Use MCP with Claude AI" data-cta-variant="default" data-cta-type="mcp" target="_blank" rel="noopener">Install Free<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+
+
+
+<h2 class="wp-block-heading" id="desktop-commander-mcp-for-your-entire-machine">Desktop Commander: MCP for Your Entire Machine</h2>
+
+
+
+<p>If you want Claude to have real access to your development environment, <a href="https://desktopcommander.app/mcp/">Desktop Commander</a> is worth exploring. It's an <a href="https://github.com/wonderwhy-er/DesktopCommanderMCP">open-source MCP server</a> (MIT license) with over 26,000 weekly downloads and a growing community.</p>
+
+
+
+<p>Installing Desktop Commander takes one terminal command:</p>
+
+
+
+<pre class="wp-block-code"><code>npx @anthropic-ai/desktop-commander@latest init</code></pre>
+
+
+
+<p>This command automatically configures Claude Desktop to use Desktop Commander. Restart Claude Desktop, and you now have an AI that can:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Navigate and modify your filesystem</li>
+
+
+
+<li>Run terminal commands</li>
+
+
+
+<li>Edit code with surgical precision</li>
+
+
+
+<li>Manage your development environment</li>
+</ul>
+
+
+
+<p>The <a href="https://desktopcommander.app/library">prompt library</a> includes 70+ ready-to-use prompts organized by workflow—from codebase exploration to deployment automation.</p>
+
+
+
+<h2 class="wp-block-heading" id="practical-prompts-you-can-try">Practical Prompts You Can Try</h2>
+
+
+
+<p>Once MCP is configured, Claude understands your local context. Here are prompts that demonstrate what becomes possible:</p>
+
+
+
+<h3 class="wp-block-heading" id="exploring-a-new-codebase">Exploring a new codebase</h3>
+
+
+
+<pre class="wp-block-code"><code>Read through the main entry points of this project and explain the architecture. Focus on how data flows between components.</code></pre>
+
+
+
+<p><a href="https://desktopcommander.app/library/prompts/explain-codebase-or-repository/">See full Explain Codebase or Repository on Desktop Commander Prompt Library</a></p>
+
+
+
+<h3 class="wp-block-heading" id="organizing-files">Organizing files</h3>
+
+
+
+<pre class="wp-block-code"><code>Look at my Downloads folder and organize the files by type—documents, images, installers, and archives. Create subfolders if they don't exist.</code></pre>
+
+
+
+<p><a href="https://desktopcommander.app/library/prompts/">See 10+ prompts about Organizing files on Desktop Commander Prompt Library</a></p>
+
+
+
+<h3 class="wp-block-heading" id="setting-up-a-project">Setting up a project</h3>
+
+
+
+<p><strong>Specific:</strong></p>
+
+
+
+<pre class="wp-block-code"><code>Initialize a new Next.js project called 'dashboard' with TypeScript, Tailwind CSS, and ESLint configured.</code></pre>
+
+
+
+<p><strong>General:</strong></p>
+
+
+
+<pre class="wp-block-code"><code>Set up a complete local development environment for the project at &#91;project path] including all dependencies and configurations.</code></pre>
+
+
+
+<h3 class="wp-block-heading" id="debugging-an-error">Debugging an error</h3>
+
+
+
+<pre class="wp-block-code"><code>Find where UserAuthService is defined in this codebase and trace how authentication errors are handled.</code></pre>
+
+
+
+<pre class="wp-block-code"><code>Connect to &#91;server] and investigate the nginx error. Check logs, configuration, and system status to find the cause.</code></pre>
+
+
+
+<p>These aren't hypothetical suggestions that you then have to implement yourself. With MCP, Claude actually performs these actions on your machine.</p>
+
+
+
+<p>Explore more use cases in <a href="https://desktopcommander.app/library/prompts/">Desktop Commander Prompt Library</a></p>
+
+
+
+<h2 class="wp-block-heading" id="when-mcp-can-fail-silently">When MCP Can Fail Silently</h2>
+
+
+
+<p>Here's something the documentation doesn't emphasize enough: MCP can fail without telling you anything useful. You'll type a prompt expecting Claude to use a tool, and it just… doesn't. No error message. No explanation.</p>
+
+
+
+<p>Common causes and fixes:</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>Path problems</strong>: Double-check that every path in your config file is correct and uses the right format for your operating system. A single typo breaks everything.</li>
+
+
+
+<li><strong>Command not found</strong>: If you're using npx, make sure Node.js is in your system's PATH. Test by running <code>npx --version</code> in a terminal.</li>
+
+
+
+<li><strong>Server not loading</strong>: Restart Claude Desktop after any config change. The config is only read at startup.</li>
+
+
+
+<li><strong>Debug mode</strong>: Launch with <code>--mcp-debug</code> flag to see what's actually happening behind the scenes.</li>
+
+
+
+<li><strong>Context overload</strong>: MCP tools consume context window space just by being available. If you have many servers configured, they might be eating into your available context. Use fewer servers or remove unused ones.</li>
+</ul>
+
+
+
+<p>One developer <a href="https://community.atlassian.com/forums/Rovo-questions/Atlassian-MCP-Integration-with-Claude-Completely-Stopped-Working/qaq-p/3147695">reported spending four hours</a> debugging an MCP integration before discovering the issue was server-side. When in doubt, test with a single MCP server to isolate the problem.</p>
+
+
+
+<h2 class="wp-block-heading" id="beyond-the-basics-of-claude-and-mcps">Beyond the Basics of Claude and MCPs</h2>
+
+
+
+<p>Once you're comfortable with MCP fundamentals, you can extend Claude's capabilities further:</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>Remote MCP servers</strong>: Claude Pro and higher tiers support connecting to remote MCP servers over HTTP, enabling integrations with cloud services like Notion, Slack, and Google Drive.</li>
+
+
+
+<li><strong>Custom servers</strong>: The <a href="https://modelcontextprotocol.io/specification">MCP specification</a> is open, so you can build servers tailored to your specific workflows. <a href="https://wonderwhy-er.medium.com/">Eduard's Medium</a> and <a href="https://www.youtube.com/@EduardsRuzga">YouTube channel</a> cover advanced implementations.</li>
+
+
+
+<li><strong>Multiple configurations</strong>: Store different MCP setups for different projects using <code>.mcp.json</code> files in project directories.</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading" id="frequently-asked-questions">Frequently Asked Questions</h2>
+
+
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Do I need Claude Pro to use MCP?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+No. MCP works with the free Claude Desktop application. However, Pro and higher tiers get additional features like remote MCP connections and higher usage limits.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Is MCP secure?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+MCP servers only have access to what you explicitly configure. The filesystem server only sees folders you specify. Desktop Commander only runs in directories you allow. That said, be cautious with third-party servers—Anthropic hasn't verified all community-created servers.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Can I use MCP with ChatGPT?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+MCP is an open standard, so technically yes. However, Claude Desktop has the most mature MCP support since Anthropic created the protocol. Other applications are adding support gradually.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>Why isn't Claude using my MCP tools?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Check your config file syntax, ensure paths are correct, and restart Claude Desktop. If issues persist, launch with <code>--mcp-debug</code> to see detailed logs.
+</div>
+</details>
+
+<details style="margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+<summary style="font-weight: 500; font-size: 16px; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; width: 100%;">
+<span>What's the difference between MCP and Claude Code?</span>
+<span class="faq-chevron" style="margin-left: auto; transition: transform 0.2s;">▾</span>
+</summary>
+<div style="padding: 16px 24px 20px 24px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7;">
+Claude Code is Anthropic's CLI tool for developers. It supports MCP but is a separate product from Claude Desktop. Both can use MCP servers, but they're different interfaces for working with Claude.
+</div>
+</details>
+
+
+
+<p>Model Context Protocol transforms Claude from a conversational AI into something that can genuinely participate in your work. Whether you start with a simple filesystem server or dive straight into <a href="https://desktopcommander.app/mcp/">Desktop Commander</a>, the setup investment pays off quickly in reduced context-switching and more fluid workflows.</p>
+
+
+
+<div class="dc-mcp-cta"><div class="dc-mcp-cta-inner"><div class="dc-mcp-cta-content"><div class="dc-mcp-cta-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="dc-mcp-cta-title" id="install-desktop-commander-mcp-1">Install Desktop Commander MCP</h3><p class="dc-mcp-cta-description">Connect Claude to your local files and terminal. One-click install for Claude Desktop.</p></div><a href="https://desktopcommander.app/mcp" class="dc-mcp-cta-btn" data-post-slug="claude-mcp-how-to-use-mcp-with-claude-ai" data-post-title="Claude and MCPs: How to Use MCP with Claude AI" data-cta-variant="default" data-cta-type="mcp" target="_blank" rel="noopener">Install Free<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+</div> <aside class="toc-sidebar" id="toc-sidebar"></aside> </div> </article> </main>  <footer class="dc-footer"> <div class="dc-footer-container"> <div class="dc-footer-brand"> <div class="dc-footer-logo-section"> <img src="/blog/assets/dc-logo-dark.png" alt="Desktop Commander" class="dc-footer-logo" loading="lazy"> <h3 class="dc-footer-brand-title">Desktop Commander</h3> </div> <p class="dc-footer-description">
+AI that executes. Read files, run commands, and automate workflows — all in natural language.
+</p> <div class="dc-footer-socials"> <a href="https://github.com/wonderwhy-er/DesktopCommanderMCP" target="_blank" rel="noopener noreferrer" class="dc-footer-social-btn" title="GitHub"> <svg class="dc-footer-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg> </a> <a href="https://discord.gg/eHZeUKRQG" target="_blank" rel="noopener noreferrer" class="dc-footer-social-btn" title="Discord"> <svg class="dc-footer-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"></path></svg> </a> <a href="https://www.youtube.com/@EduardsRuzga" target="_blank" rel="noopener noreferrer" class="dc-footer-social-btn" title="YouTube"> <svg class="dc-footer-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg> </a> <a href="https://x.com/desktopcommandr" target="_blank" rel="noopener noreferrer" class="dc-footer-social-btn" title="X (Twitter)"> <svg class="dc-footer-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg> </a> <a href="https://www.npmjs.com/package/@wonderwhy-er/desktop-commander" target="_blank" rel="noopener noreferrer" class="dc-footer-social-btn" title="NPM"> <svg class="dc-footer-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 7.334v8h6.666v1.332H12v-1.332h12v-8H0zm6.666 6.664H5.334v-4H3.999v4H1.335V8.667h5.331v5.331zm4 0v1.336H8.001V8.667h5.334v5.332h-2.669v-.001zm12.001 0h-1.33v-4h-1.336v4h-1.335v-4h-1.33v4h-2.671V8.667h8.002v5.331zM10.665 10H12v2.667h-1.335V10z"></path></svg> </a> </div> </div> <div class="dc-footer-grid"> <div class="dc-footer-column"> <h4 class="dc-footer-column-title">Product</h4> <ul class="dc-footer-links"> <li><a href="https://desktopcommander.app/#download" class="dc-footer-link">Download App</a></li> <li><a href="https://desktopcommander.app/mcp/" class="dc-footer-link">MCP Server</a></li> <li><a href="https://desktopcommander.app/library/" class="dc-footer-link">Prompt Library</a></li> <li><a href="https://desktopcommander.app/pricing/" class="dc-footer-link">Pricing</a></li> </ul> </div> <div class="dc-footer-column"> <h4 class="dc-footer-column-title">Use Cases</h4> <ul class="dc-footer-links"> <li><a href="https://desktopcommander.app/use-cases/build-prototype/" class="dc-footer-link">For builders</a></li> <li><a href="https://desktopcommander.app/use-cases/knowledge-management/" class="dc-footer-link">For knowledge workers</a></li> <li><a href="https://desktopcommander.app/use-cases/analyze-data/" class="dc-footer-link">For data analysts</a></li> <li><a href="https://desktopcommander.app/use-cases/file-management/" class="dc-footer-link">File Management</a></li> <li><a href="https://desktopcommander.app/use-cases/" class="dc-footer-link">All use cases</a></li> </ul> </div> <div class="dc-footer-column"> <h4 class="dc-footer-column-title">Resources</h4> <ul class="dc-footer-links"> <li><a href="/blog/" class="dc-footer-link">Blog</a></li> <li><a href="https://discord.gg/eHZeUKRQG" target="_blank" rel="noopener noreferrer" class="dc-footer-link">Discord</a></li> <li><a href="https://github.com/wonderwhy-er/DesktopCommanderMCP" target="_blank" rel="noopener noreferrer" class="dc-footer-link">GitHub</a></li> <li><a href="https://desktopcommander.app/careers/" class="dc-footer-link">Careers</a></li> </ul> </div> </div> <div class="dc-footer-bottom"> <div class="dc-footer-bottom-content"> <p class="dc-footer-copyright">© 2026 Desktop Commander.</p> <div class="dc-footer-legal"> <a href="https://legal.desktopcommander.app" target="_blank" rel="noopener noreferrer" class="dc-footer-legal-link">Terms</a> <a href="https://legal.desktopcommander.app" target="_blank" rel="noopener noreferrer" class="dc-footer-legal-link">Privacy</a> </div> </div> </div> </div> </footer>  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script> <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('pre code:not([class*="language-"])').forEach(function (codeBlock) {
+              var code = codeBlock.textContent;
+              if (code.match(/^\s*(import |from |def |class |print\(|if __name__|pandas|numpy)/m)) codeBlock.classList.add('language-python');
+              else if (code.match(/^\s*(npm |npx |yarn |node |const |let |var |function\s|=>|require\()/m)) codeBlock.classList.add('language-javascript');
+              else if (code.match(/^\s*(\$|curl |wget |chmod |sudo |apt |brew |pip |cd |ls |mkdir )/m)) codeBlock.classList.add('language-bash');
+              else if (code.match(/<[a-zA-Z][^>]*>/)) codeBlock.classList.add('language-markup');
+              else codeBlock.classList.add('language-python');
+            });
+            if (typeof Prism !== 'undefined') Prism.highlightAll();
+          });
+        </script> <script src="/blog/js/floating-toc.js"></script> <script src="/blog/js/blog-cta-tracking.js"></script>  </body> </html>
