@@ -3,7 +3,7 @@ import { ArrowRight, Download, Check } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { trackDownloadRedirect } from '@/lib/analytics/tracking';
 
-// Astro-compatible Hero - Redesigned for App-first positioning
+// Astro-compatible Hero - "Mission Control" redesign (fable-experiment)
 type LogStep = { label: string; delay: number; done?: boolean };
 
 const EXECUTION_STEPS: LogStep[] = [
@@ -14,40 +14,56 @@ const EXECUTION_STEPS: LogStep[] = [
   { label: "Moved 12 files · 1.4s", delay: 900, done: true },
 ];
 
+const PROMPT_TEXT = "Move all invoices from Downloads to a new folder";
+const TYPE_SPEED = 38; // ms per character
+
 const HeroAstro = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [visibleSteps, setVisibleSteps] = useState(0);
+  const [typedChars, setTypedChars] = useState(0);
+  const [sending, setSending] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
-  // Streaming execution log — steps appear one at a time, then loop.
+  // One continuous story loop: type the prompt → send → execution log
+  // streams → folder appears in the file widget → linger → restart.
   useEffect(() => {
     let cancelled = false;
     let timers: ReturnType<typeof setTimeout>[] = [];
-
-    const run = () => {
-      setVisibleSteps(0);
-      EXECUTION_STEPS.forEach((_step, i) => {
-        const cumulative = EXECUTION_STEPS.slice(0, i + 1).reduce(
-          (acc, s) => acc + s.delay,
-          0,
-        );
-        timers.push(
-          setTimeout(() => {
-            if (!cancelled) setVisibleSteps(i + 1);
-          }, cumulative),
-        );
-      });
-      // Restart the loop after the last step lingers on screen.
-      const total = EXECUTION_STEPS.reduce((a, s) => a + s.delay, 0) + 3200;
+    const schedule = (fn: () => void, at: number) => {
       timers.push(
         setTimeout(() => {
-          if (!cancelled) run();
-        }, total),
+          if (!cancelled) fn();
+        }, at),
       );
+    };
+
+    const run = () => {
+      setTypedChars(0);
+      setVisibleSteps(0);
+      setSending(false);
+
+      let t = 500; // breathe before typing starts
+      for (let i = 1; i <= PROMPT_TEXT.length; i++) {
+        schedule(() => setTypedChars(i), t);
+        t += TYPE_SPEED;
+      }
+
+      t += 380; // beat after typing
+      schedule(() => setSending(true), t);
+      t += 300;
+      schedule(() => setSending(false), t);
+
+      EXECUTION_STEPS.forEach((step, i) => {
+        t += step.delay;
+        schedule(() => setVisibleSteps(i + 1), t);
+      });
+
+      t += 3600; // let the completed state linger
+      schedule(run, t);
     };
 
     // Small initial delay so the entrance animation can breathe.
@@ -60,56 +76,101 @@ const HeroAstro = () => {
     };
   }, []);
 
+  const typingDone = typedChars >= PROMPT_TEXT.length;
+
   return (
-    <section ref={heroRef} className="pt-32 pb-24 md:pt-40 md:pb-32">
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="flex flex-col items-center gap-16 lg:gap-20 lg:grid lg:grid-cols-12 lg:items-center">
-          
-          {/* Product interface mockup - styled as screenshot */}
+    <section ref={heroRef} className="relative pt-32 pb-24 md:pt-44 md:pb-32 overflow-hidden">
+      {/* Local aurora behind the terminal */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div className="absolute right-[-10%] top-[8%] h-[480px] w-[640px]" style={{ background: 'radial-gradient(closest-side, hsl(var(--dc-blue) / 0.16), transparent 72%)' }} />
+        <div className="absolute left-[-14%] bottom-[-30%] h-[420px] w-[520px]" style={{ background: 'radial-gradient(closest-side, hsl(258 92% 74% / 0.09), transparent 72%)' }} />
+      </div>
+
+      {/* Registration crosshairs — drafting-table ornament */}
+      <div aria-hidden="true" className="hidden lg:block">
+        <span className="absolute left-10 top-32 font-mono text-primary/25 select-none">+</span>
+        <span className="absolute right-10 top-32 font-mono text-primary/25 select-none">+</span>
+        <span className="absolute left-10 bottom-12 font-mono text-primary/25 select-none">+</span>
+        <span className="absolute right-10 bottom-12 font-mono text-primary/25 select-none">+</span>
+      </div>
+
+      <div className="container relative mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="flex flex-col items-center gap-16 lg:gap-12 lg:grid lg:grid-cols-12 lg:items-center">
+
+          {/* Product interface mockup — command deck */}
           <div className={`w-full max-w-xl lg:max-w-none lg:col-span-6 lg:order-2 transition-all duration-1000 delay-300 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <div className="relative mx-auto w-full perspective-1000">
-              {/* Screenshot frame with subtle tilt */}
-              <div className="transform rotate-1 hover:rotate-0 transition-transform duration-500">
-                <div className="rounded-xl lg:rounded-2xl border border-dc-border bg-dc-surface shadow-2xl shadow-black/30 overflow-hidden pointer-events-none select-none">
+            <div className="relative mx-auto w-full">
+              {/* Glow pool beneath the window */}
+              <div
+                aria-hidden="true"
+                className="absolute -inset-x-10 -bottom-12 h-44 pointer-events-none"
+                style={{ background: 'radial-gradient(closest-side, hsl(var(--dc-blue) / 0.22), transparent 72%)' }}
+              />
+
+              {/* Main window */}
+              <div className="relative transition-transform duration-500 hover:-translate-y-1.5">
+                <div className="lp-ring lp-glow rounded-2xl overflow-hidden pointer-events-none select-none">
+                  {/* Top sheen */}
+                  <div aria-hidden="true" className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/[0.045] to-transparent pointer-events-none" />
+
                   {/* Window chrome / title bar */}
-                  <div className="flex items-center gap-2 px-4 py-3 bg-dc-surface/80 border-b border-dc-border">
+                  <div className="relative flex items-center gap-2 px-4 py-3 border-b border-dc-border/70 bg-background/30">
                     <div className="flex gap-1.5">
                       <div className="w-3 h-3 rounded-full bg-red-500/60"></div>
                       <div className="w-3 h-3 rounded-full bg-yellow-500/60"></div>
                       <div className="w-3 h-3 rounded-full bg-green-500/60"></div>
                     </div>
                     <div className="flex-1 text-center">
-                      <span className="text-xs text-muted-foreground">Desktop Commander</span>
+                      <span className="font-mono text-[11px] tracking-wide text-muted-foreground">Desktop Commander</span>
                     </div>
                     <div className="w-12"></div>
                   </div>
-                  
+
                   {/* App content */}
-                  <div className="p-4 sm:p-6 bg-gradient-to-b from-dc-surface to-background">
+                  <div className="relative p-4 sm:p-6">
                     {/* Folder selector */}
-                    <div className="flex items-center gap-2 mb-4 px-3 py-2 bg-background/50 border border-dc-border rounded-lg w-fit">
+                    <div className="flex items-center gap-2 mb-4 px-3 py-2 bg-background/50 border border-dc-border/70 rounded-lg w-fit">
                       <svg className="w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                       </svg>
-                      <span className="text-sm text-foreground">~/Desktop</span>
+                      <span className="font-mono text-xs sm:text-sm text-foreground">~/Desktop</span>
                       <svg className="w-3 h-3 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     </div>
-                    
-                    {/* Main input - dark theme */}
-                    <div className="bg-background border border-dc-border rounded-2xl px-4 py-4 mb-4 flex items-center justify-between">
-                      <span className="text-muted-foreground text-sm sm:text-base">Move all invoices from Downloads to a new folder</span>
-                      <div className="w-8 h-8 bg-dc-accent rounded-full flex items-center justify-center flex-shrink-0 ml-3">
+
+                    {/* Main input — prompt types itself, then sends */}
+                    <div className={`bg-background/70 border rounded-2xl px-4 py-4 mb-4 flex items-center justify-between shadow-[inset_0_1px_0_hsl(var(--dc-blue)/0.06)] transition-colors duration-300 ${
+                      typedChars > 0 && !typingDone ? 'border-blue-500/40' : 'border-dc-border'
+                    }`}>
+                      <span className="relative text-sm sm:text-base min-w-0">
+                        {/* Ghost copy reserves the final layout so typing never reflows the card */}
+                        <span aria-hidden="true" className="invisible">{PROMPT_TEXT}</span>
+                        <span className="absolute inset-0 text-foreground/90">
+                          {PROMPT_TEXT.slice(0, typedChars)}
+                          <span
+                            aria-hidden="true"
+                            className={`inline-block w-[2px] h-[1.05em] align-[-0.15em] ml-px bg-blue-400 ${
+                              typingDone && visibleSteps > 0 ? 'opacity-0' : ''
+                            }`}
+                            style={{ animation: 'lp-blink 1.06s step-end infinite' }}
+                          />
+                        </span>
+                      </span>
+                      <div className={`w-8 h-8 bg-gradient-to-b from-blue-500 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0 ml-3 transition-all duration-200 ${
+                        sending
+                          ? 'scale-125 shadow-[0_0_30px_hsl(var(--dc-blue)/0.8)]'
+                          : 'shadow-[0_0_18px_hsl(var(--dc-blue)/0.45)]'
+                      }`}>
                         <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
                         </svg>
                       </div>
                     </div>
-                    
-                    {/* Action buttons - no Auto */}
+
+                    {/* Action buttons */}
                     <div className="flex flex-wrap gap-2">
                       <div className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-500/10 border border-blue-500/30 rounded-full text-xs sm:text-sm text-blue-400">
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -123,10 +184,10 @@ const HeroAstro = () => {
                         </svg>
                         Apps
                       </div>
-                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-dc-surface border border-dc-border rounded-full text-xs sm:text-sm text-muted-foreground">
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-dc-surface/80 border border-dc-border rounded-full text-xs sm:text-sm text-muted-foreground">
                         + Add Knowledge
                       </div>
-                      <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-dc-surface border border-dc-border rounded-full text-xs sm:text-sm text-muted-foreground">
+                      <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-dc-surface/80 border border-dc-border rounded-full font-mono text-xs text-muted-foreground">
                         claude-sonnet-4
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -145,9 +206,10 @@ const HeroAstro = () => {
                             visibleSteps >= EXECUTION_STEPS.length ? 'bg-green-500' : 'bg-dc-accent'
                           }`}></span>
                         </span>
-                        <span className="text-[11px] uppercase tracking-wider text-muted-foreground font-medium">
+                        <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground font-medium">
                           {visibleSteps >= EXECUTION_STEPS.length ? 'Completed' : visibleSteps > 0 ? 'Executing' : 'Ready'}
                         </span>
+                        <span aria-hidden="true" className="flex-1 h-px bg-gradient-to-r from-dc-border/80 to-transparent" />
                       </div>
                       <div className="font-mono text-[11px] sm:text-xs space-y-1.5 min-h-[132px]">
                         {EXECUTION_STEPS.map((step, i) => {
@@ -176,16 +238,16 @@ const HeroAstro = () => {
                   </div>
                 </div>
               </div>
-              
-              {/* File browser overlay widget */}
-              <div className="absolute -top-4 -right-6 sm:-top-6 sm:-right-10 transform rotate-3 hover:rotate-1 transition-transform duration-500 pointer-events-none select-none opacity-90">
-                <div className="bg-dc-surface border border-dc-border rounded-lg shadow-xl shadow-black/40 overflow-hidden w-44 sm:w-52">
+
+              {/* File browser overlay widget — floats gently */}
+              <div className="absolute -top-4 -right-6 sm:-top-6 sm:-right-10 lp-float pointer-events-none select-none">
+                <div className="lp-ring rounded-xl shadow-2xl shadow-black/50 overflow-hidden w-44 sm:w-52">
                   {/* Mini title bar */}
-                  <div className="flex items-center gap-1.5 px-3 py-2 bg-background/50 border-b border-dc-border">
+                  <div className="flex items-center gap-1.5 px-3 py-2 bg-background/50 border-b border-dc-border/70">
                     <svg className="w-3 h-3 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                     </svg>
-                    <span className="text-[10px] text-muted-foreground">~/Desktop</span>
+                    <span className="font-mono text-[10px] text-muted-foreground">~/Desktop</span>
                   </div>
                   {/* File list */}
                   <div className="p-2 space-y-1 text-xs">
@@ -213,7 +275,7 @@ const HeroAstro = () => {
                       </svg>
                       <span className="text-foreground truncate">Invoices-2026</span>
                       <span
-                        className={`ml-auto text-[8px] uppercase tracking-wider font-medium text-green-400 transition-opacity duration-500 ${
+                        className={`ml-auto font-mono text-[8px] uppercase tracking-wider font-medium text-green-400 transition-opacity duration-500 ${
                           visibleSteps === 4 ? 'opacity-100' : 'opacity-0'
                         }`}
                       >
@@ -264,26 +326,27 @@ const HeroAstro = () => {
 
           {/* Content section */}
           <div className="lg:col-span-6 text-center lg:text-left lg:order-1 w-full">
-            
-            <h1 className={`text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-8 md:mb-10 leading-tight transition-all duration-1000 ${
+
+            <h1 className={`font-display font-bold text-foreground mb-8 md:mb-10 tracking-[-0.035em] leading-[0.95] text-[clamp(3.25rem,7.2vw,6rem)] transition-all duration-1000 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
-              AI that executes.
+              AI that{' '}
+              <span className="block lp-gradient-text lp-text-glow pb-2">executes.</span>
             </h1>
 
-            <p className={`text-lg sm:text-xl text-muted-foreground mb-10 md:mb-14 max-w-2xl mx-auto lg:mx-0 leading-relaxed transition-all duration-1000 delay-200 ${
+            <p className={`text-lg sm:text-xl text-muted-foreground mb-10 md:mb-12 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light transition-all duration-1000 delay-200 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
               Most AI assistants talk. Desktop Commander opens folders, runs commands, writes files, reports back.
             </p>
 
-            <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 lg:justify-start justify-center items-center mb-5 transition-all duration-1000 delay-400 ${
+            <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 lg:justify-start justify-center items-center mb-6 transition-all duration-1000 delay-400 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
               <Button
                 variant="hero"
                 size="lg"
-                className="w-full sm:w-auto flex items-center justify-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-dc-accent/20 transform active:scale-95 group"
+                className="lp-shimmer w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl shadow-[0_10px_44px_-10px_hsl(var(--dc-blue)/0.55)] ring-1 ring-white/15 transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_14px_56px_-10px_hsl(var(--dc-blue)/0.7)] transform active:scale-95 group"
                 asChild
               >
                 <a href="#download" onClick={() => trackDownloadRedirect('hero_main')}>
@@ -294,10 +357,14 @@ const HeroAstro = () => {
               </Button>
             </div>
 
-            {/* Quiet trust line — replaces the old badges */}
-            <p className={`text-sm text-muted-foreground transition-all duration-1000 delay-500 ${
+            {/* Quiet trust line */}
+            <p className={`flex items-center justify-center lg:justify-start gap-2 font-mono text-xs sm:text-sm text-muted-foreground transition-all duration-1000 delay-500 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
+              <span aria-hidden="true" className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-green-500 animate-ping opacity-50"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
+              </span>
               join 250k+ people agentising their workflows.
             </p>
 

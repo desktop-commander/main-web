@@ -24,25 +24,39 @@ import Footer from '../../src/components/Footer';
   <!-- Load PostHog early to initialize analytics -->
   <PostHogInit client:load />
   
-  <div class="min-h-screen bg-background">
-    <Navigation />
-    <main>
-      <HeroAstro client:load />
-      <CapabilityProof client:visible />
-      <UseCases client:visible />
-      <WhyTheApp client:visible />
-      {/* PromptLibrary hidden — users reach prompts via nav or UseCases "Browse 60+ prompts" link */}
-      {/* <PromptLibrary client:visible /> */}
-      <PricingTeaser client:visible />
-      <AppAndMCP client:visible />
-      <TrustedBy client:visible />
-      <Blog client:visible />
-      <DownloadSection client:visible />
-    </main>
-    <Footer client:visible />
+  <div class="dc-landing relative min-h-screen bg-background">
+    <!-- Ambient atmosphere: blueprint grid + aurora, fixed behind everything -->
+    <div aria-hidden="true" class="pointer-events-none fixed inset-0 z-0">
+      <div class="absolute inset-0 lp-grid lp-grid-mask-t opacity-80"></div>
+      <div class="absolute -top-44 left-1/2 -translate-x-1/2 h-[620px] w-[1000px]" style="background: radial-gradient(closest-side, hsl(var(--dc-blue) / 0.12), transparent 72%);"></div>
+    </div>
+
+    <div class="relative z-10">
+      <Navigation />
+      <main>
+        <HeroAstro client:load />
+        <CapabilityProof client:visible />
+        <UseCases client:visible />
+        <WhyTheApp client:visible />
+        {/* PromptLibrary hidden — users reach prompts via nav or UseCases "Browse 60+ prompts" link */}
+        {/* <PromptLibrary client:visible /> */}
+        <PricingTeaser client:visible />
+        <AppAndMCP client:visible />
+        <TrustedBy client:visible />
+        <Blog client:visible />
+        <DownloadSection client:visible />
+      </main>
+      <Footer client:visible />
+    </div>
   </div>
 </Layout>
 
 <style is:global>
+  @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap');
   @import '../../src/index.css';
+
+  /* Scoped to the landing page only — other pages keep their current type */
+  .dc-landing {
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  }
 </style>

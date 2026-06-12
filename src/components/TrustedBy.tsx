@@ -117,43 +117,49 @@ const TrustedBy = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="pt-16 md:pt-20 pb-8 md:pb-10 bg-dc-surface/30">
+    <section ref={sectionRef} className="relative pt-16 md:pt-24 pb-10 md:pb-12 bg-dc-surface/20 border-y border-dc-border/40 overflow-hidden">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-        {/* Header - Mobile optimized */}
-        <div className={`text-center mb-8 md:mb-12 transition-all duration-1000 ${
+        {/* Header */}
+        <div className={`text-center mb-12 md:mb-16 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
+          <div className="flex items-center justify-center gap-3 mb-5" aria-hidden="true">
+            <span className="h-px w-10 bg-gradient-to-l from-primary/50 to-transparent" />
+            <span className="font-mono text-xs tracking-[0.3em] text-primary/70">06</span>
+            <span className="h-px w-10 bg-gradient-to-r from-primary/50 to-transparent" />
+          </div>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground leading-tight tracking-[-0.02em]">
             From the community
           </h2>
         </div>
 
-        {/* Trust Stats - Mobile responsive grid */}
-        <div className={`grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 mb-8 transition-all duration-1000 delay-300 ${
+        {/* Trust Stats — oversized telemetry readouts */}
+        <div className={`grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-6 mb-10 max-w-4xl mx-auto transition-all duration-1000 delay-300 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           {stats.map((stat, index) => {
             const IconComponent = stat.icon;
             return (
-              <div 
-                key={index} 
-                className={`flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-3 sm:gap-4 group transition-all duration-700 p-4 sm:p-0 ${
-                  isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+              <div
+                key={index}
+                className={`group relative flex flex-col items-center text-center transition-all duration-700 ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                 }`}
                 style={{
                   transitionDelay: isVisible ? `${500 + index * 200}ms` : '0ms'
                 }}
               >
-                <div className="flex items-center justify-center w-12 h-12 bg-blue-500/10 ring-1 ring-blue-500/30 rounded-xl group-hover:bg-blue-500/20 group-hover:scale-110 transition-all duration-300 flex-shrink-0">
-                  <IconComponent className="h-6 w-6 text-blue-400 transition-transform duration-300 group-hover:rotate-12" />
-                </div>
-                <div className="text-center sm:text-left">
-                  <div className="text-2xl sm:text-3xl font-bold text-foreground">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm text-muted-foreground">
+                {index > 0 && (
+                  <span aria-hidden="true" className="hidden sm:block absolute left-0 top-1/2 -translate-y-1/2 h-12 w-px bg-dc-border/70" />
+                )}
+                <div className="flex items-center gap-2 mb-2">
+                  <IconComponent className="h-4 w-4 text-blue-400 transition-transform duration-300 group-hover:rotate-12" />
+                  <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
                     {stat.label}
-                  </div>
+                  </span>
+                </div>
+                <div className="font-display text-5xl md:text-6xl font-bold lp-gradient-text tracking-tight">
+                  {stat.value}
                 </div>
               </div>
             );

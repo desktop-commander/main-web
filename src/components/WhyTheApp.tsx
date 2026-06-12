@@ -48,23 +48,28 @@ const WhyTheApp = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 md:py-28 bg-dc-surface/30">
+    <section ref={sectionRef} className="relative py-20 md:py-32">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center">
           {/* Header */}
-          <div className={`mb-10 md:mb-12 transition-all duration-1000 ${
+          <div className={`mb-12 md:mb-14 transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+            <div className="flex items-center justify-center gap-3 mb-5" aria-hidden="true">
+              <span className="h-px w-10 bg-gradient-to-l from-primary/50 to-transparent" />
+              <span className="font-mono text-xs tracking-[0.3em] text-primary/70">03</span>
+              <span className="h-px w-10 bg-gradient-to-r from-primary/50 to-transparent" />
+            </div>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-foreground mb-4 leading-[1.1] tracking-[-0.02em]">
               Your agent, running where the work is.
             </h2>
-            <p className="text-lg sm:text-xl text-muted-foreground">
+            <p className="text-lg sm:text-xl text-muted-foreground font-light">
               On your computer, with your files, and your choice of model.
             </p>
           </div>
 
-          {/* Features */}
-          <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 md:mb-12 transition-all duration-1000 delay-200 ${
+          {/* Features — instrument panel: hairline grid, no card chrome */}
+          <div className={`grid grid-cols-1 sm:grid-cols-2 gap-px rounded-2xl overflow-hidden bg-dc-border/60 ring-1 ring-dc-border/60 mb-12 md:mb-14 transition-all duration-1000 delay-200 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             {features.map((feature, index) => {
@@ -72,14 +77,20 @@ const WhyTheApp = () => {
               return (
                 <div
                   key={index}
-                  className="flex items-start gap-3 p-4 bg-dc-surface border border-dc-border rounded-lg text-left"
+                  className="group relative flex items-start gap-4 p-6 sm:p-7 bg-background/90 text-left transition-colors duration-300 hover:bg-[hsl(var(--dc-blue)/0.05)]"
                 >
-                  <span className="flex items-center justify-center w-9 h-9 rounded-lg bg-blue-500/10 ring-1 ring-blue-500/30 flex-shrink-0">
-                    <Icon className="w-4 h-4 text-blue-400" />
+                  <span
+                    aria-hidden="true"
+                    className="absolute top-4 right-5 font-mono text-[10px] text-primary/30 select-none"
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-500/10 ring-1 ring-blue-500/30 flex-shrink-0 transition-all duration-300 group-hover:bg-blue-500/20 group-hover:shadow-[0_0_18px_hsl(var(--dc-blue)/0.3)]">
+                    <Icon className="w-[18px] h-[18px] text-blue-400" />
                   </span>
                   <div>
-                    <p className="font-medium text-foreground">{feature.text}</p>
-                    <p className="text-sm text-muted-foreground">{feature.desc}</p>
+                    <p className="font-display font-semibold text-foreground mb-1">{feature.text}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{feature.desc}</p>
                   </div>
                 </div>
               );
@@ -87,13 +98,13 @@ const WhyTheApp = () => {
           </div>
 
           {/* CTA */}
-          <div className={`transition-all duration-1000 delay-400 ${
+          <div className={`flex justify-center transition-all duration-1000 delay-400 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             <Button
               variant="hero"
               size="lg"
-              className="flex items-center justify-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-dc-accent/20 transform active:scale-95 group"
+              className="lp-shimmer inline-flex items-center justify-center gap-2 rounded-xl ring-1 ring-white/15 shadow-[0_10px_44px_-10px_hsl(var(--dc-blue)/0.5)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_14px_56px_-10px_hsl(var(--dc-blue)/0.65)] transform active:scale-95 group"
               asChild
             >
               <a href="#download" onClick={() => trackDownloadRedirect('why_the_app_cta')}>

@@ -95,31 +95,36 @@ const UseCases = () => {
     <section
       ref={sectionRef}
       id="use-cases"
-      className="py-14 md:py-20 bg-dc-surface/30"
+      className="relative py-16 md:py-24 bg-dc-surface/20 border-y border-dc-border/40"
     >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6">
         {/* Header */}
         <div
-          className={`text-center mb-10 md:mb-12 transition-all duration-1000 ${
+          className={`text-center mb-12 md:mb-14 transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 leading-[1.15]">
+          <div className="flex items-center justify-center gap-3 mb-5" aria-hidden="true">
+            <span className="h-px w-10 bg-gradient-to-l from-primary/50 to-transparent" />
+            <span className="font-mono text-xs tracking-[0.3em] text-primary/70">02</span>
+            <span className="h-px w-10 bg-gradient-to-r from-primary/50 to-transparent" />
+          </div>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 leading-[1.1] tracking-[-0.02em]">
             Four ways to get started
           </h2>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed font-light">
             Paste any prompt into Desktop Commander and watch it execute.
           </p>
         </div>
 
         {/* Cards */}
-        <div className="grid gap-6 md:gap-8 md:grid-cols-2 max-w-5xl mx-auto">
+        <div className="grid gap-5 md:gap-6 md:grid-cols-2 max-w-5xl mx-auto">
           {useCases.map((useCase, index) => {
             const Icon = useCase.icon;
             return (
               <div
                 key={useCase.title}
-                className={`group relative flex flex-col h-full p-5 rounded-2xl border border-dc-border bg-background/60 hover:border-blue-500/40 hover:bg-background/80 transition-all duration-500 ${
+                className={`group relative flex flex-col h-full p-6 rounded-2xl lp-ring-subtle overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_18px_60px_-18px_hsl(var(--dc-blue)/0.35)] ${
                   isVisible
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-8"
@@ -128,16 +133,24 @@ const UseCases = () => {
                   transitionDelay: isVisible ? `${200 + index * 120}ms` : "0ms",
                 }}
               >
+                {/* Ghost numeral */}
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none select-none absolute -top-5 right-3 font-display text-[6.5rem] font-extrabold leading-none text-primary/[0.055] group-hover:text-primary/[0.09] transition-colors duration-500"
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
                 {/* Icon */}
-                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-500/10 ring-1 ring-blue-500/30 mb-4 group-hover:bg-blue-500/20 transition-colors">
+                <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-blue-500/10 ring-1 ring-blue-500/30 mb-5 transition-all duration-300 group-hover:bg-blue-500/20 group-hover:shadow-[0_0_22px_hsl(var(--dc-blue)/0.35)]">
                   <Icon className="w-5 h-5 text-blue-400" />
                 </div>
 
                 {/* Title — stretched link covers the whole card */}
-                <h3 className="mb-3">
+                <h3 className="mb-4">
                   <a
                     href={useCase.href}
-                    className="inline-flex items-center gap-1.5 text-lg sm:text-xl font-semibold text-foreground hover:text-blue-400 transition-colors before:absolute before:inset-0 before:content-['']"
+                    className="inline-flex items-center gap-1.5 font-display text-lg sm:text-xl font-semibold text-foreground hover:text-blue-400 transition-colors before:absolute before:inset-0 before:content-['']"
                   >
                     {useCase.title}
                     <ArrowRight className="w-4 h-4 text-blue-400/60 group-hover:text-blue-400 group-hover:translate-x-0.5 transition-all" />
@@ -145,7 +158,7 @@ const UseCases = () => {
                 </h3>
 
                 {/* Copyable prompts — z-10 so clicks hit the buttons, not the stretched link */}
-                <ul className="space-y-1.5 flex-grow relative z-10">
+                <ul className="space-y-2 flex-grow relative z-10">
                   {useCase.prompts.map((prompt) => {
                     const isCopied = copiedPrompt === prompt;
                     return (
@@ -158,20 +171,15 @@ const UseCases = () => {
                               ? `Copied: ${prompt}`
                               : `Copy prompt: ${prompt}`
                           }
-                          className={`w-full text-left flex items-start justify-between gap-3 px-3 py-1.5 rounded-lg border transition-all ${
+                          className={`w-full text-left flex items-start justify-between gap-3 px-3 py-2 rounded-lg border transition-all ${
                             isCopied
                               ? "bg-green-500/10 border-green-500/40"
-                              : "bg-dc-surface/40 border-dc-border/60 hover:bg-dc-surface/80 hover:border-blue-500/40"
+                              : "bg-background/50 border-dc-border/60 hover:bg-background/80 hover:border-blue-500/40"
                           }`}
                         >
-                          <span className="text-xs text-foreground/90 leading-relaxed font-mono">
-                            <span className="text-muted-foreground/60">
-                              &ldquo;
-                            </span>
+                          <span className="font-mono text-xs text-foreground/90 leading-relaxed">
+                            <span className="text-primary/60">›&nbsp;</span>
                             {prompt}
-                            <span className="text-muted-foreground/60">
-                              &rdquo;
-                            </span>
                           </span>
                           <span className="flex-shrink-0 mt-0.5">
                             {isCopied ? (
@@ -193,7 +201,7 @@ const UseCases = () => {
 
         {/* Compact footer row — install hint + browse prompts link */}
         <div
-          className={`flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-muted-foreground mt-10 transition-all duration-1000 ${
+          className={`flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-muted-foreground mt-12 transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
           style={{

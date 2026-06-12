@@ -64,26 +64,33 @@ const DownloadSection = () => {
     <section
       ref={sectionRef}
       id="download"
-      className="relative overflow-hidden py-24 md:py-32 scroll-mt-24 bg-gradient-to-b from-background via-dc-surface/40 to-background border-y border-blue-500/10"
+      className="relative overflow-hidden py-28 md:py-36 scroll-mt-24"
     >
-      {/* Ambient glow */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-      >
-        <div className="absolute left-1/2 top-[-10%] h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-blue-500/10 blur-[120px]" />
-        <div className="absolute right-[-20%] bottom-[-20%] h-[400px] w-[500px] rounded-full bg-purple-500/10 blur-[100px]" />
+      {/* Atmosphere: grid rising from the bottom + aurora */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 lp-grid lp-grid-mask-b opacity-90" />
+        <div className="absolute left-1/2 top-[-10%] h-[520px] w-[760px] -translate-x-1/2" style={{ background: 'radial-gradient(closest-side, hsl(var(--dc-blue) / 0.15), transparent 72%)' }} />
+        <div className="absolute right-[-18%] bottom-[-22%] h-[420px] w-[520px]" style={{ background: 'radial-gradient(closest-side, hsl(258 92% 74% / 0.10), transparent 72%)' }} />
       </div>
 
       <div className="relative container mx-auto max-w-5xl px-4 sm:px-6">
-        {/* Brand mark */}
+        {/* Brand mark with orbiting halo */}
         <div
-          className={`flex justify-center mb-8 transition-all duration-1000 ${
+          className={`flex justify-center mb-10 transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
           <div className="relative">
-            <div className="absolute inset-0 rounded-2xl bg-blue-500/30 blur-2xl" />
+            {/* Rotating conic halo */}
+            <div
+              aria-hidden="true"
+              className="absolute -inset-4 rounded-[1.75rem] lp-spin-slow blur-[6px] opacity-80"
+              style={{
+                background:
+                  "conic-gradient(from 0deg, transparent 0%, hsl(var(--dc-blue)/0.65) 12%, transparent 28%, transparent 55%, hsl(258 92% 74% / 0.4) 68%, transparent 82%)",
+              }}
+            />
+            <div aria-hidden="true" className="absolute inset-0 rounded-2xl bg-blue-500/30 blur-2xl" />
             <div className="relative flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 shadow-2xl shadow-blue-500/30 ring-1 ring-white/10">
               <img
                 src="/favicon-512x512.png"
@@ -100,10 +107,10 @@ const DownloadSection = () => {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-5 leading-[1.1] tracking-tight">
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-5 leading-[1.02] tracking-[-0.03em]">
             Download Desktop Commander
           </h2>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-light">
             Install the AI agent that runs where your work lives.
           </p>
         </div>
@@ -119,7 +126,7 @@ const DownloadSection = () => {
             return (
               <div key={stat.label} className="flex items-center gap-2">
                 <Icon className="w-4 h-4 text-blue-400" />
-                <span className="text-sm font-semibold text-foreground">{stat.value}</span>
+                <span className="font-mono text-sm font-semibold text-foreground">{stat.value}</span>
                 <span className="text-sm text-muted-foreground">{stat.label}</span>
                 {i < trustStats.length - 1 && (
                   <span className="hidden sm:inline-block ml-6 w-1 h-1 rounded-full bg-muted-foreground/40" />
@@ -131,7 +138,7 @@ const DownloadSection = () => {
 
         {/* Download cards */}
         <div
-          className={`grid sm:grid-cols-2 gap-4 md:gap-5 max-w-2xl mx-auto mb-5 transition-all duration-1000 delay-500 ${
+          className={`grid sm:grid-cols-2 gap-4 md:gap-5 max-w-2xl mx-auto mb-6 transition-all duration-1000 delay-500 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
@@ -139,7 +146,7 @@ const DownloadSection = () => {
           <a
             href={DOWNLOADS.macArm}
             onClick={() => handleDownload("macos-m", DOWNLOADS.macArm)}
-            className="group relative inline-flex items-center justify-center gap-3 px-7 py-5 rounded-xl bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white font-semibold text-base shadow-lg shadow-blue-500/30 ring-1 ring-white/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-500/40"
+            className="lp-shimmer group relative inline-flex items-center justify-center gap-3 px-7 py-5 rounded-2xl bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white font-semibold text-base shadow-[0_14px_50px_-12px_hsl(var(--dc-blue)/0.6)] ring-1 ring-white/15 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_64px_-12px_hsl(var(--dc-blue)/0.75)]"
           >
             <AppleIcon className="w-6 h-6" />
             <span>Download for Mac</span>
@@ -149,7 +156,7 @@ const DownloadSection = () => {
           <a
             href={DOWNLOADS.windows}
             onClick={() => handleDownload("windows", DOWNLOADS.windows)}
-            className="group relative inline-flex items-center justify-center gap-3 px-7 py-5 rounded-xl bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white font-semibold text-base shadow-lg shadow-blue-500/30 ring-1 ring-white/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-500/40"
+            className="lp-shimmer group relative inline-flex items-center justify-center gap-3 px-7 py-5 rounded-2xl bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white font-semibold text-base shadow-[0_14px_50px_-12px_hsl(var(--dc-blue)/0.6)] ring-1 ring-white/15 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_64px_-12px_hsl(var(--dc-blue)/0.75)]"
           >
             <WindowsIcon className="w-6 h-6" />
             <span>Download for Windows</span>
@@ -158,7 +165,7 @@ const DownloadSection = () => {
 
         {/* Secondary row: release info + architecture fallback */}
         <div
-          className={`flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground transition-all duration-1000 delay-600 ${
+          className={`flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-mono text-xs text-muted-foreground transition-all duration-1000 delay-600 ${
             isVisible ? "opacity-100" : "opacity-0"
           }`}
         >

@@ -148,20 +148,128 @@ All colors MUST be HSL.
   .gradient-primary {
     background: var(--gradient-primary);
   }
-  
+
   .gradient-subtle {
     background: var(--gradient-subtle);
   }
-  
+
   .shadow-elegant {
     box-shadow: var(--shadow-elegant);
   }
-  
+
   .shadow-glow {
     box-shadow: var(--shadow-glow);
   }
-  
+
   .transition-smooth {
     transition: var(--transition-smooth);
   }
+}
+
+/* ===================================================================
+   Landing v2 — "Mission Control" design layer (fable-experiment)
+   All classes prefixed lp- and purely additive: existing pages are
+   unaffected unless they opt in.
+   =================================================================== */
+
+@layer utilities {
+  /* Blueprint hairline grid */
+  .lp-grid {
+    background-image:
+      linear-gradient(hsl(var(--dc-blue) / 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--dc-blue) / 0.055) 1px, transparent 1px);
+    background-size: 52px 52px;
+  }
+  .lp-grid-mask-t {
+    -webkit-mask-image: radial-gradient(120% 90% at 50% 0%, #000 30%, transparent 78%);
+    mask-image: radial-gradient(120% 90% at 50% 0%, #000 30%, transparent 78%);
+  }
+  .lp-grid-mask-b {
+    -webkit-mask-image: radial-gradient(120% 90% at 50% 100%, #000 30%, transparent 78%);
+    mask-image: radial-gradient(120% 90% at 50% 100%, #000 30%, transparent 78%);
+  }
+
+  /* Headline gradient — stays inside the existing blue/violet accent range */
+  .lp-gradient-text {
+    background: linear-gradient(118deg,
+      hsl(var(--dc-blue-glow)) 0%,
+      hsl(var(--dc-blue)) 48%,
+      hsl(258 92% 74%) 110%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .lp-text-glow {
+    filter: drop-shadow(0 0 42px hsl(var(--dc-blue) / 0.45));
+  }
+
+  /* Hairline gradient ring (border drawn with a gradient, body stays glass) */
+  .lp-ring {
+    border: 1px solid transparent;
+    background:
+      linear-gradient(hsl(var(--dc-card) / 0.92), hsl(var(--dc-card) / 0.92)) padding-box,
+      linear-gradient(140deg,
+        hsl(var(--dc-blue) / 0.55),
+        hsl(var(--dc-border)) 32%,
+        hsl(var(--dc-border)) 68%,
+        hsl(258 92% 74% / 0.4)) border-box;
+  }
+  .lp-ring-subtle {
+    border: 1px solid transparent;
+    background:
+      linear-gradient(hsl(var(--dc-card) / 0.65), hsl(var(--dc-card) / 0.65)) padding-box,
+      linear-gradient(140deg,
+        hsl(var(--dc-blue) / 0.25),
+        hsl(var(--dc-border) / 0.9) 40%,
+        hsl(var(--dc-border) / 0.9) 100%) border-box;
+  }
+
+  /* Deep blue glow used under hero terminal / key cards */
+  .lp-glow {
+    box-shadow:
+      0 0 0 1px hsl(var(--dc-blue) / 0.1),
+      0 24px 90px -22px hsl(var(--dc-blue) / 0.38),
+      0 10px 40px -10px rgb(0 0 0 / 0.65);
+  }
+
+  /* Horizontal edge fade for marquees / carousels */
+  .lp-fade-x {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  }
+
+  /* Motion helpers */
+  .lp-float { animation: lp-float 7s ease-in-out infinite; }
+  .lp-spin-slow { animation: lp-spin 16s linear infinite; }
+  .lp-shimmer { position: relative; overflow: hidden; }
+  .lp-shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(105deg, transparent 38%, rgb(255 255 255 / 0.22) 50%, transparent 62%);
+    transform: translateX(-160%);
+    animation: lp-shimmer 4.6s ease-in-out infinite;
+  }
+  .lp-pause-hover:hover * { animation-play-state: paused; }
+}
+
+@keyframes lp-float {
+  0%, 100% { transform: translateY(0) rotate(3deg); }
+  50% { transform: translateY(-12px) rotate(1.5deg); }
+}
+@keyframes lp-shimmer {
+  0%, 55% { transform: translateX(-160%); }
+  100% { transform: translateX(160%); }
+}
+@keyframes lp-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes lp-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lp-float, .lp-spin-slow, .lp-shimmer::after { animation: none; }
 }
