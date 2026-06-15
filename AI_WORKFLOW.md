@@ -1,16 +1,25 @@
 # AI Workflow Instructions
 
+> **See `AGENTS.md` first** for current stack + production deploy state. Trust `AGENTS.md`
+> where it conflicts with this file. This doc covers the deploy *protocol* (branch → build →
+> preview → ask before push).
+
 ## Quick Reference Files
+- **AGENTS.md** - Repo context, stack, and current production deploy state (read this first)
 - **CTA_BUTTONS_GUIDE.md** - All CTA button locations for site-wide updates
-- **LOCAL_DEVELOPMENT_SETUP.md** - Development environment setup
 
 ## Repository Overview
-This repository contains the Desktop Commander website - a static site built from React/Vite source code and hosted on GitHub Pages from the `docs/` folder.
+This repository contains the Desktop Commander website (`desktopcommander.app`) - a static
+site built with **Astro** and hosted on GitHub Pages from the `docs/` folder.
 
 ## Important: This repo contains BOTH source AND built files
-- Source code: `root/` and `prompt-library/` directories
+- Source code: `astro-src/` (pages/layouts) and `src/` (React/UI components)
 - Built static files: `docs/` directory (committed to git for GitHub Pages)
 - The `docs/` folder must be rebuilt and committed whenever source changes are made
+
+> ⚠️ The intended model is "GitHub Pages serves `main` / `docs`", but production may be served
+> from a different branch at any given time. **Do not assume `main` is live** — verify per the
+> checks in `AGENTS.md`.
 
 ## Workflow Rules
 
@@ -45,8 +54,8 @@ For testing your changes:
 
 ```bash
 # Development preview (hot reload, not compiled)
-cd root && npm run dev
-# Runs on http://localhost:8082
+npm run dev
+# Runs on http://localhost:4321 (Astro dev server)
 
 # Production preview (see actual built version)  
 npm run serve:static
@@ -134,16 +143,19 @@ gh pr create --title "Add pricing section" --body "New pricing page with compari
 2. **Always run `npm run commit-static` after source changes**
 3. **Preview locally before committing**
 4. **Use PRs for large features, direct merge for small changes**
-5. **GitHub Pages auto-deploys from main branch `docs/` folder**
+5. **GitHub Pages serves the `docs/` folder — but verify which branch is actually live (see `AGENTS.md`); don't assume it's `main`**
 
 ## File Structure
 ```
 main-web/
-├── root/                    # Main React app source
-├── prompt-library/          # Documentation source  
-├── docs/                    # Built static files (committed to git)
-├── package.json             # Contains commit-static script
-└── AI_WORKFLOW.md          # This file
+├── astro-src/               # Astro pages & layouts
+├── src/                     # React/UI components (@ alias → /src)
+├── public/                  # Static assets copied as-is
+├── docs/                    # Built static files (committed to git, served by GitHub Pages)
+├── astro.config.mjs         # Astro config (outDir: docs, site, trailingSlash)
+├── package.json             # Contains commit-static / build scripts
+├── AGENTS.md                # Repo context + production deploy state (read first)
+└── AI_WORKFLOW.md           # This file (deploy protocol)
 ```
 
 
@@ -160,7 +172,7 @@ main-web/
 Before doing anything, check the current state:
 
 ```bash
-cd /Users/fiberta/work/main-web
+cd <repo-root>   # the main-web repo on your machine
 git status
 git fetch origin
 git status  # Check again to see if behind remote
@@ -261,7 +273,7 @@ git push origin main
 
 After successful push:
 - Confirm: "✓ Deployed successfully!"
-- Remind: "Changes will be live at https://desktopcommander.com in 1-2 minutes (GitHub Pages build time)"
+- Remind: "Changes will be live at https://desktopcommander.app in 1-2 minutes (GitHub Pages build time)"
 
 ### Common Issues and Solutions
 
@@ -389,5 +401,5 @@ User: "yes"
 AI: "Deploying..."
 [Runs git push origin main]
 
-AI: "✓ Deployed successfully! Changes will be live at https://desktopcommander.com in 1-2 minutes."
+AI: "✓ Deployed successfully! Changes will be live at https://desktopcommander.app in 1-2 minutes."
 ```
