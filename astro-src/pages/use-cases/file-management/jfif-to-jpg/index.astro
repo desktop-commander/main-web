@@ -17,18 +17,18 @@ import MoreConversions from '../../../../components/MoreConversions.astro';
   title="Convert JFIF to JPG Instantly | Free JFIF Converter | Desktop Commander"
   description="Convert JFIF files to JPG instantly and locally. JFIF is just JPEG with a different extension. Batch convert without uploads. Free for Mac and Windows."
 >
-  <PostHogInit client:load />
+  <PostHogInit client:idle />
   
   <div class="min-h-screen bg-background">
     <Navigation />
     
     <main>
       <JJHeroSection client:load />
-      <JJProblemSection client:visible />
-      <JJSolutionSection client:visible />
-      <JJComparisonSection client:visible />
+      <JJProblemSection />
+      <JJSolutionSection />
+      <JJComparisonSection />
       <WaitlistSection useCase="jfif_to_jpg" client:visible />
-      <JJPersonasSection client:visible />
+      <JJPersonasSection />
       <JJFinalCTASection client:visible />
     </main>
     

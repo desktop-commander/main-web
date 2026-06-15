@@ -17,18 +17,18 @@ import MoreConversions from '../../../../components/MoreConversions.astro';
   title="Convert CR2 to JPG Instantly | Free Canon RAW Converter | Desktop Commander"
   description="Batch convert Canon CR2 RAW photos to JPG locally. Process entire photo shoots in seconds. Free, fast, and works offline on Mac & Windows."
 >
-  <PostHogInit client:load />
+  <PostHogInit client:idle />
   
   <div class="min-h-screen bg-background">
     <Navigation />
     
     <main>
       <CRHeroSection client:load />
-      <CRProblemSection client:visible />
-      <CRSolutionSection client:visible />
-      <CRComparisonSection client:visible />
+      <CRProblemSection />
+      <CRSolutionSection />
+      <CRComparisonSection />
       <WaitlistSection useCase="cr2_to_jpg" client:visible />
-      <CRPersonasSection client:visible />
+      <CRPersonasSection />
       <CRFinalCTASection client:visible />
     </main>
     

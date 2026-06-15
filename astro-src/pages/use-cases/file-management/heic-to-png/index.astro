@@ -17,18 +17,18 @@ import MoreConversions from '../../../../components/MoreConversions.astro';
   title="Convert HEIC to PNG Instantly | Free Local Converter | Desktop Commander"
   description="Convert iPhone HEIC photos to PNG with lossless quality. Batch convert locally with transparency support. No uploads required. Free for Mac and Windows."
 >
-  <PostHogInit client:load />
+  <PostHogInit client:idle />
   
   <div class="min-h-screen bg-background">
     <Navigation />
     
     <main>
       <HPHeroSection client:load />
-      <HPProblemSection client:visible />
-      <HPSolutionSection client:visible />
-      <HPComparisonSection client:visible />
+      <HPProblemSection />
+      <HPSolutionSection />
+      <HPComparisonSection />
       <WaitlistSection useCase="heic_to_png" client:visible />
-      <HPPersonasSection client:visible />
+      <HPPersonasSection />
       <HPFinalCTASection client:visible />
     </main>
     

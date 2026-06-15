@@ -17,18 +17,18 @@ import MoreConversions from '../../../../components/MoreConversions.astro';
   title="Convert PNG to JPG Instantly | Free Batch Converter | Desktop Commander"
   description="Batch convert PNG files to smaller JPG images locally. Reduce file sizes up to 80% for web, email, and storage. Free, fast, and works offline on Mac & Windows."
 >
-  <PostHogInit client:load />
+  <PostHogInit client:idle />
   
   <div class="min-h-screen bg-background">
     <Navigation />
     
     <main>
       <PJHeroSection client:load />
-      <PJProblemSection client:visible />
-      <PJSolutionSection client:visible />
-      <PJComparisonSection client:visible />
+      <PJProblemSection />
+      <PJSolutionSection />
+      <PJComparisonSection />
       <WaitlistSection useCase="png_to_jpg" client:visible />
-      <PJPersonasSection client:visible />
+      <PJPersonasSection />
       <PJFinalCTASection client:visible />
     </main>
     

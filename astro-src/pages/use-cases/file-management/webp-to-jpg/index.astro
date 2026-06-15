@@ -17,18 +17,18 @@ import MoreConversions from '../../../../components/MoreConversions.astro';
   title="Convert WebP to JPG Instantly | Free Local Converter | Desktop Commander"
   description="Batch convert WebP images to JPG locally and privately. No uploads, no browser tabs — just instant conversion on your Mac or Windows PC. Free forever."
 >
-  <PostHogInit client:load />
+  <PostHogInit client:idle />
   
   <div class="min-h-screen bg-background">
     <Navigation />
     
     <main>
       <WJHeroSection client:load />
-      <WJProblemSection client:visible />
-      <WJSolutionSection client:visible />
-      <WJComparisonSection client:visible />
+      <WJProblemSection />
+      <WJSolutionSection />
+      <WJComparisonSection />
       <WaitlistSection useCase="webp_to_jpg" client:visible />
-      <WJPersonasSection client:visible />
+      <WJPersonasSection />
       <WJFinalCTASection client:visible />
     </main>
     

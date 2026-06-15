@@ -17,18 +17,18 @@ import MoreConversions from '../../../../components/MoreConversions.astro';
   title="Convert PDF to PNG Images | Free PDF Page Extractor | Desktop Commander"
   description="Extract PDF pages as high-quality PNG images. Convert single pages or entire documents locally. No uploads, no watermarks. Free for Mac and Windows."
 >
-  <PostHogInit client:load />
+  <PostHogInit client:idle />
   
   <div class="min-h-screen bg-background">
     <Navigation />
     
     <main>
       <PPHeroSection client:load />
-      <PPProblemSection client:visible />
-      <PPSolutionSection client:visible />
-      <PPComparisonSection client:visible />
+      <PPProblemSection />
+      <PPSolutionSection />
+      <PPComparisonSection />
       <WaitlistSection useCase="pdf_to_png" client:visible />
-      <PPPersonasSection client:visible />
+      <PPPersonasSection />
       <PPFinalCTASection client:visible />
     </main>
     

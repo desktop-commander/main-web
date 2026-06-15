@@ -18,20 +18,20 @@ import Footer from '../../../../src/components/Footer';
   title="Connect Your Apps With AI — Workflow Automation for HubSpot, WordPress & 100+ Tools | Desktop Commander"
   description="Skip the clicks. Describe what you want and Desktop Commander talks to HubSpot, WordPress, Google Analytics and 100+ other tools through MCP."
 >
-  <PostHogInit client:load />
+  <PostHogInit client:idle />
   
   <div class="min-h-screen bg-background">
     <Navigation />
     
     <main>
       <CAHeroSection client:load />
-      <CAProblemSection client:visible />
+      <CAProblemSection />
       <CASolutionSection client:visible />
-      <CAWorkflowChainsSection client:visible />
+      <CAWorkflowChainsSection />
       <CAExamplesSection client:visible />
-      <CAComparisonSection client:visible />
+      <CAComparisonSection />
       <CAHowItWorksSection client:visible />
-      <CAPersonasSection client:visible />
+      <CAPersonasSection />
       <CAFinalCTASection client:visible />
     </main>
     

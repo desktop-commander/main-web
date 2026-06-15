@@ -19,21 +19,21 @@ import Footer from '../../../../src/components/Footer';
   title="Vibe-Code Your Next App — AI App Builder on Your Desktop | Desktop Commander"
   description="Describe what you want and get working code on your own machine. Python, JavaScript, HTML/CSS, Git, Terminal — no cloud IDE, no setup, no learning to code."
 >
-  <PostHogInit client:load />
+  <PostHogInit client:idle />
   
   <div class="min-h-screen bg-background">
     <Navigation />
     
     <main>
       <BPHeroSection client:load />
-      <BPProblemSection client:visible />
+      <BPProblemSection />
       <BPSolutionSection client:visible />
       <BPExamplesSection client:visible />
-      <BPWhyDifferentSection client:visible />
-      <BPCloudComparisonSection client:visible />
-      <BPComparisonSection client:visible />
+      <BPWhyDifferentSection />
+      <BPCloudComparisonSection />
+      <BPComparisonSection />
       <WaitlistSection useCase="build_prototype" client:visible />
-      <BPPersonasSection client:visible />
+      <BPPersonasSection />
       <BPFinalCTASection client:visible />
     </main>
     

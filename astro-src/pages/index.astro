@@ -22,7 +22,7 @@ import Footer from '../../src/components/Footer';
   jsonLd={organizationSchema}
 >
   <!-- Load PostHog early to initialize analytics -->
-  <PostHogInit client:load />
+  <PostHogInit client:idle />
   
   <div class="min-h-screen bg-background">
     <Navigation />

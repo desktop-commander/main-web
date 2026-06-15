@@ -19,7 +19,7 @@ import Footer from '../../../../src/components/Footer';
   description="Organize, convert, and rename files by describing what you want. Works with HEIC, PDF, CSV and everything on your disk — nothing ever leaves your computer."
 >
   <!-- Load PostHog early to initialize analytics -->
-  <PostHogInit client:load />
+  <PostHogInit client:idle />
   
   <div class="min-h-screen bg-background">
     <Navigation />
@@ -32,19 +32,19 @@ import Footer from '../../../../src/components/Footer';
       <FMPopularConversions client:load />
       
       <!-- Problem Section -->
-      <ProblemSection client:visible />
+      <ProblemSection />
       
       <!-- Solution Section with Features -->
-      <SolutionSection client:visible />
+      <SolutionSection />
       
       <!-- How It Works Flow -->
       <HowItWorksSimple client:visible />
       
       <!-- Privacy Diagram -->
-      <PrivacyDiagramSection client:visible />
+      <PrivacyDiagramSection />
       
       <!-- Testimonials -->
-      <TestimonialsSection client:visible />
+      <TestimonialsSection />
       
       <!-- How It Works / Waitlist -->
       <WaitlistSection useCase="file_management" client:visible />

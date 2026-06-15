@@ -17,18 +17,18 @@ import MoreConversions from '../../../../components/MoreConversions.astro';
   title="Convert AVIF to JPG Instantly | Free Local Converter | Desktop Commander"
   description="Batch convert AVIF images to JPG locally and privately. Full AVIF support without waiting for app updates. Free forever on Mac & Windows."
 >
-  <PostHogInit client:load />
+  <PostHogInit client:idle />
   
   <div class="min-h-screen bg-background">
     <Navigation />
     
     <main>
       <AJHeroSection client:load />
-      <AJProblemSection client:visible />
-      <AJSolutionSection client:visible />
-      <AJComparisonSection client:visible />
+      <AJProblemSection />
+      <AJSolutionSection />
+      <AJComparisonSection />
       <WaitlistSection useCase="avif_to_jpg" client:visible />
-      <AJPersonasSection client:visible />
+      <AJPersonasSection />
       <AJFinalCTASection client:visible />
     </main>
     

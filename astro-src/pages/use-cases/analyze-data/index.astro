@@ -18,20 +18,20 @@ import Footer from '../../../../src/components/Footer';
   title="Chat With Your Data — AI Data Analysis for CSV, Excel & JSON | Desktop Commander"
   description="Talk to your CSV, Excel, and JSON files in plain English. Find patterns, run analysis, and automate reports locally — no Python, no uploads, no file-size limits."
 >
-  <PostHogInit client:load />
+  <PostHogInit client:idle />
   
   <div class="min-h-screen bg-background">
     <Navigation />
     
     <main>
       <ADHeroSection client:load />
-      <ADProblemSection client:visible />
+      <ADProblemSection />
       <ADSolutionSection client:visible />
       <ADExamplesSection client:visible />
-      <ADComparisonSection client:visible />
-      <ADWhyDifferentSection client:visible />
+      <ADComparisonSection />
+      <ADWhyDifferentSection />
       <ADWaitlistSection client:visible />
-      <ADPersonasSection client:visible />
+      <ADPersonasSection />
       <ADFinalCTASection client:visible />
     </main>
     
