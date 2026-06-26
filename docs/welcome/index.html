@@ -1,166 +1,257 @@
-<!DOCTYPE html><!--
-  welcome.astro — v2 design (Apr 2026).
-  Previous version preserved at welcome2.astro for A/B comparison until retired.
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Desktop Commander: You&#39;re all set. Now meet your team&#39;s agent.</title><meta name="description" content="Your Desktop Commander MCP is installed. Next: set up a team agent with shared files, shared tools, and its own computer. Connect your ERP, CRM, and databases, and talk to your stuff."><meta name="author" content="Desktop Commander"><!-- Favicon --><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://desktopcommander.app/welcome/"><!-- Open Graph --><meta property="og:site_name" content="Desktop Commander"><meta property="og:locale" content="en_US"><meta property="og:title" content="Desktop Commander: You're all set. Now meet your team's agent."><meta property="og:description" content="Your Desktop Commander MCP is installed. Next: set up a team agent with shared files, shared tools, and its own computer. Connect your ERP, CRM, and databases, and talk to your stuff."><meta property="og:type" content="website"><meta property="og:url" content="https://desktopcommander.app/welcome/"><meta property="og:image" content="https://desktopcommander.app/bg-social-share.png"><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@desktop_commander"><meta name="twitter:title" content="Desktop Commander: You're all set. Now meet your team's agent."><meta name="twitter:description" content="Your Desktop Commander MCP is installed. Next: set up a team agent with shared files, shared tools, and its own computer. Connect your ERP, CRM, and databases, and talk to your stuff."><meta name="twitter:image" content="https://desktopcommander.app/bg-social-share.png"><meta name="robots" content="index, follow, noai, noimageai"><meta name="googlebot" content="index, follow, noai"><!-- Cookiebot - MUST be first script in head --><script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="83cceb09-32d2-409b-ada6-17cc28478ba6" data-blockingmode="auto" type="text/javascript" async></script><!-- Google tag (gtag.js) - blocked until statistics consent --><script type="text/plain" data-cookieconsent="statistics" async src="https://www.googletagmanager.com/gtag/js?id=G-HXL4Y3Y62N"></script><script type="text/plain" data-cookieconsent="statistics">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HXL4Y3Y62N');
+  </script><!-- Ahrefs Analytics - blocked until statistics consent --><script type="text/plain" data-cookieconsent="statistics" src="https://analytics.ahrefs.com/analytics.js" data-key="5Iumy4Rr7Do+R0CWUtQkHA" async></script><!-- HubSpot embedded form (email gate). data-cookieconsent="ignore" so
+       Cookiebot auto-blocking never prevents the form from rendering. --><script src="https://js-eu1.hsforms.net/forms/embed/146727725.js" defer data-cookieconsent="ignore"></script><!-- Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/welcome.nDWByGOe.css"></head> <body> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="ZuCpvv" prefix="r1" component-url="/assets/PostHogInit.l9QT-Sxj.js" component-export="default" renderer-url="/assets/client.CL7ToQLS.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;PostHogInit&quot;,&quot;value&quot;:true}"></astro-island> <div class="aurora"></div> <svg class="grain" width="100%" height="100%"> <filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter> <rect width="100%" height="100%" filter="url(#noise)" opacity="0.18"></rect> </svg> <div class="wrap"> <nav> <a class="logo" href="https://desktopcommander.app/"><div class="logo-mark">DC</div>Desktop&nbsp;Commander</a> <div class="nav-note"><span class="dot-live"></span>MCP connected</div> </nav> <!-- ============ HERO: INSTALLED ============ --> <header> <div class="hero-card"> <div class="status-line">✓ MCP server installed</div> <div class="check-big"> <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M8 16.5L13.5 22L24 11" stroke="#4ADE80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg> </div> <h1>Installed. You're all&nbsp;set.</h1> <p class="sub">Thanks for installing the Desktop Commander MCP. It's connected to Claude. <strong>Nothing else to do</strong>. Switch over and start working.</p> <div class="hero-skip"> <a href="https://desktopcommander.app/#prompts">Need a starting point? Browse 72+ prompts →</a> </div> </div> <div class="scroll-cue" id="scrollCue" role="button" aria-label="Scroll to see what's new"> <svg width="26" height="26" viewBox="0 0 22 22" fill="none"><path d="M5 8l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg> </div> <div class="divider"><span>while you're here · new</span></div> </header> <!-- ============ PITCH: TEAM AGENT ============ --> <section class="pitch"> <h2>Get your <span class="grad">AI employee.</span></h2> <p class="sub">An agent that does work for your team, with <strong>shared files</strong>, <strong>shared tools</strong>, and <strong>its own computer</strong>. Everyone can talk to it.</p> <div class="btn-row"> <button class="btn" data-cta="hero">Create your team agent →</button> </div> </section> <!-- ============ PRODUCT DEMO ============ --> <section class="demo-section"> <div class="section-kicker">See it work</div> <h2 class="section-title">Task it like a teammate.</h2> <p class="section-sub">Ask in chat. It connects to your systems, does the work on its own computer, and delivers the result.</p> <div class="demo-shell"> <div class="demo-window"> <div class="demo-bar"> <div class="demo-dot r"></div><div class="demo-dot y"></div><div class="demo-dot g"></div> <span class="demo-title"># team · Your AI employee</span> <div class="demo-members"> <div class="demo-mini-av" style="background:#E8912D">M</div> <div class="demo-mini-av" style="background:#3D7BE8">J</div> <div class="demo-mini-av" style="background:#15181F;font-family:var(--mono)">DC</div> </div> <span class="demo-status"><span class="sdot"></span>online</span> </div> <div class="demo-body" id="demoBody"></div> </div> </div> </section> <!-- ============ TALK TO YOUR STUFF ============ --> <section class="stuff-section"> <div class="section-kicker">Connect everything</div> <h2 class="section-title">Connect your tools.<br>Talk to your stuff.</h2> <p class="section-sub">Plug in the systems your company already runs on: ERP, CRM, databases, drives. Ask in plain language, and answers, reports, and changes come back done.</p> <div class="tool-cloud"> <span class="cloud-pill hl">SAP</span> <span class="cloud-pill hl">NetSuite</span> <span class="cloud-pill hl">Odoo</span> <span class="cloud-pill">Salesforce</span> <span class="cloud-pill">HubSpot</span> <span class="cloud-pill">Postgres</span> <span class="cloud-pill">MySQL</span> <span class="cloud-pill">Google Drive</span> <span class="cloud-pill">SharePoint</span> <span class="cloud-pill">Notion</span> <span class="cloud-pill">GitHub</span> <span class="cloud-pill">Stripe</span> <span class="cloud-pill">Shopify</span> <span class="cloud-pill">Airtable</span> <span class="cloud-pill">+ any MCP</span> </div> <div class="ask-grid"> <div class="ask-card"> <div class="ask-role"><div class="ask-role-av" style="background:#E8912D">M</div><div class="ask-role-name">Finance asks</div></div> <div class="ask-q">Which invoices are overdue in NetSuite, by customer?</div> <div class="ask-a"><span>→</span> table + reminder drafts, 40 sec</div> </div> <div class="ask-card"> <div class="ask-role"><div class="ask-role-av" style="background:#3D7BE8">J</div><div class="ask-role-name">Sales asks</div></div> <div class="ask-q">Pull this quarter's pipeline by stage from Salesforce.</div> <div class="ask-a"><span>→</span> chart + summary, posted to the team</div> </div> <div class="ask-card"> <div class="ask-role"><div class="ask-role-av" style="background:#9D5BD2">A</div><div class="ask-role-name">Ops asks</div></div> <div class="ask-q">How many orders shipped late this week, and why?</div> <div class="ask-a"><span>→</span> root-cause digest from ERP + logs</div> </div> </div> </section> <!-- ============ HOW IT WORKS ============ --> <section class="how-section"> <div class="section-kicker">From install to agent</div> <h2 class="section-title">How it works</h2> <div class="how"> <article class="how-item"> <div class="how-head"><span class="how-node"><b>01</b></span><span class="how-label">Create</span></div> <h3 class="how-title">Create a team agent</h3> <p class="how-desc">Set up once for your whole team.</p> <svg class="how-wm" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.7 5.1L19 9l-5.3 1.9L12 16l-1.7-5.1L5 9l5.3-1.9z"></path><path d="M18.5 13.5l.7 2.1 2.1.7-2.1.7-.7 2.1-.7-2.1-2.1-.7 2.1-.7z"></path></svg> </article> <div class="how-sep" aria-hidden="true">→</div> <article class="how-item"> <div class="how-head"><span class="how-node"><b>02</b></span><span class="how-label">Connect</span></div> <h3 class="how-title">Connect your tools</h3> <p class="how-desc">The apps your team already uses.</p> <svg class="how-wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12h6"></path><path d="M10.5 8H8.5a4 4 0 000 8h2"></path><path d="M13.5 8h2a4 4 0 010 8h-2"></path></svg> </article> <div class="how-sep" aria-hidden="true">→</div> <article class="how-item"> <div class="how-head"><span class="how-node"><b>03</b></span><span class="how-label">Talk</span></div> <h3 class="how-title">Talk to it together</h3> <p class="how-desc">Just ask — it gets things done.</p> <svg class="how-wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6.5A2.5 2.5 0 015.5 4h8A2.5 2.5 0 0116 6.5v4A2.5 2.5 0 0113.5 13H8l-3.5 3v-3H5.5A2.5 2.5 0 013 10.5z"></path><path d="M16 9h2.5A2.5 2.5 0 0121 11.5v4A2.5 2.5 0 0118.5 18H18v2l-2.5-2H12.5"></path></svg> </article> </div> <div class="btn-row"> <button class="btn" data-cta="bottom">Create your team agent →</button> </div> <div class="btn-note">early access · limited team slots</div> </section> <!-- ============ EMAIL GATE (HubSpot) ============ --> <section class="gate-section hidden" id="gate"> <div class="gate-card"> <div class="gate-inner"> <div class="section-kicker">Early access</div> <h2 class="section-title">Create your team agent</h2> <p class="section-sub">We're onboarding teams in small batches. Leave your company email and we'll reach out when your team's slot opens.</p> <div class="hs-form-frame" data-region="eu1" data-form-id="733e0a8d-9b22-4a87-8872-f2196531544c" data-portal-id="146727725"></div> <p class="form-note">no spam · one email when your team's slot opens</p> </div> </div> </section> <footer> <div>© 2026 Desktop Commander · MIT-licensed MCP server</div> <a class="skip-link" href="https://desktopcommander.app/#prompts">Just want the prompts? Browse 72+ →</a> </footer> </div> <script>
+/* ============================================================
+   TRACKING — PostHog
+   posthog-js is initialized by the PostHogInit island (after
+   Cookiebot statistics consent). Events fired before it loads
+   are queued and flushed once it's ready.
+   Funnel: page_view → cta_clicked (hero|bottom) → gate_viewed
+           → email_submitted
+   ============================================================ */
+const EXPERIMENT = 'lp-a-team-agent';
+const _trackQueue = [];
+function phReady() {
+  return typeof window.posthog !== 'undefined' && typeof window.posthog.capture === 'function' && window.posthog.__loaded;
+}
+function track(event, props = {}) {
+  const payload = { experiment: EXPERIMENT, ...props };
+  if (phReady()) {
+    window.posthog.capture(event, payload);
+  } else {
+    _trackQueue.push([event, payload]);
+  }
+}
+const _flushTimer = setInterval(() => {
+  if (!phReady()) return;
+  while (_trackQueue.length) {
+    const [e, p] = _trackQueue.shift();
+    window.posthog.capture(e, p);
+  }
+  clearInterval(_flushTimer);
+}, 500);
+track('page_view');
 
-  Design goals:
-  - Kill every signal that could imply "there's more to install"
-  - Remove "Download App" CTA from nav on this route (SimpleNav = logo only)
-  - Anchor user inside Claude Desktop with a spatial map (here → there)
-  - Keep prompt grid as primary action; troubleshooting as quiet fallback
---><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Desktop Commander is ready in Claude Desktop</title><meta name="description" content="Desktop Commander MCP is installed in Claude Desktop. Pick a prompt and paste it into your Claude chat."><meta name="author" content="Desktop Commander"><!-- Favicon --><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://desktopcommander.app/welcome/"><!-- Open Graph --><meta property="og:site_name" content="Desktop Commander"><meta property="og:locale" content="en_US"><meta property="og:title" content="Desktop Commander is ready in Claude Desktop"><meta property="og:description" content="Desktop Commander MCP is installed in Claude Desktop. Pick a prompt and paste it into your Claude chat."><meta property="og:type" content="website"><meta property="og:url" content="https://desktopcommander.app/welcome/"><meta property="og:image" content="https://desktopcommander.app/bg-social-share.png"><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@desktop_commander"><meta name="twitter:title" content="Desktop Commander is ready in Claude Desktop"><meta name="twitter:description" content="Desktop Commander MCP is installed in Claude Desktop. Pick a prompt and paste it into your Claude chat."><meta name="twitter:image" content="https://desktopcommander.app/bg-social-share.png"><!-- Search and AI crawler directives --><meta name="robots" content="index, follow, noai, noimageai"><meta name="googlebot" content="index, follow, noai"><!-- Cookiebot - MUST be first script in head --><script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="83cceb09-32d2-409b-ada6-17cc28478ba6" data-blockingmode="auto" type="text/javascript" async></script><!-- Google tag (gtag.js) - blocked until statistics consent --><script type="text/plain" data-cookieconsent="statistics" async src="https://www.googletagmanager.com/gtag/js?id=G-HXL4Y3Y62N"></script><script type="text/plain" data-cookieconsent="statistics">
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-HXL4Y3Y62N');
-    </script><!-- Ahrefs Analytics - blocked until statistics consent --><script type="text/plain" data-cookieconsent="statistics" src="https://analytics.ahrefs.com/analytics.js" data-key="5Iumy4Rr7Do+R0CWUtQkHA" async></script><!-- Inject base path for React components --><script>(function(){const basePath = "/";
+/* ---------- scroll cue ---------- */
+document.getElementById('scrollCue').addEventListener('click', () => {
+  document.querySelector('.pitch').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
 
-      window.__BASE_PATH__ = basePath;
-    })();</script><!-- PostHog Analytics --><!-- PostHog is initialized by the PostHogInit React component --><!-- This ensures proper initialization in the Astro environment --><link rel="stylesheet" href="/assets/careers.Bq3UxdsN.css">
-<style>.animate-fade-in-up[data-astro-cid-hpv5fqhs]{animation:fade-in-up .5s ease-out both}@keyframes fade-in-up{0%{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}.animate-caret[data-astro-cid-hpv5fqhs]{animation:caret 1s steps(2,start) infinite}@keyframes caret{to{visibility:hidden}}@media(prefers-reduced-motion:reduce){.animate-fade-in-up[data-astro-cid-hpv5fqhs],.animate-caret[data-astro-cid-hpv5fqhs]{animation:none}}
-</style></head> <body> <script>
-  // Fix internal links to include base path
-  (function() {
-    // Get base path from Astro
-    const basePath = window.__BASE_PATH__ || '/';
-    
-    // Only fix links if we have a non-root base path
-    if (basePath === '/') return;
-    
-    function fixLink(element) {
-      const href = element.getAttribute('href');
-      if (!href) return;
-      
-      // Only fix internal links (starting with /)
-      if (href.startsWith('/') && !href.startsWith(basePath)) {
-        // Don't fix if it's already correctly prefixed or if it's a hash/anchor
-        if (!href.startsWith('#')) {
-          const newHref = basePath.replace(/\/$/, '') + href;
-          element.setAttribute('href', newHref);
-        }
-      }
+/* ---------- product demo animation (looping) ---------- */
+const demoBody = document.getElementById('demoBody');
+let demoTimers = [];
+function dWait(fn, ms) { demoTimers.push(setTimeout(fn, ms)); }
+
+function addUserMsg(name, initial, color, alt) {
+  const row = document.createElement('div');
+  row.className = 'd-user-row';
+  row.innerHTML = `
+    <div class="d-uavatar" style="background:${color}">${initial}</div>
+    <div>
+      <div class="d-uname">${name}</div>
+      <div class="d-user${alt ? ' alt' : ''}"><span class="dTyped"></span><span class="caret"></span></div>
+    </div>
+  `;
+  demoBody.appendChild(row);
+  return row;
+}
+
+function typeInto(row, text, startDelay) {
+  const typed = row.querySelector('.dTyped');
+  text.split('').forEach((ch, i) => {
+    dWait(() => { typed.textContent += ch; }, startDelay + i * 26);
+  });
+  const done = startDelay + text.length * 26;
+  dWait(() => { const c = row.querySelector('.caret'); if (c) c.remove(); }, done + 200);
+  return done;
+}
+
+function showPresence(name) {
+  const p = document.createElement('div');
+  p.className = 'd-presence'; p.id = 'dPresence';
+  p.textContent = name + ' is typing';
+  demoBody.appendChild(p);
+}
+function removePresence() {
+  const p = document.getElementById('dPresence');
+  if (p) p.remove();
+}
+
+function runDemo() {
+  demoTimers.forEach(clearTimeout);
+  demoTimers = [];
+  demoBody.style.opacity = 1;
+  demoBody.innerHTML = '';
+
+  /* 1 — presence, then employee #1 types the task */
+  const TASK1 = 'Generate the May sales report from our ERP. Revenue by region, vs. April.';
+  dWait(() => showPresence('Marta'), 300);
+  dWait(() => {
+    removePresence();
+    const marta = addUserMsg('Marta · Finance', 'M', '#E8912D', false);
+    typeInto(marta, TASK1, 0);
+  }, 1500);
+  const typeDone = 1500 + TASK1.length * 26;
+
+  /* 2 — agent works through steps */
+  const STEPS = [
+    'Connecting to NetSuite ERP',
+    'Pulling 1,284 May orders',
+    'Crunching numbers on my computer',
+    'Building charts + PDF'
+  ];
+  dWait(() => {
+    const agent = document.createElement('div');
+    agent.className = 'd-msg d-agent';
+    agent.innerHTML = `
+      <div class="d-avatar">DC</div>
+      <div class="d-bubble"><div class="d-steps" id="dSteps"></div></div>
+    `;
+    demoBody.appendChild(agent);
+  }, typeDone + 600);
+
+  STEPS.forEach((step, i) => {
+    dWait(() => {
+      const steps = document.getElementById('dSteps');
+      if (!steps) return;
+      /* mark previous as done */
+      const prev = steps.lastElementChild;
+      if (prev) { prev.classList.add('done'); prev.querySelector('.ic').innerHTML = '✓'; }
+      const el = document.createElement('div');
+      el.className = 'd-step';
+      el.innerHTML = `<span class="ic"><span class="spin"></span></span>${step}…`;
+      steps.appendChild(el);
+    }, typeDone + 900 + i * 1100);
+  });
+  const stepsDone = typeDone + 900 + STEPS.length * 1100;
+  dWait(() => {
+    const steps = document.getElementById('dSteps');
+    if (!steps) return;
+    const prev = steps.lastElementChild;
+    if (prev) { prev.classList.add('done'); prev.querySelector('.ic').innerHTML = '✓'; }
+  }, stepsDone);
+
+  /* 3 — result: report card with chart + file */
+  dWait(() => {
+    const result = document.createElement('div');
+    result.className = 'd-msg d-agent';
+    result.innerHTML = `
+      <div class="d-avatar">DC</div>
+      <div class="d-bubble" id="dResultBubble">
+        Done. May revenue <strong>€412k, +9% vs April</strong>. Strongest region: DACH. Full report attached.
+        <div class="d-report">
+          <div class="d-report-head">
+            <span class="d-report-title">Revenue by region · May</span>
+            <span class="d-report-tag">LIVE DATA</span>
+          </div>
+          <div class="d-chart" id="dChart">
+            <span data-h="58"></span><span data-h="34"></span><span data-h="72"></span><span data-h="46"></span><span data-h="26"></span><span data-h="64"></span>
+          </div>
+          <div class="d-chart-labels"><i>DACH</i><i>UK</i><i>FR</i><i>NORD</i><i>ES</i><i>US</i></div>
+          <div class="d-file">
+            <div class="d-file-ic">PDF</div>
+            <div>
+              <div class="d-file-name">may-sales-report.pdf</div>
+              <div class="d-file-meta">6 pages · charts + tables · just now</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    demoBody.appendChild(result);
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      document.querySelectorAll('#dChart span').forEach(b => { b.style.height = b.dataset.h + 'px'; });
+    }));
+  }, stepsDone + 500);
+
+  /* 4 — a third teammate reacts (no ask — just benefiting) */
+  dWait(() => {
+    const bubble = document.getElementById('dResultBubble');
+    if (!bubble) return;
+    const reacts = document.createElement('div');
+    reacts.className = 'd-reacts';
+    reacts.innerHTML = `
+      <span class="d-react">🔥 Aisha · Ops</span>
+      <span class="d-react" style="animation-delay:0.35s">👍 2</span>
+    `;
+    bubble.appendChild(reacts);
+  }, stepsDone + 2100);
+
+  /* 5 — employee #2 jumps in */
+  const TASK2 = 'nice! @agent, same cut but just my UK accounts?';
+  dWait(() => showPresence('Jonas'), stepsDone + 3000);
+  dWait(() => {
+    removePresence();
+    const jonas = addUserMsg('Jonas · Sales', 'J', '#3D7BE8', true);
+    typeInto(jonas, TASK2, 0);
+  }, stepsDone + 4100);
+  const jonasDone = stepsDone + 4100 + TASK2.length * 26 + 400;
+
+  /* 6 — agent answers the second employee */
+  dWait(() => {
+    const reply2 = document.createElement('div');
+    reply2.className = 'd-msg d-agent';
+    reply2.innerHTML = `
+      <div class="d-avatar">DC</div>
+      <div class="d-bubble">
+        On it, Jonas. UK only: <strong>€86k, +14% vs April</strong>. Your top account: Harrod &amp; Co.
+        <div class="d-file" style="border-top:none;padding-top:4px">
+          <div class="d-file-ic" style="background:#3D7BE8">PDF</div>
+          <div>
+            <div class="d-file-name">may-sales-uk.pdf</div>
+            <div class="d-file-meta">3 pages · same data, your accounts · just now</div>
+          </div>
+        </div>
+      </div>
+    `;
+    demoBody.appendChild(reply2);
+  }, jonasDone + 900);
+
+  /* 7 — hold, fade, loop */
+  dWait(() => { demoBody.style.opacity = 0; }, jonasDone + 7000);
+  dWait(runDemo, jonasDone + 7600);
+}
+
+/* start when scrolled into view */
+const demoObserver = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting) {
+    runDemo();
+    demoObserver.disconnect();
+    track('demo_viewed');
+  }
+}, { threshold: 0.35 });
+demoObserver.observe(demoBody);
+
+/* ---------- CTA → gate ---------- */
+document.querySelectorAll('[data-cta]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    track('cta_clicked', { position: btn.dataset.cta });
+    const gate = document.getElementById('gate');
+    const wasHidden = gate.classList.contains('hidden');
+    gate.classList.remove('hidden');
+    gate.classList.add('fade-in');
+    gate.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (wasHidden) track('gate_viewed', { position: btn.dataset.cta });
+  });
+});
+
+/* ---------- HubSpot form events ---------- */
+window.addEventListener('message', (event) => {
+  const d = event.data;
+  if (!d || d.type !== 'hsFormCallback') return;
+  if (d.eventName === 'onFormReady') {
+    track('hs_form_ready');
+  }
+  if (d.eventName === 'onFormSubmitted') {
+    track('email_submitted', { form_id: d.id });
+    if (phReady()) {
+      const email = d.data && d.data.submissionValues && d.data.submissionValues.email;
+      if (email) window.posthog.identify(email, { email });
     }
-    
-    // Fix all existing links
-    function fixAllLinks() {
-      document.querySelectorAll('a[href^="/"]').forEach(fixLink);
-    }
-    
-    // Fix on load
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', fixAllLinks);
-    } else {
-      fixAllLinks();
-    }
-    
-    // Also fix dynamically added links
-    const observer = new MutationObserver(mutations => {
-      mutations.forEach(mutation => {
-        mutation.addedNodes.forEach(node => {
-          if (node.nodeType === 1) { // Element node
-            if (node.tagName === 'A') {
-              fixLink(node);
-            }
-            node.querySelectorAll?.('a[href^="/"]').forEach(fixLink);
-          }
-        });
-      });
-    });
-    
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true
-    });
-  })();
-</script>  <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="25Bd3y" prefix="r2" component-url="/assets/PostHogInit.l9QT-Sxj.js" component-export="default" renderer-url="/assets/client.CL7ToQLS.js" props="{&quot;data-astro-cid-hpv5fqhs&quot;:[0,true]}" ssr client="load" opts="{&quot;name&quot;:&quot;PostHogInit&quot;,&quot;value&quot;:true}"></astro-island> <div class="min-h-screen bg-background" data-astro-cid-hpv5fqhs> <nav class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-slate-800"> <div class="container mx-auto max-w-7xl px-4 sm:px-6"> <div class="flex items-center justify-start h-16"> <a href="https://desktopcommander.app" class="hover:opacity-80 transition-opacity"> <img src="/assets/dc-logo.xxN1pxp9.png" alt="Desktop Commander" class="h-7 sm:h-8 w-auto" width="200" height="32"> </a> </div> </div> </nav> <main class="pt-24 pb-16 md:pt-28 md:pb-24" data-astro-cid-hpv5fqhs> <div class="container mx-auto max-w-3xl px-4 sm:px-6" data-astro-cid-hpv5fqhs> <!-- Hero --> <header class="text-center mb-12 md:mb-14 animate-fade-in-up" data-astro-cid-hpv5fqhs> <!-- "MCP server installed" pill --> <div class="inline-flex items-center gap-2 px-3.5 py-1.5 mb-8 rounded-full border border-green-500/40 bg-green-500/10 text-green-400 text-[11px] font-semibold uppercase tracking-[0.08em] font-mono" data-astro-cid-hpv5fqhs> <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-hpv5fqhs> <path d="M20 6 9 17l-5-5" data-astro-cid-hpv5fqhs></path> </svg>
-MCP Server Installed
-</div> <h1 class="text-3xl sm:text-4xl md:text-[2.75rem] lg:text-5xl font-bold text-foreground leading-[1.1] tracking-tight mb-4 text-balance" data-astro-cid-hpv5fqhs>
-You're all set.
-<span class="text-primary" data-astro-cid-hpv5fqhs>Nothing else to install.</span> </h1> <p class="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed" data-astro-cid-hpv5fqhs>
-Pick a prompt below, switch to Claude Desktop, and paste.
-</p> </header> <!-- Step 1: Starter prompts (grouped in a soft container so it doesn't float) --> <section class="relative mb-10 md:mb-12 p-6 md:p-8 rounded-2xl bg-dc-surface/25 border border-dc-border/40" data-astro-cid-hpv5fqhs> <!-- Step chip + label --> <div class="flex items-center justify-center gap-2.5 mb-5" data-astro-cid-hpv5fqhs> <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white text-xs font-bold font-mono" data-astro-cid-hpv5fqhs>1</span> <span class="text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-foreground font-mono" data-astro-cid-hpv5fqhs>
-Tap any prompt to copy
-</span> </div> <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-5" data-astro-cid-hpv5fqhs> <button type="button" class="copyable-prompt flex items-center gap-3.5 px-4 md:px-5 py-4 bg-dc-surface/60 hover:bg-dc-surface border border-dc-border/60 hover:border-primary/50 rounded-lg text-left text-foreground transition-colors group" data-prompt="Organize my Downloads folder by file type" data-prompt-slug="organize-downloads" data-prompt-title="Organize Downloads" data-astro-cid-hpv5fqhs> <span class="shrink-0 text-primary/80" aria-hidden="true" data-astro-cid-hpv5fqhs> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-hpv5fqhs><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" data-astro-cid-hpv5fqhs></path></svg> </span> <span class="flex-1 text-sm" data-astro-cid-hpv5fqhs>Organize my Downloads folder by file type</span> <span class="shrink-0 text-muted-foreground group-hover:text-foreground transition-colors" aria-hidden="true" data-astro-cid-hpv5fqhs> <svg class="copy-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-hpv5fqhs><rect width="14" height="14" x="8" y="8" rx="2" ry="2" data-astro-cid-hpv5fqhs></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" data-astro-cid-hpv5fqhs></path></svg> <svg class="check-icon hidden text-green-400" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-hpv5fqhs><path d="M20 6 9 17l-5-5" data-astro-cid-hpv5fqhs></path></svg> </span> </button> <button type="button" class="copyable-prompt flex items-center gap-3.5 px-4 md:px-5 py-4 bg-dc-surface/60 hover:bg-dc-surface border border-dc-border/60 hover:border-primary/50 rounded-lg text-left text-foreground transition-colors group" data-prompt="Explain this codebase to me" data-prompt-slug="explain-codebase" data-prompt-title="Explain Codebase" data-astro-cid-hpv5fqhs> <span class="shrink-0 text-primary/80" aria-hidden="true" data-astro-cid-hpv5fqhs> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-hpv5fqhs><path d="M16 18 22 12 16 6" data-astro-cid-hpv5fqhs></path><path d="M8 6 2 12 8 18" data-astro-cid-hpv5fqhs></path></svg> </span> <span class="flex-1 text-sm" data-astro-cid-hpv5fqhs>Explain this codebase to me</span> <span class="shrink-0 text-muted-foreground group-hover:text-foreground transition-colors" aria-hidden="true" data-astro-cid-hpv5fqhs> <svg class="copy-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-hpv5fqhs><rect width="14" height="14" x="8" y="8" rx="2" ry="2" data-astro-cid-hpv5fqhs></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" data-astro-cid-hpv5fqhs></path></svg> <svg class="check-icon hidden text-green-400" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-hpv5fqhs><path d="M20 6 9 17l-5-5" data-astro-cid-hpv5fqhs></path></svg> </span> </button> <button type="button" class="copyable-prompt flex items-center gap-3.5 px-4 md:px-5 py-4 bg-dc-surface/60 hover:bg-dc-surface border border-dc-border/60 hover:border-primary/50 rounded-lg text-left text-foreground transition-colors group" data-prompt="Analyze my data file and show insights" data-prompt-slug="analyze-data" data-prompt-title="Analyze Data File" data-astro-cid-hpv5fqhs> <span class="shrink-0 text-primary/80" aria-hidden="true" data-astro-cid-hpv5fqhs> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-hpv5fqhs><line x1="12" y1="20" x2="12" y2="10" data-astro-cid-hpv5fqhs></line><line x1="18" y1="20" x2="18" y2="4" data-astro-cid-hpv5fqhs></line><line x1="6" y1="20" x2="6" y2="16" data-astro-cid-hpv5fqhs></line></svg> </span> <span class="flex-1 text-sm" data-astro-cid-hpv5fqhs>Analyze my data file</span> <span class="shrink-0 text-muted-foreground group-hover:text-foreground transition-colors" aria-hidden="true" data-astro-cid-hpv5fqhs> <svg class="copy-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-hpv5fqhs><rect width="14" height="14" x="8" y="8" rx="2" ry="2" data-astro-cid-hpv5fqhs></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" data-astro-cid-hpv5fqhs></path></svg> <svg class="check-icon hidden text-green-400" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-hpv5fqhs><path d="M20 6 9 17l-5-5" data-astro-cid-hpv5fqhs></path></svg> </span> </button> <button type="button" class="copyable-prompt flex items-center gap-3.5 px-4 md:px-5 py-4 bg-dc-surface/60 hover:bg-dc-surface border border-dc-border/60 hover:border-primary/50 rounded-lg text-left text-foreground transition-colors group" data-prompt="Extract data from my PDF files" data-prompt-slug="extract-pdf" data-prompt-title="Extract from PDFs" data-astro-cid-hpv5fqhs> <span class="shrink-0 text-primary/80" aria-hidden="true" data-astro-cid-hpv5fqhs> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-hpv5fqhs><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" data-astro-cid-hpv5fqhs></path><polyline points="14 2 14 8 20 8" data-astro-cid-hpv5fqhs></polyline><line x1="9" y1="13" x2="15" y2="13" data-astro-cid-hpv5fqhs></line><line x1="9" y1="17" x2="13" y2="17" data-astro-cid-hpv5fqhs></line></svg> </span> <span class="flex-1 text-sm" data-astro-cid-hpv5fqhs>Extract data from PDFs</span> <span class="shrink-0 text-muted-foreground group-hover:text-foreground transition-colors" aria-hidden="true" data-astro-cid-hpv5fqhs> <svg class="copy-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-hpv5fqhs><rect width="14" height="14" x="8" y="8" rx="2" ry="2" data-astro-cid-hpv5fqhs></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" data-astro-cid-hpv5fqhs></path></svg> <svg class="check-icon hidden text-green-400" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-hpv5fqhs><path d="M20 6 9 17l-5-5" data-astro-cid-hpv5fqhs></path></svg> </span> </button> </div> <div class="text-center" data-astro-cid-hpv5fqhs> <a id="browse-all-prompts" href="/library/prompts/" class="inline-block text-sm text-muted-foreground hover:text-foreground transition-colors py-2" data-astro-cid-hpv5fqhs>
-Browse all 72+ prompts →
-</a> </div> </section> <!-- Connector arrow between step 1 (pick) and step 2 (paste) --> <div class="flex justify-center mb-10 md:mb-12" aria-hidden="true" data-astro-cid-hpv5fqhs> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="28" viewBox="0 0 20 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground/60" data-astro-cid-hpv5fqhs> <line x1="10" y1="2" x2="10" y2="22" data-astro-cid-hpv5fqhs></line> <polyline points="3 17 10 24 17 17" data-astro-cid-hpv5fqhs></polyline> </svg> </div> <!-- Step 2: Paste in Claude Desktop --> <div class="flex items-center justify-center gap-2.5 mb-6" data-astro-cid-hpv5fqhs> <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white text-xs font-bold font-mono" data-astro-cid-hpv5fqhs>2</span> <span class="text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-foreground font-mono" data-astro-cid-hpv5fqhs>
-Now paste into Claude Desktop
-</span> </div> <div class="mb-14 md:mb-16 flex justify-center" data-astro-cid-hpv5fqhs> <div class="relative w-full max-w-md" data-astro-cid-hpv5fqhs> <div class="absolute -inset-4 bg-primary/10 blur-3xl rounded-full pointer-events-none" aria-hidden="true" data-astro-cid-hpv5fqhs></div> <div class="relative bg-[#f5f2ec] rounded-2xl p-5 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] border border-black/5" data-astro-cid-hpv5fqhs> <!-- Fake window chrome to frame as an app --> <div class="flex items-center gap-1.5 mb-4" aria-hidden="true" data-astro-cid-hpv5fqhs> <span class="w-2.5 h-2.5 rounded-full bg-[#e06c5c]" data-astro-cid-hpv5fqhs></span> <span class="w-2.5 h-2.5 rounded-full bg-[#f0b14b]" data-astro-cid-hpv5fqhs></span> <span class="w-2.5 h-2.5 rounded-full bg-[#7bc36b]" data-astro-cid-hpv5fqhs></span> <span class="ml-auto text-[10px] font-medium text-stone-500 tracking-wide" data-astro-cid-hpv5fqhs>Claude Desktop</span> </div> <!-- Claude chat input mock --> <div class="bg-white border border-stone-200 rounded-xl px-4 py-3 shadow-sm" data-astro-cid-hpv5fqhs> <div class="text-[15px] text-stone-700 min-h-[22px]" id="claude-typed" data-astro-cid-hpv5fqhs>
-Organize my Downloads folder by file type<span class="inline-block w-[2px] h-[17px] bg-stone-700 align-[-3px] ml-[1px] animate-caret" data-astro-cid-hpv5fqhs></span> </div> <div class="flex items-center gap-2 mt-3 pt-1 text-stone-400 text-xs" data-astro-cid-hpv5fqhs> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-hpv5fqhs><line x1="12" y1="5" x2="12" y2="19" data-astro-cid-hpv5fqhs></line><line x1="5" y1="12" x2="19" y2="12" data-astro-cid-hpv5fqhs></line></svg> <span class="mr-auto font-medium" data-astro-cid-hpv5fqhs>Claude Opus</span> <span class="inline-flex items-center justify-center w-6 h-6 rounded-md bg-[#c96c4c] text-white" data-astro-cid-hpv5fqhs> <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-hpv5fqhs><line x1="12" y1="19" x2="12" y2="5" data-astro-cid-hpv5fqhs></line><polyline points="5 12 12 5 19 12" data-astro-cid-hpv5fqhs></polyline></svg> </span> </div> </div> <p class="text-center text-[11px] text-stone-500 mt-3 font-mono tracking-wide" data-astro-cid-hpv5fqhs>
-↑ paste your prompt here and hit send
-</p> </div> </div> </div> <!-- Troubleshooting --> <div class="p-4 md:p-5 mb-14 md:mb-16 rounded-lg border border-amber-500/35 bg-amber-500/[0.07] text-sm leading-relaxed text-amber-100/90" data-astro-cid-hpv5fqhs> <strong class="font-semibold text-amber-100" data-astro-cid-hpv5fqhs>Not working in Claude?</strong>
-Open
-<code class="inline-block px-1.5 py-0.5 mx-0.5 rounded bg-amber-500/15 text-amber-200 font-mono text-[12.5px]" data-astro-cid-hpv5fqhs>Settings → Connectors</code>,
-          toggle Desktop Commander on, and approve its tools.
-</div> <!-- Newsletter (always visible) --> <section class="mb-12 p-6 md:p-8 rounded-2xl border border-dc-border bg-dc-card/30 text-center" data-astro-cid-hpv5fqhs> <div class="inline-flex items-center justify-center w-12 h-12 mb-4 rounded-full bg-primary/15 text-primary" data-astro-cid-hpv5fqhs> <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-hpv5fqhs> <rect width="20" height="16" x="2" y="4" rx="2" data-astro-cid-hpv5fqhs></rect> <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" data-astro-cid-hpv5fqhs></path> </svg> </div> <h2 class="text-xl md:text-2xl font-semibold text-foreground mb-2" data-astro-cid-hpv5fqhs>Weekly prompt ideas for Claude Desktop</h2> <p class="text-sm text-muted-foreground max-w-md mx-auto mb-5" data-astro-cid-hpv5fqhs>
-Get new prompts, automation tips, and feature updates in your inbox. No spam, unsubscribe anytime.
-</p> <div class="hubspot-form-wrapper max-w-sm mx-auto" data-astro-cid-hpv5fqhs> <script src="https://js-eu1.hsforms.net/forms/embed/146727725.js" defer></script> <div class="hs-form-frame" data-region="eu1" data-form-id="5fc2eb78-4b8b-4f64-a213-37d0fbb86a50" data-portal-id="146727725" data-astro-cid-hpv5fqhs></div> </div> <p class="text-xs text-muted-foreground mt-3" data-astro-cid-hpv5fqhs> <a href="https://legal.desktopcommander.app/website_privacy_policy" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary/80 underline" data-astro-cid-hpv5fqhs>Privacy Policy</a> </p> </section> <!-- Quiet utility footer --> <div class="flex items-center justify-center gap-6 md:gap-8 pt-7 border-t border-dc-border/60 text-sm text-muted-foreground" data-astro-cid-hpv5fqhs> <a href="https://discord.gg/eHZeUKRQG" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 hover:text-foreground transition-colors" data-astro-cid-hpv5fqhs> <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-hpv5fqhs> <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" data-astro-cid-hpv5fqhs></path> </svg>
-Discord
-</a> <a href="https://github.com/wonderwhy-er/DesktopCommanderMCP" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 hover:text-foreground transition-colors" data-astro-cid-hpv5fqhs> <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-hpv5fqhs> <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" data-astro-cid-hpv5fqhs></path> </svg>
-GitHub
-</a> </div> </div> </main> <script>(()=>{var a=(s,i,o)=>{let r=async()=>{await(await s())()},t=typeof i.value=="object"?i.value:void 0,c={rootMargin:t==null?void 0:t.rootMargin},n=new IntersectionObserver(e=>{for(let l of e)if(l.isIntersecting){n.disconnect(),r();break}},c);for(let e of o.children)n.observe(e)};(self.Astro||(self.Astro={})).visible=a;window.dispatchEvent(new Event("astro:visible"));})();</script><astro-island uid="Z1XvCIL" prefix="r3" component-url="/assets/Footer.QmpUJrLh.js" component-export="default" renderer-url="/assets/client.CL7ToQLS.js" props="{&quot;data-astro-cid-hpv5fqhs&quot;:[0,true]}" ssr client="visible" opts="{&quot;name&quot;:&quot;Footer&quot;,&quot;value&quot;:true}" await-children><footer class="border-t border-dc-border bg-dc-surface/50"><div class="container mx-auto max-w-7xl px-4 sm:px-6 py-12 md:py-16"><div class="mb-10 md:mb-12 max-w-2xl"><div class="flex items-center gap-3 mb-4"><img src="/assets/dc-logo-dark.Dl5fbme8.png" alt="Desktop Commander" class="h-8 w-8" loading="lazy"/><h3 class="text-xl font-bold text-foreground">Desktop Commander</h3></div><p class="text-muted-foreground mb-6 max-w-sm leading-relaxed">AI that executes. Read files, run commands, and automate workflows — all in natural language.</p><div class="flex items-center gap-2 flex-wrap"><a href="https://github.com/wonderwhy-er/DesktopCommanderMCP" target="_blank" rel="noopener noreferrer" title="GitHub" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-dc-surface hover:text-foreground h-11 w-11"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github h-5 w-5"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></a><a href="https://discord.gg/eHZeUKRQG" target="_blank" rel="noopener noreferrer" title="Discord" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-dc-surface hover:text-foreground h-11 w-11"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle h-5 w-5"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg></a><a href="https://www.youtube.com/@EduardsRuzga" target="_blank" rel="noopener noreferrer" title="YouTube" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-dc-surface hover:text-foreground h-11 w-11"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play h-5 w-5"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg></a><a href="https://x.com/desktopcommandr" target="_blank" rel="noopener noreferrer" title="X (Twitter)" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-dc-surface hover:text-foreground h-11 w-11"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a><a href="https://www.npmjs.com/package/@wonderwhy-er/desktop-commander" target="_blank" rel="noopener noreferrer" title="NPM" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-dc-surface hover:text-foreground h-11 w-11"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package h-5 w-5"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"></path><path d="M12 22V12"></path><path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7"></path><path d="m7.5 4.27 9 5.15"></path></svg></a></div><div class="mt-5"><button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border py-3 group h-11 gap-2 rounded-lg border-white/15 bg-white/[0.06] px-5 text-white shadow-sm shadow-black/10 backdrop-blur-sm hover:border-primary/45 hover:bg-white/[0.1] hover:text-white" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle h-4 w-4 text-primary transition-smooth group-hover:text-dc-blue-glow"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>Chat with us</button></div></div><div class="grid grid-cols-1 sm:grid-cols-3 gap-8"><div><h4 class="font-semibold text-foreground mb-4">Product</h4><ul class="space-y-3"><li><a href="/#download" class="text-muted-foreground hover:text-primary transition-smooth text-sm">Download App</a></li><li><a href="/mcp/" class="text-muted-foreground hover:text-primary transition-smooth text-sm">MCP Server</a></li><li><a href="/library/prompts/" class="text-muted-foreground hover:text-primary transition-smooth text-sm">Prompt Library</a></li><li><a href="/pricing/" class="text-muted-foreground hover:text-primary transition-smooth text-sm">Pricing</a></li></ul></div><div><h4 class="font-semibold text-foreground mb-4">Use Cases</h4><ul class="space-y-3"><li><a href="/use-cases/build-prototype/" class="text-muted-foreground hover:text-primary transition-smooth text-sm">For builders</a></li><li><a href="/use-cases/knowledge-management/" class="text-muted-foreground hover:text-primary transition-smooth text-sm">For knowledge workers</a></li><li><a href="/use-cases/analyze-data/" class="text-muted-foreground hover:text-primary transition-smooth text-sm">For data analysts</a></li><li><a href="/use-cases/file-management/" class="text-muted-foreground hover:text-primary transition-smooth text-sm">File Management</a></li><li><a href="/use-cases/" class="text-muted-foreground hover:text-primary transition-smooth text-sm">All use cases</a></li></ul></div><div><h4 class="font-semibold text-foreground mb-4">Resources</h4><ul class="space-y-3"><li><a href="/blog/" class="text-muted-foreground hover:text-primary transition-smooth text-sm">Blog</a></li><li><a href="/best-value-ai/" class="text-muted-foreground hover:text-primary transition-smooth text-sm">AI value comparison</a></li><li><a href="https://discord.gg/eHZeUKRQG" target="_blank" rel="noopener noreferrer" class="text-muted-foreground hover:text-primary transition-smooth text-sm">Discord</a></li><li><a href="https://github.com/wonderwhy-er/DesktopCommanderMCP" target="_blank" rel="noopener noreferrer" class="text-muted-foreground hover:text-primary transition-smooth text-sm">GitHub</a></li><li><a href="/careers/" class="text-muted-foreground hover:text-primary transition-smooth text-sm">Careers</a></li></ul></div></div><div class="border-t border-dc-border mt-8 md:mt-12 pt-6 md:pt-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"><p class="text-muted-foreground text-sm">© <!-- -->2026<!-- --> Desktop Commander.</p><div class="flex items-center gap-4 text-sm text-muted-foreground"><a href="https://legal.desktopcommander.app" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-smooth">Terms</a><a href="https://legal.desktopcommander.app" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-smooth">Privacy</a><a href="#" class="hover:text-primary transition-smooth">Cookie Settings</a></div></div></div></footer><!--astro:end--></astro-island> </div>  <script>
-    // ---------- Copy a prompt ----------
-    function handleCopy(promptText, promptSlug, promptTitle, btn) {
-      navigator.clipboard.writeText(promptText).then(() => {
-        const copyIcon = btn.querySelector('.copy-icon');
-        const checkIcon = btn.querySelector('.check-icon');
-        const textSpan = btn.querySelector('span.flex-1');
-        const originalText = textSpan ? textSpan.textContent : '';
-
-        if (copyIcon && checkIcon) {
-          copyIcon.classList.add('hidden');
-          checkIcon.classList.remove('hidden');
-        }
-        if (textSpan) {
-          textSpan.textContent = '✓ Copied — paste in Claude Desktop';
-          textSpan.classList.add('text-green-400');
-        }
-        setTimeout(() => {
-          if (copyIcon && checkIcon) {
-            copyIcon.classList.remove('hidden');
-            checkIcon.classList.add('hidden');
-          }
-          if (textSpan) {
-            textSpan.textContent = originalText;
-            textSpan.classList.remove('text-green-400');
-          }
-        }, 2500);
-
-        if (window.posthog) {
-          window.posthog.capture('welcome_prompt_copied', {
-            prompt_text: promptText,
-            prompt_slug: promptSlug,
-            prompt_title: promptTitle,
-            page: '/welcome/'
-          });
-        }
-      }).catch(err => console.error('Copy failed:', err));
-    }
-
-    document.querySelectorAll('.copyable-prompt').forEach(btn => {
-      btn.addEventListener('click', function() {
-        handleCopy(
-          this.dataset.prompt,
-          this.dataset.promptSlug || 'unknown',
-          this.dataset.promptTitle || 'Unknown',
-          this
-        );
-        // Mirror the copied prompt into the Claude Desktop preview
-        const typed = document.getElementById('claude-typed');
-        if (typed) {
-          typed.innerHTML = this.dataset.prompt +
-            '<span class="inline-block w-[2px] h-[17px] bg-stone-700 align-[-3px] ml-[1px] animate-caret"></span>';
-        }
-      });
-    });
-
-    // ---------- Browse-all tracking ----------
-    document.getElementById('browse-all-prompts')?.addEventListener('click', () => {
-      if (window.posthog) {
-        window.posthog.capture('welcome_browse_all_prompts_clicked', { page: '/welcome/' });
-      }
-    });
-
-    // ---------- Page-view event (so we can A/B) ----------
-    if (window.posthog) {
-      window.posthog.capture('welcome_page_viewed', { variant: 'welcome2', page: '/welcome/' });
-    }
-  </script>  </body></html>
+  }
+});
+</script> </body> </html>
