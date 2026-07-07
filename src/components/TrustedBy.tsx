@@ -42,7 +42,7 @@ const TrustedBy = () => {
     },
     {
       icon: Github,
-      value: "5.9k+",
+      value: "6.3k+",
       label: "GitHub Stars",
       description: "Community trust"
     }

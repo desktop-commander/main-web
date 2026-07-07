@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from "react";
-import { 
-  FolderOpen, 
-  Terminal, 
-  FileEdit, 
-  Search, 
-  Settings, 
-  GitBranch 
+import {
+  FolderOpen,
+  Terminal,
+  FileEdit,
+  Search,
+  Settings,
+  GitBranch
 } from "lucide-react";
+import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
 
 const features = [
   {
@@ -44,6 +45,7 @@ const features = [
 const MCPFeatures = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const { trackNavigation } = useAnalyticsAstro();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -102,7 +104,9 @@ const MCPFeatures = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <p className="text-sm text-muted-foreground">
-            Works with Claude Desktop, Cursor, Windsurf, and any MCP-compatible client.
+            Local: works with Claude Desktop, Cursor, Windsurf, and any MCP-compatible client.
+            {" "}Remote: works with ChatGPT, Claude, and other web AI clients via{" "}
+            <a href="#remote" className="text-primary hover:underline" onClick={() => trackNavigation('Remote MCP', '#remote', 'internal')}>Remote MCP</a>.
           </p>
         </div>
       </div>

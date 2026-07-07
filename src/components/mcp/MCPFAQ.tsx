@@ -4,10 +4,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { ExternalLink, Download } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ExternalLink } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import { trackDownloadRedirect } from '@/lib/analytics/tracking';
 
 const MCPFAQ = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -42,6 +40,14 @@ const MCPFAQ = () => {
     {
       question: "What is the Desktop Commander App?",
       answer: "Desktop Commander is now also available as a standalone desktop application! The app gives you a complete AI-powered interface with access to local files and terminal, letting you automate tasks using natural language. You can choose your preferred AI model (Claude, GPT, Gemini, and more) and work without needing to configure MCP manually. It's the easiest way to get started with Desktop Commander."
+    },
+    {
+      question: "What is Desktop Commander Remote MCP?",
+      answer: "Remote MCP lets you use Desktop Commander from remote AI clients like ChatGPT, Claude, and other AI services while still working with your own machine. You connect one or more of your devices, and your AI assistant gets access to local files, terminal, previews, and running processes on them. You can also use it yourself from another device — for example, controlling your PC from your phone. Get started at mcp.desktopcommander.app."
+    },
+    {
+      question: "Should I use the local or remote MCP?",
+      answer: "Use the local MCP if you work at your computer in a desktop MCP client like Claude Desktop, Cursor, or Windsurf — it's our most popular option, free and open source. Use Remote MCP when your AI client runs in the browser (like ChatGPT or Claude web) or when you want to reach your machine from another device. Both give AI the same core ability: to read, write, run, and act on your system."
     },
     {
       question: "What is an MCP?",
@@ -115,7 +121,7 @@ const MCPFAQ = () => {
           </Accordion>
           
           {/* Links section */}
-          <div className={`mt-12 grid gap-6 md:grid-cols-2 transition-all duration-1000 delay-1200 ${
+          <div className={`mt-12 transition-all duration-1000 delay-1200 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             {/* GitHub FAQ link */}
@@ -133,24 +139,6 @@ const MCPFAQ = () => {
                 Complete FAQ on GitHub
                 <ExternalLink className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
-            </div>
-
-            {/* App CTA */}
-            <div className="bg-dc-surface border border-dc-border rounded-lg p-6 transition-all duration-300 hover:shadow-lg hover:scale-[1.02] transform">
-              <h3 className="text-lg font-semibold mb-2">Try the Desktop App</h3>
-              <p className="text-muted-foreground mb-4 text-sm">
-                Get started faster with the Desktop Commander App - no MCP configuration needed.
-              </p>
-              <Button variant="hero" size="sm" asChild>
-                <a 
-                  href="/#download" 
-                  className="inline-flex items-center gap-2"
-                  onClick={() => trackDownloadRedirect('mcp_faq_cta')}
-                >
-                  <Download className="h-4 w-4" />
-                  Download App
-                </a>
-              </Button>
             </div>
           </div>
         </div>

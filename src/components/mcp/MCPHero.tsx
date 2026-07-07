@@ -90,7 +90,7 @@ const MCPHero = () => {
               className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               <Star className="h-4 w-4" />
-              5.2k GitHub stars
+              6.3k GitHub stars
             </a>
             <a 
               href="https://smithery.ai/server/@wonderwhy-er/desktop-commander" 
@@ -103,21 +103,6 @@ const MCPHero = () => {
             </a>
           </div>
 
-          {/* App upsell */}
-          <div className={`mt-12 pt-8 border-t border-dc-border transition-all duration-1000 delay-500 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}>
-            <p className="text-sm text-muted-foreground mb-3">
-              Want a full-featured app with visual UI and model flexibility?
-            </p>
-            <a 
-              href="/" 
-              className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
-            >
-              Try Desktop Commander App
-              <ArrowRight className="h-3 w-3" />
-            </a>
-          </div>
         </div>
       </div>
     </section>
