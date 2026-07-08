@@ -59,7 +59,7 @@ const MCPFAQ = () => {
     },
     {
       question: "How much does it cost?",
-      answer: "Desktop Commander MCP is completely free and open-source. To use it with Claude Desktop, you need a Claude Pro subscription ($20/month). The Desktop Commander App is currently in beta and free to use - you just need API access to your preferred AI model."
+      answer: "Desktop Commander MCP is completely free and open-source. To use it with Claude Desktop, you need a Claude Pro subscription ($20/month). The Desktop Commander App runs on the Credits Plan — a monthly AI usage credits bundle starting at $20/month, with access to the best AI models on the market. New accounts include free starting credits to try it out."
     },
     {
       question: "Which operating systems are supported?",
