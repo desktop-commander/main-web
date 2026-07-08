@@ -40,7 +40,7 @@ const PricingFAQ = () => {
     },
     {
       question: "How much do credits cost per message?",
-      answer: "It depends on the model. Smaller, faster models cost fractions of a cent per message. Larger, more capable models cost more. You can always see the cost before sending."
+      answer: "It depends on the model — cheaper models cost less per message, while larger, more capable models cost more. You can see your credits balance in Settings → Billing."
     },
     {
       question: "Can I try it before subscribing?",
