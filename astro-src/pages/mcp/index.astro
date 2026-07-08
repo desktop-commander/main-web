@@ -3,23 +3,27 @@ import Layout from '../../layouts/Layout.astro';
 import Navigation from '../../components/Navigation.astro';
 import PostHogInit from '../../../src/components/PostHogInit';
 import MCPHero from '../../../src/components/mcp/MCPHero';
+import MCPTwoWays from '../../../src/components/mcp/MCPTwoWays';
 import MCPInstallation from '../../../src/components/mcp/MCPInstallation';
+import MCPRemote from '../../../src/components/mcp/MCPRemote';
 import MCPFeatures from '../../../src/components/mcp/MCPFeatures';
 import MCPFAQ from '../../../src/components/mcp/MCPFAQ';
 import Footer from '../../../src/components/Footer';
 ---
 
-<Layout 
-  title="Desktop Commander MCP - Free & Open Source"
-  description="Give Claude and other AI assistants direct access to your system. Free, open-source MCP server with 26k+ weekly downloads."
+<Layout
+  title="Desktop Commander MCP - Local & Remote MCP Server"
+  description="Give Claude, ChatGPT, and other AI assistants direct access to your system. Run the free, open-source MCP locally, or connect web AI clients to your machine with Remote MCP."
 >
   <PostHogInit client:load />
-  
+
   <div class="min-h-screen bg-background">
     <Navigation />
     <main>
       <MCPHero client:load />
+      <MCPTwoWays client:visible />
       <MCPInstallation client:visible />
+      <MCPRemote client:visible />
       <MCPFeatures client:visible />
       <MCPFAQ client:visible />
     </main>

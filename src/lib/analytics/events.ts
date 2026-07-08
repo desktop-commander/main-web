@@ -29,6 +29,11 @@ export const INTERACTION_EVENTS = {
   INSTALLATION_METHOD_CLICKED: 'installation_method_clicked',
   COPY_COMMAND_CLICKED: 'copy_command_clicked',
   SOCIAL_CLICKED: 'social_clicked',
+
+  // MCP page events (local vs remote)
+  MCP_INSTALL_CLICKED: 'mcp_install_clicked',
+  MCP_LOCAL_CHOICE_CLICKED: 'mcp_local_choice_clicked',
+  REMOTE_MCP_CTA_CLICKED: 'remote_mcp_cta_clicked',
   
   // Prompt Library events
   PROMPT_CATEGORY_CLICKED: 'prompt_category_clicked',

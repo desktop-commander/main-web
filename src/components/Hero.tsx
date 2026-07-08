@@ -126,8 +126,8 @@ const Hero = () => {
         setNpmCount(Math.floor(npmCurrent));
       }, 16);
 
-      // GitHub Stars counter (5.4k) - slower animation
-      const githubTarget = 54; // We'll divide by 10 to show 5.4
+      // GitHub Stars counter (6.3k) - slower animation
+      const githubTarget = 63; // We'll divide by 10 to show 6.3
       const githubDuration = 4000; // Increased from 2200ms
       const githubIncrement = githubTarget / (githubDuration / 16);
       
