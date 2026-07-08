@@ -47,7 +47,7 @@ const FAQ = () => {
     },
     {
       question: "How much does it cost to use Desktop Commander?",
-      answer: "Desktop Commander is free to start — you get 200 messages per week and $10 in AI credits. For unlimited messages, upgrade to Pro ($7/month or $70/year) if you bring your own AI keys, or Pro + Credits (from $20/month) if you want us to handle the AI models. AI credits are separate from the messaging plan and cover the cost of running models. You can also bring your own API keys or run local models via Ollama for free."
+      answer: "Desktop Commander runs on the Credits Plan — a monthly AI usage credits bundle from $20 to $200 per month. You get access to the best AI models available on the market, can change your bundle package any time, and cancel any time. New accounts include free starting credits so you can try it out first."
     },
     {
       question: "Which operating systems does it support?",

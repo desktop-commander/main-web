@@ -66,33 +66,8 @@ const MCPInstallation = () => {
   };
 
   const moreOptions = [
-    { 
-      name: "Install via Smithery", 
-      description: "One-click install through Smithery",
-      content: (
-        <div className="space-y-4">
-          <p className="text-muted-foreground">Install via the Smithery web interface:</p>
-          <ol className="space-y-3 text-sm">
-            <li className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center text-xs font-bold text-primary">1</span>
-              <div>
-                Visit <a href="https://smithery.ai/server/@wonderwhy-er/desktop-commander" target="_blank" rel="noopener noreferrer" onClick={() => trackInstallClick('Smithery', 'https://smithery.ai/server/@wonderwhy-er/desktop-commander')} className="text-primary hover:underline">smithery.ai/server/@wonderwhy-er/desktop-commander</a>
-              </div>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center text-xs font-bold text-primary">2</span>
-              <div>Login to Smithery and select your client (Claude Desktop)</div>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center text-xs font-bold text-primary">3</span>
-              <div>Install with the provided key, then restart Claude Desktop</div>
-            </li>
-          </ol>
-        </div>
-      )
-    },
-    { 
-      name: "Install in Cursor", 
+    {
+      name: "Install in Cursor",
       description: "One-click setup for Cursor IDE",
       content: (
         <div className="space-y-4">
