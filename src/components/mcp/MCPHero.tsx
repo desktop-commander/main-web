@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Github, Star, Download, TrendingUp } from "lucide-react";
+import { ArrowRight, Github, Star, Download } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const MCPHero = () => {
@@ -35,7 +35,7 @@ const MCPHero = () => {
           <p className={`text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed transition-all duration-1000 delay-200 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            Give Claude and other AI assistants direct access to your file system, terminal, and development tools.
+            Give Claude, ChatGPT and other AI assistants direct access to your file system, terminal, and development tools.
           </p>
 
           {/* CTAs */}
@@ -91,15 +91,6 @@ const MCPHero = () => {
             >
               <Star className="h-4 w-4" />
               6.3k GitHub stars
-            </a>
-            <a 
-              href="https://smithery.ai/server/@wonderwhy-er/desktop-commander" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <TrendingUp className="h-4 w-4" />
-              Top Ranked on Smithery
             </a>
           </div>
 
