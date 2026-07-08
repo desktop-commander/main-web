@@ -23,56 +23,28 @@ const PricingFAQ = () => {
 
   const faqs = [
     {
-      question: "What counts as a message?",
-      answer: "Every message you send counts as one. AI responses, tool calls, and system messages don't count toward your limit."
-    },
-    {
-      question: "What's the difference between messages and AI credits?",
-      answer: "They're two separate things. Your plan controls how many messages you can send per week (200 on Free, no cap on Pro or Pro + Credits). AI credits cover the cost of running cloud models like Claude, GPT, and Gemini. You can send messages without credits if you use local models or your own API keys. The weekly message limit applies to all messages regardless of which AI provider you use."
-    },
-    {
-      question: "What are DC credits and how do they work?",
-      answer: "DC credits are our built-in pay-as-you-go system for cloud AI models. Every account starts with $10 free. Each message costs a small amount depending on the model — more capable models cost a bit more. When you run low, top up in $10–$200 increments from Settings → Billing."
-    },
-    {
-      question: "Does the weekly message limit apply to my own API keys or ChatGPT subscription?",
-      answer: "Yes. The weekly message limit applies to all messages you send, regardless of how the AI is powered — DC credits, your own API keys, a ChatGPT subscription, or local models. To remove the limit, upgrade to Pro or Pro + Credits."
+      question: "How does the Credits Plan work?",
+      answer: "You subscribe to a monthly AI usage credits bundle — $20, $50, $100, or $200 per month. Credits cover the cost of running AI models: each message costs a small amount depending on the model, with more capable models costing a bit more."
     },
     {
       question: "What models are available?",
-      answer: "Desktop Commander supports models from Anthropic, OpenAI, Google, and many other providers. You can also run open-source models locally via Ollama."
+      answer: "Desktop Commander gives you access to the best AI models available on the market — from Anthropic, OpenAI, Google, and other leading providers."
     },
     {
-      question: "Can I use my own API keys?",
-      answer: "Yes. Bring your own keys from OpenAI, Anthropic, Google, or any other supported provider. You'll be billed directly by that provider instead of using DC credits. Some providers even offer free tiers."
+      question: "Can I switch between models?",
+      answer: "Absolutely. You can switch between models on a per-conversation basis. Use Claude for complex reasoning, GPT for creative writing, a fast model for quick tasks — whatever works best for you."
     },
     {
-      question: "Can I use my ChatGPT subscription?",
-      answer: "Yes. If you already pay for ChatGPT Plus or Team, you can connect it directly inside Desktop Commander. No extra cost — you're already paying for it."
+      question: "Can I change my bundle?",
+      answer: "Yes. You can change your credits bundle package at any time — upgrade when you need more, downsize when you need less."
     },
     {
-      question: "Can I use Desktop Commander completely free?",
-      answer: "Yes. You get 200 messages per week on the free plan, plus $10 in free credits to start. Beyond that, you can run local models via Ollama for free, or use providers with free tiers like Google Gemini. Bring your own API key and you won't spend any DC credits. The weekly message limit applies whether you use DC credits, your own keys, or a ChatGPT subscription."
+      question: "How much do credits cost per message?",
+      answer: "It depends on the model. Smaller, faster models cost fractions of a cent per message. Larger, more capable models cost more. You can always see the cost before sending."
     },
     {
-      question: "What's the cheapest way to use Desktop Commander?",
-      answer: "Several options cost nothing at all: run local models with Ollama, or use cloud providers with free tiers — Google Gemini, for example, offers generous free usage. You can also bring your own API keys from any provider. The free plan gives you 200 messages per week, and every account starts with $10 in free credits."
-    },
-    {
-      question: "Can I mix different AI providers?",
-      answer: "Absolutely. You can switch between models on a per-conversation basis. Use Claude for complex reasoning, GPT for creative writing, and a local model for quick tasks — whatever works best for you."
-    },
-    {
-      question: "How much do AI credits cost per message?",
-      answer: "It depends on the model. Smaller, faster models cost fractions of a cent per message. Larger, more capable models cost more. You can always see the cost before sending. The $10 free credits go a long way for most users."
-    },
-    {
-      question: "When does my weekly limit reset?",
-      answer: "Every Monday at midnight UTC."
-    },
-    {
-      question: "What happens if I hit the message limit?",
-      answer: "You'll see a notification in chat. You can wait for the weekly reset on Monday, or upgrade to Pro or Pro + Credits to remove the message limit entirely."
+      question: "Can I try it before subscribing?",
+      answer: "Yes. New accounts include free starting credits, so you can try Desktop Commander before committing to a bundle."
     },
     {
       question: "Can I cancel anytime?",
