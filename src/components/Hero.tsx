@@ -274,7 +274,7 @@ const Hero = () => {
                 asChild
               >
                 <a 
-                  href="https://discord.gg/eHZeUKRQG" 
+                  href="https://discord.gg/pV5kqKZuK" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   onClick={() => trackCommunity('discord', 'hero_secondary_cta', 'Join Discord')}

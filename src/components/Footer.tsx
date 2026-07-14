@@ -52,7 +52,7 @@ const Footer = () => {
       links: [
         { label: 'Blog', href: '/blog/' },
         { label: 'AI value comparison', href: '/best-value-ai/' },
-        { label: 'Discord', href: 'https://discord.gg/eHZeUKRQG', external: true },
+        { label: 'Discord', href: 'https://discord.gg/pV5kqKZuK', external: true },
         {
           label: 'GitHub',
           href: 'https://github.com/wonderwhy-er/DesktopCommanderMCP',
@@ -148,7 +148,7 @@ const Footer = () => {
               </a>
             </Button>
             <Button variant="ghost" size="icon" asChild>
-              <a href="https://discord.gg/eHZeUKRQG" target="_blank" rel="noopener noreferrer" title="Discord">
+              <a href="https://discord.gg/pV5kqKZuK" target="_blank" rel="noopener noreferrer" title="Discord">
                 <MessageCircle className="h-5 w-5" />
               </a>
             </Button>
