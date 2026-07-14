@@ -1,12 +1,10 @@
 {
-  "version": "2.2.0",
+  "version": "2.2.1",
   "flags": {
     "user_surveys": false,
     "onboarding_injection": false,
     "welcome_page_enabled": true,
-    "welcome_page_excluded_clients": [
-      "claude-code"
-    ],
+    "welcome_page_excluded_clients": [],
     "experiments": {
       "OnboardingPreTool": {
         "variants": [
