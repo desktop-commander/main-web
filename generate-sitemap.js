@@ -75,6 +75,7 @@ function priorityFor(urlPath) {
     return { priority: '0.8', changefreq: 'monthly' };
   }
   if (urlPath.startsWith('/use-cases/')) return { priority: '0.9', changefreq: 'weekly' };
+  if (urlPath.startsWith('/mcp/')) return { priority: '0.9', changefreq: 'weekly' };
   if (urlPath === '/blog/') return { priority: '0.9', changefreq: 'weekly' };
   if (urlPath.startsWith('/blog/category/') || urlPath.startsWith('/blog/author/')) {
     return { priority: '0.5', changefreq: 'weekly' };

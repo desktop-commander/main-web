@@ -1,0 +1,63 @@
+---
+/**
+ * Cross-linking grid for /mcp/<client>/ landing pages.
+ *
+ * Shows all client pages except the current one (SEO: internal links between
+ * siblings, mirrors MoreConversions.astro for the file-conversion pages).
+ *
+ * Usage:
+ *   <MoreClients current="chatgpt" />        on a client page
+ *   <MoreClients />                          on the /mcp/ hub (shows all)
+ */
+import { mcpClients } from '../data/mcp-clients';
+
+interface Props {
+  /** Slug of the current page so it can be excluded from the grid */
+  current?: string;
+  heading?: string;
+}
+
+const { current, heading = 'Use Desktop Commander with your AI client' } = Astro.props;
+
+const others = mcpClients.filter((c) => c.slug !== current);
+---
+
+<section class="py-14 md:py-16 bg-muted/30">
+  <div class="container mx-auto max-w-5xl px-4 sm:px-6">
+    <h2 class="text-2xl sm:text-3xl font-bold text-foreground text-center mb-8">
+      {heading}
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {
+        others.map((client) => (
+          <a
+            href={`/mcp/${client.slug}/`}
+            class="group flex items-center gap-4 p-5 rounded-xl bg-dc-card border border-dc-border hover:border-primary/40 transition-colors"
+          >
+            {client.logo ? (
+              <img
+                src={`/${client.logo}`}
+                alt={client.name}
+                class="w-10 h-10 rounded-lg object-contain bg-dc-surface border border-dc-border p-1.5"
+                loading="lazy"
+              />
+            ) : (
+              <span class="w-10 h-10 rounded-lg bg-dc-surface border border-dc-border flex items-center justify-center text-base font-bold text-foreground">
+                {client.name.charAt(0)}
+              </span>
+            )}
+            <span class="flex-1 min-w-0">
+              <span class="block font-semibold text-foreground group-hover:text-primary transition-colors">
+                Desktop Commander for {client.name}
+              </span>
+              <span class="block text-sm text-muted-foreground">
+                {client.transport === 'remote' ? 'Remote MCP' : 'Local MCP'} · files &
+                terminal
+              </span>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

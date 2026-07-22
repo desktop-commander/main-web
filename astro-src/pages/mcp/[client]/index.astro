@@ -1,0 +1,125 @@
+---
+/**
+ * Dynamic route: /mcp/<client>/ — one SEO landing page per AI client.
+ * Data lives in astro-src/data/mcp-clients.ts; add a client there to add a page.
+ */
+import Layout from '../../../layouts/Layout.astro';
+import Navigation from '../../../components/Navigation.astro';
+import MoreClients from '../../../components/MoreClients.astro';
+import PostHogInit from '../../../../src/components/PostHogInit';
+import ClientHero from '../../../../src/components/mcp/clients/ClientHero';
+import ClientHowItConnects from '../../../../src/components/mcp/clients/ClientHowItConnects';
+import ClientCapabilities from '../../../../src/components/mcp/clients/ClientCapabilities';
+import ClientSetupSteps from '../../../../src/components/mcp/clients/ClientSetupSteps';
+import ClientFAQ from '../../../../src/components/mcp/clients/ClientFAQ';
+import Footer from '../../../../src/components/Footer';
+import { mcpClients, CAPABILITY_META, type McpClient } from '../../../data/mcp-clients';
+
+export function getStaticPaths() {
+  return mcpClients.map((client) => ({
+    params: { client: client.slug },
+    props: { client },
+  }));
+}
+
+interface Props {
+  client: McpClient;
+}
+
+const { client } = Astro.props;
+
+const siteBase = Astro.site?.origin || 'https://desktopcommander.app';
+const pageUrl = `${siteBase}/mcp/${client.slug}/`;
+
+const capabilityCards = client.capabilities.map((key) => ({
+  key,
+  title: CAPABILITY_META[key].title,
+  description: CAPABILITY_META[key].description,
+  prompts: client.examplePrompts[key],
+}));
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteBase}/` },
+      { '@type': 'ListItem', position: 2, name: 'MCP', item: `${siteBase}/mcp/` },
+      { '@type': 'ListItem', position: 3, name: client.name, item: pageUrl },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: client.faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  },
+];
+---
+
+<Layout title={client.seo.title} description={client.seo.description} jsonLd={jsonLd}>
+  <PostHogInit client:idle />
+
+  <div class="min-h-screen bg-background">
+    <Navigation />
+
+    <main>
+      <!-- Breadcrumb (visible, matches BreadcrumbList JSON-LD) -->
+      <nav aria-label="Breadcrumb" class="container mx-auto max-w-4xl px-4 sm:px-6 pt-24 -mb-20 relative z-10">
+        <ol class="flex items-center gap-2 text-sm text-muted-foreground">
+          <li><a href="/" class="hover:text-primary transition-colors">Home</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href="/mcp/" class="hover:text-primary transition-colors">MCP</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-foreground" aria-current="page">{client.name}</li>
+        </ol>
+      </nav>
+
+      <ClientHero
+        client:load
+        slug={client.slug}
+        name={client.name}
+        transport={client.transport}
+        logo={client.logo}
+        badge={client.hero.badge}
+        headline={client.hero.headline}
+        subheadline={client.hero.subheadline}
+        ctaLabel={client.hero.ctaLabel}
+        ctaHref={client.hero.ctaHref}
+      />
+
+      <ClientHowItConnects
+        client:visible
+        name={client.name}
+        transport={client.transport}
+        heading={client.howItConnects.heading}
+        body={client.howItConnects.body}
+        bullets={client.howItConnects.bullets}
+      />
+
+      <ClientCapabilities client:visible name={client.name} capabilities={capabilityCards} />
+
+      <ClientSetupSteps
+        client:visible
+        slug={client.slug}
+        transport={client.transport}
+        requirements={client.setup.requirements}
+        steps={client.setup.steps}
+        limitations={client.limitations}
+      />
+
+      <ClientFAQ client:visible name={client.name} faqs={client.faqs} />
+
+      <MoreClients current={client.slug} heading="Also works with" />
+    </main>
+
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../../../src/index.css';
+</style>
