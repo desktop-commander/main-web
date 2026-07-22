@@ -16,10 +16,15 @@ import Footer from '../../../../src/components/Footer';
 import { mcpClients, CAPABILITY_META, type McpClient } from '../../../data/mcp-clients';
 
 export function getStaticPaths() {
-  return mcpClients.map((client) => ({
-    params: { client: client.slug },
-    props: { client },
-  }));
+  // Clients with a custom standalone page (own .astro route) are excluded here
+  // so the generic template does not also try to build their URL.
+  const customPages = ['chatgpt'];
+  return mcpClients
+    .filter((client) => !customPages.includes(client.slug))
+    .map((client) => ({
+      params: { client: client.slug },
+      props: { client },
+    }));
 }
 
 interface Props {

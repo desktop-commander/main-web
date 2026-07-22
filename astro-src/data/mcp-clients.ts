@@ -86,9 +86,9 @@ export const mcpClients: McpClient[] = [
       href: 'https://chatgpt.com/plugins/plugin_asdk_app_6a057d268ebc81919918d37eec718425?category=developer-tools',
     },
     seo: {
-      title: 'ChatGPT File Access & Terminal — Desktop Commander MCP for ChatGPT',
+      title: 'Give ChatGPT Access to Your Local Computer | Desktop Commander Plugin',
       description:
-        'Connect ChatGPT to your local files and terminal with Desktop Commander Remote MCP. Read, edit, and organize real files and run commands on your own computer — right from ChatGPT.',
+        'The Desktop Commander plugin connects ChatGPT to your real files and terminal. Edit documents, organize folders, and run commands on your own machine straight from your chat.',
     },
     hero: {
       badge: 'Works with ChatGPT',
@@ -157,27 +157,27 @@ export const mcpClients: McpClient[] = [
       {
         question: 'Can ChatGPT access files on my computer?',
         answer:
-          'Not by itself — ChatGPT runs in the cloud and only sees what you upload. With Desktop Commander Remote MCP, ChatGPT can read, write, and organize files directly on your machine, without uploads or size limits.',
+          'Not by itself. ChatGPT runs in the cloud and only sees what you upload. With the Desktop Commander plugin it can read, write, and organize files directly on your machine, with no uploads and no size limits.',
       },
       {
         question: 'Can ChatGPT run terminal commands on my machine?',
         answer:
-          'Yes. Through Desktop Commander, ChatGPT can run shell commands, scripts, and long-running processes in your real terminal — install packages, run builds, manage git, and more.',
+          'Yes. Through Desktop Commander, ChatGPT can run shell commands, scripts, and long running processes in your real terminal. It can install packages, run builds, manage git, and much more.',
       },
       {
-        question: 'Is this different from ChatGPT’s built-in code interpreter?',
+        question: 'Is this different from ChatGPT’s built in code interpreter?',
         answer:
-          'Completely. Code interpreter runs in a temporary cloud sandbox with only the files you upload. Desktop Commander works on your actual computer: your real files, your installed tools, your environment.',
+          'Completely. Code interpreter runs in a temporary cloud sandbox with only the files you upload. Desktop Commander works on your actual computer with your real files, your installed tools, and your environment.',
       },
       {
         question: 'Is it safe to connect ChatGPT to my computer?',
         answer:
-          'The connection runs through Desktop Commander Remote MCP, authorized by your account. Your machine is only reachable while it is online and linked, and you can disconnect it at any time.',
+          'The connection runs through Desktop Commander and is authorized by your account. Your machine is only reachable while it is online and linked, you see what runs on it, and you can disconnect at any time.',
       },
       {
-        question: 'Does it work with the ChatGPT mobile or desktop apps?',
+        question: 'Does it work from the ChatGPT mobile app?',
         answer:
-          'Anywhere your ChatGPT account has the Desktop Commander app connected, it can reach your linked machine — including from your phone.',
+          'Yes. The plugin follows your ChatGPT account, so you can ask from your phone or any browser and your linked machine does the work.',
       },
     ],
   },
