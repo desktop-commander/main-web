@@ -28,52 +28,39 @@ const useVisible = (threshold = 0.2) => {
   return { ref, visible };
 };
 
-/* ---------- animated chat mockup (files) ---------- */
+/* ---------- real demo video (files) ---------- */
 const FilesDemo = ({ visible }: { visible: boolean }) => {
-  const steps = [
-    "Scanning your Downloads folder",
-    "Found 1,248 files in 14 formats",
-    "Created 12 folders by type and month",
-    "Moved 1,248 files, freed 3.2 GB of duplicates",
-  ];
   return (
-    <div className="rounded-xl border border-dc-border bg-dc-surface overflow-hidden shadow-elegant">
-      <div className="px-4 py-2.5 border-b border-dc-border bg-dc-card text-xs text-muted-foreground">
-        ChatGPT
-      </div>
-      <div className="p-4 space-y-3">
-        <div
-          className={`ml-auto max-w-[85%] rounded-2xl rounded-tr-sm bg-primary/15 border border-primary/20 px-4 py-2.5 text-sm text-foreground transition-all duration-500 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
-          }`}
+    <div
+      className={`relative transition-all duration-700 ${
+        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+      }`}
+    >
+      <div
+        className="absolute -inset-4 rounded-2xl bg-primary/15 blur-2xl opacity-70"
+        aria-hidden="true"
+      />
+      <div className="relative rounded-xl border border-dc-border bg-dc-surface overflow-hidden shadow-elegant">
+        <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-dc-border bg-dc-card">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+          <span className="ml-3 text-xs text-muted-foreground truncate">
+            Live demo: ChatGPT organizing local files
+          </span>
+        </div>
+        <video
+          className="w-full h-auto block"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          title="Demo: ChatGPT organizes files on a real computer through Desktop Commander"
         >
-          Organize my Downloads folder. Group by file type, then by month.
-        </div>
-        <div className="space-y-2">
-          {steps.map((step, i) => (
-            <div
-              key={i}
-              className={`flex items-center gap-2.5 text-sm text-muted-foreground transition-all duration-500 ${
-                visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-3"
-              }`}
-              style={{ transitionDelay: `${400 + i * 350}ms` }}
-            >
-              <span className="w-5 h-5 rounded-full bg-green-500/10 border border-green-500/30 flex items-center justify-center flex-shrink-0">
-                <Check className="w-3 h-3 text-green-400" />
-              </span>
-              {step}
-            </div>
-          ))}
-        </div>
-        <div
-          className={`max-w-[85%] rounded-2xl rounded-tl-sm bg-dc-card border border-dc-border px-4 py-2.5 text-sm text-foreground transition-all duration-500 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
-          }`}
-          style={{ transitionDelay: "1900ms" }}
-        >
-          Done. Your Downloads folder is now 12 tidy folders. Want a summary of what moved
-          where?
-        </div>
+          <source src="/videos/remote-mcp-fileorg-chatgpt.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
   );
