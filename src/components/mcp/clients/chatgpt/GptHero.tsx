@@ -48,7 +48,7 @@ const GptHero = () => {
             <img
               src="/favicon-512x512.png"
               alt="Desktop Commander"
-              className="w-16 h-16 md:w-20 md:h-20 rounded-2xl border border-dc-border bg-dc-surface object-contain p-2.5 shadow-elegant"
+              className="w-16 h-16 md:w-20 md:h-20 rounded-2xl border border-dc-border bg-white object-contain p-2.5 shadow-elegant"
             />
             <span className="text-3xl text-muted-foreground font-light select-none">×</span>
             <span className="w-16 h-16 md:w-20 md:h-20 rounded-2xl border border-dc-border bg-white text-black flex items-center justify-center shadow-elegant">

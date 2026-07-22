@@ -16,7 +16,7 @@ const GptFinalCTA = () => {
               <img
                 src="/favicon-512x512.png"
                 alt="Desktop Commander"
-                className="w-12 h-12 rounded-xl border border-dc-border bg-dc-surface object-contain p-1.5"
+                className="w-12 h-12 rounded-xl border border-dc-border bg-white object-contain p-1.5"
               />
               <span className="text-xl text-muted-foreground select-none">×</span>
               <span className="w-12 h-12 rounded-xl border border-dc-border bg-white text-black flex items-center justify-center">
