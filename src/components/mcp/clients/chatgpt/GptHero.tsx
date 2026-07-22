@@ -69,9 +69,8 @@ const GptHero = () => {
           <p
             className={`text-lg md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-9 leading-relaxed ${reveal("delay-200")}`}
           >
-            The Desktop Commander plugin works with your real files and your computer's
-            terminal. Edit documents, organize folders, and run commands on your own
-            machine straight from your chat.
+            Edit documents, organize folders, and run commands on your own machine
+            straight from your chat.
           </p>
 
           <div
