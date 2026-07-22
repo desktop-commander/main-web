@@ -9,7 +9,7 @@ import Navigation from '../../../components/Navigation.astro';
 import MoreClients from '../../../components/MoreClients.astro';
 import PostHogInit from '../../../../src/components/PostHogInit';
 import GptHero from '../../../../src/components/mcp/clients/chatgpt/GptHero';
-import GptPromptMarquee from '../../../../src/components/mcp/clients/chatgpt/GptPromptMarquee';
+import GptPromptShowcase from '../../../../src/components/mcp/clients/chatgpt/GptPromptShowcase';
 import GptCapabilities from '../../../../src/components/mcp/clients/chatgpt/GptCapabilities';
 import GptPhone from '../../../../src/components/mcp/clients/chatgpt/GptPhone';
 import GptSetup from '../../../../src/components/mcp/clients/chatgpt/GptSetup';
@@ -53,7 +53,7 @@ const jsonLd = [
 
     <main>
       <GptHero client:load />
-      <GptPromptMarquee client:visible />
+      <GptPromptShowcase client:visible />
       <GptCapabilities client:visible />
       <GptPhone client:visible />
       <GptSetup client:visible />
