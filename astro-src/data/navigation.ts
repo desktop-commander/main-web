@@ -152,11 +152,56 @@ export const promptsMenu: MegaMenu = {
 };
 
 // ---------------------------------------------------------------------------
+// MCP mega-menu (client landing pages, split by transport)
+// ---------------------------------------------------------------------------
+
+export const mcpMenu: MegaMenu = {
+  label: 'MCP',
+  columns: [
+    {
+      heading: 'Remote MCP',
+      links: [
+        {
+          label: 'ChatGPT',
+          href: '/mcp/chatgpt/',
+          description: 'Files & terminal from your chat',
+        },
+        {
+          label: 'Claude Web',
+          href: '/mcp/claude-web/',
+          description: 'claude.ai connected to your machine',
+        },
+        {
+          label: 'Cursor',
+          href: '/mcp/cursor/',
+          description: 'Your machines, from the IDE or browser',
+        },
+      ],
+    },
+    {
+      heading: 'Local MCP',
+      links: [
+        {
+          label: 'Claude Desktop',
+          href: '/mcp/claude-desktop/',
+          description: 'Full file & terminal access, 100% local',
+        },
+        {
+          label: 'Install locally',
+          href: '/mcp/#installation',
+          description: 'npx setup for any MCP client',
+        },
+      ],
+    },
+  ],
+  footer: { label: 'Desktop Commander MCP overview \u2192', href: '/mcp/' },
+};
+
+// ---------------------------------------------------------------------------
 // Flat top-level items rendered alongside the mega-menus
 // ---------------------------------------------------------------------------
 
 export const flatNavLinks: NavLink[] = [
-  { label: 'MCP', href: '/mcp/' },
   { label: 'Pricing', href: '/pricing/' },
 ];
 
@@ -165,7 +210,7 @@ export const flatNavLinks: NavLink[] = [
 export const navOrder: ReadonlyArray<string> = [
   'mega:Use Cases',
   'mega:Prompts',
-  '/mcp/',
+  'mega:MCP',
   '/pricing/',
   'mega:Resources',
 ];

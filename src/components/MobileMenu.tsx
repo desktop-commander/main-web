@@ -13,6 +13,7 @@ import {
   flatNavLinks,
   useCasesMenu,
   promptsMenu,
+  mcpMenu,
   resourcesMenu,
   type MegaMenu,
   type NavLink,
@@ -22,6 +23,7 @@ const flatByHref = new Map(flatNavLinks.map((l) => [l.href, l]));
 const megaByKey: Record<string, MegaMenu> = {
   [`mega:${useCasesMenu.label}`]: useCasesMenu,
   [`mega:${promptsMenu.label}`]: promptsMenu,
+  [`mega:${mcpMenu.label}`]: mcpMenu,
   [`mega:${resourcesMenu.label}`]: resourcesMenu,
 };
 
