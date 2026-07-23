@@ -33,6 +33,7 @@ const others = mcpClients.filter((c) => c.slug !== current);
           <a
             href={`/mcp/${client.slug}/`}
             class="group flex items-center gap-4 p-5 rounded-xl bg-dc-card border border-dc-border hover:border-primary/40 transition-colors"
+            data-crosslink-to={client.slug}
           >
             {client.logo ? (
               <img
@@ -61,3 +62,17 @@ const others = mcpClients.filter((c) => c.slug !== current);
     </div>
   </div>
 </section>
+
+<script define:vars={{ current }}>
+  // Analytics: track cross-link clicks between client landing pages.
+  document.querySelectorAll('[data-crosslink-to]').forEach((a) => {
+    a.addEventListener('click', () => {
+      if (window.posthog) {
+        window.posthog.capture('mcp_client_crosslink_clicked', {
+          from_client: current || 'mcp_hub',
+          to_client: a.dataset.crosslinkTo,
+        });
+      }
+    });
+  });
+</script>

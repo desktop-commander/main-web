@@ -34,7 +34,14 @@ export const INTERACTION_EVENTS = {
   MCP_INSTALL_CLICKED: 'mcp_install_clicked',
   MCP_LOCAL_CHOICE_CLICKED: 'mcp_local_choice_clicked',
   REMOTE_MCP_CTA_CLICKED: 'remote_mcp_cta_clicked',
-  
+
+  // MCP client landing pages (/mcp/<client>/). Conversion event is
+  // MCP_CLIENT_PAGE_CTA_CLICKED with { client, transport, cta_position, destination }.
+  MCP_CLIENT_PAGE_CTA_CLICKED: 'mcp_client_page_cta_clicked',
+  MCP_CLIENT_SETUP_COMMAND_COPIED: 'mcp_client_setup_command_copied',
+  MCP_CLIENT_SHOWCASE_CATEGORY_CLICKED: 'mcp_client_showcase_category_clicked',
+  MCP_CLIENT_CROSSLINK_CLICKED: 'mcp_client_crosslink_clicked',
+
   // Prompt Library events
   PROMPT_CATEGORY_CLICKED: 'prompt_category_clicked',
   PROMPT_CLICKED: 'prompt_clicked',

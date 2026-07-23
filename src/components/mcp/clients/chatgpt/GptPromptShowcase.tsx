@@ -7,6 +7,7 @@ import {
   ServerCog,
   MessageSquare,
 } from "lucide-react";
+import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
 
 const CATEGORIES = [
   {
@@ -72,6 +73,15 @@ const GptPromptShowcase = () => {
   const [paused, setPaused] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
+  const { trackCustomEvent } = useAnalyticsAstro();
+
+  const selectCategory = (i: number) => {
+    setActive(i);
+    trackCustomEvent("mcp_client_showcase_category_clicked", {
+      client: "chatgpt",
+      category: CATEGORIES[i].key,
+    });
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -117,7 +127,7 @@ const GptPromptShowcase = () => {
               return (
                 <button
                   key={cat.key}
-                  onClick={() => setActive(i)}
+                  onClick={() => selectCategory(i)}
                   className={`flex items-center gap-3 px-4 py-3 rounded-xl border text-left whitespace-nowrap lg:whitespace-normal transition-all duration-300 flex-shrink-0 lg:flex-shrink ${
                     isActive
                       ? "bg-primary/10 border-primary/40 text-foreground"
@@ -177,7 +187,7 @@ const GptPromptShowcase = () => {
               {CATEGORIES.map((cat, i) => (
                 <button
                   key={cat.key}
-                  onClick={() => setActive(i)}
+                  onClick={() => selectCategory(i)}
                   className={`h-1.5 rounded-full transition-all duration-300 ${
                     i === active ? "w-6 bg-primary" : "w-1.5 bg-dc-border hover:bg-primary/40"
                   }`}
