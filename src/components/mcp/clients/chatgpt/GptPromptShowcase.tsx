@@ -92,8 +92,9 @@ const GptPromptShowcase = () => {
 
   return (
     <section
+      id="discover"
       ref={sectionRef}
-      className="py-16 md:py-20 border-y border-dc-border/60 bg-dc-surface/30"
+      className="py-16 md:py-20 border-y border-dc-border/60 bg-dc-surface/30 scroll-mt-16"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
