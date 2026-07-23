@@ -88,7 +88,7 @@ export const mcpClients: McpClient[] = [
     seo: {
       title: 'Give ChatGPT Access to Your Local Computer | Desktop Commander Plugin',
       description:
-        'The Desktop Commander plugin connects ChatGPT to your real files and terminal. Edit documents, organize folders, and run commands on your own machine straight from your chat.',
+        'The Desktop Commander plugin connects ChatGPT to your real files and terminal. Edit documents, organize folders, and run commands on your own machine.',
     },
     hero: {
       badge: 'Works with ChatGPT',
@@ -189,7 +189,7 @@ export const mcpClients: McpClient[] = [
     seo: {
       title: 'Give Claude Access to Your Local Computer | Desktop Commander Connector',
       description:
-        'The Desktop Commander connector links Claude on the web (claude.ai) to your real files and terminal. Edit documents, organize folders, and run commands on your own machine from your chat.',
+        'The Desktop Commander connector links Claude on the web to your real files and terminal. Edit documents, organize folders, and run commands on your own machine.',
     },
     hero: {
       badge: 'Works with claude.ai',
