@@ -69,13 +69,6 @@ const MCPHero = () => {
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left: copy */}
           <div className="lg:col-span-6 text-center lg:text-left">
-            <div className={`mb-6 ${reveal("delay-0")}`}>
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-green-500/10 border border-green-500/20 rounded-full text-sm text-green-400">
-                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                Free & Open Source
-              </span>
-            </div>
-
             <h1
               className={`text-4xl sm:text-6xl xl:text-7xl font-bold text-foreground leading-[1.05] tracking-tight mb-6 ${reveal("delay-100")}`}
             >
