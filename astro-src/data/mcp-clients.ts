@@ -361,7 +361,7 @@ export const mcpClients: McpClient[] = [
       {
         question: 'Does my data stay local?',
         answer:
-          'Yes. The local MCP runs entirely on your machine. File contents go only into your Claude conversation when Claude reads them — nothing is uploaded anywhere else.',
+          'Desktop Commander itself runs entirely on your machine and uploads nothing. Keep in mind Claude is a cloud model, so anything Claude reads during a conversation, like file contents you ask it to work with, is sent to Anthropic to generate the response, the same as text you paste into a chat. Files Claude never touches never leave your computer.',
       },
       {
         question: 'How do I install it?',

@@ -11,9 +11,9 @@ const HIGHLIGHTS = [
   },
   {
     icon: Lock,
-    title: "Your data stays local",
+    title: "Nothing extra leaves your machine",
     description:
-      "File contents go only into your Claude conversation when Claude reads them. Nothing is uploaded anywhere else.",
+      "Desktop Commander uploads nothing. Only what Claude reads in your conversation goes to the model, the same as any text you paste into a chat.",
   },
   {
     icon: GitBranch,
