@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
 
-export const CURSOR_DIRECTORY_URL = "https://cursor.directory/plugins/desktop-commander";
+export const CURSOR_DIRECTORY_URL = "https://cursor.directory/plugins/remote-desktop-commander";
 
 interface Props {
   position: string;
@@ -31,7 +31,7 @@ const CuCta = ({
         onClick={() =>
           trackCustomEvent("mcp_client_page_cta_clicked", {
             client: "cursor",
-            transport: "local",
+            transport: "remote",
             cta_position: position,
             destination: CURSOR_DIRECTORY_URL,
           })

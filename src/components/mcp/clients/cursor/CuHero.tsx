@@ -4,9 +4,9 @@ import { ChevronDown, ArrowUp, Plus, Check } from "lucide-react";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
 
 const TYPED_PROMPTS = [
-  "Organize my Downloads folder",
   "Find every TODO across all my repos",
   "Launch my local server",
+  "Clean out old node_modules folders",
 ];
 
 const TYPE_SPEED = 38;
@@ -171,7 +171,7 @@ const CuHero = () => {
                   <span className="text-sm font-semibold">New Agent</span>
                   <span className="ml-auto inline-flex items-center gap-1.5 text-xs text-[#16a34a]">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#16a34a] animate-pulse" />
-                    Desktop Commander enabled
+                    connected to your machine
                   </span>
                 </div>
 
@@ -231,7 +231,7 @@ const CuHero = () => {
                         onClick={() =>
                           trackCustomEvent("mcp_client_page_cta_clicked", {
                             client: "cursor",
-                            transport: "local",
+                            transport: "remote",
                             cta_position: "hero_composer_send",
                             destination: CURSOR_DIRECTORY_URL,
                           })
@@ -243,7 +243,7 @@ const CuHero = () => {
                     </div>
                   </div>
                   <p className="text-[11px] text-[#8f8f8f] text-center mt-2">
-                    Desktop Commander runs locally with any model Cursor uses
+                    Works from Cursor on any of your devices, even cursor.com in a browser
                   </p>
                 </div>
               </div>

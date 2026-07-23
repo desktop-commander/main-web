@@ -10,7 +10,7 @@ import PostHogInit from '../../../../src/components/PostHogInit';
 import CuHero from '../../../../src/components/mcp/clients/cursor/CuHero';
 import CuPromptShowcase from '../../../../src/components/mcp/clients/cursor/CuPromptShowcase';
 import CuCapabilities from '../../../../src/components/mcp/clients/cursor/CuCapabilities';
-import CuLocal from '../../../../src/components/mcp/clients/cursor/CuLocal';
+import CuMachines from '../../../../src/components/mcp/clients/cursor/CuMachines';
 import CuSetup from '../../../../src/components/mcp/clients/cursor/CuSetup';
 import CuFinalCTA from '../../../../src/components/mcp/clients/cursor/CuFinalCTA';
 import ClientFAQ from '../../../../src/components/mcp/clients/ClientFAQ';
@@ -54,7 +54,7 @@ const jsonLd = [
       <CuHero client:load />
       <CuPromptShowcase client:visible />
       <CuCapabilities client:visible />
-      <CuLocal client:visible />
+      <CuMachines client:visible />
       <CuSetup client:visible />
       <ClientFAQ client:visible name="Cursor" faqs={client.faqs} />
       <CuFinalCTA client:visible />

@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import {
   FolderOpen,
-  Image,
   FileText,
   Code2,
+  Terminal,
   ServerCog,
   MessageSquare,
 } from "lucide-react";
@@ -11,43 +11,43 @@ import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
 
 const CATEGORIES = [
   {
+    key: "code",
+    label: "Code & repos",
+    icon: Code2,
+    prompts: [
+      "Find every TODO across all my repos, not just this one",
+      "Read the config from my other project and apply it here",
+      "Clone this repo, install dependencies, and run the tests",
+    ],
+  },
+  {
     key: "files",
     label: "Files & folders",
     icon: FolderOpen,
     prompts: [
-      "Organize my Downloads folder by file type and month",
-      "Read the config from my other project and apply it here",
-      "Clean out duplicate files in my Documents",
+      "Clean out old node_modules folders across my projects",
+      "Show me the largest files eating my disk space",
+      "Organize my Downloads folder by file type",
     ],
   },
   {
-    key: "media",
-    label: "Photos & media",
-    icon: Image,
+    key: "servers",
+    label: "Servers & processes",
+    icon: Terminal,
     prompts: [
-      "Convert all HEIC photos on my Desktop to JPG",
-      "Resize every image in this folder for the web",
-      "Compress these videos so they fit in an email",
+      "Launch my local server and watch the logs",
+      "Check what is using port 3000 and kill it",
+      "Spin up the database container and run the migration",
     ],
   },
   {
     key: "data",
-    label: "Documents & data",
+    label: "Docs & data",
     icon: FileText,
     prompts: [
-      "Extract totals from every invoice into one spreadsheet",
-      "Merge these 8 spreadsheets into one clean file",
       "Read sales.csv and chart revenue by month",
-    ],
-  },
-  {
-    key: "dev",
-    label: "Code & dev",
-    icon: Code2,
-    prompts: [
-      "Find every TODO across all my repos, not just this one",
-      "Check my system's health and tell me what needs attention",
-      "Launch my local server and watch the logs",
+      "Merge these 8 spreadsheets into one clean file",
+      "Extract totals from every invoice into one spreadsheet",
     ],
   },
   {
@@ -55,8 +55,8 @@ const CATEGORIES = [
     label: "Automation",
     icon: ServerCog,
     prompts: [
-      "Spin up the database container and run the migration",
-      "Create a script that tidies my Desktop every Friday",
+      "Create a script that cleans build artifacts weekly",
+      "Watch this log file and alert me on errors",
       "Schedule a nightly backup of my project folder",
     ],
   },

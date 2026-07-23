@@ -369,12 +369,16 @@ export const mcpClients: McpClient[] = [
   {
     slug: 'cursor',
     name: 'Cursor',
-    transport: 'local',
+    transport: 'remote',
     logo: 'cursor-mark.png',
+    listing: {
+      label: 'Remote Desktop Commander on cursor.directory',
+      href: 'https://cursor.directory/plugins/remote-desktop-commander',
+    },
     seo: {
       title: 'Give Cursor Access to Your Whole Computer | Desktop Commander MCP',
       description:
-        'The Desktop Commander MCP gives Cursor full file access and terminal control beyond your project folder. Free, open source, fully local, quick setup.',
+        'The Remote Desktop Commander plugin gives Cursor full file access and terminal control on your machines, from the IDE or cursor.com in any browser. Quick setup.',
     },
     hero: {
       badge: 'Works with Cursor',
@@ -434,19 +438,19 @@ export const mcpClients: McpClient[] = [
           'Cursor’s built in tools focus on the workspace you have open. Desktop Commander extends the agent to your whole machine: any folder on disk, cross project searches, background processes, and system level terminal work.',
       },
       {
-        question: 'Is everything really local?',
+        question: 'How does it connect to my machine?',
         answer:
-          'Yes. Desktop Commander is a local MCP server that runs on your machine and talks to Cursor directly. There is no cloud bridge and no account. Pair it with local models in Cursor and nothing has to leave your computer.',
+          'Through Desktop Commander Remote MCP. Add the plugin in Cursor, then link your computer by running one command in its terminal. Cursor can then work with that machine from anywhere, including cursor.com in a browser.',
       },
       {
-        question: 'Does it conflict with Cursor’s built in terminal?',
+        question: 'Can I connect more than one machine?',
         answer:
-          'No. It registers as a separate MCP server and Cursor’s agent chooses the right tool per task. You can enable or disable it any time in MCP settings.',
+          'Yes. Link several computers to your account and choose which one Cursor works with. As long as a machine is online and linked, it is reachable.',
       },
       {
-        question: 'Is it free?',
+        question: 'Is there a fully local option?',
         answer:
-          'Yes. The local MCP server is free and open source, with 26k+ weekly downloads.',
+          'Yes. Desktop Commander also ships as a free, open source local MCP server that runs entirely on your machine with no cloud bridge. Search for Desktop Commander in Cursor’s MCP settings or on cursor.directory.',
       },
       {
         question: 'Does it work in other editors too?',
