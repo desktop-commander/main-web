@@ -24,8 +24,10 @@ const HIGHLIGHTS = [
 ];
 
 const PHONE_STEPS = [
-  "Backing up your photos folder",
-  "1,032 photos copied to the drive",
+  "Your Desktop has 47 files:",
+  "23 screenshots from this month",
+  "9 PDFs, mostly invoices",
+  "6 project folders",
 ];
 
 const CwPhone = () => {
@@ -100,7 +102,7 @@ const CwPhone = () => {
               visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <div className="relative w-[290px] mx-auto">
+            <div className="relative w-[240px] mx-auto">
               <div
                 className="absolute -inset-6 rounded-[3.5rem] bg-[#C96442]/15 blur-3xl"
                 aria-hidden="true"
@@ -112,7 +114,7 @@ const CwPhone = () => {
                 <span className="absolute -left-[2px] top-36 w-[3px] h-12 bg-[#2a2a2c] rounded-l" aria-hidden="true" />
                 <span className="absolute -right-[2px] top-32 w-[3px] h-16 bg-[#2a2a2c] rounded-r" aria-hidden="true" />
                 {/* Screen */}
-                <div className="relative rounded-[2.5rem] bg-[#FCFBF8] overflow-hidden flex flex-col h-[570px] text-[#1a1915]">
+                <div className="relative rounded-[2.5rem] bg-[#FCFBF8] overflow-hidden flex flex-col h-[470px] text-[#1a1915]">
                   {/* Dynamic Island */}
                   <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-24 h-[26px] bg-black rounded-full z-10" aria-hidden="true" />
                   {/* Status bar */}
@@ -132,20 +134,25 @@ const CwPhone = () => {
                   </div>
                   {/* Chat area */}
                   <div className="flex-1 px-3 pt-3 space-y-2.5 text-left overflow-hidden">
-                    <div className={`ml-auto max-w-[88%] w-fit rounded-2xl bg-[#F0EEE6] px-3 py-2 text-[13px] leading-snug ${step}`} style={d(300)}>
-                      Back up my photos folder to the external drive
+                    <div className={`ml-auto max-w-[88%] w-fit rounded-2xl bg-[#F0EEE6] px-3 py-2 text-[12px] leading-snug ${step}`} style={d(300)}>
+                      Check files on my laptop's Desktop. Give me a summary of what you
+                      see there.
                     </div>
                     <div className={`inline-flex items-center gap-1.5 text-[10px] text-[#8a877d] border border-black/[0.07] rounded-lg px-2 py-1 bg-white ${step}`} style={d(900)}>
                       <img src="/favicon-512x512.png" alt="" className="w-3 h-3 rounded-[3px]" />
                       Desktop Commander · your Mac at home
                     </div>
                     {PHONE_STEPS.map((text, i) => (
-                      <p key={text} className={`font-serif text-[13px] leading-snug ${step}`} style={d(1400 + i * 450)}>
-                        {text}
+                      <p
+                        key={text}
+                        className={`font-serif text-[12px] leading-snug ${i > 0 ? "pl-3" : ""} ${step}`}
+                        style={d(1400 + i * 400)}
+                      >
+                        {i > 0 ? `• ${text}` : text}
                       </p>
                     ))}
-                    <div className={`font-serif text-[13px] leading-snug ${step}`} style={d(2400)}>
-                      Backup finished. Your machine is all set while you are away.
+                    <div className={`font-serif text-[12px] leading-snug ${step}`} style={d(3100)}>
+                      Want me to tidy it up?
                     </div>
                   </div>
                   {/* Composer pinned to bottom */}
