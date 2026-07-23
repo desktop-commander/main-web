@@ -287,10 +287,14 @@ export const mcpClients: McpClient[] = [
     name: 'Claude Desktop',
     transport: 'local',
     logo: 'claude-logo.png',
+    listing: {
+      label: 'Desktop Commander in the Claude connectors directory',
+      href: 'https://claude.ai/directory/connectors/ant.dir.gh.wonderwhy-er.desktopcommandermcp',
+    },
     seo: {
-      title: 'Claude Desktop MCP — Full File & Terminal Access | Desktop Commander',
+      title: 'Claude Desktop MCP: Full File and Terminal Access | Desktop Commander',
       description:
-        'Give Claude Desktop full access to your files and terminal with the Desktop Commander MCP server. Free, open source, one-command install on Mac and Windows.',
+        'Give Claude Desktop full control of your files and terminal with the Desktop Commander MCP. Free, open source, installs from the Claude directory or with one command.',
     },
     hero: {
       badge: 'Works with Claude Desktop',
@@ -358,6 +362,11 @@ export const mcpClients: McpClient[] = [
         question: 'Does my data stay local?',
         answer:
           'Yes. The local MCP runs entirely on your machine. File contents go only into your Claude conversation when Claude reads them — nothing is uploaded anywhere else.',
+      },
+      {
+        question: 'How do I install it?',
+        answer:
+          'Two ways: add Desktop Commander from the Claude connectors directory in one click, or run the npx setup command in your terminal and restart Claude Desktop. Both take about a minute.',
       },
       {
         question: 'How do I uninstall or disable it?',
