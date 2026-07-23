@@ -39,6 +39,13 @@ const linkType = (l: NavLink) => (l.external ? 'external' : 'internal');
 const isMcpPage = Astro.url.pathname.startsWith('/mcp');
 const ctaLabel = isMcpPage ? 'Install MCP' : 'Download App';
 const ctaHref = isMcpPage ? '/mcp#installation' : '/#download';
+
+// Client landing pages (/mcp/<client>/) carry their own primary CTA, so the
+// nav CTA is hidden there to avoid competing calls to action.
+interface Props {
+  hideCta?: boolean;
+}
+const { hideCta = false } = Astro.props;
 ---
 
 <nav
@@ -155,6 +162,7 @@ const ctaHref = isMcpPage ? '/mcp#installation' : '/#download';
       </div>
 
       <!-- Desktop CTA -->
+      {!hideCta && (
       <div class="hidden lg:flex items-center gap-3">
         <a
           href={ctaHref}
@@ -177,6 +185,7 @@ const ctaHref = isMcpPage ? '/mcp#installation' : '/#download';
           {ctaLabel}
         </a>
       </div>
+      )}
 
       <!-- Mobile Menu (React for interactivity) -->
       <MobileMenu client:load pathname={Astro.url.pathname} />
