@@ -44,9 +44,9 @@ const CATEGORIES = [
     label: "Code & dev",
     icon: Code2,
     prompts: [
-      "Clone this repo, install dependencies, and run the tests",
-      "Run the build and fix the errors you find",
-      "Check what is using port 3000 and kill it",
+      "Check my system's health and tell me what needs attention",
+      "Install all dependencies for this project",
+      "Launch my local server and watch the logs",
     ],
   },
   {
@@ -54,9 +54,9 @@ const CATEGORIES = [
     label: "Automation",
     icon: ServerCog,
     prompts: [
-      "Back up my photos folder to the external drive",
-      "Watch this log file and alert me on errors",
+      "Connect this tool to my chat through its API",
       "Create a script that tidies my Desktop every Friday",
+      "Schedule a nightly backup of my project folder",
     ],
   },
 ];
