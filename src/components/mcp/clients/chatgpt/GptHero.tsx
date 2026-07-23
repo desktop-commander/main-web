@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import OpenAIMark from "./OpenAIMark";
 import GptCta from "./GptCta";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ArrowUp } from "lucide-react";
+import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
 
 const TYPED_PROMPTS = [
-  "Organize my Downloads folder by file type",
-  "Convert all HEIC photos on my Desktop to JPG",
-  "Launch my local server and watch the logs",
-  "Extract totals from every invoice into a spreadsheet",
-  "Check my system's health and tell me what needs attention",
+  "Organize my Downloads folder",
+  "Convert these photos to JPG",
+  "Launch my local server",
 ];
 
 const TYPE_SPEED = 38;
@@ -50,12 +49,15 @@ const useTypewriter = (phrases: string[]) => {
     };
   }, [phrase, phrases]);
 
-  return text;
+  return { text, current: phrases[phrase] };
 };
 
 const GptHero = () => {
   const [mounted, setMounted] = useState(false);
-  const typed = useTypewriter(TYPED_PROMPTS);
+  const { text: typed, current: currentPrompt } = useTypewriter(TYPED_PROMPTS);
+  const { trackCustomEvent } = useAnalyticsAstro();
+
+  const sendHref = `https://chatgpt.com/?q=${encodeURIComponent(currentPrompt)}`;
 
   useEffect(() => {
     setMounted(true);
@@ -149,19 +151,37 @@ const GptHero = () => {
           <GptCta position="hero" className="text-lg px-10 py-6" />
         </div>
 
-        {/* Typing prompt line */}
-        <div
-          className={`mt-12 flex items-center justify-center ${reveal("delay-500")}`}
-          aria-hidden="true"
-        >
-          <div className="inline-flex items-center gap-3 rounded-full border border-dc-border bg-dc-card/80 backdrop-blur px-5 py-3 max-w-full">
-            <span className="text-primary select-none">›</span>
-            <span className="text-sm sm:text-base text-muted-foreground whitespace-nowrap overflow-hidden text-ellipsis">
-              {typed}
-            </span>
-            <span className="w-[2px] h-4 bg-primary animate-pulse flex-shrink-0" />
+        {/* Chat composer with cycling prompt */}
+        <div className={`mt-12 flex justify-center ${reveal("delay-500")}`}>
+          <div className="w-full max-w-md flex items-center gap-3 rounded-full border border-dc-border bg-dc-card/90 backdrop-blur pl-6 pr-2 py-2 shadow-elegant">
+            <div className="flex-1 flex items-center gap-0.5 min-w-0 text-left">
+              <span className="text-base text-foreground whitespace-nowrap overflow-hidden text-ellipsis">
+                {typed}
+              </span>
+              <span className="w-[2px] h-5 bg-primary animate-pulse flex-shrink-0" />
+            </div>
+            <a
+              href={sendHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Send "${currentPrompt}" to ChatGPT`}
+              onClick={() =>
+                trackCustomEvent("mcp_client_page_cta_clicked", {
+                  client: "chatgpt",
+                  transport: "remote",
+                  cta_position: "hero_composer_send",
+                  destination: sendHref,
+                })
+              }
+              className="w-10 h-10 rounded-full bg-primary hover:bg-primary/85 transition-colors flex items-center justify-center flex-shrink-0"
+            >
+              <ArrowUp className="h-5 w-5 text-primary-foreground" />
+            </a>
           </div>
         </div>
+        <p className={`mt-3 text-xs text-muted-foreground ${reveal("delay-700")}`}>
+          Try it: sending opens this prompt in ChatGPT
+        </p>
       </div>
 
       {/* Scroll hint */}
