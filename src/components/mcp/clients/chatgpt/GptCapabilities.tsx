@@ -1,16 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Card } from "@/components/ui/card";
-import {
-  FolderOpen,
-  Terminal,
-  Check,
-  FileText,
-  Image,
-  Database,
-  Trash2,
-  Code2,
-  ServerCog,
-} from "lucide-react";
+import { FolderOpen, Terminal, Check } from "lucide-react";
 import GptCta from "./GptCta";
 
 /* ---------- shared visibility hook ---------- */
@@ -114,62 +103,9 @@ const TerminalDemo = ({ visible }: { visible: boolean }) => {
   );
 };
 
-/* ---------- use case grid ---------- */
-const USE_CASES = [
-  {
-    icon: FolderOpen,
-    title: "Tame messy folders",
-    prompts: [
-      "Organize my Desktop into folders by project",
-      "Rename 400 scans by the date inside each document",
-    ],
-  },
-  {
-    icon: Image,
-    title: "Convert anything",
-    prompts: [
-      "Convert every HEIC in this folder to JPG",
-      "Compress these videos so they fit in an email",
-    ],
-  },
-  {
-    icon: Database,
-    title: "Analyze your data",
-    prompts: [
-      "Read sales.csv and chart revenue by month",
-      "Merge these 8 spreadsheets into one clean file",
-    ],
-  },
-  {
-    icon: FileText,
-    title: "Work documents over",
-    prompts: [
-      "Extract totals from every invoice PDF into a table",
-      "Turn my meeting notes into a formatted report",
-    ],
-  },
-  {
-    icon: Code2,
-    title: "Build and fix code",
-    prompts: [
-      "Run the tests and fix whatever fails",
-      "Set up this project and start the dev server",
-    ],
-  },
-  {
-    icon: ServerCog,
-    title: "Automate your machine",
-    prompts: [
-      "Back up my photos folder to the external drive",
-      "Watch this log file and alert me on errors",
-    ],
-  },
-];
-
 const GptCapabilities = () => {
   const files = useVisible();
   const term = useVisible();
-  const grid = useVisible(0.1);
 
   return (
     <section id="capabilities" className="py-16 md:py-24 scroll-mt-24">
@@ -245,46 +181,8 @@ const GptCapabilities = () => {
           </div>
         </div>
 
-        {/* Use case grid */}
-        <div ref={grid.ref}>
-          <h3 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-10">
-            People use it every day to
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 mb-12">
-            {USE_CASES.map((useCase, i) => {
-              const Icon = useCase.icon;
-              return (
-                <Card
-                  key={useCase.title}
-                  className={`p-6 bg-dc-card border-dc-border hover:border-primary/40 hover:-translate-y-1 hover:shadow-elegant transition-all duration-300 ${
-                    grid.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                  }`}
-                  style={{ transitionDelay: grid.visible ? `${i * 90}ms` : "0ms" }}
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                      <Icon className="h-5 w-5 text-primary" />
-                    </div>
-                    <h4 className="font-semibold text-foreground">{useCase.title}</h4>
-                  </div>
-                  <div className="space-y-2">
-                    {useCase.prompts.map((prompt, j) => (
-                      <p
-                        key={j}
-                        className="text-sm text-muted-foreground bg-muted/40 border border-dc-border rounded-lg px-3 py-2"
-                      >
-                        <span className="text-primary mr-1.5 select-none">›</span>
-                        {prompt}
-                      </p>
-                    ))}
-                  </div>
-                </Card>
-              );
-            })}
-          </div>
-          <div className="text-center">
-            <GptCta position="capabilities" label="Try it in ChatGPT" />
-          </div>
+        <div className="text-center">
+          <GptCta position="capabilities" label="Try it in ChatGPT" />
         </div>
       </div>
     </section>
