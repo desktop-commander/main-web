@@ -187,9 +187,9 @@ export const mcpClients: McpClient[] = [
       href: 'https://claude.ai/directory/connectors/218bbf02-d0dd-4aa9-8bdd-06bb2a8589af',
     },
     seo: {
-      title: 'Claude Web File Access & Terminal — Desktop Commander Connector',
+      title: 'Give Claude Access to Your Local Computer | Desktop Commander Connector',
       description:
-        'Connect Claude on the web (claude.ai) to your local files and terminal with the Desktop Commander connector. Work with real files and run commands on your own computer from any browser.',
+        'The Desktop Commander connector links Claude on the web (claude.ai) to your real files and terminal. Edit documents, organize folders, and run commands on your own machine from your chat.',
     },
     hero: {
       badge: 'Works with claude.ai',
@@ -258,22 +258,27 @@ export const mcpClients: McpClient[] = [
       {
         question: 'Can Claude on the web access my local files?',
         answer:
-          'Not on its own — claude.ai only sees what you attach. With the Desktop Commander connector, Claude can read, write, and organize files directly on your machine through Remote MCP.',
+          'Not on its own. claude.ai only sees what you attach. With the Desktop Commander connector, Claude can read, write, and organize files directly on your machine, with no uploads and no size limits.',
+      },
+      {
+        question: 'Can Claude on the web run terminal commands?',
+        answer:
+          'Yes. Once connected, Claude can run shell commands, scripts, and long running processes on your linked machine. It can install packages, run builds, manage git, and much more.',
       },
       {
         question: 'How is this different from using Claude Desktop?',
         answer:
-          'Claude Desktop runs on your machine and can use the local Desktop Commander MCP directly — free and open source. Claude Web runs in the cloud, so it needs the Remote MCP connector to reach your computer. Same capabilities, different transport.',
+          'Claude Desktop runs on your machine and can use the local Desktop Commander MCP directly, free and open source. Claude on the web runs in the cloud, so it uses the Desktop Commander connector to reach your computer. Same capabilities, different connection.',
       },
       {
-        question: 'Can Claude Web run terminal commands?',
+        question: 'Which computers does it work with?',
         answer:
-          'Yes. Once connected, Claude can run shell commands, scripts, and long-running processes on your linked machine — the same terminal access the local MCP provides.',
+          'Desktop Commander runs on macOS and Windows. Link one or more machines to your account and Claude can work with whichever is online, from any browser or the mobile app.',
       },
       {
         question: 'Do I need to keep my computer on?',
         answer:
-          'Yes — Claude reaches your machine live, so it must be online and linked to your Desktop Commander account while you work.',
+          'Yes. Claude reaches your machine live, so it must be online and linked to your Desktop Commander account while you work.',
       },
     ],
   },

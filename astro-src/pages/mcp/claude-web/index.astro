@@ -1,0 +1,70 @@
+---
+/**
+ * /mcp/claude-web/ — custom standalone landing page for Claude on the web.
+ * Built from the approved ChatGPT page template.
+ */
+import Layout from '../../../layouts/Layout.astro';
+import Navigation from '../../../components/Navigation.astro';
+import MoreClients from '../../../components/MoreClients.astro';
+import PostHogInit from '../../../../src/components/PostHogInit';
+import CwHero from '../../../../src/components/mcp/clients/claude-web/CwHero';
+import CwPromptShowcase from '../../../../src/components/mcp/clients/claude-web/CwPromptShowcase';
+import CwCapabilities from '../../../../src/components/mcp/clients/claude-web/CwCapabilities';
+import CwPhone from '../../../../src/components/mcp/clients/claude-web/CwPhone';
+import CwSetup from '../../../../src/components/mcp/clients/claude-web/CwSetup';
+import CwFinalCTA from '../../../../src/components/mcp/clients/claude-web/CwFinalCTA';
+import ClientFAQ from '../../../../src/components/mcp/clients/ClientFAQ';
+import Footer from '../../../../src/components/Footer';
+import { getClient } from '../../../data/mcp-clients';
+
+const client = getClient('claude-web')!;
+
+const siteBase = Astro.site?.origin || 'https://desktopcommander.app';
+const pageUrl = `${siteBase}/mcp/claude-web/`;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteBase}/` },
+      { '@type': 'ListItem', position: 2, name: 'MCP', item: `${siteBase}/mcp/` },
+      { '@type': 'ListItem', position: 3, name: 'Claude Web', item: pageUrl },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: client.faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  },
+];
+---
+
+<Layout title={client.seo.title} description={client.seo.description} jsonLd={jsonLd}>
+  <PostHogInit client:idle />
+
+  <div class="min-h-screen bg-background">
+    <Navigation hideCta />
+
+    <main>
+      <CwHero client:load />
+      <CwPromptShowcase client:visible />
+      <CwCapabilities client:visible />
+      <CwPhone client:visible />
+      <CwSetup client:visible />
+      <ClientFAQ client:visible name="Claude" faqs={client.faqs} />
+      <CwFinalCTA client:visible />
+      <MoreClients current="claude-web" heading="Also works with" />
+    </main>
+
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../../../src/index.css';
+</style>

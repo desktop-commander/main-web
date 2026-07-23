@@ -18,7 +18,7 @@ import { mcpClients, CAPABILITY_META, type McpClient } from '../../../data/mcp-c
 export function getStaticPaths() {
   // Clients with a custom standalone page (own .astro route) are excluded here
   // so the generic template does not also try to build their URL.
-  const customPages = ['chatgpt'];
+  const customPages = ['chatgpt', 'claude-web'];
   return mcpClients
     .filter((client) => !customPages.includes(client.slug))
     .map((client) => ({
