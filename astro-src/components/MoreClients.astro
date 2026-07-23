@@ -38,11 +38,11 @@ const others = mcpClients.filter((c) => c.slug !== current);
               <img
                 src={`/${client.logo}`}
                 alt={client.name}
-                class="w-10 h-10 rounded-lg object-contain bg-dc-surface border border-dc-border p-1.5"
+                class="w-10 h-10 rounded-lg object-contain bg-white border border-dc-border p-1.5"
                 loading="lazy"
               />
             ) : (
-              <span class="w-10 h-10 rounded-lg bg-dc-surface border border-dc-border flex items-center justify-center text-base font-bold text-foreground">
+              <span class="w-10 h-10 rounded-lg bg-white border border-dc-border flex items-center justify-center text-base font-bold text-black">
                 {client.name.charAt(0)}
               </span>
             )}

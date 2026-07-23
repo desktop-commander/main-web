@@ -165,11 +165,6 @@ export const mcpClients: McpClient[] = [
           'Yes. Through Desktop Commander, ChatGPT can run shell commands, scripts, and long running processes in your real terminal. It can install packages, run builds, manage git, and much more.',
       },
       {
-        question: 'Is this different from ChatGPT’s built in code interpreter?',
-        answer:
-          'Completely. Code interpreter runs in a temporary cloud sandbox with only the files you upload. Desktop Commander works on your actual computer with your real files, your installed tools, and your environment.',
-      },
-      {
         question: 'Is it safe to connect ChatGPT to my computer?',
         answer:
           'The connection runs through Desktop Commander and is authorized by your account. Your machine is only reachable while it is online and linked, you see what runs on it, and you can disconnect at any time.',
@@ -186,6 +181,7 @@ export const mcpClients: McpClient[] = [
     name: 'Claude Web',
     qualifier: 'claude.ai in your browser',
     transport: 'remote',
+    logo: 'claude-logo.png',
     listing: {
       label: 'Desktop Commander in the Claude connectors directory',
       href: 'https://claude.ai/directory/connectors/218bbf02-d0dd-4aa9-8bdd-06bb2a8589af',
@@ -285,7 +281,7 @@ export const mcpClients: McpClient[] = [
     slug: 'claude-desktop',
     name: 'Claude Desktop',
     transport: 'local',
-    logo: 'claude-desktop-logo.png',
+    logo: 'claude-logo.png',
     seo: {
       title: 'Claude Desktop MCP — Full File & Terminal Access | Desktop Commander',
       description:
@@ -369,7 +365,7 @@ export const mcpClients: McpClient[] = [
     slug: 'cursor',
     name: 'Cursor',
     transport: 'local',
-    logo: 'cursor-logo.png',
+    logo: 'cursor-mark.png',
     seo: {
       title: 'Cursor MCP for Files & Terminal — Desktop Commander',
       description:
