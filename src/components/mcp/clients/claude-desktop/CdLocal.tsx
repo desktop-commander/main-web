@@ -19,7 +19,7 @@ const HIGHLIGHTS = [
     icon: GitBranch,
     title: "Free and open source",
     description:
-      "The most popular file and terminal MCP, with 26k+ weekly downloads. Same server powers Cursor, Windsurf, and VS Code setups.",
+      "The most popular file and terminal MCP, with 50k+ weekly downloads. Same server powers Cursor, Windsurf, and VS Code setups.",
   },
 ];
 

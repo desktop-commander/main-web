@@ -308,7 +308,7 @@ export const mcpClients: McpClient[] = [
       heading: 'Runs 100% on your machine',
       body: 'Claude Desktop already runs locally, so Desktop Commander plugs in as a local MCP server — no cloud bridge, no account needed. Everything stays on your computer.',
       bullets: [
-        'Free & open source — 26k+ weekly downloads',
+        'Free & open source — 50k+ weekly downloads',
         'One-command install, works on macOS and Windows',
         'No data leaves your machine',
       ],
@@ -356,7 +356,7 @@ export const mcpClients: McpClient[] = [
       {
         question: 'Is Desktop Commander free for Claude Desktop?',
         answer:
-          'Yes. The local MCP server is free and open source (26k+ weekly downloads). You only need a Claude account for Claude Desktop itself.',
+          'Yes. The local MCP server is free and open source (50k+ weekly downloads). You only need a Claude account for Claude Desktop itself.',
       },
       {
         question: 'Does my data stay local?',

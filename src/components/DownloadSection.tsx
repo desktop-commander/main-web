@@ -26,7 +26,7 @@ const DOWNLOADS = {
 
 const trustStats = [
   { icon: Star, value: "9.52/10", label: "User rating" },
-  { icon: Download, value: "26k+", label: "Weekly downloads" },
+  { icon: Download, value: "50k+", label: "Weekly downloads" },
   { icon: Github, value: "6.3k+", label: "GitHub stars" },
 ];
 
