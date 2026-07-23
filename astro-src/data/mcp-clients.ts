@@ -165,9 +165,9 @@ export const mcpClients: McpClient[] = [
           'Yes. Through Desktop Commander, ChatGPT can run shell commands, scripts, and long running processes in your real terminal. It can install packages, run builds, manage git, and much more.',
       },
       {
-        question: 'Is it safe to connect ChatGPT to my computer?',
+        question: 'Which computers does it work with?',
         answer:
-          'The connection runs through Desktop Commander and is authorized by your account. Your machine is only reachable while it is online and linked, you see what runs on it, and you can disconnect at any time.',
+          'Desktop Commander runs on macOS and Windows. Link one or more machines to your account and ChatGPT can work with whichever is online, from any browser or the mobile app.',
       },
       {
         question: 'Does it work from the ChatGPT mobile app?',
