@@ -160,47 +160,14 @@ npm run setup`}</code>
       <div className="container mx-auto max-w-7xl px-4 sm:px-6">
         {/* Header */}
         <div className={`text-center mb-10 transition-all duration-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">Local MCP installation</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">More ways to install</h2>
           <p className="text-lg text-muted-foreground">Choose your preferred installation method. Looking for the web option? <a href="#remote" className="text-primary hover:underline" onClick={() => trackNavigation('See Remote MCP', '#remote', 'internal')}>See Remote MCP</a>.</p>
-        </div>
-
-        {/* One-click install via Claude Directory */}
-        <div className={`max-w-4xl mx-auto mb-8 transition-all duration-800 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <Card className="p-6 md:p-8 bg-dc-card border-2 border-primary/50 hover:border-primary transition-all duration-300">
-            <div className="flex flex-col md:flex-row md:items-center gap-6">
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-2">
-                  <h4 className="text-xl font-semibold text-foreground">Install in Claude Desktop</h4>
-                  <span className="px-3 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-400 border border-green-500/20">Easiest & fastest</span>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  One click from the Claude Directory — no terminal, no configuration.
-                </p>
-              </div>
-              <Button
-                variant="hero"
-                size="lg"
-                className="flex items-center justify-center gap-2 group flex-shrink-0"
-                asChild
-              >
-                <a
-                  href="https://claude.ai/directory/connectors/ant.dir.gh.wonderwhy-er.desktopcommandermcp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackInstallClick('Claude Directory', 'https://claude.ai/directory/connectors/ant.dir.gh.wonderwhy-er.desktopcommandermcp')}
-                >
-                  Add to Claude Desktop
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </a>
-              </Button>
-            </div>
-          </Card>
         </div>
 
         {/* Requirements */}
         <div className={`mb-8 transition-all duration-800 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="max-w-4xl mx-auto px-4">
-            <h3 className="text-sm font-medium text-muted-foreground mb-3 uppercase tracking-wide">Prefer the terminal? Requirements</h3>
+            <h3 className="text-sm font-medium text-muted-foreground mb-3 uppercase tracking-wide">Requirements</h3>
             <div className="flex flex-wrap gap-4">
               {requirements.map((req, i) => (
                 <a key={i} href={req.downloadUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
