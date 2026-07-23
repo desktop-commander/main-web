@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import OpenAIMark from "./OpenAIMark";
 import GptCta from "./GptCta";
-import { ChevronDown, ArrowUp, Check } from "lucide-react";
+import { ChevronDown, ArrowUp, Plus, Mic, ChevronRight } from "lucide-react";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
 
 const TYPED_PROMPTS = [
@@ -53,9 +53,9 @@ const useTypewriter = (phrases: string[]) => {
 };
 
 const CHAT_STEPS = [
-  "Scanning your Downloads folder",
-  "Created 12 folders by type",
-  "Moved 1,248 files",
+  "Sorted 214 documents into folders by type.",
+  "Grouped screenshots and photos by month.",
+  "Moved 1,248 files, nothing was deleted.",
 ];
 
 const GptHero = () => {
@@ -168,60 +168,85 @@ const GptHero = () => {
             </div>
           </div>
 
-          {/* Right: live chat window */}
+          {/* Right: ChatGPT-style window (light, like the real app) */}
           <div className={`lg:col-span-5 ${reveal("delay-400")}`}>
             <div className="relative max-w-md mx-auto lg:max-w-none">
               <div
                 className="absolute -inset-5 rounded-3xl bg-primary/15 blur-3xl opacity-70"
                 aria-hidden="true"
               />
-              <div className="relative rounded-2xl border border-dc-border bg-dc-surface/90 backdrop-blur overflow-hidden shadow-elegant">
+              <div className="relative rounded-2xl overflow-hidden shadow-elegant bg-white text-[#0d0d0d]">
                 {/* Window bar */}
-                <div className="flex items-center gap-2 px-4 py-3 border-b border-dc-border bg-dc-card">
-                  <span className="w-6 h-6 rounded-md bg-white text-black flex items-center justify-center">
-                    <OpenAIMark className="w-4 h-4" />
+                <div className="flex items-center gap-2 px-4 py-3 border-b border-black/10">
+                  <span className="text-[#0d0d0d]">
+                    <OpenAIMark className="w-5 h-5" />
                   </span>
-                  <span className="text-sm font-medium text-foreground">ChatGPT</span>
-                  <span className="ml-auto inline-flex items-center gap-1.5 text-xs text-green-400">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                  <span className="text-sm font-semibold">ChatGPT</span>
+                  <span className="ml-auto inline-flex items-center gap-1.5 text-xs text-[#10a37f]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#10a37f] animate-pulse" />
                     connected to your machine
                   </span>
                 </div>
 
                 {/* Conversation */}
-                <div className="p-4 space-y-3 min-h-[240px]">
-                  <div className="gpt-step ml-auto max-w-[85%] w-fit rounded-2xl rounded-tr-sm bg-primary/15 border border-primary/25 px-4 py-2.5 text-sm text-foreground" style={{ animationDelay: "300ms" }}>
+                <div className="px-4 py-4 space-y-3 min-h-[250px] text-left">
+                  {/* User bubble with plugin chip, like the real app */}
+                  <div
+                    className="gpt-step ml-auto max-w-[92%] w-fit rounded-3xl bg-[#f4f4f4] px-4 py-2.5 text-sm leading-relaxed"
+                    style={{ animationDelay: "300ms" }}
+                  >
+                    <span className="inline-flex items-center gap-1.5 font-semibold mr-1.5 whitespace-nowrap">
+                      <img
+                        src="/favicon-512x512.png"
+                        alt=""
+                        className="w-4 h-4 rounded-[4px] inline-block"
+                      />
+                      Remote Desktop Commander
+                    </span>
                     Organize my Downloads folder
                   </div>
-                  {CHAT_STEPS.map((step, i) => (
-                    <div
-                      key={step}
-                      className="gpt-step flex items-center gap-2.5 text-sm text-muted-foreground"
-                      style={{ animationDelay: `${800 + i * 450}ms` }}
-                    >
-                      <span className="w-5 h-5 rounded-full bg-green-500/10 border border-green-500/30 flex items-center justify-center flex-shrink-0">
-                        <Check className="w-3 h-3 text-green-400" />
-                      </span>
-                      {step}
-                    </div>
-                  ))}
+
+                  {/* Worked-for line */}
                   <div
-                    className="gpt-step max-w-[85%] w-fit rounded-2xl rounded-tl-sm bg-dc-card border border-dc-border px-4 py-2.5 text-sm text-foreground"
-                    style={{ animationDelay: "2300ms" }}
+                    className="gpt-step flex items-center gap-1 text-sm text-[#8f8f8f]"
+                    style={{ animationDelay: "900ms" }}
                   >
-                    Done. Your Downloads folder is tidy.
+                    Worked for 42s
+                    <ChevronRight className="w-3.5 h-3.5" />
                   </div>
+
+                  {/* Assistant reply: plain text + bullets, ChatGPT style */}
+                  <div
+                    className="gpt-step text-sm leading-relaxed"
+                    style={{ animationDelay: "1400ms" }}
+                  >
+                    Downloads folder organized successfully.
+                  </div>
+                  <ul className="space-y-1.5 text-sm text-[#0d0d0d]">
+                    {CHAT_STEPS.map((step, i) => (
+                      <li
+                        key={step}
+                        className="gpt-step flex gap-2 leading-relaxed"
+                        style={{ animationDelay: `${1800 + i * 400}ms` }}
+                      >
+                        <span className="select-none">•</span>
+                        {step}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
-                {/* Composer */}
-                <div className="p-3 border-t border-dc-border bg-dc-card/60">
-                  <div className="flex items-center gap-2 rounded-full border border-dc-border bg-dc-card pl-4 pr-1.5 py-1.5">
+                {/* Composer, ChatGPT style */}
+                <div className="px-3 pb-3 pt-1">
+                  <div className="flex items-center gap-2 rounded-full border border-black/15 bg-white pl-3 pr-1.5 py-1.5 shadow-sm">
+                    <Plus className="w-4.5 h-4.5 w-5 h-5 text-[#5d5d5d] flex-shrink-0" />
                     <div className="flex-1 flex items-center gap-0.5 min-w-0">
-                      <span className="text-sm text-foreground whitespace-nowrap overflow-hidden text-ellipsis">
+                      <span className="text-sm text-[#0d0d0d] whitespace-nowrap overflow-hidden text-ellipsis">
                         {typed}
                       </span>
-                      <span className="w-[2px] h-4 bg-primary animate-pulse flex-shrink-0" />
+                      <span className="w-[2px] h-4 bg-[#0d0d0d] animate-pulse flex-shrink-0" />
                     </div>
+                    <Mic className="w-4.5 h-4.5 w-5 h-5 text-[#5d5d5d] flex-shrink-0 mr-1" />
                     <a
                       href={sendHref}
                       target="_blank"
@@ -235,12 +260,12 @@ const GptHero = () => {
                           destination: sendHref,
                         })
                       }
-                      className="w-8 h-8 rounded-full bg-primary hover:bg-primary/85 transition-colors flex items-center justify-center flex-shrink-0"
+                      className="w-8 h-8 rounded-full bg-[#0d0d0d] hover:bg-black/80 transition-colors flex items-center justify-center flex-shrink-0"
                     >
-                      <ArrowUp className="h-4 w-4 text-primary-foreground" />
+                      <ArrowUp className="h-4 w-4 text-white" />
                     </a>
                   </div>
-                  <p className="text-[11px] text-muted-foreground text-center mt-2">
+                  <p className="text-[11px] text-[#8f8f8f] text-center mt-2">
                     Try it: sending opens this prompt in ChatGPT
                   </p>
                 </div>
