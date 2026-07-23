@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Smartphone, HardDrive, Zap } from "lucide-react";
+import { Smartphone, HardDrive, Zap, Signal, Wifi, Battery, Menu, SquarePen } from "lucide-react";
 import CwCta from "./CwCta";
 
 const HIGHLIGHTS = [
@@ -100,37 +100,63 @@ const CwPhone = () => {
               visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <div className="relative w-[270px] mx-auto">
+            <div className="relative w-[290px] mx-auto">
               <div
-                className="absolute -inset-6 rounded-[3rem] bg-[#C96442]/15 blur-3xl"
+                className="absolute -inset-6 rounded-[3.5rem] bg-[#C96442]/15 blur-3xl"
                 aria-hidden="true"
               />
-              <div className="relative rounded-[2.4rem] border-[6px] border-[#1c1c1e] bg-[#FCFBF8] overflow-hidden shadow-elegant">
-                {/* Notch */}
-                <div className="flex justify-center pt-2 pb-1">
-                  <span className="w-20 h-5 bg-[#1c1c1e] rounded-full" />
-                </div>
-                {/* Mini chat */}
-                <div className="px-3 pb-4 pt-2 space-y-2.5 min-h-[380px] text-left text-[#1a1915]">
-                  <p className="text-center text-[11px] font-semibold text-[#8a877d]">Claude</p>
-                  <div className={`ml-auto max-w-[88%] w-fit rounded-2xl bg-[#F0EEE6] px-3 py-2 text-[13px] leading-snug ${step}`} style={d(300)}>
-                    Back up my photos folder to the external drive
+              {/* iPhone body */}
+              <div className="relative rounded-[3rem] bg-[#1c1c1e] p-[9px] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)]">
+                {/* Side buttons */}
+                <span className="absolute -left-[2px] top-24 w-[3px] h-8 bg-[#2a2a2c] rounded-l" aria-hidden="true" />
+                <span className="absolute -left-[2px] top-36 w-[3px] h-12 bg-[#2a2a2c] rounded-l" aria-hidden="true" />
+                <span className="absolute -right-[2px] top-32 w-[3px] h-16 bg-[#2a2a2c] rounded-r" aria-hidden="true" />
+                {/* Screen */}
+                <div className="relative rounded-[2.5rem] bg-[#FCFBF8] overflow-hidden flex flex-col h-[570px] text-[#1a1915]">
+                  {/* Dynamic Island */}
+                  <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-24 h-[26px] bg-black rounded-full z-10" aria-hidden="true" />
+                  {/* Status bar */}
+                  <div className="flex items-center justify-between px-7 pt-3.5 pb-1 text-[13px] font-semibold">
+                    <span>9:41</span>
+                    <span className="flex items-center gap-1 text-[#1a1915]">
+                      <Signal className="w-3.5 h-3.5" />
+                      <Wifi className="w-3.5 h-3.5" />
+                      <Battery className="w-4.5 h-4.5 w-5 h-5" />
+                    </span>
                   </div>
-                  <div className={`inline-flex items-center gap-1.5 text-[10px] text-[#8a877d] border border-black/[0.07] rounded-lg px-2 py-1 bg-white ${step}`} style={d(900)}>
-                    <img src="/favicon-512x512.png" alt="" className="w-3 h-3 rounded-[3px]" />
-                    Desktop Commander · your Mac at home
+                  {/* App header */}
+                  <div className="flex items-center justify-between px-4 py-2 border-b border-black/[0.06]">
+                    <Menu className="w-4.5 h-4.5 w-5 h-5 text-[#5c594e]" />
+                    <span className="text-[14px] font-semibold">Claude</span>
+                    <SquarePen className="w-4.5 h-4.5 w-5 h-5 text-[#5c594e]" />
                   </div>
-                  {PHONE_STEPS.map((text, i) => (
-                    <p key={text} className={`font-serif text-[13px] leading-snug ${step}`} style={d(1400 + i * 450)}>
-                      {text}
-                    </p>
-                  ))}
-                  <div className={`font-serif text-[13px] leading-snug ${step}`} style={d(2400)}>
-                    Backup finished. Your machine is all set while you are away.
+                  {/* Chat area */}
+                  <div className="flex-1 px-3 pt-3 space-y-2.5 text-left overflow-hidden">
+                    <div className={`ml-auto max-w-[88%] w-fit rounded-2xl bg-[#F0EEE6] px-3 py-2 text-[13px] leading-snug ${step}`} style={d(300)}>
+                      Back up my photos folder to the external drive
+                    </div>
+                    <div className={`inline-flex items-center gap-1.5 text-[10px] text-[#8a877d] border border-black/[0.07] rounded-lg px-2 py-1 bg-white ${step}`} style={d(900)}>
+                      <img src="/favicon-512x512.png" alt="" className="w-3 h-3 rounded-[3px]" />
+                      Desktop Commander · your Mac at home
+                    </div>
+                    {PHONE_STEPS.map((text, i) => (
+                      <p key={text} className={`font-serif text-[13px] leading-snug ${step}`} style={d(1400 + i * 450)}>
+                        {text}
+                      </p>
+                    ))}
+                    <div className={`font-serif text-[13px] leading-snug ${step}`} style={d(2400)}>
+                      Backup finished. Your machine is all set while you are away.
+                    </div>
                   </div>
-                  {/* Mini composer */}
-                  <div className={`mt-3 rounded-full border border-black/10 bg-white px-3 py-2 text-[12px] text-[#a7a495] ${step}`} style={d(2800)}>
-                    Write a message...
+                  {/* Composer pinned to bottom */}
+                  <div className="px-3 pb-2 pt-2">
+                    <div className={`rounded-full border border-black/10 bg-white px-3.5 py-2.5 text-[13px] text-[#a7a495] ${step}`} style={d(2800)}>
+                      Write a message...
+                    </div>
+                  </div>
+                  {/* Home indicator */}
+                  <div className="flex justify-center pb-2">
+                    <span className="w-28 h-1 bg-black/80 rounded-full" aria-hidden="true" />
                   </div>
                 </div>
               </div>
