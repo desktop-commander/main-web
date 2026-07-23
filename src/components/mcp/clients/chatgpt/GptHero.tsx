@@ -195,14 +195,6 @@ const GptHero = () => {
                     className="gpt-step ml-auto max-w-[92%] w-fit rounded-3xl bg-[#f4f4f4] px-4 py-2.5 text-sm leading-relaxed"
                     style={{ animationDelay: "300ms" }}
                   >
-                    <span className="inline-flex items-center gap-1.5 font-semibold mr-1.5 whitespace-nowrap">
-                      <img
-                        src="/favicon-512x512.png"
-                        alt=""
-                        className="w-4 h-4 rounded-[4px] inline-block"
-                      />
-                      Remote Desktop Commander
-                    </span>
                     Organize my Downloads folder
                   </div>
 
