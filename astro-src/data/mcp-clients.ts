@@ -372,9 +372,9 @@ export const mcpClients: McpClient[] = [
     transport: 'local',
     logo: 'cursor-mark.png',
     seo: {
-      title: 'Cursor MCP for Files & Terminal — Desktop Commander',
+      title: 'Give Cursor Access to Your Whole Computer | Desktop Commander MCP',
       description:
-        'Add the Desktop Commander MCP server to Cursor for full file access and terminal control beyond your project folder. Free, open source, quick setup.',
+        'The Desktop Commander MCP gives Cursor full file access and terminal control beyond your project folder. Free, open source, fully local, quick setup.',
     },
     hero: {
       badge: 'Works with Cursor',
@@ -431,22 +431,27 @@ export const mcpClients: McpClient[] = [
       {
         question: 'Why add Desktop Commander when Cursor has its own tools?',
         answer:
-          'Cursor’s built-in tools focus on the workspace you have open. Desktop Commander extends the agent to your whole machine: any folder on disk, cross-project searches, background processes, and system-level terminal work.',
+          'Cursor’s built in tools focus on the workspace you have open. Desktop Commander extends the agent to your whole machine: any folder on disk, cross project searches, background processes, and system level terminal work.',
       },
       {
-        question: 'Does it conflict with Cursor’s built-in terminal?',
+        question: 'Is everything really local?',
         answer:
-          'No. It registers as a separate MCP server; Cursor’s agent chooses the right tool per task. You can enable or disable it any time in MCP settings.',
+          'Yes. Desktop Commander is a local MCP server that runs on your machine and talks to Cursor directly. There is no cloud bridge and no account. Pair it with local models in Cursor and nothing has to leave your computer.',
+      },
+      {
+        question: 'Does it conflict with Cursor’s built in terminal?',
+        answer:
+          'No. It registers as a separate MCP server and Cursor’s agent chooses the right tool per task. You can enable or disable it any time in MCP settings.',
       },
       {
         question: 'Is it free?',
         answer:
-          'Yes — the local MCP server is free and open source, with 26k+ weekly downloads.',
+          'Yes. The local MCP server is free and open source, with 26k+ weekly downloads.',
       },
       {
         question: 'Does it work in other editors too?',
         answer:
-          'Yes. Any MCP-capable client works — Windsurf, VS Code with MCP support, Claude Desktop, and more.',
+          'Yes. Any MCP capable client works, including Windsurf, VS Code with MCP support, and Claude Desktop.',
       },
     ],
   },
