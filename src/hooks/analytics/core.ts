@@ -18,6 +18,14 @@ import type { AllEvents } from '@/lib/analytics/events';
  */
 export const useScrollTracking = (resetDependency?: any) => {
   useEffect(() => {
+    // Guard: on Astro pages many independent React islands mount this hook.
+    // Only the first island per page registers the scroll listener, otherwise
+    // every milestone fires one duplicate scroll_depth event per island.
+    const w = window as any;
+    const pageKey = `${window.location.pathname}|${resetDependency ?? ''}`;
+    if (w.__dcScrollTrackingKey === pageKey) return;
+    w.__dcScrollTrackingKey = pageKey;
+
     let maxScrollDepth = 0;
     let ticking = false;
 

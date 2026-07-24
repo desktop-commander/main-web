@@ -1,0 +1,70 @@
+---
+/**
+ * /mcp/claude-desktop/ — custom standalone landing page for Claude Desktop (local MCP).
+ * Built from the approved ChatGPT page template; fully local angle.
+ */
+import Layout from '../../../layouts/Layout.astro';
+import Navigation from '../../../components/Navigation.astro';
+import MoreClients from '../../../components/MoreClients.astro';
+import PostHogInit from '../../../../src/components/PostHogInit';
+import CdHero from '../../../../src/components/mcp/clients/claude-desktop/CdHero';
+import CdPromptShowcase from '../../../../src/components/mcp/clients/claude-desktop/CdPromptShowcase';
+import CdCapabilities from '../../../../src/components/mcp/clients/claude-desktop/CdCapabilities';
+import CdLocal from '../../../../src/components/mcp/clients/claude-desktop/CdLocal';
+import CdSetup from '../../../../src/components/mcp/clients/claude-desktop/CdSetup';
+import CdFinalCTA from '../../../../src/components/mcp/clients/claude-desktop/CdFinalCTA';
+import ClientFAQ from '../../../../src/components/mcp/clients/ClientFAQ';
+import Footer from '../../../../src/components/Footer';
+import { getClient } from '../../../data/mcp-clients';
+
+const client = getClient('claude-desktop')!;
+
+const siteBase = Astro.site?.origin || 'https://desktopcommander.app';
+const pageUrl = `${siteBase}/mcp/claude-desktop/`;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteBase}/` },
+      { '@type': 'ListItem', position: 2, name: 'MCP', item: `${siteBase}/mcp/` },
+      { '@type': 'ListItem', position: 3, name: 'Claude Desktop', item: pageUrl },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: client.faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  },
+];
+---
+
+<Layout title={client.seo.title} description={client.seo.description} jsonLd={jsonLd}>
+  <PostHogInit client:idle />
+
+  <div class="min-h-screen bg-background">
+    <Navigation hideCta />
+
+    <main>
+      <CdHero client:load />
+      <CdPromptShowcase client:visible />
+      <CdCapabilities client:visible />
+      <CdLocal client:visible />
+      <CdSetup client:visible />
+      <ClientFAQ client:visible name="Claude Desktop" faqs={client.faqs} />
+      <CdFinalCTA client:visible />
+      <MoreClients current="claude-desktop" heading="Also works with" />
+    </main>
+
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../../../src/index.css';
+</style>

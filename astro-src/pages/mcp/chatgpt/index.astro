@@ -1,0 +1,71 @@
+---
+/**
+ * /mcp/chatgpt/ — custom standalone landing page for ChatGPT.
+ * Overrides the generic [client] template (that route excludes this slug).
+ * Once this design is approved it becomes the template for the other clients.
+ */
+import Layout from '../../../layouts/Layout.astro';
+import Navigation from '../../../components/Navigation.astro';
+import MoreClients from '../../../components/MoreClients.astro';
+import PostHogInit from '../../../../src/components/PostHogInit';
+import GptHero from '../../../../src/components/mcp/clients/chatgpt/GptHero';
+import GptPromptShowcase from '../../../../src/components/mcp/clients/chatgpt/GptPromptShowcase';
+import GptCapabilities from '../../../../src/components/mcp/clients/chatgpt/GptCapabilities';
+import GptPhone from '../../../../src/components/mcp/clients/chatgpt/GptPhone';
+import GptSetup from '../../../../src/components/mcp/clients/chatgpt/GptSetup';
+import GptFinalCTA from '../../../../src/components/mcp/clients/chatgpt/GptFinalCTA';
+import ClientFAQ from '../../../../src/components/mcp/clients/ClientFAQ';
+import Footer from '../../../../src/components/Footer';
+import { getClient } from '../../../data/mcp-clients';
+
+const client = getClient('chatgpt')!;
+
+const siteBase = Astro.site?.origin || 'https://desktopcommander.app';
+const pageUrl = `${siteBase}/mcp/chatgpt/`;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteBase}/` },
+      { '@type': 'ListItem', position: 2, name: 'MCP', item: `${siteBase}/mcp/` },
+      { '@type': 'ListItem', position: 3, name: 'ChatGPT', item: pageUrl },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: client.faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  },
+];
+---
+
+<Layout title={client.seo.title} description={client.seo.description} jsonLd={jsonLd}>
+  <PostHogInit client:idle />
+
+  <div class="min-h-screen bg-background">
+    <Navigation hideCta />
+
+    <main>
+      <GptHero client:load />
+      <GptPromptShowcase client:visible />
+      <GptCapabilities client:visible />
+      <GptPhone client:visible />
+      <GptSetup client:visible />
+      <ClientFAQ client:visible name={client.name} faqs={client.faqs} />
+      <GptFinalCTA client:visible />
+      <MoreClients current="chatgpt" heading="Also works with" />
+    </main>
+
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../../../src/index.css';
+</style>

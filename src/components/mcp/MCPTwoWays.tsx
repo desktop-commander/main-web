@@ -30,7 +30,7 @@ const MCPTwoWays = () => {
       bullets: [
         "Works with Claude Desktop, Cursor, Windsurf, and any MCP client",
         "One-command install, everything stays on your computer",
-        "26k+ weekly downloads"
+        "50k+ weekly downloads"
       ],
       cta: {
         label: "Install locally",

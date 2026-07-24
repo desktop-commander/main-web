@@ -8,6 +8,7 @@ import MCPInstallation from '../../../src/components/mcp/MCPInstallation';
 import MCPRemote from '../../../src/components/mcp/MCPRemote';
 import MCPFeatures from '../../../src/components/mcp/MCPFeatures';
 import MCPFAQ from '../../../src/components/mcp/MCPFAQ';
+import MoreClients from '../../components/MoreClients.astro';
 import Footer from '../../../src/components/Footer';
 ---
 
@@ -22,6 +23,7 @@ import Footer from '../../../src/components/Footer';
     <main>
       <MCPHero client:load />
       <MCPTwoWays client:visible />
+      <MoreClients heading="Set it up for your AI client" />
       <MCPInstallation client:visible />
       <MCPRemote client:visible />
       <MCPFeatures client:visible />

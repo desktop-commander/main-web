@@ -1,0 +1,70 @@
+---
+/**
+ * /mcp/cursor/ — custom standalone landing page for Cursor (local MCP).
+ * Built from the approved ChatGPT page template; local angle instead of remote.
+ */
+import Layout from '../../../layouts/Layout.astro';
+import Navigation from '../../../components/Navigation.astro';
+import MoreClients from '../../../components/MoreClients.astro';
+import PostHogInit from '../../../../src/components/PostHogInit';
+import CuHero from '../../../../src/components/mcp/clients/cursor/CuHero';
+import CuPromptShowcase from '../../../../src/components/mcp/clients/cursor/CuPromptShowcase';
+import CuCapabilities from '../../../../src/components/mcp/clients/cursor/CuCapabilities';
+import CuMachines from '../../../../src/components/mcp/clients/cursor/CuMachines';
+import CuSetup from '../../../../src/components/mcp/clients/cursor/CuSetup';
+import CuFinalCTA from '../../../../src/components/mcp/clients/cursor/CuFinalCTA';
+import ClientFAQ from '../../../../src/components/mcp/clients/ClientFAQ';
+import Footer from '../../../../src/components/Footer';
+import { getClient } from '../../../data/mcp-clients';
+
+const client = getClient('cursor')!;
+
+const siteBase = Astro.site?.origin || 'https://desktopcommander.app';
+const pageUrl = `${siteBase}/mcp/cursor/`;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteBase}/` },
+      { '@type': 'ListItem', position: 2, name: 'MCP', item: `${siteBase}/mcp/` },
+      { '@type': 'ListItem', position: 3, name: 'Cursor', item: pageUrl },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: client.faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  },
+];
+---
+
+<Layout title={client.seo.title} description={client.seo.description} jsonLd={jsonLd}>
+  <PostHogInit client:idle />
+
+  <div class="min-h-screen bg-background">
+    <Navigation hideCta />
+
+    <main>
+      <CuHero client:load />
+      <CuPromptShowcase client:visible />
+      <CuCapabilities client:visible />
+      <CuMachines client:visible />
+      <CuSetup client:visible />
+      <ClientFAQ client:visible name="Cursor" faqs={client.faqs} />
+      <CuFinalCTA client:visible />
+      <MoreClients current="cursor" heading="Also works with" />
+    </main>
+
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../../../src/index.css';
+</style>
