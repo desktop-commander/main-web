@@ -1,5 +1,5 @@
 {
-  "version": "2.2.1",
+  "version": "2.2.2",
   "flags": {
     "user_surveys": false,
     "onboarding_injection": false,
@@ -18,11 +18,7 @@
         "variants": [
           {
             "name": "showMCPUi",
-            "weight": 50
-          },
-          {
-            "name": "notShowMCPUi",
-            "weight": 50
+            "weight": 100
           }
         ]
       }
