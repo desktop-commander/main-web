@@ -6,7 +6,11 @@ import {
 } from "@/components/ui/accordion";
 import { useState, useEffect, useRef } from "react";
 
-const PricingFAQ = () => {
+type PricingFAQProps = {
+  includeTwoHundredDollarPackage?: boolean;
+};
+
+const PricingFAQ = ({ includeTwoHundredDollarPackage = true }: PricingFAQProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -24,7 +28,7 @@ const PricingFAQ = () => {
   const faqs = [
     {
       question: "How does the Credits Plan work?",
-      answer: "You subscribe to a monthly AI usage credits bundle — $20, $50, $100, or $200 per month. Credits cover the cost of running AI models: each message costs a small amount depending on the model, with more capable models costing a bit more."
+      answer: `You subscribe to a monthly AI usage credits bundle — $20, $50, and $100${includeTwoHundredDollarPackage ? ', or $200' : ''} per month. Credits cover the cost of running AI models: each message costs a small amount depending on the model, with more capable models costing a bit more.`
     },
     {
       question: "What models are available?",
