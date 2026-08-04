@@ -11,7 +11,14 @@ const creditPackages = [
   { label: "$200 AI Usage credits/month", value: 200 },
 ];
 
-const PricingSection = () => {
+type PricingSectionProps = {
+  includeTwoHundredDollarPackage?: boolean;
+};
+
+const PricingSection = ({ includeTwoHundredDollarPackage = true }: PricingSectionProps) => {
+  const availableCreditPackages = includeTwoHundredDollarPackage
+    ? creditPackages
+    : creditPackages.filter((pkg) => pkg.value !== 200);
   const [proYearly, setProYearly] = useState(true);
   const [selectedCredits, setSelectedCredits] = useState(20);
   const [creditsDropdownOpen, setCreditsDropdownOpen] = useState(false);
@@ -234,7 +241,7 @@ const PricingSection = () => {
               </button>
               {creditsDropdownOpen && (
                 <div className="absolute z-50 mt-1 left-0 right-0 bg-[#1a1f2e] border border-dc-border rounded-lg shadow-2xl overflow-hidden">
-                  {creditPackages.map((pkg) => (
+                  {availableCreditPackages.map((pkg) => (
                     <button
                       key={pkg.value}
                       onClick={() => {
@@ -310,7 +317,7 @@ const PricingSection = () => {
                     <span className="text-xs font-medium text-green-400 bg-green-400/10 px-2 py-0.5 rounded-full">$10 free</span>
                   </div>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Every account starts with $10 in free credits. Use them with any cloud model — Claude, GPT, Gemini, and more. Top up in $10–$200 increments whenever you need more.
+                    Every account starts with $10 in free credits. Use them with any cloud model — Claude, GPT, Gemini, and more. Top up in {includeTwoHundredDollarPackage ? '$10–$200' : '$10–$100'} increments whenever you need more.
                   </p>
                 </div>
               </div>
