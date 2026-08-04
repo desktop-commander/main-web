@@ -40,7 +40,7 @@ const PricingTeaser = () => {
           <div className="bg-dc-surface border-2 border-green-500/50 rounded-xl p-6 relative">
             <h3 className="text-base font-semibold text-foreground mb-1">Credits Plan</h3>
             <p className="text-xs text-muted-foreground mb-3">
-              Monthly AI usage credits bundle — from $20 to $200 per month.
+              Monthly AI usage credits bundle — from $20 per month.
             </p>
             <div className="mb-3">
               <span className="text-3xl font-bold text-foreground">from $20</span>

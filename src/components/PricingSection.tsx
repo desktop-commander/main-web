@@ -8,17 +8,9 @@ const creditPackages = [
   { label: "$20 AI Usage credits/month", value: 20 },
   { label: "$50 AI Usage credits/month", value: 50 },
   { label: "$100 AI Usage credits/month", value: 100 },
-  { label: "$200 AI Usage credits/month", value: 200 },
 ];
 
-type PricingSectionProps = {
-  includeTwoHundredDollarPackage?: boolean;
-};
-
-const PricingSection = ({ includeTwoHundredDollarPackage = true }: PricingSectionProps) => {
-  const availableCreditPackages = includeTwoHundredDollarPackage
-    ? creditPackages
-    : creditPackages.filter((pkg) => pkg.value !== 200);
+const PricingSection = () => {
   const [selectedCredits, setSelectedCredits] = useState(20);
   const [creditsDropdownOpen, setCreditsDropdownOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -113,7 +105,7 @@ const PricingSection = ({ includeTwoHundredDollarPackage = true }: PricingSectio
               </button>
               {creditsDropdownOpen && (
                 <div className="absolute z-50 mt-1 left-0 right-0 bg-[#1a1f2e] border border-dc-border rounded-lg shadow-2xl overflow-hidden">
-                  {availableCreditPackages.map((pkg) => (
+                  {creditPackages.map((pkg) => (
                     <button
                       key={pkg.value}
                       onClick={() => {

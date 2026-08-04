@@ -9,7 +9,7 @@ import Footer from '../../src/components/Footer';
 
 <Layout
   title="Pricing Preview - Desktop Commander"
-  description="Preview of the updated Desktop Commander pricing. One Credits Plan from $20/month with no $200 package."
+  description="Preview of the updated Desktop Commander pricing. One Credits Plan from $20/month with updated credit options."
 >
   <!-- Load PostHog early to initialize analytics -->
   <PostHogInit client:load />
@@ -17,8 +17,8 @@ import Footer from '../../src/components/Footer';
   <div class="min-h-screen bg-background">
     <Navigation />
     <main>
-      <PricingSection client:load includeTwoHundredDollarPackage={false} />
-      <PricingFAQ client:visible includeTwoHundredDollarPackage={false} />
+      <PricingSection client:load />
+      <PricingFAQ client:visible />
     </main>
     <Footer client:visible />
   </div>

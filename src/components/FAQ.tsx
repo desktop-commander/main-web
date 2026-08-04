@@ -47,7 +47,7 @@ const FAQ = () => {
     },
     {
       question: "How much does it cost to use Desktop Commander?",
-      answer: "Desktop Commander runs on the Credits Plan — a monthly AI usage credits bundle from $20 to $200 per month. You get access to the best AI models available on the market, can change your bundle package any time, and cancel any time. New accounts include free starting credits so you can try it out first."
+      answer: "Desktop Commander runs on the Credits Plan — a monthly AI usage credits bundle from $20 per month. You get access to the best AI models available on the market, can change your bundle package any time, and cancel any time. New accounts include free starting credits so you can try it out first."
     },
     {
       question: "Which operating systems does it support?",
