@@ -281,53 +281,101 @@ const description =
      stripped — see welcome.astro if any of it is ever needed again. */
 
   /* ---------- research block (welcome3) ---------- */
-  .research { padding: 4px 0 90px; }
-  .research-intro { max-width: 620px; margin: 0 auto 26px; text-align: center; }
+  .research { padding: 18px 0 110px; }
+  .research-intro { max-width: 600px; margin: 0 auto; text-align: center; }
   .research-intro h2 {
     font-family: var(--display); font-weight: 600;
-    font-size: clamp(24px, 3vw, 34px); line-height: 1.15;
-    letter-spacing: -0.02em; margin: 0 0 14px;
+    font-size: clamp(30px, 3.6vw, 40px); line-height: 1.14;
+    letter-spacing: -0.022em; margin: 0 0 22px;
   }
-  .research-intro p { color: var(--text-dim); font-size: 15.5px; line-height: 1.65; margin: 0 0 10px; }
-  .research-intro .research-anyone { color: var(--text-faint); font-size: 14px; margin-top: 14px; }
-  .research-intro .why {
-    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--text-faint); margin-top: 18px;
+  /* Brighter stops than the hero gradient: violet mid-tones dip below a
+     comfortable contrast ratio on this background at body-adjacent sizes. */
+  .research-intro h2 .grad {
+    background: linear-gradient(100deg, #9EC1FF 0%, #C3B5FF 55%, #8FF0FF 110%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  /* One paragraph, one colour, no bold spans. Raised from --text-dim: the
+     body was the least readable thing on the page. */
+  .research-intro p {
+    color: rgba(244,245,247,0.78);
+    font-size: 16.5px; line-height: 1.68;
+    margin: 0 auto; max-width: 520px;
   }
 
-  /* Alt CTA row under the intro — the "just talk to us" path needs to be
-     visible BEFORE the form, not buried under it. */
-  .research-alt {
-    display: flex; align-items: center; justify-content: center;
-    gap: 18px; flex-wrap: wrap; margin-top: 22px;
+  /* ---------- screener ---------- */
+  /* 64px of air above: this is a separate step, not another paragraph. */
+  .screener { max-width: 660px; margin: 64px auto 0; text-align: center; }
+  .screener-q {
+    font-size: 18px; line-height: 1.45; color: var(--text);
+    font-weight: 500; margin-bottom: 22px;
   }
-  .research-alt-or {
-    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--text-faint);
+  .screener-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .screener-btn {
+    appearance: none; cursor: pointer;
+    padding: 13px 34px; border-radius: 999px;
+    border: 1px solid var(--stroke-bright);
+    background: var(--glass-bright); color: var(--text);
+    font-family: var(--sans); font-size: 15px; font-weight: 500;
+    transition: border-color .15s, background .15s, transform .15s;
+  }
+  .screener-btn:hover {
+    border-color: var(--blue); background: rgba(125,169,255,0.12);
+    transform: translateY(-1px);
+  }
+  .screener-btn.is-active { border-color: var(--blue); background: rgba(125,169,255,0.2); }
+  .screener-note {
+    margin: 24px auto 0; max-width: 470px;
+    font-size: 14.5px; line-height: 1.6;
+    color: rgba(244,245,247,0.72);
   }
   .btn-ghost {
-    display: inline-flex; align-items: center; gap: 7px;
-    padding: 9px 17px; border-radius: 999px;
+    display: inline-flex; align-items: center; gap: 9px;
+    margin-top: 26px; padding: 12px 24px; border-radius: 999px;
     border: 1px solid var(--stroke-bright);
     background: var(--glass-bright);
     color: var(--text); text-decoration: none;
-    font-size: 13.5px; font-weight: 500;
+    font-family: var(--sans); font-size: 14.5px; font-weight: 500;
     transition: border-color .15s, background .15s, transform .15s;
   }
+  .btn-ghost svg { opacity: 0.75; }
   .btn-ghost:hover {
     border-color: var(--blue); background: rgba(125,169,255,0.12);
     transform: translateY(-1px);
   }
+  .btn-ghost:hover svg { opacity: 1; }
+
+  .no-card { margin-top: 40px; }
+  .no-path { max-width: 560px; margin: 44px auto 0; text-align: left; }
+  .no-path-intro { color: rgba(244,245,247,0.78); font-size: 15.5px; margin: 0 0 18px; text-align: center; }
+  .no-path-label { display: block; font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+  .no-path textarea {
+    width: 100%; box-sizing: border-box; padding: 13px 15px;
+    font-family: var(--sans); font-size: 15px;
+    border: 1px solid var(--stroke-bright); border-radius: 12px;
+    background: rgba(255,255,255,0.045); color: var(--text); resize: vertical;
+  }
+  .no-path textarea:focus {
+    outline: none; border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(125,169,255,0.14);
+  }
+  .btn-solid {
+    appearance: none; border: 0; cursor: pointer; margin-top: 14px;
+    background: var(--text); color: var(--bg);
+    font-family: var(--sans); font-size: 15px; font-weight: 700;
+    padding: 12px 28px; border-radius: 12px;
+  }
+  .no-path-thanks { color: var(--text-dim); font-size: 14.5px; margin-top: 14px; }
 
   /* Form card — glass, matching the page rather than a white box on top of it. */
   .research-card {
-    max-width: 660px; margin: 0 auto;
+    max-width: 660px; margin: 40px auto 0;
     background: var(--glass); border: 1px solid var(--stroke);
     border-radius: 22px;
     padding: 34px 34px 30px;
     backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
   }
-  .form-fallback { font-size: 13px; color: var(--text-faint); text-align: center; margin: 8px 0 0; }
+  .form-fallback { font-size: 13.5px; color: var(--text-dim); text-align: center; margin: 8px 0 0; }
   .form-fallback a { color: var(--text-dim); }
 
   /* HubSpot v2 renders into our DOM and injects its own stylesheet after ours,
@@ -339,7 +387,6 @@ const description =
     color: var(--text) !important; margin-bottom: 10px !important; line-height: 1.4 !important;
   }
   .research-card .hs-form-required { color: var(--blue) !important; margin-left: 3px; }
-  .research-card .hs-field-desc { color: var(--text-faint) !important; font-size: 13px !important; }
 
   .research-card input[type="text"],
   .research-card input[type="email"],
@@ -351,7 +398,40 @@ const description =
     background: rgba(255,255,255,0.045) !important; color: var(--text) !important;
     transition: border-color .15s, background .15s;
   }
-  .research-card textarea { min-height: 78px !important; resize: vertical !important; }
+  /* Tall enough to signal "we expect a paragraph, not two words". Box size is
+     the strongest cue for expected answer length. */
+  .research-card textarea { min-height: 116px !important; resize: vertical !important; }
+
+  /* Selects need their own rules: appearance:none strips the native chrome,
+     and the arrow is an inline SVG background since ::after can't be placed
+     on a <select>. */
+  .research-card select {
+    width: 100% !important; box-sizing: border-box !important;
+    padding: 12px 40px 12px 14px !important;
+    font-size: 14.5px !important; font-family: var(--sans) !important;
+    border: 1px solid var(--stroke-bright) !important; border-radius: 11px !important;
+    background-color: rgba(255,255,255,0.045) !important;
+    color: var(--text) !important;
+    appearance: none !important; -webkit-appearance: none !important;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23A2A7B3' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 14px center !important;
+    cursor: pointer !important;
+    transition: border-color .15s, background-color .15s;
+  }
+  .research-card select:hover { border-color: var(--stroke-bright) !important;
+    background-color: rgba(255,255,255,0.07) !important; }
+  .research-card select:focus {
+    outline: none !important; border-color: var(--blue) !important;
+    box-shadow: 0 0 0 3px rgba(125,169,255,0.14) !important;
+  }
+  /* Honoured on Windows/Linux; macOS draws the open list with system chrome. */
+  .research-card select option { background: #14161C; color: var(--text); }
+  /* Help text sits under the label, above the input. */
+  .research-card .hs-field-desc {
+    color: var(--text-dim) !important; font-size: 13.5px !important;
+    line-height: 1.55 !important; margin: -3px 0 11px !important; display: block !important;
+  }
   .research-card input::placeholder, .research-card textarea::placeholder { color: var(--text-faint) !important; }
   .research-card input:focus, .research-card textarea:focus {
     outline: none !important; border-color: var(--blue) !important;
@@ -428,10 +508,10 @@ const description =
   .research-card .legal-consent-container { color: var(--text-faint); font-size: 13px; }
 
   .research-foot {
-    max-width: 660px; margin: 20px auto 0; text-align: center;
-    font-size: 13px; color: var(--text-faint); line-height: 1.6;
+    max-width: 660px; margin: 26px auto 0; text-align: center;
+    font-size: 13.5px; color: var(--text-dim); line-height: 1.6;
   }
-  .research-foot a { color: var(--text-dim); }
+  .research-foot a { color: var(--text); }
 
   </style>
 </head>
@@ -478,26 +558,46 @@ const description =
   <!-- ============ RESEARCH: DATABASE QUESTIONS ============ -->
   <section class="research" id="research">
     <div class="research-intro">
-      <h2>Struggling to get AI working with your own&nbsp;database?</h2>
+      <h2>Want AI working with <span class="grad">Your Own&nbsp;Database</span>?</h2>
       <p>
-        We're trying to understand <strong>where people get stuck</strong>. Answer six
-        questions and we'll send you a prompt to try. If you're stuck somewhere
-        specific, we'll help if we can.
+        We're trying to understand where people get stuck. Answer a few questions
+        and we'll send you a prompt to try &mdash; and help if you're stuck somewhere
+        specific.
       </p>
-      <p class="research-anyone">
+    </div>
+
+    <!-- Screener. In-page rather than a form field: a "no" inside the form only
+         counts if they submit anyway, and they won't. Clicked here, every answer
+         is captured — which is what turns "we're afraid 80% don't have this
+         problem" into a measured base rate against research_viewed. -->
+    <div class="screener" id="screener">
+      <div class="screener-q">Do you have a database you'd want AI to work with?</div>
+      <div class="screener-btns">
+        <button type="button" class="screener-btn" data-answer="yes">Yes</button>
+        <button type="button" class="screener-btn" data-answer="unsure">Not sure</button>
+        <button type="button" class="screener-btn" data-answer="no">No</button>
+      </div>
+      <p class="screener-note">
         &ldquo;I've never tried&rdquo; and &ldquo;it already works&rdquo; are both answers we need.
       </p>
 
-      <div class="research-alt">
-        <span class="research-alt-or">six questions · about a minute</span>
-        <a class="btn-ghost" href="https://calendar.app.google/akiPcfaS3oaigsxQ9" data-cta="calendar-top">
-          or talk to us instead
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
+      <a class="btn-ghost" href="https://calendar.app.google/akiPcfaS3oaigsxQ9" data-cta="calendar-top">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M8 2v4M16 2v4M3.5 9.5h17M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Rather talk it through? Book 20 minutes
+      </a>
     </div>
 
-    <div class="research-card">
+    <!-- "No" path: one open question. Tests whether database demand is real or
+         an artifact of how we asked. Goes to PostHog, not HubSpot — no email,
+         no friction, nothing to submit. -->
+    <div class="research-card no-card" id="noPath" hidden>
+      <p class="no-path-intro">Fair enough — that's useful on its own. One question, if you don't mind:</p>
+      <div id="noForm"></div>
+    </div>
+
+    <div class="research-card" id="researchCard" hidden>
       <div id="dbForm"></div>
       <p class="form-fallback" id="formFallback">
         Form not loading? Email us at
@@ -592,6 +692,7 @@ const description =
           cssClass: 'dc-hs-form',
           onFormReady: function () {
             if (fallback) fallback.style.display = 'none';
+            stampScreener();
             track('research_form_ready');
           },
           onFormSubmitted: function () {
@@ -603,6 +704,69 @@ const description =
         track('research_form_failed');
       }
     }, 250);
+
+    /* ---- screener ----
+       Fires on click, so "no" is captured even though those users never submit.
+       research_viewed is the denominator: screener_answered / research_viewed
+       gives the base rate for how many installers have this problem at all. */
+    var screenerAnswered = false;
+    document.querySelectorAll('.screener-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var answer = btn.getAttribute('data-answer');
+        document.querySelectorAll('.screener-btn').forEach(function (b) {
+          b.classList.remove('is-active');
+        });
+        btn.classList.add('is-active');
+        if (!screenerAnswered) {
+          screenerAnswered = true;
+          track('research_screener_answered', { answer: answer });
+        } else {
+          track('research_screener_changed', { answer: answer });
+        }
+        var card = document.getElementById('researchCard');
+        var noPath = document.getElementById('noPath');
+        /* "Not sure" goes INTO the form, not out of it — that bucket is likely
+           the non-technical segment, which is the population we most need. */
+        window.__dcScreener = answer;
+        if (answer === 'no') {
+          card.hidden = true;
+          noPath.hidden = false;
+          buildNoForm();
+        } else {
+          noPath.hidden = true;
+          card.hidden = false;
+        }
+        stampScreener();
+      });
+    });
+
+    /* Hidden db_screener carries the Yes/Not sure/No answer into HubSpot with
+       every submission, so "not sure" respondents can be told apart from "yes"
+       ones at read-out. hbspt v2 gives no API for this — set the input value
+       and dispatch a change event so the form picks it up. */
+    function stampScreener() {
+      var v = window.__dcScreener || '';
+      document.querySelectorAll('input[name="db_screener"]').forEach(function (inp) {
+        inp.value = v;
+        inp.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+    }
+
+    var noFormBuilt = false;
+    function buildNoForm() {
+      if (noFormBuilt || !(window.hbspt && window.hbspt.forms)) return;
+      noFormBuilt = true;
+      window.hbspt.forms.create({
+        region: 'eu1',
+        portalId: '146727725',
+        formId: '42af1548-86c8-490a-ab80-695264f15532',
+        target: '#noForm',
+        css: '',
+        cssClass: 'dc-hs-form',
+        onFormReady: function () { stampScreener(); track('research_no_form_ready'); },
+        onFormSubmitted: function () { track('research_no_submitted'); }
+      });
+    }
 
     /* Scroll cue */
     var cue = document.getElementById('scrollCue');
