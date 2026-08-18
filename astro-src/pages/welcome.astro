@@ -635,18 +635,18 @@ const description =
       else { queue.push([event, payload]); }
     }
 
-    var tries = 0;
     var flush = setInterval(function () {
-      tries++;
       if (ready()) {
         while (queue.length) {
           var q = queue.shift();
           window.posthog.capture(q[0], q[1]);
         }
         clearInterval(flush);
-      } else if (tries > 40) {
-        clearInterval(flush);
       }
+      /* No bail-out: posthog-js only initialises after Cookiebot statistics
+         consent, which can take a minute or never come. The old welcome page
+         polls indefinitely for exactly this reason — giving up at 10s meant
+         every queued event was silently discarded in production. */
     }, 250);
 
     track('page_view', { page: 'welcome' });
