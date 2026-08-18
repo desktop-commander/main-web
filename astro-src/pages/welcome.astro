@@ -1,24 +1,37 @@
 ---
 import PostHogInit from '../../src/components/PostHogInit';
+import dcLogo from '../../src/assets/dc-logo.png';
 
 /*
-  welcome.astro — v3 "team agent" design (Jun 2026).
-  Source experiment: About DC/landing-experiments/a-team-agent.html (lp-a-team-agent).
-  Previous v2 design recoverable from git history; welcome2.astro still holds v1.
+  welcome.astro — post-install page (Aug 2026). LIVE: this is what the
+  installer opens. Shipped from the welcome3 staging page after approval.
+  The previous v3 team-agent page is parked at welcome-shared.astro.
+
+  Purpose: find out where people get stuck between having a database and
+  getting answers from it. Three founders hold incompatible views and nobody
+  has a data point. See ~/work/outreach-research/welcome-page-db-task-brief.md.
+
+  Chrome, hero and CSS are lifted verbatim from welcome.astro v3 so the two are
+  visually identical above the divider. Everything below the divider is new:
+  the team-agent pitch, demo, tool cloud and email gate are all gone (that
+  experiment was closed 3 Aug 2026).
 
   Notes:
   - Standalone document (does NOT use Layout.astro): the design ships its own
     fonts, reset and styles, and the shared Tailwind globals would fight it.
     Head essentials (favicons, canonical, OG, Cookiebot, GA, Ahrefs) are
     replicated below — keep in sync with Layout.astro if those change.
-  - Email capture: HubSpot embedded form (portal 146727725 / eu1).
-  - Funnel events go to PostHog with { experiment: 'lp-a-team-agent' }:
-    page_view → cta_clicked (hero|bottom) → gate_viewed → email_submitted (+ demo_viewed)
+  - Form: HubSpot embedded form 6281c9bc-7caf-4780-86dd-366850adb7b3
+    (portal 146727725 / eu1). Six questions, three required, no placeholders,
+    no email domain blocklist. Post-submit thank-you carries the booking link
+    and a copyable prompt — both configured in HubSpot, not here.
+  - Funnel events go to PostHog with { experiment: 'lp-welcome3-db' }:
+    page_view → research_viewed → research_submitted
 */
 
-const title = "Desktop Commander: You're all set. Now meet your team's agent.";
+const title = "Desktop Commander: You're all set.";
 const description =
-  "Your Desktop Commander MCP is installed. Next: set up a team agent with shared files, shared tools, and its own computer. Connect your ERP, CRM, and databases, and talk to your stuff.";
+  "Your Desktop Commander MCP is installed and connected. Nothing else to do.";
 ---
 
 <!DOCTYPE html>
@@ -71,9 +84,11 @@ const description =
   <!-- Ahrefs Analytics - blocked until statistics consent -->
   <script type="text/plain" data-cookieconsent="statistics" src="https://analytics.ahrefs.com/analytics.js" data-key="5Iumy4Rr7Do+R0CWUtQkHA" async is:inline></script>
 
-  <!-- HubSpot embedded form (email gate). data-cookieconsent="ignore" so
-       Cookiebot auto-blocking never prevents the form from rendering. -->
-  <script src="https://js-eu1.hsforms.net/forms/embed/146727725.js" defer data-cookieconsent="ignore" is:inline></script>
+  <!-- HubSpot forms v2 embed. The form (6281c9bc) is an embedType:V3 form —
+       created via the API, and embedType is not settable after creation — so
+       the V4 `.hs-form-frame` loader used on welcome.astro 404s on it.
+       v2.js renders into our own DOM, which also means we can style it. -->
+  <script src="https://js-eu1.hsforms.net/forms/v2.js" defer data-cookieconsent="ignore" is:inline></script>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -154,13 +169,8 @@ const description =
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
   }
-  .logo { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 600; font-size: 18px; color: var(--text); text-decoration: none; }
-  .logo-mark {
-    width: 28px; height: 28px; border-radius: 8px;
-    background: var(--text); color: var(--bg);
-    display: grid; place-items: center;
-    font-family: var(--mono); font-weight: 700; font-size: 13px;
-  }
+  .logo { display: flex; align-items: center; text-decoration: none; }
+  .logo img { height: 26px; width: auto; display: block; }
   .nav-note { font-family: var(--mono); font-size: 10.5px; color: var(--text-dim); letter-spacing: 0.16em; text-transform: uppercase; }
   .dot-live { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--green); margin-right: 7px; animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
@@ -268,348 +278,242 @@ const description =
     text-transform: uppercase; color: var(--text-faint); white-space: nowrap;
   }
 
-  /* ---------- pitch: team agent ---------- */
-  .pitch { padding: 70px 0 30px; text-align: center; }
-  .pitch h2 {
-    font-family: var(--display);
-    font-size: clamp(38px, 6vw, 64px);
-    font-weight: 600;
-    letter-spacing: -0.025em;
-    line-height: 1.05;
-    max-width: 820px; margin: 0 auto 20px;
+  /* NOTE: CSS for the removed v3 pitch/demo/tool-cloud/gate sections was
+     stripped — see welcome.astro if any of it is ever needed again. */
+
+  /* ---------- research block (welcome3) ---------- */
+  .research { padding: 18px 0 110px; }
+  .research-intro { max-width: 600px; margin: 0 auto; text-align: center; }
+  .research-intro h2 {
+    font-family: var(--display); font-weight: 600;
+    font-size: clamp(30px, 3.6vw, 40px); line-height: 1.14;
+    letter-spacing: -0.022em; margin: 0 0 22px;
   }
-  .pitch h2 .grad {
-    background: var(--grad);
+  /* Brighter stops than the hero gradient: violet mid-tones dip below a
+     comfortable contrast ratio on this background at body-adjacent sizes. */
+  .research-intro h2 .grad {
+    background: linear-gradient(100deg, #9EC1FF 0%, #C3B5FF 55%, #8FF0FF 110%);
     -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  .pitch .sub { max-width: 620px; }
+  /* One paragraph, one colour, no bold spans. Raised from --text-dim: the
+     body was the least readable thing on the page. */
+  .research-intro p {
+    color: rgba(244,245,247,0.78);
+    font-size: 16.5px; line-height: 1.68;
+    margin: 0 auto; max-width: 520px;
+  }
 
-  .btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-family: var(--display); font-weight: 600; font-size: 17px;
-    color: #0B0C10;
-    background: var(--grad);
-    border: none; border-radius: 14px;
-    padding: 17px 36px;
-    cursor: pointer;
-    transition: transform 0.15s, box-shadow 0.15s;
-    box-shadow: 0 10px 40px rgba(125,169,255,0.25);
+  /* ---------- screener ---------- */
+  /* 64px of air above: this is a separate step, not another paragraph. */
+  .screener { max-width: 660px; margin: 64px auto 0; text-align: center; }
+  .screener-q {
+    font-size: 18px; line-height: 1.45; color: var(--text);
+    font-weight: 500; margin-bottom: 22px;
   }
-  .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 50px rgba(125,169,255,0.4); }
-  .btn-row { margin-top: 38px; }
-  .btn-note { margin-top: 14px; font-family: var(--mono); font-size: 11.5px; color: var(--text-faint); letter-spacing: 0.04em; }
-
-  .section-kicker {
-    font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--text-faint); margin-bottom: 14px;
-  }
-  .section-title {
-    font-family: var(--display); font-weight: 600;
-    font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.02em;
-    margin-bottom: 10px;
-  }
-  .section-sub { color: var(--text-dim); font-size: 16.5px; max-width: 580px; margin: 0 auto; }
-
-  /* ---------- product demo animation ---------- */
-  .demo-section { padding: 90px 0 20px; text-align: center; }
-  .demo-shell {
-    max-width: 680px; margin: 38px auto 0;
-    border-radius: 22px; padding: 1px;
-    background: linear-gradient(160deg, rgba(125,169,255,0.45), rgba(255,255,255,0.06) 40%, rgba(167,139,250,0.35));
-    box-shadow: 0 36px 100px rgba(0,0,0,0.6);
-    text-align: left;
-  }
-  .demo-window { background: #0B0D12; border-radius: 21px; overflow: hidden; }
-  .demo-bar {
-    display: flex; align-items: center; gap: 8px;
-    padding: 13px 18px;
-    border-bottom: 1px solid var(--stroke);
-    background: rgba(255,255,255,0.02);
-  }
-  .demo-dot { width: 11px; height: 11px; border-radius: 50%; }
-  .demo-dot.r { background: #FF5F57; } .demo-dot.y { background: #FEBC2E; } .demo-dot.g { background: #28C840; }
-  .demo-title { margin-left: 10px; font-weight: 700; font-size: 13.5px; }
-  .demo-members { margin-left: auto; display: flex; align-items: center; }
-  .demo-mini-av {
-    width: 22px; height: 22px; border-radius: 50%;
-    border: 2px solid #0B0D12; margin-left: -7px;
-    display: grid; place-items: center;
-    font-family: var(--display); font-size: 9.5px; font-weight: 600; color: #fff;
-  }
-  .demo-status {
-    margin-left: 12px;
-    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em;
-    color: var(--green); text-transform: uppercase;
-  }
-  .demo-status .sdot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--green); margin-right: 6px; animation: pulse 1.6s infinite; }
-  .demo-body {
-    padding: 24px 22px 26px;
-    display: flex; flex-direction: column; gap: 14px;
-    min-height: 540px;
-    font-size: 14.5px;
-    transition: opacity 0.5s;
-  }
-  .d-msg { max-width: 88%; animation: rise 0.45s cubic-bezier(0.16,1,0.3,1) both; }
-  .d-user-row {
-    align-self: flex-end;
-    display: flex; flex-direction: row-reverse; gap: 10px;
-    max-width: 88%;
-    animation: rise 0.45s cubic-bezier(0.16,1,0.3,1) both;
-  }
-  .d-uavatar {
-    width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
-    display: grid; place-items: center;
-    font-family: var(--display); font-weight: 600; font-size: 13px; color: #fff;
-    border: 1.5px solid rgba(255,255,255,0.25);
-    margin-top: 16px;
-  }
-  .d-uname {
-    font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em;
-    color: var(--text-faint); text-align: right; margin: 0 4px 4px 0;
-  }
-  .d-user {
-    background: var(--grad);
-    color: #0B0C10; font-weight: 500;
-    border-radius: 16px 16px 4px 16px;
-    padding: 12px 17px;
-    line-height: 1.45;
-  }
-  .d-user.alt { background: linear-gradient(100deg, #67E8F9 0%, #7DA9FF 100%); }
-  .d-user .caret { display: inline-block; width: 2px; height: 15px; background: #0B0C10; vertical-align: -2px; margin-left: 1px; animation: caretBlink 0.9s steps(1) infinite; }
-  @keyframes caretBlink { 50% { opacity: 0; } }
-  .d-agent {
-    align-self: flex-start;
-    display: flex; gap: 12px;
-  }
-  .d-avatar {
-    width: 36px; height: 36px; border-radius: 11px; flex-shrink: 0;
-    background: linear-gradient(150deg, #1A1D26, #0D0F14);
+  .screener-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .screener-btn {
+    appearance: none; cursor: pointer;
+    padding: 13px 34px; border-radius: 999px;
     border: 1px solid var(--stroke-bright);
-    display: grid; place-items: center;
-    font-family: var(--mono); font-weight: 700; font-size: 12px;
-    box-shadow: 0 0 16px rgba(125,169,255,0.22);
+    background: var(--glass-bright); color: var(--text);
+    font-family: var(--sans); font-size: 15px; font-weight: 500;
+    transition: border-color .15s, background .15s, transform .15s;
   }
-  .d-bubble {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--stroke);
-    border-radius: 4px 16px 16px 16px;
-    padding: 13px 17px;
-    line-height: 1.5; color: #D6D9DF;
+  .screener-btn:hover {
+    border-color: var(--blue); background: rgba(125,169,255,0.12);
+    transform: translateY(-1px);
   }
-  .d-bubble strong { color: var(--text); }
-  .d-steps { display: flex; flex-direction: column; gap: 7px; font-family: var(--mono); font-size: 12px; }
-  .d-step { color: var(--text-faint); transition: color 0.3s; animation: rise 0.4s both; }
-  .d-step .ic { display: inline-block; width: 16px; color: var(--blue); }
-  .d-step.done { color: var(--text-dim); }
-  .d-step.done .ic { color: var(--green); }
-  .d-step .spin {
-    display: inline-block; width: 10px; height: 10px;
-    border: 1.5px solid rgba(125,169,255,0.3); border-top-color: var(--blue);
-    border-radius: 50%; animation: spinr 0.8s linear infinite;
+  .screener-btn.is-active { border-color: var(--blue); background: rgba(125,169,255,0.2); }
+  .screener-note {
+    margin: 24px auto 0; max-width: 470px;
+    font-size: 14.5px; line-height: 1.6;
+    color: rgba(244,245,247,0.72);
   }
-  @keyframes spinr { to { transform: rotate(360deg); } }
-  .d-report {
-    margin-top: 12px;
-    border: 1px solid var(--stroke);
-    background: rgba(255,255,255,0.025);
-    border-radius: 14px;
-    padding: 16px 18px 14px;
-    max-width: 360px;
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 9px;
+    margin-top: 26px; padding: 12px 24px; border-radius: 999px;
+    border: 1px solid var(--stroke-bright);
+    background: var(--glass-bright);
+    color: var(--text); text-decoration: none;
+    font-family: var(--sans); font-size: 14.5px; font-weight: 500;
+    transition: border-color .15s, background .15s, transform .15s;
   }
-  .d-report-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-  .d-report-title { font-weight: 700; font-size: 13px; }
-  .d-report-tag { font-family: var(--mono); font-size: 9.5px; color: var(--blue); background: rgba(125,169,255,0.12); border-radius: 4px; padding: 2px 7px; letter-spacing: 0.08em; }
-  .d-chart { display: flex; align-items: flex-end; gap: 7px; height: 74px; }
-  .d-chart span {
-    flex: 1; border-radius: 4px 4px 2px 2px;
-    background: linear-gradient(180deg, rgba(125,169,255,0.95), rgba(167,139,250,0.5));
-    height: 4px;
-    transition: height 0.9s cubic-bezier(0.16,1,0.3,1);
+  .btn-ghost svg { opacity: 0.75; }
+  .btn-ghost:hover {
+    border-color: var(--blue); background: rgba(125,169,255,0.12);
+    transform: translateY(-1px);
   }
-  .d-chart span:last-child { background: linear-gradient(180deg, #67E8F9, rgba(103,232,249,0.4)); }
-  .d-chart-labels { display: flex; gap: 7px; margin-top: 7px; font-family: var(--mono); font-size: 9px; color: var(--text-faint); }
-  .d-chart-labels i { flex: 1; text-align: center; font-style: normal; }
-  .d-file {
-    margin-top: 12px;
-    display: flex; align-items: center; gap: 11px;
-    border-top: 1px solid var(--stroke);
-    padding-top: 12px;
+  .btn-ghost:hover svg { opacity: 1; }
+
+  .no-card { margin-top: 40px; }
+  .no-path { max-width: 560px; margin: 44px auto 0; text-align: left; }
+  .no-path-intro { color: rgba(244,245,247,0.78); font-size: 15.5px; margin: 0 0 18px; text-align: center; }
+  .no-path-label { display: block; font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+  .no-path textarea {
+    width: 100%; box-sizing: border-box; padding: 13px 15px;
+    font-family: var(--sans); font-size: 15px;
+    border: 1px solid var(--stroke-bright); border-radius: 12px;
+    background: rgba(255,255,255,0.045); color: var(--text); resize: vertical;
   }
-  .d-file-ic {
-    width: 30px; height: 30px; border-radius: 8px;
-    background: #E0466B; color: #fff;
-    display: grid; place-items: center;
-    font-family: var(--mono); font-size: 8.5px; font-weight: 700;
+  .no-path textarea:focus {
+    outline: none; border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(125,169,255,0.14);
   }
-  .d-file-name { font-weight: 700; font-size: 12.5px; }
-  .d-file-meta { font-family: var(--mono); font-size: 10.5px; color: var(--text-faint); }
-  .d-presence {
-    font-family: var(--mono); font-size: 11px; color: var(--text-faint);
-    padding-left: 6px;
-    animation: rise 0.3s both;
+  .btn-solid {
+    appearance: none; border: 0; cursor: pointer; margin-top: 14px;
+    background: var(--text); color: var(--bg);
+    font-family: var(--sans); font-size: 15px; font-weight: 700;
+    padding: 12px 28px; border-radius: 12px;
   }
-  .d-presence::after { content: '…'; animation: pulse 1.2s infinite; }
-  .d-reacts { display: flex; gap: 7px; margin-top: 12px; }
-  .d-react {
-    font-family: var(--mono); font-size: 11px; color: var(--text-dim);
-    background: rgba(255,255,255,0.05);
-    border: 1px solid var(--stroke);
-    border-radius: 100px;
-    padding: 4px 11px;
-    animation: rise 0.4s both;
+  .no-path-thanks { color: var(--text-dim); font-size: 14.5px; margin-top: 14px; }
+
+  /* Form card — glass, matching the page rather than a white box on top of it. */
+  .research-card {
+    max-width: 660px; margin: 40px auto 0;
+    background: var(--glass); border: 1px solid var(--stroke);
+    border-radius: 22px;
+    padding: 34px 34px 30px;
+    backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  }
+  .form-fallback { font-size: 13.5px; color: var(--text-dim); text-align: center; margin: 8px 0 0; }
+  .form-fallback a { color: var(--text-dim); }
+
+  /* HubSpot v2 renders into our DOM and injects its own stylesheet after ours,
+     so these need !important to win. */
+  .research-card form { font-family: var(--sans) !important; }
+  .research-card .hs-form-field { margin-bottom: 24px !important; }
+  .research-card .hs-form-field > label {
+    display: block !important; font-size: 15px !important; font-weight: 600 !important;
+    color: var(--text) !important; margin-bottom: 10px !important; line-height: 1.4 !important;
+  }
+  .research-card .hs-form-required { color: var(--blue) !important; margin-left: 3px; }
+
+  .research-card input[type="text"],
+  .research-card input[type="email"],
+  .research-card textarea {
+    width: 100% !important; box-sizing: border-box !important;
+    padding: 12px 14px !important; font-size: 14.5px !important;
+    font-family: var(--sans) !important;
+    border: 1px solid var(--stroke-bright) !important; border-radius: 11px !important;
+    background: rgba(255,255,255,0.045) !important; color: var(--text) !important;
+    transition: border-color .15s, background .15s;
+  }
+  /* Tall enough to signal "we expect a paragraph, not two words". Box size is
+     the strongest cue for expected answer length. */
+  .research-card textarea { min-height: 116px !important; resize: vertical !important; }
+
+  /* Selects need their own rules: appearance:none strips the native chrome,
+     and the arrow is an inline SVG background since ::after can't be placed
+     on a <select>. */
+  .research-card select {
+    width: 100% !important; box-sizing: border-box !important;
+    padding: 12px 40px 12px 14px !important;
+    font-size: 14.5px !important; font-family: var(--sans) !important;
+    border: 1px solid var(--stroke-bright) !important; border-radius: 11px !important;
+    background-color: rgba(255,255,255,0.045) !important;
+    color: var(--text) !important;
+    appearance: none !important; -webkit-appearance: none !important;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23A2A7B3' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 14px center !important;
+    cursor: pointer !important;
+    transition: border-color .15s, background-color .15s;
+  }
+  .research-card select:hover { border-color: var(--stroke-bright) !important;
+    background-color: rgba(255,255,255,0.07) !important; }
+  .research-card select:focus {
+    outline: none !important; border-color: var(--blue) !important;
+    box-shadow: 0 0 0 3px rgba(125,169,255,0.14) !important;
+  }
+  /* Honoured on Windows/Linux; macOS draws the open list with system chrome. */
+  .research-card select option { background: #14161C; color: var(--text); }
+  /* Help text sits under the label, above the input. */
+  .research-card .hs-field-desc {
+    color: var(--text-dim) !important; font-size: 13.5px !important;
+    line-height: 1.55 !important; margin: -3px 0 11px !important; display: block !important;
+  }
+  .research-card input::placeholder, .research-card textarea::placeholder { color: var(--text-faint) !important; }
+  .research-card input:focus, .research-card textarea:focus {
+    outline: none !important; border-color: var(--blue) !important;
+    background: rgba(255,255,255,0.07) !important;
+    box-shadow: 0 0 0 3px rgba(125,169,255,0.14) !important;
   }
 
-  /* ---------- talk to your stuff ---------- */
-  .stuff-section { padding: 90px 0 30px; text-align: center; }
-  .tool-cloud {
-    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
-    max-width: 760px; margin: 34px auto 0;
+  /* Radios as full-width clickable rows — reads less like a survey form. */
+  .research-card .inputs-list { list-style: none !important; margin: 0 !important; padding: 0 !important; }
+  .research-card .inputs-list li { margin: 0 0 8px !important; padding: 0 !important; }
+  .research-card .inputs-list li label {
+    display: flex !important; align-items: center !important; gap: 11px !important;
+    padding: 12px 15px !important; margin: 0 !important;
+    border: 1px solid var(--stroke) !important; border-radius: 11px !important;
+    background: rgba(255,255,255,0.025) !important;
+    cursor: pointer !important; font-size: 14.5px !important; font-weight: 400 !important;
+    color: var(--text-dim) !important; line-height: 1.4 !important;
+    transition: border-color .13s, background .13s, color .13s;
   }
-  .cloud-pill {
-    font-family: var(--mono); font-size: 12.5px;
-    color: var(--text-dim);
-    background: var(--glass);
-    border: 1px solid var(--stroke);
-    border-radius: 100px;
-    padding: 10px 19px;
-    backdrop-filter: blur(8px);
-    transition: all 0.2s;
+  .research-card .inputs-list li label:hover {
+    border-color: var(--stroke-bright) !important;
+    background: rgba(255,255,255,0.055) !important;
+    color: var(--text) !important;
   }
-  .cloud-pill:hover { color: var(--text); border-color: var(--stroke-bright); transform: translateY(-2px); }
-  .cloud-pill.hl { color: var(--blue); border-color: rgba(125,169,255,0.35); background: rgba(125,169,255,0.06); }
+  .research-card .inputs-list input[type="radio"],
+  .research-card .inputs-list input[type="checkbox"] {
+    width: auto !important; margin: 0 !important; flex: none !important;
+    accent-color: #7DA9FF;
+  }
+  .research-card .inputs-list li label span { display: inline !important; }
 
-  .ask-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-    max-width: 920px; margin: 44px auto 0; text-align: left;
-  }
-  @media (max-width: 760px) { .ask-grid { grid-template-columns: 1fr; } }
-  .ask-card {
-    background: var(--glass);
-    border: 1px solid var(--stroke);
-    border-radius: 18px;
-    padding: 22px 24px;
-    backdrop-filter: blur(10px);
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .ask-card:hover { border-color: var(--stroke-bright); transform: translateY(-3px); }
-  .ask-role { display: flex; align-items: center; gap: 9px; margin-bottom: 12px; }
-  .ask-role-av {
-    width: 26px; height: 26px; border-radius: 50%;
-    display: grid; place-items: center;
-    font-family: var(--display); font-weight: 600; font-size: 11px; color: #fff;
-    border: 1.5px solid rgba(255,255,255,0.25);
-  }
-  .ask-role-name {
-    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--text-faint);
-  }
-  .ask-q {
-    font-family: var(--display); font-weight: 500; font-size: 17px;
-    letter-spacing: -0.01em; line-height: 1.35;
-  }
-  .ask-q::before { content: '“'; color: var(--blue); }
-  .ask-q::after { content: '”'; color: var(--blue); }
-  .ask-a {
-    margin-top: 10px;
-    font-family: var(--mono); font-size: 11.5px; color: var(--text-faint);
-    letter-spacing: 0.02em;
-  }
-  .ask-a span { color: var(--green); }
-
-  /* ---------- how it works ---------- */
-  .how-section { padding: 90px 0 20px; text-align: center; }
-  .how { display: flex; align-items: stretch; justify-content: center; gap: 0; max-width: 960px; margin: 46px auto 0; text-align: left; }
-  .how-item {
-    position: relative; flex: 1; isolation: isolate; overflow: hidden;
-    background: var(--glass);
-    border: 1px solid var(--stroke);
-    border-radius: 20px; padding: 26px 22px 30px;
-    backdrop-filter: blur(10px);
-    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
-  }
-  /* gradient hairline border that lights up on hover */
-  .how-item::after {
-    content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
-    background: var(--grad);
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor; mask-composite: exclude;
-    opacity: 0; transition: opacity 0.3s ease; pointer-events: none;
-  }
-  .how-item:hover { transform: translateY(-5px); border-color: transparent; box-shadow: 0 20px 55px rgba(125,169,255,0.14); }
-  .how-item:hover::after { opacity: 0.65; }
-  .how-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-  .how-node {
-    position: relative; flex: none; width: 46px; height: 46px; border-radius: 50%;
-    display: grid; place-items: center;
-    background: radial-gradient(circle at 50% 32%, rgba(125,169,255,0.18), rgba(255,255,255,0.015));
-    transition: box-shadow 0.3s ease;
-  }
-  .how-node::before {
-    content: ''; position: absolute; inset: 0; border-radius: 50%; padding: 1.5px;
-    background: var(--grad);
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor; mask-composite: exclude;
-    opacity: 0.75; transition: opacity 0.3s ease;
-  }
-  .how-item:hover .how-node::before { opacity: 1; }
-  .how-item:hover .how-node { box-shadow: 0 0 22px rgba(167,139,250,0.35); }
-  .how-node b {
-    font-family: var(--display); font-weight: 700; font-size: 17px; line-height: 1;
-    background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-  }
-  .how-label { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-dim); }
-  .how-title { font-family: var(--display); font-weight: 600; font-size: 18px; margin: 0 0 7px; position: relative; z-index: 1; }
-  .how-desc { font-size: 14px; color: var(--text-dim); line-height: 1.5; margin: 0; position: relative; z-index: 1; }
-  /* faint oversized icon watermark for depth */
-  .how-wm {
-    position: absolute; right: -10px; bottom: -12px; width: 92px; height: 92px;
-    color: #A78BFA; opacity: 0.07; z-index: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-  .how-item:hover .how-wm { opacity: 0.16; transform: translateY(-4px) rotate(-4deg); }
-  /* animated gradient connector */
-  .how-sep {
-    display: flex; align-items: center; padding: 0 8px; font-size: 22px; font-weight: 700; line-height: 1;
-    font-family: var(--display);
-    background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-    animation: howArrow 1.8s ease-in-out infinite;
-  }
-  @keyframes howArrow { 0%,100% { transform: translateX(0); opacity: 0.45; } 50% { transform: translateX(5px); opacity: 1; } }
-  @media (max-width: 720px) {
-    .how { flex-direction: column; gap: 12px; }
-    .how-sep { transform: rotate(90deg); padding: 4px 0; align-self: center; animation: none; opacity: 0.5; }
+  .research-card .hs-error-msg,
+  .research-card .hs-error-msgs label {
+    color: #FCA5A5 !important; font-size: 13px !important; font-weight: 500 !important;
+    background: none !important; border: 0 !important; padding: 4px 0 0 !important;
   }
 
-  /* ---------- email gate (HubSpot embed) ---------- */
-  .hidden { display: none; }
-  .fade-in { animation: rise 0.6s cubic-bezier(0.16,1,0.3,1) both; }
-  .gate-section { padding: 90px 0 30px; }
-  .gate-card {
-    max-width: 600px; margin: 0 auto;
-    border-radius: 24px; padding: 1px;
-    background: linear-gradient(160deg, rgba(125,169,255,0.4), rgba(255,255,255,0.06) 45%, rgba(167,139,250,0.3));
-    box-shadow: 0 30px 90px rgba(0,0,0,0.5);
+  .research-card .hs-button {
+    appearance: none !important; border: 0 !important; cursor: pointer !important;
+    background: var(--text) !important; color: var(--bg) !important;
+    font-family: var(--sans) !important; font-size: 15px !important; font-weight: 700 !important;
+    padding: 13px 30px !important; border-radius: 12px !important;
+    width: auto !important; transition: transform .15s, box-shadow .15s;
   }
-  .gate-inner {
-    background: #0B0D12; border-radius: 23px;
-    padding: 46px 42px 42px; text-align: center;
+  .research-card .hs-button:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.4) !important;
   }
-  .gate-inner .section-title { font-size: clamp(26px, 3.6vw, 34px); }
-  .hs-form-frame { margin-top: 28px; text-align: left; }
-  .form-note { font-size: 12px; color: var(--text-faint); margin-top: 16px; font-family: var(--mono); }
 
-  footer {
-    border-top: 1px solid var(--stroke);
-    margin-top: 70px;
-    padding: 28px 0 42px;
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 12px;
-    font-size: 13px; color: var(--text-faint);
+  .research-card .hs-richtext, .research-card .hs-richtext p {
+    color: var(--text-dim) !important; font-size: 14px !important;
   }
-  footer a { color: var(--text-dim); text-decoration: none; }
-  footer a:hover { color: var(--text); }
-  .skip-link { font-family: var(--mono); font-size: 11.5px; }
+
+  /* Post-submit thank-you (HubSpot inlineMessage) */
+  .research-card .submitted-message {
+    color: var(--text) !important; font-size: 15px !important; line-height: 1.65 !important;
+  }
+  .research-card .submitted-message a { color: var(--blue) !important; }
+  .research-card .submitted-message pre {
+    white-space: pre-wrap !important; word-break: break-word !important;
+    background: rgba(0,0,0,0.42) !important; color: #E6EDF6 !important;
+    border: 1px solid var(--stroke) !important;
+    padding: 16px !important; border-radius: 12px !important;
+    font-family: var(--mono) !important; font-size: 12.5px !important; line-height: 1.55 !important;
+  }
+
+  /* With css:'' HubSpot ships no stylesheet at all, so a few structural
+     resets it used to provide have to come from here. */
+  .research-card .hs-form fieldset { max-width: none !important; width: 100% !important; border: 0; margin: 0; padding: 0; }
+  .research-card .hs-form fieldset .hs-form-field { width: 100% !important; float: none !important; padding: 0 !important; }
+  .research-card .hs-form-field ul { list-style: none; margin: 0; padding: 0; }
+  .research-card .hs_submit, .research-card .actions { margin-top: 4px; padding: 0; }
+  .research-card .hs-form-booleancheckbox label { display: flex; align-items: center; gap: 10px; }
+  .research-card .legal-consent-container { color: var(--text-faint); font-size: 13px; }
+
+  .research-foot {
+    max-width: 660px; margin: 26px auto 0; text-align: center;
+    font-size: 13.5px; color: var(--text-dim); line-height: 1.6;
+  }
+  .research-foot a { color: var(--text); }
+
   </style>
 </head>
 <body>
@@ -625,7 +529,9 @@ const description =
 <div class="wrap">
 
   <nav>
-    <a class="logo" href="https://desktopcommander.app/"><div class="logo-mark">DC</div>Desktop&nbsp;Commander</a>
+    <a class="logo" href="https://desktopcommander.app/">
+      <img src={dcLogo.src} alt="Desktop Commander" width="200" height="32" />
+    </a>
     <div class="nav-note"><span class="dot-live"></span>MCP connected</div>
   </nav>
 
@@ -637,9 +543,9 @@ const description =
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M8 16.5L13.5 22L24 11" stroke="#4ADE80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <h1>Installed. You're all&nbsp;set.</h1>
-      <p class="sub">Thanks for installing the Desktop Commander MCP. It's connected to Claude. <strong>Nothing else to do</strong>. Switch over and start working.</p>
+      <p class="sub">Thanks for installing the Desktop Commander MCP. It's connected and ready. <strong>Nothing else to do</strong>. Switch back to your AI assistant and start working.</p>
       <div class="hero-skip">
-        <a href="https://desktopcommander.app/library/prompts/">Need a starting point? Browse 72+ prompts →</a>
+        <a href="https://desktopcommander.app/#prompts">Need a starting point? Browse 72+ prompts →</a>
       </div>
     </div>
 
@@ -650,384 +556,233 @@ const description =
     <div class="divider"><span>while you're here · new</span></div>
   </header>
 
-  <!-- ============ PITCH: TEAM AGENT ============ -->
-  <section class="pitch">
-    <h2>Get your <span class="grad">AI employee.</span></h2>
-    <p class="sub">An agent that does work for your team, with <strong>shared files</strong>, <strong>shared tools</strong>, and <strong>its own computer</strong>. Everyone can talk to it.</p>
-
-    <div class="btn-row">
-      <button class="btn" data-cta="hero">Create your team agent →</button>
+  <!-- ============ RESEARCH: DATABASE QUESTIONS ============ -->
+  <section class="research" id="research">
+    <div class="research-intro">
+      <h2>Want AI working with <span class="grad">Your Own&nbsp;Database</span>?</h2>
+      <p>
+        We're trying to understand where people get stuck. Answer a few questions
+        and we'll send you a prompt to try &mdash; and help if you're stuck somewhere
+        specific.
+      </p>
     </div>
+
+    <!-- Screener. In-page rather than a form field: a "no" inside the form only
+         counts if they submit anyway, and they won't. Clicked here, every answer
+         is captured — which is what turns "we're afraid 80% don't have this
+         problem" into a measured base rate against research_viewed. -->
+    <div class="screener" id="screener">
+      <div class="screener-q">Do you have a database you'd want AI to work with?</div>
+      <div class="screener-btns">
+        <button type="button" class="screener-btn" data-answer="yes">Yes</button>
+        <button type="button" class="screener-btn" data-answer="unsure">Not sure</button>
+        <button type="button" class="screener-btn" data-answer="no">No</button>
+      </div>
+      <p class="screener-note">
+        &ldquo;I've never tried&rdquo; and &ldquo;it already works&rdquo; are both answers we need.
+      </p>
+
+      <a class="btn-ghost" href="https://calendar.app.google/akiPcfaS3oaigsxQ9" data-cta="calendar-top">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M8 2v4M16 2v4M3.5 9.5h17M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Rather talk it through? Book 20 minutes
+      </a>
+    </div>
+
+    <!-- "No" path: one open question. Tests whether database demand is real or
+         an artifact of how we asked. Goes to PostHog, not HubSpot — no email,
+         no friction, nothing to submit. -->
+    <div class="research-card no-card" id="noPath" hidden>
+      <p class="no-path-intro">Fair enough — that's useful on its own. One question, if you don't mind:</p>
+      <div id="noForm"></div>
+    </div>
+
+    <div class="research-card" id="researchCard" hidden>
+      <div id="dbForm"></div>
+      <p class="form-fallback" id="formFallback">
+        Form not loading? Email us at
+        <a href="mailto:er@desktopcommander.app">er@desktopcommander.app</a>
+        or <a href="https://calendar.app.google/akiPcfaS3oaigsxQ9">book a call</a>.
+      </p>
+    </div>
+
+    <p class="research-foot">
+      We read every answer ourselves.
+    </p>
   </section>
 
-  <!-- ============ PRODUCT DEMO ============ -->
-  <section class="demo-section">
-    <div class="section-kicker">See it work</div>
-    <h2 class="section-title">Task it like a teammate.</h2>
-    <p class="section-sub">Ask in chat. It connects to your systems, does the work on its own computer, and delivers the result.</p>
+</div><!-- /.wrap -->
 
-    <div class="demo-shell">
-      <div class="demo-window">
-        <div class="demo-bar">
-          <div class="demo-dot r"></div><div class="demo-dot y"></div><div class="demo-dot g"></div>
-          <span class="demo-title"># team · Your AI employee</span>
-          <div class="demo-members">
-            <div class="demo-mini-av" style="background:#E8912D">M</div>
-            <div class="demo-mini-av" style="background:#3D7BE8">J</div>
-            <div class="demo-mini-av" style="background:#15181F;font-family:var(--mono)">DC</div>
-          </div>
-          <span class="demo-status"><span class="sdot"></span>online</span>
-        </div>
-        <div class="demo-body" id="demoBody"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ TALK TO YOUR STUFF ============ -->
-  <section class="stuff-section">
-    <div class="section-kicker">Connect everything</div>
-    <h2 class="section-title">Connect your tools.<br>Talk to your stuff.</h2>
-    <p class="section-sub">Plug in the systems your company already runs on: ERP, CRM, databases, drives. Ask in plain language, and answers, reports, and changes come back done.</p>
-
-    <div class="tool-cloud">
-      <span class="cloud-pill hl">SAP</span>
-      <span class="cloud-pill hl">NetSuite</span>
-      <span class="cloud-pill hl">Odoo</span>
-      <span class="cloud-pill">Salesforce</span>
-      <span class="cloud-pill">HubSpot</span>
-      <span class="cloud-pill">Postgres</span>
-      <span class="cloud-pill">MySQL</span>
-      <span class="cloud-pill">Google Drive</span>
-      <span class="cloud-pill">SharePoint</span>
-      <span class="cloud-pill">Notion</span>
-      <span class="cloud-pill">GitHub</span>
-      <span class="cloud-pill">Stripe</span>
-      <span class="cloud-pill">Shopify</span>
-      <span class="cloud-pill">Airtable</span>
-      <span class="cloud-pill">+ any MCP</span>
-    </div>
-
-    <div class="ask-grid">
-      <div class="ask-card">
-        <div class="ask-role"><div class="ask-role-av" style="background:#E8912D">M</div><div class="ask-role-name">Finance asks</div></div>
-        <div class="ask-q">Which invoices are overdue in NetSuite, by customer?</div>
-        <div class="ask-a"><span>→</span> table + reminder drafts, 40 sec</div>
-      </div>
-      <div class="ask-card">
-        <div class="ask-role"><div class="ask-role-av" style="background:#3D7BE8">J</div><div class="ask-role-name">Sales asks</div></div>
-        <div class="ask-q">Pull this quarter's pipeline by stage from Salesforce.</div>
-        <div class="ask-a"><span>→</span> chart + summary, posted to the team</div>
-      </div>
-      <div class="ask-card">
-        <div class="ask-role"><div class="ask-role-av" style="background:#9D5BD2">A</div><div class="ask-role-name">Ops asks</div></div>
-        <div class="ask-q">How many orders shipped late this week, and why?</div>
-        <div class="ask-a"><span>→</span> root-cause digest from ERP + logs</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ HOW IT WORKS ============ -->
-  <section class="how-section">
-    <div class="section-kicker">From install to agent</div>
-    <h2 class="section-title">How it works</h2>
-    <div class="how">
-      <article class="how-item">
-        <div class="how-head"><span class="how-node"><b>01</b></span><span class="how-label">Create</span></div>
-        <h3 class="how-title">Create a team agent</h3>
-        <p class="how-desc">Set up once for your whole team.</p>
-        <svg class="how-wm" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.7 5.1L19 9l-5.3 1.9L12 16l-1.7-5.1L5 9l5.3-1.9z"/><path d="M18.5 13.5l.7 2.1 2.1.7-2.1.7-.7 2.1-.7-2.1-2.1-.7 2.1-.7z"/></svg>
-      </article>
-      <div class="how-sep" aria-hidden="true">→</div>
-      <article class="how-item">
-        <div class="how-head"><span class="how-node"><b>02</b></span><span class="how-label">Connect</span></div>
-        <h3 class="how-title">Connect your tools</h3>
-        <p class="how-desc">The apps your team already uses.</p>
-        <svg class="how-wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12h6"/><path d="M10.5 8H8.5a4 4 0 000 8h2"/><path d="M13.5 8h2a4 4 0 010 8h-2"/></svg>
-      </article>
-      <div class="how-sep" aria-hidden="true">→</div>
-      <article class="how-item">
-        <div class="how-head"><span class="how-node"><b>03</b></span><span class="how-label">Talk</span></div>
-        <h3 class="how-title">Talk to it together</h3>
-        <p class="how-desc">Just ask — it gets things done.</p>
-        <svg class="how-wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6.5A2.5 2.5 0 015.5 4h8A2.5 2.5 0 0116 6.5v4A2.5 2.5 0 0113.5 13H8l-3.5 3v-3H5.5A2.5 2.5 0 013 10.5z"/><path d="M16 9h2.5A2.5 2.5 0 0121 11.5v4A2.5 2.5 0 0118.5 18H18v2l-2.5-2H12.5"/></svg>
-      </article>
-    </div>
-
-    <div class="btn-row">
-      <button class="btn" data-cta="bottom">Create your team agent →</button>
-    </div>
-    <div class="btn-note">early access · limited team slots</div>
-  </section>
-
-  <!-- ============ EMAIL GATE (HubSpot) ============ -->
-  <section class="gate-section hidden" id="gate">
-    <div class="gate-card">
-      <div class="gate-inner">
-        <div class="section-kicker">Early access</div>
-        <h2 class="section-title">Create your team agent</h2>
-        <p class="section-sub">We're onboarding teams in small batches. Leave your company email and we'll reach out when your team's slot opens.</p>
-        <div class="hs-form-frame" data-region="eu1" data-form-id="733e0a8d-9b22-4a87-8872-f2196531544c" data-portal-id="146727725"></div>
-        <p class="form-note">no spam · one email when your team's slot opens</p>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div>© 2026 Desktop Commander · MIT-licensed MCP server</div>
-    <a class="skip-link" href="https://desktopcommander.app/library/prompts/">Just want the prompts? Browse 72+ →</a>
-  </footer>
-</div>
-
+<!-- ============ ANALYTICS ============
+   posthog-js is initialized by the PostHogInit island.
+   Funnel: page_view → research_viewed → research_submitted
+-->
 <script is:inline>
-/* ============================================================
-   TRACKING — PostHog
-   posthog-js is initialized by the PostHogInit island (after
-   Cookiebot statistics consent). Events fired before it loads
-   are queued and flushed once it's ready.
-   Funnel: page_view → cta_clicked (hero|bottom) → gate_viewed
-           → email_submitted
-   ============================================================ */
-const EXPERIMENT = 'lp-a-team-agent';
-const _trackQueue = [];
-function phReady() {
-  return typeof window.posthog !== 'undefined' && typeof window.posthog.capture === 'function' && window.posthog.__loaded;
-}
-function track(event, props = {}) {
-  const payload = { experiment: EXPERIMENT, ...props };
-  if (phReady()) {
-    window.posthog.capture(event, payload);
-  } else {
-    _trackQueue.push([event, payload]);
-  }
-}
-const _flushTimer = setInterval(() => {
-  if (!phReady()) return;
-  while (_trackQueue.length) {
-    const [e, p] = _trackQueue.shift();
-    window.posthog.capture(e, p);
-  }
-  clearInterval(_flushTimer);
-}, 500);
-track('page_view');
+  (function () {
+    var EXPERIMENT = 'lp-welcome3-db';
 
-/* ---------- scroll cue ---------- */
-document.getElementById('scrollCue').addEventListener('click', () => {
-  document.querySelector('.pitch').scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
-
-/* ---------- product demo animation (looping) ---------- */
-const demoBody = document.getElementById('demoBody');
-let demoTimers = [];
-function dWait(fn, ms) { demoTimers.push(setTimeout(fn, ms)); }
-
-function addUserMsg(name, initial, color, alt) {
-  const row = document.createElement('div');
-  row.className = 'd-user-row';
-  row.innerHTML = `
-    <div class="d-uavatar" style="background:${color}">${initial}</div>
-    <div>
-      <div class="d-uname">${name}</div>
-      <div class="d-user${alt ? ' alt' : ''}"><span class="dTyped"></span><span class="caret"></span></div>
-    </div>
-  `;
-  demoBody.appendChild(row);
-  return row;
-}
-
-function typeInto(row, text, startDelay) {
-  const typed = row.querySelector('.dTyped');
-  text.split('').forEach((ch, i) => {
-    dWait(() => { typed.textContent += ch; }, startDelay + i * 26);
-  });
-  const done = startDelay + text.length * 26;
-  dWait(() => { const c = row.querySelector('.caret'); if (c) c.remove(); }, done + 200);
-  return done;
-}
-
-function showPresence(name) {
-  const p = document.createElement('div');
-  p.className = 'd-presence'; p.id = 'dPresence';
-  p.textContent = name + ' is typing';
-  demoBody.appendChild(p);
-}
-function removePresence() {
-  const p = document.getElementById('dPresence');
-  if (p) p.remove();
-}
-
-function runDemo() {
-  demoTimers.forEach(clearTimeout);
-  demoTimers = [];
-  demoBody.style.opacity = 1;
-  demoBody.innerHTML = '';
-
-  /* 1 — presence, then employee #1 types the task */
-  const TASK1 = 'Generate the May sales report from our ERP. Revenue by region, vs. April.';
-  dWait(() => showPresence('Marta'), 300);
-  dWait(() => {
-    removePresence();
-    const marta = addUserMsg('Marta · Finance', 'M', '#E8912D', false);
-    typeInto(marta, TASK1, 0);
-  }, 1500);
-  const typeDone = 1500 + TASK1.length * 26;
-
-  /* 2 — agent works through steps */
-  const STEPS = [
-    'Connecting to NetSuite ERP',
-    'Pulling 1,284 May orders',
-    'Crunching numbers on my computer',
-    'Building charts + PDF'
-  ];
-  dWait(() => {
-    const agent = document.createElement('div');
-    agent.className = 'd-msg d-agent';
-    agent.innerHTML = `
-      <div class="d-avatar">DC</div>
-      <div class="d-bubble"><div class="d-steps" id="dSteps"></div></div>
-    `;
-    demoBody.appendChild(agent);
-  }, typeDone + 600);
-
-  STEPS.forEach((step, i) => {
-    dWait(() => {
-      const steps = document.getElementById('dSteps');
-      if (!steps) return;
-      /* mark previous as done */
-      const prev = steps.lastElementChild;
-      if (prev) { prev.classList.add('done'); prev.querySelector('.ic').innerHTML = '✓'; }
-      const el = document.createElement('div');
-      el.className = 'd-step';
-      el.innerHTML = `<span class="ic"><span class="spin"></span></span>${step}…`;
-      steps.appendChild(el);
-    }, typeDone + 900 + i * 1100);
-  });
-  const stepsDone = typeDone + 900 + STEPS.length * 1100;
-  dWait(() => {
-    const steps = document.getElementById('dSteps');
-    if (!steps) return;
-    const prev = steps.lastElementChild;
-    if (prev) { prev.classList.add('done'); prev.querySelector('.ic').innerHTML = '✓'; }
-  }, stepsDone);
-
-  /* 3 — result: report card with chart + file */
-  dWait(() => {
-    const result = document.createElement('div');
-    result.className = 'd-msg d-agent';
-    result.innerHTML = `
-      <div class="d-avatar">DC</div>
-      <div class="d-bubble" id="dResultBubble">
-        Done. May revenue <strong>€412k, +9% vs April</strong>. Strongest region: DACH. Full report attached.
-        <div class="d-report">
-          <div class="d-report-head">
-            <span class="d-report-title">Revenue by region · May</span>
-            <span class="d-report-tag">LIVE DATA</span>
-          </div>
-          <div class="d-chart" id="dChart">
-            <span data-h="58"></span><span data-h="34"></span><span data-h="72"></span><span data-h="46"></span><span data-h="26"></span><span data-h="64"></span>
-          </div>
-          <div class="d-chart-labels"><i>DACH</i><i>UK</i><i>FR</i><i>NORD</i><i>ES</i><i>US</i></div>
-          <div class="d-file">
-            <div class="d-file-ic">PDF</div>
-            <div>
-              <div class="d-file-name">may-sales-report.pdf</div>
-              <div class="d-file-meta">6 pages · charts + tables · just now</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-    demoBody.appendChild(result);
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      document.querySelectorAll('#dChart span').forEach(b => { b.style.height = b.dataset.h + 'px'; });
-    }));
-  }, stepsDone + 500);
-
-  /* 4 — a third teammate reacts (no ask — just benefiting) */
-  dWait(() => {
-    const bubble = document.getElementById('dResultBubble');
-    if (!bubble) return;
-    const reacts = document.createElement('div');
-    reacts.className = 'd-reacts';
-    reacts.innerHTML = `
-      <span class="d-react">🔥 Aisha · Ops</span>
-      <span class="d-react" style="animation-delay:0.35s">👍 2</span>
-    `;
-    bubble.appendChild(reacts);
-  }, stepsDone + 2100);
-
-  /* 5 — employee #2 jumps in */
-  const TASK2 = 'nice! @agent, same cut but just my UK accounts?';
-  dWait(() => showPresence('Jonas'), stepsDone + 3000);
-  dWait(() => {
-    removePresence();
-    const jonas = addUserMsg('Jonas · Sales', 'J', '#3D7BE8', true);
-    typeInto(jonas, TASK2, 0);
-  }, stepsDone + 4100);
-  const jonasDone = stepsDone + 4100 + TASK2.length * 26 + 400;
-
-  /* 6 — agent answers the second employee */
-  dWait(() => {
-    const reply2 = document.createElement('div');
-    reply2.className = 'd-msg d-agent';
-    reply2.innerHTML = `
-      <div class="d-avatar">DC</div>
-      <div class="d-bubble">
-        On it, Jonas. UK only: <strong>€86k, +14% vs April</strong>. Your top account: Harrod &amp; Co.
-        <div class="d-file" style="border-top:none;padding-top:4px">
-          <div class="d-file-ic" style="background:#3D7BE8">PDF</div>
-          <div>
-            <div class="d-file-name">may-sales-uk.pdf</div>
-            <div class="d-file-meta">3 pages · same data, your accounts · just now</div>
-          </div>
-        </div>
-      </div>
-    `;
-    demoBody.appendChild(reply2);
-  }, jonasDone + 900);
-
-  /* 7 — hold, fade, loop */
-  dWait(() => { demoBody.style.opacity = 0; }, jonasDone + 7000);
-  dWait(runDemo, jonasDone + 7600);
-}
-
-/* start when scrolled into view */
-const demoObserver = new IntersectionObserver(entries => {
-  if (entries[0].isIntersecting) {
-    runDemo();
-    demoObserver.disconnect();
-    track('demo_viewed');
-  }
-}, { threshold: 0.35 });
-demoObserver.observe(demoBody);
-
-/* ---------- CTA → gate ---------- */
-document.querySelectorAll('[data-cta]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    track('cta_clicked', { position: btn.dataset.cta });
-    const gate = document.getElementById('gate');
-    const wasHidden = gate.classList.contains('hidden');
-    gate.classList.remove('hidden');
-    gate.classList.add('fade-in');
-    gate.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    if (wasHidden) track('gate_viewed', { position: btn.dataset.cta });
-  });
-});
-
-/* ---------- HubSpot form events ---------- */
-window.addEventListener('message', (event) => {
-  const d = event.data;
-  if (!d || d.type !== 'hsFormCallback') return;
-  if (d.eventName === 'onFormReady') {
-    track('hs_form_ready');
-  }
-  if (d.eventName === 'onFormSubmitted') {
-    track('email_submitted', { form_id: d.id });
-    if (phReady()) {
-      const email = d.data && d.data.submissionValues && d.data.submissionValues.email;
-      if (email) window.posthog.identify(email, { email });
+    function ready() {
+      return typeof window.posthog !== 'undefined'
+        && typeof window.posthog.capture === 'function'
+        && window.posthog.__loaded;
     }
-  }
-});
+
+    var queue = [];
+    function track(event, props) {
+      var payload = Object.assign({ experiment: EXPERIMENT }, props || {});
+      if (ready()) { window.posthog.capture(event, payload); }
+      else { queue.push([event, payload]); }
+    }
+
+    var tries = 0;
+    var flush = setInterval(function () {
+      tries++;
+      if (ready()) {
+        while (queue.length) {
+          var q = queue.shift();
+          window.posthog.capture(q[0], q[1]);
+        }
+        clearInterval(flush);
+      } else if (tries > 40) {
+        clearInterval(flush);
+      }
+    }, 250);
+
+    track('page_view', { page: 'welcome' });
+
+    /* research_viewed — fires once when the form scrolls into view. This is the
+       exposure number the old page never had: gate_viewed there equalled
+       cta_clicked, so 90% of installers never saw the questions at all. */
+    var seen = false;
+    var target = document.getElementById('research');
+    if (target && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting && !seen) {
+            seen = true;
+            track('research_viewed');
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0.25 });
+      io.observe(target);
+    }
+
+    /* HubSpot v2 embed. Renders into #dbForm in our own DOM (no shadow root),
+       so the light-card styling below applies. onFormSubmitted is a real
+       callback rather than a postMessage guess. */
+    var fallback = document.getElementById('formFallback');
+    var built = false;
+    var hsTries = 0;
+    var hsWait = setInterval(function () {
+      hsTries++;
+      if (window.hbspt && window.hbspt.forms) {
+        clearInterval(hsWait);
+        built = true;
+        window.hbspt.forms.create({
+          region: 'eu1',
+          portalId: '146727725',
+          formId: '6281c9bc-7caf-4780-86dd-366850adb7b3',
+          target: '#dbForm',
+          /* css:'' suppresses HubSpot's default stylesheet entirely. Without
+             this it injects `.hs-form textarea { background:#fff !important }`
+             style rules that beat ours on specificity, and the fields render
+             white on a dark page. All styling now comes from this file. */
+          css: '',
+          cssClass: 'dc-hs-form',
+          onFormReady: function () {
+            if (fallback) fallback.style.display = 'none';
+            stampScreener();
+            track('research_form_ready');
+          },
+          onFormSubmitted: function () {
+            track('research_submitted');
+          }
+        });
+      } else if (hsTries > 40) {
+        clearInterval(hsWait);
+        track('research_form_failed');
+      }
+    }, 250);
+
+    /* ---- screener ----
+       Fires on click, so "no" is captured even though those users never submit.
+       research_viewed is the denominator: screener_answered / research_viewed
+       gives the base rate for how many installers have this problem at all. */
+    var screenerAnswered = false;
+    document.querySelectorAll('.screener-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var answer = btn.getAttribute('data-answer');
+        document.querySelectorAll('.screener-btn').forEach(function (b) {
+          b.classList.remove('is-active');
+        });
+        btn.classList.add('is-active');
+        if (!screenerAnswered) {
+          screenerAnswered = true;
+          track('research_screener_answered', { answer: answer });
+        } else {
+          track('research_screener_changed', { answer: answer });
+        }
+        var card = document.getElementById('researchCard');
+        var noPath = document.getElementById('noPath');
+        /* "Not sure" goes INTO the form, not out of it — that bucket is likely
+           the non-technical segment, which is the population we most need. */
+        window.__dcScreener = answer;
+        if (answer === 'no') {
+          card.hidden = true;
+          noPath.hidden = false;
+          buildNoForm();
+        } else {
+          noPath.hidden = true;
+          card.hidden = false;
+        }
+        stampScreener();
+      });
+    });
+
+    /* Hidden db_screener carries the Yes/Not sure/No answer into HubSpot with
+       every submission, so "not sure" respondents can be told apart from "yes"
+       ones at read-out. hbspt v2 gives no API for this — set the input value
+       and dispatch a change event so the form picks it up. */
+    function stampScreener() {
+      var v = window.__dcScreener || '';
+      document.querySelectorAll('input[name="db_screener"]').forEach(function (inp) {
+        inp.value = v;
+        inp.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+    }
+
+    var noFormBuilt = false;
+    function buildNoForm() {
+      if (noFormBuilt || !(window.hbspt && window.hbspt.forms)) return;
+      noFormBuilt = true;
+      window.hbspt.forms.create({
+        region: 'eu1',
+        portalId: '146727725',
+        formId: '42af1548-86c8-490a-ab80-695264f15532',
+        target: '#noForm',
+        css: '',
+        cssClass: 'dc-hs-form',
+        onFormReady: function () { stampScreener(); track('research_no_form_ready'); },
+        onFormSubmitted: function () { track('research_no_submitted'); }
+      });
+    }
+
+    /* Scroll cue */
+    var cue = document.getElementById('scrollCue');
+    if (cue) {
+      cue.addEventListener('click', function () {
+        var el = document.getElementById('research');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+
+    document.querySelectorAll('[data-cta="calendar-top"]').forEach(function (a) {
+      a.addEventListener('click', function () { track('calendar_clicked', { position: 'top' }); });
+    });
+  })();
 </script>
+
 </body>
 </html>

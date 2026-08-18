@@ -1,0 +1,1041 @@
+---
+import PostHogInit from '../../src/components/PostHogInit';
+
+/*
+  welcome-shared.astro — ARCHIVED. This was /welcome/ until Aug 2026, when the
+  database research page replaced it. The team/shared agent experiment was
+  closed 2026-08-03; this page is kept for reference only and is noindexed.
+  Its HubSpot form (733e0a8d) still collects — decide separately whether to
+  archive it.
+
+  Original header follows.
+
+  welcome.astro — v3 "team agent" design (Jun 2026).
+  Source experiment: About DC/landing-experiments/a-team-agent.html (lp-a-team-agent).
+  Previous v2 design recoverable from git history; welcome2.astro still holds v1.
+
+  Notes:
+  - Standalone document (does NOT use Layout.astro): the design ships its own
+    fonts, reset and styles, and the shared Tailwind globals would fight it.
+    Head essentials (favicons, canonical, OG, Cookiebot, GA, Ahrefs) are
+    replicated below — keep in sync with Layout.astro if those change.
+  - Email capture: HubSpot embedded form (portal 146727725 / eu1).
+  - Funnel events go to PostHog with { experiment: 'lp-a-team-agent' }:
+    page_view → cta_clicked (hero|bottom) → gate_viewed → email_submitted (+ demo_viewed)
+*/
+
+const title = "Desktop Commander: You're all set. Now meet your team's agent.";
+const description =
+  "Your Desktop Commander MCP is installed. Next: set up a team agent with shared files, shared tools, and its own computer. Connect your ERP, CRM, and databases, and talk to your stuff.";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="author" content="Desktop Commander" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="canonical" href="https://desktopcommander.app/welcome-shared/" />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Desktop Commander" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://desktopcommander.app/welcome-shared/" />
+  <meta property="og:image" content="https://desktopcommander.app/bg-social-share.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@desktop_commander" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content="https://desktopcommander.app/bg-social-share.png" />
+
+  <meta name="robots" content="noindex, nofollow, noai, noimageai" />
+  <meta name="googlebot" content="noindex, nofollow, noai" />
+
+  <!-- Cookiebot - MUST be first script in head -->
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="83cceb09-32d2-409b-ada6-17cc28478ba6" data-blockingmode="auto" type="text/javascript" async is:inline></script>
+
+  <!-- Google tag (gtag.js) - blocked until statistics consent -->
+  <script type="text/plain" data-cookieconsent="statistics" async src="https://www.googletagmanager.com/gtag/js?id=G-HXL4Y3Y62N" is:inline></script>
+  <script type="text/plain" data-cookieconsent="statistics" is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HXL4Y3Y62N');
+  </script>
+
+  <!-- Ahrefs Analytics - blocked until statistics consent -->
+  <script type="text/plain" data-cookieconsent="statistics" src="https://analytics.ahrefs.com/analytics.js" data-key="5Iumy4Rr7Do+R0CWUtQkHA" async is:inline></script>
+
+  <!-- HubSpot embedded form (email gate). data-cookieconsent="ignore" so
+       Cookiebot auto-blocking never prevents the form from rendering. -->
+  <script src="https://js-eu1.hsforms.net/forms/embed/146727725.js" defer data-cookieconsent="ignore" is:inline></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style is:global>
+  :root {
+    --bg: #07080B;
+    --glass: rgba(255,255,255,0.035);
+    --glass-bright: rgba(255,255,255,0.06);
+    --stroke: rgba(255,255,255,0.09);
+    --stroke-bright: rgba(255,255,255,0.18);
+    --text: #F4F5F7;
+    --text-dim: #A2A7B3;
+    --text-faint: #626772;
+    --blue: #7DA9FF;
+    --violet: #A78BFA;
+    --cyan: #67E8F9;
+    --green: #4ADE80;
+    --grad: linear-gradient(100deg, #7DA9FF 0%, #A78BFA 55%, #67E8F9 110%);
+    --mono: 'JetBrains Mono', monospace;
+    --display: 'Clash Display', sans-serif;
+    --body: 'Satoshi', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--blue); color: #07080B; }
+
+  /* ---------- atmosphere ---------- */
+  .aurora {
+    position: fixed; inset: -20%;
+    z-index: 0; pointer-events: none;
+    filter: blur(90px) saturate(130%);
+    opacity: 0.5;
+  }
+  .aurora::before, .aurora::after {
+    content: ''; position: absolute; border-radius: 50%;
+  }
+  .aurora::before {
+    width: 55vw; height: 55vw; left: 8%; top: -12%;
+    background: radial-gradient(circle at 30% 30%, rgba(125,169,255,0.55), transparent 65%);
+    animation: drift1 26s ease-in-out infinite alternate;
+  }
+  .aurora::after {
+    width: 45vw; height: 45vw; right: 2%; top: 6%;
+    background: radial-gradient(circle at 60% 40%, rgba(167,139,250,0.4), transparent 65%);
+    animation: drift2 32s ease-in-out infinite alternate;
+  }
+  @keyframes drift1 { from { transform: translate(0,0) scale(1); } to { transform: translate(8vw,6vh) scale(1.15); } }
+  @keyframes drift2 { from { transform: translate(0,0) scale(1.1); } to { transform: translate(-10vw,10vh) scale(0.95); } }
+
+  .grain {
+    position: fixed; inset: 0; z-index: 1; pointer-events: none;
+    opacity: 0.5; mix-blend-mode: overlay;
+  }
+
+  .wrap { position: relative; z-index: 2; max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- nav ---------- */
+  nav {
+    position: sticky; top: 14px; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    margin: 14px 0 0;
+    padding: 12px 20px;
+    border: 1px solid var(--stroke);
+    border-radius: 16px;
+    background: rgba(10,11,15,0.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+  .logo { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 600; font-size: 18px; color: var(--text); text-decoration: none; }
+  .logo-mark {
+    width: 28px; height: 28px; border-radius: 8px;
+    background: var(--text); color: var(--bg);
+    display: grid; place-items: center;
+    font-family: var(--mono); font-weight: 700; font-size: 13px;
+  }
+  .nav-note { font-family: var(--mono); font-size: 10.5px; color: var(--text-dim); letter-spacing: 0.16em; text-transform: uppercase; }
+  .dot-live { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--green); margin-right: 7px; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  /* ---------- hero: installed confirmation ---------- */
+  header { padding: 72px 0 0; text-align: center; }
+  .hero-card {
+    max-width: 700px; margin: 0 auto;
+    padding: 56px 44px 48px;
+    border-radius: 30px;
+    background: linear-gradient(180deg, rgba(74,222,128,0.06), rgba(255,255,255,0.02) 60%);
+    border: 1px solid rgba(74,222,128,0.25);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.07);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    animation: rise 0.7s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  .hero-card .status-line {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--green);
+    margin-bottom: 26px;
+  }
+  .scroll-cue {
+    margin: 56px auto 0;
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    color: var(--blue);
+    background: rgba(125,169,255,0.08);
+    border: 1px solid rgba(125,169,255,0.4);
+    box-shadow: 0 0 30px rgba(125,169,255,0.25);
+    cursor: pointer;
+    animation: cueBounce 2s ease-in-out infinite;
+  }
+  .scroll-cue:hover { background: rgba(125,169,255,0.16); }
+  @keyframes cueBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+  }
+  .check-big {
+    width: 74px; height: 74px; margin: 0 auto;
+    border-radius: 50%;
+    background: rgba(74,222,128,0.08);
+    border: 1px solid rgba(74,222,128,0.4);
+    display: grid; place-items: center;
+    position: relative;
+    animation: rise 0.7s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  .check-big::before, .check-big::after {
+    content: ''; position: absolute; inset: -12px; border-radius: 50%;
+    border: 1px solid rgba(74,222,128,0.25);
+    animation: ringPulse 2.8s ease-out infinite;
+  }
+  .check-big::after { animation-delay: 1.4s; }
+  @keyframes ringPulse {
+    0% { transform: scale(0.85); opacity: 0.9; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(34px, 5vw, 52px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.06;
+    margin: 26px auto 14px;
+    max-width: 860px;
+    animation: rise 0.7s 0.08s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  h1 .grad {
+    background: var(--grad);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .sub {
+    font-size: 18.5px; color: var(--text-dim); max-width: 600px; margin: 0 auto;
+    animation: rise 0.7s 0.16s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  .sub strong { color: var(--text); font-weight: 500; }
+  .hero-skip {
+    margin-top: 26px;
+    animation: rise 0.7s 0.24s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  .hero-skip a {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em;
+    color: var(--text-dim); text-decoration: none;
+    border-bottom: 1px solid var(--stroke-bright);
+    padding-bottom: 2px;
+  }
+  .hero-skip a:hover { color: var(--text); }
+  @keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+
+  /* divider between hero and pitch */
+  .divider {
+    display: flex; align-items: center; gap: 18px;
+    max-width: 720px; margin: 110px auto 0;
+    animation: rise 0.7s 0.3s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  .divider::before, .divider::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--stroke-bright));
+  }
+  .divider::after { background: linear-gradient(90deg, var(--stroke-bright), transparent); }
+  .divider span {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--text-faint); white-space: nowrap;
+  }
+
+  /* ---------- pitch: team agent ---------- */
+  .pitch { padding: 70px 0 30px; text-align: center; }
+  .pitch h2 {
+    font-family: var(--display);
+    font-size: clamp(38px, 6vw, 64px);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    max-width: 820px; margin: 0 auto 20px;
+  }
+  .pitch h2 .grad {
+    background: var(--grad);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .pitch .sub { max-width: 620px; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--display); font-weight: 600; font-size: 17px;
+    color: #0B0C10;
+    background: var(--grad);
+    border: none; border-radius: 14px;
+    padding: 17px 36px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 10px 40px rgba(125,169,255,0.25);
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 50px rgba(125,169,255,0.4); }
+  .btn-row { margin-top: 38px; }
+  .btn-note { margin-top: 14px; font-family: var(--mono); font-size: 11.5px; color: var(--text-faint); letter-spacing: 0.04em; }
+
+  .section-kicker {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--text-faint); margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: var(--display); font-weight: 600;
+    font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+  .section-sub { color: var(--text-dim); font-size: 16.5px; max-width: 580px; margin: 0 auto; }
+
+  /* ---------- product demo animation ---------- */
+  .demo-section { padding: 90px 0 20px; text-align: center; }
+  .demo-shell {
+    max-width: 680px; margin: 38px auto 0;
+    border-radius: 22px; padding: 1px;
+    background: linear-gradient(160deg, rgba(125,169,255,0.45), rgba(255,255,255,0.06) 40%, rgba(167,139,250,0.35));
+    box-shadow: 0 36px 100px rgba(0,0,0,0.6);
+    text-align: left;
+  }
+  .demo-window { background: #0B0D12; border-radius: 21px; overflow: hidden; }
+  .demo-bar {
+    display: flex; align-items: center; gap: 8px;
+    padding: 13px 18px;
+    border-bottom: 1px solid var(--stroke);
+    background: rgba(255,255,255,0.02);
+  }
+  .demo-dot { width: 11px; height: 11px; border-radius: 50%; }
+  .demo-dot.r { background: #FF5F57; } .demo-dot.y { background: #FEBC2E; } .demo-dot.g { background: #28C840; }
+  .demo-title { margin-left: 10px; font-weight: 700; font-size: 13.5px; }
+  .demo-members { margin-left: auto; display: flex; align-items: center; }
+  .demo-mini-av {
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 2px solid #0B0D12; margin-left: -7px;
+    display: grid; place-items: center;
+    font-family: var(--display); font-size: 9.5px; font-weight: 600; color: #fff;
+  }
+  .demo-status {
+    margin-left: 12px;
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em;
+    color: var(--green); text-transform: uppercase;
+  }
+  .demo-status .sdot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--green); margin-right: 6px; animation: pulse 1.6s infinite; }
+  .demo-body {
+    padding: 24px 22px 26px;
+    display: flex; flex-direction: column; gap: 14px;
+    min-height: 540px;
+    font-size: 14.5px;
+    transition: opacity 0.5s;
+  }
+  .d-msg { max-width: 88%; animation: rise 0.45s cubic-bezier(0.16,1,0.3,1) both; }
+  .d-user-row {
+    align-self: flex-end;
+    display: flex; flex-direction: row-reverse; gap: 10px;
+    max-width: 88%;
+    animation: rise 0.45s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  .d-uavatar {
+    width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+    display: grid; place-items: center;
+    font-family: var(--display); font-weight: 600; font-size: 13px; color: #fff;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    margin-top: 16px;
+  }
+  .d-uname {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em;
+    color: var(--text-faint); text-align: right; margin: 0 4px 4px 0;
+  }
+  .d-user {
+    background: var(--grad);
+    color: #0B0C10; font-weight: 500;
+    border-radius: 16px 16px 4px 16px;
+    padding: 12px 17px;
+    line-height: 1.45;
+  }
+  .d-user.alt { background: linear-gradient(100deg, #67E8F9 0%, #7DA9FF 100%); }
+  .d-user .caret { display: inline-block; width: 2px; height: 15px; background: #0B0C10; vertical-align: -2px; margin-left: 1px; animation: caretBlink 0.9s steps(1) infinite; }
+  @keyframes caretBlink { 50% { opacity: 0; } }
+  .d-agent {
+    align-self: flex-start;
+    display: flex; gap: 12px;
+  }
+  .d-avatar {
+    width: 36px; height: 36px; border-radius: 11px; flex-shrink: 0;
+    background: linear-gradient(150deg, #1A1D26, #0D0F14);
+    border: 1px solid var(--stroke-bright);
+    display: grid; place-items: center;
+    font-family: var(--mono); font-weight: 700; font-size: 12px;
+    box-shadow: 0 0 16px rgba(125,169,255,0.22);
+  }
+  .d-bubble {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--stroke);
+    border-radius: 4px 16px 16px 16px;
+    padding: 13px 17px;
+    line-height: 1.5; color: #D6D9DF;
+  }
+  .d-bubble strong { color: var(--text); }
+  .d-steps { display: flex; flex-direction: column; gap: 7px; font-family: var(--mono); font-size: 12px; }
+  .d-step { color: var(--text-faint); transition: color 0.3s; animation: rise 0.4s both; }
+  .d-step .ic { display: inline-block; width: 16px; color: var(--blue); }
+  .d-step.done { color: var(--text-dim); }
+  .d-step.done .ic { color: var(--green); }
+  .d-step .spin {
+    display: inline-block; width: 10px; height: 10px;
+    border: 1.5px solid rgba(125,169,255,0.3); border-top-color: var(--blue);
+    border-radius: 50%; animation: spinr 0.8s linear infinite;
+  }
+  @keyframes spinr { to { transform: rotate(360deg); } }
+  .d-report {
+    margin-top: 12px;
+    border: 1px solid var(--stroke);
+    background: rgba(255,255,255,0.025);
+    border-radius: 14px;
+    padding: 16px 18px 14px;
+    max-width: 360px;
+  }
+  .d-report-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .d-report-title { font-weight: 700; font-size: 13px; }
+  .d-report-tag { font-family: var(--mono); font-size: 9.5px; color: var(--blue); background: rgba(125,169,255,0.12); border-radius: 4px; padding: 2px 7px; letter-spacing: 0.08em; }
+  .d-chart { display: flex; align-items: flex-end; gap: 7px; height: 74px; }
+  .d-chart span {
+    flex: 1; border-radius: 4px 4px 2px 2px;
+    background: linear-gradient(180deg, rgba(125,169,255,0.95), rgba(167,139,250,0.5));
+    height: 4px;
+    transition: height 0.9s cubic-bezier(0.16,1,0.3,1);
+  }
+  .d-chart span:last-child { background: linear-gradient(180deg, #67E8F9, rgba(103,232,249,0.4)); }
+  .d-chart-labels { display: flex; gap: 7px; margin-top: 7px; font-family: var(--mono); font-size: 9px; color: var(--text-faint); }
+  .d-chart-labels i { flex: 1; text-align: center; font-style: normal; }
+  .d-file {
+    margin-top: 12px;
+    display: flex; align-items: center; gap: 11px;
+    border-top: 1px solid var(--stroke);
+    padding-top: 12px;
+  }
+  .d-file-ic {
+    width: 30px; height: 30px; border-radius: 8px;
+    background: #E0466B; color: #fff;
+    display: grid; place-items: center;
+    font-family: var(--mono); font-size: 8.5px; font-weight: 700;
+  }
+  .d-file-name { font-weight: 700; font-size: 12.5px; }
+  .d-file-meta { font-family: var(--mono); font-size: 10.5px; color: var(--text-faint); }
+  .d-presence {
+    font-family: var(--mono); font-size: 11px; color: var(--text-faint);
+    padding-left: 6px;
+    animation: rise 0.3s both;
+  }
+  .d-presence::after { content: '…'; animation: pulse 1.2s infinite; }
+  .d-reacts { display: flex; gap: 7px; margin-top: 12px; }
+  .d-react {
+    font-family: var(--mono); font-size: 11px; color: var(--text-dim);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--stroke);
+    border-radius: 100px;
+    padding: 4px 11px;
+    animation: rise 0.4s both;
+  }
+
+  /* ---------- talk to your stuff ---------- */
+  .stuff-section { padding: 90px 0 30px; text-align: center; }
+  .tool-cloud {
+    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+    max-width: 760px; margin: 34px auto 0;
+  }
+  .cloud-pill {
+    font-family: var(--mono); font-size: 12.5px;
+    color: var(--text-dim);
+    background: var(--glass);
+    border: 1px solid var(--stroke);
+    border-radius: 100px;
+    padding: 10px 19px;
+    backdrop-filter: blur(8px);
+    transition: all 0.2s;
+  }
+  .cloud-pill:hover { color: var(--text); border-color: var(--stroke-bright); transform: translateY(-2px); }
+  .cloud-pill.hl { color: var(--blue); border-color: rgba(125,169,255,0.35); background: rgba(125,169,255,0.06); }
+
+  .ask-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    max-width: 920px; margin: 44px auto 0; text-align: left;
+  }
+  @media (max-width: 760px) { .ask-grid { grid-template-columns: 1fr; } }
+  .ask-card {
+    background: var(--glass);
+    border: 1px solid var(--stroke);
+    border-radius: 18px;
+    padding: 22px 24px;
+    backdrop-filter: blur(10px);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .ask-card:hover { border-color: var(--stroke-bright); transform: translateY(-3px); }
+  .ask-role { display: flex; align-items: center; gap: 9px; margin-bottom: 12px; }
+  .ask-role-av {
+    width: 26px; height: 26px; border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: var(--display); font-weight: 600; font-size: 11px; color: #fff;
+    border: 1.5px solid rgba(255,255,255,0.25);
+  }
+  .ask-role-name {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--text-faint);
+  }
+  .ask-q {
+    font-family: var(--display); font-weight: 500; font-size: 17px;
+    letter-spacing: -0.01em; line-height: 1.35;
+  }
+  .ask-q::before { content: '“'; color: var(--blue); }
+  .ask-q::after { content: '”'; color: var(--blue); }
+  .ask-a {
+    margin-top: 10px;
+    font-family: var(--mono); font-size: 11.5px; color: var(--text-faint);
+    letter-spacing: 0.02em;
+  }
+  .ask-a span { color: var(--green); }
+
+  /* ---------- how it works ---------- */
+  .how-section { padding: 90px 0 20px; text-align: center; }
+  .how { display: flex; align-items: stretch; justify-content: center; gap: 0; max-width: 960px; margin: 46px auto 0; text-align: left; }
+  .how-item {
+    position: relative; flex: 1; isolation: isolate; overflow: hidden;
+    background: var(--glass);
+    border: 1px solid var(--stroke);
+    border-radius: 20px; padding: 26px 22px 30px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+  }
+  /* gradient hairline border that lights up on hover */
+  .how-item::after {
+    content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+    background: var(--grad);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    opacity: 0; transition: opacity 0.3s ease; pointer-events: none;
+  }
+  .how-item:hover { transform: translateY(-5px); border-color: transparent; box-shadow: 0 20px 55px rgba(125,169,255,0.14); }
+  .how-item:hover::after { opacity: 0.65; }
+  .how-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .how-node {
+    position: relative; flex: none; width: 46px; height: 46px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: radial-gradient(circle at 50% 32%, rgba(125,169,255,0.18), rgba(255,255,255,0.015));
+    transition: box-shadow 0.3s ease;
+  }
+  .how-node::before {
+    content: ''; position: absolute; inset: 0; border-radius: 50%; padding: 1.5px;
+    background: var(--grad);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    opacity: 0.75; transition: opacity 0.3s ease;
+  }
+  .how-item:hover .how-node::before { opacity: 1; }
+  .how-item:hover .how-node { box-shadow: 0 0 22px rgba(167,139,250,0.35); }
+  .how-node b {
+    font-family: var(--display); font-weight: 700; font-size: 17px; line-height: 1;
+    background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .how-label { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-dim); }
+  .how-title { font-family: var(--display); font-weight: 600; font-size: 18px; margin: 0 0 7px; position: relative; z-index: 1; }
+  .how-desc { font-size: 14px; color: var(--text-dim); line-height: 1.5; margin: 0; position: relative; z-index: 1; }
+  /* faint oversized icon watermark for depth */
+  .how-wm {
+    position: absolute; right: -10px; bottom: -12px; width: 92px; height: 92px;
+    color: #A78BFA; opacity: 0.07; z-index: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .how-item:hover .how-wm { opacity: 0.16; transform: translateY(-4px) rotate(-4deg); }
+  /* animated gradient connector */
+  .how-sep {
+    display: flex; align-items: center; padding: 0 8px; font-size: 22px; font-weight: 700; line-height: 1;
+    font-family: var(--display);
+    background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    animation: howArrow 1.8s ease-in-out infinite;
+  }
+  @keyframes howArrow { 0%,100% { transform: translateX(0); opacity: 0.45; } 50% { transform: translateX(5px); opacity: 1; } }
+  @media (max-width: 720px) {
+    .how { flex-direction: column; gap: 12px; }
+    .how-sep { transform: rotate(90deg); padding: 4px 0; align-self: center; animation: none; opacity: 0.5; }
+  }
+
+  /* ---------- email gate (HubSpot embed) ---------- */
+  .hidden { display: none; }
+  .fade-in { animation: rise 0.6s cubic-bezier(0.16,1,0.3,1) both; }
+  .gate-section { padding: 90px 0 30px; }
+  .gate-card {
+    max-width: 600px; margin: 0 auto;
+    border-radius: 24px; padding: 1px;
+    background: linear-gradient(160deg, rgba(125,169,255,0.4), rgba(255,255,255,0.06) 45%, rgba(167,139,250,0.3));
+    box-shadow: 0 30px 90px rgba(0,0,0,0.5);
+  }
+  .gate-inner {
+    background: #0B0D12; border-radius: 23px;
+    padding: 46px 42px 42px; text-align: center;
+  }
+  .gate-inner .section-title { font-size: clamp(26px, 3.6vw, 34px); }
+  .hs-form-frame { margin-top: 28px; text-align: left; }
+  .form-note { font-size: 12px; color: var(--text-faint); margin-top: 16px; font-family: var(--mono); }
+
+  footer {
+    border-top: 1px solid var(--stroke);
+    margin-top: 70px;
+    padding: 28px 0 42px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+    font-size: 13px; color: var(--text-faint);
+  }
+  footer a { color: var(--text-dim); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+  .skip-link { font-family: var(--mono); font-size: 11.5px; }
+  </style>
+</head>
+<body>
+
+<PostHogInit client:load />
+
+<div class="aurora"></div>
+<svg class="grain" width="100%" height="100%">
+  <filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+  <rect width="100%" height="100%" filter="url(#noise)" opacity="0.18"/>
+</svg>
+
+<div class="wrap">
+
+  <nav>
+    <a class="logo" href="https://desktopcommander.app/"><div class="logo-mark">DC</div>Desktop&nbsp;Commander</a>
+    <div class="nav-note"><span class="dot-live"></span>MCP connected</div>
+  </nav>
+
+  <!-- ============ HERO: INSTALLED ============ -->
+  <header>
+    <div class="hero-card">
+      <div class="status-line">✓ MCP server installed</div>
+      <div class="check-big">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M8 16.5L13.5 22L24 11" stroke="#4ADE80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h1>Installed. You're all&nbsp;set.</h1>
+      <p class="sub">Thanks for installing the Desktop Commander MCP. It's connected to Claude. <strong>Nothing else to do</strong>. Switch over and start working.</p>
+      <div class="hero-skip">
+        <a href="https://desktopcommander.app/library/prompts/">Need a starting point? Browse 72+ prompts →</a>
+      </div>
+    </div>
+
+    <div class="scroll-cue" id="scrollCue" role="button" aria-label="Scroll to see what's new">
+      <svg width="26" height="26" viewBox="0 0 22 22" fill="none"><path d="M5 8l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+
+    <div class="divider"><span>while you're here · new</span></div>
+  </header>
+
+  <!-- ============ PITCH: TEAM AGENT ============ -->
+  <section class="pitch">
+    <h2>Get your <span class="grad">AI employee.</span></h2>
+    <p class="sub">An agent that does work for your team, with <strong>shared files</strong>, <strong>shared tools</strong>, and <strong>its own computer</strong>. Everyone can talk to it.</p>
+
+    <div class="btn-row">
+      <button class="btn" data-cta="hero">Create your team agent →</button>
+    </div>
+  </section>
+
+  <!-- ============ PRODUCT DEMO ============ -->
+  <section class="demo-section">
+    <div class="section-kicker">See it work</div>
+    <h2 class="section-title">Task it like a teammate.</h2>
+    <p class="section-sub">Ask in chat. It connects to your systems, does the work on its own computer, and delivers the result.</p>
+
+    <div class="demo-shell">
+      <div class="demo-window">
+        <div class="demo-bar">
+          <div class="demo-dot r"></div><div class="demo-dot y"></div><div class="demo-dot g"></div>
+          <span class="demo-title"># team · Your AI employee</span>
+          <div class="demo-members">
+            <div class="demo-mini-av" style="background:#E8912D">M</div>
+            <div class="demo-mini-av" style="background:#3D7BE8">J</div>
+            <div class="demo-mini-av" style="background:#15181F;font-family:var(--mono)">DC</div>
+          </div>
+          <span class="demo-status"><span class="sdot"></span>online</span>
+        </div>
+        <div class="demo-body" id="demoBody"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TALK TO YOUR STUFF ============ -->
+  <section class="stuff-section">
+    <div class="section-kicker">Connect everything</div>
+    <h2 class="section-title">Connect your tools.<br>Talk to your stuff.</h2>
+    <p class="section-sub">Plug in the systems your company already runs on: ERP, CRM, databases, drives. Ask in plain language, and answers, reports, and changes come back done.</p>
+
+    <div class="tool-cloud">
+      <span class="cloud-pill hl">SAP</span>
+      <span class="cloud-pill hl">NetSuite</span>
+      <span class="cloud-pill hl">Odoo</span>
+      <span class="cloud-pill">Salesforce</span>
+      <span class="cloud-pill">HubSpot</span>
+      <span class="cloud-pill">Postgres</span>
+      <span class="cloud-pill">MySQL</span>
+      <span class="cloud-pill">Google Drive</span>
+      <span class="cloud-pill">SharePoint</span>
+      <span class="cloud-pill">Notion</span>
+      <span class="cloud-pill">GitHub</span>
+      <span class="cloud-pill">Stripe</span>
+      <span class="cloud-pill">Shopify</span>
+      <span class="cloud-pill">Airtable</span>
+      <span class="cloud-pill">+ any MCP</span>
+    </div>
+
+    <div class="ask-grid">
+      <div class="ask-card">
+        <div class="ask-role"><div class="ask-role-av" style="background:#E8912D">M</div><div class="ask-role-name">Finance asks</div></div>
+        <div class="ask-q">Which invoices are overdue in NetSuite, by customer?</div>
+        <div class="ask-a"><span>→</span> table + reminder drafts, 40 sec</div>
+      </div>
+      <div class="ask-card">
+        <div class="ask-role"><div class="ask-role-av" style="background:#3D7BE8">J</div><div class="ask-role-name">Sales asks</div></div>
+        <div class="ask-q">Pull this quarter's pipeline by stage from Salesforce.</div>
+        <div class="ask-a"><span>→</span> chart + summary, posted to the team</div>
+      </div>
+      <div class="ask-card">
+        <div class="ask-role"><div class="ask-role-av" style="background:#9D5BD2">A</div><div class="ask-role-name">Ops asks</div></div>
+        <div class="ask-q">How many orders shipped late this week, and why?</div>
+        <div class="ask-a"><span>→</span> root-cause digest from ERP + logs</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="how-section">
+    <div class="section-kicker">From install to agent</div>
+    <h2 class="section-title">How it works</h2>
+    <div class="how">
+      <article class="how-item">
+        <div class="how-head"><span class="how-node"><b>01</b></span><span class="how-label">Create</span></div>
+        <h3 class="how-title">Create a team agent</h3>
+        <p class="how-desc">Set up once for your whole team.</p>
+        <svg class="how-wm" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.7 5.1L19 9l-5.3 1.9L12 16l-1.7-5.1L5 9l5.3-1.9z"/><path d="M18.5 13.5l.7 2.1 2.1.7-2.1.7-.7 2.1-.7-2.1-2.1-.7 2.1-.7z"/></svg>
+      </article>
+      <div class="how-sep" aria-hidden="true">→</div>
+      <article class="how-item">
+        <div class="how-head"><span class="how-node"><b>02</b></span><span class="how-label">Connect</span></div>
+        <h3 class="how-title">Connect your tools</h3>
+        <p class="how-desc">The apps your team already uses.</p>
+        <svg class="how-wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12h6"/><path d="M10.5 8H8.5a4 4 0 000 8h2"/><path d="M13.5 8h2a4 4 0 010 8h-2"/></svg>
+      </article>
+      <div class="how-sep" aria-hidden="true">→</div>
+      <article class="how-item">
+        <div class="how-head"><span class="how-node"><b>03</b></span><span class="how-label">Talk</span></div>
+        <h3 class="how-title">Talk to it together</h3>
+        <p class="how-desc">Just ask — it gets things done.</p>
+        <svg class="how-wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6.5A2.5 2.5 0 015.5 4h8A2.5 2.5 0 0116 6.5v4A2.5 2.5 0 0113.5 13H8l-3.5 3v-3H5.5A2.5 2.5 0 013 10.5z"/><path d="M16 9h2.5A2.5 2.5 0 0121 11.5v4A2.5 2.5 0 0118.5 18H18v2l-2.5-2H12.5"/></svg>
+      </article>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" data-cta="bottom">Create your team agent →</button>
+    </div>
+    <div class="btn-note">early access · limited team slots</div>
+  </section>
+
+  <!-- ============ EMAIL GATE (HubSpot) ============ -->
+  <section class="gate-section hidden" id="gate">
+    <div class="gate-card">
+      <div class="gate-inner">
+        <div class="section-kicker">Early access</div>
+        <h2 class="section-title">Create your team agent</h2>
+        <p class="section-sub">We're onboarding teams in small batches. Leave your company email and we'll reach out when your team's slot opens.</p>
+        <div class="hs-form-frame" data-region="eu1" data-form-id="733e0a8d-9b22-4a87-8872-f2196531544c" data-portal-id="146727725"></div>
+        <p class="form-note">no spam · one email when your team's slot opens</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2026 Desktop Commander · MIT-licensed MCP server</div>
+    <a class="skip-link" href="https://desktopcommander.app/library/prompts/">Just want the prompts? Browse 72+ →</a>
+  </footer>
+</div>
+
+<script is:inline>
+/* ============================================================
+   TRACKING — PostHog
+   posthog-js is initialized by the PostHogInit island (after
+   Cookiebot statistics consent). Events fired before it loads
+   are queued and flushed once it's ready.
+   Funnel: page_view → cta_clicked (hero|bottom) → gate_viewed
+           → email_submitted
+   ============================================================ */
+const EXPERIMENT = 'lp-a-team-agent';
+const _trackQueue = [];
+function phReady() {
+  return typeof window.posthog !== 'undefined' && typeof window.posthog.capture === 'function' && window.posthog.__loaded;
+}
+function track(event, props = {}) {
+  const payload = { experiment: EXPERIMENT, ...props };
+  if (phReady()) {
+    window.posthog.capture(event, payload);
+  } else {
+    _trackQueue.push([event, payload]);
+  }
+}
+const _flushTimer = setInterval(() => {
+  if (!phReady()) return;
+  while (_trackQueue.length) {
+    const [e, p] = _trackQueue.shift();
+    window.posthog.capture(e, p);
+  }
+  clearInterval(_flushTimer);
+}, 500);
+track('page_view');
+
+/* ---------- scroll cue ---------- */
+document.getElementById('scrollCue').addEventListener('click', () => {
+  document.querySelector('.pitch').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+/* ---------- product demo animation (looping) ---------- */
+const demoBody = document.getElementById('demoBody');
+let demoTimers = [];
+function dWait(fn, ms) { demoTimers.push(setTimeout(fn, ms)); }
+
+function addUserMsg(name, initial, color, alt) {
+  const row = document.createElement('div');
+  row.className = 'd-user-row';
+  row.innerHTML = `
+    <div class="d-uavatar" style="background:${color}">${initial}</div>
+    <div>
+      <div class="d-uname">${name}</div>
+      <div class="d-user${alt ? ' alt' : ''}"><span class="dTyped"></span><span class="caret"></span></div>
+    </div>
+  `;
+  demoBody.appendChild(row);
+  return row;
+}
+
+function typeInto(row, text, startDelay) {
+  const typed = row.querySelector('.dTyped');
+  text.split('').forEach((ch, i) => {
+    dWait(() => { typed.textContent += ch; }, startDelay + i * 26);
+  });
+  const done = startDelay + text.length * 26;
+  dWait(() => { const c = row.querySelector('.caret'); if (c) c.remove(); }, done + 200);
+  return done;
+}
+
+function showPresence(name) {
+  const p = document.createElement('div');
+  p.className = 'd-presence'; p.id = 'dPresence';
+  p.textContent = name + ' is typing';
+  demoBody.appendChild(p);
+}
+function removePresence() {
+  const p = document.getElementById('dPresence');
+  if (p) p.remove();
+}
+
+function runDemo() {
+  demoTimers.forEach(clearTimeout);
+  demoTimers = [];
+  demoBody.style.opacity = 1;
+  demoBody.innerHTML = '';
+
+  /* 1 — presence, then employee #1 types the task */
+  const TASK1 = 'Generate the May sales report from our ERP. Revenue by region, vs. April.';
+  dWait(() => showPresence('Marta'), 300);
+  dWait(() => {
+    removePresence();
+    const marta = addUserMsg('Marta · Finance', 'M', '#E8912D', false);
+    typeInto(marta, TASK1, 0);
+  }, 1500);
+  const typeDone = 1500 + TASK1.length * 26;
+
+  /* 2 — agent works through steps */
+  const STEPS = [
+    'Connecting to NetSuite ERP',
+    'Pulling 1,284 May orders',
+    'Crunching numbers on my computer',
+    'Building charts + PDF'
+  ];
+  dWait(() => {
+    const agent = document.createElement('div');
+    agent.className = 'd-msg d-agent';
+    agent.innerHTML = `
+      <div class="d-avatar">DC</div>
+      <div class="d-bubble"><div class="d-steps" id="dSteps"></div></div>
+    `;
+    demoBody.appendChild(agent);
+  }, typeDone + 600);
+
+  STEPS.forEach((step, i) => {
+    dWait(() => {
+      const steps = document.getElementById('dSteps');
+      if (!steps) return;
+      /* mark previous as done */
+      const prev = steps.lastElementChild;
+      if (prev) { prev.classList.add('done'); prev.querySelector('.ic').innerHTML = '✓'; }
+      const el = document.createElement('div');
+      el.className = 'd-step';
+      el.innerHTML = `<span class="ic"><span class="spin"></span></span>${step}…`;
+      steps.appendChild(el);
+    }, typeDone + 900 + i * 1100);
+  });
+  const stepsDone = typeDone + 900 + STEPS.length * 1100;
+  dWait(() => {
+    const steps = document.getElementById('dSteps');
+    if (!steps) return;
+    const prev = steps.lastElementChild;
+    if (prev) { prev.classList.add('done'); prev.querySelector('.ic').innerHTML = '✓'; }
+  }, stepsDone);
+
+  /* 3 — result: report card with chart + file */
+  dWait(() => {
+    const result = document.createElement('div');
+    result.className = 'd-msg d-agent';
+    result.innerHTML = `
+      <div class="d-avatar">DC</div>
+      <div class="d-bubble" id="dResultBubble">
+        Done. May revenue <strong>€412k, +9% vs April</strong>. Strongest region: DACH. Full report attached.
+        <div class="d-report">
+          <div class="d-report-head">
+            <span class="d-report-title">Revenue by region · May</span>
+            <span class="d-report-tag">LIVE DATA</span>
+          </div>
+          <div class="d-chart" id="dChart">
+            <span data-h="58"></span><span data-h="34"></span><span data-h="72"></span><span data-h="46"></span><span data-h="26"></span><span data-h="64"></span>
+          </div>
+          <div class="d-chart-labels"><i>DACH</i><i>UK</i><i>FR</i><i>NORD</i><i>ES</i><i>US</i></div>
+          <div class="d-file">
+            <div class="d-file-ic">PDF</div>
+            <div>
+              <div class="d-file-name">may-sales-report.pdf</div>
+              <div class="d-file-meta">6 pages · charts + tables · just now</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    demoBody.appendChild(result);
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      document.querySelectorAll('#dChart span').forEach(b => { b.style.height = b.dataset.h + 'px'; });
+    }));
+  }, stepsDone + 500);
+
+  /* 4 — a third teammate reacts (no ask — just benefiting) */
+  dWait(() => {
+    const bubble = document.getElementById('dResultBubble');
+    if (!bubble) return;
+    const reacts = document.createElement('div');
+    reacts.className = 'd-reacts';
+    reacts.innerHTML = `
+      <span class="d-react">🔥 Aisha · Ops</span>
+      <span class="d-react" style="animation-delay:0.35s">👍 2</span>
+    `;
+    bubble.appendChild(reacts);
+  }, stepsDone + 2100);
+
+  /* 5 — employee #2 jumps in */
+  const TASK2 = 'nice! @agent, same cut but just my UK accounts?';
+  dWait(() => showPresence('Jonas'), stepsDone + 3000);
+  dWait(() => {
+    removePresence();
+    const jonas = addUserMsg('Jonas · Sales', 'J', '#3D7BE8', true);
+    typeInto(jonas, TASK2, 0);
+  }, stepsDone + 4100);
+  const jonasDone = stepsDone + 4100 + TASK2.length * 26 + 400;
+
+  /* 6 — agent answers the second employee */
+  dWait(() => {
+    const reply2 = document.createElement('div');
+    reply2.className = 'd-msg d-agent';
+    reply2.innerHTML = `
+      <div class="d-avatar">DC</div>
+      <div class="d-bubble">
+        On it, Jonas. UK only: <strong>€86k, +14% vs April</strong>. Your top account: Harrod &amp; Co.
+        <div class="d-file" style="border-top:none;padding-top:4px">
+          <div class="d-file-ic" style="background:#3D7BE8">PDF</div>
+          <div>
+            <div class="d-file-name">may-sales-uk.pdf</div>
+            <div class="d-file-meta">3 pages · same data, your accounts · just now</div>
+          </div>
+        </div>
+      </div>
+    `;
+    demoBody.appendChild(reply2);
+  }, jonasDone + 900);
+
+  /* 7 — hold, fade, loop */
+  dWait(() => { demoBody.style.opacity = 0; }, jonasDone + 7000);
+  dWait(runDemo, jonasDone + 7600);
+}
+
+/* start when scrolled into view */
+const demoObserver = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting) {
+    runDemo();
+    demoObserver.disconnect();
+    track('demo_viewed');
+  }
+}, { threshold: 0.35 });
+demoObserver.observe(demoBody);
+
+/* ---------- CTA → gate ---------- */
+document.querySelectorAll('[data-cta]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    track('cta_clicked', { position: btn.dataset.cta });
+    const gate = document.getElementById('gate');
+    const wasHidden = gate.classList.contains('hidden');
+    gate.classList.remove('hidden');
+    gate.classList.add('fade-in');
+    gate.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (wasHidden) track('gate_viewed', { position: btn.dataset.cta });
+  });
+});
+
+/* ---------- HubSpot form events ---------- */
+window.addEventListener('message', (event) => {
+  const d = event.data;
+  if (!d || d.type !== 'hsFormCallback') return;
+  if (d.eventName === 'onFormReady') {
+    track('hs_form_ready');
+  }
+  if (d.eventName === 'onFormSubmitted') {
+    track('email_submitted', { form_id: d.id });
+    if (phReady()) {
+      const email = d.data && d.data.submissionValues && d.data.submissionValues.email;
+      if (email) window.posthog.identify(email, { email });
+    }
+  }
+});
+</script>
+</body>
+</html>
