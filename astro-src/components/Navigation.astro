@@ -90,7 +90,7 @@ const { hideCta = false } = Astro.props;
                   </button>
 
                   <div class="dc-mega__panel absolute top-full pt-2 z-50">
-                    <div class="bg-[#1a1a2e] border border-dc-border rounded-lg shadow-2xl overflow-hidden" style={`min-width: ${menu.columns.length * 220 + 48}px;`}>
+                    <div class="bg-[#1a1a2e] border border-dc-border rounded-lg shadow-2xl overflow-hidden" style={`min-width: ${menu.columns.length * (menu.columns.some((c) => c.links.some((l) => l.icon)) ? 252 : 220) + 48}px;`}>
                       <div class="p-6 grid gap-8" style={`grid-template-columns: repeat(${menu.columns.length}, minmax(200px, 1fr));`}>
                         {menu.columns.map((col) => (
                           <div>
@@ -100,7 +100,7 @@ const { hideCta = false } = Astro.props;
                                 <li>
                                   <a
                                     href={link.href}
-                                    class="block px-2 py-1.5 -mx-2 rounded hover:bg-white/10 transition-colors group whitespace-nowrap"
+                                    class={`${link.icon ? 'flex items-start gap-3 py-2' : 'block py-1.5'} px-2 -mx-2 rounded-lg hover:bg-white/10 transition-colors group whitespace-nowrap`}
                                     target={link.external ? '_blank' : undefined}
                                     rel={link.external ? 'noopener noreferrer' : undefined}
                                     data-nav-link
@@ -108,15 +108,22 @@ const { hideCta = false } = Astro.props;
                                     data-nav-destination={link.href}
                                     data-nav-type={linkType(link)}
                                   >
-                                    <div class="flex items-center gap-2">
-                                      <span class="text-white text-sm font-medium group-hover:text-white">{link.label}</span>
-                                      {link.badge && (
-                                        <span class="text-[10px] font-semibold uppercase tracking-wider text-blue-300 bg-blue-500/15 border border-blue-400/20 rounded px-1.5 py-0.5">{link.badge}</span>
-                                      )}
-                                    </div>
-                                    {link.description && (
-                                      <div class="text-gray-400 text-xs mt-0.5 whitespace-normal">{link.description}</div>
+                                    {link.icon && (
+                                      <span class="mt-0.5 h-8 w-8 flex-shrink-0 rounded-md border border-white/10 bg-white/[0.07] flex items-center justify-center overflow-hidden">
+                                        <img src={link.icon} alt="" width="16" height="16" loading="lazy" class="h-4 w-4 object-contain" />
+                                      </span>
                                     )}
+                                    <span class="min-w-0 block">
+                                      <span class="flex items-center gap-2">
+                                        <span class="text-white text-sm font-medium group-hover:text-white">{link.label}</span>
+                                        {link.badge && (
+                                          <span class="text-[10px] font-semibold uppercase tracking-wider text-blue-300 bg-blue-500/15 border border-blue-400/20 rounded px-1.5 py-0.5">{link.badge}</span>
+                                        )}
+                                      </span>
+                                      {link.description && (
+                                        <span class="block text-gray-400 text-xs mt-0.5 whitespace-normal leading-snug">{link.description}</span>
+                                      )}
+                                    </span>
                                   </a>
                                 </li>
                               ))}
@@ -124,16 +131,37 @@ const { hideCta = false } = Astro.props;
                           </div>
                         ))}
                       </div>
-                      {menu.footer && (
-                        <div class="bg-[#15152a] border-t border-dc-border px-6 py-3">
-                          <a
-                            href={menu.footer.href}
-                            class="text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors"
-                            data-nav-link
-                            data-nav-text={menu.footer.label}
-                            data-nav-destination={menu.footer.href}
-                            data-nav-type="internal"
-                          >{menu.footer.label}</a>
+                      {(menu.footer || menu.action) && (
+                        <div class="bg-[#15152a] border-t border-dc-border px-6 py-3 flex items-center justify-between gap-8">
+                          {menu.footer ? (
+                            <a
+                              href={menu.footer.href}
+                              class="text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors whitespace-nowrap"
+                              data-nav-link
+                              data-nav-text={menu.footer.label}
+                              data-nav-destination={menu.footer.href}
+                              data-nav-type={linkType(menu.footer)}
+                            >{menu.footer.label}</a>
+                          ) : <span></span>}
+                          {menu.action && (
+                            <a
+                              href={menu.action.href}
+                              target={menu.action.external ? '_blank' : undefined}
+                              rel={menu.action.external ? 'noopener noreferrer' : undefined}
+                              class="inline-flex items-center gap-2 rounded-full border border-blue-400/25 bg-blue-500/10 px-3.5 py-1.5 text-sm font-medium text-blue-300 whitespace-nowrap transition-colors hover:border-blue-400/50 hover:bg-blue-500/20 hover:text-blue-200"
+                              data-nav-link
+                              data-nav-text={menu.action.label}
+                              data-nav-destination={menu.action.href}
+                              data-nav-type={linkType(menu.action)}
+                            >
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 flex-shrink-0">
+                                <rect x="2" y="4" width="13" height="9" rx="1.5"></rect>
+                                <path d="M6 17h5"></path>
+                                <rect x="17" y="9" width="5" height="11" rx="1.5"></rect>
+                              </svg>
+                              {menu.action.label}
+                            </a>
+                          )}
                         </div>
                       )}
                     </div>
@@ -164,8 +192,18 @@ const { hideCta = false } = Astro.props;
       </div>
 
       <!-- Desktop CTA -->
-      {!hideCta && (
-      <div class="hidden lg:flex items-center gap-3">
+      <div class="hidden lg:flex items-center gap-6">
+        <a
+          href="https://mcp.desktopcommander.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hidden xl:inline-block text-sm font-medium text-white/60 underline underline-offset-4 decoration-white/25 transition-colors hover:text-white hover:decoration-white/60"
+          data-nav-link
+          data-nav-text="Manage devices"
+          data-nav-destination="https://mcp.desktopcommander.app/"
+          data-nav-type="external"
+        >Manage devices</a>
+        {!hideCta && (
         <a
           href={ctaHref}
           class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium text-sm transition-colors"
@@ -186,8 +224,8 @@ const { hideCta = false } = Astro.props;
           )}
           {ctaLabel}
         </a>
+        )}
       </div>
-      )}
 
       <!-- Mobile Menu (React for interactivity) -->
       <MobileMenu client:load pathname={Astro.url.pathname} />

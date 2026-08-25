@@ -984,6 +984,48 @@ body {
     margin-bottom: 0;
 }
 
+/* Remote MCP console link (matches main site nav) */
+.dc-devices-link {
+    display: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25;
+    color: #64748b;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: rgba(100, 116, 139, 0.4);
+    margin-right: 0.75rem;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.dc-devices-link:hover {
+    color: #0f172a;
+    text-decoration-color: rgba(15, 23, 42, 0.6);
+}
+
+@media (min-width: 1280px) {
+    .dc-devices-link {
+        display: inline-block;
+    }
+}
+
+.dc-mobile-devices-link {
+    display: block;
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #64748b;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: rgba(100, 116, 139, 0.4);
+    transition: color 0.2s ease;
+}
+
+.dc-mobile-devices-link:hover {
+    color: #0f172a;
+}
+
 /* Download/Install Buttons */
 .dc-nav-right {
     display: flex;

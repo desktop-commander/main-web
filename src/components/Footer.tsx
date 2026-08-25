@@ -33,6 +33,7 @@ const Footer = () => {
           onClickExtra: () => trackDownloadRedirect('footer'),
         },
         { label: 'MCP Server', href: '/mcp/' },
+        { label: 'Manage devices', href: 'https://mcp.desktopcommander.app/', external: true },
         { label: 'Prompt Library', href: '/library/prompts/' },
         { label: 'Pricing', href: '/pricing/' },
       ],

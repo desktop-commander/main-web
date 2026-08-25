@@ -42,9 +42,9 @@ const MCPRemote = () => {
     return () => observer.disconnect();
   }, []);
 
-  const trackCta = (location: string) => {
+  const trackCta = (location: string, label: string = 'Get Remote MCP') => {
     trackCustomEvent('remote_mcp_cta_clicked', {
-      button_text: 'Get Remote MCP',
+      button_text: label,
       button_location: location,
       destination: 'https://mcp.desktopcommander.app/'
     });
@@ -103,6 +103,18 @@ const MCPRemote = () => {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
             </Button>
+            <p className="mt-4 text-sm text-muted-foreground">
+              Already set up?{' '}
+              <a
+                href="https://mcp.desktopcommander.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackCta('mcp_remote_section', 'Manage your devices')}
+                className="text-primary underline-offset-4 hover:underline transition-colors"
+              >
+                Manage your devices &rarr;
+              </a>
+            </p>
           </div>
 
           {/* Right: demo video */}

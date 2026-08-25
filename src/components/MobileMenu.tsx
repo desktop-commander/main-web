@@ -4,7 +4,7 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Download, Terminal, Menu, ChevronDown, ExternalLink } from "lucide-react";
+import { Download, Terminal, Menu, ChevronDown, ExternalLink, MonitorSmartphone } from "lucide-react";
 import { useState } from "react";
 import { trackDownloadRedirect } from '@/lib/analytics/tracking';
 import { useAnalyticsAstro } from '@/hooks/useAnalyticsAstro';
@@ -56,7 +56,12 @@ const MobileMenu = ({ pathname = '/' }: MobileMenuProps) => {
       onClick={() => handleNavClick(link)}
       className={`flex items-center justify-between gap-2 ${opts.compact ? 'text-sm text-gray-300' : 'text-base text-white'} px-2 py-1.5 hover:text-primary transition-colors`}
     >
-      <span className="flex items-center gap-2">
+      <span className="flex items-center gap-2.5">
+        {link.icon && (
+          <span className="h-7 w-7 flex-shrink-0 rounded-md border border-white/10 bg-white/[0.07] flex items-center justify-center overflow-hidden">
+            <img src={link.icon} alt="" width={14} height={14} loading="lazy" className="h-3.5 w-3.5 object-contain" />
+          </span>
+        )}
         {link.label}
         {link.badge && (
           <span className="text-[10px] font-semibold uppercase tracking-wider text-blue-300 bg-blue-500/15 border border-blue-400/20 rounded px-1.5 py-0.5">{link.badge}</span>
@@ -108,6 +113,19 @@ const MobileMenu = ({ pathname = '/' }: MobileMenuProps) => {
                           className="text-base text-blue-400 hover:text-blue-300 px-2 py-1.5 mt-1 transition-colors"
                         >{menu.footer.label}</a>
                       )}
+                      {menu.action && (
+                        <a
+                          href={menu.action.href}
+                          target={menu.action.external ? '_blank' : undefined}
+                          rel={menu.action.external ? 'noopener noreferrer' : undefined}
+                          onClick={() => handleNavClick(menu.action!)}
+                          className="mx-2 mt-2 inline-flex items-center justify-center gap-2 self-start rounded-full border border-blue-400/25 bg-blue-500/10 px-3.5 py-1.5 text-sm font-medium text-blue-300 transition-colors hover:border-blue-400/50 hover:bg-blue-500/20 hover:text-blue-200"
+                        >
+                          <MonitorSmartphone className="h-4 w-4 flex-shrink-0" />
+                          {menu.action.label}
+                          {menu.action.external && <ExternalLink className="h-3 w-3 opacity-70" />}
+                        </a>
+                      )}
                     </div>
                   )}
                 </div>
@@ -145,6 +163,16 @@ const MobileMenu = ({ pathname = '/' }: MobileMenuProps) => {
               {ctaLabel}
             </a>
           </Button>
+
+          <a
+            href="https://mcp.desktopcommander.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => handleNavClick({ label: 'Manage devices', href: 'https://mcp.desktopcommander.app/', external: true })}
+            className="mt-4 self-center text-sm font-medium text-white/60 underline underline-offset-4 decoration-white/25 transition-colors hover:text-white hover:decoration-white/60"
+          >
+            Manage devices
+          </a>
         </nav>
       </SheetContent>
     </Sheet>

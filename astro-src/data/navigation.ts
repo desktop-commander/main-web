@@ -18,6 +18,8 @@ export type NavLink = {
   description?: string;
   /** Optional small badge after the label (e.g. "MCP", "New") */
   badge?: string;
+  /** Optional icon rendered in a tile before the label. Path under /public. */
+  icon?: string;
   external?: boolean;
 };
 
@@ -31,6 +33,8 @@ export type MegaMenu = {
   columns: NavColumn[];
   /** Optional footer link rendered below the columns (e.g. "View all use cases →") */
   footer?: NavLink;
+  /** Optional right-aligned action button in the footer bar (e.g. "Manage devices") */
+  action?: NavLink;
 };
 
 // ---------------------------------------------------------------------------
@@ -163,16 +167,19 @@ export const mcpMenu: MegaMenu = {
       links: [
         {
           label: 'ChatGPT',
+          icon: '/openai-mark.svg',
           href: '/mcp/chatgpt/',
           description: 'Files & terminal from your chat',
         },
         {
           label: 'Claude Web',
+          icon: '/claude-logo.png',
           href: '/mcp/claude-web/',
           description: 'claude.ai connected to your machine',
         },
         {
           label: 'Cursor',
+          icon: '/cursor-mark.png',
           href: '/mcp/cursor/',
           description: 'Your machines, from the IDE or browser',
         },
@@ -183,11 +190,13 @@ export const mcpMenu: MegaMenu = {
       links: [
         {
           label: 'Claude Desktop',
+          icon: '/claude-desktop-logo.png',
           href: '/mcp/claude-desktop/',
           description: 'Full file & terminal access, 100% local',
         },
         {
           label: 'Install locally',
+          icon: '/terminal-mark.svg',
           href: '/mcp/#installation',
           description: 'npx setup for any MCP client',
         },
@@ -195,6 +204,11 @@ export const mcpMenu: MegaMenu = {
     },
   ],
   footer: { label: 'Desktop Commander MCP overview \u2192', href: '/mcp/' },
+  action: {
+    label: 'Manage devices',
+    href: 'https://mcp.desktopcommander.app/',
+    external: true,
+  },
 };
 
 // ---------------------------------------------------------------------------
