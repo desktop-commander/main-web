@@ -122,8 +122,10 @@ const Footer = () => {
   return (
     <footer className="border-t border-dc-border bg-dc-surface/50">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-12 md:py-16">
-        {/* Brand row */}
-        <div className="mb-10 md:mb-12 max-w-2xl">
+        {/* Brand beside the link columns, so the right half is not left empty */}
+        <div className="grid gap-10 md:gap-12 lg:grid-cols-12">
+        {/* Brand */}
+        <div className="lg:col-span-5">
           <div className="flex items-center gap-3 mb-4">
             <img src={dcLogo.src} alt="Desktop Commander" className="h-8 w-8" loading="lazy" />
             <h3 className="text-xl font-bold text-foreground">Desktop Commander</h3>
@@ -173,8 +175,8 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Link columns — 3 across on sm+ */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        {/* Link columns, sitting in the right half of the footer grid */}
+        <div className="grid grid-cols-2 gap-8 lg:col-span-6 lg:col-start-7">
           {columns.map((column) => (
             <div key={column.heading}>
               <h4 className="font-semibold text-foreground mb-4">{column.heading}</h4>
@@ -194,6 +196,7 @@ const Footer = () => {
               </ul>
             </div>
           ))}
+        </div>
         </div>
 
         <div className="border-t border-dc-border mt-8 md:mt-12 pt-6 md:pt-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
