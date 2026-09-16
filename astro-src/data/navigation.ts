@@ -11,6 +11,13 @@
  * (audit items #4, #12, #26)
  */
 
+/**
+ * The single install destination for the whole site: the install chooser on
+ * the homepage. On the homepage itself the browser treats this as an in-page
+ * anchor, so it scrolls rather than reloading.
+ */
+export const INSTALL_HREF = '/#install';
+
 export type NavLink = {
   label: string;
   href: string;
@@ -221,8 +228,11 @@ export const flatNavLinks: NavLink[] = [
 
 // Order in which top-level items appear in the desktop nav.
 // `mega:<label>` slots a mega-menu, anything else is treated as a flat link href.
+// NOTE: 'mega:Use Cases' is temporarily out of the nav while the use-case
+// pages are reworked for the MCP-first positioning. The pages stay live and
+// indexed; only the menu entry is hidden. Put it back at the front of this
+// list to restore it.
 export const navOrder: ReadonlyArray<string> = [
-  'mega:Use Cases',
   'mega:Prompts',
   'mega:MCP',
   '/pricing/',

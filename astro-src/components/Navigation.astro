@@ -12,6 +12,7 @@
 import MobileMenu from '../../src/components/MobileMenu';
 import dcLogo from '../../src/assets/dc-logo.png';
 import {
+  INSTALL_HREF,
   navOrder,
   flatNavLinks,
   useCasesMenu,
@@ -32,15 +33,10 @@ const megaMenus: Record<string, MegaMenu> = {
 
 const linkType = (l: NavLink) => (l.external ? 'external' : 'internal');
 
-// SEO #10 — context-aware primary CTA.
-// On /mcp (and any future MCP sub-routes) the nav CTA points at MCP install,
-// not the App download. Keeps a single nav component but matches page intent.
-// PostHog event name is dispatched via data-nav-cta in the click-delegation
-// handler below: data-nav-cta="download" → download_redirect,
-// data-nav-cta="install-mcp" → install_mcp_redirect.
-const isMcpPage = Astro.url.pathname.startsWith('/mcp');
-const ctaLabel = isMcpPage ? 'Install MCP' : 'Download App';
-const ctaHref = isMcpPage ? '/mcp#installation' : '/#download';
+// One CTA everywhere: Install, pointing at the install chooser on the
+// homepage. On the homepage itself this resolves to an in-page anchor.
+const ctaLabel = 'Install';
+const ctaHref = INSTALL_HREF;
 
 // Client landing pages (/mcp/<client>/) carry their own primary CTA, so the
 // nav CTA is hidden there to avoid competing calls to action.
@@ -197,7 +193,7 @@ const { hideCta = false } = Astro.props;
           href="https://mcp.desktopcommander.app/"
           target="_blank"
           rel="noopener noreferrer"
-          class="hidden xl:inline-block text-sm font-medium text-white/60 underline underline-offset-4 decoration-white/25 transition-colors hover:text-white hover:decoration-white/60"
+          class="hidden lg:inline-block text-sm font-medium text-white/60 underline underline-offset-4 decoration-white/25 transition-colors hover:text-white hover:decoration-white/60"
           data-nav-link
           data-nav-text="Manage devices"
           data-nav-destination="https://mcp.desktopcommander.app/"
@@ -207,21 +203,13 @@ const { hideCta = false } = Astro.props;
         <a
           href={ctaHref}
           class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium text-sm transition-colors"
-          data-nav-cta={isMcpPage ? 'install-mcp' : 'download'}
+          data-nav-cta="install-mcp"
           data-nav-location="nav_desktop"
         >
-          {isMcpPage ? (
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
-              <polyline points="4 17 10 11 4 5"></polyline>
-              <line x1="12" y1="19" x2="20" y2="19"></line>
-            </svg>
-          ) : (
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="7 10 12 15 17 10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
-            </svg>
-          )}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+            <polyline points="4 17 10 11 4 5"></polyline>
+            <line x1="12" y1="19" x2="20" y2="19"></line>
+          </svg>
           {ctaLabel}
         </a>
         )}

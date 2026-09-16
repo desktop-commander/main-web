@@ -2,7 +2,7 @@
 
 > Purpose: durable context for every future chat on this repo. Keep this file
 > accurate. If you discover the facts below have changed, update this file.
-> Last verified: **2026-06-15**.
+> Last verified: **2026-09-16**.
 
 ## What this repo is
 
@@ -24,17 +24,24 @@ The **Desktop Commander marketing website** (`desktopcommander.app`).
 
 ## ⚠️ Production deploy state (the important part)
 
-The intended model is "GitHub Pages serves `main` / `docs`." **Reality as of 2026-06-15 differs:**
+The intended model is "GitHub Pages serves `main` / `docs`." **Reality as of 2026-09-16 still differs:**
 
-- **Production is currently served from the `feat/blog-migration` branch's `docs/`**,
-  last built at commit **`1fa88f4f`** ("Sync built flags file with McpUiPreviews experiment", 2026-06-10).
-- **`main` is NOT what's live.** `main` tip is `995643b4` ("Static website changes", 2026-06-05).
-- The two branches **diverged on 2026-06-03** (`c7cdefa2`) and have not been reconciled:
-  - `main` only: pricing rewrite (3-plan), an "MCP UI AB test", flags bump — but **no static blog**;
-    its homepage still links About → `blog.desktopcommander.app` (old WordPress subdomain).
+- **Production is served from the `feat/blog-migration` branch's `docs/`.** Verified with
+  `gh api repos/desktop-commander/main-web/pages`, which reports
+  `source: { branch: "feat/blog-migration", path: "/docs" }`, cname `desktopcommander.app`.
+- Last successful Pages build: commit **`aca30120`** ("/welcome/: remove call-booking; align intro
+  with email-shaped help"), built **2026-08-26**.
+- **`main` is NOT what's live.** `main` tip is `051123a3` ("Add pricing preview without $200 package",
+  2026-08-04).
+- The two branches **diverged on 2026-06-03** (`c7cdefa2`) and have drifted further since:
+  **10 commits on `main` only, 85 on `feat/blog-migration` only** as of 2026-09-16.
+  - `main` only: pricing rewrite (3-plan), an "MCP UI AB test", flags bump, and a pricing preview
+    without the $200 package, but **no static blog**; its homepage still links About →
+    `blog.desktopcommander.app` (old WordPress subdomain).
   - `feat/blog-migration` only: full **WordPress→Astro blog migration** (28 posts, authors,
-    ported about/contact, Pagefind search, redirects) + a `McpUiPreviews` 50/50 experiment;
-    homepage links About → in-site `/blog/about/`.
+    ported about/contact, Pagefind search, redirects), the `McpUiPreviews` experiment (later
+    collapsed to 100%), the MCP client pages, the `/welcome/` page line, and Remote MCP device
+    console links across nav, footer and blog.
 
 **This is fragile:** main's pricing/AB-test commits are not in production, and the blog
 migration is not in main. Recommended fix: merge `feat/blog-migration` → `main`, then deploy
@@ -50,15 +57,23 @@ The live `/blog` is **static Astro** (paths `/blog/media/...`, `/blog/assets/...
 - `docs/blog/index.html` exists only on `feat/blog-migration` (and branches built from it);
   `main` has no `docs/blog/`.
 - Match a built asset hash, e.g.: `git show <branch>:docs/index.html | grep -oE 'dc-logo[^"]*\.png'`.
+- Authoritative check: `gh api repos/desktop-commander/main-web/pages` for the configured branch/path,
+  and `gh api repos/desktop-commander/main-web/pages/builds/latest` for the exact deployed commit.
 
-## Branches (as of 2026-06-15)
+## Branches (as of 2026-09-16)
 
-- `main` — intended production branch; currently behind live for the blog. Tip `995643b4` (Jun 5).
-- `feat/blog-migration` — **what's actually live**. Tip `1fa88f4f` (Jun 10).
+- `main` — intended production branch; behind live and missing the blog. Tip `051123a3` (Aug 4).
+- `feat/blog-migration` — **what's actually live**. Tip `aca30120` (Aug 26).
+- `feat/mcp-first-positioning` — branched from the live tip `aca30120` on 2026-09-16 for the
+  MCP-first repositioning (app no longer the primary CTA). Not deployed.
+- `flags/mcp-ui-previews-100` (Jul 30) and `feat/mcp-client-pages` (Jul 24) — already merged into
+  `feat/blog-migration` via PRs #16 and #15.
 - `fable-experiment` — homepage "mission control" redesign (built on top of blog-migration); NOT live.
-- `welcome-team-agent-lp` — welcome page v3 (team-agent pitch + HubSpot waitlist); source-only, not built into `docs/`, not deployed.
+- `welcome-team-agent-lp` — welcome page v3 (team-agent pitch + HubSpot waitlist); source-only, not
+  built into `docs/`, not deployed.
 - `gh-pages` — **stale/abandoned** (old Vite/React + `deploy:` commits, last touched 2025-09-19). Not used.
-- Other feature branches: `feature/pricing-page`, `feature/website-redesign`, `hero-redesign-v2`, etc.
+- Other feature branches: `feature/pricing-page`, `feature/website-redesign`, `hero-redesign-v2`,
+  `feature/welcome-page-feature-flags`, `flags/unexclude-claude-code`, etc.
 
 ## Working rules
 

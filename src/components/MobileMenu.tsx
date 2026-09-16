@@ -4,11 +4,11 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Download, Terminal, Menu, ChevronDown, ExternalLink, MonitorSmartphone } from "lucide-react";
+import { Terminal, Menu, ChevronDown, ExternalLink, MonitorSmartphone } from "lucide-react";
 import { useState } from "react";
-import { trackDownloadRedirect } from '@/lib/analytics/tracking';
 import { useAnalyticsAstro } from '@/hooks/useAnalyticsAstro';
 import {
+  INSTALL_HREF,
   navOrder,
   flatNavLinks,
   useCasesMenu,
@@ -38,9 +38,9 @@ const MobileMenu = ({ pathname = '/' }: MobileMenuProps) => {
   const [openMega, setOpenMega] = useState<string | null>(null);
   const { trackNavigation } = useAnalyticsAstro();
 
-  const isMcpPage = pathname.startsWith('/mcp');
-  const ctaLabel = isMcpPage ? 'Install MCP' : 'Download App';
-  const ctaHref = isMcpPage ? '/mcp#installation' : '/#download';
+  // One CTA everywhere: Install, pointing at the install chooser.
+  const ctaLabel = 'Install';
+  const ctaHref = INSTALL_HREF;
 
   const handleNavClick = (link: NavLink | { label: string; href: string; external?: boolean }) => {
     trackNavigation(link.label, link.href, link.external ? 'external' : 'internal');
@@ -149,17 +149,13 @@ const MobileMenu = ({ pathname = '/' }: MobileMenuProps) => {
               href={ctaHref}
               className="flex items-center gap-2"
               onClick={() => {
-                if (isMcpPage) {
-                  // Match Navigation.astro's event name for /mcp nav CTA.
-                  const ph = (window as unknown as { posthog?: { capture: (e: string, p?: object) => void } }).posthog;
-                  if (ph) ph.capture('install_mcp_redirect', { location: 'mobile_menu' });
-                } else {
-                  trackDownloadRedirect('mobile_menu');
-                }
+                // Match Navigation.astro's event name for the install CTA.
+                const ph = (window as unknown as { posthog?: { capture: (e: string, p?: object) => void } }).posthog;
+                if (ph) ph.capture('install_mcp_redirect', { location: 'mobile_menu' });
                 setIsSheetOpen(false);
               }}
             >
-              {isMcpPage ? <Terminal className="h-4 w-4" /> : <Download className="h-4 w-4" />}
+              <Terminal className="h-4 w-4" />
               {ctaLabel}
             </a>
           </Button>

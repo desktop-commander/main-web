@@ -2,14 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 import PostHogInit from '../../src/components/PostHogInit';
 import Navigation from '../components/Navigation.astro';
-import PricingSection from '../../src/components/PricingSection';
+import RemoteMcpPricing from '../../src/components/pricing/RemoteMcpPricing';
 import PricingFAQ from '../../src/components/PricingFAQ';
 import Footer from '../../src/components/Footer';
 ---
 
 <Layout
   title="Pricing - Desktop Commander"
-  description="Simple, transparent pricing. One Credits Plan from $20/month — access to the best AI models, change your bundle any time, cancel any time."
+  description="Desktop Commander Remote MCP pricing. Free with 10,000 tool calls a month, Pro at $20/month for unlimited tool calls. The local MCP server stays free and open source."
 >
   <!-- Load PostHog early to initialize analytics -->
   <PostHogInit client:load />
@@ -17,7 +17,7 @@ import Footer from '../../src/components/Footer';
   <div class="min-h-screen bg-background">
     <Navigation />
     <main>
-      <PricingSection client:load />
+      <RemoteMcpPricing client:load />
       <PricingFAQ client:visible />
     </main>
     <Footer client:visible />

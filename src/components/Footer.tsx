@@ -3,6 +3,7 @@ import { Github, MessageCircle, Play, Package } from "lucide-react";
 import dcLogo from "@/assets/dc-logo-dark.png";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
 import { trackDownloadRedirect } from '@/lib/analytics/tracking';
+import { INSTALL_HREF } from '../../astro-src/data/navigation';
 
 type FooterLink = {
   label: string;
@@ -27,27 +28,15 @@ const Footer = () => {
     {
       heading: 'Product',
       links: [
-        {
-          label: 'Download App',
-          href: '/#download',
-          onClickExtra: () => trackDownloadRedirect('footer'),
-        },
+        { label: 'Install', href: INSTALL_HREF },
         { label: 'MCP Server', href: '/mcp/' },
         { label: 'Manage devices', href: 'https://mcp.desktopcommander.app/', external: true },
         { label: 'Prompt Library', href: '/library/prompts/' },
         { label: 'Pricing', href: '/pricing/' },
       ],
     },
-    {
-      heading: 'Use Cases',
-      links: [
-        { label: 'For builders', href: '/use-cases/build-prototype/' },
-        { label: 'For knowledge workers', href: '/use-cases/knowledge-management/' },
-        { label: 'For data analysts', href: '/use-cases/analyze-data/' },
-        { label: 'File Management', href: '/use-cases/file-management/' },
-        { label: 'All use cases', href: '/use-cases/' },
-      ],
-    },
+    // The "Use Cases" column is temporarily hidden while those pages are
+    // reworked for the MCP-first positioning. The pages stay live.
     {
       heading: 'Resources',
       links: [
