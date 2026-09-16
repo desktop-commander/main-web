@@ -90,9 +90,10 @@ const HeroMcp = () => {
             <p
               className={`text-lg sm:text-xl text-muted-foreground mb-9 max-w-xl mx-auto lg:mx-0 leading-relaxed ${reveal("delay-200")}`}
             >
-              Desktop Commander gives AI chat access to your computer, so it works on it
-              directly. It reads files, runs the commands, sees the results, and continues
-              from there.
+              Desktop Commander gives AI chat access to your computer &mdash; no more copying
+              output back and forth. It reads your files, runs the commands, sees the results,
+              and continues from there. Works with ChatGPT, Claude and Codex, on your own
+              machine or a server you own.
             </p>
 
             <div
