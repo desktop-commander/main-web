@@ -64,6 +64,8 @@ const Footer = () => {
     });
   };
 
+  // Kept for when the footer chat button comes back (see the note in the JSX).
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const openHubSpotChat = () => {
     if (typeof window === 'undefined') {
       return;
@@ -162,17 +164,8 @@ const Footer = () => {
               </a>
             </Button>
           </div>
-          <div className="mt-5">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={openHubSpotChat}
-              className="group h-11 gap-2 rounded-lg border-white/15 bg-white/[0.06] px-5 text-white shadow-sm shadow-black/10 backdrop-blur-sm hover:border-primary/45 hover:bg-white/[0.1] hover:text-white"
-            >
-              <MessageCircle className="h-4 w-4 text-primary transition-smooth group-hover:text-dc-blue-glow" />
-              Chat with us
-            </Button>
-          </div>
+          {/* "Chat with us" (HubSpot) is hidden for now. The handler below still
+              exists, so restoring it is a matter of putting this button back. */}
         </div>
 
         {/* Link columns, sitting in the right half of the footer grid */}
