@@ -122,7 +122,7 @@ const MCPHero = () => {
               >
                 <Download className="h-5 w-5 text-primary" />
                 <span className="text-left">
-                  <span className="block text-xl font-bold text-foreground leading-tight">50k+</span>
+                  <span className="block text-xl font-bold text-foreground leading-tight">150k+</span>
                   <span className="block text-xs text-muted-foreground group-hover:text-foreground transition-colors">weekly npm downloads</span>
                 </span>
               </a>

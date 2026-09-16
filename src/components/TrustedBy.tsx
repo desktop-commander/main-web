@@ -36,7 +36,7 @@ const TrustedBy = () => {
     },
     {
       icon: Download,
-      value: "50k+",
+      value: "150k+",
       label: "Weekly Downloads",
       description: "Active installations"
     },
