@@ -108,7 +108,7 @@ const UseCases = () => {
             Four ways to get started
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Paste any prompt into Desktop Commander and watch it execute.
+            Paste any prompt into AI chat with Desktop Commander and watch it execute.
           </p>
         </div>
 

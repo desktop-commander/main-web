@@ -34,12 +34,8 @@ const MCPFAQ = () => {
 
   const faqs = [
     {
-      question: "What is Desktop Commander MCP?",
-      answer: "Desktop Commander MCP is an open-source MCP (Model Context Protocol) server that allows Claude Desktop and other MCP clients to access and control your computer's file system and terminal. It enables LLMs to explore, read, and write files, execute commands, and manage processes - expanding their capabilities beyond just conversation."
-    },
-    {
-      question: "What is the Desktop Commander App?",
-      answer: "Desktop Commander is now also available as a standalone desktop application! The app gives you a complete AI-powered interface with access to local files and terminal, letting you automate tasks using natural language. You can choose your preferred AI model (Claude, GPT, Gemini, and more) and work without needing to configure MCP manually. It's the easiest way to get started with Desktop Commander."
+      question: "What is Desktop Commander?",
+      answer: "Desktop Commander gives AI chat access to your computer, so it works on it directly instead of telling you what to do. It reads and writes files, runs commands, and manages processes on your own machine, then continues from the results."
     },
     {
       question: "What is Desktop Commander Remote MCP?",
@@ -47,7 +43,7 @@ const MCPFAQ = () => {
     },
     {
       question: "Should I use the local or remote MCP?",
-      answer: "Use the local MCP if you work at your computer in a desktop MCP client like Claude Desktop, Cursor, or Windsurf — it's our most popular option, free and open source. Use Remote MCP when your AI client runs in the browser (like ChatGPT or Claude web) or when you want to reach your machine from another device. Both give AI the same core ability: to read, write, run, and act on your system."
+      answer: "Use Remote MCP when your AI client runs in the browser, like ChatGPT or Claude web, or when you want to reach your machine from another device. Use the local MCP server if you work at your computer in a desktop MCP client like Claude Desktop, Cursor, or Windsurf; it runs entirely on your machine and is free and open source. Both give AI the same core ability: to read, write, run, and act on your system."
     },
     {
       question: "What is an MCP?",
@@ -56,14 +52,6 @@ const MCPFAQ = () => {
     {
       question: "How does Desktop Commander differ from coding tools like Cursor or Windsurf?",
       answer: "Unlike tools like Cursor or Windsurf which are primarily designed as coding IDEs, Desktop Commander provides a more flexible, solution-centric approach. It's not confined to a coding box - it can handle coding tasks but also excels at exploring codebases, drawing diagrams, running automation processes, organizing files, and working with multiple projects simultaneously."
-    },
-    {
-      question: "How much does it cost?",
-      answer: "Desktop Commander MCP is completely free and open-source. To use it with Claude Desktop, you need a Claude Pro subscription ($20/month). The Desktop Commander App runs on the Credits Plan — a monthly AI usage credits bundle starting at $20/month, with access to the best AI models on the market. New accounts include free starting credits to try it out."
-    },
-    {
-      question: "Which operating systems are supported?",
-      answer: "Both the MCP server and the Desktop Commander App work on Windows, macOS, and Linux, with ongoing improvements for better cross-platform support."
     },
     {
       question: "Is it safe to give AI access to my file system?",

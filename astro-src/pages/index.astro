@@ -1,43 +1,52 @@
 ---
+/**
+ * Homepage — MCP-first.
+ *
+ * Remote MCP is the product: Install is the only primary CTA, Manage devices
+ * is the constant secondary, and the desktop app is off the main path.
+ *
+ * The previous app-first homepage lives in git history (see the commit that
+ * introduced this file) if any of it needs to come back.
+ */
 import Layout from '../layouts/Layout.astro';
 import { organizationSchema } from '../data/schema';
 import Navigation from '../components/Navigation.astro';
+import MoreClients from '../components/MoreClients.astro';
 import PostHogInit from '../../src/components/PostHogInit';
-import HeroAstro from '../../src/components/HeroAstro';
-import CapabilityProof from '../../src/components/CapabilityProof';
-import UseCases from '../../src/components/UseCases';
-import WhyTheApp from '../../src/components/WhyTheApp';
+import HeroMcp from '../../src/components/home-mcp/HeroMcp';
+import InstallChooser from '../../src/components/home-mcp/InstallChooser';
+import MCPRemote from '../../src/components/mcp/MCPRemote';
+import McpUseCases from '../../src/components/home-mcp/McpUseCases';
+import HowItWorks from '../../src/components/home-mcp/HowItWorks';
 import PromptLibrary from '../../src/components/PromptLibrary';
-import AppAndMCP from '../../src/components/AppAndMCP';
+import McpPricing from '../../src/components/home-mcp/McpPricing';
 import TrustedBy from '../../src/components/TrustedBy';
-import Blog from '../../src/components/Blog';
-import PricingTeaser from '../../src/components/PricingTeaser';
-import DownloadSection from '../../src/components/DownloadSection';
+import MCPFAQ from '../../src/components/mcp/MCPFAQ';
+import FinalInstall from '../../src/components/home-mcp/FinalInstall';
 import Footer from '../../src/components/Footer';
 ---
 
 <Layout
-  title="Desktop Commander - AI that executes"
-  description="Desktop Commander reads your files, runs commands, and automates workflows — all in natural language."
+  title="Desktop Commander - Use your computer from chat"
+  description="Desktop Commander gives ChatGPT and Claude access to your computer, so they read your files, run commands, and see the results themselves. Your own machine, not a cloud sandbox."
   jsonLd={organizationSchema}
 >
-  <!-- Load PostHog early to initialize analytics -->
   <PostHogInit client:idle />
-  
+
   <div class="min-h-screen bg-background">
     <Navigation />
     <main>
-      <HeroAstro client:load />
-      <CapabilityProof client:visible />
-      <UseCases client:visible />
-      <WhyTheApp client:visible />
-      {/* PromptLibrary hidden — users reach prompts via nav or UseCases "Browse 60+ prompts" link */}
-      {/* <PromptLibrary client:visible /> */}
-      <PricingTeaser client:visible />
-      <AppAndMCP client:visible />
+      <HeroMcp client:load />
+      <InstallChooser client:visible />
+      <MCPRemote client:visible />
+      <McpUseCases client:visible />
+      <HowItWorks client:visible />
+      <PromptLibrary client:visible />
+      <MoreClients heading="Works with your AI client" />
       <TrustedBy client:visible />
-      <Blog client:visible />
-      <DownloadSection client:visible />
+      <McpPricing client:visible />
+      <MCPFAQ client:visible />
+      <FinalInstall client:visible />
     </main>
     <Footer client:visible />
   </div>

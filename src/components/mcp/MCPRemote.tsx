@@ -55,10 +55,6 @@ const MCPRemote = () => {
       <div className="container mx-auto max-w-7xl px-4 sm:px-6">
         {/* Header */}
         <div className={`text-center mb-12 transition-all duration-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-green-500/10 border border-green-500/20 rounded-full text-sm text-green-400 mb-4">
-            <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-            New: Remote MCP
-          </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
             Your machine, from anywhere
           </h2>

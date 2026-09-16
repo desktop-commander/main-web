@@ -23,32 +23,24 @@ const PricingFAQ = () => {
 
   const faqs = [
     {
-      question: "How does the Credits Plan work?",
-      answer: "You subscribe to a monthly AI usage credits bundle — $20, $50, or $100 per month. Credits cover the cost of running AI models: each message costs a small amount depending on the model, with more capable models costing a bit more."
+      question: "What is a tool call?",
+      answer: "One action Desktop Commander performs on your machine: reading a file, writing a file, running a command, checking a process. A single request in ChatGPT or Claude usually takes several tool calls."
     },
     {
-      question: "What models are available?",
-      answer: "Desktop Commander gives you access to the best AI models available on the market — from Anthropic, OpenAI, Google, and other leading providers."
+      question: "What happens when I reach 10,000 tool calls?",
+      answer: "The Free plan stops at 10,000 tool calls for that month. Your devices stay connected, and you can either wait for the next month or upgrade to Pro for unlimited calls."
     },
     {
-      question: "Can I switch between models?",
-      answer: "Absolutely. You can switch between models on a per-conversation basis. Use Claude for complex reasoning, GPT for creative writing, a fast model for quick tasks — whatever works best for you."
+      question: "Is the local MCP server free?",
+      answer: "Yes. The local MCP server is free and open source, with no account and no monthly limit. These plans cover Remote MCP, which is what connects web clients like ChatGPT and Claude to your machine."
     },
     {
-      question: "Can I change my bundle?",
-      answer: "Yes. You can change your credits bundle package at any time — upgrade when you need more, downsize when you need less."
-    },
-    {
-      question: "How much do credits cost per message?",
-      answer: "It depends on the model — cheaper models cost less per message, while larger, more capable models cost more. You can see your credits balance in Settings → Billing."
-    },
-    {
-      question: "Can I try it before subscribing?",
-      answer: "Yes. New accounts include free starting credits, so you can try Desktop Commander before committing to a bundle."
+      question: "How many devices can I connect?",
+      answer: "Connect as many machines as you need on either plan: a laptop, a desktop, a server. You choose which ones are reachable and can disconnect any of them at any time."
     },
     {
       question: "Can I cancel anytime?",
-      answer: "Yes. Subscriptions can be cancelled at any time — no contracts, no cancellation fees."
+      answer: "Yes. Subscriptions can be cancelled at any time, with no contracts and no cancellation fees."
     },
   ];
 
@@ -62,7 +54,7 @@ const PricingFAQ = () => {
             Pricing FAQ
           </h2>
           <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            Everything you need to know about plans, credits, and billing.
+            Tool calls, devices, and billing.
           </p>
         </div>
 
