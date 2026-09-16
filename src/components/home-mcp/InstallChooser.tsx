@@ -1,10 +1,10 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check, Terminal } from "lucide-react";
+import { ArrowRight, Check, Terminal, Plug, Copy } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import OpenAIMark from "@/components/mcp/clients/chatgpt/OpenAIMark";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
-import { CHATGPT_CONNECTOR, CLAUDE_CONNECTOR, LOCAL_MCP_URL } from "./links";
+import { CHATGPT_CONNECTOR, CLAUDE_CONNECTOR, LOCAL_MCP_URL, MCP_ENDPOINT } from "./links";
 
 /**
  * The single install destination for the whole site.
@@ -44,8 +44,25 @@ const OPTIONS = [
 
 const InstallChooser = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [copied, setCopied] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const { trackCustomEvent } = useAnalyticsAstro();
+
+  const copyEndpoint = async () => {
+    try {
+      await navigator.clipboard.writeText(MCP_ENDPOINT);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+      trackCustomEvent("install_cta_clicked", {
+        button_text: "Copy URL",
+        button_location: "home_install_chooser",
+        client: "any_mcp_client",
+        destination: MCP_ENDPOINT,
+      });
+    } catch {
+      /* clipboard unavailable, the URL is still selectable */
+    }
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -128,9 +145,47 @@ const InstallChooser = () => {
           ))}
         </div>
 
+        {/* Any other MCP client: the endpoint, copied straight in */}
+        <div
+          className={`max-w-4xl mx-auto mt-5 transition-all duration-700 delay-200 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+          }`}
+        >
+          <div className="rounded-xl border border-dc-border bg-dc-surface/40 px-5 py-5">
+            <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+              <span className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <Plug className="h-5 w-5 text-primary" />
+              </span>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-base font-semibold text-foreground mb-1">
+                  Any MCP client
+                </h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Cursor, VS Code, custom agents. Register this endpoint as a remote MCP
+                  server with OAuth, then authorize once. Tokens are scoped per client and
+                  can be revoked from Settings.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <code className="flex-1 min-w-0 truncate rounded-lg bg-background border border-dc-border px-4 py-2.5 text-sm text-muted-foreground font-mono">
+                    {MCP_ENDPOINT}
+                  </code>
+                  <Button
+                    variant="outline"
+                    onClick={copyEndpoint}
+                    className="flex items-center justify-center gap-2 whitespace-nowrap"
+                  >
+                    {copied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
+                    {copied ? "Copied" : "Copy URL"}
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Quieter local option */}
         <div
-          className={`max-w-4xl mx-auto mt-5 transition-all duration-700 delay-300 ${
+          className={`max-w-4xl mx-auto mt-4 transition-all duration-700 delay-300 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >

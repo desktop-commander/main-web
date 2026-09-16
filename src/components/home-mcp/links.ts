@@ -13,6 +13,9 @@ export const CHATGPT_CONNECTOR =
 export const CLAUDE_CONNECTOR =
   'https://claude.ai/customize/connectors/directory/remote-desktop-commander';
 
+/** Remote MCP endpoint, for clients that take a server URL directly. */
+export const MCP_ENDPOINT = 'https://mcp.desktopcommander.app/mcp';
+
 export const LOCAL_MCP_URL = '/mcp/';
 
 export const GITHUB_URL = 'https://github.com/wonderwhy-er/DesktopCommanderMCP';
