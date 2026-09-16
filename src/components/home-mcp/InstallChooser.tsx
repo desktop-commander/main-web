@@ -42,22 +42,20 @@ const OPTIONS = [
   },
 ];
 
-const LOCAL_INSTALL_COMMAND = "npx @wonderwhy-er/desktop-commander@latest setup";
-
 const InstallChooser = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [localOpen, setLocalOpen] = useState(false);
+  const [anyClientOpen, setAnyClientOpen] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const { trackCustomEvent } = useAnalyticsAstro();
 
-  const toggleLocal = () => {
-    if (!localOpen) {
-      trackCustomEvent("install_local_expanded", {
+  const toggleAnyClient = () => {
+    if (!anyClientOpen) {
+      trackCustomEvent("install_any_client_expanded", {
         button_location: "home_install_chooser",
       });
     }
-    setLocalOpen((open) => !open);
+    setAnyClientOpen((open) => !open);
   };
 
   const copyEndpoint = async () => {
@@ -157,95 +155,80 @@ const InstallChooser = () => {
           ))}
         </div>
 
-        {/* Any other MCP client: the endpoint, copied straight in */}
+        {/* Any other MCP client, folded away so it stays quiet */}
         <div
           className={`max-w-4xl mx-auto mt-5 transition-all duration-700 delay-200 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
-          <div className="rounded-xl border border-dc-border bg-dc-surface/40 px-5 py-5">
-            <div className="flex flex-col sm:flex-row sm:items-start gap-4">
-              <span className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <Plug className="h-5 w-5 text-primary" />
-              </span>
-              <div className="flex-1 min-w-0">
-                <h3 className="text-base font-semibold text-foreground mb-1">
-                  Any MCP client
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Cursor, VS Code, custom agents. Register this endpoint as a remote MCP
-                  server with OAuth, then authorize once. Tokens are scoped per client and
-                  can be revoked from Settings.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-2">
-                  <code className="flex-1 min-w-0 truncate rounded-lg bg-background border border-dc-border px-4 py-2.5 text-sm text-muted-foreground font-mono">
-                    {MCP_ENDPOINT}
-                  </code>
-                  <Button
-                    variant="outline"
-                    onClick={copyEndpoint}
-                    className="flex items-center justify-center gap-2 whitespace-nowrap"
-                  >
-                    {copied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
-                    {copied ? "Copied" : "Copy URL"}
-                  </Button>
-                </div>
+          <button
+            type="button"
+            onClick={toggleAnyClient}
+            aria-expanded={anyClientOpen}
+            aria-controls="any-client-details"
+            className="flex items-center gap-2 mx-auto text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Plug className="h-4 w-4" />
+            Using another MCP client?
+            <ChevronDown
+              className={`h-4 w-4 transition-transform ${anyClientOpen ? "rotate-180" : ""}`}
+            />
+          </button>
+
+          {anyClientOpen && (
+            <div
+              id="any-client-details"
+              className="mt-4 rounded-xl border border-dc-border bg-dc-surface/40 px-5 py-4"
+            >
+              <p className="text-sm text-muted-foreground mb-3">
+                Cursor, VS Code, custom agents. Register this endpoint as a remote MCP
+                server with OAuth, then authorize once. Tokens are scoped per client and
+                can be revoked from Settings.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-2">
+                <code className="flex-1 min-w-0 truncate rounded-lg bg-background border border-dc-border px-4 py-2.5 text-sm text-muted-foreground font-mono">
+                  {MCP_ENDPOINT}
+                </code>
+                <Button
+                  variant="outline"
+                  onClick={copyEndpoint}
+                  className="flex items-center justify-center gap-2 whitespace-nowrap"
+                >
+                  {copied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
+                  {copied ? "Copied" : "Copy URL"}
+                </Button>
               </div>
             </div>
-          </div>
+          )}
         </div>
 
-        {/* Local option, folded away so it stays quiet */}
+        {/* Quieter local option */}
         <div
           className={`max-w-4xl mx-auto mt-4 transition-all duration-700 delay-300 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
-          <button
-            type="button"
-            onClick={toggleLocal}
-            aria-expanded={localOpen}
-            aria-controls="local-mcp-details"
-            className="flex items-center gap-2 mx-auto text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <Terminal className="h-4 w-4" />
-            Prefer to run it locally?
-            <ChevronDown
-              className={`h-4 w-4 transition-transform ${localOpen ? "rotate-180" : ""}`}
-            />
-          </button>
-
-          {localOpen && (
-            <div
-              id="local-mcp-details"
-              className="mt-4 rounded-xl border border-dc-border bg-dc-surface/40 px-5 py-4"
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 rounded-xl border border-dc-border bg-dc-surface/40 px-5 py-4">
+            <Terminal className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+            <p className="text-sm text-muted-foreground flex-1">
+              Prefer to run it yourself? The local MCP server is free and open source, and
+              works with Claude Desktop, Cursor, Windsurf and any other MCP client.
+            </p>
+            <a
+              href={LOCAL_MCP_URL}
+              onClick={() =>
+                trackCustomEvent("install_cta_clicked", {
+                  button_text: "Install local MCP",
+                  button_location: "home_install_chooser",
+                  client: "local",
+                  destination: LOCAL_MCP_URL,
+                })
+              }
+              className="text-sm font-medium text-primary underline-offset-4 hover:underline whitespace-nowrap"
             >
-              <p className="text-sm text-muted-foreground mb-3">
-                The local MCP server is free and open source. It runs entirely on your
-                machine and works with Claude Desktop, Cursor, Windsurf and any other MCP
-                client.
-              </p>
-              <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                <code className="flex-1 min-w-0 truncate rounded-lg bg-background border border-dc-border px-4 py-2.5 text-sm text-muted-foreground font-mono">
-                  {LOCAL_INSTALL_COMMAND}
-                </code>
-                <a
-                  href={LOCAL_MCP_URL}
-                  onClick={() =>
-                    trackCustomEvent("install_cta_clicked", {
-                      button_text: "Install local MCP",
-                      button_location: "home_install_chooser",
-                      client: "local",
-                      destination: LOCAL_MCP_URL,
-                    })
-                  }
-                  className="text-sm font-medium text-primary underline-offset-4 hover:underline whitespace-nowrap sm:px-2"
-                >
-                  Setup guide &rarr;
-                </a>
-              </div>
-            </div>
-          )}
+              Install local MCP &rarr;
+            </a>
+          </div>
         </div>
       </div>
     </section>
