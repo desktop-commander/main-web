@@ -161,45 +161,51 @@ const InstallChooser = () => {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
-          <button
-            type="button"
-            onClick={toggleAnyClient}
-            aria-expanded={anyClientOpen}
-            aria-controls="any-client-details"
-            className="flex items-center gap-2 mx-auto text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <Plug className="h-4 w-4" />
-            Using another MCP client?
-            <ChevronDown
-              className={`h-4 w-4 transition-transform ${anyClientOpen ? "rotate-180" : ""}`}
-            />
-          </button>
-
-          {anyClientOpen && (
-            <div
-              id="any-client-details"
-              className="mt-4 rounded-xl border border-dc-border bg-dc-surface/40 px-5 py-4"
+          <div className="rounded-xl border border-dc-border bg-dc-surface/40 overflow-hidden">
+            <button
+              type="button"
+              onClick={toggleAnyClient}
+              aria-expanded={anyClientOpen}
+              aria-controls="any-client-details"
+              className="w-full flex items-center gap-3 sm:gap-5 px-5 py-4 text-left hover:bg-dc-surface/60 transition-colors"
             >
-              <p className="text-sm text-muted-foreground mb-3">
-                Cursor, VS Code, custom agents. Register this endpoint as a remote MCP
-                server with OAuth, then authorize once. Tokens are scoped per client and
-                can be revoked from Settings.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-2">
-                <code className="flex-1 min-w-0 truncate rounded-lg bg-background border border-dc-border px-4 py-2.5 text-sm text-muted-foreground font-mono">
-                  {MCP_ENDPOINT}
-                </code>
-                <Button
-                  variant="outline"
-                  onClick={copyEndpoint}
-                  className="flex items-center justify-center gap-2 whitespace-nowrap"
-                >
-                  {copied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
-                  {copied ? "Copied" : "Copy URL"}
-                </Button>
+              <Plug className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+              <span className="text-sm text-muted-foreground flex-1">
+                Using another MCP client? Cursor, VS Code and custom agents connect with
+                the remote endpoint.
+              </span>
+              <ChevronDown
+                className={`h-4 w-4 text-muted-foreground flex-shrink-0 transition-transform ${
+                  anyClientOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {anyClientOpen && (
+              <div
+                id="any-client-details"
+                className="border-t border-dc-border px-5 py-4"
+              >
+                <p className="text-sm text-muted-foreground mb-3">
+                  Register this endpoint as a remote MCP server with OAuth, then authorize
+                  once. Tokens are scoped per client and can be revoked from Settings.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <code className="flex-1 min-w-0 truncate rounded-lg bg-background border border-dc-border px-4 py-2.5 text-sm text-muted-foreground font-mono">
+                    {MCP_ENDPOINT}
+                  </code>
+                  <Button
+                    variant="outline"
+                    onClick={copyEndpoint}
+                    className="flex items-center justify-center gap-2 whitespace-nowrap"
+                  >
+                    {copied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
+                    {copied ? "Copied" : "Copy URL"}
+                  </Button>
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
 
         {/* Quieter local option */}
