@@ -101,6 +101,67 @@ import '../../src/index.css';
     
     <!-- Ahrefs Analytics - blocked until statistics consent -->
     <script type="text/plain" data-cookieconsent="statistics" src="https://analytics.ahrefs.com/analytics.js" data-key="5Iumy4Rr7Do+R0CWUtQkHA" async></script>
+
+    <!--
+      ChatGPT Ads measurement pixel - blocked until MARKETING consent.
+      Advertising, not statistics: it sets its own attribution cookies and does
+      advanced matching in the browser, so it belongs in the same category the
+      consent banner asks about for ads.
+    -->
+    <script type="text/plain" data-cookieconsent="marketing">
+      !function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");
+      oaiq("init",{pixelId:"XXGc8sWYVT2gCxWpeATzeE"});
+    </script>
+
+    <!--
+      Bank the ad click id for the rest of the journey.
+
+      The ads send people here, they leave for the Desktop Commander app inside
+      ChatGPT, and they come back to auth./mcp.desktopcommander.app through OAuth.
+      The `oppref` identifier only ever appears on this first hop, so it has to be
+      stored now or the signup that follows can never be attributed to the ad.
+
+      Scoped to the parent domain on purpose: that is what lets the subdomains read
+      it back. Written only once marketing consent exists, and re-checked on the
+      Cookiebot accept event so a click that arrives before the banner is answered
+      is not lost.
+    -->
+    <script is:inline>
+      (function () {
+        var COOKIE = "dc_oppref";
+        var MAX_AGE = 60 * 60 * 24 * 30; // matches the 30 day click-through window
+
+        function clickId() {
+          try {
+            var value = new URLSearchParams(window.location.search).get("oppref");
+            return value && /^[\w.-]{1,256}$/.test(value) ? value : null;
+          } catch (e) {
+            return null;
+          }
+        }
+
+        function hasMarketingConsent() {
+          var cb = window.Cookiebot;
+          return Boolean(cb && cb.consent && cb.consent.marketing);
+        }
+
+        function store() {
+          var value = clickId();
+          if (!value || !hasMarketingConsent()) return;
+          try {
+            document.cookie =
+              COOKIE + "=" + encodeURIComponent(value) +
+              ";domain=.desktopcommander.app;path=/;max-age=" + MAX_AGE +
+              ";SameSite=Lax;Secure";
+          } catch (e) {
+            /* storage blocked: the conversion just goes unattributed */
+          }
+        }
+
+        store();
+        window.addEventListener("CookiebotOnAccept", store, false);
+      })();
+    </script>
     
     <!-- Inject base path for React components -->
     <script is:inline define:vars={{ basePath: import.meta.env.BASE_URL }}>
