@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import OpenAIMark from "@/components/mcp/clients/chatgpt/OpenAIMark";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
 import { PLATFORM_URL, GITHUB_URL, NPM_URL, STATS } from "./links";
+import RankingPill from "./RankingPill";
 
 /**
  * MCP-first homepage hero.
@@ -77,6 +78,17 @@ const HeroMcp = () => {
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left: copy */}
           <div className="lg:col-span-6 text-center lg:text-left">
+            <RankingPill
+              className={reveal("")}
+              onSelect={(r) =>
+                trackCustomEvent("ranking_pill_clicked", {
+                  ranking: `#${r.rank} ${r.label}`,
+                  button_location: "home_hero",
+                  destination: r.href,
+                })
+              }
+            />
+
             {/* Two lines, always: the first line is kept on one line from sm up. */}
             <h1
               className={`text-4xl sm:text-5xl md:text-6xl font-bold text-foreground leading-[1.05] tracking-tight mb-6 ${reveal("delay-100")}`}
