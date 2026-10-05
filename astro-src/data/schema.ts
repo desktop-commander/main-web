@@ -75,7 +75,7 @@ export const organizationSchema = {
     'https://www.linkedin.com/company/desktop-commander/',
     'https://x.com/desktopcommandr',
     'https://www.youtube.com/@EduardsRuzga',
-    'https://discord.gg/pV5kqKZuK',
+    'https://discord.gg/UHDxhz49AT',
     'https://www.npmjs.com/package/@wonderwhy-er/desktop-commander',
   ],
 };

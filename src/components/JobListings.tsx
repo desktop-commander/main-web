@@ -399,7 +399,7 @@ const JobListings = () => {
                       </Button>
                       <Button variant="outline" asChild>
                         <a 
-                          href="https://discord.gg/pV5kqKZuK" 
+                          href="https://discord.gg/UHDxhz49AT" 
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="flex items-center gap-2"
