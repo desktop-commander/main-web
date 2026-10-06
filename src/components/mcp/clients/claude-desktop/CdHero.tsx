@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import CdCta, { CLAUDE_DESKTOP_CONNECTOR_URL } from "./CdCta";
 import { ChevronDown, ArrowUp, Plus, Mic, Folder, Hand, Cloud, Check } from "lucide-react";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
+import { STATS } from "@/components/home-mcp/links";
 
 const TYPED_PROMPTS = [
   "Organize files on my Desktop",
@@ -147,7 +148,7 @@ const CdHero = () => {
               className={`text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-9 leading-relaxed ${reveal("delay-200")}`}
             >
               The most popular file and terminal MCP for Claude Desktop. Fully local,
-              free, open source, with 150k+ weekly downloads.
+              free, open source, with {STATS.weeklyDownloads} weekly downloads.
             </p>
 
             <div className={reveal("delay-300")}>

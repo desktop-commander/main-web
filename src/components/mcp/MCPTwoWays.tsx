@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Monitor, Globe, Check } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
+import { STATS } from "@/components/home-mcp/links";
 
 const MCPTwoWays = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -30,7 +31,7 @@ const MCPTwoWays = () => {
       bullets: [
         "Works with Claude Desktop, Cursor, Windsurf, and any MCP client",
         "One-command install, everything stays on your computer",
-        "150k+ weekly downloads"
+        `${STATS.weeklyDownloads} weekly downloads`
       ],
       cta: {
         label: "Install locally",

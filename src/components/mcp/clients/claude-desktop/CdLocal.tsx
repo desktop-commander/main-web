@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Cpu, Lock, GitBranch, Monitor, Terminal, FolderOpen } from "lucide-react";
 import CdCta from "./CdCta";
+import { STATS } from "@/components/home-mcp/links";
 
 const HIGHLIGHTS = [
   {
@@ -19,7 +20,7 @@ const HIGHLIGHTS = [
     icon: GitBranch,
     title: "Free and open source",
     description:
-      "The most popular file and terminal MCP, with 150k+ weekly downloads. Same server powers Cursor, Windsurf, and VS Code setups.",
+      `The most popular file and terminal MCP, with ${STATS.weeklyDownloads} weekly downloads. Same server powers Cursor, Windsurf, and VS Code setups.`,
   },
 ];
 

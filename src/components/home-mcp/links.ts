@@ -24,8 +24,8 @@ export const NPM_URL = 'https://www.npmjs.com/package/@wonderwhy-er/desktop-comm
 
 /** Social proof, kept in one place so it is updated once. */
 export const STATS = {
-  weeklyDownloads: '150k+',
-  githubStars: '9.6k',
+  weeklyDownloads: '325k+',
+  githubStars: '10k',
 };
 
 /**

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Github, Star, Download, FolderOpen, Terminal, Cpu, Bot } from "lucide-react";
 import { useState, useEffect } from "react";
+import { STATS } from "@/components/home-mcp/links";
 
 /** Official OpenAI knot mark */
 const OPENAI_PATH =
@@ -122,7 +123,7 @@ const MCPHero = () => {
               >
                 <Download className="h-5 w-5 text-primary" />
                 <span className="text-left">
-                  <span className="block text-xl font-bold text-foreground leading-tight">150k+</span>
+                  <span className="block text-xl font-bold text-foreground leading-tight">{STATS.weeklyDownloads}</span>
                   <span className="block text-xs text-muted-foreground group-hover:text-foreground transition-colors">weekly npm downloads</span>
                 </span>
               </a>
@@ -134,7 +135,7 @@ const MCPHero = () => {
               >
                 <Star className="h-5 w-5 text-primary" />
                 <span className="text-left">
-                  <span className="block text-xl font-bold text-foreground leading-tight">9.6k</span>
+                  <span className="block text-xl font-bold text-foreground leading-tight">{STATS.githubStars}</span>
                   <span className="block text-xs text-muted-foreground group-hover:text-foreground transition-colors">GitHub stars</span>
                 </span>
               </a>

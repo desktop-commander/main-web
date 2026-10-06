@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Download, Star, FolderOpen, Terminal, Cpu, Bot } from "lucide-react";
+import { ArrowRight, FolderOpen, Terminal, Cpu, Bot } from "lucide-react";
 import { useState, useEffect } from "react";
 import OpenAIMark from "@/components/mcp/clients/chatgpt/OpenAIMark";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
-import { PLATFORM_URL, GITHUB_URL, NPM_URL, STATS } from "./links";
+import { PLATFORM_URL } from "./links";
 import RankingPill from "./RankingPill";
+import HeroStats from "./HeroStats";
 
 /**
  * MCP-first homepage hero.
@@ -154,32 +155,7 @@ const HeroMcp = () => {
               </Button>
             </div>
 
-            <div
-              className={`flex items-center justify-center lg:justify-start gap-8 flex-wrap ${reveal("delay-500")}`}
-            >
-              <a href={NPM_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 group">
-                <Download className="h-5 w-5 text-primary" />
-                <span className="text-left">
-                  <span className="block text-xl font-bold text-foreground leading-tight">
-                    {STATS.weeklyDownloads}
-                  </span>
-                  <span className="block text-xs text-muted-foreground group-hover:text-foreground transition-colors">
-                    weekly npm downloads
-                  </span>
-                </span>
-              </a>
-              <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 group">
-                <Star className="h-5 w-5 text-primary" />
-                <span className="text-left">
-                  <span className="block text-xl font-bold text-foreground leading-tight">
-                    {STATS.githubStars}
-                  </span>
-                  <span className="block text-xs text-muted-foreground group-hover:text-foreground transition-colors">
-                    GitHub stars
-                  </span>
-                </span>
-              </a>
-            </div>
+            <HeroStats className={reveal("delay-500")} />
           </div>
 
           {/* Right: client -> DC -> your machine */}

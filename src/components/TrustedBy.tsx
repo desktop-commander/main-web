@@ -1,6 +1,7 @@
 import { Star, Download, Github } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import TestimonialsStrip from "./TestimonialsStrip";
+import { STATS } from "./home-mcp/links";
 
 const TrustedBy = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -36,13 +37,13 @@ const TrustedBy = () => {
     },
     {
       icon: Download,
-      value: "150k+",
+      value: STATS.weeklyDownloads,
       label: "Weekly Downloads",
       description: "Active installations"
     },
     {
       icon: Github,
-      value: "9.6k+",
+      value: STATS.githubStars,
       label: "GitHub Stars",
       description: "Community trust"
     }

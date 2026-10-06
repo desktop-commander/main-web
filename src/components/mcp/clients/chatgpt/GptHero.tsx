@@ -3,6 +3,8 @@ import OpenAIMark from "./OpenAIMark";
 import GptCta from "./GptCta";
 import { ChevronDown, ArrowUp, Plus, Mic, ChevronRight } from "lucide-react";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
+import RankingPill from "@/components/home-mcp/RankingPill";
+import HeroStats from "@/components/home-mcp/HeroStats";
 
 const TYPED_PROMPTS = [
   "Organize my Downloads folder",
@@ -78,18 +80,6 @@ const GptHero = () => {
     <section className="relative overflow-hidden min-h-[calc(100vh-4rem)] flex flex-col justify-center pt-24 pb-16">
       {/* Local keyframes */}
       <style>{`
-        @keyframes gpt-travel {
-          0% { left: 0%; opacity: 0; }
-          12% { opacity: 1; }
-          88% { opacity: 1; }
-          100% { left: 100%; opacity: 0; }
-        }
-        @keyframes gpt-travel-back {
-          0% { left: 100%; opacity: 0; }
-          12% { opacity: 1; }
-          88% { opacity: 1; }
-          100% { left: 0%; opacity: 0; }
-        }
         @keyframes gpt-float {
           0%, 100% { transform: translate(0, 0) scale(1); }
           50% { transform: translate(20px, -25px) scale(1.08); }
@@ -98,8 +88,6 @@ const GptHero = () => {
           from { opacity: 0; transform: translateY(8px); }
           to { opacity: 1; transform: translateY(0); }
         }
-        .gpt-dot { animation: gpt-travel 2.4s ease-in-out infinite; }
-        .gpt-dot-back { animation: gpt-travel-back 2.4s ease-in-out infinite; animation-delay: 1.2s; }
         .gpt-orb-a { animation: gpt-float 9s ease-in-out infinite; }
         .gpt-orb-b { animation: gpt-float 12s ease-in-out infinite reverse; }
         .gpt-step { animation: gpt-step-in 0.5s ease-out both; }
@@ -126,22 +114,16 @@ const GptHero = () => {
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-10 items-center">
           {/* Left: copy */}
           <div className="lg:col-span-7 text-center lg:text-left">
-            <div
-              className={`flex items-center justify-center lg:justify-start mb-9 ${reveal("delay-0")}`}
-            >
-              <img
-                src="/favicon-512x512.png"
-                alt="Desktop Commander"
-                className="w-14 h-14 rounded-2xl border border-dc-border bg-white object-contain p-2 shadow-elegant"
-              />
-              <div className="relative w-20 sm:w-28 h-px mx-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent">
-                <span className="gpt-dot absolute -top-[3px] w-[7px] h-[7px] rounded-full bg-primary shadow-[0_0_10px_hsl(var(--primary))]" />
-                <span className="gpt-dot-back absolute -top-[3px] w-[7px] h-[7px] rounded-full bg-dc-blue-glow shadow-[0_0_10px_hsl(var(--dc-blue-glow))]" />
-              </div>
-              <span className="w-14 h-14 rounded-2xl border border-dc-border bg-white text-black flex items-center justify-center shadow-elegant">
-                <OpenAIMark className="w-8 h-8" />
-              </span>
-            </div>
+            <RankingPill
+              className={reveal("delay-0")}
+              onSelect={(r) =>
+                trackCustomEvent("ranking_pill_clicked", {
+                  ranking: `#${r.rank} ${r.label}`,
+                  button_location: "chatgpt_hero",
+                  destination: r.href,
+                })
+              }
+            />
 
             <h1
               className={`text-4xl sm:text-6xl xl:text-7xl font-bold text-foreground leading-[1.04] tracking-tight mb-6 ${reveal("delay-100")}`}
@@ -166,6 +148,8 @@ const GptHero = () => {
             <div className={reveal("delay-300")}>
               <GptCta position="hero" className="text-lg px-10 py-6" />
             </div>
+
+            <HeroStats className={`mt-10 ${reveal("delay-500")}`} />
           </div>
 
           {/* Right: ChatGPT-style window (light, like the real app) */}
