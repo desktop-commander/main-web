@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Smartphone, HardDrive, Zap, Check } from "lucide-react";
 import GptCta from "./GptCta";
+import type { CampaignKey } from "./campaigns";
 
 const HIGHLIGHTS = [
   {
@@ -23,7 +24,7 @@ const HIGHLIGHTS = [
   },
 ];
 
-const GptPhone = () => {
+const GptPhone = ({ campaign }: { campaign?: CampaignKey }) => {
   const ref = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -83,7 +84,7 @@ const GptPhone = () => {
                 );
               })}
             </div>
-            <GptCta position="phone_section" />
+            <GptCta position="phone_section" campaign={campaign} />
           </div>
 
           <div

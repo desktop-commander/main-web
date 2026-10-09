@@ -28,14 +28,17 @@ const describe = (r: Ranking) => `#${r.rank} ${r.label}, ${r.date}`;
 interface Props {
   className?: string;
   onSelect?: (ranking: Ranking) => void;
+  /** Show only one platform's rankings (e.g. ChatGPT ads pages). Default: all. */
+  platform?: Ranking["platform"];
 }
 
-const RankingPill = ({ className = "", onSelect }: Props) => {
+const RankingPill = ({ className = "", onSelect, platform }: Props) => {
+  const items = platform ? RANKINGS.filter((r) => r.platform === platform) : RANKINGS;
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [widths, setWidths] = useState<number[]>([]);
   const itemRefs = useRef<(HTMLSpanElement | null)[]>([]);
-  const count = RANKINGS.length;
+  const count = items.length;
 
   // Measure each ranking's natural width so the pill can animate between them.
   // Items are w-max, so the measurement never depends on the pill's current
@@ -55,7 +58,7 @@ const RankingPill = ({ className = "", onSelect }: Props) => {
     return () => window.clearInterval(id);
   }, [paused, count]);
 
-  const current = RANKINGS[active];
+  const current = items[active];
   const position = (i: number) =>
     i === active
       ? "translate-y-0 opacity-100"
@@ -82,7 +85,7 @@ const RankingPill = ({ className = "", onSelect }: Props) => {
           className="grid overflow-hidden transition-[width] duration-500 ease-out"
           style={widths[active] ? { width: widths[active] } : undefined}
         >
-          {RANKINGS.map((r, i) => (
+          {items.map((r, i) => (
             <span
               key={describe(r)}
               ref={(el) => {

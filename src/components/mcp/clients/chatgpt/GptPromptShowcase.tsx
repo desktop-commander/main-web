@@ -8,6 +8,7 @@ import {
   MessageSquare,
 } from "lucide-react";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
+import { getCampaign, type CampaignKey } from "./campaigns";
 
 const CATEGORIES = [
   {
@@ -68,7 +69,9 @@ const ROTATE_MS = 4500;
  * Interactive prompt showcase: category rail on the left, three readable
  * prompt cards on the right. Auto advances, pauses on hover, click to pin.
  */
-const GptPromptShowcase = () => {
+const GptPromptShowcase = ({ campaign }: { campaign?: CampaignKey }) => {
+  const c = getCampaign(campaign);
+  const categories = c?.showcase.categories ?? CATEGORIES;
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -79,7 +82,8 @@ const GptPromptShowcase = () => {
     setActive(i);
     trackCustomEvent("mcp_client_showcase_category_clicked", {
       client: "chatgpt",
-      category: CATEGORIES[i].key,
+      category: categories[i].key,
+      ...(campaign ? { campaign } : {}),
     });
   };
 
@@ -94,11 +98,11 @@ const GptPromptShowcase = () => {
 
   useEffect(() => {
     if (!visible || paused) return;
-    const id = setInterval(() => setActive((a) => (a + 1) % CATEGORIES.length), ROTATE_MS);
+    const id = setInterval(() => setActive((a) => (a + 1) % categories.length), ROTATE_MS);
     return () => clearInterval(id);
-  }, [visible, paused]);
+  }, [visible, paused, categories.length]);
 
-  const category = CATEGORIES[active];
+  const category = categories[active];
 
   return (
     <section
@@ -111,17 +115,17 @@ const GptPromptShowcase = () => {
       <div className="container mx-auto max-w-6xl px-4 sm:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
-            Desktop Commander lets you do this with ChatGPT
+            {c ? c.showcase.heading : "Desktop Commander lets you do this with ChatGPT"}
           </h2>
           <p className="text-lg text-muted-foreground">
-            Pick a category and see what a single prompt can do.
+            {c ? c.showcase.sub : "Pick a category and see what a single prompt can do."}
           </p>
         </div>
 
         <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-start max-w-5xl mx-auto">
           {/* Category rail */}
           <div className="lg:col-span-4 flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 -mx-4 px-4 lg:mx-0 lg:px-0">
-            {CATEGORIES.map((cat, i) => {
+            {categories.map((cat, i) => {
               const Icon = cat.icon;
               const isActive = i === active;
               return (
@@ -184,7 +188,7 @@ const GptPromptShowcase = () => {
 
             {/* Progress dots */}
             <div className="flex items-center justify-center gap-2 mt-5" aria-hidden="true">
-              {CATEGORIES.map((cat, i) => (
+              {categories.map((cat, i) => (
                 <button
                   key={cat.key}
                   onClick={() => selectCategory(i)}

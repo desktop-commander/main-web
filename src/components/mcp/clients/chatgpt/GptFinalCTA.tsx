@@ -1,7 +1,9 @@
 import OpenAIMark from "./OpenAIMark";
 import GptCta from "./GptCta";
+import { getCampaign, type CampaignKey } from "./campaigns";
 
-const GptFinalCTA = () => {
+const GptFinalCTA = ({ campaign }: { campaign?: CampaignKey }) => {
+  const c = getCampaign(campaign);
   return (
     <section className="py-16 md:py-24">
       <div className="container mx-auto max-w-5xl px-4 sm:px-6">
@@ -24,14 +26,21 @@ const GptFinalCTA = () => {
               </span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-bold text-foreground mb-4">
-              Your computer is ChatGPT's
-              <br className="hidden sm:block" /> missing superpower
+              {c ? (
+                c.final.heading
+              ) : (
+                <>
+                  Your computer is ChatGPT's
+                  <br className="hidden sm:block" /> missing superpower
+                </>
+              )}
             </h2>
             <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-9">
-              Add the Desktop Commander plugin and start working with real files and a
-              real terminal today.
+              {c
+                ? c.final.sub
+                : "Add the Desktop Commander plugin and start working with real files and a real terminal today."}
             </p>
-            <GptCta position="final" className="text-base px-10" />
+            <GptCta position="final" className="text-base px-10" campaign={campaign} />
           </div>
         </div>
       </div>

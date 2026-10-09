@@ -5,6 +5,7 @@ import { ChevronDown, ArrowUp, Plus, Mic, ChevronRight } from "lucide-react";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
 import RankingPill from "@/components/home-mcp/RankingPill";
 import HeroStats from "@/components/home-mcp/HeroStats";
+import { getCampaign, type CampaignKey } from "./campaigns";
 
 const TYPED_PROMPTS = [
   "Organize my Downloads folder",
@@ -60,10 +61,22 @@ const CHAT_STEPS = [
   "Moved 1,248 files, nothing was deleted.",
 ];
 
-const GptHero = () => {
+interface Props {
+  /** Ads landing page variant; omitted on the base /mcp/chatgpt/ page. */
+  campaign?: CampaignKey;
+}
+
+const GptHero = ({ campaign }: Props) => {
+  const c = getCampaign(campaign);
   const [mounted, setMounted] = useState(false);
-  const { text: typed, current: currentPrompt } = useTypewriter(TYPED_PROMPTS);
+  const { text: typed, current: currentPrompt } = useTypewriter(c?.hero.typedPrompts ?? TYPED_PROMPTS);
   const { trackCustomEvent } = useAnalyticsAstro();
+  const chat = c?.hero.chat ?? {
+    user: "Organize my Downloads folder",
+    workedFor: "Worked for 42s",
+    reply: "Downloads folder organized successfully.",
+    steps: CHAT_STEPS,
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -116,11 +129,13 @@ const GptHero = () => {
           <div className="lg:col-span-7 text-center lg:text-left">
             <RankingPill
               className={reveal("delay-0")}
+              platform={c ? "chatgpt" : undefined}
               onSelect={(r) =>
                 trackCustomEvent("ranking_pill_clicked", {
                   ranking: `#${r.rank} ${r.label}`,
                   button_location: "chatgpt_hero",
                   destination: r.href,
+                  ...(campaign ? { campaign } : {}),
                 })
               }
             />
@@ -128,25 +143,51 @@ const GptHero = () => {
             <h1
               className={`text-4xl sm:text-6xl xl:text-7xl font-bold text-foreground leading-[1.04] tracking-tight mb-6 ${reveal("delay-100")}`}
             >
-              Give ChatGPT
-              <br />
-              access to{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-dc-blue-glow to-primary">
-                your
-                <br />
-                local computer
-              </span>
+              {c ? (
+                c.hero.lines.map((line) => (
+                  <span
+                    key={line.text}
+                    className={`block ${
+                      line.accent
+                        ? "bg-clip-text text-transparent bg-gradient-to-r from-primary via-dc-blue-glow to-primary"
+                        : ""
+                    }`}
+                  >
+                    {line.text}
+                  </span>
+                ))
+              ) : (
+                <>
+                  Give ChatGPT
+                  <br />
+                  access to{" "}
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-dc-blue-glow to-primary">
+                    your
+                    <br />
+                    local computer
+                  </span>
+                </>
+              )}
             </h1>
 
             <p
               className={`text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-9 leading-relaxed ${reveal("delay-200")}`}
             >
-              Edit documents, organize folders, and run commands on your own machine
-              straight from your chat.
+              {c
+                ? c.hero.sub
+                : "Edit documents, organize folders, and run commands on your own machine straight from your chat."}
             </p>
 
             <div className={reveal("delay-300")}>
-              <GptCta position="hero" className="text-lg px-10 py-6" />
+              <GptCta position="hero" campaign={campaign} className="text-lg px-10 py-6" />
+              {c && (
+                <p className="text-sm text-muted-foreground max-w-xl mx-auto lg:mx-0 mt-4 leading-relaxed">
+                  {c.hero.note}{" "}
+                  <a href="#setup" className="underline underline-offset-4 hover:text-foreground">
+                    How setup works
+                  </a>
+                </p>
+              )}
             </div>
 
             <HeroStats className={`mt-10 ${reveal("delay-500")}`} />
@@ -179,7 +220,7 @@ const GptHero = () => {
                     className="gpt-step ml-auto max-w-[92%] w-fit rounded-3xl bg-[#f4f4f4] px-4 py-2.5 text-sm leading-relaxed"
                     style={{ animationDelay: "300ms" }}
                   >
-                    Organize my Downloads folder
+                    {chat.user}
                   </div>
 
                   {/* Worked-for line */}
@@ -187,7 +228,7 @@ const GptHero = () => {
                     className="gpt-step flex items-center gap-1 text-sm text-[#8f8f8f]"
                     style={{ animationDelay: "900ms" }}
                   >
-                    Worked for 42s
+                    {chat.workedFor}
                     <ChevronRight className="w-3.5 h-3.5" />
                   </div>
 
@@ -196,10 +237,10 @@ const GptHero = () => {
                     className="gpt-step text-sm leading-relaxed"
                     style={{ animationDelay: "1400ms" }}
                   >
-                    Downloads folder organized successfully.
+                    {chat.reply}
                   </div>
                   <ul className="space-y-1.5 text-sm text-[#0d0d0d]">
-                    {CHAT_STEPS.map((step, i) => (
+                    {chat.steps.map((step, i) => (
                       <li
                         key={step}
                         className="gpt-step flex gap-2 leading-relaxed"
@@ -234,6 +275,7 @@ const GptHero = () => {
                           transport: "remote",
                           cta_position: "hero_composer_send",
                           destination: sendHref,
+                          ...(campaign ? { campaign } : {}),
                         })
                       }
                       className="w-8 h-8 rounded-full bg-[#0d0d0d] hover:bg-black/80 transition-colors flex items-center justify-center flex-shrink-0"

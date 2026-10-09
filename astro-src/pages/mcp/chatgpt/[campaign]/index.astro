@@ -1,0 +1,65 @@
+---
+/**
+ * /mcp/chatgpt/<campaign>/ — ChatGPT Ads landing pages, one per campaign.
+ *
+ * Same sections as /mcp/chatgpt/, with the hero, prompt showcase, capabilities,
+ * first prompt and final CTA rewritten for the ad's task. Copy lives in
+ * src/components/mcp/clients/chatgpt/campaigns.ts; add a campaign there to add
+ * a page.
+ *
+ * Ads traffic only: noindex, so it stays out of search and the sitemap
+ * (generate-sitemap.js skips noindex pages) and nothing in the nav links here.
+ */
+import Layout from '../../../../layouts/Layout.astro';
+import Navigation from '../../../../components/Navigation.astro';
+import MoreClients from '../../../../components/MoreClients.astro';
+import PostHogInit from '../../../../../src/components/PostHogInit';
+import GptHero from '../../../../../src/components/mcp/clients/chatgpt/GptHero';
+import GptPromptShowcase from '../../../../../src/components/mcp/clients/chatgpt/GptPromptShowcase';
+import GptCapabilities from '../../../../../src/components/mcp/clients/chatgpt/GptCapabilities';
+import GptPhone from '../../../../../src/components/mcp/clients/chatgpt/GptPhone';
+import GptSetup from '../../../../../src/components/mcp/clients/chatgpt/GptSetup';
+import GptFinalCTA from '../../../../../src/components/mcp/clients/chatgpt/GptFinalCTA';
+import ClientFAQ from '../../../../../src/components/mcp/clients/ClientFAQ';
+import Footer from '../../../../../src/components/Footer';
+import { CAMPAIGNS, type CampaignKey } from '../../../../../src/components/mcp/clients/chatgpt/campaigns';
+import { getClient } from '../../../../data/mcp-clients';
+
+export function getStaticPaths() {
+  return Object.keys(CAMPAIGNS).map((campaign) => ({ params: { campaign } }));
+}
+
+const campaign = Astro.params.campaign as CampaignKey;
+const { seo } = CAMPAIGNS[campaign];
+const client = getClient('chatgpt')!;
+---
+
+<Layout
+  title={seo.title}
+  description={seo.description}
+  robots="noindex, follow, noai, noimageai"
+  googlebot="noindex, follow, noai"
+>
+  <PostHogInit client:idle />
+
+  <div class="min-h-screen bg-background">
+    <Navigation hideCta />
+
+    <main>
+      <GptHero client:load campaign={campaign} />
+      <GptPromptShowcase client:visible campaign={campaign} />
+      <GptCapabilities client:visible campaign={campaign} />
+      <GptSetup client:visible campaign={campaign} />
+      <GptPhone client:visible campaign={campaign} />
+      <ClientFAQ client:visible name={client.name} faqs={client.faqs} />
+      <GptFinalCTA client:visible campaign={campaign} />
+      <MoreClients current="chatgpt" heading="Also works with" />
+    </main>
+
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../../../../src/index.css';
+</style>
