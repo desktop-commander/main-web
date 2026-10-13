@@ -42,7 +42,18 @@ const OPTIONS = [
   },
 ];
 
-const InstallChooser = () => {
+interface InstallChooserProps {
+  /** Analytics button_location. The homepage keeps the original value. */
+  location?: string;
+  heading?: string;
+  sub?: string;
+}
+
+const InstallChooser = ({
+  location = "home_install_chooser",
+  heading = "Install it where you chat",
+  sub = "Pick the assistant you already use. Setup takes a couple of minutes and you choose which machine it reaches.",
+}: InstallChooserProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [copied, setCopied] = useState(false);
   const [anyClientOpen, setAnyClientOpen] = useState(false);
@@ -52,7 +63,7 @@ const InstallChooser = () => {
   const toggleAnyClient = () => {
     if (!anyClientOpen) {
       trackCustomEvent("install_any_client_expanded", {
-        button_location: "home_install_chooser",
+        button_location: location,
       });
     }
     setAnyClientOpen((open) => !open);
@@ -65,7 +76,7 @@ const InstallChooser = () => {
       setTimeout(() => setCopied(false), 2500);
       trackCustomEvent("install_cta_clicked", {
         button_text: "Copy URL",
-        button_location: "home_install_chooser",
+        button_location: location,
         client: "any_mcp_client",
         destination: MCP_ENDPOINT,
       });
@@ -94,12 +105,9 @@ const InstallChooser = () => {
           }`}
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3">
-            Install it where you chat
+            {heading}
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Pick the assistant you already use. Setup takes a couple of minutes and you
-            choose which machine it reaches.
-          </p>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{sub}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto">
@@ -141,7 +149,7 @@ const InstallChooser = () => {
                   onClick={() =>
                     trackCustomEvent("install_cta_clicked", {
                       button_text: option.cta,
-                      button_location: "home_install_chooser",
+                      button_location: location,
                       client: option.slug,
                       destination: option.href,
                     })
@@ -225,7 +233,7 @@ const InstallChooser = () => {
               onClick={() =>
                 trackCustomEvent("install_cta_clicked", {
                   button_text: "Install local MCP",
-                  button_location: "home_install_chooser",
+                  button_location: location,
                   client: "local",
                   destination: LOCAL_MCP_URL,
                 })

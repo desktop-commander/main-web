@@ -5,18 +5,19 @@ import Navigation from '../../../components/Navigation.astro';
 import FileManagementHero from '../../../../src/components/use-cases/FileManagementHero';
 import ProblemSection from '../../../../src/components/use-cases/ProblemSection';
 import SolutionSection from '../../../../src/components/use-cases/SolutionSection';
-import HowItWorksSimple from '../../../../src/components/use-cases/HowItWorksSimple';
-import PrivacyDiagramSection from '../../../../src/components/use-cases/PrivacyDiagramSection';
+import HowItWorks from '../../../../src/components/home-mcp/HowItWorks';
 import TestimonialsSection from '../../../../src/components/use-cases/TestimonialsSection';
-import WaitlistSection from '../../../../src/components/use-cases/WaitlistSection';
-import FinalCTASection from '../../../../src/components/use-cases/FinalCTASection';
+import ClientFAQ from '../../../../src/components/mcp/clients/ClientFAQ';
+import InstallChooser from '../../../../src/components/home-mcp/InstallChooser';
 import FMPopularConversions from '../../../../src/components/use-cases/file-management/FMPopularConversions';
 import Footer from '../../../../src/components/Footer';
+import { FILE_MANAGEMENT_FAQS, faqJsonLd } from '../../../../src/components/use-cases/remote/faqs';
 ---
 
 <Layout 
-  title="Manage Your Files With Chat — AI File Manager for Mac & Windows | Desktop Commander"
-  description="Organize, convert, and rename files by describing what you want. Works with HEIC, PDF, CSV and everything on your disk — nothing ever leaves your computer."
+  title="Manage Your Files With Chat in ChatGPT or Claude | Desktop Commander"
+  description="Organize, convert, and rename the files on your Mac or Windows PC by asking ChatGPT or Claude. One message instead of a dozen manual steps."
+  jsonLd={faqJsonLd(FILE_MANAGEMENT_FAQS)}
 >
   <!-- Load PostHog early to initialize analytics -->
   <PostHogInit client:idle />
@@ -25,32 +26,29 @@ import Footer from '../../../../src/components/Footer';
     <Navigation />
     
     <main>
-      <!-- Hero Section -->
       <FileManagementHero client:load />
       
       <!-- Popular Conversions - High visibility for SEO -->
       <FMPopularConversions client:load />
       
-      <!-- Problem Section -->
       <ProblemSection />
       
-      <!-- Solution Section with Features -->
       <SolutionSection />
       
-      <!-- How It Works Flow -->
-      <HowItWorksSimple client:visible />
+      <!-- Remote MCP setup: same steps as the homepage -->
+      <HowItWorks client:visible />
       
-      <!-- Privacy Diagram -->
-      <PrivacyDiagramSection />
-      
-      <!-- Testimonials -->
       <TestimonialsSection />
       
-      <!-- How It Works / Waitlist -->
-      <WaitlistSection useCase="file_management" client:visible />
+      <ClientFAQ client:visible name="File management" heading="File management FAQ" faqs={FILE_MANAGEMENT_FAQS} />
       
-      <!-- Final CTA -->
-      <FinalCTASection client:visible />
+      <!-- #install target for the hero button; same chooser as the homepage -->
+      <InstallChooser
+        client:visible
+        location="file_management_install"
+        heading="Managing files should be simple"
+        sub="Add Desktop Commander to the assistant you already use, link your computer, and ask for what you need."
+      />
     </main>
     
     <Footer client:visible />

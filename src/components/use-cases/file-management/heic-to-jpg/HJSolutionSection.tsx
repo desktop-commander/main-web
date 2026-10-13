@@ -1,27 +1,28 @@
-import { Zap, FolderOpen, Lock } from "lucide-react";
+import { Zap, FolderOpen, Smartphone } from "lucide-react";
+import ChatDemo from "../../remote/ChatDemo";
 
 const HJSolutionSection = () => {
   const features = [
     {
       title: "Batch convert in seconds",
-      description: "Select a folder with HEIC files. Desktop Commander converts them all at once — no clicking through dialogs or waiting for uploads.",
+      description: "Name a folder with HEIC files. Desktop Commander converts them all at once, with no clicking through dialogs.",
       icon: Zap,
       command: '"Convert all HEIC files in my Photos folder to JPG"',
       result: "All files converted successfully"
     },
     {
       title: "Organize as you convert",
-      description: "Don't just convert — sort into folders, rename with dates, or move to specific locations. One command does it all.",
+      description: "Don't just convert. Sort into folders, rename with dates, or move to specific locations. One message does it all.",
       icon: FolderOpen,
       command: '"Convert my vacation photos to JPG and organize by month"',
       result: "Photos sorted into June/, July/, August/ folders"
     },
     {
-      title: "Your photos stay private",
-      description: "Unlike online converters, nothing leaves your computer. No uploads, no cloud processing, no data collection. Just local conversion.",
-      icon: Lock,
-      command: '"Convert these family photos to JPG"',
-      result: "Converted locally — zero data sent anywhere"
+      title: "Ask from your phone",
+      description: "Start the conversion from ChatGPT or Claude on your phone. The JPGs are waiting in the folder when you get back to your computer.",
+      icon: Smartphone,
+      command: '"Convert the photos I AirDropped today to JPG"',
+      result: "23 photos converted. The JPGs are in Downloads/JPG."
     }
   ];
 
@@ -34,24 +35,22 @@ const HJSolutionSection = () => {
             Just tell it what you need. It handles the rest.
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            No menus. No settings. No figuring out which app to use. Just describe what you want in plain English.
+            No menus. No settings. No figuring out which app to use. Just describe what you want in ChatGPT or Claude.
           </p>
         </div>
 
-        {/* Video Demo */}
-        <div className="relative aspect-video rounded-xl border border-dc-border bg-dc-surface overflow-hidden max-w-4xl mx-auto shadow-lg mb-16">
-          <video
-            className="w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-            aria-label="Desktop Commander converting HEIC photos to JPG - batch conversion demo"
-            title="Convert HEIC to JPG with natural language - Desktop Commander demo"
-          >
-            <source src="/videos/heic-to-jpg-demo.mp4" type="video/mp4" />
-            <p className="text-muted-foreground">Your browser does not support the video tag.</p>
-          </video>
+        {/* What it looks like in ChatGPT (the old video showed the retired desktop app) */}
+        <div className="max-w-xl mx-auto mb-16">
+          <ChatDemo
+            user="Convert the iPhone photos in my Downloads folder to JPG"
+            workedFor="Worked for 34s"
+            reply="Converted 48 photos to JPG."
+            steps={[
+              "Found 48 HEIC files in Downloads.",
+              "Converted each one to JPG at full quality.",
+              "Kept the originals. The JPGs are in Downloads/JPG.",
+            ]}
+          />
         </div>
 
         {/* Features */}

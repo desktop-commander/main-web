@@ -6,11 +6,11 @@ const TestimonialsSection = () => {
     },
     {
       title: "Converting image formats without extra software",
-      description: "Transform 200+ HEIC photos to JPG locally while working on something else—no uploading to sketchy websites"
+      description: "Convert 200+ HEIC photos to JPG while working on something else"
     },
     {
       title: "Finding scattered documents",
-      description: "Locate all Q1 invoices across different folders and consolidate them before tax time—find 47+ documents in seconds"
+      description: "Locate all Q1 invoices across different folders and consolidate them before tax time, 47+ documents in seconds"
     },
     {
       title: "Working with unfamiliar formats",

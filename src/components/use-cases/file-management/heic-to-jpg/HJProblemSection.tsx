@@ -15,7 +15,7 @@ const HJProblemSection = () => {
           </div>
 
           <p className="text-xl text-muted-foreground leading-relaxed">
-            Apple's HEIC format saves space but creates headaches everywhere else. Windows can't open them. Websites reject them. Email clients show broken images. You're stuck uploading to sketchy online converters or installing bloated apps just to share a photo.
+            Apple's HEIC format saves space but creates headaches everywhere else. Windows can't open them. Websites reject them. Email clients show broken images. You end up converting photos one at a time on a website, or installing an app just to share a photo.
           </p>
         </div>
       </div>

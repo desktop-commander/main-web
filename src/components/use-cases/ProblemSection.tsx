@@ -11,15 +11,15 @@ const ProblemSection = () => {
               <AlertCircle className="w-6 h-6 text-destructive" />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold">
-              You shouldn't have to upload files to random websites to get things done.
+              File chores shouldn't take a dozen tools.
             </h2>
           </div>
 
           {/* Impact statement */}
           <p className="text-xl text-muted-foreground leading-relaxed">
-            Every time you upload a file to convert it, organize it, or analyze it, you're trusting 
-            a random website with your data. Your personal documents, photos, and sensitive files 
-            deserve better than sketchy online tools.
+            Converting a photo means one website. Renaming a batch means another app. Sorting a
+            messy folder means an afternoon of dragging files around. Each small job eats time you
+            would rather spend on the work itself.
           </p>
         </div>
       </div>

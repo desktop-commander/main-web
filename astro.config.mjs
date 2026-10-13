@@ -54,6 +54,15 @@ export default defineConfig({
   ],
   
   output: 'static',
+
+  // Retired pages (Oct 2026). Old URLs still get Google traffic, so send them
+  // somewhere useful. The two test pages (/product/test/, /library/cta-test/)
+  // were deleted without a redirect.
+  redirects: {
+    '/pricing2': '/pricing/',
+    '/product/early-access': '/',
+    '/welcome2': '/',
+  },
   
   build: {
     format: 'directory', // URLs like /about/ instead of /about.html

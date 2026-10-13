@@ -7,15 +7,18 @@ import HJProblemSection from '../../../../../src/components/use-cases/file-manag
 import HJSolutionSection from '../../../../../src/components/use-cases/file-management/heic-to-jpg/HJSolutionSection';
 import HJComparisonSection from '../../../../../src/components/use-cases/file-management/heic-to-jpg/HJComparisonSection';
 import HJPersonasSection from '../../../../../src/components/use-cases/file-management/heic-to-jpg/HJPersonasSection';
-import HJFinalCTASection from '../../../../../src/components/use-cases/file-management/heic-to-jpg/HJFinalCTASection';
-import WaitlistSection from '../../../../../src/components/use-cases/WaitlistSection';
+import HowItWorks from '../../../../../src/components/home-mcp/HowItWorks';
+import ClientFAQ from '../../../../../src/components/mcp/clients/ClientFAQ';
+import InstallChooser from '../../../../../src/components/home-mcp/InstallChooser';
 import Footer from '../../../../../src/components/Footer';
 import MoreConversions from '../../../../components/MoreConversions.astro';
+import { HEIC_TO_JPG_FAQS, faqJsonLd } from '../../../../../src/components/use-cases/remote/faqs';
 ---
 
 <Layout 
-  title="Batch Convert HEIC to JPG Locally | Mac & Windows | Desktop Commander"
-  description="Batch convert HEIC to JPG locally on Mac and Windows — no uploads, no cloud, no file limits. Point Desktop Commander at a folder and get JPGs in seconds. Free forever."
+  title="Batch Convert HEIC to JPG with ChatGPT or Claude | Desktop Commander"
+  description="Batch convert HEIC to JPG on your Mac or Windows PC by asking ChatGPT or Claude. Convert a whole folder of iPhone photos in one message."
+  jsonLd={faqJsonLd(HEIC_TO_JPG_FAQS)}
 >
   <PostHogInit client:idle />
   
@@ -27,13 +30,19 @@ import MoreConversions from '../../../../components/MoreConversions.astro';
       <HJProblemSection />
       <HJSolutionSection />
       <HJComparisonSection />
-      <WaitlistSection useCase="heic_to_jpg" client:visible />
+      <HowItWorks client:visible />
       <HJPersonasSection />
-      <HJFinalCTASection client:visible />
+      <ClientFAQ client:visible name="HEIC to JPG" heading="HEIC to JPG FAQ" faqs={HEIC_TO_JPG_FAQS} />
+      <InstallChooser
+        client:visible
+        location="heic_to_jpg_install"
+        heading="Convert a whole folder in one message"
+        sub="Add Desktop Commander to the assistant you already use and convert HEIC to JPG from the chat."
+      />
     </main>
     
     <MoreConversions current="heic-to-jpg" />
-      <Footer client:visible />
+    <Footer client:visible />
   </div>
 </Layout>
 

@@ -66,8 +66,9 @@ const description =
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content="https://desktopcommander.app/bg-social-share.png" />
 
-  <meta name="robots" content="index, follow, noai, noimageai" />
-  <meta name="googlebot" content="index, follow, noai" />
+  <!-- The app opens this page after install. It is not a search landing page. -->
+  <meta name="robots" content="noindex, follow, noai, noimageai" />
+  <meta name="googlebot" content="noindex, follow, noai" />
 
   <!-- Cookiebot - MUST be first script in head -->
   <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="83cceb09-32d2-409b-ada6-17cc28478ba6" data-blockingmode="auto" type="text/javascript" async is:inline></script>

@@ -1,6 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { Shield, Download, ArrowRight } from "lucide-react";
-import { trackDownloadRedirect } from '@/lib/analytics/tracking';
+import { Shield } from "lucide-react";
+import UseCaseHeroCta from "./remote/UseCaseHeroCta";
 
 const FileManagementHero = () => {
   return (
@@ -10,7 +9,7 @@ const FileManagementHero = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-dc-surface border border-dc-border text-sm text-muted-foreground">
             <Shield className="w-4 h-4 text-primary" />
-            <span>AI Processing • No Random Sites</span>
+            <span>Works in ChatGPT and Claude</span>
           </div>
 
           {/* Headline */}
@@ -20,31 +19,19 @@ const FileManagementHero = () => {
 
           {/* Subheadline */}
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl leading-relaxed">
-            Manage files by simply describing what you want. Desktop Commander connects your AI directly to your files—no random conversion websites, no manual workflows.
+            Ask ChatGPT or Claude to organize, convert, or rename the files on your Mac or Windows
+            PC. One message instead of a dozen manual steps.
           </p>
 
-          {/* CTA */}
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <Button 
-              size="lg" 
-              asChild
-              className="group"
-            >
-              <a href="#get-started" onClick={() => trackDownloadRedirect('file_management_hero')}>
-                <Download className="w-5 h-5" />
-                Download App
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </Button>
-          </div>
+          <UseCaseHeroCta location="file_management" />
 
           {/* Value points */}
-          <div className="flex items-center gap-4 text-sm text-muted-foreground pt-2">
+          <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground pt-2">
             <span>Save time</span>
             <span className="w-1 h-1 rounded-full bg-muted-foreground/50" />
-            <span>Keep files safe</span>
+            <span>Works from web and phone</span>
             <span className="w-1 h-1 rounded-full bg-muted-foreground/50" />
-            <span>Manage all in natural language</span>
+            <span>Ask in plain words</span>
           </div>
         </div>
       </div>

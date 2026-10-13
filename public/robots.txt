@@ -2,10 +2,8 @@
 User-agent: *
 Disallow: /open/
 
-# Internal test / scratch / legacy pages — not real content, never intended for search.
-Disallow: /library/cta-test/
-Disallow: /product/test/
-Disallow: /product/early-access/
+# Internal test / scratch / legacy pages were deleted in Oct 2026; their Disallow lines
+# were removed so Google can see the 404s and redirects and drop the URLs.
 
 # SEO #8 Tier 2: low-traffic prompt pages de-indexed to save crawl budget.
 # URLs kept live (for direct links / share URLs) but hidden from search.
