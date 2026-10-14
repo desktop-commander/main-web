@@ -1,0 +1,68 @@
+---
+/**
+ * ChatGPT Ads landing page (Code or Machines campaign, general or one ad group).
+ * Copy and variants live in src/components/mcp/clients/chatgpt/ads/adPages.ts.
+ *
+ * Order follows the Oct 2026 brief: task + button + install note, demo,
+ * three workflows, setup with first prompt, quote, FAQ, same button.
+ * No pricing section on these pages (Ričards, Oct 2026). Ads traffic only: noindex and out of the sitemap.
+ */
+import Layout from '../layouts/Layout.astro';
+import Navigation from './Navigation.astro';
+import PostHogInit from '../../src/components/PostHogInit';
+import AdHero from '../../src/components/mcp/clients/chatgpt/ads/AdHero';
+import AdDemo from '../../src/components/mcp/clients/chatgpt/ads/AdDemo';
+import { AdWorkflows, AdQuote } from '../../src/components/mcp/clients/chatgpt/ads/AdSections';
+import { AdSetup, AdFinal } from '../../src/components/mcp/clients/chatgpt/ads/AdSetup';
+import ClientFAQ from '../../src/components/mcp/clients/ClientFAQ';
+import Footer from '../../src/components/Footer';
+import { getAdVariant, type AdPageKey } from '../../src/components/mcp/clients/chatgpt/ads/adPages';
+
+interface Props {
+  page: AdPageKey;
+  variant?: string;
+}
+
+const { page: pageKey, variant: variantKey = '' } = Astro.props;
+const { page, variant } = getAdVariant(pageKey, variantKey);
+const variantKeys = page.variants.map((v) => v.key).filter(Boolean);
+---
+
+<Layout
+  title={variant.seo.title}
+  description={variant.seo.description}
+  robots="noindex, follow, noai, noimageai"
+  googlebot="noindex, follow, noai"
+>
+  {!variantKey && (
+    <script is:inline define:vars={{ base: page.path, keys: variantKeys }}>
+      // ?use_case=<key> on the general page opens that ad group's page, keeping UTMs.
+      var useCase = new URLSearchParams(location.search).get('use_case');
+      if (useCase && keys.indexOf(useCase) !== -1) {
+        location.replace(base + useCase + '/' + location.search + location.hash);
+      }
+    </script>
+  )}
+
+  <PostHogInit client:idle />
+
+  <div class="min-h-screen bg-background">
+    <Navigation hideCta />
+
+    <main>
+      <AdHero client:load page={pageKey} variant={variantKey} />
+      <AdDemo page={pageKey} variant={variantKey} />
+      <AdWorkflows page={pageKey} variant={variantKey} />
+      <AdSetup client:visible page={pageKey} variant={variantKey} />
+      <AdQuote page={pageKey} />
+      <ClientFAQ client:visible name="ChatGPT" heading="Questions before you connect" faqs={page.faqs} />
+      <AdFinal client:visible page={pageKey} variant={variantKey} />
+    </main>
+
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<style is:global>
+  @import '../../src/index.css';
+</style>

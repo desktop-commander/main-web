@@ -69,7 +69,7 @@ export const CAPABILITY_META: Record<
   'file-access': {
     title: 'Connect your local files',
     description:
-      'Read, write, search, and organize real files on your disk — projects, documents, photos, datasets. No uploading, no size limits, nothing leaves your machine without you seeing it.',
+      'Read, write, search, and organize real files on your disk: projects, documents, photos, datasets, without attaching them to the chat.',
   },
   terminal: {
     title: 'Work in your machine terminal',
@@ -159,7 +159,7 @@ export const mcpClients: McpClient[] = [
       {
         question: 'Can ChatGPT access files on my computer?',
         answer:
-          'Not by itself. ChatGPT runs in the cloud and only sees what you upload. With the Desktop Commander plugin it can read, write, and organize files directly on your machine, with no uploads and no size limits.',
+          'Not by itself. ChatGPT runs in the cloud and only sees what you upload. With the Desktop Commander plugin it can read, write, and organize files directly on your computer, without you attaching them. File contents and command output that ChatGPT reads are sent to ChatGPT, like anything you paste into a chat.',
       },
       {
         question: 'Can ChatGPT run terminal commands on my machine?',
@@ -260,7 +260,7 @@ export const mcpClients: McpClient[] = [
       {
         question: 'Can Claude on the web access my local files?',
         answer:
-          'Not on its own. claude.ai only sees what you attach. With the Desktop Commander connector, Claude can read, write, and organize files directly on your machine, with no uploads and no size limits.',
+          'Not on its own. claude.ai only sees what you attach. With the Desktop Commander connector, Claude can read, write, and organize files directly on your computer, without you attaching them. File contents and command output that Claude reads are sent to Claude, like anything you paste into a chat.',
       },
       {
         question: 'Can Claude on the web run terminal commands?',

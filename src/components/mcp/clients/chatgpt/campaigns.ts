@@ -18,10 +18,11 @@ import {
  * so people land on the promise they clicked.
  *
  *   organize-files  ads: "Sort files on your Desktop" / "Organize files on your Desktop"
- *   codebase        ads: "Work with your codebase" / "Stop pasting code"
+ *
+ * The codebase campaign moved to the Oct 2026 Code/Machines pages: see ./ads/adPages.ts.
  */
 
-export type CampaignKey = "organize-files" | "codebase";
+export type CampaignKey = "organize-files";
 
 export interface GptCampaign {
   key: CampaignKey;
@@ -152,119 +153,8 @@ const organizeFiles: GptCampaign = {
   },
 };
 
-const codebase: GptCampaign = {
-  key: "codebase",
-  seo: {
-    title: "Work with Your Codebase from ChatGPT | Desktop Commander",
-    description:
-      "Stop pasting code. ChatGPT reads and edits the files in your local project and applies changes directly, with the Desktop Commander plugin.",
-  },
-  hero: {
-    lines: [{ text: "Work with" }, { text: "your codebase", accent: true }, { text: "from ChatGPT" }],
-    sub: "Stop pasting code back and forth. ChatGPT reads and edits the files in your local project and applies changes directly.",
-    note: SETUP_NOTE,
-    typedPrompts: [
-      "Add a dark mode switch to my website",
-      "Explain how this project is structured",
-      "Find out why the Save button does nothing",
-    ],
-    chat: {
-      user: "Add a dark mode switch to my website",
-      workedFor: "Worked for 1m 5s",
-      reply: "Dark mode is added to your website.",
-      steps: [
-        "Read the header and styles in ~/code/my-site.",
-        "Added a switch to the header and dark colors to styles.css.",
-        "The site remembers the choice after a reload.",
-      ],
-    },
-  },
-  showcase: {
-    heading: "Ask ChatGPT about your project",
-    sub: "A few prompts to start with. Pick a task and see what one message can do.",
-    categories: [
-      {
-        key: "understand",
-        label: "Understand the project",
-        icon: Search,
-        prompts: [
-          "Explain how this project is structured and where it starts",
-          "Where is user login handled? Show me the files",
-          "Trace what happens when the checkout button is clicked",
-        ],
-      },
-      {
-        key: "change",
-        label: "Make changes",
-        icon: Pencil,
-        prompts: [
-          "Add input validation to the signup form",
-          "Rename the User model to Account across the codebase",
-          "Move the API calls in this component into a service file",
-        ],
-      },
-      {
-        key: "test",
-        label: "Run and fix",
-        icon: FlaskConical,
-        prompts: [
-          "Run the tests and fix the ones that fail",
-          "Start the dev server and fix the error in the console",
-          "Find out why the build fails and fix it",
-        ],
-      },
-      {
-        key: "docs",
-        label: "Document",
-        icon: FileText,
-        prompts: [
-          "Write a README for this project from the source",
-          "Document the API endpoints in this repo",
-          "Add comments to the functions in utils/date.ts",
-        ],
-      },
-    ],
-  },
-  capabilities: {
-    heading: "What happens on your computer",
-    sub: "ChatGPT works in your project folder through Desktop Commander. No copying code into the chat.",
-    blocks: [
-      {
-        kind: "edit",
-        title: "Reads and edits your project files",
-        body: "ChatGPT opens the files it needs, makes the change, and saves it in place. You review the result in your own editor or with git diff.",
-        bullets: [
-          "Searches across the whole project",
-          "Edits several files in one task",
-          "Changes land in your files, not in the chat",
-        ],
-      },
-      {
-        kind: "terminal",
-        title: "Runs your tests and builds",
-        body: "It runs commands in your real terminal, reads the output, and keeps going until the task is done.",
-        bullets: [
-          "Installs dependencies and starts dev servers",
-          "Runs tests and reads the failures",
-          "Uses the tools you already have installed",
-        ],
-      },
-    ],
-  },
-  firstPrompt: {
-    title: "Then point it at your project",
-    prompt: "Open my project in ~/code/my-app and explain how it is structured. List the files you looked at.",
-    note: "Paste it into ChatGPT once your computer is connected, with the path to your own project.",
-  },
-  final: {
-    heading: "Stop pasting code into ChatGPT",
-    sub: "Add Desktop Commander, connect your computer, and let ChatGPT work directly in your project files.",
-  },
-};
-
 export const CAMPAIGNS: Record<CampaignKey, GptCampaign> = {
   "organize-files": organizeFiles,
-  codebase,
 };
 
 /** The campaign's config, or null on the base /mcp/chatgpt/ page. */

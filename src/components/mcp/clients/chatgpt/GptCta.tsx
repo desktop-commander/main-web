@@ -13,6 +13,8 @@ interface Props {
   className?: string;
   /** Ads landing page this CTA sits on, sent with the click event. */
   campaign?: string;
+  /** Ads page variant (use_case), sent with the click event. */
+  useCase?: string;
 }
 
 /** The one CTA of this page, reused everywhere with per-position analytics */
@@ -23,6 +25,7 @@ const GptCta = ({
   variant = "hero",
   className = "",
   campaign,
+  useCase,
 }: Props) => {
   const { trackCustomEvent } = useAnalyticsAstro();
 
@@ -39,6 +42,7 @@ const GptCta = ({
             cta_position: position,
             destination: CHATGPT_LISTING_URL,
             ...(campaign ? { campaign } : {}),
+            ...(useCase ? { use_case: useCase } : {}),
           })
         }
       >

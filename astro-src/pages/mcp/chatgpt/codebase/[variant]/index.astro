@@ -1,0 +1,13 @@
+---
+/** Code campaign, one page per ad group (pytest, typescript, git). Copy: ads/adPages.ts */
+import ChatgptAdPage from '../../../../../components/ChatgptAdPage.astro';
+import { AD_PAGES } from '../../../../../../src/components/mcp/clients/chatgpt/ads/adPages';
+
+export function getStaticPaths() {
+  return AD_PAGES.code.variants.filter((v) => v.key).map((v) => ({ params: { variant: v.key } }));
+}
+
+const { variant } = Astro.params;
+---
+
+<ChatgptAdPage page="code" variant={variant} />

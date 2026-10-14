@@ -133,8 +133,7 @@ const CwCapabilities = () => {
             </h3>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
               Read, write, search, and organize real files on your disk. Projects,
-              documents, photos, datasets. No uploading, no size limits, and nothing
-              leaves your machine without you seeing it.
+              documents, photos, datasets, without attaching them to the chat.
             </p>
             <ul className="space-y-2.5">
               {[

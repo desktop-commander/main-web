@@ -157,7 +157,7 @@ const BASE_BLOCKS: Block[] = [
   {
     kind: "files",
     title: "Work with files on your computer",
-    body: "Read, write, search, and organize real files on your disk. Projects, documents, photos, datasets. No uploading, no size limits, and nothing leaves your machine without you seeing it.",
+    body: "Read, write, search, and organize real files on your disk. Projects, documents, photos, datasets, without attaching them to the chat.",
     bullets: [
       "Full read and write access to any folder you allow",
       "Search across thousands of files in seconds",
