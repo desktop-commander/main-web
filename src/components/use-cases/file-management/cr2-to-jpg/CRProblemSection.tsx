@@ -15,7 +15,7 @@ const CRProblemSection = () => {
           </div>
 
           <p className="text-xl text-muted-foreground leading-relaxed">
-            You shot hundreds of photos on your Canon camera, but now you can't share them. CR2 files won't open on most devices, social media rejects them, and email clients choke on the file size. You're stuck opening Lightroom or Photoshop just to export a few JPGs — or worse, uploading your personal photos to sketchy online converters.
+            You shot hundreds of photos on your Canon camera, but now you can't share them. CR2 files won't open on most devices, social media rejects them, and email clients choke on the file size. You end up opening Lightroom or Photoshop just to export a few JPGs, or converting them one at a time on a website.
           </p>
         </div>
       </div>

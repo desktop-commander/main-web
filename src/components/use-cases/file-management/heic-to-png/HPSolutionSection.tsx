@@ -1,27 +1,28 @@
 import { Zap, FolderOpen, Sparkles } from "lucide-react";
+import ChatDemo from "../../remote/ChatDemo";
 
 const HPSolutionSection = () => {
   const features = [
     {
-      title: "Lossless conversion in seconds",
-      description: "Get PNG files with full quality preserved. No compression artifacts, no quality loss — just clean, crisp images ready for any use.",
+      title: "Lossless PNGs from one message",
+      description: "Get PNG files with full quality preserved. No extra compression, just clean, crisp images ready for any use.",
       icon: Zap,
-      command: '"Convert all HEIC files in my Screenshots folder to PNG"',
-      result: "All files converted with original quality preserved"
+      command: '"Convert all HEIC files in my iPhone Imports folder to PNG"',
+      result: "All files converted at full quality"
     },
     {
       title: "Batch convert and organize",
-      description: "Convert hundreds of photos at once while organizing them into folders. Sort by date, rename by project, or move to specific directories — all in one command.",
+      description: "Convert hundreds of photos at once and sort them as you go. Group by date, rename by project, or move them to the folder you need, all in one message.",
       icon: FolderOpen,
       command: '"Convert my product photos to PNG and put them in the Marketing folder"',
-      result: "Photos converted and organized into Marketing/"
+      result: "Photos converted and saved in Marketing/"
     },
     {
-      title: "Perfect for creative work",
-      description: "PNG supports transparency and is universally compatible with design tools, web platforms, and editing software. Get your iPhone photos ready for Figma, Photoshop, or your website.",
+      title: "Ready for creative work",
+      description: "PNG supports transparency and works with design tools, web platforms, and editing software. Get your iPhone photos ready for Figma, Photoshop, or your website.",
       icon: Sparkles,
-      command: '"Convert these app screenshots to PNG for the website"',
-      result: "Screenshots ready for web use"
+      command: '"Convert the HEIC photos from today\'s shoot to PNG for Figma"',
+      result: "PNGs ready to drop into Figma"
     }
   ];
 
@@ -34,8 +35,22 @@ const HPSolutionSection = () => {
             Just describe what you need. Done.
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            No settings to configure. No apps to learn. Just tell Desktop Commander what you want in plain English.
+            No settings to configure. No apps to learn. Just describe what you want in ChatGPT or Claude.
           </p>
+        </div>
+
+        {/* What it looks like in ChatGPT */}
+        <div className="max-w-xl mx-auto mb-16">
+          <ChatDemo
+            user="Turn the iPhone photos in Desktop/Blog Images into PNGs"
+            workedFor="Worked for 41s"
+            reply="Converted 36 photos to PNG."
+            steps={[
+              "Found 36 HEIC files in Desktop/Blog Images.",
+              "Converted each one to a lossless PNG.",
+              "Kept the originals. The PNGs are in Desktop/Blog Images/PNG.",
+            ]}
+          />
         </div>
 
         {/* Features */}

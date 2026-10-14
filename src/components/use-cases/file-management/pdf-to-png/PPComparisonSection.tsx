@@ -3,17 +3,17 @@ import { CheckCircle, XCircle } from "lucide-react";
 const PPComparisonSection = () => {
   const withDC = [
     "Convert specific pages or entire PDFs",
-    "High-resolution output for any use",
-    "100% local — sensitive docs stay private",
-    "No watermarks, no limits",
-    "Free, no account required"
+    "High-resolution output at the DPI you choose",
+    "Convert a whole folder of PDFs in one message",
+    "Ask from ChatGPT or Claude, even on your phone",
+    "Free plan with 10,000 tool calls a month"
   ];
 
   const withoutDC = [
+    "Upload and download every PDF by hand",
     "Limited pages per document",
     "Watermarks on free versions",
-    "Upload confidential documents to servers",
-    "Low-resolution output",
+    "Repeat it all for every new document",
     "Pay for premium or deal with ads"
   ];
 

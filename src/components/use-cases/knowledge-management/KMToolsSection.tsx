@@ -8,7 +8,7 @@ const KMToolsSection = () => {
       features: [
         "Writes new notes directly to your vault",
         "Updates existing notes with new information",
-        "Creates backlinks and tags automatically"
+        "Adds backlinks and tags as it writes"
       ]
     },
     {
@@ -16,24 +16,24 @@ const KMToolsSection = () => {
       icon: "💻",
       features: [
         "Generates documentation from code",
-        "Updates README files automatically",
+        "Updates README files when the code changes",
         "Creates architecture notes from your codebase"
       ]
     },
     {
-      name: "Google Drive",
+      name: "Synced Folders",
       icon: "☁️",
       features: [
-        "Edits documents in place",
+        "Works with Google Drive, Dropbox, or iCloud folders synced to your computer",
         "Organizes files across folders",
-        "Creates summary documents"
+        "Creates summary documents next to your files"
       ]
     },
     {
-      name: "Local Markdown Files",
+      name: "Plain Markdown Files",
       icon: "📁",
       features: [
-        "Complete privacy—everything stays on your machine",
+        "Text files in folders you choose, readable in any editor",
         "Works with any markdown-based system",
         "Git-friendly for version control"
       ]

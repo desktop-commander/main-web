@@ -7,15 +7,19 @@ import AJProblemSection from '../../../../../src/components/use-cases/file-manag
 import AJSolutionSection from '../../../../../src/components/use-cases/file-management/avif-to-jpg/AJSolutionSection';
 import AJComparisonSection from '../../../../../src/components/use-cases/file-management/avif-to-jpg/AJComparisonSection';
 import AJPersonasSection from '../../../../../src/components/use-cases/file-management/avif-to-jpg/AJPersonasSection';
-import AJFinalCTASection from '../../../../../src/components/use-cases/file-management/avif-to-jpg/AJFinalCTASection';
-import WaitlistSection from '../../../../../src/components/use-cases/WaitlistSection';
+import HowItWorks from '../../../../../src/components/home-mcp/HowItWorks';
+import ClientFAQ from '../../../../../src/components/mcp/clients/ClientFAQ';
+import InstallChooser from '../../../../../src/components/home-mcp/InstallChooser';
 import Footer from '../../../../../src/components/Footer';
 import MoreConversions from '../../../../components/MoreConversions.astro';
+import { faqJsonLd } from '../../../../../src/components/use-cases/remote/faqs';
+import { AVIF_TO_JPG_FAQS } from '../../../../../src/components/use-cases/remote/faqs/avif-to-jpg';
 ---
 
 <Layout 
-  title="Convert AVIF to JPG Instantly | Free Local Converter | Desktop Commander"
-  description="Batch convert AVIF images to JPG locally and privately. Full AVIF support without waiting for app updates. Free forever on Mac & Windows."
+  title="Convert AVIF to JPG with ChatGPT or Claude | Desktop Commander"
+  description="Convert AVIF images to JPG on your Mac or Windows PC by asking ChatGPT or Claude. Convert a whole folder in one message, with no converter websites."
+  jsonLd={faqJsonLd(AVIF_TO_JPG_FAQS)}
 >
   <PostHogInit client:idle />
   
@@ -27,13 +31,19 @@ import MoreConversions from '../../../../components/MoreConversions.astro';
       <AJProblemSection />
       <AJSolutionSection />
       <AJComparisonSection />
-      <WaitlistSection useCase="avif_to_jpg" client:visible />
+      <HowItWorks client:visible />
       <AJPersonasSection />
-      <AJFinalCTASection client:visible />
+      <ClientFAQ client:visible name="AVIF to JPG" heading="AVIF to JPG FAQ" faqs={AVIF_TO_JPG_FAQS} />
+      <InstallChooser
+        client:visible
+        location="avif_to_jpg_install"
+        heading="Convert a whole folder of AVIF images in one message"
+        sub="Add Desktop Commander to the assistant you already use and convert AVIF to JPG from the chat."
+      />
     </main>
     
     <MoreConversions current="avif-to-jpg" />
-      <Footer client:visible />
+    <Footer client:visible />
   </div>
 </Layout>
 

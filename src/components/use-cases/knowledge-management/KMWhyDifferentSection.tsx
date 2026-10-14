@@ -3,19 +3,19 @@ import { CheckCircle, XCircle } from "lucide-react";
 const KMWhyDifferentSection = () => {
 
   const traditionalSteps = [
-    "Upload or paste context files every session",
+    "Attach or paste context files every session",
     "Re-explain project background each time",
-    "Copy valuable answers before tab closes",
+    "Copy valuable answers before the tab closes",
     "Manually maintain what the AI should \"remember\"",
     "Start from zero in the next conversation"
   ];
 
   const dcSteps = [
-    "Point to knowledge base folder once: \"Use ~/Documents/ProjectContext\"",
-    "AI automatically finds relevant context for each question",
+    "Point to your knowledge base folder: \"Use ~/Documents/ProjectContext\"",
+    "ChatGPT or Claude searches the folder for the notes each question needs",
     "Answers build on existing knowledge",
-    "Updates context files as work progresses",
-    "Every conversation starts where the last one ended"
+    "Ask it to update the context files as work progresses",
+    "A new conversation picks up where the last one ended"
   ];
 
   return (

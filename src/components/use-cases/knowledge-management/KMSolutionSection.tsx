@@ -1,54 +1,27 @@
-import { BookOpen, RefreshCw, FolderTree, Network, Sparkles, FileEdit, Move, Download, FolderOpen, MessageSquare, Command } from "lucide-react";
-import { useEffect, useRef } from "react";
-import DownloadButtons from "@/components/shared/DownloadButtons";
+import { BookOpen, RefreshCw, FolderTree, Network, Sparkles, FileEdit, Move, FolderOpen, MessageSquare, Command, History } from "lucide-react";
+import ChatDemo from "../remote/ChatDemo";
 
 const KMSolutionSection = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            video.play().catch(() => {
-              // Autoplay may be blocked by browser, that's ok
-            });
-          } else {
-            video.pause();
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    observer.observe(video);
-
-    return () => observer.disconnect();
-  }, []);
-
   const steps = [
     {
-      icon: Download,
-      title: "Install Desktop Commander",
-      description: "Download the app and connect your preferred AI model (Claude, GPT-4, etc.)"
-    },
-    {
       icon: FolderOpen,
-      title: "Point to your project folder",
-      description: "Tell it where your files live—Obsidian vault, codebase, or any local folder"
+      title: "Point to your notes folder",
+      description: "Tell it where your notes live: an Obsidian vault, a docs folder in a repo, or any folder on your computer."
     },
     {
       icon: MessageSquare,
-      title: "Work naturally with your AI",
-      description: "Ask questions, discuss ideas, get help—just like normal chat"
+      title: "Work in the chat as usual",
+      description: "Ask questions, discuss ideas, get help. It reads the notes it needs along the way."
     },
     {
       icon: Command,
-      title: "Use simple commands to manage your knowledge",
+      title: "Ask it to save and organize",
       description: '"Save this to my notes" • "Organize by topic" • "Update the README"'
+    },
+    {
+      icon: History,
+      title: "Pick up where you left off",
+      description: "Next time, ask it to read your notes first. The context is already written down."
     }
   ];
 
@@ -79,17 +52,17 @@ const KMSolutionSection = () => {
     {
       icon: Sparkles,
       title: "Never lose valuable insights",
-      description: "Every useful answer can be instantly saved to your knowledge base"
+      description: "Any useful answer can be saved to your knowledge base with one message."
     },
     {
       icon: FileEdit,
-      title: "Self-maintaining documentation",
-      description: "Your notes and docs update themselves based on your work"
+      title: "Documentation that keeps up",
+      description: "Ask it to update your notes and docs as your work changes."
     },
     {
       icon: Move,
-      title: "End context switching",
-      description: "Work with your AI and your files in one unified flow"
+      title: "No copying and pasting",
+      description: "ChatGPT or Claude writes to your files directly, so nothing gets pasted between the chat and your notes."
     }
   ];
 
@@ -102,7 +75,8 @@ const KMSolutionSection = () => {
             How Desktop Commander Solves It
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Desktop Commander doesn't just read your files—it writes, edits, and organizes them directly.
+            Desktop Commander lets ChatGPT or Claude read your notes, and also write, edit, and
+            organize them directly.
           </p>
         </div>
 
@@ -120,11 +94,6 @@ const KMSolutionSection = () => {
               <p className="text-muted-foreground text-sm">{step.description}</p>
             </div>
           ))}
-        </div>
-
-        {/* CTA Button */}
-        <div className="flex justify-center mt-10">
-          <DownloadButtons location="knowledge_management" />
         </div>
 
         {/* Divider + Benefits Header */}
@@ -149,30 +118,38 @@ const KMSolutionSection = () => {
           ))}
         </div>
 
-        {/* Video Section */}
+        {/* What it looks like in ChatGPT (the old video showed the retired desktop app) */}
         <div className="mb-20">
           <div className="text-center mb-8">
             <h3 className="text-2xl md:text-3xl font-bold">
               See it in action
             </h3>
           </div>
-          <div className="relative aspect-video w-full rounded-2xl border-2 border-dc-border bg-dc-card overflow-hidden">
-            <video
-              ref={videoRef}
-              className="w-full h-full object-cover"
-              controls
-              muted
-              loop
-              preload="metadata"
-              playsInline
-              title="Desktop Commander Knowledge Management Demo - Create and organize notes with AI"
-              aria-label="Video demonstration of Desktop Commander creating and managing knowledge base notes using natural language commands"
-            >
-              <source src="/videos/knowledge-management-demo.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto items-start">
+            <ChatDemo
+              className="max-w-lg mx-auto w-full"
+              user="Save what we just worked out about Docker networking as a note in my Obsidian vault"
+              workedFor="Worked for 14s"
+              reply="Saved the note to your vault."
+              steps={[
+                "Created Tech/Docker networking.md in your Obsidian vault.",
+                "Added the summary of bridge and host networks and the commands we tested.",
+                "Linked it from your Docker index note and tagged it #docker.",
+              ]}
+            />
+            <ChatDemo
+              className="max-w-lg mx-auto w-full"
+              user="Read my project notes and tell me what we decided about the pricing page"
+              workedFor="Worked for 27s"
+              reply="You made three decisions about the pricing page."
+              steps={[
+                "Searched 214 notes in Projects/Website for pricing.",
+                "Drop the annual toggle, and show the free plan first.",
+                "Move the FAQ below the plans. Each point links to the note it came from.",
+              ]}
+            />
           </div>
-          <p className="text-center text-sm text-muted-foreground mt-4">
+          <p className="text-center text-sm text-muted-foreground mt-6">
             Create, update, and organize your knowledge base with simple commands
           </p>
         </div>

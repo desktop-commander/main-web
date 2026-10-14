@@ -7,15 +7,19 @@ import TJProblemSection from '../../../../../src/components/use-cases/file-manag
 import TJSolutionSection from '../../../../../src/components/use-cases/file-management/tiff-to-jpg/TJSolutionSection';
 import TJComparisonSection from '../../../../../src/components/use-cases/file-management/tiff-to-jpg/TJComparisonSection';
 import TJPersonasSection from '../../../../../src/components/use-cases/file-management/tiff-to-jpg/TJPersonasSection';
-import TJFinalCTASection from '../../../../../src/components/use-cases/file-management/tiff-to-jpg/TJFinalCTASection';
-import WaitlistSection from '../../../../../src/components/use-cases/WaitlistSection';
+import HowItWorks from '../../../../../src/components/home-mcp/HowItWorks';
+import ClientFAQ from '../../../../../src/components/mcp/clients/ClientFAQ';
+import InstallChooser from '../../../../../src/components/home-mcp/InstallChooser';
 import Footer from '../../../../../src/components/Footer';
 import MoreConversions from '../../../../components/MoreConversions.astro';
+import { faqJsonLd } from '../../../../../src/components/use-cases/remote/faqs';
+import { TIFF_TO_JPG_FAQS } from '../../../../../src/components/use-cases/remote/faqs/tiff-to-jpg';
 ---
 
 <Layout 
-  title="Convert TIFF to JPG Instantly | Free Batch Converter | Desktop Commander"
-  description="Batch convert TIFF files from scanners, print workflows, and professional cameras to JPG. Free, fast, and works offline on Mac & Windows."
+  title="Batch Convert TIFF to JPG with ChatGPT or Claude | Desktop Commander"
+  description="Batch convert TIFF scans and print files to JPG on your Mac or Windows PC by asking ChatGPT or Claude. Convert a whole folder in one message."
+  jsonLd={faqJsonLd(TIFF_TO_JPG_FAQS)}
 >
   <PostHogInit client:idle />
   
@@ -27,13 +31,19 @@ import MoreConversions from '../../../../components/MoreConversions.astro';
       <TJProblemSection />
       <TJSolutionSection />
       <TJComparisonSection />
-      <WaitlistSection useCase="tiff_to_jpg" client:visible />
+      <HowItWorks client:visible />
       <TJPersonasSection />
-      <TJFinalCTASection client:visible />
+      <ClientFAQ client:visible name="TIFF to JPG" heading="TIFF to JPG FAQ" faqs={TIFF_TO_JPG_FAQS} />
+      <InstallChooser
+        client:visible
+        location="tiff_to_jpg_install"
+        heading="Convert a whole folder of TIFFs in one message"
+        sub="Add Desktop Commander to the assistant you already use and convert TIFF to JPG from the chat."
+      />
     </main>
     
     <MoreConversions current="tiff-to-jpg" />
-      <Footer client:visible />
+    <Footer client:visible />
   </div>
 </Layout>
 

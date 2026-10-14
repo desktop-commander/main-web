@@ -15,7 +15,7 @@ const HPProblemSection = () => {
           </div>
 
           <p className="text-xl text-muted-foreground leading-relaxed">
-            Designers, developers, and content creators need PNG for its lossless quality and transparency support. But your iPhone saves everything as HEIC. Online converters compress your images, strip metadata, or require you to upload sensitive photos to unknown servers.
+            Designers, developers, and content creators need PNG for its lossless quality and transparency support. But your iPhone saves everything as HEIC. Online converters make you upload and download photos one at a time, and many cap how many files you can convert.
           </p>
         </div>
       </div>

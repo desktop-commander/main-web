@@ -2,18 +2,18 @@ import { CheckCircle, XCircle } from "lucide-react";
 
 const HPComparisonSection = () => {
   const withDC = [
-    "Convert entire folders in one command",
+    "Convert entire folders in one message",
     "Lossless PNG quality preserved",
     "Batch rename and organize while converting",
-    "Works offline, 100% local processing",
-    "Free, no account required"
+    "Ask from ChatGPT or Claude, even on your phone",
+    "Free plan with 10,000 tool calls a month"
   ];
 
   const withoutDC = [
-    "Upload photos to unknown servers",
-    "Quality often compressed or degraded",
+    "Upload and download every photo by hand",
     "Convert one file at a time",
-    "Requires internet connection",
+    "Rename and sort the results yourself",
+    "Repeat it all for every new batch",
     "Ads, watermarks, or paid upgrades"
   ];
 

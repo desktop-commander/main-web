@@ -8,15 +8,19 @@ import ADSolutionSection from '../../../../src/components/use-cases/analyze-data
 import ADExamplesSection from '../../../../src/components/use-cases/analyze-data/ADExamplesSection';
 import ADComparisonSection from '../../../../src/components/use-cases/analyze-data/ADComparisonSection';
 import ADWhyDifferentSection from '../../../../src/components/use-cases/analyze-data/ADWhyDifferentSection';
-import ADWaitlistSection from '../../../../src/components/use-cases/analyze-data/ADWaitlistSection';
+import HowItWorks from '../../../../src/components/home-mcp/HowItWorks';
 import ADPersonasSection from '../../../../src/components/use-cases/analyze-data/ADPersonasSection';
-import ADFinalCTASection from '../../../../src/components/use-cases/analyze-data/ADFinalCTASection';
+import ClientFAQ from '../../../../src/components/mcp/clients/ClientFAQ';
+import InstallChooser from '../../../../src/components/home-mcp/InstallChooser';
 import Footer from '../../../../src/components/Footer';
+import { faqJsonLd } from '../../../../src/components/use-cases/remote/faqs';
+import { ANALYZE_DATA_FAQS } from '../../../../src/components/use-cases/remote/faqs/analyze-data';
 ---
 
 <Layout 
-  title="Chat With Your Data — AI Data Analysis for CSV, Excel & JSON | Desktop Commander"
-  description="Talk to your CSV, Excel, and JSON files in plain English. Find patterns, run analysis, and automate reports locally — no Python, no uploads, no file-size limits."
+  title="Chat With Your Data in ChatGPT or Claude | Desktop Commander"
+  description="Analyze CSV, Excel and JSON files on your Mac or Windows PC by asking ChatGPT or Claude. Find patterns, get real numbers and build reports without learning Python."
+  jsonLd={faqJsonLd(ANALYZE_DATA_FAQS)}
 >
   <PostHogInit client:idle />
   
@@ -26,13 +30,21 @@ import Footer from '../../../../src/components/Footer';
     <main>
       <ADHeroSection client:load />
       <ADProblemSection />
-      <ADSolutionSection client:visible />
-      <ADExamplesSection client:visible />
+      <ADSolutionSection />
+      <ADExamplesSection />
       <ADComparisonSection />
       <ADWhyDifferentSection />
-      <ADWaitlistSection client:visible />
+      <!-- Remote MCP setup: same steps as the homepage -->
+      <HowItWorks client:visible />
       <ADPersonasSection />
-      <ADFinalCTASection client:visible />
+      <ClientFAQ client:visible name="Data analysis" heading="Data analysis FAQ" faqs={ANALYZE_DATA_FAQS} />
+      <!-- #install target for the hero button; same chooser as the homepage -->
+      <InstallChooser
+        client:visible
+        location="analyze_data_install"
+        heading="Ask your spreadsheets questions"
+        sub="Add Desktop Commander to ChatGPT or Claude, link your computer, and ask about your data in plain words."
+      />
     </main>
     
     <Footer client:visible />

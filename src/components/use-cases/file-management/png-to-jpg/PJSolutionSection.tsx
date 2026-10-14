@@ -1,27 +1,28 @@
 import { Zap, FolderOpen, Sliders } from "lucide-react";
+import ChatDemo from "../../remote/ChatDemo";
 
 const PJSolutionSection = () => {
   const features = [
     {
-      title: "Batch convert instantly",
-      description: "Select a folder with hundreds of PNGs. Desktop Commander converts them all at once — watch your file sizes shrink dramatically.",
+      title: "Batch convert in one message",
+      description: "Name a folder with hundreds of PNGs. Desktop Commander converts them all at once and tells you how much space you saved.",
       icon: Zap,
       command: '"Convert all PNG files in my Screenshots folder to JPG"',
-      result: "142 files converted — saved 1.2GB of space"
+      result: "142 files converted, 1.2 GB of space saved"
     },
     {
       title: "Organize while converting",
-      description: "Don't just convert — move to new folders, rename by date, or sort by size. One command handles the entire workflow.",
+      description: "Don't just convert. Move files to new folders, rename by date, or sort by size. One message handles the entire workflow.",
       icon: FolderOpen,
       command: '"Convert these PNGs to JPG and organize by month"',
       result: "Files sorted into Jan/, Feb/, Mar/ folders"
     },
     {
-      title: "Control your quality",
-      description: "Need smaller files? Want maximum quality? Just say so. Desktop Commander adjusts compression to match your needs.",
+      title: "Pick the quality you need",
+      description: "Need smaller files? Want maximum quality? Just say so. Desktop Commander sets the JPG quality to match.",
       icon: Sliders,
       command: '"Convert to JPG at 85% quality for web use"',
-      result: "Optimized for web — perfect balance of size and quality"
+      result: "Saved at 85% quality, a good balance of size and detail for the web"
     }
   ];
 
@@ -34,24 +35,22 @@ const PJSolutionSection = () => {
             Describe what you want. It handles the rest.
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            No settings to configure. No software to learn. Just tell Desktop Commander what you need in plain English.
+            No settings to configure. No software to learn. Just describe what you need in ChatGPT or Claude.
           </p>
         </div>
 
-        {/* Video Demo */}
-        <div className="relative aspect-video rounded-xl border border-dc-border bg-dc-surface overflow-hidden max-w-4xl mx-auto shadow-lg mb-16">
-          <video
-            className="w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-            aria-label="Desktop Commander converting PNG to JPG - batch conversion demo"
-            title="Convert PNG to JPG with natural language - Desktop Commander demo"
-          >
-            <source src="/videos/file-conversion-demo.mp4" type="video/mp4" />
-            <p className="text-muted-foreground">Your browser does not support the video tag.</p>
-          </video>
+        {/* What it looks like in ChatGPT (the old video showed the retired desktop app) */}
+        <div className="max-w-xl mx-auto mb-16">
+          <ChatDemo
+            user="Make JPG copies of the PNG screenshots on my Desktop so I can email them"
+            workedFor="Worked for 28s"
+            reply="Converted 64 screenshots to JPG."
+            steps={[
+              "Found 64 PNG files on your Desktop.",
+              "Saved each one as a JPG at 90% quality.",
+              "Kept the originals. The JPGs are in Desktop/JPG and take 14 MB instead of 92 MB.",
+            ]}
+          />
         </div>
 
         {/* Features */}

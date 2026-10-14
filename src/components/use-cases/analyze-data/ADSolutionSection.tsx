@@ -1,20 +1,21 @@
-import { Database, ShieldCheck, Zap } from "lucide-react";
+import { Database, Calculator, Zap } from "lucide-react";
+import ChatDemo from "../remote/ChatDemo";
 
 const ADSolutionSection = () => {
   const features = [
     {
-      title: "Analyze files of any size",
-      description: "Process thousands of rows without crashes or context limits—DC runs Python locally, not in a chat window.",
+      title: "Work with large files",
+      description: "ChatGPT or Claude writes a Python script and runs it in your terminal, so the whole file gets processed, not just the part that fits in the chat.",
       icon: Database,
     },
     {
-      title: "Get accurate results, not hallucinations",
-      description: "DC reads the actual file and runs real calculations on your machine—no guessing, no summarizing, no truncated data.",
-      icon: ShieldCheck,
+      title: "Real calculations, not guesses",
+      description: "The numbers come from code that ran on the actual file, every row of it. No estimating, no summarizing, no truncated data.",
+      icon: Calculator,
     },
     {
       title: "Skip the Python learning curve",
-      description: "Describe what you want to know. DC writes and runs the code for you.",
+      description: "Describe what you want to know in plain words. ChatGPT or Claude writes and runs the code for you.",
       icon: Zap,
     }
   ];
@@ -28,7 +29,7 @@ const ADSolutionSection = () => {
             Desktop Commander turns plain English into accurate data analysis.
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Describe what you want to know—DC writes Python scripts, runs them on your actual files, and returns real results.
+            Describe what you want to know. ChatGPT or Claude writes a Python script, runs it on your actual file, and reports back the results.
           </p>
         </div>
 
@@ -52,36 +53,27 @@ const ADSolutionSection = () => {
 
         {/* Process Flow */}
         <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 mb-12 p-6 rounded-xl bg-dc-surface border border-dc-border">
-          <span className="text-lg font-medium">Describe what you want</span>
+          <span className="text-lg font-medium">Ask in ChatGPT or Claude</span>
           <span className="text-primary text-xl">→</span>
-          <span className="text-lg font-medium">DC writes Python</span>
+          <span className="text-lg font-medium">It writes Python</span>
           <span className="text-primary text-xl">→</span>
           <span className="text-lg font-medium">Runs it on your actual file</span>
           <span className="text-primary text-xl">→</span>
           <span className="text-lg font-medium text-primary">Returns real results</span>
         </div>
 
-        {/* Video Demo */}
-        <div className="relative aspect-video rounded-xl border border-dc-border bg-dc-surface overflow-hidden max-w-4xl mx-auto shadow-lg mb-12">
-          <video
-            className="w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-            aria-label="Desktop Commander analyzing CSV data - showing how to get insights from spreadsheets using natural language"
-            title="Analyze CSV and Excel data with natural language - Desktop Commander demo"
-          >
-            <source src="/videos/analyze-data-csv-demo.mp4" type="video/mp4" />
-            <p className="text-muted-foreground">Your browser does not support the video tag. <a href="/videos/analyze-data-csv-demo.mp4" className="text-primary hover:underline">Download the demo video</a></p>
-          </video>
-        </div>
-
-        {/* Stat Callout */}
-        <div className="text-center p-6 rounded-xl bg-primary/5 border border-primary/20">
-          <p className="text-xl md:text-2xl font-medium">
-            <span className="text-primary font-bold">70% of users</span> save 3+ hours per week with Desktop Commander
-          </p>
+        {/* What it looks like in ChatGPT (the old video showed the retired desktop app) */}
+        <div className="max-w-xl mx-auto">
+          <ChatDemo
+            user="Analyze q4_sales.csv in my Downloads. Which products grew the most?"
+            workedFor="Worked for 52s"
+            reply="Here is what stands out in q4_sales.csv."
+            steps={[
+              "Read all 48,210 rows with a Python script, not a sample.",
+              "Revenue was up 12% on Q3. Three products drove most of the growth.",
+              "Saved a summary table and a chart as q4-growth.png next to the file.",
+            ]}
+          />
         </div>
       </div>
     </section>

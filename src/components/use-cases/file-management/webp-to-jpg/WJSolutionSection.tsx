@@ -1,27 +1,28 @@
-import { Zap, FolderOpen, Lock } from "lucide-react";
+import { Zap, FolderOpen, Smartphone } from "lucide-react";
+import ChatDemo from "../../remote/ChatDemo";
 
 const WJSolutionSection = () => {
   const features = [
     {
-      title: "Batch convert instantly",
-      description: "Select a folder full of WebP files. Desktop Commander converts them all at once — no clicking through dialogs or waiting for uploads.",
+      title: "Batch convert in one message",
+      description: "Name a folder full of WebP files. Desktop Commander converts them all at once, with no clicking through dialogs.",
       icon: Zap,
       command: '"Convert all WebP files in Downloads to JPG"',
       result: "All files converted successfully"
     },
     {
       title: "Organize as you convert",
-      description: "Don't just convert — sort into folders, rename files, or move to specific locations. One command does it all.",
+      description: "Don't just convert. Sort into folders, rename files, or move them to specific locations. One message does it all.",
       icon: FolderOpen,
-      command: '"Convert these web images to JPG and put in my Assets folder"',
+      command: '"Convert these web images to JPG and put them in my Assets folder"',
       result: "Files converted and moved to ~/Assets/"
     },
     {
-      title: "Your files stay private",
-      description: "Unlike online converters, nothing leaves your computer. No uploads, no cloud processing, no data collection.",
-      icon: Lock,
-      command: '"Convert these product images to JPG"',
-      result: "Converted locally — zero data sent anywhere"
+      title: "Ask from your phone",
+      description: "Start the conversion from ChatGPT or Claude on your phone. The JPGs are waiting in the folder when you get back to your computer.",
+      icon: Smartphone,
+      command: '"Convert the product images in my Shop folder to JPG"',
+      result: "24 images converted. The JPGs are in Shop/JPG."
     }
   ];
 
@@ -34,24 +35,22 @@ const WJSolutionSection = () => {
             Just tell it what you need. It handles the rest.
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            No menus. No settings. No figuring out which app to use. Just describe what you want in plain English.
+            No menus. No settings. No figuring out which app to use. Just describe what you want in ChatGPT or Claude.
           </p>
         </div>
 
-        {/* Video Demo */}
-        <div className="relative aspect-video rounded-xl border border-dc-border bg-dc-surface overflow-hidden max-w-4xl mx-auto shadow-lg mb-16">
-          <video
-            className="w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-            aria-label="Desktop Commander converting WebP images to JPG - batch conversion demo"
-            title="Convert WebP to JPG with natural language - Desktop Commander demo"
-          >
-            <source src="/videos/webp-to-jpg-demo.mp4" type="video/mp4" />
-            <p className="text-muted-foreground">Your browser does not support the video tag.</p>
-          </video>
+        {/* What it looks like in ChatGPT (the old video showed the retired desktop app) */}
+        <div className="max-w-xl mx-auto mb-16">
+          <ChatDemo
+            user="Change the WebP images I saved this week into JPGs"
+            workedFor="Worked for 19s"
+            reply="Converted 17 images to JPG."
+            steps={[
+              "Found 17 WebP files saved to Downloads this week.",
+              "Converted each one to JPG at high quality.",
+              "Kept the originals. The JPGs are in Downloads/JPG.",
+            ]}
+          />
         </div>
 
         {/* Features */}

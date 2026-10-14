@@ -3,12 +3,13 @@ import Layout from '../../layouts/Layout.astro';
 import PostHogInit from '../../../src/components/PostHogInit';
 import Navigation from '../../components/Navigation.astro';
 import UseCasesHub from '../../../src/components/use-cases/UseCasesHub';
+import InstallChooser from '../../../src/components/home-mcp/InstallChooser';
 import Footer from '../../../src/components/Footer';
 ---
 
 <Layout 
-  title="Use Cases | Desktop Commander - AI-Powered Automation"
-  description="Discover how Desktop Commander can help with file management, data analysis, development, automation, content creation, and DevOps tasks."
+  title="Use Cases for ChatGPT and Claude | Desktop Commander"
+  description="See what ChatGPT or Claude can do on your computer with Desktop Commander: manage files, analyze data, build prototypes, connect apps, and work with your notes."
 >
   <!-- Load PostHog early to initialize analytics -->
   <PostHogInit client:idle />
@@ -18,6 +19,7 @@ import Footer from '../../../src/components/Footer';
     
     <main>
       <UseCasesHub client:load />
+      <InstallChooser client:visible location="use_cases_hub_install" />
     </main>
     
     <Footer client:visible />

@@ -1,27 +1,28 @@
-import { Zap, FolderOpen, Lock } from "lucide-react";
+import { Zap, FolderOpen, SlidersHorizontal } from "lucide-react";
+import ChatDemo from "../../remote/ChatDemo";
 
 const AJSolutionSection = () => {
   const features = [
     {
-      title: "Convert the unconvertible",
-      description: "AVIF support is rare in most tools. Desktop Commander handles it instantly — just tell it what you need in plain English.",
+      title: "Convert AVIF without hunting for an app",
+      description: "Many tools still can't open AVIF. Ask in plain English and Desktop Commander converts the files for you.",
       icon: Zap,
       command: '"Convert all AVIF files in Downloads to JPG"',
       result: "All files converted successfully"
     },
     {
       title: "Organize as you convert",
-      description: "Don't just convert — sort into folders, rename files, or move to specific locations. One command does it all.",
+      description: "Don't just convert. Sort into folders, rename files, or move them to specific locations. One message does it all.",
       icon: FolderOpen,
-      command: '"Convert these AVIF images to JPG and put in my Photos folder"',
+      command: '"Convert these AVIF images to JPG and put them in my Photos folder"',
       result: "Files converted and moved to ~/Photos/"
     },
     {
-      title: "Your files stay private",
-      description: "Unlike online converters, nothing leaves your computer. No uploads, no cloud processing, no data collection.",
-      icon: Lock,
-      command: '"Convert these screenshots to JPG"',
-      result: "Converted locally — zero data sent anywhere"
+      title: "Pick the quality or size you need",
+      description: "Need small files for a website or full quality for print? Say so in the same message and the JPGs come out the way you want.",
+      icon: SlidersHorizontal,
+      command: '"Convert these AVIF images to JPG and keep each one under 500 KB"',
+      result: "18 JPGs saved, all under 500 KB"
     }
   ];
 
@@ -34,24 +35,22 @@ const AJSolutionSection = () => {
             Just tell it what you need. It handles the rest.
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            No menus. No settings. No figuring out which app to use. Just describe what you want in plain English.
+            No menus. No settings. No figuring out which app to use. Just describe what you want in ChatGPT or Claude.
           </p>
         </div>
 
-        {/* Video Demo */}
-        <div className="relative aspect-video rounded-xl border border-dc-border bg-dc-surface overflow-hidden max-w-4xl mx-auto shadow-lg mb-16">
-          <video
-            className="w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-            aria-label="Desktop Commander converting AVIF images to JPG - batch conversion demo"
-            title="Convert AVIF to JPG with natural language - Desktop Commander demo"
-          >
-            <source src="/videos/avif-to-jpg-demo.mp4" type="video/mp4" />
-            <p className="text-muted-foreground">Your browser does not support the video tag.</p>
-          </video>
+        {/* What it looks like in ChatGPT (the old video showed the retired desktop app) */}
+        <div className="max-w-xl mx-auto mb-16">
+          <ChatDemo
+            user="Convert the AVIF images in my Projects/blog folder to JPG"
+            workedFor="Worked for 22s"
+            reply="Converted 27 AVIF images to JPG."
+            steps={[
+              "Found 27 AVIF files in Projects/blog.",
+              "Converted each one to JPG at high quality.",
+              "Kept the originals. The JPGs are in Projects/blog/JPG.",
+            ]}
+          />
         </div>
 
         {/* Features */}

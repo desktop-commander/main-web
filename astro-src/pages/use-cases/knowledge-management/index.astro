@@ -6,18 +6,22 @@ import KnowledgeManagementHero from '../../../../src/components/use-cases/knowle
 import KMProblemSection from '../../../../src/components/use-cases/knowledge-management/KMProblemSection';
 import KMSolutionSection from '../../../../src/components/use-cases/knowledge-management/KMSolutionSection';
 import KMWhyDifferentSection from '../../../../src/components/use-cases/knowledge-management/KMWhyDifferentSection';
-import KMToolsSection from '../../../../src/components/use-cases/knowledge-management/KMToolsSection';
 import KMWhyMarkdownSection from '../../../../src/components/use-cases/knowledge-management/KMWhyMarkdownSection';
+import KMToolsSection from '../../../../src/components/use-cases/knowledge-management/KMToolsSection';
 import KMGitNativeSection from '../../../../src/components/use-cases/knowledge-management/KMGitNativeSection';
 import KMPersonasSection from '../../../../src/components/use-cases/knowledge-management/KMPersonasSection';
-import WaitlistSection from '../../../../src/components/use-cases/WaitlistSection';
-import KMFinalCTASection from '../../../../src/components/use-cases/knowledge-management/KMFinalCTASection';
+import HowItWorks from '../../../../src/components/home-mcp/HowItWorks';
+import ClientFAQ from '../../../../src/components/mcp/clients/ClientFAQ';
+import InstallChooser from '../../../../src/components/home-mcp/InstallChooser';
 import Footer from '../../../../src/components/Footer';
+import { faqJsonLd } from '../../../../src/components/use-cases/remote/faqs';
+import { KNOWLEDGE_MANAGEMENT_FAQS } from '../../../../src/components/use-cases/remote/faqs/knowledge-management';
 ---
 
 <Layout 
-  title="Chat With Your Notes — AI Knowledge Base for Markdown & Local Files | Desktop Commander"
-  description="Turn your markdown notes, docs, and local files into an AI-searchable knowledge base. Write, edit, and link notes in natural language — all on your own machine."
+  title="Chat With Your Notes in ChatGPT or Claude | Desktop Commander"
+  description="Turn your markdown notes and docs into an AI knowledge base. Ask ChatGPT or Claude to write, edit, and link the notes on your Mac or Windows PC."
+  jsonLd={faqJsonLd(KNOWLEDGE_MANAGEMENT_FAQS)}
 >
   <PostHogInit client:idle />
   
@@ -27,14 +31,22 @@ import Footer from '../../../../src/components/Footer';
     <main>
       <KnowledgeManagementHero client:load />
       <KMProblemSection />
-      <KMSolutionSection client:visible />
+      <KMSolutionSection />
       <KMWhyDifferentSection />
       <KMWhyMarkdownSection />
       <KMToolsSection />
       <KMGitNativeSection />
       <KMPersonasSection />
-      <WaitlistSection useCase="knowledge_management" client:visible />
-      <KMFinalCTASection client:visible />
+      <!-- Remote MCP setup: same steps as the homepage -->
+      <HowItWorks client:visible />
+      <ClientFAQ client:visible name="Knowledge management" heading="Knowledge management FAQ" faqs={KNOWLEDGE_MANAGEMENT_FAQS} />
+      <!-- #install target for the hero button; same chooser as the homepage -->
+      <InstallChooser
+        client:visible
+        location="knowledge_management_install"
+        heading="Stop copying notes into the chat"
+        sub="Add Desktop Commander to ChatGPT or Claude, link your computer, and turn your conversations into notes you keep."
+      />
     </main>
     
     <Footer client:visible />

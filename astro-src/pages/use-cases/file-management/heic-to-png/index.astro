@@ -7,15 +7,19 @@ import HPProblemSection from '../../../../../src/components/use-cases/file-manag
 import HPSolutionSection from '../../../../../src/components/use-cases/file-management/heic-to-png/HPSolutionSection';
 import HPComparisonSection from '../../../../../src/components/use-cases/file-management/heic-to-png/HPComparisonSection';
 import HPPersonasSection from '../../../../../src/components/use-cases/file-management/heic-to-png/HPPersonasSection';
-import HPFinalCTASection from '../../../../../src/components/use-cases/file-management/heic-to-png/HPFinalCTASection';
-import WaitlistSection from '../../../../../src/components/use-cases/WaitlistSection';
+import HowItWorks from '../../../../../src/components/home-mcp/HowItWorks';
+import ClientFAQ from '../../../../../src/components/mcp/clients/ClientFAQ';
+import InstallChooser from '../../../../../src/components/home-mcp/InstallChooser';
 import Footer from '../../../../../src/components/Footer';
 import MoreConversions from '../../../../components/MoreConversions.astro';
+import { faqJsonLd } from '../../../../../src/components/use-cases/remote/faqs';
+import { HEIC_TO_PNG_FAQS } from '../../../../../src/components/use-cases/remote/faqs/heic-to-png';
 ---
 
 <Layout 
-  title="Convert HEIC to PNG Instantly | Free Local Converter | Desktop Commander"
-  description="Convert iPhone HEIC photos to PNG with lossless quality. Batch convert locally with transparency support. No uploads required. Free for Mac and Windows."
+  title="Convert HEIC to PNG with ChatGPT or Claude | Desktop Commander"
+  description="Convert HEIC to PNG on your Mac or Windows PC by asking ChatGPT or Claude. Turn a whole folder of iPhone photos into lossless PNGs in one message."
+  jsonLd={faqJsonLd(HEIC_TO_PNG_FAQS)}
 >
   <PostHogInit client:idle />
   
@@ -27,13 +31,19 @@ import MoreConversions from '../../../../components/MoreConversions.astro';
       <HPProblemSection />
       <HPSolutionSection />
       <HPComparisonSection />
-      <WaitlistSection useCase="heic_to_png" client:visible />
+      <HowItWorks client:visible />
       <HPPersonasSection />
-      <HPFinalCTASection client:visible />
+      <ClientFAQ client:visible name="HEIC to PNG" heading="HEIC to PNG FAQ" faqs={HEIC_TO_PNG_FAQS} />
+      <InstallChooser
+        client:visible
+        location="heic_to_png_install"
+        heading="Convert a folder of iPhone photos to PNG in one message"
+        sub="Add Desktop Commander to the assistant you already use and convert HEIC to PNG from the chat."
+      />
     </main>
     
     <MoreConversions current="heic-to-png" />
-      <Footer client:visible />
+    <Footer client:visible />
   </div>
 </Layout>
 

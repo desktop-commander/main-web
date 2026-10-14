@@ -7,15 +7,19 @@ import PJProblemSection from '../../../../../src/components/use-cases/file-manag
 import PJSolutionSection from '../../../../../src/components/use-cases/file-management/png-to-jpg/PJSolutionSection';
 import PJComparisonSection from '../../../../../src/components/use-cases/file-management/png-to-jpg/PJComparisonSection';
 import PJPersonasSection from '../../../../../src/components/use-cases/file-management/png-to-jpg/PJPersonasSection';
-import PJFinalCTASection from '../../../../../src/components/use-cases/file-management/png-to-jpg/PJFinalCTASection';
-import WaitlistSection from '../../../../../src/components/use-cases/WaitlistSection';
+import HowItWorks from '../../../../../src/components/home-mcp/HowItWorks';
+import ClientFAQ from '../../../../../src/components/mcp/clients/ClientFAQ';
+import InstallChooser from '../../../../../src/components/home-mcp/InstallChooser';
 import Footer from '../../../../../src/components/Footer';
 import MoreConversions from '../../../../components/MoreConversions.astro';
+import { faqJsonLd } from '../../../../../src/components/use-cases/remote/faqs';
+import { PNG_TO_JPG_FAQS } from '../../../../../src/components/use-cases/remote/faqs/png-to-jpg';
 ---
 
 <Layout 
-  title="Convert PNG to JPG Instantly | Free Batch Converter | Desktop Commander"
-  description="Batch convert PNG files to smaller JPG images locally. Reduce file sizes up to 80% for web, email, and storage. Free, fast, and works offline on Mac & Windows."
+  title="Batch Convert PNG to JPG with ChatGPT or Claude | Desktop Commander"
+  description="Batch convert PNG to JPG on your Mac or Windows PC by asking ChatGPT or Claude. Shrink a whole folder of screenshots and graphics in one message."
+  jsonLd={faqJsonLd(PNG_TO_JPG_FAQS)}
 >
   <PostHogInit client:idle />
   
@@ -27,13 +31,19 @@ import MoreConversions from '../../../../components/MoreConversions.astro';
       <PJProblemSection />
       <PJSolutionSection />
       <PJComparisonSection />
-      <WaitlistSection useCase="png_to_jpg" client:visible />
+      <HowItWorks client:visible />
       <PJPersonasSection />
-      <PJFinalCTASection client:visible />
+      <ClientFAQ client:visible name="PNG to JPG" heading="PNG to JPG FAQ" faqs={PNG_TO_JPG_FAQS} />
+      <InstallChooser
+        client:visible
+        location="png_to_jpg_install"
+        heading="Stop wasting time on bloated files"
+        sub="Add Desktop Commander to the assistant you already use and convert PNG to JPG from the chat."
+      />
     </main>
     
     <MoreConversions current="png-to-jpg" />
-      <Footer client:visible />
+    <Footer client:visible />
   </div>
 </Layout>
 

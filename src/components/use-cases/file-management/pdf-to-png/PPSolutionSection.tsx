@@ -1,4 +1,5 @@
 import { FileImage, Layers, Settings } from "lucide-react";
+import ChatDemo from "../../remote/ChatDemo";
 
 const PPSolutionSection = () => {
   const features = [
@@ -6,21 +7,21 @@ const PPSolutionSection = () => {
       title: "Extract any page as an image",
       description: "Get specific pages, a range, or the entire document as individual PNG files. Just describe which pages you need.",
       icon: FileImage,
-      command: '"Convert page 3 of this PDF to a PNG image"',
+      command: '"Convert page 3 of report.pdf to a PNG image"',
       result: "report-page-3.png created at full quality"
     },
     {
       title: "Convert entire PDFs at once",
-      description: "Need every page as a separate image? Convert them all in one command. Perfect for presentations, slideshows, or archiving.",
+      description: "Need every page as a separate image? Convert them all in one message. Useful for presentations, slideshows, or archiving.",
       icon: Layers,
-      command: '"Convert this 50-page PDF to PNG images"',
-      result: "50 PNG files created in seconds"
+      command: '"Convert every page of handbook.pdf to PNG images"',
+      result: "50 PNG files created, one per page"
     },
     {
       title: "Control quality and resolution",
-      description: "Get high-resolution images perfect for printing or presentations. Specify DPI or let Desktop Commander optimize for your use case.",
+      description: "Get high-resolution images for printing or presentations. Name the DPI you want, or just say what the images are for.",
       icon: Settings,
-      command: '"Convert this PDF to high-res PNGs for printing"',
+      command: '"Convert brochure.pdf to high-res PNGs for printing"',
       result: "300 DPI images ready for print"
     }
   ];
@@ -34,8 +35,22 @@ const PPSolutionSection = () => {
             Just describe what you need.
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            No complicated settings. No figuring out which tool to use. Just tell Desktop Commander what you want in plain English.
+            No complicated settings. No figuring out which tool to use. Just describe what you want in ChatGPT or Claude.
           </p>
+        </div>
+
+        {/* What it looks like in ChatGPT */}
+        <div className="max-w-xl mx-auto mb-16">
+          <ChatDemo
+            user="Save pages 4 to 6 of Q3-report.pdf in my Documents folder as PNGs"
+            workedFor="Worked for 22s"
+            reply="Saved 3 pages as PNG images."
+            steps={[
+              "Found Q3-report.pdf in Documents.",
+              "Rendered pages 4, 5 and 6 at 300 DPI.",
+              "Saved them next to the PDF as Q3-report-p4.png, Q3-report-p5.png and Q3-report-p6.png.",
+            ]}
+          />
         </div>
 
         {/* Features */}

@@ -15,7 +15,7 @@ const AJProblemSection = () => {
           </div>
 
           <p className="text-xl text-muted-foreground leading-relaxed">
-            AVIF is the newest image format — amazing compression, but barely anything supports it yet. Your photo editor can't open it. Preview shows a blank icon. Online converters either don't support it or charge premium prices. You just want to use the image you downloaded.
+            AVIF is one of the newest image formats. The compression is great, but support is patchy. Your photo editor may not open it, older apps show a blank icon, and many online converters either don't support it or put it behind a paywall. You just want to use the image you saved.
           </p>
         </div>
       </div>

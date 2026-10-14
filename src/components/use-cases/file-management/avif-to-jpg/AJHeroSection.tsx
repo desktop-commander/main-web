@@ -1,6 +1,4 @@
-import { Button } from "@/components/ui/button";
-import { Download, ArrowRight } from "lucide-react";
-import { trackDownloadRedirect } from '@/lib/analytics/tracking';
+import UseCaseHeroCta from "../../remote/UseCaseHeroCta";
 
 const AJHeroSection = () => {
   return (
@@ -9,62 +7,40 @@ const AJHeroSection = () => {
         <div className="flex flex-col items-center text-center space-y-8">
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight max-w-4xl">
-            Convert AVIF to JPG <span className="text-primary">instantly</span>
+            Convert AVIF to JPG, <span className="text-primary">from chat</span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl leading-relaxed">
-            Turn those next-gen AVIF images into universal JPG format. No uploads, no compatibility headaches. Just tell Desktop Commander what you need.
+            Turn AVIF images saved from the web into JPGs every app can open. Ask ChatGPT or Claude
+            to convert a whole folder on your Mac or Windows PC in one message.
           </p>
 
           {/* Format Badges */}
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
             <span className="text-sm text-muted-foreground">Converts:</span>
             <div className="flex flex-wrap items-center justify-center gap-2">
-              <span className="px-3 py-1.5 rounded-full bg-dc-surface border border-dc-border text-sm font-medium">
-                AVIF → JPG
-              </span>
-              <span className="px-3 py-1.5 rounded-full bg-dc-surface border border-dc-border text-sm font-medium">
-                AVIF → PNG
-              </span>
-              <span className="px-3 py-1.5 rounded-full bg-dc-surface border border-dc-border text-sm font-medium">
-                Batch Processing
-              </span>
-              <span className="px-3 py-1.5 rounded-full bg-dc-surface border border-dc-border text-sm font-medium">
-                High Quality
-              </span>
+              {["AVIF → JPG", "AVIF → PNG", "Batch Processing", "High Quality"].map((badge) => (
+                <span
+                  key={badge}
+                  className="px-3 py-1.5 rounded-full bg-dc-surface border border-dc-border text-sm font-medium"
+                >
+                  {badge}
+                </span>
+              ))}
             </div>
           </div>
 
-          {/* CTA */}
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <Button 
-              size="lg" 
-              asChild
-              className="group"
-            >
-              <a href="#get-started" onClick={() => trackDownloadRedirect('avif_to_jpg_hero')}>
-                <Download className="w-5 h-5" />
-                Download Free
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </Button>
-          </div>
+          <UseCaseHeroCta location="avif_to_jpg" />
 
           {/* Value Props */}
-          <div className="flex flex-wrap items-center justify-center gap-6 pt-4 text-sm text-muted-foreground">
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
-              Convert entire folders instantly
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
-              Works offline
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
-              Mac & Windows
-            </span>
+          <div className="flex flex-wrap items-center justify-center gap-6 pt-2 text-sm text-muted-foreground">
+            {["Convert entire folders at once", "Ask from web or phone", "Mac and Windows"].map((point) => (
+              <span key={point} className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
+                {point}
+              </span>
+            ))}
           </div>
         </div>
       </div>

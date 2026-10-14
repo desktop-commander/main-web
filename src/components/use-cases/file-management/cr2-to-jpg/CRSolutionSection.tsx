@@ -1,4 +1,5 @@
 import { Zap, FolderOpen, Camera } from "lucide-react";
+import ChatDemo from "../../remote/ChatDemo";
 
 const CRSolutionSection = () => {
   const features = [
@@ -7,18 +8,18 @@ const CRSolutionSection = () => {
       description: "Point Desktop Commander at a folder of CR2 files and convert them all at once. No clicking through dialogs, no waiting for imports.",
       icon: Zap,
       command: '"Convert all CR2 files in my Canon photos folder to JPG"',
-      result: "All 847 photos converted in 3 minutes"
+      result: "All 847 photos converted to JPG"
     },
     {
       title: "Organize as you convert",
-      description: "Don't just convert — sort into folders by date, rename with meaningful names, or move to specific locations. One command does it all.",
+      description: "Don't just convert. Sort into folders by date, rename with meaningful names, or move to specific locations. One message does it all.",
       icon: FolderOpen,
       command: '"Convert my wedding shoot to JPG and organize by date"',
       result: "Photos sorted into 2024-06-15/, 2024-06-16/ folders"
     },
     {
       title: "Preserve what matters",
-      description: "Keep your EXIF data, camera settings, and timestamps intact. Your JPGs retain all the metadata photographers care about.",
+      description: "Ask it to keep your EXIF data, camera settings, and timestamps. Your JPGs carry the details photographers care about.",
       icon: Camera,
       command: '"Convert these CR2 files to JPG and keep the metadata"',
       result: "Converted with EXIF data preserved"
@@ -34,24 +35,22 @@ const CRSolutionSection = () => {
             Just describe what you need. It handles the rest.
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            No Lightroom license. No complex export settings. Just tell Desktop Commander what you want in plain English.
+            No Lightroom license. No complex export settings. Just describe what you want in ChatGPT or Claude.
           </p>
         </div>
 
-        {/* Video Demo */}
-        <div className="relative aspect-video rounded-xl border border-dc-border bg-dc-surface overflow-hidden max-w-4xl mx-auto shadow-lg mb-16">
-          <video
-            className="w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-            aria-label="Desktop Commander converting CR2 to JPG - batch conversion demo"
-            title="Convert CR2 to JPG with natural language - Desktop Commander demo"
-          >
-            <source src="/videos/file-conversion-demo.mp4" type="video/mp4" />
-            <p className="text-muted-foreground">Your browser does not support the video tag.</p>
-          </video>
+        {/* What it looks like in ChatGPT (the old video showed the retired desktop app) */}
+        <div className="max-w-xl mx-auto mb-16">
+          <ChatDemo
+            user="Convert the CR2 photos in Pictures/Canon/Birthday to JPG"
+            workedFor="Worked for 2m 14s"
+            reply="Converted 212 photos to JPG."
+            steps={[
+              "Found 212 CR2 files in Pictures/Canon/Birthday.",
+              "Converted each one to a full size JPG and kept the camera data.",
+              "Left the RAW files untouched. The JPGs are in Pictures/Canon/Birthday/JPG.",
+            ]}
+          />
         </div>
 
         {/* Features */}

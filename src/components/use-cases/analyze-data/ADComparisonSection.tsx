@@ -10,8 +10,8 @@ const ADComparisonSection = () => {
     },
     {
       icon: MessageSquare,
-      name: "Paste data into AI chat",
-      problem: "Context limits force you to truncate. AI \"summarizes\" instead of calculating. Hallucinated numbers.",
+      name: "Paste data into a chat",
+      problem: "Context limits force you to cut the data down. The AI \"summarizes\" instead of calculating, and numbers can be made up.",
       color: "red"
     },
     {
@@ -22,8 +22,8 @@ const ADComparisonSection = () => {
     },
     {
       icon: Sparkles,
-      name: "Desktop Commander",
-      problem: "Describe what you want → DC writes Python → runs it on your actual file → returns real results.",
+      name: "ChatGPT or Claude with Desktop Commander",
+      problem: "Describe what you want. It writes Python, runs it on your actual file, and returns real results.",
       color: "green"
     }
   ];

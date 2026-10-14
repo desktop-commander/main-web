@@ -2,19 +2,19 @@ import { CheckCircle, XCircle } from "lucide-react";
 
 const AJComparisonSection = () => {
   const withDC = [
-    "Full AVIF support — no waiting for app updates",
-    "100% local — files never leave your device",
-    "Batch convert entire folders instantly",
-    "Works offline, no internet required",
-    "Free starting credits, works with the best AI models"
+    "Convert AVIF without waiting for app updates",
+    "Batch convert entire folders in one message",
+    "Pick the quality or file size you need",
+    "Ask from ChatGPT or Claude, even on your phone",
+    "Free plan with 10,000 tool calls a month"
   ];
 
   const withoutDC = [
-    "Most tools don't support AVIF yet",
-    "Upload to unknown servers and hope for the best",
-    "Pay premium prices for 'new format' support",
+    "Many converters don't support AVIF yet",
+    "Upload and download every image by hand",
     "Convert one file at a time",
-    "Wait for slow uploads and processing"
+    "Pay extra for 'new format' support",
+    "Repeat it all for every new batch"
   ];
 
   return (

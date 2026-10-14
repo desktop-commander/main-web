@@ -15,7 +15,7 @@ const JJProblemSection = () => {
           </div>
 
           <p className="text-xl text-muted-foreground leading-relaxed">
-            You downloaded an image from the web or a message, and now you're stuck with a .jfif file that won't open in your apps. JFIF is actually the same as JPEG — just with an obscure extension that confuses everything. You shouldn't need to search for online converters or install random software just to view a photo.
+            You saved an image from the web or a message, and now you're stuck with a .jfif file that won't open in your apps. JFIF is actually the same as JPEG, just with an obscure extension that confuses everything. You shouldn't need to hunt for a converter website or install another app just to view a photo.
           </p>
         </div>
       </div>

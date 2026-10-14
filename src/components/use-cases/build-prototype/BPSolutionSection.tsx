@@ -1,20 +1,21 @@
 import { Code, Link, Rocket } from "lucide-react";
+import ChatDemo from "../remote/ChatDemo";
 
 const BPSolutionSection = () => {
   const features = [
     {
       title: "Build without learning to code",
-      description: "Create functional apps, sites, and scripts—skip the technical learning curve and just build.",
+      description: "Create working apps, sites, and scripts. Skip the technical learning curve and just build.",
       icon: Code,
     },
     {
       title: "Connect the services you need",
-      description: "Integrate APIs, databases, and third-party apps—just describe what should talk to what.",
+      description: "Integrate APIs, databases, and third-party apps. Just describe what should talk to what.",
       icon: Link,
     },
     {
       title: "Deploy without the complexity",
-      description: "Track changes in Git, deploy to GitHub Pages or anywhere else—no commands to memorize.",
+      description: "Track changes in Git and deploy to GitHub Pages or anywhere else, with no commands to memorize.",
       icon: Rocket,
     }
   ];
@@ -25,15 +26,15 @@ const BPSolutionSection = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Desktop Commander turns plain English into working code on your machine.
+            Desktop Commander turns plain English into working code.
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            It fills the gaps in your technical skills and lets you build like a full-stack developer.
+            Ask in ChatGPT or Claude. It fills the gaps in your technical skills and lets you build like a full-stack developer.
           </p>
         </div>
 
         {/* Features Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
           {features.map((feature, index) => (
             <div 
               key={index}
@@ -50,28 +51,18 @@ const BPSolutionSection = () => {
           ))}
         </div>
 
-        {/* Stat Callout */}
-        <div className="text-center mb-16 p-6 rounded-xl bg-primary/5 border border-primary/20">
-          <p className="text-xl md:text-2xl font-medium">
-            <span className="text-primary font-bold">70% of users</span> save 3+ hours per week with Desktop Commander
-          </p>
-        </div>
-
-        {/* Video Demo */}
-        <div className="relative aspect-video rounded-xl border border-dc-border bg-dc-surface overflow-hidden max-w-4xl mx-auto shadow-lg">
-          <video
-            className="w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-            aria-label="Desktop Commander build prototype demo - showing how to create software using natural language"
-            title="Build software with natural language - Desktop Commander demo"
-          >
-            <source src="/videos/build-prototype-demo.mov" type="video/quicktime" />
-            <source src="/videos/build-prototype-demo.mov" type="video/mp4" />
-            <p className="text-muted-foreground">Your browser does not support the video tag. <a href="/videos/build-prototype-demo.mov" className="text-primary hover:underline">Download the demo video</a></p>
-          </video>
+        {/* What it looks like in ChatGPT (the old video showed the retired desktop app) */}
+        <div className="max-w-xl mx-auto">
+          <ChatDemo
+            user="Build a simple landing page for my newsletter in my Projects folder and start it so I can see it"
+            workedFor="Worked for 2m 14s"
+            reply="The landing page is running. Open localhost:5173 in a browser on your computer to see it."
+            steps={[
+              "Created a Vite project in Projects/newsletter-site.",
+              "Wrote the page with a headline, three benefits and an email signup form.",
+              "Installed dependencies and started the dev server in your terminal.",
+            ]}
+          />
         </div>
       </div>
     </section>

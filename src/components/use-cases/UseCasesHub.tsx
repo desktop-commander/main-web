@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
 import { ArrowRight, Folder, Database, Hammer, Link, BookOpen } from "lucide-react";
 import { LucideIcon } from "lucide-react";
+import UseCaseHeroCta from "./remote/UseCaseHeroCta";
 
 interface UseCaseCategory {
   title: string;
@@ -59,9 +59,12 @@ const UseCasesHub = () => {
             <span className="text-primary">help you with?</span>
           </h1>
           <p className="text-lg sm:text-xl text-muted-foreground">
-            From file management to development workflows, discover how Desktop Commander 
-            can simplify your daily tasks with AI-powered automation.
+            Ask ChatGPT or Claude to work with the files, terminal and tools on your Mac or
+            Windows PC. Pick a task to see how it works.
           </p>
+          <div className="mt-8">
+            <UseCaseHeroCta location="use_cases_hub" />
+          </div>
         </div>
 
         {/* Categories Grid */}

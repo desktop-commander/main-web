@@ -9,15 +9,19 @@ import BPExamplesSection from '../../../../src/components/use-cases/build-protot
 import BPWhyDifferentSection from '../../../../src/components/use-cases/build-prototype/BPWhyDifferentSection';
 import BPComparisonSection from '../../../../src/components/use-cases/build-prototype/BPComparisonSection';
 import BPCloudComparisonSection from '../../../../src/components/use-cases/build-prototype/BPCloudComparisonSection';
-import WaitlistSection from '../../../../src/components/use-cases/WaitlistSection';
+import HowItWorks from '../../../../src/components/home-mcp/HowItWorks';
 import BPPersonasSection from '../../../../src/components/use-cases/build-prototype/BPPersonasSection';
-import BPFinalCTASection from '../../../../src/components/use-cases/build-prototype/BPFinalCTASection';
+import ClientFAQ from '../../../../src/components/mcp/clients/ClientFAQ';
+import InstallChooser from '../../../../src/components/home-mcp/InstallChooser';
 import Footer from '../../../../src/components/Footer';
+import { faqJsonLd } from '../../../../src/components/use-cases/remote/faqs';
+import { BUILD_PROTOTYPE_FAQS } from '../../../../src/components/use-cases/remote/faqs/build-prototype';
 ---
 
 <Layout 
-  title="Vibe-Code Your Next App — AI App Builder on Your Desktop | Desktop Commander"
-  description="Describe what you want and get working code on your own machine. Python, JavaScript, HTML/CSS, Git, Terminal — no cloud IDE, no setup, no learning to code."
+  title="Vibe-Code Your Next App With ChatGPT or Claude | Desktop Commander"
+  description="An AI app builder in ChatGPT or Claude. Describe what you want and it writes the code in a real project on your computer, runs your dev server and handles Git."
+  jsonLd={faqJsonLd(BUILD_PROTOTYPE_FAQS)}
 >
   <PostHogInit client:idle />
   
@@ -27,14 +31,22 @@ import Footer from '../../../../src/components/Footer';
     <main>
       <BPHeroSection client:load />
       <BPProblemSection />
-      <BPSolutionSection client:visible />
-      <BPExamplesSection client:visible />
+      <BPSolutionSection />
+      <BPExamplesSection />
       <BPWhyDifferentSection />
       <BPCloudComparisonSection />
       <BPComparisonSection />
-      <WaitlistSection useCase="build_prototype" client:visible />
+      <!-- Remote MCP setup: same steps as the homepage -->
+      <HowItWorks client:visible />
       <BPPersonasSection />
-      <BPFinalCTASection client:visible />
+      <ClientFAQ client:visible name="Building prototypes" heading="Building prototypes FAQ" faqs={BUILD_PROTOTYPE_FAQS} />
+      <!-- #install target for the hero button; same chooser as the homepage -->
+      <InstallChooser
+        client:visible
+        location="build_prototype_install"
+        heading="Build your next app from the chat"
+        sub="Add Desktop Commander to ChatGPT or Claude, link your computer, and describe what you want to build."
+      />
     </main>
     
     <Footer client:visible />

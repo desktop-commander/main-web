@@ -4,10 +4,11 @@ const BPComparisonSection = () => {
   const withDC = [
     "Describe what you want in plain English",
     "Get working code in minutes",
-    'Iterate instantly—"make the button blue," "add a login page"',
-    'Git tracking and rollback—"commit this version," "roll back to yesterday"',
-    'Connect tools and services—"set up Google Analytics for my project"',
-    "Build locally, deploy when ready"
+    'Iterate in the same chat: "make the button blue", "add a login page"',
+    'Git tracking and rollback: "commit this version", "roll back to yesterday"',
+    'Connect tools and services: "set up Google Analytics for my project"',
+    "Build in a real project folder, deploy when ready",
+    "Ask from ChatGPT or Claude, even on your phone"
   ];
 
   const withoutDC = [

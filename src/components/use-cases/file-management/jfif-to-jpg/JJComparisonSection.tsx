@@ -2,18 +2,18 @@ import { CheckCircle, XCircle } from "lucide-react";
 
 const JJComparisonSection = () => {
   const withDC = [
-    "Convert instantly — it's just a rename",
+    "Fixed in one step, since it's just a rename",
     "Batch convert hundreds of files at once",
-    "100% local, files never leave your device",
     "Organize while converting",
-    "Free, no account required"
+    "Ask from ChatGPT or Claude, even on your phone",
+    "Free plan with 10,000 tool calls a month"
   ];
 
   const withoutDC = [
-    "Upload to sketchy converter websites",
+    "Upload and download every file by hand",
     "Convert one file at a time",
     "Wait for slow processing",
-    "Download files back to wrong folders",
+    "Repeat it all for every new batch",
     "Deal with ads and watermarks"
   ];
 

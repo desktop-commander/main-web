@@ -18,8 +18,8 @@ const CAPersonasSection = () => {
       color: "purple",
       useCases: [
         "Publish and schedule without dashboard fatigue",
-        "Pull performance data instantly",
-        "Connect content tools to analytics"
+        "Pull performance data by asking for it",
+        "Combine content data with analytics exports"
       ]
     },
     {

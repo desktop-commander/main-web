@@ -2,6 +2,7 @@ import { GitBranch, CheckCircle } from "lucide-react";
 
 const KMGitNativeSection = () => {
   const features = [
+    "Ask ChatGPT or Claude to commit and push for you",
     "Every change can be committed and tracked",
     "Push to GitHub for backup without proprietary sync",
     "Use existing developer workflows for documentation",
@@ -25,7 +26,7 @@ const KMGitNativeSection = () => {
                 Git-Native Knowledge Management
               </h2>
               <p className="text-lg text-muted-foreground mb-6">
-                Unlike cloud-based tools, Desktop Commander's markdown approach is Git-friendly:
+                Your notes are plain markdown files, so they work with Git like any other project:
               </p>
               
               <div className="grid sm:grid-cols-2 gap-4">

@@ -5,13 +5,13 @@ const BPExamplesSection = () => {
   const examples = [
     {
       title: "Build apps and webpages without coding",
-      description: "Desktop Commander writes the HTML, CSS, and JavaScript, saves it locally, and you can preview it immediately.",
+      description: "ChatGPT or Claude writes the HTML, CSS, and JavaScript into a folder on your computer and starts a preview you can open right away.",
       command: "Create a simple landing page for my newsletter with an email signup form",
       icon: Globe,
     },
     {
       title: "Write scripts that automate your workflow",
-      description: "Working automation in seconds, not hours of Stack Overflow.",
+      description: "Working automation in minutes, not hours of Stack Overflow.",
       command: "Write a Python script that renames all my client folders to include today's date",
       icon: Terminal,
     },
@@ -24,7 +24,7 @@ const BPExamplesSection = () => {
     {
       title: "Deploy and manage without DevOps knowledge",
       description: "Complex technical setup becomes a simple request.",
-      command: "Set up a local development server for this project",
+      command: "Set up a development server for my project in Projects/booking-app and start it",
       icon: Server,
     }
   ];
@@ -49,8 +49,9 @@ const BPExamplesSection = () => {
                 {example.description}
               </p>
               
-              <div className="p-4 rounded-lg bg-dc-surface border border-dc-border font-mono text-sm">
-                "{example.command}"
+              <div className="p-4 rounded-lg bg-dc-surface border border-dc-border">
+                <p className="text-xs font-medium text-muted-foreground mb-2">Try this in ChatGPT or Claude:</p>
+                <p className="font-mono text-sm">"{example.command}"</p>
               </div>
             </div>
           ))}

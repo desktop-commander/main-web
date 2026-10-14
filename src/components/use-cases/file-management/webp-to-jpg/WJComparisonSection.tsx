@@ -2,18 +2,18 @@ import { CheckCircle, XCircle } from "lucide-react";
 
 const WJComparisonSection = () => {
   const withDC = [
-    "Convert entire folders in one command",
-    "100% local — files never leave your device",
+    "Convert entire folders in one message",
+    "JPGs saved straight to the folder you choose",
     "Batch rename and organize while converting",
-    "Works offline, no internet required",
-    "Free starting credits, works with the best AI models"
+    "Ask from ChatGPT or Claude, even on your phone",
+    "Free plan with 10,000 tool calls a month"
   ];
 
   const withoutDC = [
-    "Upload files to unknown servers",
+    "Upload and download every image by hand",
     "Convert one file at a time",
     "Download and re-organize manually",
-    "Wait for slow uploads and processing",
+    "File size limits on free versions",
     "Pay for premium or deal with ads"
   ];
 

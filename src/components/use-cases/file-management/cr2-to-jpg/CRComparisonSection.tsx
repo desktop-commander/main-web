@@ -2,18 +2,18 @@ import { CheckCircle, XCircle } from "lucide-react";
 
 const CRComparisonSection = () => {
   const withDC = [
-    "Convert entire photo shoots in one command",
-    "100% local — your photos never leave your device",
+    "Convert entire photo shoots in one message",
+    "No Lightroom or Photoshop needed",
     "Batch rename and organize while converting",
-    "Works offline, no internet required",
-    "No subscription to Lightroom or Photoshop needed"
+    "Ask from ChatGPT or Claude, even on your phone",
+    "Free plan with 10,000 tool calls a month"
   ];
 
   const withoutDC = [
-    "Pay for Adobe Creative Cloud subscription",
+    "Pay for an Adobe Creative Cloud subscription",
     "Import, export, click through endless dialogs",
-    "Upload personal photos to unknown servers",
-    "Wait for slow processing and downloads",
+    "Upload and download photos one by one on converter sites",
+    "Wait for slow imports and exports",
     "Learn complex editing software just to convert files"
   ];
 

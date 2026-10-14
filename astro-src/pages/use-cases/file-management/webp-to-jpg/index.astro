@@ -7,15 +7,19 @@ import WJProblemSection from '../../../../../src/components/use-cases/file-manag
 import WJSolutionSection from '../../../../../src/components/use-cases/file-management/webp-to-jpg/WJSolutionSection';
 import WJComparisonSection from '../../../../../src/components/use-cases/file-management/webp-to-jpg/WJComparisonSection';
 import WJPersonasSection from '../../../../../src/components/use-cases/file-management/webp-to-jpg/WJPersonasSection';
-import WJFinalCTASection from '../../../../../src/components/use-cases/file-management/webp-to-jpg/WJFinalCTASection';
-import WaitlistSection from '../../../../../src/components/use-cases/WaitlistSection';
+import HowItWorks from '../../../../../src/components/home-mcp/HowItWorks';
+import ClientFAQ from '../../../../../src/components/mcp/clients/ClientFAQ';
+import InstallChooser from '../../../../../src/components/home-mcp/InstallChooser';
 import Footer from '../../../../../src/components/Footer';
 import MoreConversions from '../../../../components/MoreConversions.astro';
+import { faqJsonLd } from '../../../../../src/components/use-cases/remote/faqs';
+import { WEBP_TO_JPG_FAQS } from '../../../../../src/components/use-cases/remote/faqs/webp-to-jpg';
 ---
 
 <Layout 
-  title="Convert WebP to JPG Instantly | Free Local Converter | Desktop Commander"
-  description="Batch convert WebP images to JPG locally and privately. No uploads, no browser tabs — just instant conversion on your Mac or Windows PC. Free forever."
+  title="Convert WebP to JPG with ChatGPT or Claude | Desktop Commander"
+  description="Convert WebP to JPG on your Mac or Windows PC by asking ChatGPT or Claude. Turn a whole folder of saved web images into JPGs in one message."
+  jsonLd={faqJsonLd(WEBP_TO_JPG_FAQS)}
 >
   <PostHogInit client:idle />
   
@@ -27,13 +31,19 @@ import MoreConversions from '../../../../components/MoreConversions.astro';
       <WJProblemSection />
       <WJSolutionSection />
       <WJComparisonSection />
-      <WaitlistSection useCase="webp_to_jpg" client:visible />
+      <HowItWorks client:visible />
       <WJPersonasSection />
-      <WJFinalCTASection client:visible />
+      <ClientFAQ client:visible name="WebP to JPG" heading="WebP to JPG FAQ" faqs={WEBP_TO_JPG_FAQS} />
+      <InstallChooser
+        client:visible
+        location="webp_to_jpg_install"
+        heading="Convert WebP images the easy way"
+        sub="Add Desktop Commander to the assistant you already use and convert WebP to JPG from the chat."
+      />
     </main>
     
     <MoreConversions current="webp-to-jpg" />
-      <Footer client:visible />
+    <Footer client:visible />
   </div>
 </Layout>
 

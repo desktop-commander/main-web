@@ -15,7 +15,7 @@ const PPProblemSection = () => {
           </div>
 
           <p className="text-xl text-muted-foreground leading-relaxed">
-            You have a PDF with a chart, diagram, or page you need as an image. Maybe for a presentation, social media post, or to paste into another document. Online converters add watermarks, limit pages, or require you to upload sensitive documents to their servers. Built-in screenshot tools give you low-quality results.
+            You have a PDF with a chart, diagram, or page you need as an image. Maybe for a presentation, social media post, or to paste into another document. Online converters add watermarks, limit pages, or make you upload and download every file by hand. Built-in screenshot tools give you low-quality results.
           </p>
         </div>
       </div>

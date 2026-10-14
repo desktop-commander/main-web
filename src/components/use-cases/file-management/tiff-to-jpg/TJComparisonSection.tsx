@@ -2,11 +2,11 @@ import { CheckCircle, XCircle } from "lucide-react";
 
 const TJComparisonSection = () => {
   const withDC = [
-    "Convert entire folders of TIFFs at once",
-    "Handle multi-page TIFF files automatically",
+    "Convert entire folders of TIFFs in one message",
+    "Split multi-page TIFF files into separate JPGs",
     "Batch rename and organize while converting",
-    "Works offline, no internet required",
-    "Free, no watermarks or file limits"
+    "Ask from ChatGPT or Claude, even on your phone",
+    "Free plan with 10,000 tool calls a month"
   ];
 
   const withoutDC = [

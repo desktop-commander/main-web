@@ -4,26 +4,26 @@ import { Button } from "@/components/ui/button";
 const CAExamplesSection = () => {
   const examples = [
     {
-      title: "Manage your CRM without opening HubSpot",
-      description: "Create contacts, update deals, pull reports — all from chat.",
-      command: "Show me all deals closing this month over $10k",
+      title: "Check your CRM without opening it",
+      description: "With your CRM's API key on your computer, ask for the records you need in plain words.",
+      command: "Use my HubSpot API key to list the deals closing this month over $10k",
       icon: Users,
     },
     {
-      title: "Publish content without touching WordPress",
-      description: "Write, edit, and publish — without navigating the admin panel.",
-      command: "Publish my draft post about product updates and schedule it for Monday 9am",
+      title: "Publish content without the admin panel",
+      description: "WordPress and most CMSs have an API or a CLI. Ask it to create a draft, update a post, or schedule it.",
+      command: "Post product-update.md to WordPress as a draft and schedule it for Monday 9am",
       icon: FileText,
     },
     {
-      title: "Get analytics insights without the dashboards",
-      description: "Ask questions about your data instead of building reports.",
-      command: "What were my top 5 traffic sources last week?",
+      title: "Get answers from your analytics data",
+      description: "Point it at an export or an API you already use, and ask questions instead of building reports.",
+      command: "Read the analytics export in my Reports folder and tell me my top 5 traffic sources last week",
       icon: BarChart3,
     },
     {
       title: "Version control without learning Git commands",
-      description: "Commit, branch, and push — in plain English.",
+      description: "Commit, branch, and push in plain English. It runs git in your repo for you.",
       command: "Commit these changes with message 'Fixed pricing page' and push to main",
       icon: GitBranch,
     }
@@ -39,7 +39,7 @@ const CAExamplesSection = () => {
           </h2>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-dc-surface border border-dc-border text-sm text-muted-foreground">
             <Info className="w-4 h-4" />
-            <span>Install an integration, then control it through chat</span>
+            <span>Uses the CLIs, API keys and scripts already on your computer</span>
           </div>
         </div>
 

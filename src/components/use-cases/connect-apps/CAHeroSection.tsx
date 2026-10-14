@@ -1,6 +1,4 @@
-import { Button } from "@/components/ui/button";
-import { Download, ArrowRight } from "lucide-react";
-import { trackDownloadRedirect } from '@/lib/analytics/tracking';
+import UseCaseHeroCta from "../remote/UseCaseHeroCta";
 
 const CAHeroSection = () => {
   return (
@@ -14,47 +12,35 @@ const CAHeroSection = () => {
 
           {/* Subheadline */}
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl leading-relaxed">
-            Your tools are just databases wrapped in complicated UIs. Desktop Commander lets AI talk directly to them — so you describe what you want, and it happens.
+            Ask ChatGPT or Claude to work with your tools from the terminal on your Mac or Windows
+            PC. It calls APIs with the keys you already have, runs CLIs like git, and runs your
+            scripts. You describe the result, it runs the commands.
           </p>
 
-          {/* Tool Integration Badges */}
+          {/* How it reaches your tools (no built-in integrations, just the terminal) */}
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-            <span className="text-sm text-muted-foreground">Works with:</span>
+            <span className="text-sm text-muted-foreground">Works through:</span>
             <div className="flex flex-wrap items-center justify-center gap-2">
-              <span className="px-3 py-1.5 rounded-full bg-dc-surface border border-dc-border text-sm font-medium">
-                HubSpot
-              </span>
-              <span className="px-3 py-1.5 rounded-full bg-dc-surface border border-dc-border text-sm font-medium">
-                WordPress
-              </span>
-              <span className="px-3 py-1.5 rounded-full bg-dc-surface border border-dc-border text-sm font-medium">
-                Google Analytics
-              </span>
-              <span className="px-3 py-1.5 rounded-full bg-dc-surface border border-dc-border text-sm font-medium">
-                GitHub
-              </span>
-              <span className="px-3 py-1.5 rounded-full bg-dc-surface border border-dc-border text-sm font-medium">
-                Slack
-              </span>
-              <span className="px-3 py-1.5 rounded-full bg-dc-surface border border-dc-border text-sm font-medium">
-                + 100 more
-              </span>
+              {["APIs with your keys", "CLIs like git and gh", "Your own scripts", "Exports and data files"].map((badge) => (
+                <span
+                  key={badge}
+                  className="px-3 py-1.5 rounded-full bg-dc-surface border border-dc-border text-sm font-medium"
+                >
+                  {badge}
+                </span>
+              ))}
             </div>
           </div>
 
-          {/* CTA */}
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <Button 
-              size="lg" 
-              asChild
-              className="group"
-            >
-              <a href="#get-started" onClick={() => trackDownloadRedirect('connect_apps_hero')}>
-                <Download className="w-5 h-5" />
-                Download App
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </Button>
+          <UseCaseHeroCta location="connect_apps" />
+
+          {/* Value points */}
+          <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground pt-2">
+            <span>Ask in plain words</span>
+            <span className="w-1 h-1 rounded-full bg-muted-foreground/50" />
+            <span>Works from web and phone</span>
+            <span className="w-1 h-1 rounded-full bg-muted-foreground/50" />
+            <span>Mac and Windows</span>
           </div>
         </div>
       </div>

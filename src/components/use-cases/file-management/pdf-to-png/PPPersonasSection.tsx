@@ -18,7 +18,7 @@ const PPPersonasSection = () => {
       color: "purple",
       useCases: [
         "Share single pages without the full document",
-        "Extract contracts pages for review",
+        "Extract contract pages for review",
         "Archive important documents as images"
       ]
     },

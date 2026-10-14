@@ -1,24 +1,25 @@
 import { Zap, FolderOpen, RefreshCw } from "lucide-react";
+import ChatDemo from "../../remote/ChatDemo";
 
 const JJSolutionSection = () => {
   const features = [
     {
-      title: "Fix the extension instantly",
-      description: "JFIF files are already JPEGs — they just have the wrong extension. Desktop Commander renames them properly so every app recognizes them.",
+      title: "Fix the extension",
+      description: "JFIF files are already JPEGs with an unusual extension. Desktop Commander renames them so every app recognizes them.",
       icon: Zap,
       command: '"Convert all JFIF files in my Downloads to JPG"',
-      result: "All files renamed to .jpg — instantly usable"
+      result: "All files renamed to .jpg and ready to use"
     },
     {
       title: "Batch process entire folders",
-      description: "Got dozens of JFIF files from message backups or web downloads? Convert them all at once. No clicking through dialogs or uploading one by one.",
+      description: "Got dozens of JFIF files from message backups or saved web images? Convert them all at once, with no clicking through dialogs and no converting files one by one.",
       icon: FolderOpen,
       command: '"Fix all the JFIF files in my WhatsApp backup folder"',
-      result: "247 files converted to JPG in 3 seconds"
+      result: "247 files converted to JPG"
     },
     {
       title: "Clean up and organize",
-      description: "Don't just convert — organize. Move your fixed images to specific folders, rename them with dates, or sort by type. All in one command.",
+      description: "Don't just convert. Move your fixed images to specific folders, rename them with dates, or sort them by type, all in one message.",
       icon: RefreshCw,
       command: '"Convert these JFIF files to JPG and organize by date"',
       result: "Files converted and sorted into dated folders"
@@ -34,8 +35,22 @@ const JJSolutionSection = () => {
             Tell it what you need. It handles the rest.
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            No technical knowledge required. Just describe what you want in plain English.
+            No technical knowledge required. Just describe what you want in ChatGPT or Claude.
           </p>
+        </div>
+
+        {/* What it looks like in ChatGPT */}
+        <div className="max-w-xl mx-auto mb-16">
+          <ChatDemo
+            user="Change the .jfif images on my Desktop to regular JPGs"
+            workedFor="Worked for 12s"
+            reply="Changed 19 JFIF images to JPG."
+            steps={[
+              "Found 19 .jfif files on your Desktop.",
+              "Checked that each one is a standard JPEG image.",
+              "Renamed them to .jpg, so every app opens them.",
+            ]}
+          />
         </div>
 
         {/* Features */}

@@ -8,15 +8,19 @@ import CASolutionSection from '../../../../src/components/use-cases/connect-apps
 import CAWorkflowChainsSection from '../../../../src/components/use-cases/connect-apps/CAWorkflowChainsSection';
 import CAExamplesSection from '../../../../src/components/use-cases/connect-apps/CAExamplesSection';
 import CAComparisonSection from '../../../../src/components/use-cases/connect-apps/CAComparisonSection';
-import CAHowItWorksSection from '../../../../src/components/use-cases/connect-apps/CAHowItWorksSection';
+import HowItWorks from '../../../../src/components/home-mcp/HowItWorks';
 import CAPersonasSection from '../../../../src/components/use-cases/connect-apps/CAPersonasSection';
-import CAFinalCTASection from '../../../../src/components/use-cases/connect-apps/CAFinalCTASection';
+import ClientFAQ from '../../../../src/components/mcp/clients/ClientFAQ';
+import InstallChooser from '../../../../src/components/home-mcp/InstallChooser';
 import Footer from '../../../../src/components/Footer';
+import { faqJsonLd } from '../../../../src/components/use-cases/remote/faqs';
+import { CONNECT_APPS_FAQS } from '../../../../src/components/use-cases/remote/faqs/connect-apps';
 ---
 
 <Layout 
-  title="Connect Your Apps With AI — Workflow Automation for HubSpot, WordPress & 100+ Tools | Desktop Commander"
-  description="Skip the clicks. Describe what you want and Desktop Commander talks to HubSpot, WordPress, Google Analytics and 100+ other tools through MCP."
+  title="Connect Your Apps With AI in ChatGPT or Claude | Desktop Commander"
+  description="Ask ChatGPT or Claude to work with your tools from the terminal on your Mac or Windows PC: call APIs with your own keys, run CLIs like git, and run your scripts."
+  jsonLd={faqJsonLd(CONNECT_APPS_FAQS)}
 >
   <PostHogInit client:idle />
   
@@ -26,13 +30,21 @@ import Footer from '../../../../src/components/Footer';
     <main>
       <CAHeroSection client:load />
       <CAProblemSection />
-      <CASolutionSection client:visible />
+      <CASolutionSection />
       <CAWorkflowChainsSection />
-      <CAExamplesSection client:visible />
+      <CAExamplesSection />
       <CAComparisonSection />
-      <CAHowItWorksSection client:visible />
+      <!-- Remote MCP setup: same steps as the homepage -->
+      <HowItWorks client:visible />
       <CAPersonasSection />
-      <CAFinalCTASection client:visible />
+      <ClientFAQ client:visible name="Connect apps" heading="Connect apps FAQ" faqs={CONNECT_APPS_FAQS} />
+      <!-- #install target for the hero button; same chooser as the homepage -->
+      <InstallChooser
+        client:visible
+        location="connect_apps_install"
+        heading="Work with your tools from one chat"
+        sub="Add Desktop Commander to the assistant you already use, link your computer, and ask it to work with your tools from the terminal."
+      />
     </main>
     
     <Footer client:visible />

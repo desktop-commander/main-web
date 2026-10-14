@@ -6,19 +6,19 @@ const ADExamplesSection = () => {
     {
       title: "Explore your data instantly",
       description: "Understand what you're working with before diving deep.",
-      command: "Analyze the sales data in /Downloads/q4_sales.csv — show me the columns, data types, and any obvious patterns",
+      command: "Analyze the sales data in Downloads/q4_sales.csv. Show me the columns, data types, and any obvious patterns",
       icon: Search,
     },
     {
       title: "Answer specific business questions",
       description: "Get the numbers you need without writing formulas.",
-      command: "From this customer spreadsheet, show me which regions have the highest churn rate and break it down by plan type",
+      command: "From customers.xlsx in my Documents, show me which regions have the highest churn rate and break it down by plan type",
       icon: MessageSquareText,
     },
     {
       title: "Automate recurring reports",
       description: "Build analysis you can run again and again.",
-      command: "Create a Python script that generates a weekly summary from my transaction logs — totals by category, top 10 vendors, and month-over-month comparison",
+      command: "Create a Python script that generates a weekly summary from my transaction logs with totals by category, the top 10 vendors, and a month-over-month comparison",
       icon: RefreshCw,
     }
   ];
@@ -43,8 +43,9 @@ const ADExamplesSection = () => {
                 {example.description}
               </p>
               
-              <div className="p-4 rounded-lg bg-dc-surface border border-dc-border font-mono text-sm">
-                "{example.command}"
+              <div className="p-4 rounded-lg bg-dc-surface border border-dc-border">
+                <p className="text-xs font-medium text-muted-foreground mb-2">Try this in ChatGPT or Claude:</p>
+                <p className="font-mono text-sm">"{example.command}"</p>
               </div>
             </div>
           ))}

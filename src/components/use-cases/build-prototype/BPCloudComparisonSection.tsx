@@ -1,49 +1,54 @@
-import { Monitor, Cog, FolderOpen, MessageSquare } from "lucide-react";
+import { FolderOpen, Cog, RefreshCw, MessageSquare } from "lucide-react";
 
 const BPCloudComparisonSection = () => {
   const comparisonRows = [
     {
-      aspect: "Where it runs",
-      cloud: "Cloud servers with queues and usage limits",
-      dc: "Directly on your machine—instant, unlimited"
+      aspect: "Your project",
+      cloud: "Lives inside the builder's own workspace",
+      dc: "A regular project folder on your Mac or Windows PC"
     },
     {
       aspect: "What you get",
-      cloud: "Generated code",
-      dc: "Working result—dependencies installed, servers running"
+      cloud: "A preview inside their platform",
+      dc: "Your real app: dependencies installed, dev server running in your terminal"
     },
     {
       aspect: "Project context",
-      cloud: "Copy-paste into each chat, re-explain every time",
-      dc: "Sees your local files, picks up where you left off"
+      cloud: "Works best on projects started inside the tool",
+      dc: "Reads your existing project files and picks up where you left off"
+    },
+    {
+      aspect: "Your tools",
+      cloud: "Their editor and their hosting by default",
+      dc: "Your editor, your Git, your terminal, any hosting"
     },
     {
       aspect: "Interface",
-      cloud: "Different tools for code, terminal, files",
-      dc: "One chat for everything"
+      cloud: "Another app to learn",
+      dc: "The ChatGPT or Claude chat you already use, on the web or your phone"
     }
   ];
 
   const cards = [
     {
-      icon: Monitor,
-      title: "Runs on your machine",
-      description: "No cloud servers, no waiting, no limits. Start locally, deploy when ready."
+      icon: FolderOpen,
+      title: "Your real project files",
+      description: "It works in a normal folder on your Mac or Windows PC. Open the same files in your own editor any time."
     },
     {
       icon: Cog,
       title: "From idea to working result",
-      description: "Installs dependencies, runs commands, shows results. Recipe vs. dinner."
+      description: "Installs dependencies, runs commands, starts the dev server. Recipe vs. dinner."
     },
     {
-      icon: FolderOpen,
-      title: "Your files, always connected",
-      description: "DC sees your files and picks up where you left off."
+      icon: RefreshCw,
+      title: "Picks up where you left off",
+      description: "It reads the project as it is now, including changes you made by hand."
     },
     {
       icon: MessageSquare,
-      title: "Just describe what you need",
-      description: "Plain English for all technical tasks. No syntax to learn."
+      title: "In the chat you already use",
+      description: "Ask in ChatGPT or Claude, on the web or your phone. No new app to learn."
     }
   ];
 
@@ -53,10 +58,10 @@ const BPCloudComparisonSection = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3">
-            DC vs. Cloud AI Builders
+            Desktop Commander vs. Cloud AI App Builders
           </h2>
           <p className="text-xl text-muted-foreground">
-            Build faster with full system access.
+            Work on your real project and your real dev server, from the chat you already use.
           </p>
         </div>
 
@@ -66,7 +71,7 @@ const BPCloudComparisonSection = () => {
             <thead>
               <tr>
                 <th className="p-4 text-left font-semibold border-b border-dc-border"></th>
-                <th className="p-4 text-left font-semibold border-b border-dc-border text-muted-foreground">Cloud AI Builders</th>
+                <th className="p-4 text-left font-semibold border-b border-dc-border text-muted-foreground">Cloud AI App Builders</th>
                 <th className="p-4 text-left font-semibold border-b border-dc-border text-primary">Desktop Commander</th>
               </tr>
             </thead>

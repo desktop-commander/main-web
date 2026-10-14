@@ -1,21 +1,21 @@
-import { HardDrive, GitBranch, Lightbulb } from "lucide-react";
+import { FolderOpen, GitBranch, Lightbulb } from "lucide-react";
 
 const BPWhyDifferentSection = () => {
   const points = [
     {
-      icon: HardDrive,
-      title: "Build locally, deploy anywhere",
-      description: "Everything runs on your machine first. No cloud IDE, no vendor lock-in. When you're ready, connect to databases, APIs, or deploy to any hosting service. Local-first means faster iteration and complete ownership of your code."
+      icon: FolderOpen,
+      title: "A normal project you can take anywhere",
+      description: "The code lives in a regular project folder on your computer, not inside a builder's platform. Open it in your own editor, push it to GitHub, and deploy to any hosting service. No vendor lock-in."
     },
     {
       icon: GitBranch,
       title: "Save and undo without learning Git",
-      description: "Want to track your changes? Just ask. Desktop Commander handles Git for you—save your progress, roll back mistakes, or restore earlier versions using natural language."
+      description: "Want to track your changes? Just ask. ChatGPT or Claude handles Git for you: save your progress, roll back mistakes, or restore earlier versions in plain words."
     },
     {
       icon: Lightbulb,
       title: "Learn by doing",
-      description: "Watch how your requests become real code. Over time, you'll understand what's happening—without needing to learn first."
+      description: "Watch how your requests become real code. Over time, you'll understand what's happening, without needing to learn first."
     }
   ];
 

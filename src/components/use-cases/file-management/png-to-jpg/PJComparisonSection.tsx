@@ -2,18 +2,18 @@ import { CheckCircle, XCircle } from "lucide-react";
 
 const PJComparisonSection = () => {
   const withDC = [
-    "Convert hundreds of files in one command",
-    "Control quality and compression settings",
+    "Convert hundreds of files in one message",
+    "Choose the quality and file size you need",
     "Batch rename and organize while converting",
-    "Works offline, no internet required",
-    "Free, no watermarks or limits"
+    "Ask from ChatGPT or Claude, even on your phone",
+    "Free plan with 10,000 tool calls a month"
   ];
 
   const withoutDC = [
-    "Upload files to unknown servers",
+    "Upload and download every file by hand",
     "Convert one file at a time",
-    "No control over output quality",
-    "Wait for slow uploads and downloads",
+    "File size limits on free versions",
+    "Repeat it all for every new batch",
     "Deal with watermarks, ads, or paywalls"
   ];
 

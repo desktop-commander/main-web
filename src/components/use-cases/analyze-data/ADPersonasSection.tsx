@@ -19,7 +19,7 @@ const ADPersonasSection = () => {
       useCases: [
         "Process files too large for Excel",
         "Automate repetitive report generation",
-        "Skip the copy-paste-into-AI workflow"
+        "Skip copying and pasting data into the chat"
       ]
     }
   ];

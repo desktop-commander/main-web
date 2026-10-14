@@ -7,10 +7,10 @@ const KMWhyMarkdownSection = () => {
             Why Markdown Files?
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-            Markdown is the only format that's native to both AI and humans. Large language models 
-            don't need to parse proprietary formats or guess at structure—they read and write markdown 
-            fluently. And unlike database entries or app-specific notes, your knowledge stays in plain 
-            text files you can open anywhere, on any device, decades from now.
+            Markdown is easy to read for both people and AI. ChatGPT and Claude don't need to parse
+            proprietary formats or guess at structure. They read and write markdown fluently. And
+            unlike database entries or app-specific notes, your knowledge stays in plain text files
+            in your own folders, which you can open in any editor, decades from now.
           </p>
         </div>
       </div>

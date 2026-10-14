@@ -1,11 +1,11 @@
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Workflow } from "lucide-react";
 
 const CAWorkflowChainsSection = () => {
   const workflowSteps = [
-    { tool: "Slack", action: "Read messages from #product-feedback" },
-    { tool: "Notion", action: "Summarize issues into a document" },
-    { tool: "Analytics", action: "Find supporting traffic data" },
-    { tool: "Drive", action: "Cross-reference with customer interviews" },
+    { tool: "Help desk API", action: "Fetch last week's tickets with your API key" },
+    { tool: "Python", action: "Group the tickets by topic" },
+    { tool: "GitHub CLI", action: "Find matching issues with gh" },
+    { tool: "Your notes", action: "Save the summary as a markdown file" },
   ];
 
   return (
@@ -13,14 +13,15 @@ const CAWorkflowChainsSection = () => {
       <div className="container mx-auto max-w-5xl px-4 sm:px-6">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
-            <Sparkles className="w-4 h-4" />
-            The real power
+            <Workflow className="w-4 h-4" />
+            Several steps, one message
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Chain actions across your entire stack
+            Chain actions across your tools
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            This isn't just about controlling one tool at a time. Describe a workflow that spans multiple services — Desktop Commander handles it all in one conversation.
+            Describe a task that spans several tools. ChatGPT or Claude runs each step in your
+            terminal and passes the result to the next one, in the same conversation.
           </p>
         </div>
 
@@ -30,14 +31,14 @@ const CAWorkflowChainsSection = () => {
           <div className="mb-8 p-4 rounded-xl bg-dc-surface border border-dc-border">
             <p className="text-sm text-muted-foreground mb-2">You say:</p>
             <p className="font-mono text-sm md:text-base">
-              "Read my Slack from last week, summarize the issues I brought up in Notion, find supporting data from website traffic, and cross-reference with customer interviews in my Drive folder."
+              "Get last week's support tickets from our help desk API, group them by topic, check our GitHub repo for matching bug reports, and save a summary to my Notes folder."
             </p>
           </div>
 
           {/* Flow visualization */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-2">
             {workflowSteps.map((step, index) => (
-              <div key={index} className="flex items-center gap-2 md:gap-2">
+              <div key={index} className="flex flex-col md:flex-row items-center gap-2">
                 <div className="p-4 rounded-xl bg-dc-card border border-dc-border text-center min-w-[140px]">
                   <p className="text-primary font-semibold mb-1">{step.tool}</p>
                   <p className="text-xs text-muted-foreground">{step.action}</p>
@@ -53,7 +54,7 @@ const CAWorkflowChainsSection = () => {
           <div className="mt-8 p-4 rounded-xl bg-primary/5 border border-primary/20 text-center">
             <p className="text-sm text-muted-foreground mb-1">Result:</p>
             <p className="text-foreground font-medium">
-              A complete report with data from 4 different tools — created in one conversation.
+              One summary with tickets, matching issues and links, written to your Notes folder in one conversation.
             </p>
           </div>
         </div>
@@ -62,15 +63,15 @@ const CAWorkflowChainsSection = () => {
         <div className="mt-12 grid md:grid-cols-2 gap-6">
           <div className="p-6 rounded-xl border border-dc-border bg-dc-card">
             <p className="font-mono text-sm mb-3">
-              "When a new lead comes in to HubSpot, create a task in Notion and ping me on Slack."
+              "Write a script that pulls yesterday's orders from our shop API into orders.csv, then run it."
             </p>
             <p className="text-sm text-muted-foreground">
-              Describe it once. Runs automatically.
+              The script is saved in your project folder. Ask it to run again whenever you need fresh numbers.
             </p>
           </div>
           <div className="p-6 rounded-xl border border-dc-border bg-dc-card">
             <p className="font-mono text-sm mb-3">
-              "Check my analytics for traffic drops, then search my error logs for any related issues."
+              "Check the server logs for errors since yesterday's deploy, then compare them with the commits in git log."
             </p>
             <p className="text-sm text-muted-foreground">
               Debug across systems without switching tabs.

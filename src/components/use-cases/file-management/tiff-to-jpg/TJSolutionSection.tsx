@@ -1,10 +1,11 @@
 import { Zap, Layers, FolderOpen } from "lucide-react";
+import ChatDemo from "../../remote/ChatDemo";
 
 const TJSolutionSection = () => {
   const features = [
     {
       title: "Batch convert scanner output",
-      description: "Point Desktop Commander at your scanned documents folder. It converts everything to shareable JPGs in seconds — no clicking through dialogs.",
+      description: "Name the folder with your scans. Desktop Commander converts every file to a shareable JPG, with no clicking through dialogs.",
       icon: Zap,
       command: '"Convert all TIFF files in my Scans folder to JPG"',
       result: "47 scanned documents converted and ready to share"
@@ -18,7 +19,7 @@ const TJSolutionSection = () => {
     },
     {
       title: "Organize as you convert",
-      description: "Don't just convert — rename files, sort into folders by date or type, and clean up your archive in one step.",
+      description: "Don't just convert. Rename files, sort them into folders by date or type, and clean up your archive in one message.",
       icon: FolderOpen,
       command: '"Convert these TIFFs to JPG and organize by year"',
       result: "Files sorted into 2022/, 2023/, 2024/ folders"
@@ -34,24 +35,22 @@ const TJSolutionSection = () => {
             Just describe what you need. It handles the rest.
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            No Photoshop. No image editing software. Just tell Desktop Commander what you want in plain English.
+            No Photoshop. No image editing software. Just describe what you want in ChatGPT or Claude.
           </p>
         </div>
 
-        {/* Video Demo */}
-        <div className="relative aspect-video rounded-xl border border-dc-border bg-dc-surface overflow-hidden max-w-4xl mx-auto shadow-lg mb-16">
-          <video
-            className="w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-            aria-label="Desktop Commander converting TIFF to JPG - batch conversion demo"
-            title="Convert TIFF to JPG with natural language - Desktop Commander demo"
-          >
-            <source src="/videos/file-conversion-demo.mp4" type="video/mp4" />
-            <p className="text-muted-foreground">Your browser does not support the video tag.</p>
-          </video>
+        {/* What it looks like in ChatGPT (the old video showed the retired desktop app) */}
+        <div className="max-w-xl mx-auto mb-16">
+          <ChatDemo
+            user="Convert the TIFF scans on my Desktop to JPG"
+            workedFor="Worked for 41s"
+            reply="Converted 32 TIFF files into 41 JPGs."
+            steps={[
+              "Found 32 TIFF files on your Desktop. Two of them had several pages.",
+              "Saved each page of those two as its own JPG.",
+              "Kept the originals. The JPGs are in Desktop/JPG.",
+            ]}
+          />
         </div>
 
         {/* Features */}

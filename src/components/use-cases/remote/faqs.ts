@@ -3,7 +3,8 @@
  * The same arrays feed the on-page accordion (ClientFAQ) and the FAQPage
  * JSON-LD in the page's <Layout jsonLd>, so the two never drift apart.
  *
- * Plan facts mirror src/components/home-mcp/McpPricing.tsx. Update both together.
+ * Shared entries (SETUP_FAQ, COMPUTERS_FAQ, ONLINE_FAQ, PRICE_FAQ) are exported for the
+ * per-page files in ./faqs/. Plan facts mirror src/components/home-mcp/McpPricing.tsx. Update both together.
  */
 
 export interface Faq {
@@ -21,40 +22,40 @@ export const faqJsonLd = (faqs: Faq[]) => ({
   })),
 });
 
-const SETUP: Faq = {
+export const SETUP_FAQ: Faq = {
   question: 'Do I need to download an app?',
   answer:
     'There is a short one time setup. Add Desktop Commander to ChatGPT or Claude, sign in, and link the computer you want to work with at mcp.desktopcommander.app. After that you just ask in the chat you already use.',
 };
 
-const COMPUTERS: Faq = {
+export const COMPUTERS_FAQ: Faq = {
   question: 'Does it work on Mac and Windows?',
   answer:
     'Yes. Desktop Commander works on Mac and Windows. You can link more than one computer to your account and work with whichever one is online.',
 };
 
-const ONLINE: Faq = {
+export const ONLINE_FAQ: Faq = {
   question: 'Does my computer need to be on?',
   answer:
     'Yes. ChatGPT or Claude reaches your computer live, so it has to be on and online while you work. You can ask from any browser or from your phone.',
 };
 
-const PRICE: Faq = {
+export const PRICE_FAQ: Faq = {
   question: 'Is it free?',
   answer:
     'Desktop Commander has a free plan with 10,000 tool calls a month. Pro is $20 a month for unlimited tool calls. You also need a ChatGPT or Claude account, and plugin availability depends on your plan there.',
 };
 
 export const FILE_MANAGEMENT_FAQS: Faq[] = [
-  SETUP,
+  SETUP_FAQ,
   {
     question: 'Can it delete or overwrite my files?',
     answer:
       'It does what you ask, so be clear about what should happen. For a bigger cleanup, ask it to show the plan first and wait for your OK before it moves anything.',
   },
-  COMPUTERS,
-  ONLINE,
-  PRICE,
+  COMPUTERS_FAQ,
+  ONLINE_FAQ,
+  PRICE_FAQ,
 ];
 
 export const HEIC_TO_JPG_FAQS: Faq[] = [
@@ -78,6 +79,6 @@ export const HEIC_TO_JPG_FAQS: Faq[] = [
     answer:
       'Yes, unless you ask otherwise. Say so in your message if you want the originals moved or deleted after the conversion.',
   },
-  COMPUTERS,
-  PRICE,
+  COMPUTERS_FAQ,
+  PRICE_FAQ,
 ];

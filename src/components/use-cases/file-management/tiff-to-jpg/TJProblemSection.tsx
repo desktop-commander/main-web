@@ -15,7 +15,7 @@ const TJProblemSection = () => {
           </div>
 
           <p className="text-xl text-muted-foreground leading-relaxed">
-            Your scanner outputs TIFF. Your print shop sends TIFF. Your archive is full of TIFF. But try to share one — email rejects it, websites won't accept it, and most programs can't even open it. You're stuck with files nobody else can use, converting them one at a time through clunky software.
+            Your scanner outputs TIFF. Your print shop sends TIFF. Your archive is full of TIFF. But try to share one: email rejects it, websites won't accept it, and most programs can't even open it. You're stuck with files nobody else can use, converting them one at a time through clunky software.
           </p>
         </div>
       </div>

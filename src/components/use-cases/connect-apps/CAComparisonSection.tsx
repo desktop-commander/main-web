@@ -2,17 +2,17 @@ import { CheckCircle, XCircle } from "lucide-react";
 
 const CAComparisonSection = () => {
   const withDC = [
-    "One conversation to control all your tools",
+    "One conversation for the tools you reach from your terminal",
     "Ask for data in plain English",
-    "Save 3+ hours every week on dashboard navigation",
-    "Automate across services without code",
+    "Chain steps across services without writing the code yourself",
+    "Ask from ChatGPT or Claude, even on your phone",
     "No UI to learn, no tabs to manage"
   ];
 
   const withoutDC = [
-    "Switch between 10+ dashboards daily",
+    "Switch between dashboards all day",
     "Click through menus to find what you need",
-    "Export/import data between tools manually",
+    "Export and import data between tools by hand",
     "Learn each platform's interface separately"
   ];
 

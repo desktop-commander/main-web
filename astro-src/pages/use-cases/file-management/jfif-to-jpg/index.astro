@@ -7,15 +7,19 @@ import JJProblemSection from '../../../../../src/components/use-cases/file-manag
 import JJSolutionSection from '../../../../../src/components/use-cases/file-management/jfif-to-jpg/JJSolutionSection';
 import JJComparisonSection from '../../../../../src/components/use-cases/file-management/jfif-to-jpg/JJComparisonSection';
 import JJPersonasSection from '../../../../../src/components/use-cases/file-management/jfif-to-jpg/JJPersonasSection';
-import JJFinalCTASection from '../../../../../src/components/use-cases/file-management/jfif-to-jpg/JJFinalCTASection';
-import WaitlistSection from '../../../../../src/components/use-cases/WaitlistSection';
+import HowItWorks from '../../../../../src/components/home-mcp/HowItWorks';
+import ClientFAQ from '../../../../../src/components/mcp/clients/ClientFAQ';
+import InstallChooser from '../../../../../src/components/home-mcp/InstallChooser';
 import Footer from '../../../../../src/components/Footer';
 import MoreConversions from '../../../../components/MoreConversions.astro';
+import { faqJsonLd } from '../../../../../src/components/use-cases/remote/faqs';
+import { JFIF_TO_JPG_FAQS } from '../../../../../src/components/use-cases/remote/faqs/jfif-to-jpg';
 ---
 
 <Layout 
-  title="Convert JFIF to JPG Instantly | Free JFIF Converter | Desktop Commander"
-  description="Convert JFIF files to JPG instantly and locally. JFIF is just JPEG with a different extension. Batch convert without uploads. Free for Mac and Windows."
+  title="Convert JFIF to JPG with ChatGPT or Claude | Desktop Commander"
+  description="Convert JFIF images to JPG on your Mac or Windows PC by asking ChatGPT or Claude. Fix a whole folder of .jfif files in one message."
+  jsonLd={faqJsonLd(JFIF_TO_JPG_FAQS)}
 >
   <PostHogInit client:idle />
   
@@ -27,13 +31,19 @@ import MoreConversions from '../../../../components/MoreConversions.astro';
       <JJProblemSection />
       <JJSolutionSection />
       <JJComparisonSection />
-      <WaitlistSection useCase="jfif_to_jpg" client:visible />
+      <HowItWorks client:visible />
       <JJPersonasSection />
-      <JJFinalCTASection client:visible />
+      <ClientFAQ client:visible name="JFIF to JPG" heading="JFIF to JPG FAQ" faqs={JFIF_TO_JPG_FAQS} />
+      <InstallChooser
+        client:visible
+        location="jfif_to_jpg_install"
+        heading={'Stop Googling "what is a JFIF file."'}
+        sub="Add Desktop Commander to the assistant you already use and convert JFIF to JPG from the chat."
+      />
     </main>
     
     <MoreConversions current="jfif-to-jpg" />
-      <Footer client:visible />
+    <Footer client:visible />
   </div>
 </Layout>
 

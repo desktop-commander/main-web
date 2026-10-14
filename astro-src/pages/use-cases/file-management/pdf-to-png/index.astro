@@ -7,15 +7,19 @@ import PPProblemSection from '../../../../../src/components/use-cases/file-manag
 import PPSolutionSection from '../../../../../src/components/use-cases/file-management/pdf-to-png/PPSolutionSection';
 import PPComparisonSection from '../../../../../src/components/use-cases/file-management/pdf-to-png/PPComparisonSection';
 import PPPersonasSection from '../../../../../src/components/use-cases/file-management/pdf-to-png/PPPersonasSection';
-import PPFinalCTASection from '../../../../../src/components/use-cases/file-management/pdf-to-png/PPFinalCTASection';
-import WaitlistSection from '../../../../../src/components/use-cases/WaitlistSection';
+import HowItWorks from '../../../../../src/components/home-mcp/HowItWorks';
+import ClientFAQ from '../../../../../src/components/mcp/clients/ClientFAQ';
+import InstallChooser from '../../../../../src/components/home-mcp/InstallChooser';
 import Footer from '../../../../../src/components/Footer';
 import MoreConversions from '../../../../components/MoreConversions.astro';
+import { faqJsonLd } from '../../../../../src/components/use-cases/remote/faqs';
+import { PDF_TO_PNG_FAQS } from '../../../../../src/components/use-cases/remote/faqs/pdf-to-png';
 ---
 
 <Layout 
-  title="Convert PDF to PNG Images | Free PDF Page Extractor | Desktop Commander"
-  description="Extract PDF pages as high-quality PNG images. Convert single pages or entire documents locally. No uploads, no watermarks. Free for Mac and Windows."
+  title="Convert PDF to PNG with ChatGPT or Claude | Desktop Commander"
+  description="Convert PDF pages to PNG images on your Mac or Windows PC by asking ChatGPT or Claude. Pick single pages or convert a whole folder of PDFs in one message."
+  jsonLd={faqJsonLd(PDF_TO_PNG_FAQS)}
 >
   <PostHogInit client:idle />
   
@@ -27,13 +31,19 @@ import MoreConversions from '../../../../components/MoreConversions.astro';
       <PPProblemSection />
       <PPSolutionSection />
       <PPComparisonSection />
-      <WaitlistSection useCase="pdf_to_png" client:visible />
+      <HowItWorks client:visible />
       <PPPersonasSection />
-      <PPFinalCTASection client:visible />
+      <ClientFAQ client:visible name="PDF to PNG" heading="PDF to PNG FAQ" faqs={PDF_TO_PNG_FAQS} />
+      <InstallChooser
+        client:visible
+        location="pdf_to_png_install"
+        heading="Turn PDFs into shareable images"
+        sub="Add Desktop Commander to the assistant you already use and convert PDF pages to PNG from the chat."
+      />
     </main>
     
     <MoreConversions current="pdf-to-png" />
-      <Footer client:visible />
+    <Footer client:visible />
   </div>
 </Layout>
 

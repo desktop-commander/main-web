@@ -15,7 +15,7 @@ const ADProblemSection = () => {
           </div>
 
           <p className="text-xl text-muted-foreground leading-relaxed">
-            You have spreadsheets full of answers—but getting them out is painful. Excel breaks on large files. ChatGPT hallucinates when you paste data in. Learning Python and Pandas takes weeks. So you either do it manually, hire someone, or make decisions without the full picture.
+            You have spreadsheets full of answers, but getting them out is painful. Excel struggles with large files. Pasting rows into a chat cuts the data short and gets you estimates instead of real numbers. Learning Python and Pandas takes weeks. So you either do it by hand, hire someone, or make decisions without the full picture.
           </p>
         </div>
       </div>

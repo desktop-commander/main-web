@@ -15,7 +15,7 @@ const PJProblemSection = () => {
           </div>
 
           <p className="text-xl text-muted-foreground leading-relaxed">
-            Screenshots, graphics, and downloaded images come as PNGs — and they're massive. Your email bounces because attachments are too large. Your website loads slowly. Your storage fills up. You need JPGs, but converting them one by one through online tools wastes your time and exposes your files to who-knows-what servers.
+            Screenshots, graphics, and saved images come as PNGs, and they're massive. Your email bounces because attachments are too large. Your website loads slowly. Your storage fills up. You need JPGs, but converting them one at a time on a website wastes your time.
           </p>
         </div>
       </div>
