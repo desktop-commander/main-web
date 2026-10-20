@@ -31,6 +31,7 @@ const Footer = () => {
         { label: 'Install', href: INSTALL_HREF },
         { label: 'MCP Server', href: '/mcp/' },
         { label: 'Manage devices', href: 'https://mcp.desktopcommander.app/', external: true },
+        { label: 'Status', href: 'https://status.desktopcommander.app/', external: true },
         { label: 'Prompt Library', href: '/library/prompts/' },
         { label: 'Pricing', href: '/pricing/' },
       ],
@@ -197,6 +198,23 @@ const Footer = () => {
             © {currentYear} Desktop Commander.
           </p>
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
+            <a
+              href="https://status.desktopcommander.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-smooth"
+              onClick={() =>
+                trackCustomEvent('navigation_clicked', {
+                  button_text: 'Status',
+                  button_location: 'footer',
+                  link_type: 'external',
+                  section: 'footer-bottom',
+                  destination: 'https://status.desktopcommander.app/',
+                })
+              }
+            >
+              Status
+            </a>
             <a
               href="https://legal.desktopcommander.app"
               target="_blank"
