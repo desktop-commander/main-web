@@ -10,9 +10,14 @@ interface Props {
   faqs: { question: string; answer: string }[];
   /** Overrides the default "<name> + Desktop Commander FAQ" heading. */
   heading?: string;
+  /**
+   * Shows "More answers in the Help center" under the questions.
+   * Off on ad landing pages, so the page keeps people on the install path.
+   */
+  helpLink?: boolean;
 }
 
-const ClientFAQ = ({ name, faqs, heading }: Props) => {
+const ClientFAQ = ({ name, faqs, heading, helpLink = true }: Props) => {
   return (
     <section id="faq" className="py-14 md:py-20">
       <div className="container mx-auto max-w-3xl px-4 sm:px-6">
@@ -37,6 +42,15 @@ const ClientFAQ = ({ name, faqs, heading }: Props) => {
             </AccordionItem>
           ))}
         </Accordion>
+        {helpLink && (
+          <p className="text-center text-sm text-muted-foreground mt-8">
+            More answers in the{" "}
+            <a href="/help/" className="text-primary font-medium hover:underline">
+              Help center
+            </a>
+            .
+          </p>
+        )}
       </div>
     </section>
   );

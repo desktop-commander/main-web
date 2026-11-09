@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import OpenAIMark from "@/components/mcp/clients/chatgpt/OpenAIMark";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
 import { CHATGPT_CONNECTOR, CLAUDE_CONNECTOR, LOCAL_MCP_URL, MCP_ENDPOINT } from "./links";
+import SetupHelpLink from "@/components/help/SetupHelpLink";
 
 /**
  * The single install destination for the whole site.
@@ -244,6 +245,8 @@ const InstallChooser = ({
             </a>
           </div>
         </div>
+
+        <SetupHelpLink className="max-w-4xl mx-auto mt-6" />
       </div>
     </section>
   );

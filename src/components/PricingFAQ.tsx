@@ -84,6 +84,17 @@ const PricingFAQ = () => {
               </AccordionItem>
             ))}
           </Accordion>
+          <p className="text-center text-sm text-muted-foreground mt-8">
+            More in the Help center:{" "}
+            <a href="/help/account-billing/plans-and-tool-call-limits" className="text-primary font-medium hover:underline">
+              plans and tool call limits
+            </a>
+            , and{" "}
+            <a href="/help/account-billing/renewals-cancellations-refunds" className="text-primary font-medium hover:underline">
+              renewals, cancellations and refunds
+            </a>
+            .
+          </p>
         </div>
       </div>
     </section>

@@ -1,5 +1,7 @@
 /**
- * Auto-generate sitemap.xml from the built `docs/` tree.
+ * Auto-generate the sitemaps from the built `docs/` tree:
+ *   docs/sitemap-pages.xml  the website's pages (rules below)
+ *   docs/sitemap.xml        sitemap index: sitemap-pages.xml + /help/sitemap.xml
  *
  * Runs as part of `npm run build` after `astro build` (and pagefind) populate `docs/`.
  *
@@ -152,14 +154,36 @@ function generate() {
     '',
   ].join('\n');
 
-  const outputPath = path.join(DOCS_DIR, 'sitemap.xml');
-  fs.writeFileSync(outputPath, xml, 'utf8');
+  // The website's own pages go in sitemap-pages.xml. /sitemap.xml is a sitemap
+  // index that lists it and the Help center's sitemap. The Help center
+  // (desktopcommander.app/help, repo desktop-commander/help) is built and served
+  // separately and writes its own /help/sitemap.xml, so its articles never go
+  // stale here. Search Console only needs /sitemap.xml.
+  const pagesPath = path.join(DOCS_DIR, 'sitemap-pages.xml');
+  fs.writeFileSync(pagesPath, xml, 'utf8');
   const blogCount = allEntries.filter((e) => e.loc.includes('/blog/')).length;
   console.log(
     `Sitemap: ${astroEntries.length} Astro + ${extraPages.length} extra + ${jobEntries.length} jobs ` +
     `− ${dupes} dupes = ${allEntries.length} URLs (${blogCount} under /blog/)`
   );
-  console.log(`Sitemap saved to: ${outputPath}`);
+  console.log(`Sitemap saved to: ${pagesPath}`);
+
+  const index = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    `    <sitemap>
+        <loc>${BASE_URL}/sitemap-pages.xml</loc>
+        <lastmod>${today}</lastmod>
+    </sitemap>`,
+    `    <sitemap>
+        <loc>${BASE_URL}/help/sitemap.xml</loc>
+    </sitemap>`,
+    '</sitemapindex>',
+    '',
+  ].join('\n');
+  const indexPath = path.join(DOCS_DIR, 'sitemap.xml');
+  fs.writeFileSync(indexPath, index, 'utf8');
+  console.log(`Sitemap index saved to: ${indexPath}`);
 }
 
 generate();

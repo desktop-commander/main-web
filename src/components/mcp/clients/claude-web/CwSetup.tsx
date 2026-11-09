@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Terminal } from "lucide-react";
 import CwCta from "./CwCta";
+import SetupHelpLink from "@/components/help/SetupHelpLink";
 
 const CwSetup = () => {
   return (
@@ -53,6 +54,7 @@ const CwSetup = () => {
           Requires running one command in your computer's terminal. Works on macOS and
           Windows. Disconnect any time.
         </p>
+        <SetupHelpLink className="mt-3" />
       </div>
     </section>
   );

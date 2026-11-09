@@ -55,7 +55,7 @@ const variantKeys = page.variants.map((v) => v.key).filter(Boolean);
       <AdWorkflows page={pageKey} variant={variantKey} />
       <AdSetup client:visible page={pageKey} variant={variantKey} />
       <AdQuote page={pageKey} />
-      <ClientFAQ client:visible name="ChatGPT" heading="Questions before you connect" faqs={page.faqs} />
+      <ClientFAQ client:visible name="ChatGPT" heading="Questions before you connect" faqs={page.faqs} helpLink={false} />
       <AdFinal client:visible page={pageKey} variant={variantKey} />
     </main>
 

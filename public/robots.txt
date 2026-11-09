@@ -77,3 +77,4 @@ Disallow: /library/prompts/visualize-project-architecture/
 Disallow: /library/prompts/visualize-terraform-architecture/
 
 Sitemap: https://desktopcommander.app/sitemap.xml
+Sitemap: https://desktopcommander.app/help/sitemap.xml

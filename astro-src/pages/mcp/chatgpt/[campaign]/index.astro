@@ -51,7 +51,7 @@ const client = getClient('chatgpt')!;
       <GptCapabilities client:visible campaign={campaign} />
       <GptSetup client:visible campaign={campaign} />
       <GptPhone client:visible campaign={campaign} />
-      <ClientFAQ client:visible name={client.name} faqs={client.faqs} />
+      <ClientFAQ client:visible name={client.name} faqs={client.faqs} helpLink={false} />
       <GptFinalCTA client:visible campaign={campaign} />
       <MoreClients current="chatgpt" heading="Also works with" />
     </main>

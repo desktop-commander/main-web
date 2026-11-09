@@ -104,6 +104,11 @@ export const resourcesMenu: MegaMenu = {
     {
       heading: 'Resources',
       links: [
+        {
+          label: 'Help center',
+          href: '/help/',
+          description: 'Setup, devices, billing and troubleshooting',
+        },
         { label: 'All articles', href: '/blog/' },
         { label: 'Prompt Library', href: '/library/prompts/' },
         { label: 'MCP server', href: '/mcp/' },

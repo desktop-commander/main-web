@@ -4,6 +4,7 @@ import { Terminal, Copy, Check, MessageSquare } from "lucide-react";
 import GptCta from "./GptCta";
 import { getCampaign, type CampaignKey } from "./campaigns";
 import { useAnalyticsAstro } from "@/hooks/useAnalyticsAstro";
+import SetupHelpLink from "@/components/help/SetupHelpLink";
 
 /** Campaign pages: the exact first prompt to try once connected, with a copy button. */
 const FirstPrompt = ({ campaign }: { campaign: CampaignKey }) => {
@@ -95,6 +96,8 @@ const GptSetup = ({ campaign }: { campaign?: CampaignKey }) => {
           Requires running one command in your computer's terminal. Works on macOS and
           Windows. Disconnect any time.
         </p>
+        {/* Not on campaign (ad) pages, so they keep people on the install path */}
+        {!campaign && <SetupHelpLink className="mt-3" />}
       </div>
     </section>
   );

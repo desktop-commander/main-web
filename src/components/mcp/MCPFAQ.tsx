@@ -4,7 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { ExternalLink } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
 const MCPFAQ = () => {
@@ -112,20 +112,18 @@ const MCPFAQ = () => {
           <div className={`mt-12 transition-all duration-1000 delay-1200 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            {/* GitHub FAQ link */}
+            {/* Help center link (replaced the old GitHub FAQ.md link, Nov 2026) */}
             <div className="bg-background border rounded-lg p-6 transition-all duration-300 hover:shadow-lg hover:scale-[1.02] transform">
-              <h3 className="text-lg font-semibold mb-2">Need More Details?</h3>
+              <h3 className="text-lg font-semibold mb-2">Need more help?</h3>
               <p className="text-muted-foreground mb-4 text-sm">
-                View our comprehensive FAQ document on GitHub for detailed troubleshooting guides.
+                The Help center covers setup, connecting your computers, plans and billing, and fixes for common problems.
               </p>
-              <a 
-                href="https://github.com/wonderwhy-er/DesktopCommanderMCP/blob/main/FAQ.md"
-                target="_blank"
-                rel="noopener noreferrer"
+              <a
+                href="/help/"
                 className="inline-flex items-center gap-2 text-primary hover:underline font-medium transition-all duration-300 hover:scale-105 group"
               >
-                Complete FAQ on GitHub
-                <ExternalLink className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                Open the Help center
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
             </div>
           </div>
