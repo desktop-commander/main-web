@@ -1,0 +1,52 @@
+# Desktop Commander
+
+> Desktop Commander Remote connects ChatGPT, Claude and other AI apps to your own computers and servers. The AI reads and edits files, runs terminal commands and searches projects on the machines you connect, sees the results and continues from there, so you don't copy output back and forth.
+
+Key facts about Desktop Commander Remote (the remote MCP server):
+
+- Works in ChatGPT, in Claude on the web and in the Claude desktop app, where it is listed as Remote Desktop Commander, and in Cursor as a plugin. Other apps that support remote MCP servers connect with the URL https://mcp.desktopcommander.app/mcp and a sign in.
+- Setup: add Remote Desktop Commander to your AI app and sign in, then run one setup command on each Windows, Mac or Linux computer and verify it in the browser. The computer is reachable while that command runs in its terminal. Press Ctrl+C there to take it offline.
+- One account can connect as many computers and servers as you need, on both plans. They are listed at https://mcp.desktopcommander.app/, where you can also remove them.
+- Commands run on the connected computer with the permissions of the user who started Desktop Commander there.
+- Tool calls and their results pass through Desktop Commander's servers to reach your computer. They are kept only while the call runs and deleted shortly after it finishes. Everything the AI reads, such as file contents and command output, becomes part of your chat and is sent to your AI provider, such as OpenAI or Anthropic.
+- Pricing: Free plan with 10,000 tool calls a month. Pro is $20 a month plus tax with unlimited tool calls. The plan is separate from your ChatGPT or Claude subscription.
+- Desktop Commander (local MCP) is a separate, free and open source MCP server that runs inside AI apps on your own computer, such as Claude Desktop, Claude Code and Cursor.
+
+## Remote MCP
+
+- [Desktop Commander for ChatGPT](https://desktopcommander.app/mcp/chatgpt/): Connect ChatGPT to the files and terminal on your computer, with setup steps and example prompts.
+- [Desktop Commander for Claude](https://desktopcommander.app/mcp/claude-web/): Connect Claude on the web and the Claude desktop app to your files and terminal.
+- [Desktop Commander for Cursor](https://desktopcommander.app/mcp/cursor/): Use Remote Desktop Commander from the Cursor IDE or cursor.com in a browser, on any machine you connect.
+- [Pricing](https://desktopcommander.app/pricing/): Free and Pro plans, what a tool call is, and how many devices you can connect.
+- [Remote Desktop Commander in ChatGPT](https://chatgpt.com/plugins/plugin_asdk_app_6a057d268ebc81919918d37eec718425): Add it to ChatGPT.
+- [Remote Desktop Commander in Claude](https://claude.ai/customize/connectors/directory/remote-desktop-commander): Add it to Claude.
+- [Remote Desktop Commander in Cursor](https://cursor.directory/plugins/remote-desktop-commander): Add it to Cursor.
+- [Manage devices](https://mcp.desktopcommander.app/): Sign in to see your connected computers, usage and plan.
+
+## Help
+
+- [Help center](https://desktopcommander.app/help/): Setup, devices, account and billing, security and troubleshooting.
+- [Help center index for AI tools](https://desktopcommander.app/help/llms.txt): Every help article, each available as Markdown.
+- [How do I connect a computer to Desktop Commander Remote?](https://desktopcommander.app/help/devices/connect-computer.md): Setup commands for Windows, Mac and Linux, verifying the device, staying online and using more than one computer.
+- [How do the Free and Pro plans and tool call limits work?](https://desktopcommander.app/help/account-billing/plans-and-tool-call-limits.md): What counts as a tool call, when the limit resets, and how to upgrade or cancel.
+- [Is my data private? What Desktop Commander sends and stores](https://desktopcommander.app/help/security-privacy/data-privacy.md): What passes through Desktop Commander's servers, what is stored and for how long, and what your AI provider receives.
+- [How do I use Desktop Commander safely and limit its access?](https://desktopcommander.app/help/security-privacy/use-safely-limit-access.md): Allowed folders, blocked commands and controlling which computers are online.
+- [Why can't Desktop Commander Remote find my computer?](https://desktopcommander.app/help/troubleshooting/remote-cant-find-computer.md): What to check when a computer shows as offline or isn't listed.
+- [Status page](https://status.desktopcommander.app/): Current service status and incidents.
+
+## Use cases
+
+- [Use cases](https://desktopcommander.app/use-cases/): What ChatGPT or Claude can do on your computer with Desktop Commander: manage files, analyze data, build prototypes, connect apps and work with your notes.
+- [Prompt library](https://desktopcommander.app/library/prompts/): Ready to use prompts for file management, code analysis and automation.
+
+## Local MCP
+
+- [Desktop Commander MCP](https://desktopcommander.app/mcp/): Overview of the local MCP server and Remote MCP, and how to install each.
+- [Desktop Commander for Claude Desktop](https://desktopcommander.app/mcp/claude-desktop/): Install the local MCP server in Claude Desktop.
+- [Source code on GitHub](https://github.com/wonderwhy-er/DesktopCommanderMCP): The open source Desktop Commander MCP server.
+- [npm package](https://www.npmjs.com/package/@wonderwhy-er/desktop-commander): @wonderwhy-er/desktop-commander.
+
+## Optional
+
+- [All help articles in one file](https://desktopcommander.app/help/llms-full.txt)
+- [Blog](https://desktopcommander.app/blog/): Guides on MCP servers and AI workflows.
