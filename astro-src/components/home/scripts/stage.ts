@@ -1,5 +1,6 @@
 /**
- * Plays the example sessions on the hero stage (HeroStage.astro).
+ * Plays the example sessions on the stage (HeroStage.astro), which sits either
+ * in the hero or in its own section further down the page.
  *
  * One session = prompt typed in the chat, tool calls sent over the wire, the
  * terminal running them, results returning, the answer, then a short hold.
@@ -81,6 +82,7 @@ export function initStage(reduceMotion: boolean) {
   const chatWin = stage.querySelector<HTMLElement>('.hx-win--chat')!;
   const machineWin = stage.querySelector<HTMLElement>('.hx-win--machine')!;
   const wide = window.matchMedia('(min-width: 981px)');
+  const inSection = stage.dataset.placement === 'section';
 
   // ---- session clock ----
   // `elapsed` only advances while the stage is running (on screen, tab visible,
@@ -379,11 +381,16 @@ export function initStage(reduceMotion: boolean) {
     { threshold: 0.15 },
   ).observe(stage);
 
-  // The windows start tilted back and settle flat over the first half screen of scroll.
+  // The windows start tilted back and settle flat as the page scrolls: over the
+  // first half screen in the hero, or while the stage rises into view when it
+  // sits in a section further down.
   let ticking = false;
   const setTilt = () => {
     ticking = false;
-    const p = Math.min(window.scrollY / (window.innerHeight * 0.55), 1);
+    const vh = window.innerHeight;
+    const p = inSection
+      ? clamp((vh * 0.94 - stage.getBoundingClientRect().top) / (vh * 0.5), 0, 1)
+      : Math.min(window.scrollY / (vh * 0.55), 1);
     stage.style.setProperty('--tilt', wide.matches ? (1 - p * (2 - p)).toFixed(4) : '0');
   };
   const onScroll = () => {
@@ -397,7 +404,7 @@ export function initStage(reduceMotion: boolean) {
 
   // The windows lean a little toward the pointer (wide screens with a mouse only).
   if (window.matchMedia('(hover: hover)').matches) {
-    const hero = stage.closest<HTMLElement>('[data-hero]') ?? stage;
+    const hero = stage.closest<HTMLElement>('section') ?? stage;
     hero.addEventListener(
       'pointermove',
       (e) => {

@@ -70,8 +70,8 @@ The live `/blog` is **static Astro** (paths `/blog/media/...`, `/blog/assets/...
   `feat/blog-migration` via PRs #16 and #15.
 - `fable-experiment` — homepage "mission control" redesign (built on top of blog-migration); NOT live.
 - `feat/landing-redesign` — full homepage rebuild (2026-11-11), branched from the `feat/blog-migration`
-  tip `f4dcbf73`. Source only: `docs/` is not rebuilt on it and nothing is deployed. See
-  "Homepage source layout" below.
+  tip `f4dcbf73`. Two hero versions to choose from. Source only: `docs/` is not rebuilt on it and
+  nothing is deployed. See "Homepage source layout" below.
 - `welcome-team-agent-lp` — welcome page v3 (team-agent pitch + HubSpot waitlist); source-only, not
   built into `docs/`, not deployed.
 - `gh-pages` — **stale/abandoned** (old Vite/React + `deploy:` commits, last touched 2025-09-19). Not used.
@@ -82,21 +82,35 @@ The live `/blog` is **static Astro** (paths `/blog/media/...`, `/blog/assets/...
 
 The homepage is plain Astro sections instead of one React island per section:
 
-- `astro-src/pages/index.astro` — composes the sections. Navigation and Footer are the shared
-  site components, unchanged.
-- `astro-src/components/home/Home*.astro` — one file per section (hero, install, remote, use cases,
-  how it works, prompts, clients, community, pricing, FAQ, closing band). `HeroStage.astro` is the
-  live demo under the headline.
+- `astro-src/pages/index.astro` — one line: `<HomePage hero="hub" />`. The page itself is
+  `astro-src/components/home/HomePage.astro`, which composes the sections. Navigation and Footer are
+  the shared site components, unchanged.
+- **Two hero versions**, picked by that `hero` prop (nothing else needs to change to switch):
+  - `"hub"` (current): copy on the left, the connection diagram on the right (`HeroHub.astro`): AI
+    clients, Desktop Commander, your computer, with a request travelling between them. The example
+    sessions follow as their own section (`HomeDemo.astro`, `#demo`).
+  - `"stage"`: centered headline with the example sessions (`HeroStage.astro`) directly under it,
+    and no separate demo section.
+- Comparing the two: on the dev server only, `/preview/hero-a/` (stage) and `/preview/hero-b/` (hub)
+  render both versions, and a small switch in the bottom left corner flips between them
+  (`pages/preview/[hero].astro`, `DevHeroSwitch.astro`). A production build generates neither the
+  pages nor the switch.
+- `astro-src/components/home/Home*.astro` — one file per section (hero, demo, install, remote, use
+  cases, how it works, prompts, clients, community, pricing, FAQ, closing band).
 - `astro-src/data/home.ts` — all homepage copy. URLs, stats and rankings still come from
   `src/components/home-mcp/links.ts`, and the client list from `astro-src/data/mcp-clients.ts`.
-- `astro-src/components/home/home.css` + `home-sections.css` — styles, `hx-` prefix, loaded only by
-  the homepage. Brand colors are the existing tokens from `src/index.css`.
-- `astro-src/components/home/scripts/` — small TypeScript modules (no libraries): `stage.ts` plays
-  the demo sessions defined in `scenarios.ts`, `field.ts` is the WebGL dot field behind the hero,
-  `sections.ts` holds tabs/FAQ/copy/step tracking, `analytics.ts` sends events.
+- `astro-src/components/home/home.css` + `home-sections.css` + `home-hub.css` — styles, `hx-` prefix,
+  loaded only by the homepage. Brand colors are the existing tokens from `src/index.css`.
+- `astro-src/components/home/scripts/` — small TypeScript modules (no libraries):
+  - `hub.ts` plays the requests defined in `hub-scenarios.ts` on the connection diagram. The wires
+    are measured from the live layout, so they follow any change to the markup or CSS.
+  - `stage.ts` plays the example sessions defined in `scenarios.ts`.
+  - `field.ts` is the WebGL dot field behind the hero, `sections.ts` holds tabs/FAQ/copy/step
+    tracking, `analytics.ts` sends events.
 - Analytics: any element with `data-ev="event_name"` (+ JSON in `data-ev-props`) is tracked on
   click through the same `trackEvent()` the React components use. Event names and properties
-  match the previous homepage; `hero_stage_scenario_clicked` is the one new event.
+  match the previous homepage; `hero_stage_scenario_clicked` is the one new event. The client tiles
+  in the hub send the existing `mcp_client_crosslink_clicked` with `from_client: "home_hero"`.
 - Fonts: Geist and Geist Mono, self-hosted in `public/fonts/` (OFL license file alongside).
 
 The previous homepage sections (`src/components/home-mcp/*`, `src/components/mcp/MCPRemote.tsx`,

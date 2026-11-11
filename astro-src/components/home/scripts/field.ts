@@ -6,6 +6,9 @@
  * and the dots under the pointer swell. One full-screen triangle and one
  * fragment shader, no libraries.
  *
+ * The grid is kept quiet where the hero puts its text (and, in the split
+ * layout, behind the diagram), see LAYOUTS below.
+ *
  * Cost control: capped pixel ratio, drops resolution if frames get slow,
  * stops when the hero is off screen or the tab is hidden, and draws a single
  * still frame for prefers-reduced-motion. Without WebGL the canvas stays
@@ -24,6 +27,9 @@ uniform float uTime;
 uniform vec2 uMouse;
 uniform float uMouseOn;
 uniform float uScale;
+uniform vec4 uCalm;  // quiet zone: center x, width, strength, lower edge (0 to 1 from the bottom)
+uniform vec4 uCalm2; // second quiet zone, same layout; strength 0 turns it off
+uniform vec2 uHaze;  // center of the blue haze
 
 float hash(vec2 p) {
   p = fract(p * vec2(123.34, 456.21));
@@ -46,6 +52,10 @@ float fbm(vec2 p) {
     a *= 0.5;
   }
   return v;
+}
+float quiet(vec4 z, vec2 uv) {
+  float dx = (uv.x - z.x) / z.y;
+  return z.z * exp(-dx * dx) * smoothstep(z.w, z.w + 0.18, uv.y) * (1.0 - smoothstep(0.94, 1.0, uv.y));
 }
 
 void main() {
@@ -99,15 +109,15 @@ void main() {
   float bloom = exp(-d * d * 9.0) * energy * energy * 0.24;
   col += vec3(0.25, 0.45, 1.0) * bloom;
 
-  // keep the middle column calm so the headline stays easy to read,
-  // and let the grid dissolve toward the left and right edges
-  float calm = 1.0 - 0.5 * exp(-pow((uv.x - 0.5) / 0.26, 2.0)) * smoothstep(0.4, 0.58, uv.y) * (1.0 - smoothstep(0.94, 1.0, uv.y));
+  // keep the grid calm where the text sits so it stays easy to read,
+  // and let it dissolve toward the left and right edges
+  float calm = (1.0 - quiet(uCalm, uv)) * (1.0 - quiet(uCalm2, uv));
   float edge = smoothstep(0.0, 0.1, uv.x) * smoothstep(1.0, 0.9, uv.x);
   col *= calm * edge;
 
-  // drifting haze, strongest behind the headline
+  // drifting haze, strongest behind the headline (or behind the diagram)
   float haze = fbm(uv * vec2(2.4, 1.7) + vec2(t * 0.02, t * 0.012));
-  vec2 c = (uv - vec2(0.5, 0.86)) * vec2(1.0, 2.1);
+  vec2 c = (uv - uHaze) * vec2(1.0, 2.1);
   float top = exp(-dot(c, c) * 3.0);
   col += vec3(0.1, 0.22, 0.62) * top * (0.25 + 0.75 * haze) * 0.5;
 
@@ -119,9 +129,27 @@ void main() {
 }
 `;
 
+/**
+ * Where the field stays quiet, per hero layout (canvas[data-layout]).
+ * calm / calm2: center x, width, strength, lower edge. haze: center x, y.
+ * All in 0 to 1 across the canvas, y measured from the bottom.
+ */
+type Layout = { calm: number[]; calm2: number[]; haze: number[] };
+const LAYOUTS: Record<'centered' | 'split', Layout> = {
+  // headline in the middle
+  centered: { calm: [0.5, 0.26, 0.5, 0.4], calm2: [0, 1, 0, 0], haze: [0.5, 0.86] },
+  // copy on the left, diagram on the right
+  split: { calm: [0.25, 0.25, 0.62, 0.1], calm2: [0.75, 0.24, 0.74, 0.06], haze: [0.74, 0.6] },
+};
+
 export function initField(reduceMotion: boolean) {
   const canvas = document.querySelector<HTMLCanvasElement>('[data-field]');
   if (!canvas) return;
+
+  // The split layout only applies on wide screens; below that the hero stacks
+  // and the headline is centered again.
+  const wide = window.matchMedia('(min-width: 981px)');
+  const layout = () => LAYOUTS[canvas.dataset.layout === 'split' && wide.matches ? 'split' : 'centered'];
 
   const gl = canvas.getContext('webgl', {
     alpha: true,
@@ -162,6 +190,9 @@ export function initField(reduceMotion: boolean) {
   const uMouse = gl.getUniformLocation(prog, 'uMouse');
   const uMouseOn = gl.getUniformLocation(prog, 'uMouseOn');
   const uScale = gl.getUniformLocation(prog, 'uScale');
+  const uCalm = gl.getUniformLocation(prog, 'uCalm');
+  const uCalm2 = gl.getUniformLocation(prog, 'uCalm2');
+  const uHaze = gl.getUniformLocation(prog, 'uHaze');
 
   let quality = 1; // lowered when frames are slow
   let scale = 1;
@@ -196,6 +227,10 @@ export function initField(reduceMotion: boolean) {
     gl.uniform2f(uMouse, mouse.x * scale, canvas.height - mouse.y * scale);
     gl.uniform1f(uMouseOn, mouse.on);
     gl.uniform1f(uScale, scale);
+    const zones = layout();
+    gl.uniform4fv(uCalm, zones.calm);
+    gl.uniform4fv(uCalm2, zones.calm2);
+    gl.uniform2fv(uHaze, zones.haze);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   };
 

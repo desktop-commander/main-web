@@ -45,6 +45,30 @@ export const hero = {
   ],
 } as const;
 
+/**
+ * Hero with the connection diagram (HeroHub.astro). The requests it plays are
+ * in astro-src/components/home/scripts/hub-scenarios.ts.
+ */
+export const hub = {
+  description:
+    'Diagram: ChatGPT, Claude, Cursor or another AI client sends a request to Desktop Commander. Desktop Commander works with the files, the terminal and the processes on your computer, and the result goes back to the chat.',
+  core: 'Desktop Commander',
+  machine: 'Your computer',
+  status: 'online',
+  parts: [
+    { id: 'files', label: 'Files', icon: 'folder-open' },
+    { id: 'terminal', label: 'Terminal', icon: 'terminal' },
+    { id: 'processes', label: 'Processes', icon: 'cpu' },
+  ],
+} as const;
+
+/** The example sessions as their own section, used below the hub hero. */
+export const demo = {
+  eyebrow: 'Example sessions',
+  heading: 'What a session looks like',
+  sub: 'You ask in the chat. Desktop Commander reads the files, runs the commands and reports back. Pick an example.',
+} as const;
+
 // ---------------------------------------------------------------------------
 // Install chooser
 // ---------------------------------------------------------------------------

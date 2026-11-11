@@ -3,17 +3,28 @@
  * Homepage hero.
  *
  * Primary CTA is Install (scrolls to the on-page chooser), secondary is
- * Manage devices (the Remote MCP platform). Under the copy sits the live
- * stage: a chat on the left, a machine on the right and Desktop Commander
- * between them (HeroStage.astro).
+ * Manage devices (the Remote MCP platform).
+ *
+ * Two versions of the visual, picked with the `variant` prop:
+ *   "hub"    copy on the left, the connection diagram on the right
+ *            (HeroHub.astro): AI clients, Desktop Commander, your computer.
+ *   "stage"  copy centered, the live demo below it (HeroStage.astro): a chat
+ *            on the left, a machine on the right.
  *
  * Behavior lives in ./scripts: field.ts (background), pill.ts (rankings),
- * stage.ts (demo playback).
+ * hub.ts or stage.ts (the visual).
  */
 import Icon from './Icon.astro';
 import ClientMark from './ClientMark.astro';
+import HeroHub from './HeroHub.astro';
 import HeroStage from './HeroStage.astro';
 import { hero, PLATFORM_URL, RANKINGS } from '../../data/home';
+
+interface Props {
+  variant?: 'hub' | 'stage';
+}
+const { variant = 'hub' } = Astro.props;
+const split = variant === 'hub';
 
 const ev = (o: Record<string, unknown>) => JSON.stringify(o);
 const describe = (r: (typeof RANKINGS)[number]) => `#${r.rank} ${r.label}, ${r.date}`;
@@ -21,11 +32,11 @@ const first = RANKINGS[0];
 const words = hero.titleLine1.split(' ');
 ---
 
-<section class="hx-hero" data-hero>
+<section class:list={['hx-hero', { 'hx-hero--split': split }]} data-hero data-hero-variant={variant}>
   <div class="hx-hero__glow" aria-hidden="true"></div>
-  <canvas class="hx-hero__field" data-field aria-hidden="true"></canvas>
+  <canvas class="hx-hero__field" data-field data-layout={split ? 'split' : 'centered'} aria-hidden="true"></canvas>
 
-  <div class="hx-container">
+  <div class:list={['hx-container', { 'hx-hero__split': split }]}>
     <div class="hx-hero__top">
       <a
         class="hx-pill hx-enter hx-enter--fade"
@@ -134,6 +145,6 @@ const words = hero.titleLine1.split(' ');
       </div>
     </div>
 
-    <HeroStage />
+    {split ? <HeroHub /> : <HeroStage />}
   </div>
 </section>

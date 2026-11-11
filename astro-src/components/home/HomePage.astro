@@ -1,0 +1,108 @@
+---
+/**
+ * The homepage, composed from its sections.
+ *
+ * Remote MCP is the product: Install is the only primary CTA, Manage devices
+ * is the constant secondary, and the desktop app is off the main path.
+ *
+ * The sections are plain Astro components in this folder (server-rendered
+ * HTML, no React island each), styled by home.css, home-sections.css and
+ * home-hub.css, and brought to life by the small scripts in ./scripts/.
+ * Copy lives in astro-src/data/home.ts.
+ *
+ * `hero` picks the first screen:
+ *   "hub"    the connection diagram next to the copy, with the example
+ *            sessions as their own section right below
+ *   "stage"  the example sessions directly under a centered headline
+ *
+ * Navigation and Footer are the shared site components, unchanged.
+ */
+import Layout from '../../layouts/Layout.astro';
+import { organizationSchema } from '../../data/schema';
+import Navigation from '../Navigation.astro';
+import PostHogInit from '../../../src/components/PostHogInit';
+import Footer from '../../../src/components/Footer';
+import HomeHero from './HomeHero.astro';
+import HomeDemo from './HomeDemo.astro';
+import HomeInstall from './HomeInstall.astro';
+import HomeRemote from './HomeRemote.astro';
+import HomeUseCases from './HomeUseCases.astro';
+import HomeHowItWorks from './HomeHowItWorks.astro';
+import HomePrompts from './HomePrompts.astro';
+import HomeClients from './HomeClients.astro';
+import HomeCommunity from './HomeCommunity.astro';
+import HomePricing from './HomePricing.astro';
+import HomeFaq from './HomeFaq.astro';
+import HomeFinalCta from './HomeFinalCta.astro';
+import DevHeroSwitch from './DevHeroSwitch.astro';
+import './home.css';
+import './home-sections.css';
+import './home-hub.css';
+
+interface Props {
+  hero?: 'hub' | 'stage';
+  /** Comparison copy of the page: kept out of search engines and pointed at the real homepage. */
+  preview?: boolean;
+}
+const { hero = 'hub', preview = false } = Astro.props;
+const home = new URL('/', Astro.site || 'http://localhost:4321').href;
+---
+
+<Layout
+  title="Desktop Commander - Use your computer from chat"
+  description="Desktop Commander gives ChatGPT and Claude access to your computer, so they read your files, run commands, and see the results themselves. Your own machine, not a cloud sandbox."
+  jsonLd={preview ? undefined : organizationSchema}
+  robots={preview ? 'noindex, nofollow' : undefined}
+  googlebot={preview ? 'noindex, nofollow' : undefined}
+  canonical={preview ? home : undefined}
+>
+  <!-- Fonts for the first screen. rel=preload is valid in <body>. -->
+  <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  {
+    /* the diagram in the hub hero is set in the mono font */
+    hero === 'hub' && (
+      <link rel="preload" href="/fonts/geist-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    )
+  }
+
+  <!--
+    Marks the page as scripted before first paint, so sections below the hero
+    can start hidden and reveal on scroll without a flash. If the main script
+    has not started after 3 seconds (blocked, failed), everything is simply
+    shown. The hero itself does not depend on this: its entrance is pure CSS.
+  -->
+  <script is:inline>
+    document.documentElement.classList.add('hx-js');
+    window.__hxFallback = setTimeout(function () {
+      document.documentElement.classList.add('hx-noanim');
+    }, 3000);
+  </script>
+
+  <PostHogInit client:idle />
+
+  <div class="hx min-h-screen">
+    <Navigation />
+    <main>
+      <HomeHero variant={hero} />
+      {hero === 'hub' && <HomeDemo />}
+      <HomeInstall />
+      <HomeRemote />
+      <HomeUseCases />
+      <HomeHowItWorks />
+      <HomePrompts />
+      <HomeClients />
+      <HomeCommunity />
+      <HomePricing />
+      <HomeFaq />
+      <HomeFinalCta />
+    </main>
+    <Footer client:visible />
+  </div>
+
+  {/* Only while developing: flip between the two hero versions. Never built. */}
+  {import.meta.env.DEV && <DevHeroSwitch current={hero} />}
+</Layout>
+
+<script>
+  import './scripts/main.ts';
+</script>

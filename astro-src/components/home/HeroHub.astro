@@ -1,0 +1,224 @@
+---
+/**
+ * Hero visual: how Desktop Commander connects an AI client to your computer.
+ *
+ * Top: the AI clients (each one links to its page). Middle: Desktop
+ * Commander. Bottom: your computer with its files, terminal and processes.
+ * A request travels down from one client, a tool runs, the right part of the
+ * computer does the work, and the result travels back up. Then the next
+ * client takes its turn. Requests are defined in ./scripts/hub-scenarios.ts
+ * and played by ./scripts/hub.ts.
+ *
+ * The markup below is the finished state of the first request, so the
+ * diagram is complete without JS and for people who prefer reduced motion.
+ * The curved wires are drawn by the script once it has measured the layout;
+ * until then (and without JS) plain straight connectors stand in for them.
+ */
+import Icon from './Icon.astro';
+import ClientMark from './ClientMark.astro';
+import { hub } from '../../data/home';
+import {
+  HUB_CLIENTS,
+  HUB_FILES,
+  HUB_PROCESSES,
+  HUB_REQUESTS,
+  HUB_TERMINAL,
+} from './scripts/hub-scenarios';
+
+const first = HUB_REQUESTS[0];
+const ev = (o: Record<string, unknown>) => JSON.stringify(o);
+const slugOf = (href: string) => href.split('/').filter(Boolean).pop() ?? '';
+
+/** c0..c3 run from a client to the core, p0..p2 from the core to a part of the computer. */
+const wires = [...HUB_CLIENTS.map((_, i) => `c${i}`), ...hub.parts.map((_, i) => `p${i}`)];
+---
+
+<div class="hx-hub" data-hub data-live>
+  <p class="hx-sr">{hub.description}</p>
+
+  <div class="hx-hub__plane" data-hub-plane>
+    <!-- What the active client is asked, and what it answers -->
+    <div class="hx-hub__say hx-enter hx-enter--fade" style="--d:1250" aria-hidden="true">
+      <div class="hx-hub__bubble" data-bubble data-state="ask">
+        <span class="hx-hub__q" data-q>{first.prompt}</span>
+        <span class="hx-hub__a">
+          <i class="hx-hub__tick"></i>
+          <span data-a>{first.answer}</span>
+        </span>
+      </div>
+      <i class="hx-hub__tail" data-tail></i>
+    </div>
+
+    <!-- AI clients -->
+    <ul class="hx-hub__clients">
+      {
+        HUB_CLIENTS.map((c, i) => (
+          <li class="hx-enter" style={`--d:${560 + i * 80}`}>
+            <a
+              class:list={['hx-hub__client', { 'is-active': i === 0 }]}
+              href={c.href}
+              aria-label={c.label}
+              data-hub-client={c.id}
+              data-ev={c.id === 'any' ? 'install_cta_clicked' : 'mcp_client_crosslink_clicked'}
+              data-ev-props={
+                c.id === 'any'
+                  ? ev({ button_text: c.name, button_location: 'home_hero_hub', destination: c.href })
+                  : ev({ from_client: 'home_hero', to_client: slugOf(c.href) })
+              }
+            >
+              <span class="hx-hub__logo">
+                {c.id === 'any' ? <Icon name="bot" /> : <ClientMark client={c.id} loading="eager" />}
+                <i class="hx-hub__done" />
+              </span>
+              <span class="hx-hub__name">
+                {c.short ? (
+                  <>
+                    <span class="hx-hub__name-full">{c.name}</span>
+                    <span class="hx-hub__name-short">{c.short}</span>
+                  </>
+                ) : (
+                  c.name
+                )}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="hx-hub__gap hx-hub__gap--a" aria-hidden="true">
+      <span class="hx-hub__fb hx-hub__fb--a"><i></i><i></i><i></i><i></i></span>
+    </div>
+
+    <!-- Desktop Commander, with the tool call it is running -->
+    <div class="hx-hub__mid" aria-hidden="true">
+      <span class="hx-hub__label hx-enter hx-enter--fade" style="--d:1000">
+        <span>{hub.core}</span>
+      </span>
+
+      <span class="hx-hub__core-slot">
+        <span class="hx-hub__core" data-core>
+          <span class="hx-hub__orbit"></span>
+          <span class="hx-hub__ring"></span>
+          <img src="/apple-touch-icon.png" alt="" width="180" height="180" decoding="async" />
+        </span>
+      </span>
+
+      <span class="hx-hub__call is-on is-done" data-call>
+        <span class="hx-hub__call-body">
+          <span class="hx-hub__tool">
+            <i class="hx-hub__state"></i>
+            <span data-tool>{first.tool}</span>
+          </span>
+          <span class="hx-hub__detail" data-detail>{first.result}</span>
+        </span>
+      </span>
+    </div>
+
+    <div class="hx-hub__gap hx-hub__gap--b" aria-hidden="true">
+      <span class="hx-hub__fb hx-hub__fb--b"><i></i><i></i><i></i></span>
+    </div>
+
+    <!-- Your computer -->
+    <div class="hx-hub__machine hx-enter" style="--d:900" data-machine data-show={first.part}>
+      <div class="hx-hub__parts" aria-hidden="true">
+        <div class:list={['hx-hub__part', { 'is-on': first.part === 'files' }]} data-part="files">
+          <div class="hx-hub__tab"><Icon name={hub.parts[0].icon} />{hub.parts[0].label}</div>
+          <div class="hx-hub__body">
+            <ul class="hx-hub__rows" data-files data-view="folders">
+              {
+                HUB_FILES.folders.map((f, i) => (
+                  <li class="hx-hub__row" data-kind="folder" style={`--i:${i}`}>
+                    <span class="hx-hub__row-name">{f.name}</span>
+                    <b>{f.count}</b>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+
+        <div class:list={['hx-hub__part', { 'is-on': first.part === 'terminal' }]} data-part="terminal">
+          <div class="hx-hub__tab"><Icon name={hub.parts[1].icon} />{hub.parts[1].label}</div>
+          <div class="hx-hub__body">
+            {/* each line stays on one source line: its white space is shown as written */}
+            <div class="hx-hub__term" data-term>
+              <div class="hx-term__line" data-k="cmd"><span class="hx-term__ps1">{HUB_TERMINAL.ps1}</span>{HUB_TERMINAL.cmd}</div>
+              {HUB_TERMINAL.lines.map((l) => <div class="hx-term__line" data-k={l.k}>{l.s}</div>)}
+            </div>
+          </div>
+        </div>
+
+        <div class:list={['hx-hub__part', { 'is-on': first.part === 'processes' }]} data-part="processes">
+          <div class="hx-hub__tab"><Icon name={hub.parts[2].icon} />{hub.parts[2].label}</div>
+          <div class="hx-hub__body">
+            <ul class="hx-hub__procs" data-procs>
+              {
+                HUB_PROCESSES.map((p, i) => (
+                  <li class:list={['hx-hub__proc', { 'is-hot': i === 0 }]} style={`--v:${p.cpu / 100}`}>
+                    <span class="hx-hub__proc-name">{p.name}</span>
+                    <span class="hx-hub__bar"><i /></span>
+                    <b>{p.cpu}%</b>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="hx-hub__foot">
+        <span class="hx-hub__foot-name"><Icon name="laptop" />{hub.machine}</span>
+        <span class="hx-hub__foot-state"><i class="hx-led"></i>{hub.status}</span>
+        <button
+          type="button"
+          class="hx-hub__toggle"
+          data-hub-toggle
+          aria-pressed="false"
+          aria-label="Pause the animation"
+        >
+          <Icon name="pause" data-when="playing" />
+          <Icon name="play" data-when="paused" />
+        </button>
+      </div>
+    </div>
+
+    <!-- Wires between the three levels. Geometry is filled in by hub.ts. -->
+    <svg class="hx-hub__wires" data-wires aria-hidden="true" focusable="false">
+      <defs>
+        <radialGradient id="hx-hub-glow">
+          <stop offset="0" stop-color="#ffffff" stop-opacity="1"></stop>
+          <stop offset="0.18" stop-color="#cfe0ff" stop-opacity="0.8"></stop>
+          <stop offset="0.45" stop-color="#70a3ff" stop-opacity="0.34"></stop>
+          <stop offset="1" stop-color="#70a3ff" stop-opacity="0"></stop>
+        </radialGradient>
+        <radialGradient id="hx-hub-glow-back">
+          <stop offset="0" stop-color="#ffffff" stop-opacity="1"></stop>
+          <stop offset="0.18" stop-color="#c9f8df" stop-opacity="0.8"></stop>
+          <stop offset="0.45" stop-color="#4ade80" stop-opacity="0.34"></stop>
+          <stop offset="1" stop-color="#4ade80" stop-opacity="0"></stop>
+        </radialGradient>
+      </defs>
+      {
+        wires.map((id, i) => (
+          <g class="hx-hub__wire" data-wire={id} style={`--i:${i}`}>
+            <path class="hx-hub__wire-glow" />
+            <path class="hx-hub__wire-line" pathLength="1" />
+            <path class="hx-hub__wire-flow" />
+            <circle class="hx-hub__port" r="3" />
+            <circle class="hx-hub__port" r="3" />
+          </g>
+        ))
+      }
+      <g class="hx-hub__comet" data-comet>
+        <path></path>
+        <path></path>
+        <path></path>
+        <path></path>
+        <circle class="hx-hub__comet-glow" data-for="out" r="19" fill="url(#hx-hub-glow)"></circle>
+        <circle class="hx-hub__comet-glow" data-for="back" r="19" fill="url(#hx-hub-glow-back)"></circle>
+        <circle class="hx-hub__comet-dot" r="3.1"></circle>
+      </g>
+    </svg>
+  </div>
+</div>

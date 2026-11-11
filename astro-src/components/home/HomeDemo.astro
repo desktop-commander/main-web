@@ -1,0 +1,24 @@
+---
+/**
+ * The example sessions as their own section (#demo).
+ *
+ * Used when the hero shows the connection diagram: the live stage, which is
+ * the hero visual in the other version, moves here so the page still shows
+ * real sessions from start to finish.
+ */
+import HeroStage from './HeroStage.astro';
+import { demo } from '../../data/home';
+---
+
+<section class="hx-section hx-demo" id="demo">
+  <div class="hx-rule" aria-hidden="true"></div>
+  <div class="hx-container">
+    <header class="hx-head" data-reveal>
+      <span class="hx-eyebrow"><span class="hx-eyebrow__text">{demo.eyebrow}</span></span>
+      <h2 class="hx-h2">{demo.heading}</h2>
+      <p class="hx-sub">{demo.sub}</p>
+    </header>
+
+    <HeroStage placement="section" />
+  </div>
+</section>

@@ -1,6 +1,8 @@
 ---
 /**
- * The live stage under the hero headline.
+ * The live stage: under the hero headline (placement "hero"), or as the
+ * centerpiece of its own section further down (placement "section", see
+ * HomeDemo.astro).
  *
  * Left: a chat. Right: a machine. Between them: Desktop Commander. A prompt
  * is typed, tool calls go out over the wire, the terminal runs them, and the
@@ -15,6 +17,12 @@ import ClientMark from './ClientMark.astro';
 import { SCENARIOS } from './scripts/scenarios';
 import type { IconName } from './icons';
 
+interface Props {
+  placement?: 'hero' | 'section';
+}
+const { placement = 'hero' } = Astro.props;
+const inHero = placement === 'hero';
+
 const first = SCENARIOS[0];
 const clientName = { chatgpt: 'ChatGPT', claude: 'Claude' } as const;
 const tabIcon: Record<string, IconName> = {
@@ -25,7 +33,14 @@ const tabIcon: Record<string, IconName> = {
 };
 ---
 
-<div class="hx-stage hx-enter hx-enter--fade" data-stage data-client={first.client} style="--d:900">
+<div
+  class:list={['hx-stage', { 'hx-enter hx-enter--fade': inHero }]}
+  data-stage
+  data-placement={placement}
+  data-client={first.client}
+  data-reveal={inHero ? undefined : 'fade'}
+  style={inHero ? '--d:900' : undefined}
+>
   <div class="hx-stage__floor" aria-hidden="true"></div>
 
   <p class="hx-sr">
@@ -133,7 +148,10 @@ const tabIcon: Record<string, IconName> = {
           data-tab={s.id}
           aria-pressed={i === 0 ? 'true' : 'false'}
           data-ev="hero_stage_scenario_clicked"
-          data-ev-props={JSON.stringify({ scenario: s.id, button_location: 'home_hero_stage' })}
+          data-ev-props={JSON.stringify({
+            scenario: s.id,
+            button_location: inHero ? 'home_hero_stage' : 'home_demo_stage',
+          })}
         >
           <span class="hx-tab__label">
             <Icon name={tabIcon[s.id] ?? 'terminal'} />

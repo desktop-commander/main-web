@@ -7,6 +7,7 @@
 import { initAnalytics } from './analytics';
 import { initCardLight, initCounters, initLive, initNav, initReveal } from './effects';
 import { initField } from './field';
+import { initHub } from './hub';
 import { initPill } from './pill';
 import { initSections } from './sections';
 import { initStage } from './stage';
@@ -29,6 +30,7 @@ const boot = () => {
   safely('nav', initNav);
   safely('reveal', () => initReveal(reduceMotion));
   safely('pill', () => initPill(reduceMotion));
+  safely('hub', () => initHub(reduceMotion));
   safely('stage', () => initStage(reduceMotion));
   safely('sections', () => initSections(reduceMotion));
   safely('counters', () => initCounters(reduceMotion));
