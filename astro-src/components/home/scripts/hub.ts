@@ -30,7 +30,7 @@ import {
 
 /** All timings in ms. */
 const T = {
-  firstDraw: 1250, // wires start drawing this long after the page began loading
+  firstDraw: 1250, // wires start drawing this long into the hero entrance
   firstSend: 2700, // and the first request leaves at this point
   swap: 230, // the bubble moves to the next client
   start: 120,
@@ -542,7 +542,7 @@ export function initHub(reduceMotion: boolean) {
       setBubble(r, false);
       bubble.classList.add('is-in');
       action.start();
-      await wait(Math.max(700, T.firstSend - performance.now()));
+      await wait(Math.max(700, T.firstSend - entrance()));
     } else {
       bubble.classList.remove('is-in');
       await wait(T.swap);
@@ -597,6 +597,19 @@ export function initHub(reduceMotion: boolean) {
 
   // ---- start ----
 
+  /**
+   * How far the hero entrance has got, in ms. The entrance is plain CSS and
+   * starts with the first frame the visitor sees, which is not always when the
+   * page loaded (a tab opened in the background starts it when it is first
+   * looked at). The computer panel carries one of those entrance animations,
+   * so its clock is the one the wires and the first request follow.
+   */
+  const entrance = () => {
+    const running = machine.getAnimations?.() ?? [];
+    const time = running.find((a) => (a as CSSAnimation).animationName === 'hx-enter')?.currentTime;
+    return typeof time === 'number' ? time : performance.now();
+  };
+
   layout();
   new ResizeObserver(layout).observe(plane);
   document.fonts?.ready.then(layout).catch(() => {
@@ -648,8 +661,8 @@ export function initHub(reduceMotion: boolean) {
     return;
   }
 
-  // The wires draw themselves in once the hero has made its entrance.
-  hub.style.setProperty('--draw', `${Math.max(0, Math.round(T.firstDraw - performance.now()))}ms`);
+  // The wires draw themselves in once the clients and the computer have arrived.
+  hub.style.setProperty('--draw', `${Math.max(0, Math.round(T.firstDraw - entrance()))}ms`);
   requestAnimationFrame(() => requestAnimationFrame(() => hub.classList.add('is-drawn')));
 
   toggle?.addEventListener('click', () => {
