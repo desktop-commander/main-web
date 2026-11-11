@@ -93,8 +93,10 @@ The homepage is plain Astro sections instead of one React island per section:
     and no separate demo section.
 - Comparing the two: on the dev server only, `/preview/hero-a/` (stage) and `/preview/hero-b/` (hub)
   render both versions, and a small switch in the bottom left corner flips between them
-  (`pages/preview/[hero].astro`, `DevHeroSwitch.astro`). A production build generates neither the
-  pages nor the switch.
+  (`pages/preview/[hero].astro`, `DevHeroSwitch.astro`). A build generates neither the pages nor
+  the switch. Both are gated on the Astro CLI command (`components/home/dev-server.ts`), not on
+  `import.meta.env.DEV`: a dev server started through Desktop Commander inherits
+  `NODE_ENV=production` from its shell, which makes `import.meta.env.DEV` false there.
 - `astro-src/components/home/Home*.astro` — one file per section (hero, demo, install, remote, use
   cases, how it works, prompts, clients, community, pricing, FAQ, closing band).
 - `astro-src/data/home.ts` — all homepage copy. URLs, stats and rankings still come from

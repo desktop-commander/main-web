@@ -35,6 +35,7 @@ import HomePricing from './HomePricing.astro';
 import HomeFaq from './HomeFaq.astro';
 import HomeFinalCta from './HomeFinalCta.astro';
 import DevHeroSwitch from './DevHeroSwitch.astro';
+import { isDevServer } from './dev-server';
 import './home.css';
 import './home-sections.css';
 import './home-hub.css';
@@ -99,8 +100,8 @@ const home = new URL('/', Astro.site || 'http://localhost:4321').href;
     <Footer client:visible />
   </div>
 
-  {/* Only while developing: flip between the two hero versions. Never built. */}
-  {import.meta.env.DEV && <DevHeroSwitch current={hero} />}
+  {/* Dev server only: flip between the two hero versions. Never built. */}
+  {isDevServer && <DevHeroSwitch current={hero} />}
 </Layout>
 
 <script>

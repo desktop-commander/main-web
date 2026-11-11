@@ -2,8 +2,8 @@
 /**
  * Dev only: a small switch in the corner to flip between the two hero
  * versions while comparing them (see HomePage.astro, pages/preview/[hero].astro).
- * It is rendered only by the dev server and its styles are inline, so nothing
- * of it reaches a production build.
+ * It is rendered only by the dev server (see dev-server.ts) and its styles are
+ * inline, so nothing of it reaches a build.
  */
 interface Props {
   current: 'hub' | 'stage';

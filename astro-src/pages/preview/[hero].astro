@@ -4,13 +4,14 @@
  *   /preview/hero-a/   live demo under a centered headline
  *   /preview/hero-b/   connection diagram next to the copy
  *
- * These pages exist only on the dev server (npm run dev). A production build
- * generates nothing here, so they can never be deployed by accident.
+ * These pages exist only on the dev server (npm run dev). A build generates
+ * nothing here, so they can never be deployed by accident.
  */
 import HomePage from '../../components/home/HomePage.astro';
+import { isDevServer } from '../../components/home/dev-server';
 
 export function getStaticPaths() {
-  return import.meta.env.DEV ? [{ params: { hero: 'hero-a' } }, { params: { hero: 'hero-b' } }] : [];
+  return isDevServer ? [{ params: { hero: 'hero-a' } }, { params: { hero: 'hero-b' } }] : [];
 }
 
 const { hero } = Astro.params;
