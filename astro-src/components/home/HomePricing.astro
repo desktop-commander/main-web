@@ -1,0 +1,64 @@
+---
+/** Remote MCP plans (#pricing), mirroring what users see in Plan & billing. */
+import Icon from './Icon.astro';
+import { pricing } from '../../data/home';
+---
+
+<section class="hx-section hx-section--dots hx-pricing" id="pricing">
+  <div class="hx-rule" aria-hidden="true"></div>
+  <div class="hx-container">
+    <header class="hx-head" data-reveal>
+      <span class="hx-eyebrow"><span class="hx-eyebrow__text">Plans</span></span>
+      <h2 class="hx-h2">{pricing.heading}</h2>
+      <p class="hx-sub">{pricing.sub}</p>
+    </header>
+
+    <div class="hx-plans" data-light data-live>
+      {
+        pricing.plans.map((plan, i) => (
+          <article
+            class:list={['hx-card', 'hx-plan', { 'hx-plan--pro': plan.highlighted }]}
+            data-reveal
+            style={`--d:${i * 120}`}
+          >
+            {plan.highlighted && <span class="hx-plan__ring" aria-hidden="true" />}
+            <h3>{plan.name}</h3>
+            <p class="hx-plan__price">
+              <span>{plan.price}</span>
+              <small>{plan.period}</small>
+            </p>
+            <ul class="hx-checks">
+              {plan.features.map((feature) => (
+                <li>
+                  <Icon name="check" strokeWidth={2.6} />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+            <a
+              class:list={['hx-btn', 'hx-btn--block', plan.highlighted ? 'hx-btn--primary' : 'hx-btn--ghost']}
+              href={plan.cta.href}
+              target={plan.cta.external ? '_blank' : undefined}
+              rel={plan.cta.external ? 'noopener noreferrer' : undefined}
+              data-ev="pricing_cta_clicked"
+              data-ev-props={JSON.stringify({
+                button_text: plan.cta.label,
+                button_location: 'home_pricing',
+                plan: plan.name.toLowerCase(),
+                destination: plan.cta.href,
+              })}
+            >
+              {plan.cta.label}
+              <Icon name="arrow-right" class="hx-icon--arrow" />
+            </a>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="hx-pricing__note" data-reveal>
+      {pricing.note}{' '}
+      <a class="hx-link" href={pricing.noteLink.href}>{pricing.noteLink.label}</a>
+    </p>
+  </div>
+</section>

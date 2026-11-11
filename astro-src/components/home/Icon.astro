@@ -1,0 +1,30 @@
+---
+/**
+ * Inline SVG icon for the homepage. Shapes come from ./icons.ts.
+ * Size follows the font size of the parent (1em) unless a class overrides it.
+ */
+import { ICONS, type IconName } from './icons';
+
+interface Props {
+  name: IconName;
+  class?: string;
+  strokeWidth?: number;
+  [attr: string]: unknown;
+}
+
+const { name, class: className = '', strokeWidth = 2, ...rest } = Astro.props;
+---
+
+<svg
+  class:list={['hx-icon', className]}
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width={strokeWidth}
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  {...rest}
+  set:html={ICONS[name]}
+/>

@@ -1,0 +1,60 @@
+---
+/**
+ * FAQ (#faq). Questions are buttons that open their answer (one at a time).
+ * Without JS every answer is simply shown. Behavior: ./scripts/sections.ts.
+ */
+import Icon from './Icon.astro';
+import { faq } from '../../data/home';
+---
+
+<section class="hx-section hx-faq" id="faq">
+  <div class="hx-container hx-faq__grid">
+    <div class="hx-faq__side">
+      <header class="hx-head hx-head--left" data-reveal>
+        <span class="hx-eyebrow"><span class="hx-eyebrow__text">FAQ</span></span>
+        <h2 class="hx-h2">{faq.heading}</h2>
+        <p class="hx-sub">{faq.sub}</p>
+      </header>
+
+      <div class="hx-card hx-faq__help" data-reveal style="--d:100">
+        <span class="hx-faq__help-icon"><Icon name="life-buoy" /></span>
+        <h3>{faq.help.title}</h3>
+        <p>{faq.help.text}</p>
+        <a class="hx-link" href={faq.help.href}>
+          {faq.help.cta} &rarr;
+        </a>
+      </div>
+    </div>
+
+    <div class="hx-faq__list" data-faq data-reveal style="--d:80">
+      {
+        faq.items.map((item, i) => (
+          <div class="hx-faq__item">
+            <h3>
+              <button
+                type="button"
+                class="hx-faq__q"
+                aria-expanded="false"
+                aria-controls={`faq-panel-${i}`}
+                id={`faq-button-${i}`}
+              >
+                <span>{item.question}</span>
+                <span class="hx-faq__icon" aria-hidden="true" />
+              </button>
+            </h3>
+            <div
+              class="hx-faq__panel"
+              id={`faq-panel-${i}`}
+              role="region"
+              aria-labelledby={`faq-button-${i}`}
+            >
+              <div>
+                <p>{item.answer}</p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

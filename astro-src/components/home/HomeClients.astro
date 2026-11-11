@@ -1,0 +1,62 @@
+---
+/**
+ * "Works with your AI client": links to every /mcp/<client>/ landing page.
+ *
+ * Same data and same internal links as the shared MoreClients.astro (SEO:
+ * the homepage links to each client page), in the homepage visual language.
+ */
+import Icon from './Icon.astro';
+import ClientMark from './ClientMark.astro';
+import { clients } from '../../data/home';
+import { mcpClients } from '../../data/mcp-clients';
+---
+
+<section class="hx-section hx-clients">
+  <div class="hx-rule" aria-hidden="true"></div>
+  <div class="hx-container">
+    <header class="hx-head" data-reveal>
+      <span class="hx-eyebrow"><span class="hx-eyebrow__text">Clients</span></span>
+      <h2 class="hx-h2">{clients.heading}</h2>
+      <p class="hx-sub">{clients.sub}</p>
+    </header>
+
+    <div class="hx-clients__grid" data-light>
+      {
+        mcpClients.map((client, i) => (
+          <a
+            class="hx-card hx-client"
+            href={`/mcp/${client.slug}/`}
+            data-reveal
+            style={`--d:${i * 90}`}
+            data-crosslink-to={client.slug}
+            data-ev="mcp_client_crosslink_clicked"
+            data-ev-props={JSON.stringify({ from_client: 'mcp_hub', to_client: client.slug })}
+          >
+            <span class="hx-client__top">
+              <span class="hx-logo-tile">
+                {client.slug === 'chatgpt' || client.logo ? (
+                  <ClientMark client={client.slug} logo={client.logo} />
+                ) : (
+                  <span class="hx-client__letter">{client.name.charAt(0)}</span>
+                )}
+              </span>
+              <span class="hx-client__go">
+                <Icon name="arrow-up-right" />
+              </span>
+            </span>
+
+            <span class="hx-client__for">Desktop Commander for</span>
+            <span class="hx-client__name">{client.name}</span>
+
+            <span class="hx-client__meta">
+              <span class:list={['hx-chip', client.transport === 'remote' ? 'hx-chip--green' : 'hx-chip--blue']}>
+                {client.transport === 'remote' ? 'Remote MCP' : 'Local MCP'}
+              </span>
+              <span>files & terminal</span>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

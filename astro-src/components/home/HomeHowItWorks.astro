@@ -1,0 +1,202 @@
+---
+/**
+ * "How it works": the real setup path in four steps.
+ *
+ * On wide screens the steps scroll on the left while one screen stays pinned
+ * on the right and changes with the step in view (native scrolling, nothing
+ * is hijacked). On narrow screens each step is followed by its own screen.
+ * Step tracking is in ./scripts/sections.ts.
+ *
+ * The screens are simplified illustrations of each step, not screenshots.
+ */
+import Icon from './Icon.astro';
+import ClientMark from './ClientMark.astro';
+import { howItWorks, MCP_ENDPOINT } from '../../data/home';
+
+const endpointLabel = MCP_ENDPOINT.replace(/^https?:\/\//, '');
+const num = (i: number) => String(i + 1).padStart(2, '0');
+---
+
+<section class="hx-section hx-how" id="how-it-works">
+  <div class="hx-rule" aria-hidden="true"></div>
+  <div class="hx-container">
+    <header class="hx-head" data-reveal>
+      <span class="hx-eyebrow"><span class="hx-eyebrow__text">Setup</span></span>
+      <h2 class="hx-h2">{howItWorks.heading}</h2>
+      <p class="hx-sub">{howItWorks.sub}</p>
+    </header>
+
+    <div class="hx-how__grid" data-how>
+      <div class="hx-how__rail" aria-hidden="true"><i data-how-progress></i></div>
+
+      {
+        howItWorks.steps.map((step, i) => (
+          <>
+            <div class:list={['hx-how__step', { 'is-active': i === 0 }]} data-how-step={i}>
+              <span class="hx-how__num">{num(i)}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </div>
+
+            <div
+              class:list={['hx-how__screen', { 'is-active': i === 0 }]}
+              data-how-screen={i}
+              aria-hidden="true"
+            >
+              <div class="hx-mock">
+                <div class="hx-mock__bar">
+                  <span class="hx-win__lights">
+                    <i />
+                    <i />
+                    <i />
+                  </span>
+                  <span class="hx-mock__url">
+                    {i < 2 ? (
+                      <>
+                        <Icon name="lock" /> mcp.desktopcommander.app
+                      </>
+                    ) : i === 2 ? (
+                      'Connectors'
+                    ) : (
+                      'New chat'
+                    )}
+                  </span>
+                  <span class="hx-mock__step">
+                    {num(i)} / {num(howItWorks.steps.length - 1)}
+                  </span>
+                </div>
+
+                {i === 0 && (
+                  <div class="hx-mock__body hx-signup">
+                    <img src="/apple-touch-icon.png" alt="" width="48" height="48" loading="lazy" />
+                    <strong>Create your account</strong>
+                    <div class="hx-field">
+                      <Icon name="mail" />
+                      <span class="hx-typed" style="--chars:15">you@company.com</span>
+                    </div>
+                    <div class="hx-mock__btn">
+                      <span class="hx-mock__btn-idle">Continue with email</span>
+                      <span class="hx-mock__btn-done">
+                        <Icon name="check" strokeWidth={3} /> Account ready
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {i === 1 && (
+                  <div class="hx-mock__body">
+                    <div class="hx-mock__head">
+                      <strong>Devices</strong>
+                      <span class="hx-chip hx-chip--blue">
+                        <Icon name="plus" /> Add device
+                      </span>
+                    </div>
+                    <ul class="hx-devlist">
+                      <li>
+                        <span class="hx-devlist__icon">
+                          <Icon name="laptop" />
+                        </span>
+                        <b>MacBook Pro</b>
+                        <span class="hx-devlist__state">
+                          <i class="hx-led" /> online
+                        </span>
+                      </li>
+                      <li>
+                        <span class="hx-devlist__icon">
+                          <Icon name="monitor" />
+                        </span>
+                        <b>Home PC</b>
+                        <span class="hx-devlist__state">
+                          <i class="hx-led" /> online
+                        </span>
+                      </li>
+                      <li class="hx-devlist__new">
+                        <span class="hx-devlist__icon">
+                          <Icon name="server" />
+                        </span>
+                        <b>vps-fra1</b>
+                        <span class="hx-devlist__state">
+                          <span class="hx-devlist__wait">connecting</span>
+                          <span class="hx-devlist__ok">
+                            <i class="hx-led" /> online
+                          </span>
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+
+                {i === 2 && (
+                  <div class="hx-mock__body">
+                    <ul class="hx-clientlist">
+                      <li style="--n:0">
+                        <span class="hx-logo-tile">
+                          <ClientMark client="chatgpt" />
+                        </span>
+                        <span class="hx-clientlist__text">
+                          <b>ChatGPT</b>
+                          <small>Install the plugin</small>
+                        </span>
+                        <span class="hx-switch" />
+                      </li>
+                      <li style="--n:1">
+                        <span class="hx-logo-tile">
+                          <ClientMark client="claude" />
+                        </span>
+                        <span class="hx-clientlist__text">
+                          <b>Claude</b>
+                          <small>Add the connector</small>
+                        </span>
+                        <span class="hx-switch" />
+                      </li>
+                      <li style="--n:2">
+                        <span class="hx-logo-tile hx-logo-tile--dark">
+                          <Icon name="plug" />
+                        </span>
+                        <span class="hx-clientlist__text">
+                          <b>Any MCP client</b>
+                          <small class="hx-mono">{endpointLabel}</small>
+                        </span>
+                        <span class="hx-switch" />
+                      </li>
+                    </ul>
+                  </div>
+                )}
+
+                {i === 3 && (
+                  <div class="hx-mock__body hx-minichat">
+                    <div class="hx-msg--user hx-minichat__user">
+                      Put the October invoices in one folder.
+                    </div>
+                    <div class="hx-tools hx-minichat__tools">
+                      <div class="hx-tools__head">
+                        <img src="/favicon-32x32.png" alt="" width="16" height="16" loading="lazy" />
+                        Desktop Commander
+                        <span>2 tool calls</span>
+                      </div>
+                      <div class="hx-tool is-done">
+                        <i class="hx-tool__state" />
+                        <span class="hx-tool__name">start_search</span>
+                        <span class="hx-tool__arg">invoice</span>
+                        <span class="hx-tool__res">14 files</span>
+                      </div>
+                      <div class="hx-tool is-done">
+                        <i class="hx-tool__state" />
+                        <span class="hx-tool__name">move_file</span>
+                        <span class="hx-tool__arg">Finance/2026-10</span>
+                        <span class="hx-tool__res">14 moved</span>
+                      </div>
+                    </div>
+                    <p class="hx-minichat__answer">
+                      Done. All 14 October invoices are in Finance/2026-10.
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </>
+        ))
+      }
+    </div>
+  </div>
+</section>

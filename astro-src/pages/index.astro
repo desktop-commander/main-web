@@ -5,25 +5,34 @@
  * Remote MCP is the product: Install is the only primary CTA, Manage devices
  * is the constant secondary, and the desktop app is off the main path.
  *
- * The previous app-first homepage lives in git history (see the commit that
- * introduced this file) if any of it needs to come back.
+ * Structure: the sections are plain Astro components in
+ * ../components/home/ (server-rendered HTML, no React island each), styled by
+ * ../components/home/home.css and brought to life by the small scripts in
+ * ../components/home/scripts/. Copy lives in ../data/home.ts.
+ *
+ * Navigation and Footer are the shared site components, unchanged.
+ *
+ * The previous homepage (React sections under src/components/home-mcp/) is
+ * still in the repo and in git history if any of it needs to come back.
  */
 import Layout from '../layouts/Layout.astro';
 import { organizationSchema } from '../data/schema';
 import Navigation from '../components/Navigation.astro';
-import MoreClients from '../components/MoreClients.astro';
 import PostHogInit from '../../src/components/PostHogInit';
-import HeroMcp from '../../src/components/home-mcp/HeroMcp';
-import InstallChooser from '../../src/components/home-mcp/InstallChooser';
-import MCPRemote from '../../src/components/mcp/MCPRemote';
-import McpUseCases from '../../src/components/home-mcp/McpUseCases';
-import HowItWorks from '../../src/components/home-mcp/HowItWorks';
-import PromptLibrary from '../../src/components/PromptLibrary';
-import McpPricing from '../../src/components/home-mcp/McpPricing';
-import TrustedBy from '../../src/components/TrustedBy';
-import MCPFAQ from '../../src/components/mcp/MCPFAQ';
-import FinalInstall from '../../src/components/home-mcp/FinalInstall';
 import Footer from '../../src/components/Footer';
+import HomeHero from '../components/home/HomeHero.astro';
+import HomeInstall from '../components/home/HomeInstall.astro';
+import HomeRemote from '../components/home/HomeRemote.astro';
+import HomeUseCases from '../components/home/HomeUseCases.astro';
+import HomeHowItWorks from '../components/home/HomeHowItWorks.astro';
+import HomePrompts from '../components/home/HomePrompts.astro';
+import HomeClients from '../components/home/HomeClients.astro';
+import HomeCommunity from '../components/home/HomeCommunity.astro';
+import HomePricing from '../components/home/HomePricing.astro';
+import HomeFaq from '../components/home/HomeFaq.astro';
+import HomeFinalCta from '../components/home/HomeFinalCta.astro';
+import '../components/home/home.css';
+import '../components/home/home-sections.css';
 ---
 
 <Layout
@@ -31,27 +40,43 @@ import Footer from '../../src/components/Footer';
   description="Desktop Commander gives ChatGPT and Claude access to your computer, so they read your files, run commands, and see the results themselves. Your own machine, not a cloud sandbox."
   jsonLd={organizationSchema}
 >
+  <!-- Fonts for the first screen. rel=preload is valid in <body>. -->
+  <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!--
+    Marks the page as scripted before first paint, so sections below the hero
+    can start hidden and reveal on scroll without a flash. If the main script
+    has not started after 3 seconds (blocked, failed), everything is simply
+    shown. The hero itself does not depend on this: its entrance is pure CSS.
+  -->
+  <script is:inline>
+    document.documentElement.classList.add('hx-js');
+    window.__hxFallback = setTimeout(function () {
+      document.documentElement.classList.add('hx-noanim');
+    }, 3000);
+  </script>
+
   <PostHogInit client:idle />
 
-  <div class="min-h-screen bg-background">
+  <div class="hx min-h-screen">
     <Navigation />
     <main>
-      <HeroMcp client:load />
-      <InstallChooser client:visible />
-      <MCPRemote client:visible />
-      <McpUseCases client:visible />
-      <HowItWorks client:visible />
-      <PromptLibrary client:visible />
-      <MoreClients heading="Works with your AI client" />
-      <TrustedBy client:visible />
-      <McpPricing client:visible />
-      <MCPFAQ client:visible />
-      <FinalInstall client:visible />
+      <HomeHero />
+      <HomeInstall />
+      <HomeRemote />
+      <HomeUseCases />
+      <HomeHowItWorks />
+      <HomePrompts />
+      <HomeClients />
+      <HomeCommunity />
+      <HomePricing />
+      <HomeFaq />
+      <HomeFinalCta />
     </main>
     <Footer client:visible />
   </div>
 </Layout>
 
-<style is:global>
-  @import '../../src/index.css';
-</style>
+<script>
+  import '../components/home/scripts/main.ts';
+</script>

@@ -1,0 +1,142 @@
+---
+/**
+ * The single install destination for the whole site (#install).
+ *
+ * ChatGPT and Claude are the two prominent paths. Any other MCP client and
+ * the local MCP server sit below them as quieter options.
+ *
+ * Behavior (expand, copy) is in ./scripts/sections.ts.
+ */
+import Icon from './Icon.astro';
+import ClientMark from './ClientMark.astro';
+import { install, topRanking } from '../../data/home';
+
+const LOCATION = 'home_install_chooser';
+const ev = (o: Record<string, unknown>) => JSON.stringify(o);
+---
+
+<section class="hx-section hx-section--dots hx-install" id="install">
+  <div class="hx-rule" aria-hidden="true"></div>
+  <div class="hx-container">
+    <header class="hx-head" data-reveal>
+      <span class="hx-eyebrow"><span class="hx-eyebrow__text">Install</span></span>
+      <h2 class="hx-h2">{install.heading}</h2>
+      <p class="hx-sub">{install.sub}</p>
+    </header>
+
+    <div class="hx-install__grid" data-light>
+      {
+        install.options.map((option, i) => {
+          const rank = topRanking(option.slug);
+          return (
+            <article class="hx-card hx-install__card" data-reveal style={`--d:${i * 120}`}>
+              <div class="hx-install__top">
+                <span class="hx-logo-tile">
+                  <ClientMark client={option.slug} />
+                </span>
+                <div class="hx-install__name">
+                  <h3>{option.name}</h3>
+                  {rank && (
+                    <span class="hx-chip hx-chip--blue">
+                      #{rank.rank} {rank.label}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <p class="hx-install__desc">{option.description}</p>
+
+              <ul class="hx-checks">
+                {option.bullets.map((bullet) => (
+                  <li>
+                    <Icon name="check" strokeWidth={2.6} />
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                class="hx-btn hx-btn--primary hx-btn--block"
+                href={option.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-ev="install_cta_clicked"
+                data-ev-props={ev({
+                  button_text: option.cta,
+                  button_location: LOCATION,
+                  client: option.slug,
+                  destination: option.href,
+                })}
+              >
+                {option.cta}
+                <Icon name="arrow-right" class="hx-icon--arrow" />
+              </a>
+            </article>
+          );
+        })
+      }
+    </div>
+
+    <div class="hx-install__more" data-reveal style="--d:160">
+      <!-- Any other MCP client, folded away so it stays quiet -->
+      <div class="hx-fold" data-fold data-fold-location={LOCATION}>
+        <button
+          type="button"
+          class="hx-fold__button"
+          aria-expanded="false"
+          aria-controls="any-client-details"
+        >
+          <Icon name="plug" />
+          <span>{install.anyClient.summary}</span>
+          <Icon name="chevron-down" class="hx-fold__chev" />
+        </button>
+        <div class="hx-fold__panel" id="any-client-details">
+          <div>
+            <div class="hx-fold__inner">
+              <p>{install.anyClient.details}</p>
+              <div class="hx-endpoint">
+                <code>{install.anyClient.endpoint}</code>
+                <button
+                  type="button"
+                  class="hx-btn hx-btn--ghost hx-btn--sm"
+                  data-copy={install.anyClient.endpoint}
+                  data-copy-location={LOCATION}
+                >
+                  <Icon name="copy" data-when="idle" />
+                  <Icon name="check" data-when="done" strokeWidth={2.6} />
+                  <span data-copy-label>Copy URL</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quieter local option -->
+      <div class="hx-install__local">
+        <Icon name="terminal" />
+        <p>{install.local.text}</p>
+        <a
+          class="hx-link"
+          href={install.local.href}
+          data-ev="install_cta_clicked"
+          data-ev-props={ev({
+            button_text: install.local.cta,
+            button_location: LOCATION,
+            client: 'local',
+            destination: install.local.href,
+          })}
+        >
+          {install.local.cta} &rarr;
+        </a>
+      </div>
+
+      <p class="hx-install__help">
+        Trouble connecting? Read{' '}
+        <a class="hx-link" href="/help/devices/connect-computer">how to connect a computer</a>{' '}
+        or{' '}
+        <a class="hx-link" href="/help/troubleshooting/remote-cant-find-computer">why your computer isn't found</a>.
+      </p>
+    </div>
+  </div>
+</section>

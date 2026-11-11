@@ -1,0 +1,53 @@
+---
+/** Closing band: same two CTAs as the hero, nothing else competing. */
+import Icon from './Icon.astro';
+import { finalCta, PLATFORM_URL } from '../../data/home';
+
+const ev = (o: Record<string, unknown>) => JSON.stringify(o);
+---
+
+<section class="hx-final">
+  <div class="hx-final__horizon" aria-hidden="true">
+    <span class="hx-final__ring"></span>
+    <span class="hx-final__ring"></span>
+    <span class="hx-final__ring"></span>
+  </div>
+
+  <div class="hx-container hx-final__inner">
+    <span class="hx-final__mark" data-reveal="scale">
+      <img src="/apple-touch-icon.png" alt="" width="64" height="64" loading="lazy" />
+    </span>
+    <h2 class="hx-h2 hx-final__title" data-reveal style="--d:80">{finalCta.heading}</h2>
+    <p class="hx-sub" data-reveal style="--d:160">{finalCta.sub}</p>
+
+    <div class="hx-hero__cta" data-reveal style="--d:240">
+      <a
+        class="hx-btn hx-btn--primary"
+        href="#install"
+        data-ev="install_cta_clicked"
+        data-ev-props={ev({
+          button_text: 'Install',
+          button_location: 'home_final_cta',
+          destination: '#install',
+        })}
+      >
+        Install
+        <Icon name="arrow-right" class="hx-icon--arrow" />
+      </a>
+      <a
+        class="hx-btn hx-btn--ghost"
+        href={PLATFORM_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-ev="manage_devices_clicked"
+        data-ev-props={ev({
+          button_text: 'Manage devices',
+          button_location: 'home_final_cta',
+          destination: PLATFORM_URL,
+        })}
+      >
+        Manage devices
+      </a>
+    </div>
+  </div>
+</section>

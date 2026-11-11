@@ -1,0 +1,144 @@
+---
+/**
+ * "What people use it for": the four buckets from the interview and survey
+ * copy, each with a small looping illustration of that kind of work.
+ *
+ * The illustrations are decorative (aria-hidden) and only animate while on
+ * screen (data-live, see initLive in ./scripts/effects.ts).
+ */
+import Icon from './Icon.astro';
+import { useCases } from '../../data/home';
+
+const byId = Object.fromEntries(useCases.buckets.map((b) => [b.id, b]));
+---
+
+<section class="hx-section hx-uses">
+  <div class="hx-container">
+    <header class="hx-head" data-reveal>
+      <span class="hx-eyebrow"><span class="hx-eyebrow__text">Use cases</span></span>
+      <h2 class="hx-h2">{useCases.heading}</h2>
+      <p class="hx-sub">{useCases.sub}</p>
+    </header>
+
+    <div class="hx-bento" data-light>
+      <!-- Files and documents -->
+      <article class="hx-card hx-bento__card hx-bento__card--wide" data-reveal>
+        <div class="hx-viz hx-viz--files" data-live aria-hidden="true">
+          <div class="hx-viz__search">
+            <Icon name="search" />
+            <span class="hx-viz__typed">invoice march</span>
+          </div>
+          <ul class="hx-files">
+            <li style="--n:0">
+              <Icon name="file-text" /><span>invoice_2026_03.pdf</span><em>Finance</em>
+            </li>
+            <li style="--n:1">
+              <Icon name="image" /><span>IMG_2231.heic</span><em>Photos</em>
+            </li>
+            <li style="--n:2">
+              <Icon name="file-text" /><span>report_final_v2.docx</span><em>Reports</em>
+            </li>
+            <li style="--n:3">
+              <Icon name="database" /><span>export_q3.csv</span><em>Data</em>
+            </li>
+          </ul>
+        </div>
+        <div class="hx-bento__text">
+          <h3>{byId.files.title}</h3>
+          <p>{byId.files.description}</p>
+        </div>
+      </article>
+
+      <!-- Code and projects -->
+      <article class="hx-card hx-bento__card" data-reveal style="--d:100">
+        <div class="hx-viz hx-viz--code" data-live aria-hidden="true">
+          <div class="hx-code__tabs"><span class="is-on">date.ts</span><span>date.test.ts</span></div>
+          <div class="hx-code__body">
+            <div class="hx-code__dim"><i>16</i>{'// keep the timezone offset'}</div>
+            <div><i>17</i>{'export function parseDate(input) {'}</div>
+            <div class="hx-code__del"><i>18</i>{'  return new Date(input.slice(0, 19));'}</div>
+            <div class="hx-code__add"><i>18</i><span>{'  return new Date(input);'}</span></div>
+            <div><i>19</i>{'}'}</div>
+            <div><i>20</i></div>
+            <div><i>21</i>{'export const toISO = (d) => d.toISOString();'}</div>
+          </div>
+          <div class="hx-code__status">
+            <span class="hx-code__fail">2 failed</span>
+            <span class="hx-code__pass"><Icon name="check" strokeWidth={3} /> 48 passed</span>
+          </div>
+        </div>
+        <div class="hx-bento__text">
+          <h3>{byId.code.title}</h3>
+          <p>{byId.code.description}</p>
+        </div>
+      </article>
+
+      <!-- Servers and devices -->
+      <article class="hx-card hx-bento__card" data-reveal>
+        <div class="hx-viz hx-viz--servers" data-live aria-hidden="true">
+          <ul class="hx-servers">
+            <li>
+              <i class="hx-led"></i><b>vps-fra1</b>
+              <svg viewBox="0 0 80 24" preserveAspectRatio="none"><path d="M0 16 L8 14 L16 17 L24 9 L32 12 L40 6 L48 13 L56 10 L64 15 L72 8 L80 11" /></svg>
+              <small>load 0.42</small>
+            </li>
+            <li>
+              <i class="hx-led"></i><b>home-server</b>
+              <svg viewBox="0 0 80 24" preserveAspectRatio="none"><path d="M0 12 L8 15 L16 11 L24 14 L32 10 L40 13 L48 9 L56 14 L64 12 L72 16 L80 13" /></svg>
+              <small>load 0.18</small>
+            </li>
+            <li>
+              <i class="hx-led"></i><b>raspberry-pi</b>
+              <svg viewBox="0 0 80 24" preserveAspectRatio="none"><path d="M0 14 L8 13 L16 15 L24 12 L32 16 L40 11 L48 14 L56 12 L64 10 L72 13 L80 12" /></svg>
+              <small>load 0.07</small>
+            </li>
+          </ul>
+          <div class="hx-log">
+            <div class="hx-log__view">
+              <div class="hx-log__track">
+                <span>14:02:11 deploy: pulled main (a41f9c2)</span>
+                <span>14:02:19 build finished in 7.8s</span>
+                <span>14:02:21 nginx reloaded, 0 errors</span>
+                <span>14:02:22 health check 200 OK</span>
+                <span>14:02:11 deploy: pulled main (a41f9c2)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hx-bento__text">
+          <h3>{byId.servers.title}</h3>
+          <p>{byId.servers.description}</p>
+        </div>
+      </article>
+
+      <!-- Troubleshooting -->
+      <article class="hx-card hx-bento__card hx-bento__card--wide" data-reveal style="--d:100">
+        <div class="hx-viz hx-viz--disk" data-live aria-hidden="true">
+          <div class="hx-disk__head">
+            <span><Icon name="hard-drive" /> Macintosh HD</span>
+            <b class="hx-disk__pct"></b>
+          </div>
+          <div class="hx-disk__bar">
+            <i class="hx-disk__seg hx-disk__seg--base"></i>
+            <i class="hx-disk__seg hx-disk__seg--a"></i>
+            <i class="hx-disk__seg hx-disk__seg--b"></i>
+            <i class="hx-disk__seg hx-disk__seg--c"></i>
+          </div>
+          <ul class="hx-disk__legend">
+            <li class="hx-disk__item hx-disk__item--a"><i></i>App caches<b>41 GB</b></li>
+            <li class="hx-disk__item hx-disk__item--b"><i></i>Old node_modules<b>23 GB</b></li>
+            <li class="hx-disk__item hx-disk__item--c"><i></i>Docker data<b>18 GB</b></li>
+          </ul>
+          <div class="hx-disk__result">
+            <span class="hx-disk__scan">Looking for what takes up space</span>
+            <span class="hx-disk__done"><Icon name="check" strokeWidth={3} /> 82 GB freed</span>
+          </div>
+        </div>
+        <div class="hx-bento__text">
+          <h3>{byId.fix.title}</h3>
+          <p>{byId.fix.description}</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

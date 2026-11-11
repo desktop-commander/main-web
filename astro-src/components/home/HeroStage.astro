@@ -1,0 +1,158 @@
+---
+/**
+ * The live stage under the hero headline.
+ *
+ * Left: a chat. Right: a machine. Between them: Desktop Commander. A prompt
+ * is typed, tool calls go out over the wire, the terminal runs them, and the
+ * answer comes back. Sessions are defined in ./scripts/scenarios.ts and
+ * played by ./scripts/stage.ts.
+ *
+ * The markup below is the finished state of the first session, so the stage
+ * is meaningful without JS and for people who prefer reduced motion.
+ */
+import Icon from './Icon.astro';
+import ClientMark from './ClientMark.astro';
+import { SCENARIOS } from './scripts/scenarios';
+import type { IconName } from './icons';
+
+const first = SCENARIOS[0];
+const clientName = { chatgpt: 'ChatGPT', claude: 'Claude' } as const;
+const tabIcon: Record<string, IconName> = {
+  files: 'folder-open',
+  code: 'code',
+  servers: 'server',
+  fix: 'wrench',
+};
+---
+
+<div class="hx-stage hx-enter hx-enter--fade" data-stage data-client={first.client} style="--d:900">
+  <div class="hx-stage__floor" aria-hidden="true"></div>
+
+  <p class="hx-sr">
+    Example session: you ask in a chat, Desktop Commander runs the work on your computer, and the
+    answer comes back to the chat.
+  </p>
+
+  <div class="hx-stage__grid" aria-hidden="true">
+    <!-- Chat -->
+    <div class="hx-win hx-win--chat">
+      <div class="hx-win__bar">
+        <span class="hx-win__title">
+          <span class="hx-win__title-mark">
+            <span data-client="chatgpt"><ClientMark client="chatgpt" /></span>
+            <span data-client="claude"><ClientMark client="claude" /></span>
+          </span>
+          <span data-client-name>{clientName[first.client]}</span>
+        </span>
+        <span class="hx-win__meta">Example session</span>
+      </div>
+
+      <div class="hx-chat" data-chat>
+        <div class="hx-msg hx-msg--user">{first.prompt}</div>
+        <div class="hx-msg hx-msg--bot">
+          <div class="hx-tools">
+            <div class="hx-tools__head">
+              <img src="/favicon-32x32.png" alt="" width="16" height="16" />
+              Desktop Commander
+              <span>{first.steps.length} tool calls</span>
+            </div>
+            {
+              first.steps.map((s) => (
+                <div class="hx-tool is-done">
+                  <i class="hx-tool__state" />
+                  <span class="hx-tool__name">{s.tool}</span>
+                  <span class="hx-tool__arg">{s.arg}</span>
+                  <span class="hx-tool__res">{s.result}</span>
+                </div>
+              ))
+            }
+          </div>
+          <p class="hx-answer">{first.answer}</p>
+        </div>
+      </div>
+
+      <div class="hx-composer" data-composer>
+        <span class="hx-composer__text" data-composer-text data-placeholder="Ask anything"></span>
+        <span class="hx-composer__send"><Icon name="arrow-up" strokeWidth={2.4} /></span>
+      </div>
+    </div>
+
+    <!-- Wire and core -->
+    <div class="hx-wire">
+      <span class="hx-wire__line"></span>
+      <span class="hx-wire__pulse" data-pulse></span>
+      <span class="hx-core" data-core>
+        <img src="/apple-touch-icon.png" alt="" width="40" height="40" />
+        <span class="hx-core__label">Desktop Commander</span>
+      </span>
+    </div>
+
+    <!-- Machine -->
+    <div class="hx-win hx-win--machine">
+      <div class="hx-win__bar">
+        <span class="hx-win__lights"><i></i><i></i><i></i></span>
+        <span class="hx-win__title">
+          <Icon name="terminal" />
+          <span data-device>{first.device}</span>
+        </span>
+        <span class="hx-win__meta"><i class="hx-led"></i> online</span>
+      </div>
+
+      <div class="hx-term" data-term>
+        {
+          first.steps.flatMap((s) =>
+            s.term.map((l) => (
+              <div class="hx-term__line" data-k={l.k}>
+                {l.k === 'cmd' && <span class="hx-term__ps1">{first.ps1}</span>}
+                {l.s}
+              </div>
+            )),
+          )
+        }
+      </div>
+
+      <div class="hx-result" data-result>
+        {
+          first.chips.map((c) => (
+            <div class="hx-result__chip is-on">
+              <span class="hx-result__v">{c.v}</span>
+              <span class="hx-result__l">{c.l}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="hx-tabs" role="group" aria-label="Example sessions">
+    {
+      SCENARIOS.map((s, i) => (
+        <button
+          type="button"
+          class="hx-tab"
+          data-tab={s.id}
+          aria-pressed={i === 0 ? 'true' : 'false'}
+          data-ev="hero_stage_scenario_clicked"
+          data-ev-props={JSON.stringify({ scenario: s.id, button_location: 'home_hero_stage' })}
+        >
+          <span class="hx-tab__label">
+            <Icon name={tabIcon[s.id] ?? 'terminal'} />
+            {s.tab}
+          </span>
+          <span class="hx-tab__hint">{s.hint}</span>
+          <span class="hx-tab__bar" aria-hidden="true" />
+        </button>
+      ))
+    }
+    <button
+      type="button"
+      class="hx-tabs__toggle"
+      data-stage-toggle
+      aria-pressed="false"
+      aria-label="Pause the demo"
+    >
+      <Icon name="pause" data-when="playing" />
+      <Icon name="play" data-when="paused" />
+    </button>
+  </div>
+</div>

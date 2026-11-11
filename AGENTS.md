@@ -69,11 +69,38 @@ The live `/blog` is **static Astro** (paths `/blog/media/...`, `/blog/assets/...
 - `flags/mcp-ui-previews-100` (Jul 30) and `feat/mcp-client-pages` (Jul 24) — already merged into
   `feat/blog-migration` via PRs #16 and #15.
 - `fable-experiment` — homepage "mission control" redesign (built on top of blog-migration); NOT live.
+- `feat/landing-redesign` — full homepage rebuild (2026-11-11), branched from the `feat/blog-migration`
+  tip `f4dcbf73`. Source only: `docs/` is not rebuilt on it and nothing is deployed. See
+  "Homepage source layout" below.
 - `welcome-team-agent-lp` — welcome page v3 (team-agent pitch + HubSpot waitlist); source-only, not
   built into `docs/`, not deployed.
 - `gh-pages` — **stale/abandoned** (old Vite/React + `deploy:` commits, last touched 2025-09-19). Not used.
 - Other feature branches: `feature/pricing-page`, `feature/website-redesign`, `hero-redesign-v2`,
   `feature/welcome-page-feature-flags`, `flags/unexclude-claude-code`, etc.
+
+## Homepage source layout (on `feat/landing-redesign`)
+
+The homepage is plain Astro sections instead of one React island per section:
+
+- `astro-src/pages/index.astro` — composes the sections. Navigation and Footer are the shared
+  site components, unchanged.
+- `astro-src/components/home/Home*.astro` — one file per section (hero, install, remote, use cases,
+  how it works, prompts, clients, community, pricing, FAQ, closing band). `HeroStage.astro` is the
+  live demo under the headline.
+- `astro-src/data/home.ts` — all homepage copy. URLs, stats and rankings still come from
+  `src/components/home-mcp/links.ts`, and the client list from `astro-src/data/mcp-clients.ts`.
+- `astro-src/components/home/home.css` + `home-sections.css` — styles, `hx-` prefix, loaded only by
+  the homepage. Brand colors are the existing tokens from `src/index.css`.
+- `astro-src/components/home/scripts/` — small TypeScript modules (no libraries): `stage.ts` plays
+  the demo sessions defined in `scenarios.ts`, `field.ts` is the WebGL dot field behind the hero,
+  `sections.ts` holds tabs/FAQ/copy/step tracking, `analytics.ts` sends events.
+- Analytics: any element with `data-ev="event_name"` (+ JSON in `data-ev-props`) is tracked on
+  click through the same `trackEvent()` the React components use. Event names and properties
+  match the previous homepage; `hero_stage_scenario_clicked` is the one new event.
+- Fonts: Geist and Geist Mono, self-hosted in `public/fonts/` (OFL license file alongside).
+
+The previous homepage sections (`src/components/home-mcp/*`, `src/components/mcp/MCPRemote.tsx`,
+etc.) are still in the repo: other pages use several of them, and nothing was deleted.
 
 ## Working rules
 

@@ -1,0 +1,114 @@
+---
+/**
+ * "Your machine, from anywhere": what Remote MCP is, with the real phone demo.
+ *
+ * The video is not downloaded until the section scrolls into view
+ * (preload="none", started by initLive in ./scripts/effects.ts).
+ */
+import Icon from './Icon.astro';
+import { remote, PLATFORM_URL } from '../../data/home';
+
+const ev = (label: string) =>
+  JSON.stringify({
+    button_text: label,
+    button_location: 'mcp_remote_section',
+    destination: PLATFORM_URL,
+  });
+
+/** Example machines shown around the demo: Remote MCP reaches one or more devices. */
+const devices = [
+  { icon: 'laptop', name: 'MacBook Pro', pos: 'a' },
+  { icon: 'monitor', name: 'Home PC', pos: 'b' },
+  { icon: 'server', name: 'vps-fra1', pos: 'c' },
+] as const;
+---
+
+<section class="hx-section hx-remote" id="remote">
+  <div class="hx-container hx-remote__grid">
+    <div class="hx-remote__copy">
+      <header class="hx-head hx-head--left" data-reveal>
+        <span class="hx-eyebrow"><span class="hx-eyebrow__text">Remote MCP</span></span>
+        <h2 class="hx-h2">{remote.heading}</h2>
+        <p class="hx-sub">{remote.sub}</p>
+      </header>
+
+      <ul class="hx-remote__list">
+        {
+          remote.highlights.map((item, i) => (
+            <li data-reveal style={`--d:${i * 90}`}>
+              <span class="hx-remote__icon">
+                <Icon name={item.icon} />
+              </span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="hx-remote__cta" data-reveal style="--d:120">
+        <a
+          class="hx-btn hx-btn--primary"
+          href={PLATFORM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-ev="remote_mcp_cta_clicked"
+          data-ev-props={ev(remote.cta)}
+        >
+          {remote.cta}
+          <Icon name="arrow-right" class="hx-icon--arrow" />
+        </a>
+        <p>
+          {remote.secondaryLead}{' '}
+          <a
+            class="hx-link"
+            href={PLATFORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-ev="remote_mcp_cta_clicked"
+            data-ev-props={ev(remote.secondary)}
+          >
+            {remote.secondary} &rarr;
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <figure class="hx-remote__visual" data-live data-reveal="scale">
+      <div class="hx-remote__halo" aria-hidden="true"></div>
+
+      <div class="hx-remote__screen">
+        <video
+          muted
+          loop
+          playsinline
+          preload="none"
+          poster="/videos/remote-mcp-mobile-poster.webp"
+          title={remote.videoTitle}
+        >
+          <source src={remote.video} type="video/mp4" />
+        </video>
+      </div>
+
+      {
+        devices.map((d) => (
+          <div class={`hx-device hx-device--${d.pos}`} aria-hidden="true">
+            <span class="hx-device__icon">
+              <Icon name={d.icon} />
+            </span>
+            <span class="hx-device__text">
+              <b>{d.name}</b>
+              <small>
+                <i class="hx-led" /> online
+              </small>
+            </span>
+          </div>
+        ))
+      }
+
+      <figcaption>{remote.caption}</figcaption>
+    </figure>
+  </div>
+</section>

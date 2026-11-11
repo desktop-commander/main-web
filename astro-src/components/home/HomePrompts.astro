@@ -1,0 +1,120 @@
+---
+/**
+ * Prompt library teaser (#prompts): five workflow categories, three prompts
+ * each, every prompt linking to its page in /library/prompts/.
+ *
+ * Tabs follow the ARIA tabs pattern (arrow keys move between categories).
+ * Behavior and the category analytics event are in ./scripts/sections.ts.
+ */
+import Icon from './Icon.astro';
+import { prompts, slugify } from '../../data/home';
+
+const ev = (o: Record<string, unknown>) => JSON.stringify(o);
+const firstTab = slugify(prompts.categories[0].title);
+---
+
+<section class="hx-section hx-prompts" id="prompts">
+  <div class="hx-container hx-prompts__grid">
+    <div class="hx-prompts__side">
+      <header class="hx-head hx-head--left" data-reveal>
+        <span class="hx-eyebrow"><span class="hx-eyebrow__text">Prompt library</span></span>
+        <h2 class="hx-h2">{prompts.heading}</h2>
+        <p class="hx-sub">{prompts.sub}</p>
+      </header>
+
+      <div class="hx-prompts__cta" data-reveal style="--d:100">
+        <a
+          class="hx-btn hx-btn--ghost"
+          href={prompts.ctaHref}
+          data-ptabs-cta
+          data-ev="prompt_library_cta_clicked"
+          data-ev-props={ev({
+            button_text: prompts.cta,
+            button_location: 'prompt_library',
+            link_type: 'external',
+            destination: 'prompt_library_main',
+            current_active_tab: firstTab,
+          })}
+        >
+          {prompts.cta}
+          <Icon name="arrow-right" class="hx-icon--arrow" />
+        </a>
+        <p>{prompts.note}</p>
+      </div>
+    </div>
+
+    <div class="hx-prompts__main" data-reveal style="--d:120">
+      <div class="hx-ptabs" role="tablist" aria-label="Prompt categories" data-ptabs>
+        <span class="hx-ptabs__pill" aria-hidden="true"></span>
+        {
+          prompts.categories.map((category, i) => {
+            const value = slugify(category.title);
+            return (
+              <button
+                type="button"
+                role="tab"
+                class="hx-ptab"
+                id={`ptab-${value}`}
+                aria-selected={i === 0 ? 'true' : 'false'}
+                aria-controls={`ppanel-${value}`}
+                tabindex={i === 0 ? 0 : -1}
+                data-value={value}
+                data-title={category.title}
+                data-total={category.prompts.length}
+              >
+                {category.title}
+              </button>
+            );
+          })
+        }
+      </div>
+
+      <div class="hx-ppanels" data-light>
+        {
+          prompts.categories.map((category, i) => {
+            const value = slugify(category.title);
+            return (
+              <div
+                role="tabpanel"
+                class="hx-ppanel"
+                id={`ppanel-${value}`}
+                aria-labelledby={`ptab-${value}`}
+                hidden={i !== 0}
+              >
+                {category.prompts.map((prompt, j) => (
+                  <a
+                    class="hx-card hx-prompt"
+                    href={prompt.url}
+                    style={`--n:${j}`}
+                    data-ev="prompt_clicked"
+                    data-ev-props={ev({
+                      button_text: prompt.title,
+                      button_location: 'prompt_library',
+                      category_name: category.title,
+                      prompt_title: prompt.title,
+                      prompt_description: prompt.description,
+                      prompt_url: prompt.url,
+                      prompt_position: j + 1,
+                      total_prompts_in_category: category.prompts.length,
+                    })}
+                  >
+                    <span class="hx-prompt__icon">
+                      <Icon name={prompt.icon} />
+                    </span>
+                    <span class="hx-prompt__text">
+                      <b>{prompt.title}</b>
+                      <small>{prompt.description}</small>
+                    </span>
+                    <span class="hx-prompt__go">
+                      <Icon name="arrow-right" />
+                    </span>
+                  </a>
+                ))}
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</section>

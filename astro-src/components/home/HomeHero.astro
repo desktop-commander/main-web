@@ -1,0 +1,139 @@
+---
+/**
+ * Homepage hero.
+ *
+ * Primary CTA is Install (scrolls to the on-page chooser), secondary is
+ * Manage devices (the Remote MCP platform). Under the copy sits the live
+ * stage: a chat on the left, a machine on the right and Desktop Commander
+ * between them (HeroStage.astro).
+ *
+ * Behavior lives in ./scripts: field.ts (background), pill.ts (rankings),
+ * stage.ts (demo playback).
+ */
+import Icon from './Icon.astro';
+import ClientMark from './ClientMark.astro';
+import HeroStage from './HeroStage.astro';
+import { hero, PLATFORM_URL, RANKINGS } from '../../data/home';
+
+const ev = (o: Record<string, unknown>) => JSON.stringify(o);
+const describe = (r: (typeof RANKINGS)[number]) => `#${r.rank} ${r.label}, ${r.date}`;
+const first = RANKINGS[0];
+const words = hero.titleLine1.split(' ');
+---
+
+<section class="hx-hero" data-hero>
+  <div class="hx-hero__glow" aria-hidden="true"></div>
+  <canvas class="hx-hero__field" data-field aria-hidden="true"></canvas>
+
+  <div class="hx-container">
+    <div class="hx-hero__top">
+      <a
+        class="hx-pill hx-enter hx-enter--fade"
+        data-pill
+        href={first.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={describe(first)}
+        data-ev="ranking_pill_clicked"
+        data-ev-props={ev({
+          ranking: `#${first.rank} ${first.label}`,
+          button_location: 'home_hero',
+          destination: first.href,
+        })}
+      >
+        <span class="hx-pill__viewport" aria-hidden="true">
+          {
+            RANKINGS.map((r, i) => (
+              <span
+                class="hx-pill__item"
+                data-state={i === 0 ? 'active' : 'next'}
+                data-href={r.href}
+                data-ranking={`#${r.rank} ${r.label}`}
+                data-describe={describe(r)}
+              >
+                <span class="hx-pill__mark">
+                  <ClientMark client={r.platform} />
+                </span>
+                <span class="hx-pill__label">
+                  <span class="hx-pill__rank">#{r.rank}</span> {r.label}
+                </span>
+                <span class="hx-pill__sep" />
+                <span class="hx-pill__date">{r.date}</span>
+              </span>
+            ))
+          }
+        </span>
+      </a>
+
+      <h1 class="hx-h1">
+        <span class="hx-h1__line">
+          {
+            words.map((w, i) => (
+              <>
+                <span class="hx-w">
+                  <span style={`--i:${i}`}>{w}</span>
+                </span>{' '}
+              </>
+            ))
+          }
+        </span>
+        <span class="hx-h1__line">
+          <span class="hx-w">
+            <span class="hx-grad" style={`--i:${words.length + 1}`}>{hero.titleLine2}</span>
+          </span>
+        </span>
+      </h1>
+
+      <p class="hx-hero__lead hx-enter" style="--d:520">{hero.lead}</p>
+      <p class="hx-hero__body hx-enter" style="--d:600">{hero.body}</p>
+
+      <div class="hx-hero__cta hx-enter" style="--d:700">
+        <a
+          class="hx-btn hx-btn--primary"
+          href="#install"
+          data-ev="install_cta_clicked"
+          data-ev-props={ev({
+            button_text: 'Install',
+            button_location: 'home_hero',
+            destination: '#install',
+          })}
+        >
+          Install
+          <Icon name="arrow-right" class="hx-icon--arrow" />
+        </a>
+        <a
+          class="hx-btn hx-btn--ghost"
+          href={PLATFORM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-ev="manage_devices_clicked"
+          data-ev-props={ev({
+            button_text: 'Manage devices',
+            button_location: 'home_hero',
+            destination: PLATFORM_URL,
+          })}
+        >
+          Manage devices
+        </a>
+      </div>
+
+      <div class="hx-hero__stats hx-enter" style="--d:800">
+        {
+          hero.stats.map((s, i) => (
+            <>
+              {i > 0 && <span class="hx-hero__stats-sep" aria-hidden="true" />}
+              <a class="hx-hero__stat" href={s.href} target="_blank" rel="noopener noreferrer">
+                <Icon name={s.icon} />
+                <span>
+                  <b>{s.value}</b> {s.label}
+                </span>
+              </a>
+            </>
+          ))
+        }
+      </div>
+    </div>
+
+    <HeroStage />
+  </div>
+</section>

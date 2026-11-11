@@ -1,0 +1,71 @@
+---
+/**
+ * "From the community": headline numbers and what people say.
+ *
+ * Numbers come from STATS in src/components/home-mcp/links.ts (via
+ * data/home.ts) and count up once when seen. Quotes run as two slow rows
+ * that pause on hover; each row is duplicated once so the loop is seamless
+ * (the copy is hidden from assistive tech).
+ */
+import { community } from '../../data/home';
+
+const initials = (name: string) =>
+  name
+    .split(' ')
+    .map((part) => part[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase();
+
+const half = Math.ceil(community.testimonials.length / 2);
+const rows = [community.testimonials.slice(0, half), community.testimonials.slice(half)];
+---
+
+<section class="hx-section hx-community">
+  <div class="hx-container">
+    <header class="hx-head" data-reveal>
+      <span class="hx-eyebrow"><span class="hx-eyebrow__text">Community</span></span>
+      <h2 class="hx-h2">{community.heading}</h2>
+    </header>
+
+    <dl class="hx-stats">
+      {
+        community.stats.map((stat, i) => (
+          <div class="hx-stat" data-reveal style={`--d:${i * 110}`}>
+            <dt>{stat.label}</dt>
+            <dd>
+              <span data-count={stat.value} data-decimals={stat.decimals}>{stat.value.toFixed(stat.decimals)}</span><span class="hx-stat__suffix">{stat.suffix}</span>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+
+  <div class="hx-wall" data-live data-reveal="fade">
+    {
+      rows.map((row, r) => (
+        <div class:list={['hx-wall__row', r % 2 ? 'hx-wall__row--reverse' : '']}>
+          <div class="hx-wall__track">
+            {[0, 1].map((copy) =>
+              row.map((t) => (
+                <figure class="hx-quote" aria-hidden={copy === 1 ? 'true' : undefined}>
+                  <blockquote>{t.quote}</blockquote>
+                  <figcaption>
+                    <span class="hx-quote__avatar" aria-hidden="true">
+                      {initials(t.author)}
+                    </span>
+                    <span>
+                      <b>{t.author}</b>
+                      <small>Community</small>
+                    </span>
+                  </figcaption>
+                </figure>
+              )),
+            )}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
