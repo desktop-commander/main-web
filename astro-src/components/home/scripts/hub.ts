@@ -106,7 +106,6 @@ export function initHub(reduceMotion: boolean) {
   const cometPaths = Array.from(comet.querySelectorAll('path'));
   const cometDots = Array.from(comet.querySelectorAll('circle'));
   const toggle = hub.querySelector<HTMLButtonElement>('[data-hub-toggle]');
-  const wide = window.matchMedia('(min-width: 981px)');
 
   const wire = (id: string): Wire => {
     const group = svg.querySelector<SVGGElement>(`[data-wire="${id}"]`)!;
@@ -316,9 +315,6 @@ export function initHub(reduceMotion: boolean) {
   let last = 0;
   let raf = 0;
 
-  // pointer position over the hero, eased, for the slight lean of the plane
-  const look = { x: 0, y: 0, tx: 0, ty: 0 };
-
   const running = () => visible && !userPaused && !document.hidden;
 
   const wait = (ms: number) =>
@@ -362,15 +358,8 @@ export function initHub(reduceMotion: boolean) {
         idle = 0;
         jitter();
       }
+      raf = requestAnimationFrame(frame);
     }
-    const leaning = Math.abs(look.tx - look.x) > 0.001 || Math.abs(look.ty - look.y) > 0.001;
-    if (leaning) {
-      look.x += (look.tx - look.x) * 0.07;
-      look.y += (look.ty - look.y) * 0.07;
-      plane.style.setProperty('--look-x', look.x.toFixed(4));
-      plane.style.setProperty('--look-y', look.y.toFixed(4));
-    }
-    if (running() || leaning) raf = requestAnimationFrame(frame);
   };
 
   /** Starts the frame loop if it is not going. It stops by itself when there is nothing to do. */
@@ -686,27 +675,6 @@ export function initHub(reduceMotion: boolean) {
     { threshold: 0.2 },
   ).observe(hub);
   document.addEventListener('visibilitychange', kick);
-
-  // The plane leans a little toward the pointer (wide screens with a mouse only).
-  if (window.matchMedia('(hover: hover)').matches) {
-    const hero = hub.closest<HTMLElement>('[data-hero]') ?? hub;
-    hero.addEventListener(
-      'pointermove',
-      (e) => {
-        if (e.pointerType === 'touch' || !wide.matches) return;
-        const r = hub.getBoundingClientRect();
-        look.tx = clamp((e.clientX - (r.left + r.width / 2)) / 640, -1, 1);
-        look.ty = clamp((e.clientY - (r.top + r.height / 2)) / 460, -1, 1);
-        kick();
-      },
-      { passive: true },
-    );
-    hero.addEventListener('pointerleave', () => {
-      look.tx = 0;
-      look.ty = 0;
-      kick();
-    });
-  }
 
   hub.classList.add('is-playing');
   void play(0, true);

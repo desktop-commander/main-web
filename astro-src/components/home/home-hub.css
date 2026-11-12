@@ -93,8 +93,8 @@
   width: 100%;
   max-width: 580px;
   margin-inline: auto;
-  perspective: 1500px;
-  perspective-origin: 50% 46%;
+  /* keeps the light below (z-index -1) directly behind the diagram */
+  isolation: isolate;
 }
 @media (min-width: 981px) {
   .hx-hub {
@@ -119,16 +119,12 @@
   pointer-events: none;
 }
 
-/* The whole diagram is one flat plane that leans a little toward the pointer
-   (--look-x / --look-y are set by scripts/hub.ts, registered in home.css).
-   Everything stays in that one plane, so the wires keep meeting their targets
-   while it leans. */
+/* The whole diagram is one flat plane. It does not move: nothing here reacts
+   to the pointer except the client tiles, which show their request on hover. */
 .hx-hub__plane {
   position: relative;
   display: flex;
   flex-direction: column;
-  transform: rotateY(calc(var(--look-x, 0) * 3.4deg)) rotateX(calc(var(--look-y, 0) * -2.4deg));
-  will-change: transform;
 }
 
 .hx-hub__gap {
@@ -1282,16 +1278,6 @@ html:not(.hx-js) .hx-hub__fb,
   }
 }
 
-/* Stacked: the diagram sits flat under the copy */
-@media (max-width: 980px) {
-  .hx-hub {
-    perspective: none;
-  }
-  .hx-hub__plane {
-    transform: none;
-  }
-}
-
 @media (max-width: 560px) {
   .hx-hub {
     --hub-say: 34px;
@@ -1460,9 +1446,6 @@ html:not(.hx-js) .hx-hub__fb,
    ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
-  .hx-hub__plane {
-    transform: none;
-  }
   .hx-hub__wire-flow,
   .hx-hub__comet {
     display: none;

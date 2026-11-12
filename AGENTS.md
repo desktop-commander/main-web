@@ -116,7 +116,10 @@ The homepage is plain Astro sections instead of one React island per section:
 - Kept plain on purpose (feedback of 2026-11-12, do not reintroduce without asking): no patterned
   or pointer-reactive page backgrounds (the WebGL dot field and the dot grids were removed), CTA
   buttons are flat (one solid color, no gradient, glow, light sweep or lift), and the closing
-  section is a heading, one line and the two buttons, with no decoration.
+  section is a heading, one line and the two buttons, with no decoration. In the same pass the
+  rest of the pointer-following was taken out: the diagram and the demo windows no longer lean
+  toward the pointer, and the light on a hovered card stays at its top edge. Ordinary hover states
+  remain, including the client tiles in the diagram, which show their request on hover.
 
 The previous homepage sections (`src/components/home-mcp/*`, `src/components/mcp/MCPRemote.tsx`,
 etc.) are still in the repo: other pages use several of them, and nothing was deleted.

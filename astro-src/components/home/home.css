@@ -424,10 +424,9 @@ body {
   }
 }
 
-/* Card with a light that follows the pointer (see scripts/effects.ts) */
+/* Card. On hover it is lit softly from its top edge. The light stays there:
+   it does not follow the pointer. */
 .hx-card {
-  --mx: 50%;
-  --my: 0%;
   position: relative;
   border-radius: var(--hx-radius);
   background: linear-gradient(180deg, hsl(222 22% 12% / 0.92), hsl(222 26% 8.5% / 0.92));
@@ -445,7 +444,7 @@ body {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: radial-gradient(520px circle at var(--mx) var(--my), rgba(var(--hx-blue-rgb), 0.13), transparent 62%);
+  background: radial-gradient(520px circle at 50% 0%, rgba(var(--hx-blue-rgb), 0.13), transparent 62%);
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -456,7 +455,7 @@ body {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: radial-gradient(360px circle at var(--mx) var(--my), rgba(var(--hx-blue-rgb), 0.9), transparent 68%);
+  background: radial-gradient(360px circle at 50% 0%, rgba(var(--hx-blue-rgb), 0.9), transparent 68%);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
@@ -751,25 +750,14 @@ a.hx-card:hover,
   pointer-events: none;
 }
 
-/* pointer position over the hero, -1 to 1 (scripts/stage.ts). Registered so
-   they do not inherit: changing them restyles this one element only. */
-@property --look-x {
-  syntax: '<number>';
-  inherits: false;
-  initial-value: 0;
-}
-@property --look-y {
-  syntax: '<number>';
-  inherits: false;
-  initial-value: 0;
-}
+/* The windows start tilted back and settle flat as the page scrolls (--tilt).
+   They do not react to the pointer. */
 .hx-stage__grid {
   display: grid;
   grid-template-columns: minmax(0, 0.86fr) 112px minmax(0, 1fr);
   align-items: stretch;
   transform-style: preserve-3d;
-  transform: rotateX(calc(var(--tilt) * 9deg - var(--look-y, 0) * 1.3deg))
-    rotateY(calc(var(--look-x, 0) * 1.7deg)) translateY(calc(var(--tilt) * -6px));
+  transform: rotateX(calc(var(--tilt) * 9deg)) translateY(calc(var(--tilt) * -6px));
   transform-origin: 50% 0%;
   will-change: transform;
 }

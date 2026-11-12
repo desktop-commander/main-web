@@ -1,7 +1,7 @@
 /**
  * Page-wide effects for the homepage: scroll reveals, the glass state of the
- * navigation, the pointer light on cards, number counters, and switching
- * looping visuals on only while they are on screen.
+ * navigation, number counters, and switching looping visuals on only while
+ * they are on screen. Nothing here follows the pointer.
  */
 
 const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/<>_';
@@ -62,25 +62,6 @@ export function initNav() {
   const set = () => nav.classList.toggle('is-scrolled', window.scrollY > 12);
   window.addEventListener('scroll', set, { passive: true });
   set();
-}
-
-/** Feeds the pointer position to cards so their light follows it (see .hx-card). */
-export function initCardLight() {
-  if (!window.matchMedia('(hover: hover)').matches) return;
-  document.querySelectorAll<HTMLElement>('[data-light]').forEach((group) => {
-    const cards = Array.from(group.querySelectorAll<HTMLElement>('.hx-card'));
-    group.addEventListener(
-      'pointermove',
-      (e) => {
-        for (const card of cards) {
-          const r = card.getBoundingClientRect();
-          card.style.setProperty('--mx', `${e.clientX - r.left}px`);
-          card.style.setProperty('--my', `${e.clientY - r.top}px`);
-        }
-      },
-      { passive: true },
-    );
-  });
 }
 
 /** Counts [data-count] numbers up from zero the first time they are seen. */

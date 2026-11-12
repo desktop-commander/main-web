@@ -24,7 +24,7 @@ const ev = (o: Record<string, unknown>) => JSON.stringify(o);
       <p class="hx-sub">{install.sub}</p>
     </header>
 
-    <div class="hx-install__grid" data-light>
+    <div class="hx-install__grid">
       {
         install.options.map((option, i) => {
           const rank = topRanking(option.slug);

@@ -67,7 +67,6 @@ export function initStage(reduceMotion: boolean) {
   const stage = document.querySelector<HTMLElement>('[data-stage]');
   if (!stage) return;
 
-  const grid = stage.querySelector<HTMLElement>('.hx-stage__grid')!;
   const chat = stage.querySelector<HTMLElement>('[data-chat]')!;
   const term = stage.querySelector<HTMLElement>('[data-term]')!;
   const result = stage.querySelector<HTMLElement>('[data-result]')!;
@@ -100,9 +99,6 @@ export function initStage(reduceMotion: boolean) {
   let current = 0;
   let total = duration(SCENARIOS[0], true);
 
-  // pointer position over the hero, eased, for the slight parallax of the windows
-  const look = { x: 0, y: 0, tx: 0, ty: 0 };
-
   const running = () => visible && !userPaused && !document.hidden;
 
   const wait = (ms: number) =>
@@ -126,12 +122,6 @@ export function initStage(reduceMotion: boolean) {
         }
       }
       tabs[current]?.style.setProperty('--p', Math.min(elapsed / total, 1).toFixed(4));
-    }
-    if (Math.abs(look.tx - look.x) > 0.001 || Math.abs(look.ty - look.y) > 0.001) {
-      look.x += (look.tx - look.x) * 0.07;
-      look.y += (look.ty - look.y) * 0.07;
-      grid.style.setProperty('--look-x', look.x.toFixed(4));
-      grid.style.setProperty('--look-y', look.y.toFixed(4));
     }
     requestAnimationFrame(frame);
   };
@@ -401,25 +391,6 @@ export function initStage(reduceMotion: boolean) {
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll, { passive: true });
   setTilt();
-
-  // The windows lean a little toward the pointer (wide screens with a mouse only).
-  if (window.matchMedia('(hover: hover)').matches) {
-    const hero = stage.closest<HTMLElement>('section') ?? stage;
-    hero.addEventListener(
-      'pointermove',
-      (e) => {
-        if (e.pointerType === 'touch' || !wide.matches) return;
-        const r = stage.getBoundingClientRect();
-        look.tx = clamp(((e.clientX - r.left) / r.width - 0.5) * 2, -1, 1);
-        look.ty = clamp(((e.clientY - r.top) / r.height - 0.5) * 2, -1, 1);
-      },
-      { passive: true },
-    );
-    hero.addEventListener('pointerleave', () => {
-      look.tx = 0;
-      look.ty = 0;
-    });
-  }
 
   requestAnimationFrame((now) => {
     last = now;
