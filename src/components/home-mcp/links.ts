@@ -35,7 +35,7 @@ export const STATS = {
 export const RANKINGS = [
   { platform: 'chatgpt', rank: 1, label: 'in ChatGPT Developer Tools', date: 'Sep 2026', href: CHATGPT_CONNECTOR },
   { platform: 'claude', rank: 3, label: 'in Claude Connectors', date: 'Feb 2026', href: CLAUDE_CONNECTOR },
-  { platform: 'chatgpt', rank: 6, label: "on ChatGPT's Popular list", date: 'Sep 2026', href: CHATGPT_CONNECTOR },
+  { platform: 'chatgpt', rank: 1, label: "on ChatGPT's Popular list", date: 'Oct 2026', href: CHATGPT_CONNECTOR },
 ] as const;
 
 export type Ranking = (typeof RANKINGS)[number];

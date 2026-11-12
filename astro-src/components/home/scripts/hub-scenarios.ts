@@ -64,7 +64,8 @@ export const HUB_CLIENTS: HubClient[] = [
     name: 'Your AI client',
     short: 'Any client',
     href: '#install',
-    label: 'Install Desktop Commander in your AI client',
+    // holds both visible names, so the spoken name always includes the one on screen
+    label: 'Any client: install Desktop Commander in your AI client',
   },
 ];
 

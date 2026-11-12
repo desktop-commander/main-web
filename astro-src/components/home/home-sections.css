@@ -1145,7 +1145,9 @@
   justify-content: center;
   min-height: 42vh;
   padding-block: 24px;
-  opacity: 0.34;
+  /* steps other than the current one are dimmed, but only as far as their
+     text stays readable (contrast above 4.5:1) */
+  opacity: 0.7;
   transition: opacity 0.5s ease;
 }
 .hx-how__step.is-active {

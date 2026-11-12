@@ -2,7 +2,8 @@
 
 > Purpose: durable context for every future chat on this repo. Keep this file
 > accurate. If you discover the facts below have changed, update this file.
-> Last verified: **2026-09-16**.
+> Last verified: **2026-11-12** for the production deploy state, the deploy steps and the homepage;
+> the branch list is older (2026-09-16) except where a line says otherwise.
 
 ## What this repo is
 
@@ -24,17 +25,20 @@ The **Desktop Commander marketing website** (`desktopcommander.app`).
 
 ## ⚠️ Production deploy state (the important part)
 
-The intended model is "GitHub Pages serves `main` / `docs`." **Reality as of 2026-09-16 still differs:**
+The intended model is "GitHub Pages serves `main` / `docs`." **Reality as of 2026-11-12 still differs:**
 
 - **Production is served from the `feat/blog-migration` branch's `docs/`.** Verified with
   `gh api repos/desktop-commander/main-web/pages`, which reports
   `source: { branch: "feat/blog-migration", path: "/docs" }`, cname `desktopcommander.app`.
-- Last successful Pages build: commit **`aca30120`** ("/welcome/: remove call-booking; align intro
-  with email-shaped help"), built **2026-08-26**.
+  GitHub Pages is the origin and Cloudflare sits in front of it.
+- Live commit on 2026-11-12, before the homepage redesign: **`f4dcbf73`** ("Static website changes:
+  llms.txt"), deployed **2026-11-09**. The Pages API still reports that build as `errored`
+  although it is live: the first deploy run timed out and a re-run went through (see "Deploying").
+  Trust the live site (`last-modified` header, a file only the new build has) over that status.
 - **`main` is NOT what's live.** `main` tip is `051123a3` ("Add pricing preview without $200 package",
   2026-08-04).
 - The two branches **diverged on 2026-06-03** (`c7cdefa2`) and have drifted further since:
-  **10 commits on `main` only, 85 on `feat/blog-migration` only** as of 2026-09-16.
+  **10 commits on `main` only, 130 on `feat/blog-migration` only** as of 2026-11-12.
   - `main` only: pricing rewrite (3-plan), an "MCP UI AB test", flags bump, and a pricing preview
     without the $200 package, but **no static blog**; its homepage still links About →
     `blog.desktopcommander.app` (old WordPress subdomain).
@@ -46,6 +50,30 @@ The intended model is "GitHub Pages serves `main` / `docs`." **Reality as of 202
 **This is fragile:** main's pricing/AB-test commits are not in production, and the blog
 migration is not in main. Recommended fix: merge `feat/blog-migration` → `main`, then deploy
 from `main` so the intended model and reality match again. Confirm with the user before doing this.
+
+## Deploying (how it has been done since autumn 2026)
+
+1. Work on a feature branch cut from the `feat/blog-migration` tip. Commit the source changes.
+2. `npm run commit-static` on that branch (runs `npm run build`, whose `postbuild` writes
+   `docs/CNAME`, then commits `docs/`). Recent commits name what changed:
+   "Static website changes: <what>".
+3. Preview the result with `npm run serve:static` (http://localhost:3000).
+4. **Asset name check, before pushing.** Cloudflare caches a 404 for an asset URL for 7 days.
+   A name that production served and then dropped may still be cached as missing, and a new
+   build can bring such a name back (see the comment in `astro.config.mjs`). Compare the names in
+   the new `docs/assets/` with the names that left production in the last 12 days:
+   `git ls-tree -r --name-only <commit> docs/assets` for each recent production commit, minus the
+   names in the live commit. If any name returns, change the hash length in `astro.config.mjs`
+   and rebuild. Never open a not yet deployed asset URL on the live domain to "test" it: that
+   request is what caches the 404.
+5. Only with the user's explicit approval: fast-forward `feat/blog-migration` to the feature
+   branch and push it. GitHub then runs the "pages build and deployment" workflow.
+6. Watch that run. On 2026-11-09 its deploy step timed out ("Timeout reached, aborting!") and
+   needed re-runs (`gh run rerun <id> --failed`). The site keeps serving the previous version
+   until a run succeeds.
+7. Undoing a deploy: do not simply push the previous `docs/` back within 7 days. Its asset names
+   were dropped by the deploy and may by then be cached as missing. Rebuild the previous source
+   with a different hash length instead, or have the Cloudflare cache purged.
 
 ## How to verify what's actually live (don't assume)
 
@@ -63,15 +91,17 @@ The live `/blog` is **static Astro** (paths `/blog/media/...`, `/blog/assets/...
 ## Branches (as of 2026-09-16)
 
 - `main` — intended production branch; behind live and missing the blog. Tip `051123a3` (Aug 4).
-- `feat/blog-migration` — **what's actually live**. Tip `aca30120` (Aug 26).
+- `feat/blog-migration` — **what's actually live**. Tip `f4dcbf73` on 2026-11-12 (was `aca30120`
+  on 2026-09-16).
 - `feat/mcp-first-positioning` — branched from the live tip `aca30120` on 2026-09-16 for the
   MCP-first repositioning (app no longer the primary CTA). Not deployed.
 - `flags/mcp-ui-previews-100` (Jul 30) and `feat/mcp-client-pages` (Jul 24) — already merged into
   `feat/blog-migration` via PRs #16 and #15.
 - `fable-experiment` — homepage "mission control" redesign (built on top of blog-migration); NOT live.
-- `feat/landing-redesign` — full homepage rebuild (2026-11-11), branched from the `feat/blog-migration`
-  tip `f4dcbf73`. Two hero versions to choose from. Source only: `docs/` is not rebuilt on it and
-  nothing is deployed. See "Homepage source layout" below.
+- `feat/landing-redesign` — full homepage rebuild (2026-11-11 and 12), branched from the
+  `feat/blog-migration` tip `f4dcbf73`. Two hero versions were built; **version B (the connection
+  diagram) was chosen as the main homepage on 2026-11-12**. It goes live when `feat/blog-migration`
+  is fast-forwarded to this branch and pushed (see "Deploying"). See "Homepage source layout" below.
 - `welcome-team-agent-lp` — welcome page v3 (team-agent pitch + HubSpot waitlist); source-only, not
   built into `docs/`, not deployed.
 - `gh-pages` — **stale/abandoned** (old Vite/React + `deploy:` commits, last touched 2025-09-19). Not used.
@@ -86,7 +116,8 @@ The homepage is plain Astro sections instead of one React island per section:
   `astro-src/components/home/HomePage.astro`, which composes the sections. Navigation and Footer are
   the shared site components, unchanged.
 - **Two hero versions**, picked by that `hero` prop (nothing else needs to change to switch):
-  - `"hub"` (current): copy on the left, the connection diagram on the right (`HeroHub.astro`): AI
+  - `"hub"` (the main version, chosen on 2026-11-12): copy on the left, the connection diagram on
+    the right (`HeroHub.astro`): AI
     clients, Desktop Commander, your computer, with a request travelling between them. The example
     sessions follow as their own section (`HomeDemo.astro`, `#demo`).
   - `"stage"`: centered headline with the example sessions (`HeroStage.astro`) directly under it,
