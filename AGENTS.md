@@ -107,13 +107,16 @@ The homepage is plain Astro sections instead of one React island per section:
   - `hub.ts` plays the requests defined in `hub-scenarios.ts` on the connection diagram. The wires
     are measured from the live layout, so they follow any change to the markup or CSS.
   - `stage.ts` plays the example sessions defined in `scenarios.ts`.
-  - `field.ts` is the WebGL dot field behind the hero, `sections.ts` holds tabs/FAQ/copy/step
-    tracking, `analytics.ts` sends events.
+  - `sections.ts` holds tabs/FAQ/copy/step tracking, `analytics.ts` sends events.
 - Analytics: any element with `data-ev="event_name"` (+ JSON in `data-ev-props`) is tracked on
   click through the same `trackEvent()` the React components use. Event names and properties
   match the previous homepage; `hero_stage_scenario_clicked` is the one new event. The client tiles
   in the hub send the existing `mcp_client_crosslink_clicked` with `from_client: "home_hero"`.
 - Fonts: Geist and Geist Mono, self-hosted in `public/fonts/` (OFL license file alongside).
+- Kept plain on purpose (feedback of 2026-11-12, do not reintroduce without asking): no patterned
+  or pointer-reactive page backgrounds (the WebGL dot field and the dot grids were removed), CTA
+  buttons are flat (one solid color, no gradient, glow, light sweep or lift), and the closing
+  section is a heading, one line and the two buttons, with no decoration.
 
 The previous homepage sections (`src/components/home-mcp/*`, `src/components/mcp/MCPRemote.tsx`,
 etc.) are still in the repo: other pages use several of them, and nothing was deleted.

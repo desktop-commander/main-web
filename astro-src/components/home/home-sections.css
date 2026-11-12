@@ -3,23 +3,6 @@
    itself are in home.css; this file is one block per section, in page order.
    ========================================================================== */
 
-/* Faint dot grid behind a section, echoing the hero field */
-.hx-section--dots::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-image: radial-gradient(circle, hsl(218 60% 80% / 0.16) 1px, transparent 1.6px);
-  background-size: 30px 30px;
-  background-position: 50% 0;
-  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, #000 0%, transparent 78%);
-  mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, #000 0%, transparent 78%);
-  pointer-events: none;
-}
-.hx-section--dots {
-  isolation: isolate;
-}
-
 .hx-checks {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -1987,48 +1970,12 @@
   flex: 1;
   margin-bottom: 34px;
 }
+/* The highlighted plan is marked by a blue border, nothing more */
 .hx-plan--pro {
-  background: linear-gradient(180deg, hsl(222 44% 16% / 0.96), hsl(222 32% 9% / 0.96));
   box-shadow:
-    inset 0 0 0 1px rgba(var(--hx-blue-rgb), 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 40px 80px -30px rgba(0, 0, 0, 0.8),
-    0 0 110px -40px rgba(var(--hx-blue-rgb), 0.9);
-}
-/* a light that travels around the Pro card's edge */
-@property --hx-angle {
-  syntax: '<angle>';
-  inherits: false;
-  initial-value: 0deg;
-}
-.hx-plan__ring {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1.5px;
-  background: conic-gradient(
-    from var(--hx-angle, 0deg),
-    transparent 0deg,
-    var(--hx-blue) 50deg,
-    #fff 78deg,
-    var(--hx-blue) 104deg,
-    transparent 160deg,
-    transparent 360deg
-  );
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
-  animation: hx-orbit 7s linear infinite;
-  animation-play-state: paused;
-  pointer-events: none;
-}
-.hx-plans.is-live .hx-plan__ring {
-  animation-play-state: running;
-}
-@keyframes hx-orbit {
-  to {
-    --hx-angle: 360deg;
-  }
+    inset 0 0 0 1px rgba(var(--hx-blue-rgb), 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 30px 60px -30px rgba(0, 0, 0, 0.6);
 }
 .hx-pricing__note {
   margin-top: 30px;
@@ -2174,125 +2121,16 @@
   color: var(--hx-text-2);
 }
 
-/* Closing band
+/* Closing section: the heading, one line and the two buttons. No decoration.
    ========================================================================== */
 
 .hx-final {
-  position: relative;
-  padding: clamp(120px, 15vw, 210px) 0 clamp(130px, 17vw, 240px);
   text-align: center;
-  overflow: clip;
-  isolation: isolate;
-}
-.hx-final::before {
-  /* the lit edge of a very large circle rising from the bottom */
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: -2120px;
-  z-index: -2;
-  width: 2400px;
-  max-width: none;
-  height: 2400px;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  background: radial-gradient(
-    circle at 50% 0%,
-    hsl(220 80% 30%) 0%,
-    hsl(222 66% 17%) 5%,
-    hsl(222 46% 10%) 13%,
-    var(--hx-bg-deep) 24%
-  );
-  box-shadow:
-    0 -1px 0 0 rgba(var(--hx-blue-rgb), 0.95),
-    0 -8px 28px -4px rgba(var(--hx-blue-rgb), 0.65);
-}
-.hx-final::after {
-  /* the glow above that edge, drawn with gradients (no large blur to render) */
-  content: '';
-  position: absolute;
-  inset: auto 0 0 0;
-  z-index: -3;
-  height: 820px;
-  background:
-    radial-gradient(ellipse 62% 44% at 50% 66%, rgba(var(--hx-deep-rgb), 0.5), transparent 72%),
-    radial-gradient(ellipse 38% 24% at 50% 67%, rgba(var(--hx-blue-rgb), 0.36), transparent 74%);
-  pointer-events: none;
-}
-.hx-final__horizon {
-  position: absolute;
-  left: 50%;
-  top: clamp(150px, 17vw, 240px);
-  z-index: -1;
-  pointer-events: none;
-}
-.hx-final__ring {
-  position: absolute;
-  left: 0;
-  top: 0;
-  max-width: none;
-  border-radius: 50%;
-  border: 1px solid rgba(var(--hx-blue-rgb), 0.22);
-  transform: translate(-50%, -50%);
-  animation: hx-breathe 8s ease-in-out infinite;
-}
-.hx-final__ring:nth-child(1) {
-  width: 230px;
-  height: 230px;
-}
-.hx-final__ring:nth-child(2) {
-  width: 440px;
-  height: 440px;
-  border-color: rgba(var(--hx-blue-rgb), 0.13);
-  animation-delay: -2.6s;
-}
-.hx-final__ring:nth-child(3) {
-  width: 700px;
-  height: 700px;
-  border-color: rgba(var(--hx-blue-rgb), 0.07);
-  animation-delay: -5.2s;
-}
-@keyframes hx-breathe {
-  0%,
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.06);
-    opacity: 0.6;
-  }
 }
 .hx-final__inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.hx-final__mark {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 84px;
-  height: 84px;
-  margin-bottom: 34px;
-  border-radius: 24px;
-  background: linear-gradient(180deg, hsl(222 30% 16%), hsl(222 34% 9%));
-  box-shadow:
-    inset 0 0 0 1px rgba(var(--hx-blue-rgb), 0.55),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    0 0 0 8px rgba(var(--hx-blue-rgb), 0.06),
-    0 0 70px -4px rgba(var(--hx-blue-rgb), 0.85);
-}
-.hx-final__mark img {
-  width: 52px;
-  height: 52px;
-  border-radius: 13px;
-}
-.hx-final__title {
-  max-width: 14ch;
-  font-size: clamp(2.5rem, 5.4vw + 0.9rem, 5.5rem);
-  line-height: 1;
-  letter-spacing: -0.045em;
 }
 .hx-final .hx-sub {
   max-width: 560px;

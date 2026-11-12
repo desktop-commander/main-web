@@ -15,7 +15,7 @@ const LOCATION = 'home_install_chooser';
 const ev = (o: Record<string, unknown>) => JSON.stringify(o);
 ---
 
-<section class="hx-section hx-section--dots hx-install" id="install">
+<section class="hx-section hx-install" id="install">
   <div class="hx-rule" aria-hidden="true"></div>
   <div class="hx-container">
     <header class="hx-head" data-reveal>
@@ -69,7 +69,7 @@ const ev = (o: Record<string, unknown>) => JSON.stringify(o);
                 })}
               >
                 {option.cta}
-                <Icon name="arrow-right" class="hx-icon--arrow" />
+                <Icon name="arrow-right" />
               </a>
             </article>
           );

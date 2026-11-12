@@ -11,8 +11,8 @@
  *   "stage"  copy centered, the live demo below it (HeroStage.astro): a chat
  *            on the left, a machine on the right.
  *
- * Behavior lives in ./scripts: field.ts (background), pill.ts (rankings),
- * hub.ts or stage.ts (the visual).
+ * Behavior lives in ./scripts: pill.ts (rankings), hub.ts or stage.ts (the
+ * visual). The background is a plain soft light, drawn in CSS.
  */
 import Icon from './Icon.astro';
 import ClientMark from './ClientMark.astro';
@@ -34,7 +34,6 @@ const words = hero.titleLine1.split(' ');
 
 <section class:list={['hx-hero', { 'hx-hero--split': split }]} data-hero data-hero-variant={variant}>
   <div class="hx-hero__glow" aria-hidden="true"></div>
-  <canvas class="hx-hero__field" data-field data-layout={split ? 'split' : 'centered'} aria-hidden="true"></canvas>
 
   <div class:list={['hx-container', { 'hx-hero__split': split }]}>
     <div class="hx-hero__top">
@@ -110,7 +109,7 @@ const words = hero.titleLine1.split(' ');
           })}
         >
           Install
-          <Icon name="arrow-right" class="hx-icon--arrow" />
+          <Icon name="arrow-right" />
         </a>
         <a
           class="hx-btn hx-btn--ghost"

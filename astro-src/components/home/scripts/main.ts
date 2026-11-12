@@ -6,7 +6,6 @@
  */
 import { initAnalytics } from './analytics';
 import { initCardLight, initCounters, initLive, initNav, initReveal } from './effects';
-import { initField } from './field';
 import { initHub } from './hub';
 import { initPill } from './pill';
 import { initSections } from './sections';
@@ -36,7 +35,6 @@ const boot = () => {
   safely('counters', () => initCounters(reduceMotion));
   safely('live', () => initLive(reduceMotion));
   safely('card light', initCardLight);
-  safely('field', () => initField(reduceMotion));
 };
 
 if (document.readyState === 'loading') {

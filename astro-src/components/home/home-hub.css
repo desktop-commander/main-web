@@ -66,8 +66,8 @@
   }
   .hx-hero--split .hx-hero__glow {
     background:
-      radial-gradient(ellipse 44% 54% at 77% 48%, rgba(var(--hx-deep-rgb), 0.34), transparent 70%),
-      radial-gradient(ellipse 52% 36% at 22% 0%, rgba(var(--hx-blue-rgb), 0.15), transparent 72%);
+      radial-gradient(ellipse 44% 54% at 77% 48%, rgba(var(--hx-deep-rgb), 0.24), transparent 70%),
+      radial-gradient(ellipse 52% 36% at 22% 0%, rgba(var(--hx-blue-rgb), 0.1), transparent 72%);
   }
 }
 
@@ -113,8 +113,8 @@
   height: 94%;
   transform: translate(-50%, -50%);
   background:
-    radial-gradient(ellipse 34% 30% at 50% 44%, rgba(var(--hx-blue-rgb), 0.3), transparent 70%),
-    radial-gradient(ellipse 50% 46% at 50% 58%, rgba(var(--hx-deep-rgb), 0.4), transparent 72%);
+    radial-gradient(ellipse 34% 30% at 50% 44%, rgba(var(--hx-blue-rgb), 0.2), transparent 70%),
+    radial-gradient(ellipse 50% 46% at 50% 58%, rgba(var(--hx-deep-rgb), 0.3), transparent 72%);
   filter: blur(36px);
   pointer-events: none;
 }
@@ -510,6 +510,16 @@
   filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.55));
 }
 /* a light that travels around the edge of the core */
+@property --hx-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes hx-orbit {
+  to {
+    --hx-angle: 360deg;
+  }
+}
 .hx-hub__core::before {
   content: '';
   position: absolute;

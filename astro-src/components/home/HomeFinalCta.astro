@@ -1,26 +1,19 @@
 ---
-/** Closing band: same two CTAs as the hero, nothing else competing. */
+/** Closing section: the same two CTAs as the hero, and nothing else. */
 import Icon from './Icon.astro';
 import { finalCta, PLATFORM_URL } from '../../data/home';
 
 const ev = (o: Record<string, unknown>) => JSON.stringify(o);
 ---
 
-<section class="hx-final">
-  <div class="hx-final__horizon" aria-hidden="true">
-    <span class="hx-final__ring"></span>
-    <span class="hx-final__ring"></span>
-    <span class="hx-final__ring"></span>
-  </div>
+<section class="hx-section hx-final">
+  <div class="hx-rule" aria-hidden="true"></div>
 
   <div class="hx-container hx-final__inner">
-    <span class="hx-final__mark" data-reveal="scale">
-      <img src="/apple-touch-icon.png" alt="" width="64" height="64" loading="lazy" />
-    </span>
-    <h2 class="hx-h2 hx-final__title" data-reveal style="--d:80">{finalCta.heading}</h2>
-    <p class="hx-sub" data-reveal style="--d:160">{finalCta.sub}</p>
+    <h2 class="hx-h2" data-reveal>{finalCta.heading}</h2>
+    <p class="hx-sub" data-reveal style="--d:80">{finalCta.sub}</p>
 
-    <div class="hx-hero__cta" data-reveal style="--d:240">
+    <div class="hx-hero__cta" data-reveal style="--d:160">
       <a
         class="hx-btn hx-btn--primary"
         href="#install"
@@ -32,7 +25,7 @@ const ev = (o: Record<string, unknown>) => JSON.stringify(o);
         })}
       >
         Install
-        <Icon name="arrow-right" class="hx-icon--arrow" />
+        <Icon name="arrow-right" />
       </a>
       <a
         class="hx-btn hx-btn--ghost"

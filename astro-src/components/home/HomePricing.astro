@@ -4,7 +4,7 @@ import Icon from './Icon.astro';
 import { pricing } from '../../data/home';
 ---
 
-<section class="hx-section hx-section--dots hx-pricing" id="pricing">
+<section class="hx-section hx-pricing" id="pricing">
   <div class="hx-rule" aria-hidden="true"></div>
   <div class="hx-container">
     <header class="hx-head" data-reveal>
@@ -13,7 +13,7 @@ import { pricing } from '../../data/home';
       <p class="hx-sub">{pricing.sub}</p>
     </header>
 
-    <div class="hx-plans" data-light data-live>
+    <div class="hx-plans" data-light>
       {
         pricing.plans.map((plan, i) => (
           <article
@@ -21,7 +21,6 @@ import { pricing } from '../../data/home';
             data-reveal
             style={`--d:${i * 120}`}
           >
-            {plan.highlighted && <span class="hx-plan__ring" aria-hidden="true" />}
             <h3>{plan.name}</h3>
             <p class="hx-plan__price">
               <span>{plan.price}</span>
@@ -49,7 +48,7 @@ import { pricing } from '../../data/home';
               })}
             >
               {plan.cta.label}
-              <Icon name="arrow-right" class="hx-icon--arrow" />
+              <Icon name="arrow-right" />
             </a>
           </article>
         ))
