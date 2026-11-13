@@ -2,8 +2,8 @@
 
 > Purpose: durable context for every future chat on this repo. Keep this file
 > accurate. If you discover the facts below have changed, update this file.
-> Last verified: **2026-11-12** for the production deploy state, the deploy steps and the homepage,
-> **2026-11-13** for the client landing pages and the downloads number;
+> Last verified: **2026-11-13** for the production deploy state, the client landing pages and the
+> downloads number, **2026-11-12** for the deploy steps and the homepage;
 > the branch list is older (2026-09-16) except where a line says otherwise.
 
 ## What this repo is
@@ -26,18 +26,20 @@ The **Desktop Commander marketing website** (`desktopcommander.app`).
 
 ## ⚠️ Production deploy state (the important part)
 
-The intended model is "GitHub Pages serves `main` / `docs`." **Reality as of 2026-11-12 still differs:**
+The intended model is "GitHub Pages serves `main` / `docs`." **Reality as of 2026-11-13 still differs:**
 
 - **Production is served from the `feat/blog-migration` branch's `docs/`.** Verified with
   `gh api repos/desktop-commander/main-web/pages`, which reports
   `source: { branch: "feat/blog-migration", path: "/docs" }`, cname `desktopcommander.app`.
   GitHub Pages is the origin and Cloudflare sits in front of it.
-- Live commit since 2026-11-12: **`db86e357`** ("Static website changes: homepage redesign,
-  ChatGPT ranking"). Its deploy run went through on the first attempt. Before it: `f4dcbf73`
-  ("Static website changes: llms.txt"), deployed 2026-11-09, which the Pages API kept reporting as
-  `errored` although it was live: the first deploy run timed out and a re-run went through (see
-  "Deploying"). Trust the live site (`last-modified` header, a file only the new build has) over
-  that status.
+- Live since 2026-11-13: the tip of `feat/blog-migration`, the commit **"Static website changes:
+  client landing pages, downloads number"**. A commit cannot name its own hash, so look it up:
+  `git log -1 origin/feat/blog-migration`. Before it: **`db86e357`** ("Static website changes:
+  homepage redesign, ChatGPT ranking"), live from 2026-11-12, whose deploy run went through on the
+  first attempt. Before that: `f4dcbf73` ("Static website changes: llms.txt"), deployed
+  2026-11-09, which the Pages API kept reporting as `errored` although it was live: the first
+  deploy run timed out and a re-run went through (see "Deploying"). Trust the live site
+  (`last-modified` header, a file only the new build has) over that status.
 - **`main` is NOT what's live.** `main` tip is `051123a3` ("Add pricing preview without $200 package",
   2026-08-04).
 - The two branches **diverged on 2026-06-03** (`c7cdefa2`) and have drifted further since:
@@ -117,8 +119,9 @@ The live `/blog` is **static Astro** (paths `/blog/media/...`, `/blog/assets/...
 ## Branches (as of 2026-09-16)
 
 - `main` — intended production branch; behind live and missing the blog. Tip `051123a3` (Aug 4).
-- `feat/blog-migration` — **what's actually live**. Tip `db86e357` since the homepage deploy of
-  2026-11-12 (was `f4dcbf73` before it, `aca30120` on 2026-09-16).
+- `feat/blog-migration` — **what's actually live**. Its tip since 2026-11-13 is the static build of
+  `feat/client-landing-pages` (was `db86e357` from the homepage deploy of 2026-11-12, `f4dcbf73`
+  before it, `aca30120` on 2026-09-16).
 - `feat/mcp-first-positioning` — branched from the live tip `aca30120` on 2026-09-16 for the
   MCP-first repositioning (app no longer the primary CTA). Not deployed.
 - `flags/mcp-ui-previews-100` (Jul 30) and `feat/mcp-client-pages` (Jul 24) — already merged into
@@ -129,8 +132,8 @@ The live `/blog` is **static Astro** (paths `/blog/media/...`, `/blog/assets/...
   diagram) was chosen as the main homepage on 2026-11-12**. It went live that day as `db86e357`
   (`feat/blog-migration` was fast-forwarded to it). See "Homepage source layout" below.
 - `feat/client-landing-pages`: cut from the live tip `db86e357` on 2026-11-13: the downloads
-  number that refreshes itself, and the three client landing pages in the homepage style. Local
-  preview only so far, not built into `docs/` and not deployed.
+  number that refreshes itself, and the three client landing pages in the homepage style.
+  Deployed the same day: `feat/blog-migration` was fast-forwarded to it.
 - `welcome-team-agent-lp` — welcome page v3 (team-agent pitch + HubSpot waitlist); source-only, not
   built into `docs/`, not deployed.
 - `gh-pages` — **stale/abandoned** (old Vite/React + `deploy:` commits, last touched 2025-09-19). Not used.
@@ -184,7 +187,7 @@ The homepage is plain Astro sections instead of one React island per section:
 The previous homepage sections (`src/components/home-mcp/*`, `src/components/mcp/MCPRemote.tsx`,
 etc.) are still in the repo: other pages use several of them, and nothing was deleted.
 
-## Client landing pages (on `feat/client-landing-pages`, not deployed as of 2026-11-13)
+## Client landing pages (live since 2026-11-13)
 
 `/mcp/chatgpt/`, `/mcp/claude-web/` and `/mcp/claude-desktop/` were rebuilt on 2026-11-13 in the
 homepage style. The brief was "new look, same content": sections, wording, buttons and analytics
