@@ -2,8 +2,8 @@
 
 > Purpose: durable context for every future chat on this repo. Keep this file
 > accurate. If you discover the facts below have changed, update this file.
-> Last verified: **2026-11-13** for the production deploy state, the client landing pages and the
-> downloads number, **2026-11-12** for the deploy steps and the homepage;
+> Last verified: **2026-11-13** for the production deploy state, the client landing pages, the
+> downloads number and the pricing copy, **2026-11-12** for the deploy steps and the homepage;
 > the branch list is older (2026-09-16) except where a line says otherwise.
 
 ## What this repo is
@@ -32,14 +32,16 @@ The intended model is "GitHub Pages serves `main` / `docs`." **Reality as of 202
   `gh api repos/desktop-commander/main-web/pages`, which reports
   `source: { branch: "feat/blog-migration", path: "/docs" }`, cname `desktopcommander.app`.
   GitHub Pages is the origin and Cloudflare sits in front of it.
-- Live since 2026-11-13: the tip of `feat/blog-migration`, the commit **"Static website changes:
-  client landing pages, downloads number"**. A commit cannot name its own hash, so look it up:
-  `git log -1 origin/feat/blog-migration`. Before it: **`db86e357`** ("Static website changes:
-  homepage redesign, ChatGPT ranking"), live from 2026-11-12, whose deploy run went through on the
-  first attempt. Before that: `f4dcbf73` ("Static website changes: llms.txt"), deployed
-  2026-11-09, which the Pages API kept reporting as `errored` although it was live: the first
-  deploy run timed out and a re-run went through (see "Deploying"). Trust the live site
-  (`last-modified` header, a file only the new build has) over that status.
+- Live since 2026-11-13, the second deploy of that day: the tip of `feat/blog-migration`, the
+  commit **"Static website changes: VAT note on the Pro price"**. A commit cannot name its own
+  hash, so look it up: `git log -1 origin/feat/blog-migration`. Before it, earlier the same day:
+  **`bb7fcedc`** ("Static website changes: client landing pages, downloads number"). Before that:
+  `db86e357` ("Static website changes: homepage redesign, ChatGPT ranking"), live from 2026-11-12.
+  Both of those deploy runs went through on the first attempt. Before them: `f4dcbf73` ("Static
+  website changes: llms.txt"), deployed 2026-11-09, which the Pages API kept reporting as
+  `errored` although it was live: the first deploy run timed out and a re-run went through (see
+  "Deploying"). Trust the live site (`last-modified` header, a file only the new build has) over
+  that status.
 - **`main` is NOT what's live.** `main` tip is `051123a3` ("Add pricing preview without $200 package",
   2026-08-04).
 - The two branches **diverged on 2026-06-03** (`c7cdefa2`) and have drifted further since:
@@ -103,6 +105,26 @@ landing pages, FAQ data) is not edited by hand.
   "Deploying"). The script also never fails a build: on any problem the stored number stays.
 - `githubStars` in the same file is still entered by hand (10.1k on 2026-11-13, shown as "10k").
 
+## Pricing copy
+
+The Pro price is $20 a month **without VAT**. Wherever the site states that price, it also says
+that VAT is added (asked for by Ričards on 2026-11-13). The wording: "+ VAT applicable in your
+country" under the price, and "plus VAT" or "plus VAT applicable in your country" in a sentence.
+The places that state the price, to be kept in step:
+
+- Homepage pricing section: `pricing.plans` in `astro-src/data/home.ts` (`priceNote`), rendered by
+  `astro-src/components/home/HomePricing.astro`.
+- `/pricing/`: `PLANS` in `src/components/pricing/RemoteMcpPricing.tsx` (`priceNote`), and the page
+  description in `astro-src/pages/pricing.astro`.
+- The shared "Is it free?" answer: `PRICE_FAQ` in `src/components/use-cases/remote/faqs.ts`. On
+  2026-11-13 it was shown on 14 use case pages and 8 ChatGPT ad pages, and it feeds the FAQ data
+  for search engines on the use case pages.
+- `public/llms.txt` says "plus tax".
+
+In both card layouts a plan without a note keeps an empty row on wide screens, so the two feature
+lists start level. Not live, and still without the note: `src/components/home-mcp/McpPricing.tsx`,
+`PricingSection.tsx`, `PricingTeaser.tsx` and `FAQ.tsx`, old components that no page uses.
+
 ## How to verify what's actually live (don't assume)
 
 The live `/blog` is **static Astro** (paths `/blog/media/...`, `/blog/assets/...`), not WordPress
@@ -120,8 +142,9 @@ The live `/blog` is **static Astro** (paths `/blog/media/...`, `/blog/assets/...
 
 - `main` — intended production branch; behind live and missing the blog. Tip `051123a3` (Aug 4).
 - `feat/blog-migration` — **what's actually live**. Its tip since 2026-11-13 is the static build of
-  `feat/client-landing-pages` (was `db86e357` from the homepage deploy of 2026-11-12, `f4dcbf73`
-  before it, `aca30120` on 2026-09-16).
+  `fix/pricing-vat-note` (earlier that day `bb7fcedc`, the build of `feat/client-landing-pages`;
+  was `db86e357` from the homepage deploy of 2026-11-12, `f4dcbf73` before it, `aca30120` on
+  2026-09-16).
 - `feat/mcp-first-positioning` — branched from the live tip `aca30120` on 2026-09-16 for the
   MCP-first repositioning (app no longer the primary CTA). Not deployed.
 - `flags/mcp-ui-previews-100` (Jul 30) and `feat/mcp-client-pages` (Jul 24) — already merged into
@@ -133,7 +156,10 @@ The live `/blog` is **static Astro** (paths `/blog/media/...`, `/blog/assets/...
   (`feat/blog-migration` was fast-forwarded to it). See "Homepage source layout" below.
 - `feat/client-landing-pages`: cut from the live tip `db86e357` on 2026-11-13: the downloads
   number that refreshes itself, and the three client landing pages in the homepage style.
-  Deployed the same day: `feat/blog-migration` was fast-forwarded to it.
+  Deployed the same day as `bb7fcedc`: `feat/blog-migration` was fast-forwarded to it.
+- `fix/pricing-vat-note`: cut from the live tip `bb7fcedc` on 2026-11-13: the VAT note on the Pro
+  price (see "Pricing copy"). Deployed the same day, again by fast-forwarding
+  `feat/blog-migration`.
 - `welcome-team-agent-lp` — welcome page v3 (team-agent pitch + HubSpot waitlist); source-only, not
   built into `docs/`, not deployed.
 - `gh-pages` — **stale/abandoned** (old Vite/React + `deploy:` commits, last touched 2025-09-19). Not used.
