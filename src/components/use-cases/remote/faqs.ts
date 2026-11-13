@@ -4,7 +4,9 @@
  * JSON-LD in the page's <Layout jsonLd>, so the two never drift apart.
  *
  * Shared entries (SETUP_FAQ, COMPUTERS_FAQ, ONLINE_FAQ, PRICE_FAQ) are exported for the
- * per-page files in ./faqs/. Plan facts mirror src/components/home-mcp/McpPricing.tsx. Update both together.
+ * per-page files in ./faqs/ and for the ChatGPT ad pages (adPages.ts). Plan facts mirror the
+ * homepage pricing section (astro-src/data/home.ts) and /pricing/
+ * (src/components/pricing/RemoteMcpPricing.tsx). Update them together.
  */
 
 export interface Faq {
@@ -43,7 +45,7 @@ export const ONLINE_FAQ: Faq = {
 export const PRICE_FAQ: Faq = {
   question: 'Is it free?',
   answer:
-    'Desktop Commander has a free plan with 10,000 tool calls a month. Pro is $20 a month for unlimited tool calls. You also need a ChatGPT or Claude account, and plugin availability depends on your plan there.',
+    'Desktop Commander has a free plan with 10,000 tool calls a month. Pro is $20 a month plus VAT applicable in your country, with unlimited tool calls. You also need a ChatGPT or Claude account, and plugin availability depends on your plan there.',
 };
 
 export const FILE_MANAGEMENT_FAQS: Faq[] = [
