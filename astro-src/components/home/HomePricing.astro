@@ -22,10 +22,21 @@ import { pricing } from '../../data/home';
             style={`--d:${i * 120}`}
           >
             <h3>{plan.name}</h3>
-            <p class="hx-plan__price">
-              <span>{plan.price}</span>
-              <small>{plan.period}</small>
-            </p>
+            <div class="hx-plan__cost">
+              <p class="hx-plan__price">
+                <span>{plan.price}</span>
+                <small>{plan.period}</small>
+              </p>
+              {/* What is added to the price. A plan without a note keeps the empty row on wide
+                  screens, so the two lists start level. */}
+              {
+                plan.priceNote ? (
+                  <p class="hx-plan__note">{plan.priceNote}</p>
+                ) : (
+                  <p class="hx-plan__note hx-plan__note--none" aria-hidden="true">&nbsp;</p>
+                )
+              }
+            </div>
             <ul class="hx-checks">
               {plan.features.map((feature) => (
                 <li>

@@ -446,6 +446,8 @@ export const pricing = {
       name: 'Free',
       price: '$0',
       period: '/ month',
+      // What is added to the price, shown under it. Empty when nothing is.
+      priceNote: '',
       features: [
         '10,000 tool calls per month',
         'ChatGPT, Claude and any MCP client',
@@ -458,6 +460,8 @@ export const pricing = {
       name: 'Pro',
       price: '$20',
       period: '/ month',
+      // The price is without VAT. Same wording on /pricing/ (RemoteMcpPricing.tsx).
+      priceNote: '+ VAT applicable in your country',
       features: ['Unlimited tool calls', 'Priority support'],
       cta: { label: 'Upgrade to Pro', href: PLATFORM_URL, external: true },
       highlighted: true,

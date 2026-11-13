@@ -1952,11 +1952,20 @@
 .hx-plan--pro h3 {
   color: var(--hx-blue-hi);
 }
+/* The price and, under it, what is added to it (VAT) */
+.hx-plan__cost {
+  margin-bottom: 30px;
+}
 .hx-plan__price {
   display: flex;
   align-items: baseline;
   gap: 10px;
-  margin-bottom: 30px;
+}
+.hx-plan__note {
+  margin-top: 12px;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--hx-text-3);
 }
 .hx-plan__price span {
   font-size: clamp(3.5rem, 5vw + 1rem, 5rem);
@@ -2224,6 +2233,10 @@
   .hx-install__grid,
   .hx-plans {
     grid-template-columns: minmax(0, 1fr);
+  }
+  /* stacked cards have nothing to line up with */
+  .hx-plan__note--none {
+    display: none;
   }
   .hx-bento {
     grid-template-columns: minmax(0, 1fr);

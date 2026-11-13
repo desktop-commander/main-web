@@ -14,6 +14,8 @@ const PLANS = [
     name: "Free",
     price: "$0",
     period: "/month",
+    // What is added to the price, shown under it. Empty when nothing is.
+    priceNote: "",
     description: "Everything you need to connect your first machine.",
     features: [
       "10,000 tool calls per month",
@@ -28,6 +30,8 @@ const PLANS = [
     name: "Pro",
     price: "$20",
     period: "/month",
+    // The price is without VAT. Same wording in the homepage pricing section (astro-src/data/home.ts).
+    priceNote: "+ VAT applicable in your country",
     description: "For daily use, with no monthly ceiling.",
     features: [
       "Unlimited tool calls",
@@ -95,10 +99,21 @@ const RemoteMcpPricing = () => {
               <h2 className="text-xl font-semibold text-foreground mb-2">{plan.name}</h2>
               <p className="text-sm text-muted-foreground mb-6">{plan.description}</p>
 
-              <p className="flex items-baseline gap-1 mb-8">
-                <span className="text-5xl font-bold text-foreground">{plan.price}</span>
-                <span className="text-muted-foreground">{plan.period}</span>
-              </p>
+              <div className="mb-8">
+                <p className="flex items-baseline gap-1">
+                  <span className="text-5xl font-bold text-foreground">{plan.price}</span>
+                  <span className="text-muted-foreground">{plan.period}</span>
+                </p>
+                {/* What is added to the price. A plan without a note keeps the empty row on
+                    wide screens, so the two lists start level. */}
+                {plan.priceNote ? (
+                  <p className="mt-2 text-muted-foreground">{plan.priceNote}</p>
+                ) : (
+                  <p className="mt-2 hidden md:block" aria-hidden="true">
+                    &nbsp;
+                  </p>
+                )}
+              </div>
 
               <ul className="space-y-3 mb-8 flex-1">
                 {plan.features.map((feature) => (
