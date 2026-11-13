@@ -2,7 +2,8 @@
 
 > Purpose: durable context for every future chat on this repo. Keep this file
 > accurate. If you discover the facts below have changed, update this file.
-> Last verified: **2026-11-12** for the production deploy state, the deploy steps and the homepage;
+> Last verified: **2026-11-12** for the production deploy state, the deploy steps and the homepage,
+> **2026-11-13** for the client landing pages and the downloads number;
 > the branch list is older (2026-09-16) except where a line says otherwise.
 
 ## What this repo is
@@ -31,10 +32,12 @@ The intended model is "GitHub Pages serves `main` / `docs`." **Reality as of 202
   `gh api repos/desktop-commander/main-web/pages`, which reports
   `source: { branch: "feat/blog-migration", path: "/docs" }`, cname `desktopcommander.app`.
   GitHub Pages is the origin and Cloudflare sits in front of it.
-- Live commit on 2026-11-12, before the homepage redesign: **`f4dcbf73`** ("Static website changes:
-  llms.txt"), deployed **2026-11-09**. The Pages API still reports that build as `errored`
-  although it is live: the first deploy run timed out and a re-run went through (see "Deploying").
-  Trust the live site (`last-modified` header, a file only the new build has) over that status.
+- Live commit since 2026-11-12: **`db86e357`** ("Static website changes: homepage redesign,
+  ChatGPT ranking"). Its deploy run went through on the first attempt. Before it: `f4dcbf73`
+  ("Static website changes: llms.txt"), deployed 2026-11-09, which the Pages API kept reporting as
+  `errored` although it was live: the first deploy run timed out and a re-run went through (see
+  "Deploying"). Trust the live site (`last-modified` header, a file only the new build has) over
+  that status.
 - **`main` is NOT what's live.** `main` tip is `051123a3` ("Add pricing preview without $200 package",
   2026-08-04).
 - The two branches **diverged on 2026-06-03** (`c7cdefa2`) and have drifted further since:
@@ -54,9 +57,10 @@ from `main` so the intended model and reality match again. Confirm with the user
 ## Deploying (how it has been done since autumn 2026)
 
 1. Work on a feature branch cut from the `feat/blog-migration` tip. Commit the source changes.
-2. `npm run commit-static` on that branch (runs `npm run build`, whose `postbuild` writes
-   `docs/CNAME`, then commits `docs/`). Recent commits name what changed:
-   "Static website changes: <what>".
+2. `npm run commit-static` on that branch (refreshes the weekly npm downloads number, see
+   "Numbers that refresh themselves", then runs `npm run build`, whose `postbuild` writes
+   `docs/CNAME`, then commits `docs/` and `src/data/site-stats.json`). Recent commits name what
+   changed: "Static website changes: <what>".
 3. Preview the result with `npm run serve:static` (http://localhost:3000).
 4. **Asset name check, before pushing.** Cloudflare caches a 404 for an asset URL for 7 days.
    A name that production served and then dropped may still be cached as missing, and a new
@@ -75,6 +79,28 @@ from `main` so the intended model and reality match again. Confirm with the user
    were dropped by the deploy and may by then be cached as missing. Rebuild the previous source
    with a different hash length instead, or have the Cloudflare cache purged.
 
+## Numbers that refresh themselves
+
+The weekly npm downloads number shown across the site (homepage, `/mcp/`, the client and ad
+landing pages, FAQ data) is not edited by hand.
+
+- It lives in `src/data/site-stats.json` and reaches every page through `STATS` in
+  `src/components/home-mcp/links.ts`.
+- `update-stats.js` refreshes it from npm's public downloads API. It runs inside
+  `npm run commit-static`, right before the build, so the number is refreshed when the site is
+  deployed. `npm run build` and `npm run dev` never call it. By hand: `npm run update-stats`
+  (`-- --force` to refresh now, `-- --dry-run` to only print).
+- Shown: **npm's own "weekly downloads", the last 7 days**, rounded down ("940k+", "1M+",
+  "1.2M+"). That figure swings a lot for this package (713k, 943k and 1.05M within three days in
+  November 2026, after two very large days), so the label can go down as well as up between
+  deploys. Ričards chose it knowingly on 2026-11-13, over the calmer average of the last four
+  weeks (686k that day; `WEEKS = 4` in the script switches to it). If npm has an empty day in
+  the last 7 (it fills those in later), the stored number stays.
+- The label changes **at most every 14 days**. It sits in a JS chunk (`links.<hash>.js`), so a
+  label that came back within days would bring an old asset name back (see step 4 of
+  "Deploying"). The script also never fails a build: on any problem the stored number stays.
+- `githubStars` in the same file is still entered by hand (10.1k on 2026-11-13, shown as "10k").
+
 ## How to verify what's actually live (don't assume)
 
 The live `/blog` is **static Astro** (paths `/blog/media/...`, `/blog/assets/...`), not WordPress
@@ -91,8 +117,8 @@ The live `/blog` is **static Astro** (paths `/blog/media/...`, `/blog/assets/...
 ## Branches (as of 2026-09-16)
 
 - `main` — intended production branch; behind live and missing the blog. Tip `051123a3` (Aug 4).
-- `feat/blog-migration` — **what's actually live**. Tip `f4dcbf73` on 2026-11-12 (was `aca30120`
-  on 2026-09-16).
+- `feat/blog-migration` — **what's actually live**. Tip `db86e357` since the homepage deploy of
+  2026-11-12 (was `f4dcbf73` before it, `aca30120` on 2026-09-16).
 - `feat/mcp-first-positioning` — branched from the live tip `aca30120` on 2026-09-16 for the
   MCP-first repositioning (app no longer the primary CTA). Not deployed.
 - `flags/mcp-ui-previews-100` (Jul 30) and `feat/mcp-client-pages` (Jul 24) — already merged into
@@ -100,15 +126,18 @@ The live `/blog` is **static Astro** (paths `/blog/media/...`, `/blog/assets/...
 - `fable-experiment` — homepage "mission control" redesign (built on top of blog-migration); NOT live.
 - `feat/landing-redesign` — full homepage rebuild (2026-11-11 and 12), branched from the
   `feat/blog-migration` tip `f4dcbf73`. Two hero versions were built; **version B (the connection
-  diagram) was chosen as the main homepage on 2026-11-12**. It goes live when `feat/blog-migration`
-  is fast-forwarded to this branch and pushed (see "Deploying"). See "Homepage source layout" below.
+  diagram) was chosen as the main homepage on 2026-11-12**. It went live that day as `db86e357`
+  (`feat/blog-migration` was fast-forwarded to it). See "Homepage source layout" below.
+- `feat/client-landing-pages`: cut from the live tip `db86e357` on 2026-11-13: the downloads
+  number that refreshes itself, and the three client landing pages in the homepage style. Local
+  preview only so far, not built into `docs/` and not deployed.
 - `welcome-team-agent-lp` — welcome page v3 (team-agent pitch + HubSpot waitlist); source-only, not
   built into `docs/`, not deployed.
 - `gh-pages` — **stale/abandoned** (old Vite/React + `deploy:` commits, last touched 2025-09-19). Not used.
 - Other feature branches: `feature/pricing-page`, `feature/website-redesign`, `hero-redesign-v2`,
   `feature/welcome-page-feature-flags`, `flags/unexclude-claude-code`, etc.
 
-## Homepage source layout (on `feat/landing-redesign`)
+## Homepage source layout (live since 2026-11-12)
 
 The homepage is plain Astro sections instead of one React island per section:
 
@@ -154,6 +183,39 @@ The homepage is plain Astro sections instead of one React island per section:
 
 The previous homepage sections (`src/components/home-mcp/*`, `src/components/mcp/MCPRemote.tsx`,
 etc.) are still in the repo: other pages use several of them, and nothing was deleted.
+
+## Client landing pages (on `feat/client-landing-pages`, not deployed as of 2026-11-13)
+
+`/mcp/chatgpt/`, `/mcp/claude-web/` and `/mcp/claude-desktop/` were rebuilt on 2026-11-13 in the
+homepage style. The brief was "new look, same content": sections, wording, buttons and analytics
+events are the ones the pages had before.
+
+- One template: `astro-src/components/landing/LandingPage.astro`, used by the three page files in
+  `astro-src/pages/mcp/<client>/index.astro` (each is one line: `<LandingPage slug="..." />`).
+  Sections are plain Astro components (`Landing*.astro`, `ChatWindow.astro`), no React island each.
+- Copy: `astro-src/data/landing.ts`, one object per page. Page title, description, FAQ and the
+  directory link (the CTA target) still come from `astro-src/data/mcp-clients.ts`.
+- Styles: the homepage's `home.css` and `home-sections.css` (tokens, type, buttons, cards, FAQ, the
+  Remote MCP section, client cards) plus `landing/landing.css` for what only these pages have
+  (`lp-` prefix): the chat windows in each client's own look, the prompt categories, the terminal,
+  the phone with a Claude conversation, the local diagram, setup.
+- Scripts: `landing/scripts/` (`composer.ts` types the prompts in the hero window, `showcase.ts`
+  runs the category tabs, `copy.ts` the install command). Analytics, reveals, the ranking pill and
+  the FAQ are the homepage modules (`home/scripts/`); the pill markup is `home/RankingPill.astro`.
+- Analytics, compared event by event with the old pages: `mcp_client_page_cta_clicked` (positions
+  `hero`, `hero_composer_send`, `capabilities`, `phone_section` or `local_section`, `setup`, `final`),
+  `mcp_client_showcase_category_clicked`, `ranking_pill_clicked` (`button_location: chatgpt_hero`),
+  `mcp_client_setup_command_copied`, `mcp_client_crosslink_clicked`. Same names and properties.
+  The crosslink event now also reaches Google Analytics (before, PostHog only).
+- Differences from the old pages, on purpose: the typo "Claude Desktop Desktop" is fixed; section
+  labels were added (Examples, Capabilities, Setup, FAQ, Clients); under the hero chat of the two
+  remote clients a small strip shows the machine doing the job from the conversation; the first
+  FAQ answer starts open; the prompt categories stop taking turns once a visitor picks one.
+- **Not touched:** the ChatGPT ad pages (`/mcp/chatgpt/<campaign>/`, `/codebase/`, `/machines/`),
+  `/mcp/`, `/mcp/cursor/` and the generic `[client]` template. They keep the React components in
+  `src/components/mcp/clients/`. After this change nothing imports `clients/claude-web/*` and
+  `clients/claude-desktop/*` any more; they were left in place so going back is one revert.
+- The same "kept plain on purpose" rules as the homepage apply here.
 
 ## Working rules
 
