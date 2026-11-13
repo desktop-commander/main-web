@@ -1,0 +1,143 @@
+---
+/**
+ * Hero of a client landing page: what it does in one headline, the one call
+ * to action, and the client's own chat window with a prompt being typed.
+ *
+ * Above the headline sits either the directory rankings (ChatGPT) or the two
+ * logos linked together (Claude). Under the chat of a remote client sits the
+ * machine the request goes to. The entrance is pure CSS, so the headline
+ * never waits for JavaScript.
+ */
+import Icon from '../home/Icon.astro';
+import RankingPill from '../home/RankingPill.astro';
+import ChatWindow from './ChatWindow.astro';
+import LandingCta from './LandingCta.astro';
+import { GITHUB_URL, NPM_URL, STATS } from '../../../src/components/home-mcp/links';
+import type { LandingPage } from '../../data/landing';
+
+interface Props {
+  page: LandingPage;
+}
+const { page } = Astro.props;
+const { hero } = page;
+
+const stats = [
+  { href: NPM_URL, value: STATS.weeklyDownloads, label: 'weekly npm downloads', icon: 'download' },
+  { href: GITHUB_URL, value: STATS.githubStars, label: 'GitHub stars', icon: 'star' },
+] as const;
+
+// every piece of the headline rises in turn
+let piece = 0;
+---
+
+<section class="hx-hero lp-hero" data-hero>
+  <div class="hx-hero__glow" aria-hidden="true"></div>
+
+  <div class="hx-container lp-hero__grid">
+    <div class="hx-hero__top lp-hero__copy">
+      {
+        hero.pill === 'rankings' ? (
+          <RankingPill location={`${page.client}_hero`} />
+        ) : (
+          <div class="lp-link hx-enter hx-enter--fade">
+            <span class="lp-link__logo lp-link__logo--dc">
+              <img src="/apple-touch-icon.png" alt="Desktop Commander" width="44" height="44" />
+            </span>
+            <span class="lp-link__wire" aria-hidden="true">
+              <i />
+              <i />
+            </span>
+            <span class="lp-link__logo">
+              <img src="/claude-logo.png" alt="Claude" width="26" height="26" />
+            </span>
+          </div>
+        )
+      }
+
+      <h1 class="hx-h1 lp-h1">
+        {
+          hero.title.map((line) => (
+            <span class="hx-h1__line">
+              {line.map((part) => (
+                <>
+                  <span class="hx-w">
+                    <span class:list={[{ 'hx-grad': part.accent }]} style={`--i:${piece++}`}>
+                      {part.text}
+                    </span>
+                  </span>{' '}
+                </>
+              ))}
+            </span>
+          ))
+        }
+      </h1>
+
+      <p class="hx-hero__lead lp-hero__sub hx-enter" style="--d:520">{hero.sub}</p>
+
+      <div class="hx-hero__cta hx-enter" style="--d:640">
+        <LandingCta page={page} position="hero" />
+      </div>
+
+      {
+        hero.stats && (
+          <div class="hx-hero__stats hx-enter" style="--d:760">
+            {stats.map((s, i) => (
+              <>
+                {i > 0 && <span class="hx-hero__stats-sep" aria-hidden="true" />}
+                <a class="hx-hero__stat" href={s.href} target="_blank" rel="noopener noreferrer">
+                  <Icon name={s.icon} />
+                  <span>
+                    <b>{s.value}</b> {s.label}
+                  </span>
+                </a>
+              </>
+            ))}
+          </div>
+        )
+      }
+    </div>
+
+    <div class="lp-hero__visual hx-enter" style="--d:260">
+      <ChatWindow page={page} />
+
+      {
+        /* Remote clients: where the request goes. Decorative, it repeats the chat above. */
+        hero.machine && (
+          <div class="lp-reach" data-live aria-hidden="true">
+            <div class="lp-wire">
+              <span class="lp-wire__label">
+                <img src="/favicon-32x32.png" alt="" width="14" height="14" />
+                {hero.machine.via}
+              </span>
+            </div>
+            <div class="lp-machine">
+              <span class="lp-machine__icon">
+                <Icon name="laptop" />
+              </span>
+              <span class="lp-machine__name">
+                <b>{hero.machine.name}</b>
+                <small>
+                  <i class="hx-led" /> {hero.machine.status}
+                </small>
+              </span>
+              <span class="lp-machine__work">
+                <span class="lp-machine__tool">{hero.machine.tool}</span>
+                <span class="lp-machine__state">
+                  <span class="lp-machine__busy">{hero.machine.busy}</span>
+                  <span class="lp-machine__done">
+                    <Icon name="check" strokeWidth={3} />
+                    {hero.machine.done}
+                  </span>
+                </span>
+              </span>
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </div>
+
+  <a class="lp-hero__more" href="#discover" aria-label="Scroll to see more">
+    <Icon name="chevron-down" />
+  </a>
+</section>

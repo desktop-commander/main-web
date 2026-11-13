@@ -1,0 +1,94 @@
+---
+/**
+ * Setup (#setup).
+ *
+ * Remote clients: two numbered steps, the button, and where to get help.
+ * Local client: two ways to install (from the directory, or one command with
+ * a copy button). Copying sends mcp_client_setup_command_copied
+ * (./scripts/copy.ts).
+ */
+import Icon from '../home/Icon.astro';
+import LandingCta from './LandingCta.astro';
+import type { LandingPage } from '../../data/landing';
+
+interface Props {
+  page: LandingPage;
+}
+const { page } = Astro.props;
+const { setup } = page;
+const num = (i: number) => String(i + 1).padStart(2, '0');
+---
+
+<section class="hx-section lp-setup" id="setup">
+  <div class="hx-rule" aria-hidden="true"></div>
+  <div class="hx-container">
+    <header class="hx-head" data-reveal>
+      <span class="hx-eyebrow"><span class="hx-eyebrow__text">Setup</span></span>
+      <h2 class="hx-h2">{setup.heading}</h2>
+      <p class="hx-sub">{setup.sub}</p>
+    </header>
+
+    {
+      setup.kind === 'steps' ? (
+        <ol class="lp-steps">
+          {setup.steps.map((step, i) => (
+            <li class="hx-card lp-stepcard" data-reveal style={`--d:${i * 110}`}>
+              <span class="lp-stepcard__num" aria-hidden="true">
+                {num(i)}
+              </span>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <>
+          <ul class="lp-steps">
+            {setup.options.map((option, i) => (
+              <li class="hx-card lp-stepcard" data-reveal style={`--d:${i * 110}`}>
+                <span class="lp-stepcard__num" aria-hidden="true">
+                  {option.letter}
+                </span>
+                <h3>{option.title}</h3>
+                <p>{option.text}</p>
+              </li>
+            ))}
+          </ul>
+
+          <div class="lp-command" data-reveal style="--d:120">
+            <span class="lp-command__ps" aria-hidden="true">
+              $
+            </span>
+            <code>{setup.command}</code>
+            <button
+              type="button"
+              class="lp-command__copy"
+              data-lp-copy={setup.command}
+              data-client={page.client}
+              aria-label="Copy install command"
+            >
+              <Icon name="copy" class="lp-command__idle" />
+              <Icon name="check" class="lp-command__done" strokeWidth={2.6} />
+            </button>
+          </div>
+        </>
+      )
+    }
+
+    <div class="lp-setup__cta" data-reveal>
+      <LandingCta page={page} position="setup" />
+    </div>
+
+    <p class="lp-setup__note" data-reveal>
+      <Icon name="terminal" />{setup.note}
+    </p>
+
+    {
+      setup.kind === 'steps' && (
+        <p class="lp-setup__help" data-reveal>
+          Trouble connecting? Read <a class="hx-link" href="/help/devices/connect-computer">how to connect a computer</a> or <a class="hx-link" href="/help/troubleshooting/remote-cant-find-computer">why your computer isn't found</a>.
+        </p>
+      )
+    }
+  </div>
+</section>

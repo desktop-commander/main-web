@@ -1,0 +1,153 @@
+---
+/**
+ * "This ... will enable you to" (#capabilities): the two things the client
+ * cannot do on its own, files and the terminal, each with a visual.
+ *
+ * Files: the real screen recording (ChatGPT) or a Claude conversation.
+ * Terminal: a short session that plays line by line when it scrolls into view.
+ * The video is not downloaded until then (preload="none", started by initLive
+ * in ../home/scripts/effects.ts).
+ */
+import Icon from '../home/Icon.astro';
+import LandingCta from './LandingCta.astro';
+import type { LandingPage } from '../../data/landing';
+
+interface Props {
+  page: LandingPage;
+}
+const { page } = Astro.props;
+const { files, terminal } = page.capabilities;
+const visual = files.visual;
+---
+
+<section class="hx-section lp-caps" id="capabilities">
+  <div class="hx-container">
+    <header class="hx-head" data-reveal>
+      <span class="hx-eyebrow"><span class="hx-eyebrow__text">Capabilities</span></span>
+      <h2 class="hx-h2">{page.capabilities.heading}</h2>
+      <p class="hx-sub">{page.capabilities.sub}</p>
+    </header>
+
+    <div class="lp-cap">
+      <div class="lp-cap__copy" data-reveal>
+        <span class="lp-cap__icon">
+          <Icon name="folder-open" />
+        </span>
+        <h3>{files.title}</h3>
+        <p>{files.text}</p>
+        <ul class="lp-checks">
+          {
+            files.bullets.map((item) => (
+              <li>
+                <Icon name="check" strokeWidth={2.6} />
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      {
+        visual.kind === 'video' ? (
+          <figure class="lp-cap__visual lp-window" data-live data-reveal="scale" style="--d:120">
+            <figcaption class="lp-window__bar">
+              <span class="hx-win__lights" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+              </span>
+              <span class="lp-window__title">{visual.windowTitle}</span>
+            </figcaption>
+            <div class="lp-window__media">
+              <video muted loop playsinline preload="none" poster={visual.poster} title={visual.title} width="1116" height="1080">
+                <source src={visual.src} type="video/mp4" />
+              </video>
+            </div>
+          </figure>
+        ) : (
+          <div class="lp-cap__visual lp-cap__visual--chat" data-reveal="scale" style="--d:120">
+            <div class="lp-chat lp-chat--claude">
+              <div class="lp-chat__bar">
+                <span class="lp-chat__title">
+                  <span>{visual.title}</span>
+                  <Icon name="chevron-down" />
+                </span>
+                <span class="lp-chat__share">Share</span>
+              </div>
+              <div class="lp-chat__body">
+                <p class="lp-chat__user lp-seq" style="--d:200">
+                  {visual.user}
+                </p>
+                <p class="lp-chat__chip lp-seq" style="--d:800">
+                  <img src="/favicon-32x32.png" alt="" width="14" height="14" loading="lazy" />
+                  {visual.chip}
+                </p>
+                <p class="lp-chat__serif lp-seq" style="--d:1400">
+                  {visual.found}
+                </p>
+                <ul class="lp-chat__files lp-seq" style="--d:1900">
+                  {visual.files.map((name) => (
+                    <li>{name}</li>
+                  ))}
+                </ul>
+                <p class="lp-chat__serif lp-seq" style="--d:2400">
+                  {visual.done}
+                </p>
+              </div>
+            </div>
+          </div>
+        )
+      }
+    </div>
+
+    <div class="lp-cap lp-cap--flip">
+      <div class="lp-cap__copy" data-reveal>
+        <span class="lp-cap__icon">
+          <Icon name="terminal" />
+        </span>
+        <h3>{terminal.title}</h3>
+        <p>{terminal.text}</p>
+        <ul class="lp-checks">
+          {
+            terminal.bullets.map((item) => (
+              <li>
+                <Icon name="check" strokeWidth={2.6} />
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="lp-cap__visual lp-window lp-term" data-reveal="scale" style="--d:120">
+        <div class="lp-window__bar">
+          <span class="hx-win__lights" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+          </span>
+          <span class="lp-window__title">{terminal.windowTitle}</span>
+        </div>
+        <div class:list={['lp-term__body', `lp-term__body--${page.mark}`]}>
+          {
+            terminal.lines.map((line, i) => (
+              <p class:list={['lp-term__line', `lp-term__line--${line.kind}`, 'lp-seq']} style={`--d:${300 + i * 400}`}>
+                {line.kind === 'command' && (
+                  <span class="lp-term__ps" aria-hidden="true">
+                    $
+                  </span>
+                )}
+                {line.text}
+              </p>
+            ))
+          }
+          <i class="lp-term__caret lp-seq" style={`--d:${300 + terminal.lines.length * 400}`} aria-hidden="true" />
+        </div>
+      </div>
+    </div>
+
+    <div class="lp-caps__cta" data-reveal>
+      <LandingCta page={page} position="capabilities" label={page.cta.tryLabel} />
+    </div>
+  </div>
+</section>

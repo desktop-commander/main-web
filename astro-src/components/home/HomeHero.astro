@@ -11,14 +11,14 @@
  *   "stage"  copy centered, the live demo below it (HeroStage.astro): a chat
  *            on the left, a machine on the right.
  *
- * Behavior lives in ./scripts: pill.ts (rankings), hub.ts or stage.ts (the
- * visual). The background is a plain soft light, drawn in CSS.
+ * Behavior lives in ./scripts: pill.ts (rankings, markup in RankingPill.astro),
+ * hub.ts or stage.ts (the visual). The background is a plain soft light, drawn in CSS.
  */
 import Icon from './Icon.astro';
-import ClientMark from './ClientMark.astro';
+import RankingPill from './RankingPill.astro';
 import HeroHub from './HeroHub.astro';
 import HeroStage from './HeroStage.astro';
-import { hero, PLATFORM_URL, RANKINGS } from '../../data/home';
+import { hero, PLATFORM_URL } from '../../data/home';
 
 interface Props {
   variant?: 'hub' | 'stage';
@@ -27,8 +27,6 @@ const { variant = 'hub' } = Astro.props;
 const split = variant === 'hub';
 
 const ev = (o: Record<string, unknown>) => JSON.stringify(o);
-const describe = (r: (typeof RANKINGS)[number]) => `#${r.rank} ${r.label}, ${r.date}`;
-const first = RANKINGS[0];
 const words = hero.titleLine1.split(' ');
 ---
 
@@ -37,43 +35,7 @@ const words = hero.titleLine1.split(' ');
 
   <div class:list={['hx-container', { 'hx-hero__split': split }]}>
     <div class="hx-hero__top">
-      <a
-        class="hx-pill hx-enter hx-enter--fade"
-        data-pill
-        href={first.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={describe(first)}
-        data-ev="ranking_pill_clicked"
-        data-ev-props={ev({
-          ranking: `#${first.rank} ${first.label}`,
-          button_location: 'home_hero',
-          destination: first.href,
-        })}
-      >
-        <span class="hx-pill__viewport" aria-hidden="true">
-          {
-            RANKINGS.map((r, i) => (
-              <span
-                class="hx-pill__item"
-                data-state={i === 0 ? 'active' : 'next'}
-                data-href={r.href}
-                data-ranking={`#${r.rank} ${r.label}`}
-                data-describe={describe(r)}
-              >
-                <span class="hx-pill__mark">
-                  <ClientMark client={r.platform} />
-                </span>
-                <span class="hx-pill__label">
-                  <span class="hx-pill__rank">#{r.rank}</span> {r.label}
-                </span>
-                <span class="hx-pill__sep" />
-                <span class="hx-pill__date">{r.date}</span>
-              </span>
-            ))
-          }
-        </span>
-      </a>
+      <RankingPill />
 
       <h1 class="hx-h1">
         <span class="hx-h1__line">

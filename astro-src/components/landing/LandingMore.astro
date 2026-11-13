@@ -1,0 +1,70 @@
+---
+/**
+ * "Also works with": links to the other client landing pages.
+ *
+ * Same data and same internal links as the shared MoreClients.astro (SEO:
+ * sibling pages link to each other), with the cards of the homepage's
+ * "Works with your AI client" section. A click sends
+ * mcp_client_crosslink_clicked with the page it came from.
+ */
+import Icon from '../home/Icon.astro';
+import ClientMark from '../home/ClientMark.astro';
+import { mcpClients } from '../../data/mcp-clients';
+
+interface Props {
+  /** Slug of the page this is on, left out of the cards */
+  current: string;
+}
+const { current } = Astro.props;
+const others = mcpClients.filter((client) => client.slug !== current);
+---
+
+<section class="hx-section hx-clients lp-more">
+  <div class="hx-rule" aria-hidden="true"></div>
+  <div class="hx-container">
+    <header class="hx-head" data-reveal>
+      <span class="hx-eyebrow"><span class="hx-eyebrow__text">Clients</span></span>
+      <h2 class="hx-h2">Also works with</h2>
+      <p class="hx-sub">One Desktop Commander, every AI client you use.</p>
+    </header>
+
+    <div class="hx-clients__grid lp-more__grid">
+      {
+        others.map((client, i) => (
+          <a
+            class="hx-card hx-client"
+            href={`/mcp/${client.slug}/`}
+            data-reveal
+            style={`--d:${i * 90}`}
+            data-crosslink-to={client.slug}
+            data-ev="mcp_client_crosslink_clicked"
+            data-ev-props={JSON.stringify({ from_client: current, to_client: client.slug })}
+          >
+            <span class="hx-client__top">
+              <span class="hx-logo-tile">
+                {client.slug === 'chatgpt' || client.logo ? (
+                  <ClientMark client={client.slug} logo={client.logo} />
+                ) : (
+                  <span class="hx-client__letter">{client.name.charAt(0)}</span>
+                )}
+              </span>
+              <span class="hx-client__go">
+                <Icon name="arrow-up-right" />
+              </span>
+            </span>
+
+            <span class="hx-client__for">Desktop Commander for</span>
+            <span class="hx-client__name">{client.name}</span>
+
+            <span class="hx-client__meta">
+              <span class:list={['hx-chip', client.transport === 'remote' ? 'hx-chip--green' : 'hx-chip--blue']}>
+                {client.transport === 'remote' ? 'Remote MCP' : 'Local MCP'}
+              </span>
+              <span>files & terminal</span>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

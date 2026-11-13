@@ -1,0 +1,41 @@
+---
+/**
+ * Closing section: the two logos, one heading, one line and the button.
+ * Kept plain on purpose, like the closing section of the homepage.
+ */
+import ClientMark from '../home/ClientMark.astro';
+import LandingCta from './LandingCta.astro';
+import type { LandingPage } from '../../data/landing';
+
+interface Props {
+  page: LandingPage;
+}
+const { page } = Astro.props;
+---
+
+<section class="hx-section hx-final lp-final">
+  <div class="hx-rule" aria-hidden="true"></div>
+
+  <div class="hx-container hx-final__inner">
+    <div class="lp-pair" data-reveal>
+      <span class="lp-pair__logo lp-pair__logo--dc">
+        <img src="/apple-touch-icon.png" alt="Desktop Commander" width="52" height="52" loading="lazy" />
+      </span>
+      <span class="lp-pair__x" aria-hidden="true">×</span>
+      <span class="hx-logo-tile" role="img" aria-label={page.markAlt}>
+        <ClientMark client={page.mark} />
+      </span>
+    </div>
+
+    <h2 class="hx-h2" data-reveal style="--d:60">
+      {page.final.title[0]}
+      <br class="lp-final__br" />
+      {page.final.title[1]}
+    </h2>
+    <p class="hx-sub" data-reveal style="--d:120">{page.final.sub}</p>
+
+    <div class="hx-hero__cta" data-reveal style="--d:180">
+      <LandingCta page={page} position="final" />
+    </div>
+  </div>
+</section>

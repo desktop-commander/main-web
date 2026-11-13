@@ -1,0 +1,147 @@
+---
+/**
+ * "Control your computer from your pocket": remote clients follow the account,
+ * so the same machine is reachable from a phone.
+ *
+ * Layout and the video treatment are the ones of the homepage's Remote MCP
+ * section (hx-remote in ../home/home-sections.css). ChatGPT shows the real
+ * phone recording; Claude shows a phone with a Claude conversation, which
+ * plays once when it scrolls into view.
+ */
+import Icon from '../home/Icon.astro';
+import LandingCta from './LandingCta.astro';
+import type { LandingPage } from '../../data/landing';
+
+interface Props {
+  page: LandingPage;
+}
+const { page } = Astro.props;
+const phone = page.phone!;
+const visual = phone.visual;
+
+/** Example machines around the visual: an account can link one or more. */
+const devices = [
+  { icon: 'laptop', name: 'MacBook Pro', pos: 'a' },
+  { icon: 'monitor', name: 'Home PC', pos: 'b' },
+] as const;
+---
+
+<section class="hx-section hx-remote lp-phone">
+  <div class="hx-rule" aria-hidden="true"></div>
+  <div class="hx-container hx-remote__grid">
+    <div class="hx-remote__copy">
+      <header class="hx-head hx-head--left" data-reveal>
+        <span class="hx-eyebrow"><span class="hx-eyebrow__text">{phone.badge}</span></span>
+        <h2 class="hx-h2">{phone.heading}</h2>
+        <p class="hx-sub">{phone.text}</p>
+      </header>
+
+      <ul class="hx-remote__list">
+        {
+          phone.highlights.map((item, i) => (
+            <li data-reveal style={`--d:${i * 90}`}>
+              <span class="hx-remote__icon">
+                <Icon name={item.icon} />
+              </span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="hx-remote__cta" data-reveal style="--d:120">
+        <LandingCta page={page} position="phone_section" />
+      </div>
+    </div>
+
+    {
+      visual.kind === 'video' ? (
+        <figure class="hx-remote__visual" data-live data-reveal="scale">
+          <div class="hx-remote__halo" aria-hidden="true" />
+          <div class="hx-remote__screen">
+            <video muted loop playsinline preload="none" poster={visual.poster} title={visual.title}>
+              <source src={visual.src} type="video/mp4" />
+            </video>
+          </div>
+          {devices.map((d) => (
+            <div class={`hx-device hx-device--${d.pos}`} aria-hidden="true">
+              <span class="hx-device__icon">
+                <Icon name={d.icon} />
+              </span>
+              <span class="hx-device__text">
+                <b>{d.name}</b>
+                <small>
+                  <i class="hx-led" /> online
+                </small>
+              </span>
+            </div>
+          ))}
+        </figure>
+      ) : (
+        <figure class="lp-phone__visual" data-live data-reveal="scale">
+          <div class="hx-remote__halo" aria-hidden="true" />
+          <div class="lp-iphone">
+            <span class="lp-iphone__island" aria-hidden="true" />
+            <div class="lp-iphone__screen">
+              <div class="lp-iphone__status" aria-hidden="true">
+                <span>9:41</span>
+                <span>
+                  <Icon name="signal" />
+                  <Icon name="wifi" />
+                  <Icon name="battery" />
+                </span>
+              </div>
+              <div class="lp-iphone__header">
+                <Icon name="menu" />
+                <b>{visual.app}</b>
+                <Icon name="square-pen" />
+              </div>
+              <div class="lp-iphone__chat">
+                <p class="lp-iphone__user lp-seq" style="--d:300">
+                  {visual.user}
+                </p>
+                <p class="lp-iphone__chip lp-seq" style="--d:900">
+                  <img src="/favicon-32x32.png" alt="" width="12" height="12" loading="lazy" />
+                  {visual.chip}
+                </p>
+                <p class="lp-iphone__text lp-seq" style="--d:1400">
+                  {visual.lead}
+                </p>
+                <ul class="lp-iphone__list">
+                  {visual.items.map((item, i) => (
+                    <li class="lp-seq" style={`--d:${1800 + i * 400}`}>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <p class="lp-iphone__text lp-seq" style="--d:3100">
+                  {visual.ask}
+                </p>
+              </div>
+              <p class="lp-iphone__composer lp-seq" style="--d:2800" aria-hidden="true">
+                {visual.placeholder}
+              </p>
+              <span class="lp-iphone__home" aria-hidden="true" />
+            </div>
+          </div>
+          {devices.map((d) => (
+            <div class={`hx-device hx-device--${d.pos}`} aria-hidden="true">
+              <span class="hx-device__icon">
+                <Icon name={d.icon} />
+              </span>
+              <span class="hx-device__text">
+                <b>{d.name}</b>
+                <small>
+                  <i class="hx-led" /> online
+                </small>
+              </span>
+            </div>
+          ))}
+        </figure>
+      )
+    }
+  </div>
+</section>

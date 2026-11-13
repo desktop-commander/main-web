@@ -1,0 +1,259 @@
+---
+/**
+ * The window in the hero: a chat in the client's own look (light, like the
+ * real apps), with a prompt being typed at the bottom.
+ *
+ *   chatgpt         a finished conversation and the round composer
+ *   claude          the same conversation as claude.ai shows it
+ *   claude-desktop  the start screen of the desktop app
+ *
+ * The send button is a real link. For ChatGPT and Claude it opens the prompt
+ * that is being typed in that client; ./scripts/composer.ts types the prompts
+ * and keeps the link and its analytics in step. Without JS the first prompt
+ * is simply shown and its link works.
+ *
+ * It is an illustration: the conversation is example content.
+ */
+import Icon from '../home/Icon.astro';
+import ClientMark from '../home/ClientMark.astro';
+import type { LandingPage } from '../../data/landing';
+
+interface Props {
+  page: LandingPage;
+}
+const { page } = Astro.props;
+const w = page.hero.window;
+const c = w.composer;
+
+const first = c.prompts[0];
+const sendHref = c.sendBase ? `${c.sendBase}${encodeURIComponent(first)}` : c.href!;
+const sendLabel = c.sendBase ? `Send "${first}" to ${c.sendTarget}` : c.sendLabel!;
+const sendProps = JSON.stringify({
+  client: page.client,
+  transport: page.transport,
+  cta_position: 'hero_composer_send',
+  destination: sendHref,
+});
+
+/** Attributes the typing script reads */
+const composer = {
+  'data-composer': '',
+  'data-prompts': JSON.stringify(c.prompts),
+  'data-send-base': c.sendBase,
+  'data-send-target': c.sendTarget,
+};
+---
+
+{
+  w.kind === 'chatgpt' && (
+    <div class="lp-chat lp-chat--chatgpt" {...composer}>
+      <div class="lp-chat__bar">
+        <ClientMark client="chatgpt" class="lp-chat__mark" />
+        <span class="lp-chat__name">ChatGPT</span>
+        <span class="lp-chat__status">
+          <i aria-hidden="true" />
+          {w.status}
+        </span>
+      </div>
+
+      <div class="lp-chat__body">
+        <p class="lp-chat__user lp-step" style="--d:300">
+          {w.user}
+        </p>
+        <p class="lp-chat__worked lp-step" style="--d:900">
+          {w.workedFor}
+          <Icon name="chevron-right" />
+        </p>
+        <p class="lp-step" style="--d:1400">
+          {w.reply}
+        </p>
+        <ul class="lp-chat__list">
+          {w.steps.map((step, i) => (
+            <li class="lp-step" style={`--d:${1800 + i * 400}`}>
+              {step}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="lp-chat__foot">
+        <div class="lp-composer lp-composer--pill">
+          <Icon name="plus" class="lp-composer__tool" />
+          <span class="lp-composer__field">
+            <span class="lp-composer__text" data-composer-text>
+              {first}
+            </span>
+            <i class="lp-composer__caret" aria-hidden="true" />
+          </span>
+          <Icon name="mic" class="lp-composer__tool" />
+          <a
+            class="lp-composer__send"
+            data-composer-send
+            href={sendHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={sendLabel}
+            data-ev="mcp_client_page_cta_clicked"
+            data-ev-props={sendProps}
+          >
+            <Icon name="arrow-up" strokeWidth={2.4} />
+          </a>
+        </div>
+        <p class="lp-chat__caption">{w.caption}</p>
+      </div>
+    </div>
+  )
+}
+
+{
+  w.kind === 'claude' && (
+    <div class="lp-chat lp-chat--claude" {...composer}>
+      <div class="lp-chat__bar">
+        <span class="lp-chat__title">
+          <span>{w.title}</span>
+          <Icon name="chevron-down" />
+        </span>
+        <span class="lp-chat__share">Share</span>
+      </div>
+
+      <div class="lp-chat__body">
+        <p class="lp-chat__user lp-step" style="--d:300">
+          {w.user}
+        </p>
+        <p class="lp-chat__chip lp-step" style="--d:900">
+          <img src="/favicon-32x32.png" alt="" width="14" height="14" />
+          {w.chip}
+        </p>
+        <p class="lp-chat__serif lp-step" style="--d:1400">
+          {w.reply}
+        </p>
+        <ul class="lp-chat__list lp-chat__serif">
+          {w.steps.map((step, i) => (
+            <li class="lp-step" style={`--d:${1800 + i * 400}`}>
+              {step}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="lp-chat__foot">
+        <div class="lp-composer lp-composer--card">
+          <span class="lp-composer__field">
+            <span class="lp-composer__text" data-composer-text>
+              {first}
+            </span>
+            <i class="lp-composer__caret" aria-hidden="true" />
+          </span>
+          <div class="lp-composer__row">
+            <Icon name="plus" class="lp-composer__tool" />
+            <span class="lp-composer__model">
+              {c.model!.name}{' '}
+              <span>{c.model!.effort}</span>
+            </span>
+            <Icon name="mic" class="lp-composer__tool" />
+            <Icon name="audio-lines" class="lp-composer__tool" />
+            <a
+              class="lp-composer__send"
+              data-composer-send
+              href={sendHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={sendLabel}
+              data-ev="mcp_client_page_cta_clicked"
+              data-ev-props={sendProps}
+            >
+              <Icon name="arrow-up" strokeWidth={2.4} />
+            </a>
+          </div>
+        </div>
+        <p class="lp-chat__caption">{w.caption}</p>
+      </div>
+    </div>
+  )
+}
+
+{
+  w.kind === 'claude-desktop' && (
+    <div class="lp-chat lp-chat--claude lp-chat--desktop" {...composer}>
+      <div class="lp-chat__bar lp-chat__bar--app">
+        <span class="lp-chat__lights" aria-hidden="true">
+          <i />
+          <i />
+          <i />
+        </span>
+        <span class="lp-chat__beta">
+          <Icon name="cloud" />
+          {w.badge}
+        </span>
+      </div>
+
+      <div class="lp-chat__hello">
+        <img src="/claude-logo.png" alt="" width="26" height="26" />
+        <span>{w.greeting}</span>
+      </div>
+
+      <div class="lp-chat__foot lp-chat__foot--app">
+        <div class="lp-composer lp-composer--card">
+          <span class="lp-composer__field">
+            <span class="lp-composer__text" data-composer-text>
+              {first}
+            </span>
+            <i class="lp-composer__caret" aria-hidden="true" />
+          </span>
+          <div class="lp-composer__row">
+            <Icon name="plus" class="lp-composer__tool" />
+            <span class="lp-composer__modes">
+              <span>{w.modes[0]}</span>
+              <span class="is-on">{w.modes[1]}</span>
+            </span>
+            <span class="lp-composer__model">
+              {c.model!.name}{' '}
+              <span>{c.model!.effort}</span>
+            </span>
+            <Icon name="mic" class="lp-composer__tool" />
+            <a
+              class="lp-composer__send"
+              data-composer-send
+              href={sendHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={sendLabel}
+              data-ev="mcp_client_page_cta_clicked"
+              data-ev-props={sendProps}
+            >
+              <Icon name="arrow-up" strokeWidth={2.4} />
+            </a>
+          </div>
+        </div>
+        <p class="lp-chat__context">
+          <span>
+            <Icon name="folder" />
+            {w.context[0]}
+            <Icon name="chevron-down" />
+          </span>
+          <span>
+            <Icon name="hand" />
+            {w.context[1]}
+            <Icon name="chevron-down" />
+          </span>
+        </p>
+      </div>
+
+      <div class="lp-chat__recent">
+        <p class="lp-chat__recent-label">{w.recentLabel}</p>
+        <ul>
+          {w.recent.map((task, i) => (
+            <li class="lp-step" style={`--d:${600 + i * 350}`}>
+              <i class="lp-chat__done" aria-hidden="true">
+                <Icon name="check" strokeWidth={3} />
+              </i>
+              <span>{task.name}</span>
+              <small>{task.when}</small>
+            </li>
+          ))}
+        </ul>
+        <p class="lp-chat__caption">{w.caption}</p>
+      </div>
+    </div>
+  )
+}

@@ -1,0 +1,35 @@
+---
+/**
+ * The one call to action of a client landing page ("Add to ChatGPT" and so
+ * on). It is repeated through the page; `position` says where it sits and is
+ * sent with the click as cta_position, exactly as before the redesign.
+ */
+import Icon from '../home/Icon.astro';
+import type { LandingPage } from '../../data/landing';
+
+interface Props {
+  page: LandingPage;
+  /** hero, capabilities, phone_section, local_section, setup or final */
+  position: string;
+  /** Defaults to the page's main label */
+  label?: string;
+}
+const { page, position, label = page.cta.label } = Astro.props;
+---
+
+<a
+  class="hx-btn hx-btn--primary"
+  href={page.cta.href}
+  target="_blank"
+  rel="noopener noreferrer"
+  data-ev="mcp_client_page_cta_clicked"
+  data-ev-props={JSON.stringify({
+    client: page.client,
+    transport: page.transport,
+    cta_position: position,
+    destination: page.cta.href,
+  })}
+>
+  {label}
+  <Icon name="arrow-right" />
+</a>

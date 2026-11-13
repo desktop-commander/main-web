@@ -1,0 +1,102 @@
+---
+/**
+ * "Everything happens on your machine": for a local client (Claude Desktop)
+ * the app, Desktop Commander, and the files and terminal it works on are all
+ * on the same computer. The diagram shows exactly that, inside one frame.
+ *
+ * The copy side reuses the homepage's Remote MCP section styles (hx-remote).
+ */
+import Icon from '../home/Icon.astro';
+import LandingCta from './LandingCta.astro';
+import type { LandingPage } from '../../data/landing';
+
+interface Props {
+  page: LandingPage;
+}
+const { page } = Astro.props;
+const local = page.local!;
+const d = local.diagram;
+---
+
+<section class="hx-section hx-remote lp-localsec">
+  <div class="hx-rule" aria-hidden="true"></div>
+  <div class="hx-container hx-remote__grid">
+    <div class="hx-remote__copy">
+      <header class="hx-head hx-head--left" data-reveal>
+        <span class="hx-eyebrow"><span class="hx-eyebrow__text">{local.badge}</span></span>
+        <h2 class="hx-h2">{local.heading}</h2>
+        <p class="hx-sub">{local.text}</p>
+      </header>
+
+      <ul class="hx-remote__list">
+        {
+          local.highlights.map((item, i) => (
+            <li data-reveal style={`--d:${i * 90}`}>
+              <span class="hx-remote__icon">
+                <Icon name={item.icon} />
+              </span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="hx-remote__cta" data-reveal style="--d:120">
+        <LandingCta page={page} position="local_section" />
+      </div>
+    </div>
+
+    <figure class="lp-local" data-live data-reveal="scale">
+      <div class="hx-remote__halo" aria-hidden="true"></div>
+      <div class="lp-local__frame">
+        <span class="lp-local__tag">
+          <Icon name="laptop" />
+          {d.frame}
+        </span>
+
+        <div class="lp-node lp-seq" style="--d:200">
+          <span class="lp-node__logo">
+            <img src="/claude-logo.png" alt="" width="24" height="24" loading="lazy" />
+          </span>
+          <span class="lp-node__text">
+            <b>{d.app.name}</b>
+            <small>{d.app.note}</small>
+          </span>
+        </div>
+
+        <div class="lp-wire">
+          <span class="lp-wire__label">{d.link}</span>
+        </div>
+
+        <div class="lp-node lp-node--core lp-seq" style="--d:500">
+          <span class="lp-node__logo lp-node__logo--dc">
+            <img src="/apple-touch-icon.png" alt="" width="40" height="40" loading="lazy" />
+          </span>
+          <span class="lp-node__text">
+            <b>{d.core.name}</b>
+            <small>{d.core.note}</small>
+          </span>
+        </div>
+
+        <div class="lp-wire lp-wire--fan">
+          <i aria-hidden="true"></i>
+          <span class="lp-wire__label">{d.access}</span>
+        </div>
+
+        <div class="lp-parts">
+          {
+            d.parts.map((part, i) => (
+              <div class="lp-part lp-seq" style={`--d:${800 + i * 150};--n:${i}`}>
+                <Icon name={part.icon} />
+                <span>{part.label}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </figure>
+  </div>
+</section>

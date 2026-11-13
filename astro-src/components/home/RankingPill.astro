@@ -1,0 +1,60 @@
+---
+/**
+ * Directory rankings pill, shown above a hero headline.
+ *
+ * Every ranking from RANKINGS (src/components/home-mcp/links.ts) sits in the
+ * same cell and they take turns (./scripts/pill.ts). The first one is what
+ * shows without JS. A click sends ranking_pill_clicked with the ranking that
+ * is showing at that moment.
+ */
+import ClientMark from './ClientMark.astro';
+import { RANKINGS } from '../../data/home';
+
+interface Props {
+  /** `button_location` of the click event. The homepage is the default. */
+  location?: string;
+}
+const { location = 'home_hero' } = Astro.props;
+
+const describe = (r: (typeof RANKINGS)[number]) => `#${r.rank} ${r.label}, ${r.date}`;
+const first = RANKINGS[0];
+---
+
+<a
+  class="hx-pill hx-enter hx-enter--fade"
+  data-pill
+  data-pill-location={location === 'home_hero' ? undefined : location}
+  href={first.href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={describe(first)}
+  data-ev="ranking_pill_clicked"
+  data-ev-props={JSON.stringify({
+    ranking: `#${first.rank} ${first.label}`,
+    button_location: location,
+    destination: first.href,
+  })}
+>
+  <span class="hx-pill__viewport" aria-hidden="true">
+    {
+      RANKINGS.map((r, i) => (
+        <span
+          class="hx-pill__item"
+          data-state={i === 0 ? 'active' : 'next'}
+          data-href={r.href}
+          data-ranking={`#${r.rank} ${r.label}`}
+          data-describe={describe(r)}
+        >
+          <span class="hx-pill__mark">
+            <ClientMark client={r.platform} />
+          </span>
+          <span class="hx-pill__label">
+            <span class="hx-pill__rank">#{r.rank}</span> {r.label}
+          </span>
+          <span class="hx-pill__sep" />
+          <span class="hx-pill__date">{r.date}</span>
+        </span>
+      ))
+    }
+  </span>
+</a>

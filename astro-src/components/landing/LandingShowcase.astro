@@ -1,0 +1,87 @@
+---
+/**
+ * "Desktop Commander lets you do this with ..." (#discover): five categories
+ * of work, three example prompts each.
+ *
+ * The categories are tabs (ARIA tabs pattern, arrow keys move between them).
+ * While the section is on screen they take turns every few seconds; the line
+ * on the active tab shows how long is left, and it waits while the pointer is
+ * over the section. Picking a category sends
+ * mcp_client_showcase_category_clicked. Behavior: ./scripts/showcase.ts.
+ *
+ * Without JS the tabs are hidden and every category is listed in full.
+ */
+import Icon from '../home/Icon.astro';
+import { SHOWCASE_CATEGORIES, type LandingPage } from '../../data/landing';
+
+interface Props {
+  page: LandingPage;
+}
+const { page } = Astro.props;
+---
+
+<section class="hx-section lp-showcase" id="discover" data-showcase data-client={page.client}>
+  <div class="hx-rule" aria-hidden="true"></div>
+  <div class="hx-container">
+    <header class="hx-head" data-reveal>
+      <span class="hx-eyebrow"><span class="hx-eyebrow__text">Examples</span></span>
+      <h2 class="hx-h2">{page.showcase.heading}</h2>
+      <p class="hx-sub">{page.showcase.sub}</p>
+    </header>
+
+    <div class="lp-showcase__grid" data-reveal style="--d:100">
+      <div class="lp-tabs" role="tablist" aria-label="Prompt categories" aria-orientation="vertical">
+        {
+          SHOWCASE_CATEGORIES.map((category, i) => (
+            <button
+              type="button"
+              role="tab"
+              class="lp-tab"
+              id={`lp-tab-${category.key}`}
+              aria-selected={i === 0 ? 'true' : 'false'}
+              aria-controls={`lp-panel-${category.key}`}
+              tabindex={i === 0 ? 0 : -1}
+              data-key={category.key}
+            >
+              <span class="lp-tab__icon">
+                <Icon name={category.icon} />
+              </span>
+              <span class="lp-tab__label">{category.label}</span>
+              <span class="lp-tab__time" aria-hidden="true">
+                <i />
+              </span>
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="hx-card lp-prompts">
+        <div class="lp-prompts__panels">
+          {
+            SHOWCASE_CATEGORIES.map((category, i) => (
+              <div
+                role="tabpanel"
+                class:list={['lp-panel', { 'is-active': i === 0 }]}
+                id={`lp-panel-${category.key}`}
+                aria-labelledby={`lp-tab-${category.key}`}
+              >
+                <h3 class="lp-panel__title">{category.label}</h3>
+                <ul>
+                  {category.prompts.map((prompt, j) => (
+                    <li class="lp-prompt" style={`--n:${j}`}>
+                      <span class="lp-prompt__icon">
+                        <Icon name="message-square" />
+                      </span>
+                      <span>{prompt}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+        <p class="lp-prompts__caption">{page.showcase.caption}</p>
+      </div>
+    </div>
+  </div>
+</section>

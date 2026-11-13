@@ -1,0 +1,1985 @@
+/* ==========================================================================
+   Client landing pages: /mcp/chatgpt/, /mcp/claude-web/, /mcp/claude-desktop/.
+
+   Loaded by LandingPage.astro after ../home/home.css and home-sections.css.
+   Tokens, type, buttons, cards, section headings, the FAQ, the Remote MCP
+   section and the client cards come from those two files. Only what these
+   pages have on their own is here, with the "lp-" prefix.
+
+     1. Hero                        6. Phone
+     2. Chat windows                7. Local diagram
+     3. Sequenced reveals           8. Setup
+     4. Prompt showcase             9. Closing, "Also works with"
+     5. Capabilities               10. Responsive, no JS, reduced motion
+
+   Kept plain on purpose, like the homepage: nothing follows the pointer, no
+   patterned backgrounds, and the buttons are flat.
+   ========================================================================== */
+
+/* 1. Hero
+   ========================================================================== */
+
+.lp-hero {
+  padding-bottom: clamp(64px, 7vw, 104px);
+}
+
+/* Stacked by default: copy, then the chat window. Side by side from 981px. */
+.lp-hero__grid {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(44px, 8vw, 64px);
+}
+
+/* The size follows the width of the screen, so that the longest line
+   ("Give Claude Desktop") fits on one line down to the smallest phones. */
+.lp-h1 {
+  font-size: clamp(1.75rem, 9vw, 3.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+/* Each piece of the headline rises out of a mask (home.css). Here a piece can
+   be a whole line, which the mask of the homepage was not made for: its side
+   padding gets squeezed when the piece is as wide as the headline itself, and
+   the last letter loses its edge. So on these pages the mask only cuts above
+   and below (clip-path), and each piece carries a little room on its sides.
+   That room also lets the blue pieces, which are painted through their
+   background, cover the letter that hangs over because of the tight spacing. */
+.lp-h1 {
+  align-self: stretch;
+}
+.lp-h1 .hx-w {
+  padding-inline: 0;
+  margin-inline: -0.08em;
+  overflow: visible;
+  clip-path: inset(0 -0.3em);
+}
+.lp-h1 .hx-w > span {
+  padding-inline: 0.08em;
+  /* a piece never breaks in the middle */
+  white-space: nowrap;
+}
+
+.lp-hero__sub {
+  max-width: 560px;
+  color: var(--hx-text-2);
+}
+
+.lp-hero__visual {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  margin-inline: auto;
+  isolation: isolate;
+}
+/* light pooled behind the window */
+.lp-hero__visual::before {
+  content: '';
+  position: absolute;
+  inset: -10% -14%;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 58% 52% at 50% 50%, rgba(var(--hx-deep-rgb), 0.44), transparent 70%),
+    radial-gradient(ellipse 36% 34% at 62% 38%, rgba(var(--hx-blue-rgb), 0.24), transparent 72%);
+  filter: blur(44px);
+  pointer-events: none;
+}
+
+@media (min-width: 981px) {
+  .lp-hero {
+    display: flex;
+    align-items: center;
+    min-height: min(100svh, 900px);
+    padding-top: clamp(104px, 12vh, 136px);
+  }
+  .lp-hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    align-items: center;
+    gap: clamp(32px, 4.6vw, 72px);
+  }
+  .lp-hero__copy {
+    align-items: flex-start;
+    text-align: left;
+  }
+  .lp-h1 {
+    font-size: clamp(2.5rem, 4.1vw + 0.3rem, 4rem);
+    line-height: 1;
+  }
+  /* three lines, always */
+  .lp-h1 .hx-h1__line {
+    white-space: nowrap;
+  }
+  .lp-hero__sub {
+    max-width: 500px;
+    text-wrap: pretty;
+  }
+  .lp-hero .hx-hero__cta,
+  .lp-hero .hx-hero__stats {
+    justify-content: flex-start;
+  }
+  .lp-hero__visual {
+    margin-inline: auto 0;
+  }
+  .lp-hero .hx-hero__glow {
+    background:
+      radial-gradient(ellipse 44% 54% at 77% 48%, rgba(var(--hx-deep-rgb), 0.22), transparent 70%),
+      radial-gradient(ellipse 52% 36% at 22% 0%, rgba(var(--hx-blue-rgb), 0.1), transparent 72%);
+  }
+}
+
+/* The two logos linked together (Claude pages), where ChatGPT has the rankings */
+.lp-link {
+  --wire: 76px;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: clamp(22px, 2.4vw, 32px);
+}
+.lp-link__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 46px;
+  height: 46px;
+  border-radius: 13px;
+  background: #fff;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.5),
+    0 10px 30px -10px rgba(var(--hx-blue-rgb), 0.5);
+  overflow: hidden;
+}
+.lp-link__logo img {
+  width: 27px;
+  height: 27px;
+  object-fit: contain;
+}
+.lp-link__logo--dc {
+  background: none;
+  box-shadow: 0 10px 30px -10px rgba(var(--hx-blue-rgb), 0.5);
+}
+.lp-link__logo--dc img {
+  width: 100%;
+  height: 100%;
+}
+.lp-link__wire {
+  position: relative;
+  width: var(--wire);
+  height: 1px;
+  margin-inline: 9px;
+  background: linear-gradient(90deg, var(--hx-line-hi), rgba(var(--hx-blue-rgb), 0.55), var(--hx-line-hi));
+}
+/* a request goes one way, the answer comes back */
+.lp-link__wire i {
+  position: absolute;
+  left: 0;
+  top: -2.5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--hx-blue-hi);
+  box-shadow: 0 0 10px 2px rgba(var(--hx-blue-rgb), 0.8);
+  opacity: 0;
+  animation: lp-travel 2.6s var(--hx-ease-io) infinite;
+}
+.lp-link__wire i + i {
+  background: #e08b6d;
+  box-shadow: 0 0 10px 2px rgba(224, 139, 109, 0.7);
+  animation-name: lp-travel-back;
+  animation-delay: 1.3s;
+}
+@keyframes lp-travel {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  14%,
+  86% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(var(--wire) - 6px));
+    opacity: 0;
+  }
+}
+@keyframes lp-travel-back {
+  0% {
+    transform: translateX(calc(var(--wire) - 6px));
+    opacity: 0;
+  }
+  14%,
+  86% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+}
+
+/* Small arrow at the bottom of the hero, down to the examples */
+.lp-hero__more {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-left: -22px;
+  border-radius: 50%;
+  font-size: 20px;
+  color: var(--hx-text-3);
+  transition: color 0.2s ease;
+}
+.lp-hero__more:hover {
+  color: var(--hx-blue-hi);
+}
+.lp-hero__more .hx-icon {
+  animation: lp-nudge 2.4s var(--hx-ease-io) infinite;
+}
+@keyframes lp-nudge {
+  0%,
+  100% {
+    transform: translateY(-3px);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+@media (min-width: 981px) and (min-height: 700px) {
+  .lp-hero__more {
+    display: flex;
+  }
+}
+
+/* 2. Chat windows
+   Light, like the real apps: they are the one bright thing on the page.
+   ========================================================================== */
+
+.lp-chat {
+  --chat-ink: #0d0d0d;
+  --chat-mute: #6b6b6b;
+  --chat-line: rgba(0, 0, 0, 0.09);
+
+  position: relative;
+  width: 100%;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #fff;
+  color: var(--chat-ink);
+  font-family: var(--hx-font);
+  font-size: 14px;
+  line-height: 1.55;
+  text-align: left;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.14),
+    0 50px 100px -30px rgba(0, 0, 0, 0.85),
+    0 0 90px -34px rgba(var(--hx-blue-rgb), 0.55);
+}
+.lp-chat ::selection {
+  background: rgba(37, 99, 235, 0.22);
+  color: inherit;
+}
+.lp-chat :focus-visible {
+  outline-color: var(--hx-blue-deep);
+}
+.lp-chat p,
+.lp-chat ul {
+  margin: 0;
+}
+.lp-chat ul {
+  padding: 0;
+  list-style: none;
+}
+
+.lp-chat__bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--chat-line);
+}
+.lp-chat__mark {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.lp-chat__name {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.lp-chat__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  font-size: 12px;
+  color: #0b7f61;
+  white-space: nowrap;
+}
+.lp-chat__status i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10a37f;
+  animation: lp-blink 2.2s ease-in-out infinite;
+}
+@keyframes lp-blink {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.lp-chat__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  min-height: 250px;
+  padding: 16px 16px 14px;
+}
+.lp-chat__user {
+  align-self: flex-end;
+  max-width: 92%;
+  padding: 9px 16px;
+  border-radius: 22px;
+  background: #f4f4f4;
+}
+.lp-chat__worked {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--chat-mute);
+}
+.lp-chat__worked .hx-icon {
+  font-size: 14px;
+}
+.lp-chat__list {
+  display: grid;
+  gap: 6px;
+}
+.lp-chat__list li {
+  position: relative;
+  padding-left: 17px;
+}
+.lp-chat__list li::before {
+  content: '•';
+  position: absolute;
+  left: 3px;
+}
+
+.lp-chat__foot {
+  padding: 4px 12px 12px;
+}
+.lp-chat__caption {
+  margin-top: 9px !important;
+  font-size: 11px;
+  line-height: 1.35;
+  text-align: center;
+  color: var(--chat-mute);
+}
+
+/* The composer: a prompt being typed, and a send button that is a real link */
+.lp-composer {
+  display: flex;
+  align-items: center;
+}
+.lp-composer--pill {
+  gap: 8px;
+  padding: 6px 6px 6px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.05),
+    0 8px 18px -10px rgba(0, 0, 0, 0.16);
+}
+.lp-composer__tool {
+  font-size: 19px;
+  color: #5d5d5d;
+}
+.lp-composer__field {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  flex: 1;
+  min-width: 0;
+}
+.lp-composer__text {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 14px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.lp-composer__caret {
+  flex-shrink: 0;
+  width: 2px;
+  height: 17px;
+  border-radius: 1px;
+  background: currentColor;
+  animation: lp-caret 1.06s steps(1) infinite;
+}
+@keyframes lp-caret {
+  50% {
+    opacity: 0;
+  }
+}
+/* Flat, like every button on the page: one color, a darker one on hover */
+.lp-composer__send {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #0d0d0d;
+  color: #fff;
+  font-size: 16px;
+  transition: background-color 0.2s ease;
+}
+.lp-composer__send:hover {
+  background: #3a3a3a;
+}
+
+.lp-composer--card {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 13px;
+  padding: 13px 10px 10px 14px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 8px 20px -10px rgba(0, 0, 0, 0.14);
+}
+.lp-composer--card .lp-composer__field {
+  min-height: 23px;
+}
+.lp-composer--card .lp-composer__text {
+  font-size: 15px;
+}
+.lp-composer__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #6e6b60;
+}
+.lp-composer__row .lp-composer__tool {
+  font-size: 17px;
+  color: inherit;
+}
+.lp-composer__model {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.lp-composer__model span {
+  color: #8a877d;
+}
+.lp-composer__modes {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 999px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.lp-composer__modes span {
+  padding: 2px 10px;
+  border-radius: 999px;
+  color: #77746a;
+}
+.lp-composer__modes .is-on {
+  background: #fff;
+  color: #1a1915;
+  font-weight: 500;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+/* Claude: cream paper, serif answers, the orange send button */
+.lp-chat--claude {
+  --chat-ink: #1a1915;
+  --chat-mute: #6f6c62;
+  --chat-line: rgba(0, 0, 0, 0.06);
+  background: #fcfbf8;
+}
+.lp-chat--claude .lp-chat__bar {
+  justify-content: space-between;
+  padding: 11px 14px 11px 16px;
+}
+.lp-chat__title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.lp-chat__title > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lp-chat__title .hx-icon {
+  font-size: 14px;
+  color: var(--chat-mute);
+}
+.lp-chat__share {
+  flex-shrink: 0;
+  padding: 4px 11px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  background: #fff;
+  font-size: 12px;
+  font-weight: 500;
+}
+.lp-chat--claude .lp-chat__user {
+  border-radius: 16px;
+  background: #f0eee6;
+}
+.lp-chat__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 8px;
+  background: #fff;
+  font-size: 12px;
+  line-height: 1.3;
+  color: var(--chat-mute);
+}
+.lp-chat__chip img {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.lp-chat__serif {
+  font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.lp-chat__files {
+  display: grid;
+  gap: 2px;
+  align-self: stretch;
+  padding: 9px 12px !important;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 8px;
+  background: #fff;
+  font-family: var(--hx-mono);
+  font-size: 12.5px;
+  color: #5c594e;
+  overflow-wrap: anywhere;
+}
+.lp-chat--claude .lp-composer__send {
+  flex-basis: 30px;
+  height: 30px;
+  background: #c96442;
+}
+.lp-chat--claude .lp-composer__send:hover {
+  background: #b05232;
+}
+
+/* Claude Desktop: the start screen of the app */
+.lp-chat--desktop .lp-chat__bar {
+  justify-content: flex-start;
+  padding: 14px 16px 4px;
+  border-bottom: 0;
+}
+.lp-chat__lights {
+  display: inline-flex;
+  gap: 7px;
+}
+.lp-chat__lights i {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff5f57;
+}
+.lp-chat__lights i:nth-child(2) {
+  background: #febc2e;
+}
+.lp-chat__lights i:nth-child(3) {
+  background: #28c840;
+}
+.lp-chat__beta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--chat-mute);
+}
+.lp-chat__beta .hx-icon {
+  font-size: 14px;
+}
+.lp-chat__hello {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  padding: 20px 16px 22px;
+}
+.lp-chat__hello img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+.lp-chat__hello span {
+  font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-size: 27px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.lp-chat--desktop .lp-chat__foot {
+  padding: 0 16px 4px;
+}
+.lp-chat--desktop .lp-composer--card {
+  gap: 16px;
+}
+.lp-chat--desktop .lp-composer__send {
+  border-radius: 10px;
+}
+.lp-chat__context {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 8px 6px;
+  font-size: 12px;
+  color: #6e6b60;
+}
+.lp-chat__context span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.lp-chat__context .hx-icon {
+  font-size: 14px;
+}
+.lp-chat__context .hx-icon:last-child {
+  font-size: 12px;
+}
+.lp-chat__recent {
+  padding: 8px 16px 14px;
+}
+.lp-chat__recent-label {
+  margin-bottom: 4px !important;
+  font-size: 12px;
+  color: var(--chat-mute);
+}
+.lp-chat__recent li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+.lp-chat__recent li small {
+  margin-left: auto;
+  font-size: 12px;
+  color: #77746a;
+  white-space: nowrap;
+}
+.lp-chat__done {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(16, 163, 127, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(16, 163, 127, 0.32);
+  color: #0e9272;
+  font-size: 11px;
+}
+.lp-chat__recent .lp-chat__caption {
+  margin-top: 6px !important;
+}
+
+/* Under the chat of a remote client: the request goes through Desktop
+   Commander to the machine, which shows the work and then the result. The
+   wire is the one of the local diagram further down (section 7). */
+.lp-reach .lp-wire {
+  --run: 52px;
+}
+.lp-reach .lp-wire__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 12px 4px 6px;
+  font-family: var(--hx-font);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--hx-text);
+}
+.lp-reach .lp-wire__label img {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+}
+.lp-machine {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 16px 11px 11px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, hsl(222 22% 13% / 0.94), hsl(222 26% 9% / 0.94));
+  box-shadow:
+    inset 0 0 0 1px var(--hx-line-hi),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 26px 50px -24px rgba(0, 0, 0, 0.9);
+}
+.lp-machine__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: rgba(var(--hx-blue-rgb), 0.14);
+  color: var(--hx-blue);
+  font-size: 19px;
+}
+.lp-machine__name b {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+.lp-machine__name small {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--hx-mono);
+  font-size: 11px;
+  color: var(--hx-text-3);
+}
+.lp-machine__work {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  min-width: 0;
+  margin-left: auto;
+  font-family: var(--hx-mono);
+  font-size: 12px;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+.lp-machine__tool {
+  color: var(--hx-blue-hi);
+}
+/* "working" gives way to the result, in step with the answer in the chat */
+.lp-machine__state {
+  display: grid;
+  justify-items: end;
+  color: var(--hx-text-3);
+}
+.lp-machine__busy,
+.lp-machine__done {
+  grid-area: 1 / 1;
+}
+.lp-machine__busy {
+  animation: lp-leave 0.3s ease 2.4s both;
+}
+.lp-machine__busy::after {
+  content: '...';
+}
+.lp-machine__done {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--hx-green);
+  animation: lp-rise 0.5s var(--hx-ease) 2.6s both;
+}
+.lp-machine__done .hx-icon {
+  font-size: 12px;
+}
+@keyframes lp-leave {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* 3. Sequenced reveals
+   ========================================================================== */
+
+/* In the hero the conversation plays as the page arrives: plain CSS, no JS.
+   --d is the delay in ms. */
+.lp-step {
+  animation: lp-rise 0.55s var(--hx-ease) both;
+  animation-delay: calc(var(--d, 0) * 1ms);
+}
+/* Further down, the same thing waits until its visual has scrolled into view
+   (the parent carries data-reveal and gets .is-in from initReveal). */
+.hx-js [data-reveal]:not(.is-in) .lp-seq {
+  opacity: 0;
+}
+.hx-js [data-reveal].is-in .lp-seq {
+  animation: lp-rise 0.55s var(--hx-ease) both;
+  animation-delay: calc(var(--d, 0) * 1ms);
+}
+@keyframes lp-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+}
+.hx-noanim .lp-seq {
+  opacity: 1 !important;
+  animation: none !important;
+}
+
+/* 4. Prompt showcase
+   ========================================================================== */
+
+.lp-showcase__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.44fr) minmax(0, 1fr);
+  align-items: stretch;
+  gap: clamp(20px, 3vw, 40px);
+  max-width: 1000px;
+  margin-inline: auto;
+}
+
+.lp-tabs {
+  display: grid;
+  gap: 8px;
+}
+.lp-tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  padding: 12px 16px 12px 12px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: inset 0 0 0 1px var(--hx-line);
+  color: var(--hx-text-2);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease,
+    color 0.3s ease;
+}
+.lp-tab:hover {
+  color: var(--hx-text);
+  box-shadow: inset 0 0 0 1px var(--hx-line-hi);
+}
+.lp-tab[aria-selected='true'] {
+  color: var(--hx-text);
+  background: rgba(var(--hx-blue-rgb), 0.09);
+  box-shadow: inset 0 0 0 1px rgba(var(--hx-blue-rgb), 0.34);
+}
+.lp-tab:focus-visible {
+  outline-offset: 2px;
+}
+.lp-tab__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 19px;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+.lp-tab[aria-selected='true'] .lp-tab__icon {
+  background: rgba(var(--hx-blue-rgb), 0.18);
+  color: var(--hx-blue-hi);
+}
+/* How long the active category still shows, while they take turns */
+.lp-tab__time {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 2px;
+  opacity: 0;
+}
+.lp-tab__time i {
+  display: block;
+  height: 100%;
+  background: var(--hx-blue);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+.is-auto .lp-tab[aria-selected='true'] .lp-tab__time {
+  opacity: 1;
+}
+.is-auto .lp-tab[aria-selected='true'] .lp-tab__time i {
+  animation: lp-tab-time 4.5s linear forwards;
+}
+/* same weight as the rule above and after it, so the shorthand there does not
+   switch the animation back on */
+.is-auto.is-waiting .lp-tab[aria-selected='true'] .lp-tab__time i {
+  animation-play-state: paused;
+}
+@keyframes lp-tab-time {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.lp-prompts {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(18px, 2.4vw, 28px);
+}
+.lp-prompts__panels {
+  display: grid;
+}
+.lp-panel {
+  min-width: 0;
+}
+.lp-panel ul {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.lp-panel__title {
+  margin-bottom: 12px;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+}
+.lp-prompt {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  padding: 15px 16px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.035);
+  box-shadow: inset 0 0 0 1px var(--hx-line);
+  font-size: 1.0313rem;
+  line-height: 1.5;
+  color: var(--hx-text);
+}
+.lp-prompt__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 30px;
+  height: 30px;
+  margin-top: -2px;
+  border-radius: 50%;
+  background: rgba(var(--hx-blue-rgb), 0.1);
+  box-shadow: inset 0 0 0 1px rgba(var(--hx-blue-rgb), 0.26);
+  color: var(--hx-blue);
+  font-size: 14px;
+}
+.lp-prompts__caption {
+  margin-top: auto;
+  padding-top: 20px;
+  font-size: 0.9063rem;
+  line-height: 1.5;
+  color: var(--hx-text-3);
+}
+
+/* Scripted: one category at a time. The others keep their place in the same
+   cell, so the card is as tall as the tallest one and nothing below it moves. */
+.hx-js .lp-panel {
+  grid-area: 1 / 1;
+}
+.hx-js .lp-panel:not(.is-active) {
+  visibility: hidden;
+}
+.hx-js .lp-panel__title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+.hx-js .lp-panel.is-active .lp-prompt {
+  animation: lp-rise 0.5s var(--hx-ease) both;
+  animation-delay: calc(var(--n, 0) * 110ms);
+}
+
+/* 5. Capabilities
+   ========================================================================== */
+
+.lp-cap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(40px, 6vw, 96px);
+}
+.lp-cap + .lp-cap {
+  margin-top: clamp(72px, 9vw, 128px);
+}
+/* second row: the visual comes first */
+.lp-cap--flip .lp-cap__copy {
+  order: 2;
+}
+
+.lp-cap__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 22px;
+  border-radius: 15px;
+  background: rgba(var(--hx-blue-rgb), 0.1);
+  box-shadow: inset 0 0 0 1px rgba(var(--hx-blue-rgb), 0.24);
+  color: var(--hx-blue);
+  font-size: 24px;
+}
+.lp-cap__copy h3 {
+  font-size: clamp(1.625rem, 1.4vw + 1.1rem, 2.25rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+.lp-cap__copy p {
+  max-width: 520px;
+  margin-top: 16px;
+  font-size: clamp(1.0313rem, 0.3vw + 0.96rem, 1.1563rem);
+  line-height: 1.6;
+  color: var(--hx-text-2);
+  text-wrap: pretty;
+}
+.lp-checks {
+  display: grid;
+  gap: 11px;
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.lp-checks li {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  font-size: 0.9844rem;
+  line-height: 1.5;
+  color: var(--hx-text-2);
+}
+.lp-checks .hx-icon {
+  margin-top: 3px;
+  font-size: 17px;
+  color: var(--hx-blue);
+}
+
+.lp-cap__visual {
+  width: 100%;
+  max-width: 480px;
+  justify-self: end;
+}
+.lp-cap--flip .lp-cap__visual {
+  justify-self: start;
+}
+
+/* A dark window: the frame of the recording and of the terminal */
+.lp-window {
+  margin: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(180deg, hsl(222 24% 12% / 0.94) 0%, hsl(222 30% 7% / 0.96) 100%);
+  box-shadow:
+    inset 0 0 0 1px var(--hx-line-hi),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.5),
+    0 50px 100px -30px rgba(0, 0, 0, 0.85),
+    0 0 90px -30px rgba(var(--hx-blue-rgb), 0.45);
+}
+.lp-window__bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 42px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--hx-line);
+  font-size: 12.5px;
+  color: var(--hx-text-3);
+}
+.lp-window__title {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/* the color of the recording's own backdrop, for the moment before it shows */
+.lp-window__media {
+  background: #3d2fc4;
+}
+.lp-window__media video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1116 / 1080;
+  object-fit: cover;
+}
+
+.lp-term__body {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-height: 232px;
+  padding: 18px 18px 20px;
+  font-family: var(--hx-mono);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.lp-term__line {
+  color: var(--hx-text-3);
+  overflow-wrap: anywhere;
+}
+/* a command that wraps stays lined up after its prompt */
+.lp-term__line--command {
+  display: flex;
+  color: var(--hx-text);
+}
+.lp-term__ps {
+  flex-shrink: 0;
+  margin-right: 9px;
+  color: var(--hx-green);
+}
+/* what the assistant says about the output, in the client's own color */
+.lp-term__line--assistant {
+  margin-top: 5px;
+  color: var(--hx-blue-hi);
+}
+.lp-term__body--claude .lp-term__line--assistant {
+  color: #e9987c;
+}
+.lp-term__caret {
+  display: block;
+  width: 8px;
+  height: 16px;
+  margin-top: 2px;
+}
+.lp-term__caret::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--hx-blue);
+  animation: lp-caret 1.06s steps(1) infinite;
+}
+.lp-term__body--claude .lp-term__caret::before {
+  background: #c96442;
+}
+
+.lp-caps__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(56px, 7vw, 88px);
+}
+
+/* 6. Phone (Claude: a phone with the conversation on it)
+   ========================================================================== */
+
+.lp-phone__visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 8px 0;
+  isolation: isolate;
+}
+.lp-iphone {
+  position: relative;
+  width: 264px;
+  padding: 9px;
+  border-radius: 46px;
+  background: #1c1c1e;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.16),
+    0 0 0 1px #000,
+    0 50px 100px -30px rgba(0, 0, 0, 0.9),
+    0 0 110px -30px rgba(var(--hx-blue-rgb), 0.6);
+}
+/* side buttons */
+.lp-iphone::before,
+.lp-iphone::after {
+  content: '';
+  position: absolute;
+  width: 3px;
+  background: #2a2a2c;
+}
+.lp-iphone::before {
+  left: -3px;
+  top: 108px;
+  height: 78px;
+  border-radius: 2px 0 0 2px;
+  /* two volume keys from one box */
+  background: linear-gradient(#2a2a2c 0 40%, transparent 40% 58%, #2a2a2c 58%);
+}
+.lp-iphone::after {
+  right: -3px;
+  top: 132px;
+  height: 62px;
+  border-radius: 0 2px 2px 0;
+}
+.lp-iphone__island {
+  position: absolute;
+  top: 19px;
+  left: 50%;
+  z-index: 2;
+  width: 86px;
+  height: 25px;
+  margin-left: -43px;
+  border-radius: 999px;
+  background: #000;
+}
+.lp-iphone__screen {
+  display: flex;
+  flex-direction: column;
+  height: 496px;
+  border-radius: 38px;
+  overflow: hidden;
+  background: #fcfbf8;
+  color: #1a1915;
+  font-family: var(--hx-font);
+  text-align: left;
+}
+.lp-iphone__screen p,
+.lp-iphone__screen ul {
+  margin: 0;
+}
+.lp-iphone__status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 22px 4px 28px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.lp-iphone__status span:last-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+}
+.lp-iphone__status .hx-icon:last-child {
+  font-size: 19px;
+}
+.lp-iphone__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 14px;
+}
+.lp-iphone__header .hx-icon {
+  font-size: 19px;
+  color: #5c594e;
+}
+.lp-iphone__chat {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
+  min-height: 0;
+  padding: 13px 12px 0;
+  overflow: hidden;
+}
+.lp-iphone__user {
+  align-self: flex-end;
+  max-width: 88%;
+  padding: 8px 12px;
+  border-radius: 16px;
+  background: #f0eee6;
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+.lp-iphone__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 8px;
+  background: #fff;
+  font-size: 10.5px;
+  line-height: 1.3;
+  color: #6f6c62;
+}
+.lp-iphone__chip img {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.lp-iphone__text,
+.lp-iphone__list {
+  font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.lp-iphone__list {
+  display: grid;
+  gap: 7px;
+  padding: 0 0 0 12px;
+  list-style: none;
+}
+.lp-iphone__list li::before {
+  content: '• ';
+}
+.lp-iphone__composer {
+  margin: 8px 12px !important;
+  padding: 10px 14px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 999px;
+  background: #fff;
+  font-size: 13px;
+  color: #77746a;
+}
+.lp-iphone__home {
+  align-self: center;
+  width: 108px;
+  height: 4px;
+  margin-bottom: 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.82);
+}
+/* the example machines sit at the edges of the phone */
+.lp-phone__visual .hx-device--a {
+  top: 13%;
+  left: max(0px, calc(50% - 262px));
+}
+.lp-phone__visual .hx-device--b {
+  top: 60%;
+  right: max(0px, calc(50% - 252px));
+}
+
+/* 7. Local diagram (Claude Desktop): everything inside one computer
+   ========================================================================== */
+
+.lp-local {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  margin: 0;
+  justify-self: end;
+  isolation: isolate;
+}
+.lp-local__frame {
+  position: relative;
+  padding: 44px clamp(18px, 3vw, 30px) clamp(20px, 3vw, 30px);
+  border: 1px dashed rgba(var(--hx-blue-rgb), 0.38);
+  border-radius: 26px;
+  background: linear-gradient(180deg, hsl(222 24% 11% / 0.72), hsl(222 30% 7% / 0.72));
+}
+.lp-local__tag {
+  position: absolute;
+  top: -14px;
+  left: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 13px;
+  border: 1px solid rgba(var(--hx-blue-rgb), 0.38);
+  border-radius: 999px;
+  background: var(--hx-bg);
+  font-family: var(--hx-mono);
+  font-size: 11.5px;
+  line-height: 1.3;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--hx-blue-hi);
+}
+.lp-local__tag .hx-icon {
+  font-size: 14px;
+}
+
+.lp-node {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, hsl(222 22% 13%), hsl(222 26% 9.5%));
+  box-shadow:
+    inset 0 0 0 1px var(--hx-line-hi),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 20px 40px -24px rgba(0, 0, 0, 0.8);
+}
+.lp-node--core {
+  box-shadow:
+    inset 0 0 0 1px rgba(var(--hx-blue-rgb), 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 20px 40px -24px rgba(0, 0, 0, 0.8),
+    0 0 50px -18px rgba(var(--hx-blue-rgb), 0.7);
+}
+.lp-node__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+}
+.lp-node__logo img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.lp-node__logo--dc {
+  background: none;
+}
+.lp-node__logo--dc img {
+  width: 100%;
+  height: 100%;
+}
+.lp-node__text b {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+.lp-node__text small {
+  display: block;
+  font-size: 0.8438rem;
+  line-height: 1.35;
+  color: var(--hx-text-3);
+}
+
+/* The connection between two levels, with what it is written on it */
+.lp-wire {
+  --run: 58px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--run);
+}
+.lp-wire::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: var(--run);
+  margin-left: -0.5px;
+  background: linear-gradient(
+    180deg,
+    rgba(var(--hx-blue-rgb), 0.2),
+    rgba(var(--hx-blue-rgb), 0.6),
+    rgba(var(--hx-blue-rgb), 0.2)
+  );
+}
+/* a signal running down it, only while the diagram is on screen */
+.lp-wire::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 5px;
+  height: 5px;
+  margin-left: -2.5px;
+  border-radius: 50%;
+  background: var(--hx-blue-hi);
+  box-shadow: 0 0 10px 2px rgba(var(--hx-blue-rgb), 0.9);
+  opacity: 0;
+}
+.is-live .lp-wire::after {
+  animation: lp-signal 2.6s var(--hx-ease-io) infinite;
+}
+.is-live .lp-wire--fan::after {
+  animation-delay: 1.3s;
+}
+@keyframes lp-signal {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  16%,
+  84% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(calc(var(--run) - 5px));
+    opacity: 0;
+  }
+}
+.lp-wire__label {
+  position: relative;
+  z-index: 1;
+  padding: 3px 11px;
+  border: 1px solid var(--hx-line-hi);
+  border-radius: 999px;
+  background: hsl(222 26% 9%);
+  font-family: var(--hx-mono);
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  color: var(--hx-text-2);
+  white-space: nowrap;
+}
+/* the lower one fans out to the three parts of the computer */
+.lp-wire--fan {
+  --run: 44px;
+  align-items: flex-start;
+  height: 76px;
+  padding-top: 10px;
+}
+.lp-wire--fan i {
+  position: absolute;
+  top: var(--run);
+  bottom: 0;
+  /* from the middle of the first part to the middle of the last (gap 12px) */
+  left: calc(100% / 6 - 4px);
+  right: calc(100% / 6 - 4px);
+  border: 1px solid rgba(var(--hx-blue-rgb), 0.4);
+  border-bottom: 0;
+  border-radius: 12px 12px 0 0;
+}
+.lp-wire--fan i::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  margin-left: -0.5px;
+  background: rgba(var(--hx-blue-rgb), 0.4);
+}
+
+.lp-parts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.lp-part {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  padding: 16px 8px 14px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, hsl(222 22% 13%), hsl(222 26% 9.5%));
+  box-shadow: inset 0 0 0 1px var(--hx-line-hi);
+  font-size: 0.8438rem;
+  line-height: 1.3;
+  color: var(--hx-text-2);
+  text-align: center;
+}
+.lp-part .hx-icon {
+  font-size: 21px;
+  color: var(--hx-blue);
+}
+/* each part lights in turn while the diagram is on screen */
+.lp-part::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow:
+    inset 0 0 0 1px rgba(var(--hx-blue-rgb), 0.75),
+    0 0 30px -10px rgba(var(--hx-blue-rgb), 0.85);
+  opacity: 0;
+  pointer-events: none;
+}
+.is-live .lp-part::after {
+  animation: lp-part 5.4s ease-in-out infinite;
+  animation-delay: calc(2s + var(--n, 0) * 1.8s);
+}
+@keyframes lp-part {
+  0%,
+  26%,
+  100% {
+    opacity: 0;
+  }
+  9% {
+    opacity: 1;
+  }
+}
+
+/* 8. Setup
+   ========================================================================== */
+
+.lp-steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+.lp-stepcard {
+  padding: 26px 28px 30px;
+}
+.lp-stepcard__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 22px;
+  border-radius: 14px;
+  background: rgba(var(--hx-blue-rgb), 0.12);
+  box-shadow: inset 0 0 0 1px rgba(var(--hx-blue-rgb), 0.4);
+  font-family: var(--hx-mono);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--hx-blue-hi);
+}
+.lp-stepcard h3 {
+  font-size: 1.3125rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.lp-stepcard p {
+  margin-top: 10px;
+  font-size: 0.9844rem;
+  line-height: 1.6;
+  color: var(--hx-text-2);
+}
+
+/* the install command, with a copy button */
+.lp-command {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 860px;
+  min-height: 60px;
+  margin: 16px auto 0;
+  padding: 0 8px 0 20px;
+  border-radius: 16px;
+  background: hsl(222 30% 6.5%);
+  box-shadow: inset 0 0 0 1px var(--hx-line-hi);
+  font-family: var(--hx-mono);
+  font-size: 14px;
+}
+.lp-command__ps {
+  color: var(--hx-green);
+  user-select: none;
+}
+.lp-command code {
+  flex: 1;
+  min-width: 0;
+  padding-block: 18px;
+  overflow-x: auto;
+  font: inherit;
+  color: var(--hx-text);
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+.lp-command code::-webkit-scrollbar {
+  display: none;
+}
+.lp-command__copy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 44px;
+  height: 44px;
+  border-radius: 11px;
+  color: var(--hx-text-2);
+  font-size: 17px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+.lp-command__copy:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--hx-text);
+}
+.lp-command__done {
+  display: none;
+  color: var(--hx-green);
+}
+.lp-command__copy.is-copied .lp-command__idle {
+  display: none;
+}
+.lp-command__copy.is-copied .lp-command__done {
+  display: block;
+}
+
+.lp-setup__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(32px, 4vw, 44px);
+}
+.lp-setup__note {
+  max-width: 660px;
+  margin: 24px auto 0;
+  font-size: 0.9063rem;
+  line-height: 1.5;
+  color: var(--hx-text-3);
+  text-align: center;
+  text-wrap: balance;
+}
+/* the icon sits in the line, right before the first word */
+.lp-setup__note .hx-icon {
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 15px;
+  vertical-align: -2px;
+}
+.lp-setup__help {
+  margin-top: 10px;
+  font-size: 0.9063rem;
+  line-height: 1.5;
+  color: var(--hx-text-3);
+  text-align: center;
+}
+
+/* 9. Closing, "Also works with"
+   ========================================================================== */
+
+/* "<client> + Desktop Commander FAQ" is long for the narrow column it sits in */
+.lp .hx-faq .hx-h2 {
+  font-size: clamp(1.875rem, 2vw + 1rem, 2.625rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.lp-pair {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+.lp-pair__logo--dc {
+  display: flex;
+  flex: 0 0 52px;
+  height: 52px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -10px rgba(var(--hx-blue-rgb), 0.5);
+}
+.lp-pair__logo--dc img {
+  width: 100%;
+  height: 100%;
+}
+.lp-pair__x {
+  font-size: 20px;
+  line-height: 1;
+  color: var(--hx-text-3);
+}
+
+/* three cards here, where the homepage has four */
+@media (min-width: 721px) {
+  .lp-more__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 960px;
+    margin-inline: auto;
+  }
+}
+
+/* 10. Responsive, no JS, reduced motion
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .lp-showcase__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* the categories become one row that scrolls sideways */
+  .lp-tabs {
+    display: flex;
+    gap: 8px;
+    margin-inline: calc(var(--hx-gutter) * -1);
+    padding: 2px var(--hx-gutter) 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .lp-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .lp-tab {
+    flex: 0 0 auto;
+    width: auto;
+    padding: 9px 16px 9px 9px;
+    white-space: nowrap;
+  }
+  .lp-tab__icon {
+    flex-basis: 34px;
+    height: 34px;
+    font-size: 17px;
+  }
+
+  .lp-cap {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+  .lp-cap--flip .lp-cap__copy {
+    order: 0;
+  }
+  .lp-cap__visual,
+  .lp-cap--flip .lp-cap__visual {
+    justify-self: center;
+  }
+  .lp-local {
+    justify-self: center;
+  }
+}
+
+@media (max-width: 720px) {
+  .lp-more__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .lp-more__grid .hx-client {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .lp-steps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .lp-stepcard {
+    padding: 22px 22px 24px;
+  }
+  .lp-command {
+    padding-left: 16px;
+    font-size: 13px;
+  }
+  .lp-final__br {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  /* the model label gives way so the typed prompt keeps its room */
+  .lp-chat--desktop .lp-composer__model {
+    display: none;
+  }
+  .lp-chat--desktop .lp-composer__modes {
+    margin-right: auto;
+  }
+  .lp-machine {
+    gap: 10px;
+    padding-right: 13px;
+  }
+  .lp-machine__work {
+    font-size: 11px;
+  }
+  .lp-chat__status {
+    font-size: 11px;
+  }
+  .lp-phone__visual .hx-device {
+    display: none;
+  }
+  /* window titles are shown in full */
+  .lp-window__bar {
+    gap: 8px;
+    padding-inline: 12px;
+    font-size: 11.5px;
+  }
+  .lp-window__bar .hx-win__lights {
+    display: none;
+  }
+  .lp-chat__title {
+    font-size: 13px;
+  }
+  .lp-parts {
+    gap: 8px;
+  }
+  .lp-part {
+    padding-inline: 4px;
+    font-size: 0.75rem;
+  }
+  .lp-wire--fan i {
+    left: calc(100% / 6 - 2.7px);
+    right: calc(100% / 6 - 2.7px);
+  }
+}
+
+@media (max-width: 350px) {
+  /* the smallest phones: the title of the chat gets the whole bar */
+  .lp-chat__share {
+    display: none;
+  }
+  .lp-chat--desktop .lp-composer__row .lp-composer__tool:first-child {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  /* the machine under the chat keeps its text and drops its icon */
+  .lp-machine__icon {
+    display: none;
+  }
+  .lp-machine {
+    padding-left: 14px;
+  }
+}
+
+/* Not scripted, or the script did not start: no tabs, every category listed. */
+html:not(.hx-js) .lp-tabs,
+.hx-noanim .lp-tabs {
+  display: none;
+}
+html:not(.hx-js) .lp-showcase__grid,
+.hx-noanim .lp-showcase__grid {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 760px;
+}
+html:not(.hx-js) .lp-prompts__panels,
+.hx-noanim .lp-prompts__panels {
+  gap: 26px;
+}
+.hx-noanim .lp-panel {
+  grid-area: auto;
+  visibility: visible !important;
+}
+.hx-noanim .lp-panel__title {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0 0 12px;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+.hx-noanim .lp-panel .lp-prompt {
+  animation: none !important;
+}
+
+/* Reduced motion: home.css already ends every animation at once. What is left
+   is to rest things in their finished state and stop the taking of turns. */
+@media (prefers-reduced-motion: reduce) {
+  .hx-js [data-reveal]:not(.is-in) .lp-seq {
+    opacity: 1;
+  }
+  .lp-link__wire i,
+  .lp-wire::after,
+  .lp-tab__time {
+    display: none;
+  }
+  .lp-composer__caret,
+  .lp-term__caret {
+    display: none;
+  }
+}

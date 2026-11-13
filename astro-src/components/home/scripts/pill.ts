@@ -15,6 +15,8 @@ export function initPill(reduceMotion: boolean) {
   const items = Array.from(pill.querySelectorAll<HTMLElement>('.hx-pill__item'));
   if (!viewport || items.length < 2) return;
 
+  // which page the pill is on, for the click event (the homepage unless stated)
+  const location = pill.dataset.pillLocation || 'home_hero';
   let active = 0;
   let paused = false;
 
@@ -34,7 +36,7 @@ export function initPill(reduceMotion: boolean) {
     pill.setAttribute('aria-label', item.dataset.describe || '');
     pill.dataset.evProps = JSON.stringify({
       ranking: item.dataset.ranking,
-      button_location: 'home_hero',
+      button_location: location,
       destination: item.dataset.href,
     });
     measure();

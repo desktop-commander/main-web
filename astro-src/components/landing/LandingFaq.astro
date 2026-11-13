@@ -1,0 +1,56 @@
+---
+/**
+ * FAQ (#faq), with the questions of this client from mcp-clients.ts. The same
+ * questions are in the page's FAQPage structured data.
+ *
+ * Questions are buttons that open their answer, one at a time. Without JS
+ * every answer is simply shown. Same markup and behavior as the homepage FAQ
+ * (initFaq in ../home/scripts/sections.ts).
+ */
+interface Props {
+  /** Name in the heading: "<name> + Desktop Commander FAQ" */
+  name: string;
+  faqs: { question: string; answer: string }[];
+}
+const { name, faqs } = Astro.props;
+---
+
+<section class="hx-section hx-faq" id="faq">
+  <div class="hx-container hx-faq__grid">
+    <div class="hx-faq__side">
+      <header class="hx-head hx-head--left" data-reveal>
+        <span class="hx-eyebrow"><span class="hx-eyebrow__text">FAQ</span></span>
+        <h2 class="hx-h2">{name} + Desktop Commander FAQ</h2>
+        <p class="hx-sub">
+          More answers in the <a class="hx-link" href="/help/">Help center</a>.
+        </p>
+      </header>
+    </div>
+
+    <div class="hx-faq__list" data-faq data-reveal style="--d:80">
+      {
+        faqs.map((item, i) => (
+          <div class="hx-faq__item">
+            <h3>
+              <button
+                type="button"
+                class="hx-faq__q"
+                aria-expanded="false"
+                aria-controls={`faq-panel-${i}`}
+                id={`faq-button-${i}`}
+              >
+                <span>{item.question}</span>
+                <span class="hx-faq__icon" aria-hidden="true" />
+              </button>
+            </h3>
+            <div class="hx-faq__panel" id={`faq-panel-${i}`} role="region" aria-labelledby={`faq-button-${i}`}>
+              <div>
+                <p>{item.answer}</p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

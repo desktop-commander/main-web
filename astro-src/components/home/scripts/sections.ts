@@ -199,8 +199,8 @@ function initPromptTabs() {
   window.addEventListener('resize', place, { passive: true });
 }
 
-/** FAQ: one answer open at a time. */
-function initFaq() {
+/** FAQ: one answer open at a time. Also used by the client landing pages. */
+export function initFaq() {
   const list = document.querySelector<HTMLElement>('[data-faq]');
   if (!list) return;
   const items = Array.from(list.querySelectorAll<HTMLElement>('.hx-faq__item'));

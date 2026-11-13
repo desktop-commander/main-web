@@ -1,0 +1,106 @@
+---
+/**
+ * A client landing page: /mcp/chatgpt/, /mcp/claude-web/, /mcp/claude-desktop/.
+ *
+ * One template for the three pages, in the visual language of the homepage
+ * (../home/home.css and home-sections.css, plus ./landing.css for what only
+ * these pages have). The sections are plain Astro components: server-rendered
+ * HTML that the small scripts in ./scripts/ bring to life.
+ *
+ * Copy:       astro-src/data/landing.ts (one object per page)
+ * SEO + FAQ:  astro-src/data/mcp-clients.ts (title, description, questions)
+ *
+ * Sections, wording, buttons and analytics events are the ones these pages had
+ * before the redesign. The ChatGPT ad pages (/mcp/chatgpt/<campaign>/) are
+ * separate and still use the React components in src/components/mcp/clients/.
+ */
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../Navigation.astro';
+import PostHogInit from '../../../src/components/PostHogInit';
+import Footer from '../../../src/components/Footer';
+import LandingHero from './LandingHero.astro';
+import LandingShowcase from './LandingShowcase.astro';
+import LandingCapabilities from './LandingCapabilities.astro';
+import LandingPhone from './LandingPhone.astro';
+import LandingLocal from './LandingLocal.astro';
+import LandingSetup from './LandingSetup.astro';
+import LandingFaq from './LandingFaq.astro';
+import LandingFinal from './LandingFinal.astro';
+import LandingMore from './LandingMore.astro';
+import { getClient } from '../../data/mcp-clients';
+import { landingPages, type LandingSlug } from '../../data/landing';
+import '../home/home.css';
+import '../home/home-sections.css';
+import './landing.css';
+
+interface Props {
+  slug: LandingSlug;
+}
+const { slug } = Astro.props;
+const page = landingPages[slug];
+const client = getClient(slug)!;
+
+const siteBase = Astro.site?.origin || 'https://desktopcommander.app';
+const pageUrl = `${siteBase}/mcp/${slug}/`;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteBase}/` },
+      { '@type': 'ListItem', position: 2, name: 'MCP', item: `${siteBase}/mcp/` },
+      { '@type': 'ListItem', position: 3, name: client.name, item: pageUrl },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: client.faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  },
+];
+---
+
+<Layout title={client.seo.title} description={client.seo.description} jsonLd={jsonLd}>
+  <!-- Font for the first screen. rel=preload is valid in <body>. -->
+  <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!--
+    Marks the page as scripted before first paint, so sections below the hero
+    can start hidden and reveal on scroll without a flash. If the main script
+    has not started after 3 seconds (blocked, failed), everything is simply
+    shown. The hero itself does not depend on this: its entrance is pure CSS.
+  -->
+  <script is:inline>
+    document.documentElement.classList.add('hx-js');
+    window.__hxFallback = setTimeout(function () {
+      document.documentElement.classList.add('hx-noanim');
+    }, 3000);
+  </script>
+
+  <PostHogInit client:idle />
+
+  <div class="hx lp min-h-screen" data-landing={slug}>
+    <Navigation hideCta />
+    <main>
+      <LandingHero page={page} />
+      <LandingShowcase page={page} />
+      <LandingCapabilities page={page} />
+      {page.phone && <LandingPhone page={page} />}
+      {page.local && <LandingLocal page={page} />}
+      <LandingSetup page={page} />
+      <LandingFaq name={page.faqName} faqs={client.faqs} />
+      <LandingFinal page={page} />
+      <LandingMore current={slug} />
+    </main>
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<script>
+  import './scripts/main.ts';
+</script>
