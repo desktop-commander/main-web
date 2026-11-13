@@ -224,3 +224,11 @@ events are the ones the pages had before.
 3. Preview with `npm run serve:static` (serves `docs/` at :3000) or `npm run dev` (hot reload).
 4. Don't edit files under `docs/` by hand — they're build output; edit `astro-src/` / `src/` and rebuild.
 5. When in doubt about what's deployed, run the verification checks above rather than assuming `main`.
+6. Do not run a build while `npm run dev` is running in the same checkout. The build clears and
+   rewrites `.astro/`, the dev server restarts on it and then stops answering ("transport was
+   disconnected, cannot call fetchModule"). Stop the dev server first, or restart it afterwards.
+   (Seen on 2026-11-13 with `astro build --outDir /tmp/...` as a build check.)
+7. The first page load after the dev server starts can log a React error ("Cannot read properties
+   of null (reading 'useRef')") and reload once: Vite is still re-optimizing dependencies and the
+   page briefly gets two copies of React. It is a dev server effect, not a bug in the page. A
+   production build does not have it.
