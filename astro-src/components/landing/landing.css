@@ -16,6 +16,12 @@
    patterned backgrounds, and the buttons are flat.
    ========================================================================== */
 
+/* A landing page has one job, so its sections sit a little closer together
+   than on the homepage (which uses up to 152px above and below each). */
+.hx.lp {
+  --hx-section: clamp(72px, 9vw, 124px);
+}
+
 /* 1. Hero
    ========================================================================== */
 
@@ -1682,6 +1688,7 @@
 }
 .lp-command__ps {
   color: var(--hx-green);
+  -webkit-user-select: none;
   user-select: none;
 }
 .lp-command code {
