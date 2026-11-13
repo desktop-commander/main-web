@@ -5,6 +5,8 @@
  * Secondary CTA = Manage devices -> the Remote MCP platform
  */
 
+import { githubStars, weeklyDownloads } from '../../data/site-stats.json';
+
 export const PLATFORM_URL = 'https://mcp.desktopcommander.app/';
 
 export const CHATGPT_CONNECTOR =
@@ -22,10 +24,16 @@ export const GITHUB_URL = 'https://github.com/wonderwhy-er/DesktopCommanderMCP';
 
 export const NPM_URL = 'https://www.npmjs.com/package/@wonderwhy-er/desktop-commander';
 
-/** Social proof, kept in one place so it is updated once. */
+/**
+ * Social proof, kept in one place: src/data/site-stats.json.
+ *
+ * weeklyDownloads is refreshed from npm by update-stats.js, which runs with
+ * `npm run commit-static`, so it is not edited by hand. githubStars is still
+ * entered by hand in that file.
+ */
 export const STATS = {
-  weeklyDownloads: '325k+',
-  githubStars: '10k',
+  weeklyDownloads,
+  githubStars,
 };
 
 /**

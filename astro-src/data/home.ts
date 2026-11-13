@@ -368,22 +368,22 @@ export const clients = {
 // Community
 // ---------------------------------------------------------------------------
 
+/**
+ * Splits a label such as "680k+" or "1.2M+" into the number that counts up,
+ * how many decimals it has, and what follows it.
+ */
+const counter = (text: string) => ({
+  value: parseFloat(text),
+  decimals: (text.match(/^\d+\.(\d+)/)?.[1] ?? '').length,
+  suffix: text.replace(/^[\d.]+/, ''),
+});
+
 export const community = {
   heading: 'From the community',
   stats: [
     { value: 9.52, decimals: 2, suffix: '/10', label: 'User Rating' },
-    {
-      value: parseFloat(STATS.weeklyDownloads),
-      decimals: 0,
-      suffix: STATS.weeklyDownloads.replace(/^[\d.]+/, ''),
-      label: 'Weekly Downloads',
-    },
-    {
-      value: parseFloat(STATS.githubStars),
-      decimals: 0,
-      suffix: STATS.githubStars.replace(/^[\d.]+/, ''),
-      label: 'GitHub Stars',
-    },
+    { ...counter(STATS.weeklyDownloads), label: 'Weekly Downloads' },
+    { ...counter(STATS.githubStars), label: 'GitHub Stars' },
   ],
   testimonials: [
     {

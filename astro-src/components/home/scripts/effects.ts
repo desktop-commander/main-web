@@ -69,15 +69,22 @@ export function initCounters(reduceMotion: boolean) {
   const nodes = document.querySelectorAll<HTMLElement>('[data-count]');
   if (reduceMotion || !nodes.length) return;
 
-  const run = (node: HTMLElement) => {
+  // A small whole number ("1M+") would only flip from 0 to 1, so on the way
+  // up it shows one decimal and then settles on the number as written.
+  const read = (node: HTMLElement) => {
     const end = parseFloat(node.dataset.count || '0');
     const decimals = parseInt(node.dataset.decimals || '0', 10);
+    return { end, decimals, rising: end < 10 ? Math.max(decimals, 1) : decimals };
+  };
+
+  const run = (node: HTMLElement) => {
+    const { end, decimals, rising } = read(node);
     const duration = 1600;
     const t0 = performance.now();
     const step = (now: number) => {
       const p = Math.min((now - t0) / duration, 1);
       const eased = 1 - Math.pow(1 - p, 4);
-      node.textContent = (end * eased).toFixed(decimals);
+      node.textContent = p < 1 ? (end * eased).toFixed(rising) : end.toFixed(decimals);
       if (p < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
@@ -94,7 +101,7 @@ export function initCounters(reduceMotion: boolean) {
     { threshold: 0.6 },
   );
   nodes.forEach((node) => {
-    node.textContent = (0).toFixed(parseInt(node.dataset.decimals || '0', 10));
+    node.textContent = (0).toFixed(read(node).rising);
     io.observe(node);
   });
 }
