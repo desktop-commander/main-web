@@ -67,7 +67,7 @@ export const organizationSchema = {
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer support',
-    email: 'team@desktopcommander.app',
+    email: 'support@desktopcommander.app',
     availableLanguage: ['English'],
   },
   sameAs: [
