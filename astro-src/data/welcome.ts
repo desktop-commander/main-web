@@ -10,16 +10,18 @@
  * Jim Lunsford's article. They are written generically on purpose: no
  * customer is named or identifiable.
  */
-import { PLATFORM_URL, MCP_ENDPOINT } from '../../src/components/home-mcp/links';
+import {
+  CHATGPT_CONNECTOR,
+  CLAUDE_CONNECTOR,
+  MCP_ENDPOINT,
+  PLATFORM_URL,
+} from '../../src/components/home-mcp/links';
 
 /** Tags every Remote link from this page, so sign-ups can be attributed to it. */
 export const WELCOME_EXPERIMENT = 'lp-welcome-remote';
 export const TRY_REMOTE_URL = `${PLATFORM_URL}?utm_source=dc_welcome&utm_medium=local_mcp&utm_campaign=try_remote`;
 
-/**
- * Hero, in two halves. Top: the install worked, here is a first prompt to
- * try in the AI app on this computer. Bottom: want more? Remote MCP.
- */
+/** Hero: the install worked, here are first prompts to try in the AI app on this computer. */
 export const welcomeHero = {
   status: 'Local MCP installed',
   titleLine1: "You're all set",
@@ -35,29 +37,43 @@ export const welcomeHero = {
   moreHref: '/library/prompts/',
 } as const;
 
-export const welcomePitch = {
-  eyebrow: 'Want more?',
-  heading: 'Use it from your phone, on every computer you have',
-  body: 'Desktop Commander Remote works in ChatGPT and in Claude on the web, on desktop and on your phone. Connect this computer, your other machines and your servers, then work on any of them from one chat, wherever you are.',
-  points: [
-    'Chat from your phone, the work happens on your computer',
-    'Laptops, desktops, servers and VMs in one chat',
-    'Works in ChatGPT, Claude and any MCP client',
-    'Free for 10,000 tool calls a month',
+/**
+ * "Want more?": right under the prompts. What Remote MCP is, three reasons to
+ * add it, and buttons straight to the ChatGPT plugin and the Claude connector.
+ * Other clients and more computers go to the platform, which has the setup
+ * instructions after sign-in.
+ */
+export const welcomeMore = {
+  eyebrow: 'Remote MCP',
+  heading: 'Want more?',
+  sub: 'Desktop Commander Remote connects your computers to AI apps on the web and on your phone. Same tools as the local one: files, terminal and processes.',
+  values: [
+    {
+      icon: 'smartphone',
+      title: 'Use it from your phone',
+      description:
+        'Ask ChatGPT or Claude on your phone. The work happens on your computer at home or at the office.',
+    },
+    {
+      icon: 'server',
+      title: 'Control several computers and servers',
+      description:
+        'Connect laptops, desktops, servers and VMs, then tell the AI which one to work on.',
+    },
+    {
+      icon: 'bot',
+      title: 'Same computers, many agents',
+      description: 'Connect the same devices to every AI app you use:',
+      agents: ['ChatGPT', 'Claude', 'Codex', 'Cursor', 'VS Code', 'Windsurf', 'any MCP client'],
+    },
   ],
-  cta: 'Try Remote free',
-  secondary: 'See what Remote adds',
-  visual: {
-    from: 'ChatGPT on your phone',
-    ask: 'Check disk space on all my machines',
-    label: 'Your computers',
-    devices: [
-      { icon: 'laptop', name: 'This computer', note: 'installed' },
-      { icon: 'monitor', name: 'Home PC', note: '212 GB free' },
-      { icon: 'server', name: 'vps-fra1', note: '41 GB free' },
-      { icon: 'server-cog', name: 'build-vm', note: '96 GB free' },
-    ],
-  },
+  add: [
+    { client: 'chatgpt', label: 'Add to ChatGPT', href: CHATGPT_CONNECTOR },
+    { client: 'claude', label: 'Add to Claude', href: CLAUDE_CONNECTOR },
+  ],
+  otherLead: 'Another AI app, or more computers?',
+  other: 'Sign in for setup instructions',
+  note: 'Free for 10,000 tool calls a month.',
 } as const;
 
 /** Local versus Remote. Rows line up across the two columns. */

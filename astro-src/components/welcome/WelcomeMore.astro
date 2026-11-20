@@ -1,0 +1,82 @@
+---
+/**
+ * "Want more?" (#more), directly under the hero prompts: what Remote MCP is,
+ * three reasons to add it, and buttons straight to the ChatGPT plugin and the
+ * Claude connector. Other AI apps and more computers go to the platform, which
+ * shows setup instructions after sign-in. Copy: data/welcome.ts.
+ */
+import Icon from '../home/Icon.astro';
+import ClientMark from '../home/ClientMark.astro';
+import { welcomeMore as more, TRY_REMOTE_URL, WELCOME_EXPERIMENT } from '../../data/welcome';
+
+const ev = (o: Record<string, unknown>) =>
+  JSON.stringify({ ...o, button_location: 'welcome_want_more', experiment: WELCOME_EXPERIMENT });
+---
+
+<section class="hx-section hx-wmore" id="more">
+  <div class="hx-container">
+    <header class="hx-head" data-reveal>
+      <span class="hx-eyebrow"><span class="hx-eyebrow__text">{more.eyebrow}</span></span>
+      <h2 class="hx-h2">{more.heading}</h2>
+      <p class="hx-sub">{more.sub}</p>
+    </header>
+
+    <ul class="hx-wmore__values">
+      {
+        more.values.map((v, i) => (
+          <li class="hx-card hx-wmore__value" data-reveal style={`--d:${i * 90}`}>
+            <span class="hx-remote__icon">
+              <Icon name={v.icon} />
+            </span>
+            <h3>{v.title}</h3>
+            <p>{v.description}</p>
+            {'agents' in v && (
+              <ul class="hx-wmore__agents">
+                {v.agents.map((a) => (
+                  <li>{a}</li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="hx-wmore__add" data-reveal style="--d:200">
+      <div class="hx-wmore__buttons">
+        {
+          more.add.map((a) => (
+            <a
+              class="hx-btn hx-btn--primary hx-wmore__btn"
+              href={a.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-ev="install_cta_clicked"
+              data-ev-props={ev({ button_text: a.label, client: a.client, destination: a.href })}
+            >
+              <span class="hx-wmore__mark">
+                <ClientMark client={a.client} />
+              </span>
+              {a.label}
+              <Icon name="arrow-up-right" />
+            </a>
+          ))
+        }
+      </div>
+      <p class="hx-wmore__other">
+        {more.otherLead}{' '}
+        <a
+          class="hx-link"
+          href={TRY_REMOTE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-ev="remote_mcp_cta_clicked"
+          data-ev-props={ev({ button_text: more.other, destination: TRY_REMOTE_URL })}
+        >
+          {more.other} &rarr;
+        </a>
+      </p>
+      <p class="hx-wmore__note">{more.note}</p>
+    </div>
+  </div>
+</section>

@@ -72,144 +72,6 @@
   font-size: 15px;
 }
 
-/* "Want more?": the Remote pitch, second half of the hero */
-.hx-wpitch {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: clamp(28px, 4vw, 48px);
-  margin-top: clamp(56px, 7vw, 96px);
-  padding: clamp(26px, 3.6vw, 48px);
-  box-shadow:
-    inset 0 0 0 1px rgba(var(--hx-blue-rgb), 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    0 40px 100px -40px rgba(var(--hx-deep-rgb), 0.6);
-}
-.hx-wpitch::before {
-  opacity: 1;
-}
-@media (min-width: 981px) {
-  .hx-wpitch {
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-    align-items: center;
-  }
-}
-.hx-wpitch__title {
-  margin-top: 14px;
-  font-size: clamp(1.75rem, 2.2vw + 0.8rem, 2.625rem);
-  font-weight: 600;
-  line-height: 1.08;
-  letter-spacing: -0.035em;
-  color: var(--hx-text);
-  text-wrap: balance;
-}
-.hx-wpitch__body {
-  margin-top: 16px;
-  max-width: 560px;
-  font-size: 1.0625rem;
-  line-height: 1.55;
-  color: var(--hx-text-2);
-  text-wrap: pretty;
-}
-.hx-wpitch__points {
-  margin-top: 22px;
-}
-.hx-wpitch__cta {
-  justify-content: flex-start;
-}
-
-/* The phone request fanning out to the connected computers */
-.hx-wfan {
-  padding: 22px;
-  border-radius: 20px;
-  background: hsl(222 28% 7% / 0.7);
-  box-shadow: inset 0 0 0 1px var(--hx-line);
-}
-.hx-wfan__from,
-.hx-wfan__list li {
-  display: grid;
-  align-items: center;
-  gap: 12px;
-}
-.hx-wfan__from {
-  grid-template-columns: auto minmax(0, 1fr);
-  padding: 12px 14px;
-  border-radius: 14px;
-  background: rgba(var(--hx-blue-rgb), 0.1);
-  box-shadow: inset 0 0 0 1px rgba(var(--hx-blue-rgb), 0.3);
-}
-.hx-wfan__from small,
-.hx-wfan__list small,
-.hx-wfan__label {
-  font-family: var(--hx-mono);
-  font-size: 11.5px;
-  color: var(--hx-text-3);
-}
-.hx-wfan__from small {
-  display: block;
-  margin-bottom: 2px;
-}
-.hx-wfan__from b {
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--hx-text);
-}
-.hx-wfan__icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  background: rgba(var(--hx-blue-rgb), 0.14);
-  color: var(--hx-blue);
-  font-size: 17px;
-}
-.hx-wfan__wire {
-  display: flex;
-  justify-content: center;
-  height: 30px;
-}
-.hx-wfan__wire i {
-  width: 2px;
-  background: linear-gradient(to bottom, rgba(var(--hx-blue-rgb), 0.8), rgba(var(--hx-blue-rgb), 0.1));
-}
-.hx-wfan__label {
-  margin-bottom: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-.hx-wfan__list {
-  display: grid;
-  gap: 8px;
-  padding: 0;
-  list-style: none;
-}
-.hx-wfan__list li {
-  grid-template-columns: auto minmax(0, 1fr) auto auto;
-  padding: 9px 12px 9px 9px;
-  border-radius: 13px;
-  background: hsl(222 22% 11%);
-  box-shadow: inset 0 0 0 1px var(--hx-line);
-}
-.hx-wfan__list b {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--hx-text);
-  white-space: nowrap;
-}
-.hx-wfan__list small {
-  white-space: nowrap;
-}
-.hx-wfan__list li:first-child {
-  box-shadow: inset 0 0 0 1px hsl(152 68% 58% / 0.3);
-}
-.hx-wfan__list li:first-child small {
-  color: var(--hx-green);
-}
-
 @media (max-width: 560px) {
   .hx-wprompts__row {
     grid-template-columns: minmax(0, 1fr) auto;
@@ -217,12 +79,123 @@
   .hx-wprompts__mark {
     display: none;
   }
-  .hx-wfan {
-    padding: 14px;
+}
+
+/* 2. Want more? (Remote MCP)
+   ========================================================================== */
+
+.hx-wmore {
+  padding-top: clamp(32px, 5vw, 72px);
+}
+.hx-wmore__values {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 900px) {
+  .hx-wmore__values {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.hx-wmore__value {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 26px;
+}
+.hx-wmore__value .hx-remote__icon {
+  flex: 0 0 auto;
+  width: 44px;
+}
+.hx-wmore__value h3 {
+  font-size: 1.1875rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--hx-text);
+}
+.hx-wmore__value p {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--hx-text-2);
+  text-wrap: pretty;
+}
+.hx-wmore__agents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0;
+  list-style: none;
+}
+.hx-wmore__agents li {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(var(--hx-blue-rgb), 0.1);
+  box-shadow: inset 0 0 0 1px rgba(var(--hx-blue-rgb), 0.24);
+  font-family: var(--hx-mono);
+  font-size: 12px;
+  color: var(--hx-text);
+}
+.hx-wmore__agents li:last-child {
+  background: none;
+  box-shadow: inset 0 0 0 1px var(--hx-line-hi);
+  color: var(--hx-text-2);
+}
+
+.hx-wmore__add {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: clamp(32px, 4vw, 48px);
+  text-align: center;
+}
+.hx-wmore__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+.hx-wmore__btn {
+  gap: 10px;
+}
+.hx-wmore__mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 4px;
+  border-radius: 8px;
+  background: #fff;
+  color: #000;
+}
+.hx-wmore__mark img,
+.hx-wmore__mark svg {
+  width: 100%;
+  height: 100%;
+}
+.hx-wmore__other {
+  margin-top: 18px;
+  font-size: 15px;
+  color: var(--hx-text-2);
+}
+.hx-wmore__note {
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--hx-text-3);
+}
+@media (max-width: 560px) {
+  .hx-wmore__buttons {
+    flex-direction: column;
+    width: 100%;
   }
 }
 
-/* 2. Local vs Remote
+/* 3. Local vs Remote
    ========================================================================== */
 
 .hx-compare__table {
@@ -352,7 +325,7 @@
   }
 }
 
-/* 3. Use cases
+/* 4. Use cases
    ========================================================================== */
 
 .hx-wuses__grid {
