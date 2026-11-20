@@ -154,7 +154,7 @@ export const welcomeFaq = {
     {
       question: 'What does Remote cost?',
       answer:
-        'The free plan includes 10,000 tool calls a month. Pro is $20 a month plus VAT where it applies, with unlimited tool calls. The local MCP stays free and open source.',
+        'The free plan includes 10,000 tool calls a month. Pro is $20 a month plus VAT applicable in your country, with unlimited tool calls. The local MCP stays free and open source.',
     },
   ],
 };

@@ -120,6 +120,7 @@ The places that state the price, to be kept in step:
   2026-11-13 it was shown on 14 use case pages and 8 ChatGPT ad pages, and it feeds the FAQ data
   for search engines on the use case pages.
 - `public/llms.txt` says "plus tax".
+- `/welcome-v2/` FAQ, "What does Remote cost?": `welcomeFaq` in `astro-src/data/welcome.ts`.
 
 In both card layouts a plan without a note keeps an empty row on wide screens, so the two feature
 lists start level. Not live, and still without the note: `src/components/home-mcp/McpPricing.tsx`,
@@ -245,6 +246,28 @@ events are the ones the pages had before.
   `src/components/mcp/clients/`. After this change nothing imports `clients/claude-web/*` and
   `clients/claude-desktop/*` any more; they were left in place so going back is one revert.
 - The same "kept plain on purpose" rules as the homepage apply here.
+
+## Welcome pages (2026-11-20)
+
+The local MCP installer opens `/welcome/?utm_source=<client>` (`openWelcomePage` in
+DesktopCommanderMCP `src/utils/open-browser.ts`).
+
+- **`/welcome/`** (`astro-src/pages/welcome.astro`) is live and unchanged: install confirmation and
+  the database research survey (HubSpot forms, PostHog experiment `lp-welcome3-db`).
+- **`/welcome-v2/`** (`astro-src/pages/welcome-v2.astro`) is the next version, for review: noindex,
+  not linked. Install confirmation with three first prompts to copy, then "Want more? Try Remote."
+  with Add to ChatGPT / Add to Claude, logos of other agents (`public/agents/`, LobeHub Icons, MIT),
+  use cases, how it works and an FAQ. Sections in `astro-src/components/welcome/`, copy in
+  `astro-src/data/welcome.ts`. It reuses the homepage CSS, scripts, `HomeHowItWorks` and `HomeFaq`.
+- To make v2 the real one: move `welcome-v2.astro` to `welcome.astro` (replacing the survey page).
+- **Analytics** (`astro-src/components/welcome/welcome-analytics.ts`, header lists every event):
+  `page_view`, `section_view`, `faq_opened` plus the `[data-ev]` click events, all with
+  `experiment: 'lp-welcome-remote'`; session properties `welcome_page`, `welcome_experiment` and
+  `welcome_mcp_client` (the installer's `utm_source`) ride on every event of the visit.
+- **Gap:** Remote sign-ups are not attributed to the page. The platform (remote-dc-mcp) keeps its
+  own PostHog storage and does not read UTM tags, and ChatGPT / Claude connector clicks leave the
+  site. Links to the platform carry `utm_source=dc_welcome` for when it does.
+- `/welcome2` is not this page: it is a redirect to `/` (retired Oct 2026, still has search traffic).
 
 ## Working rules
 
