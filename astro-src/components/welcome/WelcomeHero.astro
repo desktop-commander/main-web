@@ -77,7 +77,13 @@ const words2 = hero.titleLine2.split(' ');
         }
       </ul>
 
-      <a class="hx-link hx-wprompts__more hx-enter" style="--d:700" href={hero.moreHref}>
+      <a
+        class="hx-link hx-wprompts__more hx-enter"
+        style="--d:700"
+        href={hero.moreHref}
+        data-ev="prompt_library_cta_clicked"
+        data-ev-props={ev({ button_text: hero.more, button_location: 'welcome_hero_prompts', destination: hero.moreHref })}
+      >
         {hero.more} &rarr;
       </a>
     </div>

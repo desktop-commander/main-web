@@ -30,7 +30,17 @@ const ev = JSON.stringify({
         {final.cta}
         <Icon name="arrow-right" />
       </a>
-      <a class="hx-btn hx-btn--ghost" href={final.secondaryHref}>
+      <a
+        class="hx-btn hx-btn--ghost"
+        href={final.secondaryHref}
+        data-ev="prompt_library_cta_clicked"
+        data-ev-props={JSON.stringify({
+          button_text: final.secondary,
+          button_location: 'welcome_final_cta',
+          destination: final.secondaryHref,
+          experiment: WELCOME_EXPERIMENT,
+        })}
+      >
         {final.secondary}
       </a>
     </div>

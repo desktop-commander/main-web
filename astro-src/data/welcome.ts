@@ -1,6 +1,7 @@
 /**
- * Content for /welcome/ (astro-src/pages/welcome.astro): the page the local
- * MCP installer opens when installation finishes.
+ * Content for /welcome-v2/ (astro-src/pages/welcome-v2.astro): the next
+ * version of the page the local MCP installer opens when installation
+ * finishes (it still opens /welcome/ until this one replaces it).
  *
  * Job of the page: confirm the install worked, then make the case for trying
  * Remote MCP: what it adds over the local server the visitor just installed.

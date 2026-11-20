@@ -8,6 +8,7 @@ export interface EventProperties {
 export const PAGE_EVENTS = {
   PAGE_VIEW: 'page_view',
   SECTION_VIEW: 'section_view',
+  FAQ_OPENED: 'faq_opened',
 } as const;
 
 // User interaction events

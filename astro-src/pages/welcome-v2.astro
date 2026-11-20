@@ -1,0 +1,73 @@
+---
+/**
+ * /welcome-v2/ — next version of the post-install page, for review.
+ *
+ * The local MCP installer still opens /welcome/ (the database survey page).
+ * When this version is approved, it replaces /welcome/: move this file to
+ * pages/welcome.astro. Nothing links here and it is noindex.
+ *
+ * Purpose: confirm the install worked and give first prompts to try, then
+ * "Want more? Try Remote.": what Remote MCP adds (phone, several computers
+ * and servers, many agents), with buttons straight to the ChatGPT plugin and
+ * the Claude connector.
+ *
+ * Built from the homepage: same Layout, Navigation, Footer, stylesheets and
+ * scripts, with the Setup and FAQ sections reused as they are. The
+ * welcome-only sections live in components/welcome/, their copy in
+ * data/welcome.ts.
+ *
+ * Analytics: components/welcome/welcome-analytics.ts (see its header).
+ */
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import PostHogInit from '../../src/components/PostHogInit';
+import Footer from '../../src/components/Footer';
+import WelcomeHero from '../components/welcome/WelcomeHero.astro';
+import WelcomeMore from '../components/welcome/WelcomeMore.astro';
+import WelcomeUses from '../components/welcome/WelcomeUses.astro';
+import WelcomeFinal from '../components/welcome/WelcomeFinal.astro';
+import HomeHowItWorks from '../components/home/HomeHowItWorks.astro';
+import HomeFaq from '../components/home/HomeFaq.astro';
+import { welcomeFaq } from '../data/welcome';
+import '../components/home/home.css';
+import '../components/home/home-sections.css';
+import '../components/home/home-hub.css';
+import '../components/welcome/welcome.css';
+---
+
+<Layout
+  title="Desktop Commander: you're all set"
+  description="Desktop Commander is installed and connected. Take it further with Remote: use your computer from ChatGPT, Claude on the web and your phone."
+  robots="noindex, follow, noai, noimageai"
+  googlebot="noindex, follow, noai"
+>
+  <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!-- Same reveal-on-scroll setup as the homepage (see HomePage.astro). -->
+  <script is:inline>
+    document.documentElement.classList.add('hx-js');
+    window.__hxFallback = setTimeout(function () {
+      document.documentElement.classList.add('hx-noanim');
+    }, 3000);
+  </script>
+
+  <PostHogInit client:idle />
+
+  <div class="hx min-h-screen">
+    <Navigation />
+    <main>
+      <WelcomeHero />
+      <WelcomeMore />
+      <WelcomeUses />
+      <HomeHowItWorks />
+      <HomeFaq heading={welcomeFaq.heading} sub={welcomeFaq.sub} items={welcomeFaq.items} />
+      <WelcomeFinal />
+    </main>
+    <Footer client:visible />
+  </div>
+</Layout>
+
+<script>
+  import '../components/home/scripts/main.ts';
+  import '../components/welcome/welcome-analytics.ts';
+</script>
