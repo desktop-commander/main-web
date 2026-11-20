@@ -17,7 +17,10 @@ const ev = (o: Record<string, unknown>) =>
   <div class="hx-container">
     <header class="hx-head" data-reveal>
       <span class="hx-eyebrow"><span class="hx-eyebrow__text">{more.eyebrow}</span></span>
-      <h2 class="hx-h2">{more.heading}</h2>
+      <h2 class="hx-h2">
+        {more.heading}
+        <span class="hx-grad hx-wmore__accent">{more.headingAccent}</span>
+      </h2>
       <p class="hx-sub">{more.sub}</p>
     </header>
 

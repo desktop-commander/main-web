@@ -46,6 +46,7 @@ export const welcomeHero = {
 export const welcomeMore = {
   eyebrow: 'Remote MCP',
   heading: 'Want more?',
+  headingAccent: 'Try Remote.',
   sub: 'Desktop Commander Remote connects your computers to AI apps on the web and on your phone. Same tools as the local one: files, terminal and processes.',
   values: [
     {
@@ -75,41 +76,6 @@ export const welcomeMore = {
   other: 'Sign in for setup instructions',
   note: 'Free for 10,000 tool calls a month.',
 } as const;
-
-/** Local versus Remote. Rows line up across the two columns. */
-export const compare = {
-  heading: 'What Remote adds',
-  sub: 'Same Desktop Commander tools: files, terminal and processes. Remote changes where you can use them from, and how many computers they reach.',
-  local: { name: 'Local MCP', tag: 'What you just installed' },
-  remote: { name: 'Remote MCP', tag: 'Try it free' },
-  rows: [
-    {
-      label: 'AI apps',
-      local: 'Claude Desktop, Cursor, Windsurf and other desktop MCP apps',
-      remote: 'ChatGPT, Claude on web, desktop and mobile, Cursor, and any MCP client',
-    },
-    {
-      label: 'Where you can be',
-      local: 'At this computer',
-      remote: 'Anywhere, including on your phone',
-    },
-    {
-      label: 'Computers it reaches',
-      local: 'This one',
-      remote: 'Laptops, desktops, servers and VMs, several from one chat',
-    },
-    {
-      label: 'Setup',
-      local: 'Done',
-      remote: 'Sign in with your email, connect a computer, add the app or connector',
-    },
-    {
-      label: 'Price',
-      local: 'Free and open source',
-      remote: 'Free up to 10,000 tool calls a month. Pro is $20 a month for unlimited',
-    },
-  ],
-};
 
 /** Jobs Remote users told us about, in plain words. */
 export const uses = {

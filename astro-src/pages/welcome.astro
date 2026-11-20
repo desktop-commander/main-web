@@ -8,7 +8,7 @@
  * and how to start free. Remote is the paid product; the local MCP stays free.
  *
  * Built from the homepage: same Layout, Navigation, Footer, stylesheets and
- * scripts, with the Setup, Pricing and FAQ sections reused as they are. The
+ * scripts, with the Setup and FAQ sections reused as they are. The
  * welcome-only sections live in components/welcome/, their copy in
  * data/welcome.ts.
  *
@@ -25,13 +25,11 @@ import PostHogInit from '../../src/components/PostHogInit';
 import Footer from '../../src/components/Footer';
 import WelcomeHero from '../components/welcome/WelcomeHero.astro';
 import WelcomeMore from '../components/welcome/WelcomeMore.astro';
-import WelcomeCompare from '../components/welcome/WelcomeCompare.astro';
 import WelcomeUses from '../components/welcome/WelcomeUses.astro';
 import WelcomeFinal from '../components/welcome/WelcomeFinal.astro';
 import HomeHowItWorks from '../components/home/HomeHowItWorks.astro';
-import HomePricing from '../components/home/HomePricing.astro';
 import HomeFaq from '../components/home/HomeFaq.astro';
-import { TRY_REMOTE_URL, WELCOME_EXPERIMENT, welcomeFaq } from '../data/welcome';
+import { welcomeFaq } from '../data/welcome';
 import '../components/home/home.css';
 import '../components/home/home-sections.css';
 import '../components/home/home-hub.css';
@@ -61,15 +59,8 @@ import '../components/welcome/welcome.css';
     <main>
       <WelcomeHero />
       <WelcomeMore />
-      <WelcomeCompare />
       <WelcomeUses />
       <HomeHowItWorks />
-      <HomePricing
-        location="welcome_pricing"
-        freeCta={{ label: 'Start free', href: TRY_REMOTE_URL, external: true }}
-        proHref={TRY_REMOTE_URL}
-        extraProps={{ experiment: WELCOME_EXPERIMENT }}
-      />
       <HomeFaq heading={welcomeFaq.heading} sub={welcomeFaq.sub} items={welcomeFaq.items} />
       <WelcomeFinal />
     </main>
