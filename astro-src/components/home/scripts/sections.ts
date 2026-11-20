@@ -43,6 +43,18 @@ function initInstall() {
         button.classList.remove('is-copied');
         if (label) label.textContent = idle;
       }, 2500);
+      // A button can name its own event and properties (e.g. prompts on
+      // /welcome/); without them it is the endpoint copy in Install.
+      if (button.dataset.copyEvent) {
+        let props: Record<string, unknown> = {};
+        try {
+          props = JSON.parse(button.dataset.copyProps || '{}');
+        } catch {
+          props = {};
+        }
+        trackEvent(button.dataset.copyEvent as AllEvents, props);
+        return;
+      }
       trackEvent('install_cta_clicked' as AllEvents, {
         button_text: 'Copy URL',
         button_location: button.dataset.copyLocation,

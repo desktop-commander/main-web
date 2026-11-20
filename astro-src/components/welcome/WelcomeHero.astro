@@ -1,0 +1,150 @@
+---
+/**
+ * /welcome/ hero, in two halves.
+ *
+ * Top: the install worked. Switch back to your AI app and try a first prompt
+ * (copy buttons use the shared [data-copy] handler in home/scripts/sections.ts,
+ * tracked as prompt_clicked).
+ *
+ * Bottom: "Want more?", a card pitching Remote MCP: your phone, several
+ * computers and servers, ChatGPT and Claude. Its visual is a request from a
+ * phone fanning out to the connected computers.
+ */
+import Icon from '../home/Icon.astro';
+import { welcomeHero as hero, welcomePitch as pitch, TRY_REMOTE_URL, WELCOME_EXPERIMENT } from '../../data/welcome';
+
+const ev = (o: Record<string, unknown>) => JSON.stringify({ ...o, experiment: WELCOME_EXPERIMENT });
+const words1 = hero.titleLine1.split(' ');
+const words2 = hero.titleLine2.split(' ');
+---
+
+<section class="hx-hero hx-welcome-hero" data-hero>
+  <div class="hx-hero__glow" aria-hidden="true"></div>
+
+  <div class="hx-container">
+    <!-- 1. You're all set: try a first prompt -->
+    <div class="hx-hero__top">
+      <p class="hx-ok hx-enter" style="--d:60">
+        <Icon name="check" strokeWidth={2.6} />
+        {hero.status}
+      </p>
+
+      <h1 class="hx-h1 hx-welcome-hero__title">
+        <span class="hx-h1__line">
+          {
+            words1.map((w, i) => (
+              <>
+                <span class="hx-w">
+                  <span style={`--i:${i}`}>{w}</span>
+                </span>{' '}
+              </>
+            ))
+          }
+        </span>
+        <span class="hx-h1__line">
+          {
+            words2.map((w, i) => (
+              <>
+                <span class="hx-w">
+                  <span class="hx-grad" style={`--i:${words1.length + 1 + i}`}>{w}</span>
+                </span>{' '}
+              </>
+            ))
+          }
+        </span>
+      </h1>
+
+      <p class="hx-hero__lead hx-enter" style="--d:520">{hero.lead}</p>
+
+      <ul class="hx-wprompts hx-enter" style="--d:620">
+        {
+          hero.prompts.map((prompt, i) => (
+            <li class="hx-wprompts__row">
+              <span class="hx-wprompts__mark" aria-hidden="true">
+                <Icon name="message-square" />
+              </span>
+              <span class="hx-wprompts__text">{prompt}</span>
+              <button
+                type="button"
+                class="hx-btn hx-btn--ghost hx-btn--sm"
+                data-copy={prompt}
+                data-copy-event="prompt_clicked"
+                data-copy-props={ev({ prompt, prompt_index: i, button_location: 'welcome_hero_prompts' })}
+                aria-label={`${hero.copy}: ${prompt}`}
+              >
+                <Icon name="copy" data-when="idle" />
+                <Icon name="check" data-when="done" strokeWidth={2.6} />
+                <span data-copy-label>{hero.copy}</span>
+              </button>
+            </li>
+          ))
+        }
+      </ul>
+
+      <a class="hx-link hx-wprompts__more hx-enter" style="--d:700" href={hero.moreHref}>
+        {hero.more} &rarr;
+      </a>
+    </div>
+
+    <!-- 2. Want more? Remote MCP -->
+    <div class="hx-card hx-wpitch hx-enter" style="--d:820">
+      <div class="hx-wpitch__copy">
+        <span class="hx-eyebrow"><span class="hx-eyebrow__text">{pitch.eyebrow}</span></span>
+        <h2 class="hx-wpitch__title">{pitch.heading}</h2>
+        <p class="hx-wpitch__body">{pitch.body}</p>
+
+        <ul class="hx-checks hx-wpitch__points">
+          {
+            pitch.points.map((point) => (
+              <li>
+                <Icon name="check" strokeWidth={2.6} />
+                {point}
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="hx-hero__cta hx-wpitch__cta">
+          <a
+            class="hx-btn hx-btn--primary"
+            href={TRY_REMOTE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-ev="remote_mcp_cta_clicked"
+            data-ev-props={ev({ button_text: pitch.cta, button_location: 'welcome_hero_pitch', destination: TRY_REMOTE_URL })}
+          >
+            {pitch.cta}
+            <Icon name="arrow-right" />
+          </a>
+          <a class="hx-btn hx-btn--ghost" href="#compare">{pitch.secondary}</a>
+        </div>
+      </div>
+
+      <div class="hx-wfan" aria-hidden="true">
+        <div class="hx-wfan__from">
+          <span class="hx-wfan__icon"><Icon name="smartphone" /></span>
+          <span>
+            <small>{pitch.visual.from}</small>
+            <b>{pitch.visual.ask}</b>
+          </span>
+        </div>
+        <div class="hx-wfan__wire"><i></i></div>
+        <p class="hx-wfan__label">{pitch.visual.label}</p>
+        <ul class="hx-wfan__list">
+          {
+            pitch.visual.devices.map((d, i) => (
+              <li style={`--n:${i}`}>
+                <span class="hx-wfan__icon">
+                  <Icon name={d.icon} />
+                </span>
+                <b>{d.name}</b>
+                <small>{d.note}</small>
+                <i class="hx-led" />
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

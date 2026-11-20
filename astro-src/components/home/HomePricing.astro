@@ -2,6 +2,23 @@
 /** Remote MCP plans (#pricing), mirroring what users see in Plan & billing. */
 import Icon from './Icon.astro';
 import { pricing } from '../../data/home';
+
+/**
+ * Another page can relabel the Free plan's button and tag the clicks with its
+ * own location (e.g. /welcome/, which has no #install chooser).
+ */
+interface Props {
+  location?: string;
+  freeCta?: { label: string; href: string; external: boolean };
+  /** Where Pro's button goes, e.g. the platform URL with tracking parameters. */
+  proHref?: string;
+  extraProps?: Record<string, unknown>;
+}
+const { location = 'home_pricing', freeCta, proHref, extraProps = {} } = Astro.props;
+const plans = pricing.plans.map((plan) => {
+  if (plan.highlighted) return proHref ? { ...plan, cta: { ...plan.cta, href: proHref } } : plan;
+  return freeCta ? { ...plan, cta: freeCta } : plan;
+});
 ---
 
 <section class="hx-section hx-pricing" id="pricing">
@@ -15,7 +32,7 @@ import { pricing } from '../../data/home';
 
     <div class="hx-plans">
       {
-        pricing.plans.map((plan, i) => (
+        plans.map((plan, i) => (
           <article
             class:list={['hx-card', 'hx-plan', { 'hx-plan--pro': plan.highlighted }]}
             data-reveal
@@ -53,9 +70,10 @@ import { pricing } from '../../data/home';
               data-ev="pricing_cta_clicked"
               data-ev-props={JSON.stringify({
                 button_text: plan.cta.label,
-                button_location: 'home_pricing',
+                button_location: location,
                 plan: plan.name.toLowerCase(),
                 destination: plan.cta.href,
+                ...extraProps,
               })}
             >
               {plan.cta.label}

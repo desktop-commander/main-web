@@ -1,0 +1,394 @@
+/*
+ * /welcome/ only. Everything else comes from the homepage stylesheets
+ * (home.css, home-sections.css, home-hub.css) and uses their tokens.
+ */
+
+/* 1. Hero
+   ========================================================================== */
+
+/* "Local MCP installed": the confirmation people came here for */
+.hx-ok {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: clamp(18px, 2vw, 26px);
+  padding: 7px 14px 7px 10px;
+  border-radius: 999px;
+  background: hsl(152 68% 58% / 0.1);
+  box-shadow: inset 0 0 0 1px hsl(152 68% 58% / 0.32);
+  color: var(--hx-green);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+.hx-ok .hx-icon {
+  font-size: 15px;
+}
+
+.hx-welcome-hero {
+  padding-bottom: clamp(48px, 6vw, 88px);
+}
+.hx-welcome-hero__title {
+  font-size: clamp(2.5rem, 4.4vw + 0.6rem, 4.75rem);
+}
+.hx-welcome-hero .hx-hero__lead {
+  max-width: 620px;
+  text-wrap: pretty;
+}
+
+/* First prompts to try */
+.hx-wprompts {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  max-width: 680px;
+  margin-top: clamp(22px, 2.4vw, 30px);
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+.hx-wprompts__row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 10px 10px 14px;
+  border-radius: 16px;
+  background: hsl(222 22% 11% / 0.8);
+  box-shadow: inset 0 0 0 1px var(--hx-line-hi);
+}
+.hx-wprompts__mark {
+  display: flex;
+  color: var(--hx-blue);
+  font-size: 18px;
+}
+.hx-wprompts__text {
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--hx-text);
+}
+.hx-wprompts__more {
+  margin-top: 16px;
+  font-size: 15px;
+}
+
+/* "Want more?": the Remote pitch, second half of the hero */
+.hx-wpitch {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 48px);
+  margin-top: clamp(56px, 7vw, 96px);
+  padding: clamp(26px, 3.6vw, 48px);
+  box-shadow:
+    inset 0 0 0 1px rgba(var(--hx-blue-rgb), 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 40px 100px -40px rgba(var(--hx-deep-rgb), 0.6);
+}
+.hx-wpitch::before {
+  opacity: 1;
+}
+@media (min-width: 981px) {
+  .hx-wpitch {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    align-items: center;
+  }
+}
+.hx-wpitch__title {
+  margin-top: 14px;
+  font-size: clamp(1.75rem, 2.2vw + 0.8rem, 2.625rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: var(--hx-text);
+  text-wrap: balance;
+}
+.hx-wpitch__body {
+  margin-top: 16px;
+  max-width: 560px;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: var(--hx-text-2);
+  text-wrap: pretty;
+}
+.hx-wpitch__points {
+  margin-top: 22px;
+}
+.hx-wpitch__cta {
+  justify-content: flex-start;
+}
+
+/* The phone request fanning out to the connected computers */
+.hx-wfan {
+  padding: 22px;
+  border-radius: 20px;
+  background: hsl(222 28% 7% / 0.7);
+  box-shadow: inset 0 0 0 1px var(--hx-line);
+}
+.hx-wfan__from,
+.hx-wfan__list li {
+  display: grid;
+  align-items: center;
+  gap: 12px;
+}
+.hx-wfan__from {
+  grid-template-columns: auto minmax(0, 1fr);
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(var(--hx-blue-rgb), 0.1);
+  box-shadow: inset 0 0 0 1px rgba(var(--hx-blue-rgb), 0.3);
+}
+.hx-wfan__from small,
+.hx-wfan__list small,
+.hx-wfan__label {
+  font-family: var(--hx-mono);
+  font-size: 11.5px;
+  color: var(--hx-text-3);
+}
+.hx-wfan__from small {
+  display: block;
+  margin-bottom: 2px;
+}
+.hx-wfan__from b {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--hx-text);
+}
+.hx-wfan__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(var(--hx-blue-rgb), 0.14);
+  color: var(--hx-blue);
+  font-size: 17px;
+}
+.hx-wfan__wire {
+  display: flex;
+  justify-content: center;
+  height: 30px;
+}
+.hx-wfan__wire i {
+  width: 2px;
+  background: linear-gradient(to bottom, rgba(var(--hx-blue-rgb), 0.8), rgba(var(--hx-blue-rgb), 0.1));
+}
+.hx-wfan__label {
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.hx-wfan__list {
+  display: grid;
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+}
+.hx-wfan__list li {
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  padding: 9px 12px 9px 9px;
+  border-radius: 13px;
+  background: hsl(222 22% 11%);
+  box-shadow: inset 0 0 0 1px var(--hx-line);
+}
+.hx-wfan__list b {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--hx-text);
+  white-space: nowrap;
+}
+.hx-wfan__list small {
+  white-space: nowrap;
+}
+.hx-wfan__list li:first-child {
+  box-shadow: inset 0 0 0 1px hsl(152 68% 58% / 0.3);
+}
+.hx-wfan__list li:first-child small {
+  color: var(--hx-green);
+}
+
+@media (max-width: 560px) {
+  .hx-wprompts__row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .hx-wprompts__mark {
+    display: none;
+  }
+  .hx-wfan {
+    padding: 14px;
+  }
+}
+
+/* 2. Local vs Remote
+   ========================================================================== */
+
+.hx-compare__table {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  max-width: 1040px;
+  margin-inline: auto;
+}
+.hx-compare__labels {
+  display: none;
+}
+
+.hx-compare__col {
+  padding: 26px 26px 10px;
+}
+.hx-compare__col--remote {
+  box-shadow:
+    inset 0 0 0 1px rgba(var(--hx-blue-rgb), 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 30px 80px -30px rgba(var(--hx-deep-rgb), 0.55);
+}
+.hx-compare__col--remote::before {
+  opacity: 1;
+}
+
+.hx-compare__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 40px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--hx-line);
+}
+.hx-compare__top h3 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--hx-text);
+}
+
+.hx-compare__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-family: var(--hx-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.hx-compare__tag--done {
+  color: var(--hx-green);
+  background: hsl(152 68% 58% / 0.08);
+  box-shadow: inset 0 0 0 1px hsl(152 68% 58% / 0.26);
+}
+.hx-compare__tag--try {
+  color: #fff;
+  background: var(--hx-blue-deep);
+  transition: background 0.25s ease;
+}
+.hx-compare__tag--try:hover {
+  background: hsl(221 83% 60%);
+}
+
+.hx-compare__cell {
+  display: grid;
+  gap: 4px;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--hx-line);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--hx-text-2);
+}
+.hx-compare__cell:last-child {
+  border-bottom: 0;
+}
+.hx-compare__col--remote .hx-compare__cell {
+  color: var(--hx-text);
+}
+.hx-compare__cell-label {
+  font-family: var(--hx-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--hx-text-3);
+}
+
+/* Wide: one table. Labels on the left, cells line up across both columns. */
+@media (min-width: 900px) {
+  .hx-compare__table {
+    grid-template-columns: 170px minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto repeat(5, auto);
+    column-gap: 18px;
+    row-gap: 0;
+  }
+  .hx-compare__labels,
+  .hx-compare__col {
+    display: grid;
+    grid-row: 1 / -1;
+    grid-template-rows: subgrid;
+  }
+  .hx-compare__labels {
+    padding-block: 26px 10px;
+  }
+  .hx-compare__label {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--hx-line);
+    font-family: var(--hx-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--hx-text-3);
+  }
+  .hx-compare__label:last-child {
+    border-bottom: 0;
+  }
+  .hx-compare__cell {
+    align-content: center;
+  }
+  .hx-compare__cell-label {
+    display: none;
+  }
+}
+
+/* 3. Use cases
+   ========================================================================== */
+
+.hx-wuses__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  max-width: 1040px;
+  margin-inline: auto;
+  list-style: none;
+  padding: 0;
+}
+@media (min-width: 760px) {
+  .hx-wuses__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.hx-wuses__card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 28px;
+}
+.hx-wuses__card .hx-remote__icon {
+  flex: 0 0 auto;
+  width: 44px;
+}
+.hx-wuses__card h3 {
+  font-size: 1.1875rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--hx-text);
+}
+.hx-wuses__card p {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--hx-text-2);
+  text-wrap: pretty;
+}

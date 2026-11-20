@@ -1,0 +1,32 @@
+---
+/**
+ * "What people use Remote for": four jobs Remote users describe, as cards.
+ * Copy and sources: astro-src/data/welcome.ts.
+ */
+import Icon from '../home/Icon.astro';
+import { uses } from '../../data/welcome';
+---
+
+<section class="hx-section hx-wuses" id="uses">
+  <div class="hx-container">
+    <header class="hx-head" data-reveal>
+      <span class="hx-eyebrow"><span class="hx-eyebrow__text">Use cases</span></span>
+      <h2 class="hx-h2">{uses.heading}</h2>
+      <p class="hx-sub">{uses.sub}</p>
+    </header>
+
+    <ul class="hx-wuses__grid">
+      {
+        uses.items.map((item, i) => (
+          <li class="hx-card hx-wuses__card" data-reveal style={`--d:${i * 90}`}>
+            <span class="hx-remote__icon">
+              <Icon name={item.icon} />
+            </span>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

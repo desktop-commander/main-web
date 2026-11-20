@@ -5,6 +5,14 @@
  */
 import Icon from './Icon.astro';
 import { faq } from '../../data/home';
+
+/** Another page (e.g. /welcome/) can pass its own heading and questions. */
+interface Props {
+  heading?: string;
+  sub?: string;
+  items?: ReadonlyArray<{ question: string; answer: string }>;
+}
+const { heading = faq.heading, sub = faq.sub, items = faq.items } = Astro.props;
 ---
 
 <section class="hx-section hx-faq" id="faq">
@@ -12,8 +20,8 @@ import { faq } from '../../data/home';
     <div class="hx-faq__side">
       <header class="hx-head hx-head--left" data-reveal>
         <span class="hx-eyebrow"><span class="hx-eyebrow__text">FAQ</span></span>
-        <h2 class="hx-h2">{faq.heading}</h2>
-        <p class="hx-sub">{faq.sub}</p>
+        <h2 class="hx-h2">{heading}</h2>
+        <p class="hx-sub">{sub}</p>
       </header>
 
       <div class="hx-card hx-faq__help" data-reveal style="--d:100">
@@ -28,7 +36,7 @@ import { faq } from '../../data/home';
 
     <div class="hx-faq__list" data-faq data-reveal style="--d:80">
       {
-        faq.items.map((item, i) => (
+        items.map((item, i) => (
           <div class="hx-faq__item">
             <h3>
               <button

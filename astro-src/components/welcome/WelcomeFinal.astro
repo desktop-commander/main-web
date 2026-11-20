@@ -1,0 +1,38 @@
+---
+/** Closing section of /welcome/: try Remote, or go find a prompt. Styled like HomeFinalCta. */
+import Icon from '../home/Icon.astro';
+import { welcomeFinal as final, TRY_REMOTE_URL, WELCOME_EXPERIMENT } from '../../data/welcome';
+
+const ev = JSON.stringify({
+  button_text: final.cta,
+  button_location: 'welcome_final_cta',
+  destination: TRY_REMOTE_URL,
+  experiment: WELCOME_EXPERIMENT,
+});
+---
+
+<section class="hx-section hx-final">
+  <div class="hx-rule" aria-hidden="true"></div>
+
+  <div class="hx-container hx-final__inner">
+    <h2 class="hx-h2" data-reveal>{final.heading}</h2>
+    <p class="hx-sub" data-reveal style="--d:80">{final.sub}</p>
+
+    <div class="hx-hero__cta" data-reveal style="--d:160">
+      <a
+        class="hx-btn hx-btn--primary"
+        href={TRY_REMOTE_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-ev="remote_mcp_cta_clicked"
+        data-ev-props={ev}
+      >
+        {final.cta}
+        <Icon name="arrow-right" />
+      </a>
+      <a class="hx-btn hx-btn--ghost" href={final.secondaryHref}>
+        {final.secondary}
+      </a>
+    </div>
+  </div>
+</section>
