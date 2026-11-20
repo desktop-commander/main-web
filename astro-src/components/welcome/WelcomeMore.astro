@@ -66,10 +66,13 @@ const ev = (o: Record<string, unknown>) =>
           ))
         }
       </div>
-      <p class="hx-wmore__other">
-        {more.otherLead}{' '}
+      <div class="hx-wmore__other">
+        <p class="hx-wmore__other-lead">{more.otherLead}</p>
+        <ul class="hx-wmore__agents hx-wmore__agents--center">
+          {more.otherAgents.map((a) => <li>{a}</li>)}
+        </ul>
         <a
-          class="hx-link"
+          class="hx-link hx-wmore__signin"
           href={TRY_REMOTE_URL}
           target="_blank"
           rel="noopener noreferrer"
@@ -78,7 +81,7 @@ const ev = (o: Record<string, unknown>) =>
         >
           {more.other} &rarr;
         </a>
-      </p>
+      </div>
       <p class="hx-wmore__note">{more.note}</p>
     </div>
   </div>
