@@ -39,6 +39,26 @@ export const welcomeHero = {
 } as const;
 
 /**
+ * AI agents that connect to Remote MCP, with their logos in public/agents/.
+ * Logos: LobeHub Icons (@lobehub/icons-static-svg 1.104.0, MIT licence),
+ * except vscode.svg (the site's own public/vscode-logo.svg). The marks are
+ * trademarks of their owners, shown to say Desktop Commander works with them.
+ */
+export const AGENTS = {
+  chatgpt: { name: 'ChatGPT', logo: '/agents/chatgpt.svg' },
+  claude: { name: 'Claude', logo: '/agents/claude.svg' },
+  gemini: { name: 'Gemini', logo: '/agents/gemini.svg' },
+  grok: { name: 'Grok', logo: '/agents/grok.svg' },
+  manus: { name: 'Manus', logo: '/agents/manus.svg' },
+  perplexity: { name: 'Perplexity', logo: '/agents/perplexity.svg' },
+  codex: { name: 'Codex', logo: '/agents/codex.svg' },
+  cursor: { name: 'Cursor', logo: '/agents/cursor.svg' },
+  vscode: { name: 'VS Code', logo: '/agents/vscode.svg' },
+  windsurf: { name: 'Windsurf', logo: '/agents/windsurf.svg' },
+} as const;
+export type AgentId = keyof typeof AGENTS;
+
+/**
  * "Want more?": right under the prompts. What Remote MCP is, three reasons to
  * add it, and buttons straight to the ChatGPT plugin and the Claude connector.
  * Other clients and more computers go to the platform, which has the setup
@@ -66,19 +86,7 @@ export const welcomeMore = {
       icon: 'bot',
       title: 'Same computers, many agents',
       description: 'Connect the same devices to every AI app you use:',
-      agents: [
-        'ChatGPT',
-        'Claude',
-        'Gemini',
-        'Grok',
-        'Manus',
-        'Perplexity',
-        'Codex',
-        'Cursor',
-        'VS Code',
-        'Windsurf',
-        'any MCP client',
-      ],
+      agents: ['chatgpt', 'claude', 'gemini', 'grok', 'manus', 'perplexity', 'codex', 'cursor', 'vscode', 'windsurf'],
     },
   ],
   add: [
@@ -87,9 +95,10 @@ export const welcomeMore = {
   ],
   /** Agents with remote connector support but no one-click button here; setup steps are on the platform. */
   otherLead: 'Using another agent?',
-  otherAgents: ['Gemini', 'Grok', 'Manus', 'Perplexity', 'Codex', 'Cursor', 'VS Code', 'Windsurf', 'any MCP client'],
+  otherAgents: ['gemini', 'grok', 'manus', 'perplexity', 'codex', 'cursor', 'vscode', 'windsurf'],
+  anyClient: 'Any MCP client',
   other: 'Sign in for setup instructions',
-  note: 'Free for 10,000 tool calls a month.',
+  note: 'Free to start.',
 } as const;
 
 /** Jobs Remote users told us about, in plain words. */

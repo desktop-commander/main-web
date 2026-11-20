@@ -7,7 +7,7 @@
  */
 import Icon from '../home/Icon.astro';
 import ClientMark from '../home/ClientMark.astro';
-import { welcomeMore as more, TRY_REMOTE_URL, WELCOME_EXPERIMENT } from '../../data/welcome';
+import { welcomeMore as more, AGENTS, TRY_REMOTE_URL, WELCOME_EXPERIMENT } from '../../data/welcome';
 
 const ev = (o: Record<string, unknown>) =>
   JSON.stringify({ ...o, button_location: 'welcome_want_more', experiment: WELCOME_EXPERIMENT });
@@ -35,9 +35,18 @@ const ev = (o: Record<string, unknown>) =>
             <p>{v.description}</p>
             {'agents' in v && (
               <ul class="hx-wmore__agents">
-                {v.agents.map((a) => (
-                  <li>{a}</li>
+                {v.agents.map((id) => (
+                  <li class="hx-agent">
+                    <span class="hx-agent__logo">
+                      <img src={AGENTS[id].logo} alt="" width="16" height="16" loading="lazy" decoding="async" />
+                    </span>
+                    {AGENTS[id].name}
+                  </li>
                 ))}
+                <li class="hx-agent hx-agent--any">
+                  <span class="hx-agent__logo"><Icon name="plug" /></span>
+                  {more.anyClient}
+                </li>
               </ul>
             )}
           </li>
@@ -68,8 +77,21 @@ const ev = (o: Record<string, unknown>) =>
       </div>
       <div class="hx-wmore__other">
         <p class="hx-wmore__other-lead">{more.otherLead}</p>
-        <ul class="hx-wmore__agents hx-wmore__agents--center">
-          {more.otherAgents.map((a) => <li>{a}</li>)}
+        <ul class="hx-wmore__tiles">
+          {
+            more.otherAgents.map((id) => (
+              <li class="hx-tile">
+                <span class="hx-tile__logo">
+                  <img src={AGENTS[id].logo} alt="" width="28" height="28" loading="lazy" decoding="async" />
+                </span>
+                <span class="hx-tile__name">{AGENTS[id].name}</span>
+              </li>
+            ))
+          }
+          <li class="hx-tile hx-tile--any">
+            <span class="hx-tile__logo"><Icon name="plug" /></span>
+            <span class="hx-tile__name">{more.anyClient}</span>
+          </li>
         </ul>
         <a
           class="hx-link hx-wmore__signin"
