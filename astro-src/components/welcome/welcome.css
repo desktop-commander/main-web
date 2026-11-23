@@ -282,11 +282,6 @@
 .hx-wmore__signin {
   font-size: 15px;
 }
-.hx-wmore__note {
-  margin-top: 14px;
-  font-size: 14px;
-  color: var(--hx-text-3);
-}
 @media (max-width: 560px) {
   .hx-wmore__buttons {
     flex-direction: column;

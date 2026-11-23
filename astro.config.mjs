@@ -67,6 +67,8 @@ export default defineConfig({
     '/pricing2': '/pricing/',
     '/product/early-access': '/',
     '/welcome2': '/',
+    // Review URL of the current /welcome/ page (2026-11-20 to 11-23), shared with the team.
+    '/welcome-v2': '/welcome/',
   },
   
   build: {

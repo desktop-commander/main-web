@@ -1,7 +1,6 @@
 /**
- * Content for /welcome-v2/ (astro-src/pages/welcome-v2.astro): the next
- * version of the page the local MCP installer opens when installation
- * finishes (it still opens /welcome/ until this one replaces it).
+ * Content for /welcome/ (astro-src/pages/welcome.astro): the page the local
+ * MCP installer opens when installation finishes.
  *
  * Job of the page: confirm the install worked, then make the case for trying
  * Remote MCP: what it adds over the local server the visitor just installed.
@@ -98,7 +97,6 @@ export const welcomeMore = {
   otherAgents: ['gemini', 'grok', 'manus', 'perplexity', 'codex', 'cursor', 'vscode', 'windsurf'],
   anyClient: 'Any MCP client',
   other: 'Sign in for setup instructions',
-  note: 'Free to start.',
 } as const;
 
 /** Jobs Remote users told us about, in plain words. */
@@ -151,18 +149,13 @@ export const welcomeFaq = {
       answer:
         'Yes. Connect a laptop, a desktop, a server or a VM, as many as you need, and tell the AI which one to work on.',
     },
-    {
-      question: 'What does Remote cost?',
-      answer:
-        'The free plan includes 10,000 tool calls a month. Pro is $20 a month plus VAT applicable in your country, with unlimited tool calls. The local MCP stays free and open source.',
-    },
   ],
 };
 
 export const welcomeFinal = {
   heading: 'Your computer, from the chat in your pocket',
-  sub: 'Sign up free, connect this computer, and ask ChatGPT or Claude for something from your phone.',
-  cta: 'Try Remote free',
+  sub: 'Connect this computer, then ask ChatGPT or Claude for something from your phone.',
+  cta: 'Set up Remote',
   secondary: 'Browse prompts',
   secondaryHref: '/library/prompts/',
 };
