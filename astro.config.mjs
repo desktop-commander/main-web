@@ -9,7 +9,7 @@ const base = isGitHubPages ? '/main-web-astro/' : '/';
 
 console.log(`Building with base path: ${base}`);
 
-// Built scripts and styles get an 11 character content hash instead of Vite's 8.
+// Built scripts and styles get a 12 character content hash instead of Vite's 8.
 // Why: builds reuse a file name whenever its content returns to an earlier state,
 // and Cloudflare kept cached 404s for some 8 character names after the broken
 // Pages build on 16 Sep 2026 (index.BR_dh4GY.js, the React bundle). With the
@@ -18,10 +18,11 @@ console.log(`Building with base path: ${base}`);
 // different machines can hash the same source differently, so a later build can
 // bring back names that were removed a few days earlier and may still be cached
 // as 404s. If a deploy check finds a reused name, change the length again
-// (10 -> 11 on 9 Nov 2026 for that reason).
+// (10 -> 11 on 9 Nov 2026, 11 -> 12 on 23 Nov 2026: 46 names from the 13 Nov
+// builds came back, for that reason).
 // Client build: all JS and assets. Server build: only assetFileNames (that is
 // where Astro emits the CSS); its chunk naming must stay Astro's own.
-const HASHED = 'assets/[name].[hash:11]';
+const HASHED = 'assets/[name].[hash:12]';
 const assetNames = {
   name: 'dc-asset-names',
   hooks: {
