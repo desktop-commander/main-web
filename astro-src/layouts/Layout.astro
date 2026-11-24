@@ -5,6 +5,8 @@ interface Props {
   ogImage?: string;
   robots?: string;
   googlebot?: string;
+  /** Skip the shared advertising pixel and ad-click cookie on unlisted product pages. */
+  advertisingMeasurement?: boolean;
   /**
    * Override the `<link rel="canonical">` for this page.
    * Pass an absolute URL (e.g. "https://desktopcommander.app/library/prompts/")
@@ -27,6 +29,7 @@ const {
   ogImage = '/bg-social-share.png',
   robots = 'index, follow, noai, noimageai',
   googlebot = 'index, follow, noai',
+  advertisingMeasurement = true,
   canonical,
   jsonLd
 } = Astro.props;
@@ -102,6 +105,7 @@ import '../../src/index.css';
     <!-- Ahrefs Analytics - blocked until statistics consent -->
     <script type="text/plain" data-cookieconsent="statistics" src="https://analytics.ahrefs.com/analytics.js" data-key="5Iumy4Rr7Do+R0CWUtQkHA" async></script>
 
+    {advertisingMeasurement && (<>
     <!--
       ChatGPT Ads measurement pixel - blocked until MARKETING consent.
       Advertising, not statistics: it sets its own attribution cookies and does
@@ -163,6 +167,8 @@ import '../../src/index.css';
       })();
     </script>
     
+    </>)}
+
     <!-- Inject base path for React components -->
     <script is:inline define:vars={{ basePath: import.meta.env.BASE_URL }}>
       window.__BASE_PATH__ = basePath;
