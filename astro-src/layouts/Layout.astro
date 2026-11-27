@@ -7,6 +7,8 @@ interface Props {
   googlebot?: string;
   /** Skip the shared advertising pixel and ad-click cookie on unlisted product pages. */
   advertisingMeasurement?: boolean;
+  /** Replace the Desktop Commander favicons, e.g. on a separate product page. */
+  icons?: { png32: string; png16: string; appleTouch: string };
   /**
    * Override the `<link rel="canonical">` for this page.
    * Pass an absolute URL (e.g. "https://desktopcommander.app/library/prompts/")
@@ -30,6 +32,7 @@ const {
   robots = 'index, follow, noai, noimageai',
   googlebot = 'index, follow, noai',
   advertisingMeasurement = true,
+  icons,
   canonical,
   jsonLd
 } = Astro.props;
@@ -59,10 +62,20 @@ import '../../src/index.css';
     <meta name="author" content="Desktop Commander" />
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    {icons ? (
+      <>
+        <link rel="icon" type="image/png" sizes="32x32" href={icons.png32} />
+        <link rel="icon" type="image/png" sizes="16x16" href={icons.png16} />
+        <link rel="apple-touch-icon" sizes="180x180" href={icons.appleTouch} />
+      </>
+    ) : (
+      <>
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+      </>
+    )}
     <link rel="canonical" href={canonicalURL} />
     
     <!-- Open Graph -->
