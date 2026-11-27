@@ -45,17 +45,17 @@ const steps = [
   robots="noindex, nofollow, noai, noimageai"
   googlebot="noindex, nofollow, noai"
   advertisingMeasurement={false}
+  icons={{
+    png32: '/context-commander/favicon-32x32.png',
+    png16: '/context-commander/favicon-16x16.png',
+    appleTouch: '/context-commander/apple-touch-icon.png',
+  }}
 >
   <div class="hx cc-page" data-pagefind-ignore="all">
     <header class="cc-header">
       <div class="hx-container cc-header-inner">
         <a href="#top" class="cc-brand" aria-label="Context Commander, page top">
-          <span class="cc-mark" aria-hidden="true">
-            <svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 6h14M5 12h10M5 18h7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <path d="m17 15 3 3-3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
+          <img class="cc-logo" src="/context-commander/logo.png" alt="" width="40" height="40" />
           <span>Context Commander</span>
         </a>
         <span class="cc-byline">By Desktop Commander</span>
@@ -93,7 +93,7 @@ const steps = [
             </div>
             <div class="cc-wire" data-cc-wire="save" aria-hidden="true"><i></i><span data-cc-action>save_checkpoint</span></div>
             <div class="cc-memory" data-cc-memory>
-              <div class="cc-memory-head"><span class="cc-mark cc-memory-mark" aria-hidden="true">▤</span><div><strong>Context Commander</strong><small>Persistent project memory</small></div><span class="cc-saved" data-cc-status>✓ Saved</span></div>
+              <div class="cc-memory-head"><img class="cc-logo cc-memory-logo" src="/context-commander/logo.png" alt="" width="36" height="36" /><div><strong>Context Commander</strong><small>Persistent project memory</small></div><span class="cc-saved" data-cc-status>✓ Saved</span></div>
               <div class="cc-project">
                 <span class="cc-project-label">PROJECT CHECKPOINT</span>
                 <h2 data-cc-project>Website redesign</h2>
@@ -193,7 +193,8 @@ const steps = [
   .cc-header { border-bottom: 1px solid var(--hx-line); }
   .cc-header-inner, .cc-footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-block: 20px; }
   .cc-brand { display: inline-flex; gap: 12px; align-items: center; color: var(--hx-text); font-size: 1rem; font-weight: 650; text-decoration: none; letter-spacing: -.02em; }
-  .cc-mark { display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid var(--hx-line-hi); background: var(--hx-panel); border-radius: 12px; color: var(--hx-blue); }
+  .cc-logo { display: block; flex: none; width: 40px; height: 40px; }
+  .cc-memory-logo { width: 36px; height: 36px; }
   .cc-byline, .cc-caption { color: var(--hx-text-3); font-size: .875rem; }
   .cc-hero { position: relative; overflow: hidden; padding-block: clamp(70px, 11vw, 140px); }
   .cc-hero-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,.9fr); align-items: center; gap: clamp(40px, 7vw, 100px); }
@@ -296,7 +297,6 @@ const steps = [
   @keyframes cc-signal {0%{transform:translateY(-12px);opacity:0}20%{opacity:1}80%{opacity:1}100%{transform:translateY(40px);opacity:0}}
   .cc-memory {padding:15px 17px;border:1px solid rgba(var(--hx-blue-rgb),.35);border-radius:16px;background:linear-gradient(135deg,var(--hx-panel),var(--hx-bg-deep));box-shadow:0 0 32px rgba(var(--hx-blue-rgb),.08);transition:opacity .45s,border-color .45s,box-shadow .45s}
   .cc-memory-head {display:flex;align-items:center;gap:10px}
-  .cc-memory-mark {width:36px;height:36px;font-size:23px;color:var(--hx-blue);border-color:rgba(var(--hx-blue-rgb),.25)}
   .cc-memory-head strong {font-size:.9rem;font-weight:650}.cc-memory-head small {display:block;color:var(--hx-text-3);font-size:.7rem;margin-top:2px}
   .cc-saved {margin-left:auto;font:.7rem var(--hx-mono);color:var(--hx-green);white-space:nowrap}
   .cc-memory .cc-project {margin-top:12px;padding:11px 13px}.cc-memory .cc-project h2{margin:4px 0 8px}
